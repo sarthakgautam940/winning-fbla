@@ -1,0 +1,42 @@
+# Lesson 8.6 flashcards
+
+- id: fc-misinformation
+  term: Misinformation
+  def: "False or misleading information spread without an intent to deceive, through honest error. Chatbot hallucinations are misinformation; misinformation is also on OWASP's Top 10 for LLM Applications."
+  skill: misinformation
+  virginia: true
+
+- id: fc-disinformation-malinformation
+  term: Disinformation and malinformation
+  def: "Disinformation: false or misleading information spread deliberately to deceive. Malinformation: genuine information shared to cause harm, such as leaked private records. Intent separates disinformation from misinformation."
+  skill: misinformation
+
+- id: fc-why-hallucinate
+  term: Why models hallucinate
+  def: "Models generate likely text, not verified facts, and fill gaps (thin data, events after the knowledge cutoff) with plausible inventions. Training and benchmarks also reward guessing over admitting uncertainty (Kalai and colleagues, 2025), like a test with no penalty for wrong answers."
+  skill: hallucination
+
+- id: fc-fabricated-citations
+  term: Fabricated citations
+  def: "Invented sources with plausible authors, titles, journals, and years, because citations follow an easy pattern. In Mata v. Avianca (2023), lawyers were sanctioned $5,000 for filing six fake opinions ChatGPT had invented. Always find and read a source before citing it."
+  skill: hallucination
+
+- id: fc-reduce-hallucinations
+  term: Reducing hallucinations
+  def: "Ground answers with retrieval, cross-verify with human oversight, validate key outputs automatically (does the case or package exist?), label AI content, and train users. Retrieval reduces hallucinations but does not eliminate them."
+  skill: hallucination
+
+- id: fc-content-provenance
+  term: Content provenance and Content Credentials
+  def: "A record of where content came from and how it was edited. The C2PA (founded 2021 by Adobe, Arm, BBC, Intel, Microsoft, and Truepic) sets the open standard; the signed record is Content Credentials. It shows origin, not truth, and credentials can be stripped, so a missing one does not prove a fake."
+  skill: misinformation
+
+- id: fc-automation-bias
+  term: Automation bias and overreliance
+  def: "Automation bias: the tendency to automatically rely or over-rely on an automated system's output (EU AI Act wording). Overreliance: excessive trust in LLM output, acting on it without checking. The EU AI Act requires that overseers of high-risk AI be able to override or reverse its output."
+  skill: misinformation
+
+- id: fc-lateral-reading
+  term: Lateral reading
+  def: "A fact-checker's habit: leave a website to see what other sources say about it and its publisher, instead of reading the site itself more closely. Pair it with tracing claims to original sources and checking dates, context, and provenance."
+  skill: misinformation

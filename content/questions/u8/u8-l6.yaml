@@ -1,0 +1,523 @@
+# Lesson 8.6: Credibility, hallucinations, and misinformation
+
+# ---------------------------------------------------------------- hallucination
+- id: hallucination-01
+  skill: hallucination
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A chatbot states that a city's population is 2.4 million and cites a census table that does not exist. What is this?
+  options:
+    - "A prompt injection"
+    - "A hallucination"
+    - "Data poisoning"
+    - "A data breach"
+  answer: B
+  explain: |
+    A hallucination, which NIST calls confabulation, is confident, plausible output that is false or unsupported, and an invented source is a classic form. Nothing suggests an attacker; the model simply produced likely-sounding text that is not true.
+  why:
+    A: "Prompt injection is an attack that hijacks a model through planted instructions; no attacker is involved here."
+    C: "Poisoning corrupts training data on purpose; an invented citation is an ordinary model error."
+    D: "A data breach is unauthorized access to or disclosure of personal data."
+
+- id: hallucination-02
+  skill: hallucination
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    According to a 2025 analysis by OpenAI researchers, why do language models tend to give confident guesses instead of saying they do not know?
+  options:
+    - "Models are deliberately programmed to deceive users who ask hard questions"
+    - "Neural networks cannot represent uncertainty, so they must always answer"
+    - "Models store too few facts to answer any question with confidence"
+    - "Training and benchmarks reward guessing over acknowledging uncertainty"
+  answer: D
+  explain: |
+    Kalai and colleagues argue that most training and evaluation score answers as simply right or wrong, so "I don't know" earns nothing and guessing improves test scores. It is the same incentive as a test with no penalty for wrong answers, like this event.
+  why:
+    A: "Hallucinations involve no intent to deceive; they come from how models are trained and scored."
+    B: "Models can be trained to express uncertainty; the problem is that scoring rarely rewards it."
+    C: "Models hold vast amounts of information; the issue is guessing where they are unsure."
+
+- id: hallucination-03
+  skill: hallucination
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A company's customer-service chatbot sometimes invents refund rules. Which change most directly reduces these hallucinations?
+  options:
+    - "Ground its answers in retrieved copies of the company's actual policy documents"
+    - "Raise the temperature setting so that its answers sound more natural"
+    - "Tell the model it is a world-class expert so that it answers with confidence"
+    - "Ask each question twice and keep whichever answer is longer"
+  answer: A
+  explain: |
+    Retrieval-augmented generation gives the model the real policy text to answer from, instead of relying on memory, which OWASP recommends for reducing misinformation. It does not eliminate errors, so important answers should still be checked.
+  why:
+    B: "Higher temperature adds randomness, which can make invented details more likely, not less."
+    C: "Confidence is not accuracy; a persona does not give the model the real rules."
+    D: "Length has no connection to accuracy."
+
+- id: hallucination-04
+  skill: hallucination
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In Mata v. Avianca (2023), what led a federal judge to sanction two lawyers?
+  options:
+    - "Pasting a client's confidential files into ChatGPT"
+    - "Letting ChatGPT argue the case in court on their behalf"
+    - "Filing judicial opinions and quotations that ChatGPT had invented"
+    - "Using ChatGPT to translate court documents without telling the judge"
+  answer: C
+  explain: |
+    The lawyers submitted a filing that relied on non-existent judicial opinions with fake quotations and citations created by ChatGPT. The judge found bad faith, imposed a $5,000 penalty, and ordered them to notify each real judge falsely named as an author.
+  why:
+    A: "The case was about fabricated content in a filing, not leaked client data."
+    B: "ChatGPT did not appear in court; the lawyers filed its invented cases."
+    D: "Translation was not involved; the problem was citing cases that did not exist."
+
+- id: hallucination-05
+  skill: hallucination
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why are citations an especially common form of hallucination?
+  options:
+    - "Models deliberately invent sources to make their answers look more trustworthy"
+    - "A citation follows a predictable pattern that a model can fill with plausible inventions"
+    - "Real citations are too long to fit in a model's context window"
+    - "Models copy citations exactly from training data, so the errors come from the originals"
+  answer: B
+  explain: |
+    A citation has a familiar shape, author, title, journal, and year, and a model generating likely text can fill that shape with convincing details that do not match any real source. That is why every source a chatbot suggests must be checked.
+  why:
+    A: "Models have no intent; fabricated citations come from pattern completion, not a plan to deceive."
+    C: "Citations are short; context length is not the cause."
+    D: "If models only copied real citations, the citations would exist; fabricated ones are new combinations."
+
+- id: hallucination-06
+  skill: hallucination
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    OWASP warns about a specific hallucination risk in code written with LLM help. What is it?
+  options:
+    - "Code from an LLM always runs more slowly than code written by people"
+    - "LLMs refuse to write code in any language other than Python"
+    - "Generated code is automatically copyrighted by the model's developer"
+    - "Models may suggest insecure or nonexistent libraries that developers trust without checking"
+  answer: D
+  explain: |
+    OWASP notes that models may suggest insecure or nonexistent software libraries. If developers install and use them without verification, the hallucination becomes a security problem, not just a bug.
+  why:
+    A: "Speed is not the warned-about risk, and it is not always true."
+    B: "LLMs write code in many languages."
+    C: "Under the U.S. Copyright Office's guidance, AI-determined material is not protected; the security risk is the issue here."
+
+- id: hallucination-07
+  skill: hallucination
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Kalai and colleagues (2025) argue that hallucinations persist partly because of how models are scored. Which remedy do they propose?
+  options:
+    - "Stop using benchmarks to evaluate language models altogether"
+    - "Modify the scoring of existing benchmarks so guessing is not rewarded over uncertainty"
+    - "Train language models only on verified encyclopedia articles"
+    - "Set every model's temperature to zero before it is evaluated"
+  answer: B
+  explain: |
+    The researchers propose modifying the scoring of existing benchmarks that are misaligned but dominate leaderboards, so that confident wrong answers no longer beat honest expressions of uncertainty. Change the incentive and the behavior can follow.
+  why:
+    A: "They propose fixing the scoring, not abandoning evaluation."
+    C: "Clean training data would not remove the incentive to guess where the model is unsure."
+    D: "Temperature controls randomness; it does not change what the model has been rewarded for."
+
+- id: hallucination-08
+  skill: hallucination
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A chatbot states a wrong historical date in a confident, detailed sentence. What does its confident tone tell you about whether the date is correct?
+  options:
+    - "Nothing, since fluent, confident text is produced the same way whether or not it is true"
+    - "It is probably correct, because models add hedging words whenever they are unsure"
+    - "It is certainly correct, because models cannot state false facts confidently"
+    - "It is probably wrong, because confident answers are usually hallucinations"
+  answer: A
+  explain: |
+    A model generates likely text, and a confident tone is just part of that text; it does not measure accuracy. Check important facts against reliable sources regardless of how sure the answer sounds.
+  why:
+    B: "Models often state errors without any hedging."
+    C: "Hallucinations are, by definition, false content stated confidently."
+    D: "Most confident answers are not hallucinations; tone simply carries no information either way."
+
+- id: hallucination-09
+  skill: hallucination
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A company adds retrieval-augmented generation to its chatbot. Which statement about hallucinations is accurate?
+  options:
+    - "Retrieval eliminates hallucinations, because the model can only quote documents"
+    - "Retrieval increases hallucinations, because extra text confuses the model"
+    - "Retrieval reduces hallucinations, but the model can still misstate what it retrieves"
+    - "Retrieval works only when the temperature is set above 1"
+  answer: C
+  explain: |
+    Grounding answers in retrieved sources reduces hallucinations, as OWASP recommends, but the model still generates its own text and can misread or misstate those sources. Retrieved documents can also be wrong, so verification still matters.
+  why:
+    A: "The model still writes its own answer, so errors remain possible."
+    B: "Grounding in relevant sources generally helps rather than hurts."
+    D: "Retrieval does not depend on a high temperature."
+
+- id: hallucination-10
+  skill: hallucination
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A chatbot gives a student a journal article to cite in a research paper. What is the best first step before using it?
+  options:
+    - "Ask the chatbot to confirm that the article is real"
+    - "Cite it, since the chatbot listed an author, a journal, and a year"
+    - "Check that the citation is formatted correctly in APA style"
+    - "Search for the article to confirm it exists and says what is claimed"
+  answer: D
+  explain: |
+    Fabricated citations look exactly like real ones, so the only reliable check is to find the source yourself and read the relevant passage. A citation you cannot find should not be used.
+  why:
+    A: "A model can confirm its own invention just as confidently as it made it up."
+    B: "Fabricated citations come with plausible authors, journals, and years."
+    C: "Correct formatting says nothing about whether the source exists."
+
+- id: hallucination-11
+  skill: hallucination
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A user asks a model with no web access about an event from last week, and the model gives a detailed but invented account. Which explanation fits best?
+  options:
+    - "The event is after the model's knowledge cutoff, and it filled the gap with plausible text"
+    - "The model was attacked by indirect prompt injection while it was answering"
+    - "The model memorized a news story about the event during its training"
+    - "The model's training data was poisoned by people who wrote about the event"
+  answer: A
+  explain: |
+    A model knows nothing after its knowledge cutoff, and without retrieval it cannot look the event up. Instead of saying it does not know, it generates a plausible account, which is a hallucination.
+  why:
+    B: "No outside content was read, so there was nothing to carry an injection."
+    C: "An event from last week could not appear in training data gathered before the cutoff."
+    D: "Poisoning requires the event to be in the training data, which is impossible for an event after the cutoff."
+
+- id: hallucination-12
+  skill: hallucination
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A law firm builds an AI research assistant. Which design best protects against filing fabricated case law?
+  options:
+    - "Use the largest available model, because larger models do not invent cases"
+    - "Instruct the model in its system prompt to cite only cases that actually exist"
+    - "Retrieve real cases from a legal database, link each citation, and have a lawyer check them before filing"
+    - "Set the temperature to zero so that the model always gives the same citations"
+  answer: C
+  explain: |
+    Layered defenses work best: grounding in a real case database, linking every citation to its source for automatic and human checking, and a lawyer's review before anything is filed. Each single measure in the other options leaves fabricated citations possible.
+  why:
+    A: "Larger models still hallucinate; size is not a guarantee."
+    B: "A model cannot reliably tell which of its citations are real, so an instruction does not stop fabrication."
+    D: "Consistent output can be consistently wrong; temperature does not verify anything."
+
+# ---------------------------------------------------------------- misinformation
+- id: misinformation-01
+  skill: misinformation
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is the key difference between misinformation and disinformation?
+  options:
+    - "Medium: disinformation is spoken aloud, while misinformation is written"
+    - "Intent: disinformation is spread deliberately to deceive, misinformation is not"
+    - "Accuracy: disinformation is partly true, while misinformation is fully false"
+    - "Reach: disinformation always spreads further than misinformation does"
+  answer: B
+  explain: |
+    Both are false or misleading. Misinformation spreads through honest error, while disinformation is spread deliberately to deceive. Malinformation, a third category, is true information shared to cause harm.
+  why:
+    A: "Either can appear in any medium."
+    C: "Both involve false or misleading content; the difference is intent."
+    D: "Reach varies case by case; it is not the defining difference."
+
+- id: misinformation-02
+  skill: misinformation
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A news photo carries Content Credentials showing that it was taken on a particular camera and edited in a photo app. What do the credentials establish?
+  options:
+    - "That the caption published with the photo is accurate"
+    - "That no artificial intelligence was used at any point"
+    - "That the image can never be copied or shared again"
+    - "Where the image came from and how it was edited"
+  answer: D
+  explain: |
+    Content Credentials, the C2PA standard's signed record, show provenance: who or what created a file and how it was edited. They do not show whether the content or its caption is true; a genuine photo can still be used to mislead.
+  why:
+    A: "Provenance is not fact-checking; a real photo can carry a false caption."
+    B: "Credentials record the tools used, which can include AI; they do not certify that none was used."
+    C: "Credentials describe a file's history; they do not prevent copying."
+
+- id: misinformation-03
+  skill: misinformation
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is automation bias?
+  options:
+    - "The tendency to rely, or over-rely, on an automated system's output"
+    - "Unfairness built into a model by unrepresentative training data"
+    - "A system's tendency to favor the answers it has seen most often"
+    - "An attacker's use of scripts to automate prompt injection attacks"
+  answer: A
+  explain: |
+    The EU AI Act describes automation bias as the tendency of automatically relying or over-relying on the output of an AI system. It turns model errors into real harm, because people act on them without checking.
+  why:
+    B: "Unfairness from unrepresentative data is representation bias, a form of algorithmic bias."
+    C: "That describes a statistical pattern in a model, not a human tendency."
+    D: "Automating attacks is a security matter, not automation bias."
+
+- id: misinformation-04
+  skill: misinformation
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A student finds a polished website making a surprising health claim. What does it mean to read the site laterally?
+  options:
+    - "Read the whole site carefully from top to bottom before deciding"
+    - "Judge the site by its design, spelling, and professional look"
+    - "Leave the site to see what other sources say about it and its publisher"
+    - "Look for an About page on the site that explains who runs it"
+  answer: C
+  explain: |
+    Lateral reading, a strategy learned from observing professional fact checkers, means leaving a site to see what other sources say about it. A site's own pages, however polished, cannot tell you whether it is reliable.
+  why:
+    A: "Reading only the site itself is vertical reading, which lets polished sites fool readers."
+    B: "Unreliable sites can look perfectly professional."
+    D: "An About page is written by the site itself, so it cannot independently vouch for the site."
+
+- id: misinformation-05
+  skill: misinformation
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Someone publishes a politician's genuine private medical records in order to damage the politician's reputation. Which term describes this?
+  options:
+    - "Misinformation"
+    - "Disinformation"
+    - "Malinformation"
+    - "Confabulation"
+  answer: C
+  explain: |
+    Malinformation is genuine information shared in order to cause harm. The records are true, which rules out misinformation and disinformation, but releasing them is meant to injure.
+  why:
+    A: "Misinformation is false content spread without intent to deceive."
+    B: "Disinformation is false content spread deliberately; these records are genuine."
+    D: "Confabulation is NIST's term for an AI model's hallucinations."
+
+- id: misinformation-06
+  skill: misinformation
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A group uses an LLM to write thousands of fake news articles meant to sway an election. Which term fits, and which NIST generative AI risk does it illustrate?
+  options:
+    - "Disinformation; information integrity"
+    - "Misinformation; confabulation"
+    - "Malinformation; data privacy"
+    - "Disinformation; environmental impacts"
+  answer: A
+  explain: |
+    The falsehoods are spread deliberately, so this is disinformation. NIST's information integrity risk warns that generative AI lowers the barrier to producing content that can be used in large-scale disinformation and misinformation campaigns.
+  why:
+    B: "The deception is deliberate, so it is not misinformation, and confabulation describes a model's own errors."
+    C: "The articles are fake, not genuine, so this is not malinformation."
+    D: "The intent is right, but environmental impacts concern computing costs, not false content."
+
+- id: misinformation-07
+  skill: misinformation
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A radiologist accepts an AI tool's "no tumor" reading without looking closely, even though the scan shows a clear mass. What is this an example of?
+  options:
+    - "Automation bias"
+    - "Representation bias"
+    - "A hallucination"
+    - "A feedback loop"
+  answer: A
+  explain: |
+    Automation bias is the tendency to over-rely on an automated system's output. The radiologist's own judgment would have caught the mass, but trust in the tool replaced it.
+  why:
+    B: "Representation bias concerns who is missing from training data; the question is about the radiologist's reliance."
+    C: "The tool's wrong reading is an error, but the scenario asks about the human's response to it."
+    D: "A feedback loop is a model's outputs shaping its future training data."
+
+- id: misinformation-08
+  skill: misinformation
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Under the EU AI Act, what must the people overseeing a high-risk AI system be enabled to do about automation bias?
+  options:
+    - "Approve each of the system's outputs within a fixed time limit"
+    - "Certify in writing that the system will never make an error"
+    - "Hide the system's outputs from the people they affect"
+    - "Stay aware of over-reliance and be able to override or reverse the output"
+  answer: D
+  explain: |
+    Article 14 requires that overseers be able to remain aware of the tendency of automatically relying or over-relying on the output (automation bias) and to disregard, override, or reverse the output when needed. Oversight is meaningful only if people can and do disagree with the system.
+  why:
+    A: "Speed targets would encourage rubber-stamping, the opposite of meaningful oversight."
+    B: "No one can certify that a system never errs, and the Act does not ask for it."
+    C: "Hiding outputs reduces transparency; the Act's oversight duty is about awareness and override."
+
+- id: misinformation-09
+  skill: misinformation
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why does a missing Content Credential not prove that an image is fake?
+  options:
+    - "Only AI-generated images are allowed to carry Content Credentials"
+    - "Credentials can be separated from a file when its metadata is stripped or corrupted"
+    - "Content Credentials automatically expire one year after an image is made"
+    - "Credentials are visible only to the person who originally took the photo"
+  answer: B
+  explain: |
+    The C2PA standard acknowledges that an asset can become separated from its credentials through removal or corruption of its metadata, which is why it also supports invisible watermarks and fingerprints. A missing credential means the history is unknown, not that the image is false.
+  why:
+    A: "Credentials can describe any content, including real photos."
+    C: "Credentials do not expire on a schedule."
+    D: "Credentials are meant to be inspected by anyone viewing the content."
+
+- id: misinformation-10
+  skill: misinformation
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is the C2PA?
+  options:
+    - "An AI model that detects every deepfake with perfect accuracy"
+    - "A U.S. law that requires a watermark on every published photo"
+    - "A coalition developing an open standard for content origin and edit history"
+    - "A public database listing every known fake image on the internet"
+  answer: C
+  explain: |
+    The Coalition for Content Provenance and Authenticity, founded in 2021 by Adobe, Arm, the BBC, Intel, Microsoft, and Truepic, develops an open technical standard for recording where content came from and how it was edited. The signed record is called Content Credentials.
+  why:
+    A: "C2PA is a standard for provenance, not a detector, and no detector is perfect."
+    B: "C2PA is an industry coalition, not a law."
+    D: "C2PA records the history of content; it does not keep a list of fakes."
+
+- id: misinformation-11
+  skill: misinformation
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A viral post claims that "a study shows 90 percent of teens sleep less than six hours," with no link. What is the best way to check it?
+  options:
+    - "Count how many times the post has been shared"
+    - "See whether the post includes a professional-looking chart"
+    - "Ask a chatbot whether the statistic is true"
+    - "Find the original study and check what it actually measured"
+  answer: D
+  explain: |
+    Tracing a claim to its original source shows whether the study exists, who ran it, and what it really measured. Statistics are often quoted wrongly or stripped of context as they spread.
+  why:
+    A: "Popularity is not evidence; false claims can spread widely."
+    B: "A chart can be made for any number, true or false."
+    C: "A chatbot may hallucinate a confirmation or a source."
+
+- id: misinformation-12
+  skill: misinformation
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why does overreliance make LLM hallucinations more harmful?
+  options:
+    - "It makes the model produce more hallucinations than it otherwise would"
+    - "People act on incorrect output without checking it first"
+    - "It causes the model to forget its training over time"
+    - "It slows the model down, so users get fewer answers"
+  answer: B
+  explain: |
+    OWASP describes overreliance as users placing excessive trust in LLM-generated content. A hallucination nobody checks becomes a wrong decision, a false citation in court, or a mistaken medical step.
+  why:
+    A: "Overreliance is about people's trust, not the model's error rate."
+    C: "Users' trust does not change a model's training."
+    D: "Overreliance has nothing to do with speed."
+
+- id: misinformation-13
+  skill: misinformation
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why is a chatbot's hallucination usually classified as misinformation rather than disinformation?
+  options:
+    - "The model has no intent to deceive; the false content is an error"
+    - "Hallucinations are always partly true, unlike disinformation"
+    - "Disinformation can come only from governments, never from companies"
+    - "Hallucinations are never shared beyond the original conversation"
+  answer: A
+  explain: |
+    What separates disinformation from misinformation is the intent to deceive. A model producing likely-sounding but false text has no such intent, so its hallucinations are misinformation, unless a person knowingly spreads them to mislead.
+  why:
+    B: "Hallucinations can be entirely false; the difference is intent, not partial truth."
+    C: "Anyone can spread disinformation; the defining feature is deliberate deception."
+    D: "Hallucinated content can be copied and spread widely."
+
+- id: misinformation-14
+  skill: misinformation
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    In the 2024 Arup fraud, an employee made transfers after a video call with deepfaked colleagues. Which control would most directly have stopped the transfers?
+  options:
+    - "Holding video calls at a higher resolution so fakes are easier to spot"
+    - "Training employees to watch closely for visual glitches in video calls"
+    - "Asking callers to turn their heads, since deepfakes cannot do so"
+    - "Confirming large payment requests through a separate, already known channel"
+  answer: D
+  explain: |
+    Detection by eye is unreliable as deepfakes improve, so the strongest control does not depend on spotting the fake at all. Confirming a payment request through a separate, already known channel, such as calling the real executive's known number, defeats the impersonation however convincing it is.
+  why:
+    A: "Better video makes a good deepfake look better too; it does not verify identity."
+    B: "Visual checks help sometimes, but they fail against convincing fakes."
+    C: "This relies on a supposed weakness that deepfakes may not have."
