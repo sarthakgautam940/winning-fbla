@@ -1,0 +1,571 @@
+# Lesson 4.2: SQL selecting and filtering
+# Questions use the school and shop sample databases (Reference page).
+
+# ---------------------------------------------------------------- sql-select
+- id: sql-select-01
+  skill: sql-select
+  tier: core
+  type: sql
+  use: check
+  stem: |
+    Which query returns the title and credits of every course in the courses table?
+  options:
+    - "`SELECT title, credits FROM courses;`"
+    - "`SELECT courses FROM title, credits;`"
+    - "`FROM courses SELECT title, credits;`"
+    - "`SELECT * WHERE title, credits FROM courses;`"
+  answer: A
+  explain: |
+    SELECT lists the columns to return and FROM names the table that holds them, in that order.
+  why:
+    B: "This swaps the roles: the columns go after SELECT and the table after FROM."
+    C: "SQL requires SELECT before FROM."
+    D: "WHERE filters rows with a condition; it cannot list columns, and it must come after FROM."
+
+- id: sql-select-02
+  skill: sql-select
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    In the school database, how many rows does this query return?
+
+    ```sql
+    SELECT DISTINCT grade FROM students;
+    ```
+  options:
+    - "3"
+    - "4"
+    - "10"
+    - "12"
+  ordered: true
+  answer: B
+  explain: |
+    The 10 students are in grades 9, 10, 11, and 12. DISTINCT keeps one row for each different value, so the query returns 4 rows.
+  why:
+    A: "This misses grade 9, which has only one student, Grace."
+    C: "This ignores DISTINCT and counts every student."
+    D: "This is the largest grade value, not a count of rows."
+  verify: 'rows("school", "SELECT DISTINCT grade FROM students")'
+
+- id: sql-select-03
+  skill: sql-select
+  tier: core
+  type: sql
+  use: quiz
+  stem: |
+    Which clause lists students from the highest GPA to the lowest?
+  options:
+    - "`ORDER BY gpa`"
+    - "`ORDER BY DESC gpa`"
+    - "`SORT BY gpa DESC`"
+    - "`ORDER BY gpa DESC`"
+  answer: D
+  explain: |
+    ORDER BY sorts ascending unless DESC follows the column name, so ORDER BY gpa DESC puts the highest GPA first.
+  why:
+    A: "Without DESC, the sort is ascending, lowest GPA first."
+    B: "DESC must come after the column it applies to."
+    C: "SQL's sorting keyword is ORDER BY, not SORT BY."
+
+- id: sql-select-04
+  skill: sql-select
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    In the school database, which names does this query return, in order?
+
+    ```sql
+    SELECT name FROM students ORDER BY grade DESC, name LIMIT 3;
+    ```
+  options:
+    - "Ava, Ben, Chloe"
+    - "Grace, Ava, Dev"
+    - "Chloe, Farid, Jonah"
+    - "Jonah, Farid, Chloe"
+  answer: C
+  explain: |
+    Rows sort by grade from highest to lowest, and ties within a grade sort by name. The three grade 12 students, Chloe, Farid, and Jonah, come first in alphabetical order, and LIMIT 3 keeps exactly them.
+  why:
+    A: "This sorts by name alone and ignores the grade sort."
+    B: "This sorts grades in ascending order, lowest first."
+    D: "This sorts the names in descending order, but name has no DESC."
+  verify: |
+    ans = [r[0] for r in sql("school", "SELECT name FROM students ORDER BY grade DESC, name LIMIT 3")]
+
+- id: sql-select-05
+  skill: sql-select
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    Which query returns the names of the 2 students with the highest GPAs?
+  options:
+    - "`SELECT name FROM students ORDER BY gpa DESC LIMIT 2;`"
+    - "`SELECT name FROM students LIMIT 2 ORDER BY gpa DESC;`"
+    - "`SELECT name FROM students ORDER BY gpa LIMIT 2;`"
+    - "`SELECT MAX(gpa) FROM students LIMIT 2;`"
+  answer: A
+  explain: |
+    A top-N query sorts by the value of interest from highest to lowest, then keeps the first N rows. LIMIT comes last in the written order.
+  why:
+    B: "LIMIT must come after ORDER BY in the written order."
+    C: "Ascending order puts the lowest GPAs first."
+    D: "MAX returns a single value, not the names of two students."
+
+- id: sql-select-06
+  skill: sql-select
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What does `SELECT *` return?
+  options:
+    - "Only the first row of the table"
+    - "Only the primary key column"
+    - "The number of rows in the table"
+    - "Every column of the table"
+  answer: D
+  explain: |
+    The asterisk stands for all columns, so SELECT * FROM students returns every column. Which rows appear still depends on the rest of the query, such as WHERE.
+  why:
+    A: "The asterisk selects columns, not a single row."
+    B: "SELECT * returns every column, not just the key."
+    C: "Counting rows takes COUNT(*), an aggregate function."
+
+- id: sql-select-07
+  skill: sql-select
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A query ends with `LIMIT 5` but has no ORDER BY clause. Which rows does it return?
+  options:
+    - "The five rows that were inserted most recently"
+    - "The five rows with the smallest primary key values"
+    - "Five rows, in an order the database does not guarantee"
+    - "No rows, because LIMIT requires ORDER BY"
+  answer: C
+  explain: |
+    Without ORDER BY, SQL does not promise any row order, so LIMIT 5 returns some five rows that may differ between systems or runs. To get a meaningful top five, sort first.
+  why:
+    A: "SQL makes no promise that rows come back in insertion order."
+    B: "Rows are not automatically sorted by key unless ORDER BY says so."
+    D: "LIMIT works without ORDER BY; the result is just unpredictable."
+
+- id: sql-select-08
+  skill: sql-select
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    What does this query do?
+
+    ```sql
+    SELECT name AS student FROM students;
+    ```
+  options:
+    - "It creates a new column called student in the table."
+    - "It renames the name column in the table permanently."
+    - "It returns only students whose name is student."
+    - "It labels the name column as student in the result."
+  answer: D
+  explain: |
+    AS gives a column an alias in the query's output. The table itself is unchanged; only the result's column heading reads student.
+  why:
+    A: "A SELECT query never adds columns to a table."
+    B: "An alias lasts only for the query's result; renaming a column needs ALTER TABLE."
+    C: "Filtering by a value requires WHERE."
+
+# ---------------------------------------------------------------- sql-where
+- id: sql-where-01
+  skill: sql-where
+  tier: core
+  type: sql
+  use: check
+  stem: |
+    The school database has one student in grade 9 and three students in each of grades 10, 11, and 12. How many rows does this query return?
+
+    ```sql
+    SELECT name FROM students WHERE grade > 10;
+    ```
+  options:
+    - "3"
+    - "6"
+    - "9"
+    - "10"
+  ordered: true
+  answer: B
+  explain: |
+    Grade > 10 keeps grades 11 and 12, which hold 3 + 3 = 6 students. Grade 10 itself is excluded, because > is strict.
+  why:
+    A: "This counts only grade 11 or only grade 12, not both."
+    C: "This treats > as >= and includes grade 10."
+    D: "This counts every student, as if there were no filter."
+  verify: 'rows("school", "SELECT name FROM students WHERE grade > 10")'
+
+- id: sql-where-02
+  skill: sql-where
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    In the school database, which students does this query return?
+
+    ```sql
+    SELECT name FROM students
+    WHERE grade = 10 OR grade = 12 AND gpa > 3.5
+    ORDER BY name;
+    ```
+  options:
+    - "Ava, Chloe, Dev, Isla"
+    - "Ava, Chloe"
+    - "Chloe"
+    - "Ava, Dev, Isla"
+  answer: A
+  explain: |
+    AND is applied before OR, so the condition means "grade 10, or (grade 12 and GPA above 3.5)." That keeps every tenth grader (Ava, Dev, Isla) plus Chloe, the only senior above 3.5.
+  why:
+    B: "This is the result with parentheses around the OR, which this query lacks."
+    C: "This keeps only the AND part and drops every tenth grader."
+    D: "This keeps only the tenth graders and drops Chloe."
+  verify: |
+    ans = [r[0] for r in sql("school", "SELECT name FROM students WHERE grade = 10 OR grade = 12 AND gpa > 3.5 ORDER BY name")]
+
+- id: sql-where-03
+  skill: sql-where
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    In the school database, which names match this condition?
+
+    ```sql
+    WHERE name LIKE '_e%'
+    ```
+  options:
+    - "Elena"
+    - "Ben, Chloe, Dev, Elena, Grace"
+    - "Ben, Dev, Elena"
+    - "Ben, Dev"
+  answer: D
+  explain: |
+    The underscore matches exactly one character and % matches the rest, so the pattern means "the second letter is e." Only Ben and Dev fit.
+  why:
+    A: "Elena starts with E; the underscore requires one character before the e."
+    B: "These names contain an e somewhere, which would be the pattern '%e%'."
+    C: "Elena's second letter is l, not e."
+  verify: |
+    ans = [r[0] for r in sql("school", "SELECT name FROM students WHERE name LIKE '_e%' ORDER BY name")]
+
+- id: sql-where-04
+  skill: sql-where
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A query uses `WHERE score BETWEEN 80 AND 90`. Which scores does it keep?
+  options:
+    - "Scores from 81 to 89 only"
+    - "Scores from 80 to 89 only"
+    - "Scores from 80 to 90, including both"
+    - "Scores from 81 to 90 only"
+  answer: C
+  explain: |
+    BETWEEN is inclusive: it means score >= 80 AND score <= 90, so scores of exactly 80 and exactly 90 both count.
+  why:
+    A: "This treats BETWEEN as excluding both endpoints."
+    B: "This excludes the upper endpoint, 90, which BETWEEN includes."
+    D: "This excludes the lower endpoint, 80, which BETWEEN includes."
+
+- id: sql-where-05
+  skill: sql-where
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    Which WHERE clause is equivalent to `WHERE grade IN (9, 12)`?
+  options:
+    - "`WHERE grade = 9 OR grade = 12`"
+    - "`WHERE grade = 9 AND grade = 12`"
+    - "`WHERE grade BETWEEN 9 AND 12`"
+    - "`WHERE grade > 9 AND grade < 12`"
+  answer: A
+  explain: |
+    IN tests whether a value matches any item in the list, which is the same as joining equality tests with OR.
+  why:
+    B: "No single grade can equal both 9 and 12, so this returns no rows."
+    C: "BETWEEN includes 10 and 11 as well."
+    D: "This keeps only grades 10 and 11."
+
+- id: sql-where-06
+  skill: sql-where
+  tier: champion
+  type: sql
+  use: quiz
+  stem: |
+    In the school database, how many rows does this query return?
+
+    ```sql
+    SELECT name FROM students
+    WHERE NOT grade = 12 AND gpa > 3.5;
+    ```
+  options:
+    - "1"
+    - "3"
+    - "7"
+    - "9"
+  ordered: true
+  answer: B
+  explain: |
+    NOT is applied first, so the condition means "(not in grade 12) and GPA above 3.5." The students outside grade 12 with GPAs above 3.5 are Ava (3.6), Elena (3.8), and Hiro (3.9).
+  why:
+    A: "This counts Chloe, the senior above 3.5, whom NOT grade = 12 excludes."
+    C: "This applies only NOT grade = 12 and ignores the GPA condition."
+    D: "This reads the clause as NOT (grade = 12 AND gpa > 3.5), but NOT binds before AND."
+  verify: 'rows("school", "SELECT name FROM students WHERE NOT grade = 12 AND gpa > 3.5")'
+
+- id: sql-where-07
+  skill: sql-where
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    Which LIKE pattern matches names that start with the letter J?
+  options:
+    - "`'%J'`"
+    - "`'J_'`"
+    - "`'_J%'`"
+    - "`'J%'`"
+  answer: D
+  explain: |
+    The pattern 'J%' requires a J first and then allows any run of characters, including none, after it.
+  why:
+    A: "'%J' matches names that end with J."
+    B: "'J_' matches only two-letter names that start with J."
+    C: "'_J%' matches names whose second letter is J."
+
+- id: sql-where-08
+  skill: sql-where
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    In the shop database, four orders are shipped, one is pending, and one is cancelled. How many rows does this query return?
+
+    ```sql
+    SELECT order_id FROM orders WHERE status <> 'shipped';
+    ```
+  options:
+    - "0"
+    - "2"
+    - "4"
+    - "6"
+  ordered: true
+  answer: B
+  explain: |
+    The operator <> means "not equal," so the query keeps every order whose status is anything other than shipped: the pending order and the cancelled order.
+  why:
+    A: "This reads <> as an impossible condition, but it simply means not equal."
+    C: "This counts the shipped orders, the ones the condition excludes."
+    D: "This counts every order, as if there were no filter."
+  verify: 'rows("shop", "SELECT order_id FROM orders WHERE status <> ''shipped''")'
+
+- id: sql-where-09
+  skill: sql-where
+  tier: champion
+  type: sql
+  use: bank
+  stem: |
+    The shop database's orders were placed on June 1, 3, 7, 10, 12, and 15 of 2025. How many rows does this query return?
+
+    ```sql
+    SELECT order_id FROM orders
+    WHERE order_date BETWEEN '2025-06-03' AND '2025-06-10';
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    BETWEEN includes both endpoints, so the query keeps the orders from June 3, June 7, and June 10. Dates stored as year-month-day text sort and compare in date order.
+  why:
+    A: "This keeps only June 7, as if BETWEEN excluded both endpoints."
+    B: "This excludes one endpoint, but BETWEEN includes both."
+    D: "This adds an order from outside the range, such as June 12."
+  verify: 'rows("shop", "SELECT order_id FROM orders WHERE order_date BETWEEN ''2025-06-03'' AND ''2025-06-10''")'
+
+# ---------------------------------------------------------------- sql-null
+- id: sql-null-01
+  skill: sql-null
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    In the school database, one student, Isla, has a NULL gpa. What does this query return?
+
+    ```sql
+    SELECT COUNT(*) FROM students WHERE gpa = NULL;
+    ```
+  options:
+    - "0"
+    - "1"
+    - "9"
+    - "10"
+  ordered: true
+  answer: A
+  explain: |
+    Any comparison with NULL is unknown rather than true, and WHERE keeps only rows where the condition is true. So gpa = NULL matches no rows at all, not even Isla's. Finding her requires gpa IS NULL.
+  why:
+    B: "This is what gpa IS NULL would return; = NULL never matches."
+    C: "This counts the students whose GPA is known."
+    D: "This counts every student, as if there were no filter."
+  verify: 'scalar("school", "SELECT COUNT(*) FROM students WHERE gpa = NULL")'
+
+- id: sql-null-02
+  skill: sql-null
+  tier: core
+  type: sql
+  use: quiz
+  stem: |
+    Which WHERE clause finds the students who are not in any club?
+  options:
+    - "`WHERE club_id = NULL`"
+    - "`WHERE club_id = 0`"
+    - "`WHERE club_id = ''`"
+    - "`WHERE club_id IS NULL`"
+  answer: D
+  explain: |
+    A missing club is stored as NULL, and the only way to test for NULL is IS NULL. In the school database this returns Ben and Farid.
+  why:
+    A: "A comparison with = NULL is never true, so it returns no rows."
+    B: "NULL is not zero; no club has the ID 0."
+    C: "NULL is not an empty string."
+
+- id: sql-null-03
+  skill: sql-null
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    In the school database, 8 of the 10 students have a club_id and 2 have NULL. What does this query return?
+
+    ```sql
+    SELECT COUNT(*), COUNT(club_id) FROM students;
+    ```
+  options:
+    - "10 and 10"
+    - "8 and 8"
+    - "10 and 8"
+    - "8 and 10"
+  answer: C
+  explain: |
+    COUNT(*) counts rows, so it returns 10. COUNT(club_id) counts only the non-NULL values in that column, so it returns 8.
+  why:
+    A: "COUNT(column) skips NULLs, so it cannot count all 10 rows."
+    B: "COUNT(*) counts every row, including those with NULLs."
+    D: "This swaps the two counts."
+  verify: |
+    r = sql("school", "SELECT COUNT(*), COUNT(club_id) FROM students")[0]
+    ans = f"{r[0]} and {r[1]}"
+
+- id: sql-null-04
+  skill: sql-null
+  tier: champion
+  type: sql
+  use: quiz
+  stem: |
+    The school database has 10 students, and Isla's gpa is NULL. What does this query return?
+
+    ```sql
+    SELECT COUNT(*) FROM students
+    WHERE gpa > 3.5 OR gpa <= 3.5;
+    ```
+  options:
+    - "0"
+    - "9"
+    - "10"
+    - "11"
+  ordered: true
+  answer: B
+  explain: |
+    For every student with a known GPA, exactly one of the two comparisons is true. For Isla, both comparisons are unknown, so the OR is unknown and WHERE drops her row. The count is 9.
+  why:
+    A: "Every known GPA satisfies one of the two comparisons, so many rows pass."
+    C: "This assumes the conditions cover every row, but a NULL GPA satisfies neither."
+    D: "No row is counted twice; WHERE either keeps a row once or drops it."
+  verify: 'scalar("school", "SELECT COUNT(*) FROM students WHERE gpa > 3.5 OR gpa <= 3.5")'
+
+- id: sql-null-05
+  skill: sql-null
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Isla's gpa is NULL. What does the expression `gpa * 10` produce for her row?
+  options:
+    - "0"
+    - "10"
+    - "NULL"
+    - "An error that stops the query"
+  answer: C
+  explain: |
+    Arithmetic with an unknown value gives an unknown result, so any calculation involving NULL returns NULL. The query still runs.
+  why:
+    A: "NULL is not zero, so it does not behave like 0 in a product."
+    B: "The 10 is multiplied by an unknown value, which leaves the result unknown."
+    D: "NULL in arithmetic quietly produces NULL; it does not raise an error."
+
+- id: sql-null-06
+  skill: sql-null
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    Hiro's gpa is 3.9 and Isla's is NULL. What does this query return?
+
+    ```sql
+    SELECT name, COALESCE(gpa, 0) FROM students
+    WHERE student_id IN (8, 9);
+    ```
+  options:
+    - "Hiro 3.9 and Isla 0"
+    - "Hiro 3.9 and Isla NULL"
+    - "Hiro 0 and Isla 0"
+    - "Only Hiro 3.9"
+  answer: A
+  explain: |
+    COALESCE returns its first argument that is not NULL. Hiro's GPA is known, so it is returned unchanged; Isla's is NULL, so the default 0 is returned instead.
+  why:
+    B: "COALESCE replaces the NULL with the default, 0."
+    C: "Known values pass through COALESCE unchanged."
+    D: "COALESCE changes values; it does not filter out rows."
+  verify: |
+    r = sql("school", "SELECT name, COALESCE(gpa, 0) FROM students WHERE student_id IN (8, 9) ORDER BY student_id")
+    ans = f"{r[0][0]} {r[0][1]:g} and {r[1][0]} {r[1][1]:g}"
+
+- id: sql-null-07
+  skill: sql-null
+  tier: champion
+  type: sql
+  use: bank
+  stem: |
+    In the school database, nine students have known GPAs that sum to 30.3, and Isla's gpa is NULL. What does `SELECT AVG(gpa) FROM students;` return, to the nearest hundredth?
+  options:
+    - "3.03"
+    - "3.37"
+    - "3.40"
+    - "30.30"
+  ordered: true
+  answer: B
+  explain: |
+    AVG skips NULL values, so it divides the sum of the 9 known GPAs by 9: 30.3 / 9 is about 3.37. Isla's missing GPA is not treated as 0.
+  why:
+    A: "This divides by 10, as if Isla's GPA were 0."
+    C: "This is the median of the nine known GPAs, not their mean."
+    D: "This is the sum of the GPAs, before dividing."
+  verify: 'scalar("school", "SELECT AVG(gpa) FROM students")'

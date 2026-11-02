@@ -1,0 +1,44 @@
+# Lesson 4.2 flashcards
+
+- id: fc-sql
+  term: SQL
+  def: Structured Query Language, the standard language for creating, reading, and changing data in relational databases. Its formal standard is ISO/IEC 9075.
+  skill: sql-select
+  virginia: true
+
+- id: fc-query
+  term: Query
+  def: A request for data written in SQL, such as SELECT name FROM students WHERE grade = 11. A SELECT query reads data without changing it.
+  skill: sql-select
+  virginia: true
+
+- id: fc-select-clauses
+  term: SELECT, DISTINCT, ORDER BY, LIMIT
+  def: SELECT picks columns (with AS for aliases), DISTINCT removes duplicate rows, ORDER BY sorts (ascending by default, DESC for descending), and LIMIT keeps the first n rows. Sort before limiting for a top-N query.
+  skill: sql-select
+
+- id: fc-written-order
+  term: Written clause order
+  def: SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT.
+  skill: sql-select
+
+- id: fc-and-or-precedence
+  term: AND, OR, NOT precedence
+  def: NOT is applied first, then AND, then OR. "a OR b AND c" means "a OR (b AND c)", so use parentheses when mixing AND with OR.
+  skill: sql-where
+
+- id: fc-in-between-like
+  term: IN, BETWEEN, LIKE
+  def: IN tests membership in a list. BETWEEN is inclusive of both endpoints. In LIKE patterns, % matches any run of characters and _ matches exactly one.
+  example: "'_e%' means the second letter is e."
+  skill: sql-where
+
+- id: fc-sql-null
+  term: NULL in SQL
+  def: A missing or unknown value, not 0 or an empty string. Comparisons with NULL are unknown, so use IS NULL or IS NOT NULL, never = NULL. Arithmetic with NULL gives NULL.
+  skill: sql-null
+
+- id: fc-count-coalesce
+  term: COUNT(*), COUNT(column), COALESCE
+  def: COUNT(*) counts rows; COUNT(column), AVG, and other aggregates skip NULLs. COALESCE returns its first non-NULL argument, such as COALESCE(gpa, 0).
+  skill: sql-null
