@@ -1,0 +1,43 @@
+# Lesson 5.2 flashcards
+
+- id: fc-supervised-learning
+  term: Supervised Learning
+  def: Learning from labeled examples, each paired with its correct answer, in order to predict labels for new data. Its two tasks are classification and regression.
+  skill: supervised
+  virginia: true
+
+- id: fc-classification-regression
+  term: Classification vs. regression
+  def: Classification predicts a category (binary, multiclass, or multilabel); regression predicts a number. Decide by the output, not by the subject.
+  skill: supervised
+
+- id: fc-unsupervised-learning
+  term: Unsupervised Learning
+  def: Finding structure in data with no labels, through clustering, dimensionality reduction, association rules, or anomaly detection. Harder to evaluate because there is no answer key.
+  skill: unsupervised
+  virginia: true
+
+- id: fc-semi-self-supervised
+  term: Semi-supervised vs. self-supervised
+  def: Semi-supervised learning combines a few labeled examples with many unlabeled ones. Self-supervised learning creates labels from the data itself, such as predicting the next word, which is how LLMs are pretrained.
+  skill: other-paradigms
+
+- id: fc-transfer-learning
+  term: Transfer learning
+  def: Reusing a model trained on one task as the starting point for a related task, such as fine-tuning a general image model on X-rays. Needs far less data than training from scratch.
+  skill: other-paradigms
+
+- id: fc-online-batch
+  term: Online vs. batch learning
+  def: Batch (offline) learning trains on all the data at once and retrains to add new data. Online learning updates the model incrementally as each new example arrives.
+  skill: other-paradigms
+
+- id: fc-parametric
+  term: Parametric vs. non-parametric
+  def: Parametric models have a fixed number of parameters and assume a form (linear and logistic regression, naive Bayes). Non-parametric models grow with the data (k-NN, decision trees).
+  skill: other-paradigms
+
+- id: fc-lazy-eager
+  term: Lazy vs. eager learners
+  def: A lazy learner such as k-NN stores the training data and does its work at prediction time. An eager learner builds its model during training, so predictions are fast.
+  skill: other-paradigms

@@ -1,0 +1,444 @@
+# Lesson 5.2: Supervised and unsupervised learning
+
+# ---------------------------------------------------------------- supervised
+- id: supervised-01
+  skill: supervised
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A bank trains a model on 50,000 past loans, each marked "repaid" or "defaulted," to predict how new loans will turn out. What kind of learning is this?
+  options:
+    - "Unsupervised learning"
+    - "Supervised learning"
+    - "Reinforcement learning"
+    - "Self-supervised learning"
+  answer: B
+  explain: |
+    Each training example comes with its correct outcome, a label, and the model learns to predict that label for new loans. Learning from labeled examples is supervised learning.
+  why:
+    A: "Unsupervised learning works without labels, but these loans are all labeled."
+    C: "Reinforcement learning learns from rewards for actions, not from labeled past cases."
+    D: "Self-supervised learning creates labels from the data itself; here people recorded the outcomes."
+
+- id: supervised-02
+  skill: supervised
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A weather service wants to predict tomorrow's high temperature, in degrees, from today's readings. What kind of task is this?
+  options:
+    - "Binary classification"
+    - "Clustering"
+    - "Multiclass classification"
+    - "Regression"
+  answer: D
+  explain: |
+    The output is a number on a continuous scale, a temperature, so this is regression.
+  why:
+    A: "Binary classification predicts one of two categories, such as rain or no rain."
+    B: "Clustering groups unlabeled data rather than predicting a value."
+    C: "Multiclass classification picks one category from several, not a number."
+
+- id: supervised-03
+  skill: supervised
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A model looks at each photo and labels it as a cat, a dog, or a bird. What kind of task is this?
+  options:
+    - "Multiclass classification"
+    - "Binary classification"
+    - "Numeric regression"
+    - "Unsupervised clustering"
+  answer: A
+  explain: |
+    The model picks exactly one of three categories for each photo, which is multiclass classification.
+  why:
+    B: "Binary classification has only two classes."
+    C: "Regression predicts a number, not a category."
+    D: "Clustering finds groups without labels, but these categories are given."
+
+- id: supervised-04
+  skill: supervised
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A store wants to predict whether each customer will spend more than $100 next month (yes or no). What kind of task is this?
+  options:
+    - "Regression, because the outcome involves dollars"
+    - "Clustering, because customers form groups"
+    - "Binary classification, because the output is yes or no"
+    - "Dimensionality reduction, because spending has many causes"
+  answer: C
+  explain: |
+    The output is one of two categories, yes or no, so this is binary classification. The task would become regression only if the model predicted the dollar amount itself.
+  why:
+    A: "The subject is money, but the output is a yes-or-no answer."
+    B: "The groups are defined by a known label, so this is not clustering."
+    D: "Dimensionality reduction compresses features; it does not predict an outcome."
+
+- id: supervised-05
+  skill: supervised
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A model tags each photo with every object it contains, such as "dog," "ball," and "grass" on the same image. What kind of task is this?
+  options:
+    - "Binary classification"
+    - "Multilabel classification"
+    - "Multiclass classification with one label per photo"
+    - "Regression"
+  answer: B
+  explain: |
+    Each photo can receive several labels at once, which is multilabel classification. In multiclass classification, each example gets exactly one label.
+  why:
+    A: "Binary classification has only two possible classes."
+    C: "Multiclass classification assigns a single label, but these photos get several."
+    D: "The outputs are categories, not numbers."
+
+- id: supervised-06
+  skill: supervised
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which of these is a supervised learning algorithm?
+  options:
+    - "k-means clustering"
+    - "Principal component analysis"
+    - "The Apriori association-rule algorithm"
+    - "Logistic regression"
+  answer: D
+  explain: |
+    Logistic regression learns from labeled examples to predict a class. The other three find structure in unlabeled data.
+  why:
+    A: "k-means groups unlabeled data, so it is unsupervised."
+    B: "PCA reduces dimensions without labels, so it is unsupervised."
+    C: "Apriori finds items that occur together, without labels."
+
+- id: supervised-07
+  skill: supervised
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why is supervised learning easier to evaluate than unsupervised learning?
+  options:
+    - "Known labels give correct answers to compare predictions with."
+    - "Supervised models never make mistakes on new data."
+    - "Supervised learning always uses smaller datasets."
+    - "Unsupervised models cannot be run on test data."
+  answer: A
+  explain: |
+    Because each test example has a true label, you can directly measure accuracy, precision, error, and so on. Unsupervised results have no correct answers to check against.
+  why:
+    B: "Supervised models make errors; the labels let us measure them."
+    C: "Dataset size has nothing to do with how easily a model is evaluated."
+    D: "Unsupervised models can be applied to new data; there is just no answer key."
+
+# ---------------------------------------------------------------- unsupervised
+- id: unsupervised-01
+  skill: unsupervised
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A news site wants to group thousands of articles by topic, but none of the articles has a topic label. What kind of learning fits?
+  options:
+    - "Supervised classification"
+    - "Supervised regression"
+    - "Unsupervised clustering"
+    - "Reinforcement learning"
+  answer: C
+  explain: |
+    With no labels, the model must discover the groups itself, which is unsupervised learning, specifically clustering.
+  why:
+    A: "Classification needs labeled examples of each topic."
+    B: "Regression predicts a number from labeled examples."
+    D: "Reinforcement learning learns actions from rewards, not groups of documents."
+
+- id: unsupervised-02
+  skill: unsupervised
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which of these is an unsupervised learning task?
+  options:
+    - "Classifying emails as spam or not spam"
+    - "Predicting house prices from sales records"
+    - "Recognizing digits in labeled images"
+    - "Reducing 50 features to a few components"
+  answer: D
+  explain: |
+    Dimensionality reduction, as done by PCA, finds structure among the features without any labels, so it is unsupervised. The other three learn from labeled examples.
+  why:
+    A: "Spam classification learns from emails labeled spam or not spam."
+    B: "Price prediction learns from past sales with known prices."
+    C: "Digit recognition learns from labeled images."
+
+- id: unsupervised-03
+  skill: unsupervised
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why is unsupervised learning harder to evaluate than supervised learning?
+  options:
+    - "There are no correct answers to compare the results with."
+    - "Unsupervised models cannot be trained on large datasets."
+    - "Unsupervised results are always wrong."
+    - "Unsupervised learning has no algorithms to choose from."
+  answer: A
+  explain: |
+    Without labels there is no answer key. Analysts rely on internal measures, such as the silhouette score, and on whether the patterns found are meaningful and useful.
+  why:
+    B: "Unsupervised methods often run on very large datasets."
+    C: "The results can be very useful; they are simply harder to score."
+    D: "There are many unsupervised algorithms, such as k-means, DBSCAN, and PCA."
+
+- id: unsupervised-04
+  skill: unsupervised
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A factory has sensor readings from thousands of machines but no record of which readings came before a failure. It wants to flag readings that look unusual. Which approach fits?
+  options:
+    - "Supervised classification of failures"
+    - "Unsupervised anomaly detection"
+    - "Regression on failure dates"
+    - "Reinforcement learning with rewards"
+  answer: B
+  explain: |
+    With no labeled failures, the model cannot learn what a failure looks like directly. Unsupervised anomaly detection learns what normal readings look like and flags the ones that do not fit.
+  why:
+    A: "Classifying failures would need examples labeled as failures."
+    C: "Regression would need known values to predict, and there are none."
+    D: "There are no actions or rewards here, only readings to inspect."
+
+- id: unsupervised-05
+  skill: unsupervised
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A store has years of purchase records but no labels, and it wants rules such as "customers who buy pasta also tend to buy pasta sauce." Which technique fits?
+  options:
+    - "Linear regression"
+    - "Association rule mining"
+    - "Binary classification"
+    - "Transfer learning"
+  answer: B
+  explain: |
+    Association rule mining, or market basket analysis, finds if-then patterns of items that occur together in transactions, without any labels.
+  why:
+    A: "Linear regression predicts a number from labeled examples."
+    C: "Binary classification predicts one of two labels, which do not exist here."
+    D: "Transfer learning reuses a pretrained model; it does not find rules in baskets."
+
+- id: unsupervised-06
+  skill: unsupervised
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    How does clustering differ from classification?
+  options:
+    - "Clustering needs labeled data; classification does not."
+    - "Clustering predicts numbers; classification predicts categories."
+    - "Clustering always finds exactly two groups."
+    - "Clustering discovers groups; classification predicts known labels."
+  answer: D
+  explain: |
+    Clustering is unsupervised: it finds groups no one defined in advance. Classification is supervised: it learns from examples labeled with known classes and assigns new examples to them.
+  why:
+    A: "This reverses them; classification is the one that needs labels."
+    B: "Predicting numbers is regression; clustering assigns examples to groups."
+    C: "The number of clusters is a choice, often more than two."
+
+- id: unsupervised-07
+  skill: unsupervised
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    An analyst clusters customers into 5 groups with no labels available. How can the analyst judge whether the clustering is good?
+  options:
+    - "By computing its accuracy against the true labels"
+    - "By measuring cluster quality and checking the groups are useful"
+    - "By counting how many customers are in the data"
+    - "By assuming any clustering with 5 groups is correct"
+  answer: B
+  explain: |
+    With no labels, accuracy cannot be computed. Analysts use internal measures, such as the silhouette score or the within-cluster sum of squares, and check whether the groups are distinct, interpretable, and useful for decisions.
+  why:
+    A: "There are no true labels to compare with."
+    C: "The number of customers says nothing about cluster quality."
+    D: "The number of groups does not make a clustering correct."
+
+# ---------------------------------------------------------------- other-paradigms
+- id: other-paradigms-01
+  skill: other-paradigms
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A language model learns by reading billions of sentences and predicting each next word, with no human labeling at all. What kind of learning is this?
+  options:
+    - "Reinforcement learning"
+    - "Unsupervised clustering"
+    - "Self-supervised learning"
+    - "Supervised learning with human labels"
+  answer: C
+  explain: |
+    The labels come from the data itself: the next word in the text is the answer to predict. Learning from automatically created labels like this is self-supervised learning, the way large language models are pretrained.
+  why:
+    A: "There are no actions or rewards, only text to predict."
+    B: "The model predicts specific words; it is not grouping sentences."
+    D: "No person labeled the data; the text supplies its own targets."
+
+- id: other-paradigms-02
+  skill: other-paradigms
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A hospital starts from an image model pretrained on millions of everyday photos, then fine-tunes it on 800 labeled X-rays. What is this approach called?
+  options:
+    - "Online learning"
+    - "Transfer learning"
+    - "Batch learning"
+    - "Unsupervised learning"
+  answer: B
+  explain: |
+    Transfer learning reuses what a model learned on one task (general photos) as the starting point for a related task (X-rays). It needs far less labeled data than training from scratch.
+  why:
+    A: "Online learning updates a model continuously as new data streams in."
+    C: "Batch learning means training on the whole dataset at once; it does not describe reusing a model."
+    D: "The X-rays are labeled, and the method reuses a trained model."
+
+- id: other-paradigms-03
+  skill: other-paradigms
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    Which of these models is non-parametric?
+  options:
+    - "Linear regression"
+    - "Logistic regression"
+    - "Naive Bayes"
+    - "k-nearest neighbors"
+  answer: D
+  explain: |
+    k-nearest neighbors keeps the whole training set and assumes no fixed form, so its complexity grows with the data, which makes it non-parametric. The other three assume a fixed form with a fixed number of parameters.
+  why:
+    A: "Linear regression has one coefficient per feature plus an intercept, however much data there is."
+    B: "Logistic regression also has a fixed set of coefficients."
+    C: "Naive Bayes stores a fixed set of probabilities per feature and class."
+
+- id: other-paradigms-04
+  skill: other-paradigms
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A team has 200 images labeled by experts and 20,000 unlabeled images, and it trains one model using both. What kind of learning is this?
+  options:
+    - "Semi-supervised learning"
+    - "Fully supervised learning"
+    - "Reinforcement learning"
+    - "Online learning"
+  answer: A
+  explain: |
+    Combining a small labeled set with a large unlabeled set is semi-supervised learning. The unlabeled images help the model learn the structure of the data.
+  why:
+    B: "Fully supervised learning would use only labeled examples."
+    C: "There are no rewards for actions here."
+    D: "Online learning concerns updating as data streams in, not mixing labeled and unlabeled data."
+
+- id: other-paradigms-05
+  skill: other-paradigms
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A news site updates its recommendation model a little every time a reader clicks an article, so it keeps up with changing interests. What kind of learning is this?
+  options:
+    - "Batch learning"
+    - "Transfer learning"
+    - "Online learning"
+    - "Unsupervised learning"
+  answer: C
+  explain: |
+    Updating the model incrementally as each new example arrives is online learning. It suits fast-changing data, though it needs monitoring in case bad data degrades the model.
+  why:
+    A: "Batch learning retrains on the whole dataset at once, on a schedule."
+    B: "Transfer learning reuses a pretrained model for a new task."
+    D: "The clicks act as feedback on recommendations; the defining feature here is the continuous updating."
+
+- id: other-paradigms-06
+  skill: other-paradigms
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which algorithm does almost no work during training and most of its work when it makes a prediction?
+  options:
+    - "Decision tree"
+    - "Linear regression"
+    - "Logistic regression"
+    - "k-nearest neighbors"
+  answer: D
+  explain: |
+    k-NN is a lazy learner: training simply stores the examples, and each prediction searches them for the nearest neighbors. Eager learners such as trees and regressions build their model during training, so predictions are fast.
+  why:
+    A: "A decision tree builds its splits during training, so it is eager."
+    B: "Linear regression fits its coefficients during training."
+    C: "Logistic regression also fits its coefficients during training."
+
+- id: other-paradigms-07
+  skill: other-paradigms
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A company retrains its sales model from scratch every month, using all the data collected so far. What kind of learning is this?
+  options:
+    - "Batch learning"
+    - "Online learning"
+    - "Self-supervised learning"
+    - "Reinforcement learning"
+  answer: A
+  explain: |
+    Training on the whole dataset at once, and retraining to take in new data, is batch (offline) learning.
+  why:
+    B: "Online learning would update the model continuously as each sale arrives."
+    C: "Self-supervised learning creates labels from the data itself."
+    D: "There are no actions or rewards here."
+
+- id: other-paradigms-08
+  skill: other-paradigms
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Which statement describes a parametric model?
+  options:
+    - "Its complexity keeps growing as more training data arrives."
+    - "It stores every training example to use at prediction time."
+    - "It has a fixed number of parameters and assumes a form for the relationship."
+    - "It can learn any pattern, however complex, with no assumptions."
+  answer: C
+  explain: |
+    A parametric model, such as linear regression, assumes a particular form and has the same number of parameters no matter how much data it sees. That makes it fast and data-efficient, but it underfits if the assumed form is wrong.
+  why:
+    A: "Growing complexity with data describes non-parametric models."
+    B: "Storing the training examples describes k-nearest neighbors, a non-parametric lazy learner."
+    D: "Every model makes some assumptions; parametric models make strong ones."
