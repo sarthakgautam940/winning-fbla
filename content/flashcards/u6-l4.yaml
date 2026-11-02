@@ -1,0 +1,77 @@
+# Lesson 6.4 flashcards
+
+- id: fc-llm
+  term: Large Language Model (LLM)
+  def: A neural network, usually a transformer, trained on enormous amounts of text to predict the next token, which lets it understand and generate human language. "Large" means billions of parameters, vast data, and heavy computing.
+  skill: llm-definition
+  virginia: true
+
+- id: fc-base-vs-chat
+  term: Base model vs. chat model
+  def: A base model is fresh from pretraining and continues text plausibly. A chat model is fine-tuned further, with instructions and human feedback, to follow requests and hold a conversation.
+  skill: llm-definition
+
+- id: fc-tokenization
+  term: Tokenization
+  def: Splitting text into tokens, the units an LLM reads and writes, such as whole words, word pieces, numbers, or symbols. Each token becomes an ID and then a vector. GPT models use byte-pair encoding.
+  skill: tokens
+  virginia: true
+
+- id: fc-token-rule
+  term: Token rule of thumb
+  def: For English text, 1 token is about 4 characters or 0.75 words, so tokens = words / 0.75 and 100 tokens is about 75 words. Counts differ by tokenizer and language.
+  example: "600 words / 0.75 = about 800 tokens."
+  skill: tokens
+
+- id: fc-context-window
+  term: Context Window
+  def: The maximum number of tokens a model can consider at one time, counting instructions, conversation history, pasted documents, and its own reply. Text outside the window is invisible to the model.
+  skill: tokens
+  virginia: true
+
+- id: fc-transformer
+  term: Transformer
+  def: The neural network architecture behind modern LLMs, introduced in 2017 in "Attention Is All You Need." It processes all tokens in parallel and uses self-attention to relate every token to every other.
+  skill: transformers-attention
+  virginia: true
+
+- id: fc-self-attention
+  term: Self-attention
+  def: Each token weighs every other token in the context and blends in their information, so meaning depends on context. Queries are matched to keys to weight values; the weights sum to 1.
+  skill: transformers-attention
+
+- id: fc-qkv
+  term: Query, key, value
+  def: Three vectors per token. The query says what a token looks for, the key what it offers for matching, and the value what it passes on. Query-key scores, through softmax, weight the values.
+  skill: transformers-attention
+
+- id: fc-positional-encoding
+  term: Positional encoding
+  def: Information about each token's position added to its vector, because attention alone has no sense of word order ("dog bites man" vs. "man bites dog").
+  skill: transformers-attention
+
+- id: fc-encoder-decoder
+  term: Encoder-only vs. decoder-only
+  def: Encoder-only models such as BERT read the input in both directions, which suits understanding tasks. Decoder-only models such as GPT predict each next token from earlier ones, with later tokens masked, which suits generation.
+  skill: transformers-attention
+
+- id: fc-pretraining
+  term: Pretraining (next-token prediction)
+  def: The first and largest training stage. The model predicts the next token across huge text collections. It is self-supervised, because the text supplies its own labels (n tokens give n - 1 predictions).
+  skill: llm-training
+
+- id: fc-fine-tuning
+  term: Fine-tuning
+  def: Further training a pretrained model on a smaller, focused dataset, which changes its weights so it specializes. Prompting, by contrast, changes no weights.
+  skill: llm-training
+  virginia: true
+
+- id: fc-instruction-tuning
+  term: Instruction tuning
+  def: Supervised fine-tuning on examples of instructions paired with good responses, often written by people, which turns a base model into an assistant that follows requests.
+  skill: llm-training
+
+- id: fc-rlhf
+  term: RLHF (reinforcement learning from human feedback)
+  def: People rank model answers, a reward model learns to predict their rankings, and reinforcement learning tunes the LLM to score highly. InstructGPT (1.3 billion parameters) was preferred over GPT-3 (175 billion).
+  skill: llm-training

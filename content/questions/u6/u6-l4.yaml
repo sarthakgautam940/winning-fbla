@@ -1,0 +1,637 @@
+# Lesson 6.4: How large language models work
+
+# ---------------------------------------------------------------- llm-definition
+- id: llm-definition-01
+  skill: llm-definition
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Which statement best defines a large language model (LLM)?
+  options:
+    - "A database that stores every sentence ever published online"
+    - "A neural network trained on huge amounts of text to predict and generate language"
+    - "A rule-based program that follows grammar rules written by linguists"
+    - "A search engine that ranks web pages by how often they are linked"
+  answer: B
+  explain: |
+    An LLM is a neural network, usually a transformer, trained on enormous amounts of text to predict the next token. That single skill, learned at scale, lets it answer questions, summarize, translate, and write code.
+  why:
+    A: "An LLM stores learned patterns in its weights, not a copy of every sentence."
+    C: "Hand-written grammar rules describe older symbolic language systems, not LLMs."
+    D: "Ranking pages by links describes a search algorithm, not a language model."
+
+- id: llm-definition-02
+  skill: llm-definition
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What makes a large language model "large"?
+  options:
+    - "The physical size of the computers that it runs on"
+    - "The number of different languages it is able to translate"
+    - "The length of the answers that it usually writes"
+    - "Its billions of parameters and the huge amount of text it trains on"
+  answer: D
+  explain: |
+    "Large" refers to scale: billions of parameters, trained on enormous text collections with huge amounts of computing power. GPT-3, described in 2020, had 175 billion parameters.
+  why:
+    A: "The name describes the model, not the hardware."
+    B: "Many LLMs handle several languages, but that is not what 'large' means."
+    C: "Answer length depends on the request and settings, not on the model's size."
+
+- id: llm-definition-03
+  skill: llm-definition
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A developer types "What is the capital of Peru?" into a base model that has only been pretrained. It replies "What is the capital of Chile? What is the capital of Bolivia?" Why?
+  options:
+    - "A base model continues text plausibly; it was never tuned to follow instructions"
+    - "The model's context window was too small to hold the whole question"
+    - "The model was trained only on lists of questions, never on answers"
+    - "Base models are built to refuse all questions about geography"
+  answer: A
+  explain: |
+    Pretraining teaches a model to predict how text continues, and a list of quiz questions often continues with more questions, so a base model may do exactly that. Chat models are fine-tuned on instructions and responses, and with human feedback, so that they answer instead.
+  why:
+    B: "A one-line question fits easily in any context window."
+    C: "Pretraining text includes answers; the problem is that nothing taught the model to respond as an assistant."
+    D: "Base models have no rule against geography; they simply continue the text."
+
+- id: llm-definition-04
+  skill: llm-definition
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does GPT stand for in model names such as GPT-3?
+  options:
+    - "General Purpose Translator"
+    - "Graphical Processing Tool"
+    - "Generative Pre-trained Transformer"
+    - "Guided Prediction Technique"
+  answer: C
+  explain: |
+    GPT stands for generative pre-trained transformer: the model generates text, it is first pretrained on a huge text collection, and its architecture is the transformer.
+  why:
+    A: "GPT models do far more than translate, and the T stands for transformer."
+    B: "The name has nothing to do with graphics or tools."
+    D: "The G stands for generative, and the T for transformer."
+
+- id: llm-definition-05
+  skill: llm-definition
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why are large language models described as foundation models?
+  options:
+    - "They were the first AI models ever built"
+    - "They contain the complete rules of every human language"
+    - "They are trained only on a single, carefully chosen task"
+    - "One model trained on broad data can be adapted to many tasks"
+  answer: D
+  explain: |
+    A foundation model is trained once on broad data at scale and then adapted, through prompting or fine-tuning, to tasks such as tutoring, coding, summarizing, or customer service. LLMs fit that description, which is why many applications can share one underlying model.
+  why:
+    A: "AI dates back to the 1950s, long before LLMs."
+    B: "LLMs learn statistical patterns, not a complete rulebook for each language."
+    C: "Training on a single narrow task is the opposite of a foundation model."
+
+- id: llm-definition-06
+  skill: llm-definition
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    OpenAI's GPT-3, described in 2020, has about how many parameters?
+  options:
+    - "175 thousand"
+    - "175 million"
+    - "175 billion"
+    - "175 trillion"
+  answer: C
+  explain: |
+    GPT-3 has 175 billion parameters, about ten times more than any earlier non-sparse language model at the time. A common slip is to say 175 million.
+  why:
+    A: "175 thousand parameters would be a tiny network by modern standards."
+    B: "This is the common slip: the figure is billions, not millions."
+    D: "This overshoots by a factor of 1,000."
+
+# ---------------------------------------------------------------- tokens
+- id: tokens-01
+  skill: tokens
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    In a large language model, what is a token?
+  options:
+    - "A unit of text, such as a word, part of a word, or a symbol"
+    - "A password that unlocks access to the model"
+    - "A single letter of the alphabet, always exactly one"
+    - "A full sentence that the model reads all at once"
+  answer: A
+  explain: |
+    Tokenization splits text into tokens, the units the model reads and writes. Common words are often one token, rare or long words are split into several pieces, and punctuation marks are usually tokens of their own. Each token becomes an ID number and then a vector.
+  why:
+    B: "Access keys are sometimes called tokens elsewhere in computing, but not in this sense."
+    C: "Tokens are usually larger than single letters; a common word is often one token."
+    D: "A sentence is split into many tokens."
+
+- id: tokens-02
+  skill: tokens
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    Using the rule of thumb that one token is about 0.75 words of English text, about how many tokens is a 600-word essay?
+  options:
+    - "450"
+    - "600"
+    - "800"
+    - "2,400"
+  ordered: true
+  answer: C
+  explain: |
+    If one token is about 0.75 words, the token count is about 600 / 0.75 = 800. Equivalently, one word is about 1.33 tokens, and 600 × 1.33 is about 800.
+  why:
+    A: "This multiplies by 0.75 instead of dividing by it."
+    B: "Words and tokens are not one to one; a token is usually smaller than a word."
+    D: "This multiplies by 4, mixing up the words rule with the rule of about 4 characters per token."
+  verify: "600 / 0.75"
+
+- id: tokens-03
+  skill: tokens
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What does an LLM's context window limit?
+  options:
+    - "How many different users can chat with the model at once"
+    - "How much text, in tokens, the model can consider at one time"
+    - "How many languages the model learned during pretraining"
+    - "How many parameters the model is allowed to have"
+  answer: B
+  explain: |
+    The context window is the maximum number of tokens the model can work with at once, counting the instructions, the conversation so far, any pasted documents, and its own reply. Anything outside the window is invisible to the model.
+  why:
+    A: "The number of simultaneous users depends on servers, not on the context window."
+    C: "The languages a model knows come from its training data."
+    D: "Parameter count describes the model's size, not its context window."
+
+- id: tokens-04
+  skill: tokens
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Early in a very long chat, a user told a chatbot to answer only in Spanish. Hours later, it starts answering in English. What is the most likely reason?
+  options:
+    - "The model forgot Spanish after too many messages"
+    - "The model was retrained overnight on English text"
+    - "The model's temperature setting changed by itself"
+    - "The early instruction fell outside the context window"
+  answer: D
+  explain: |
+    When a conversation grows longer than the context window, the oldest tokens are dropped or summarized so the newest fit. An instruction that slips out of the window no longer exists for the model, so it stops following it. Repeating important instructions, or starting a fresh conversation, fixes the problem.
+  why:
+    A: "Knowledge of Spanish is stored in the model's weights and does not fade; it lost the instruction, not the language."
+    B: "Models are not retrained in the middle of a conversation."
+    C: "Settings do not change on their own, and temperature does not choose the language."
+
+- id: tokens-05
+  skill: tokens
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A model has a context window of 4,096 tokens. A user pastes in a 2,400-word article. Using one token for about 0.75 words, roughly how many tokens are left for instructions and the reply?
+  options:
+    - "About 900"
+    - "About 1,700"
+    - "About 2,300"
+    - "About 3,200"
+  ordered: true
+  answer: A
+  explain: |
+    The article is about 2,400 / 0.75 = 3,200 tokens. That leaves 4,096 - 3,200 = 896, or about 900 tokens, for everything else.
+  why:
+    B: "This treats each word as one token: 4,096 - 2,400."
+    C: "This multiplies 2,400 by 0.75 instead of dividing, then subtracts."
+    D: "3,200 is the article's own size in tokens, not what is left over."
+  verify: |
+    left = 4096 - 2400 / 0.75
+    ans = f"About {round(left, -2):,.0f}"
+
+- id: tokens-06
+  skill: tokens
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    The same paragraph comes out as 120 tokens in one LLM and 135 tokens in another. Why?
+  options:
+    - "One of the two models must be counting incorrectly"
+    - "Token counts change randomly every time text is entered"
+    - "Each model uses its own tokenizer, which splits text differently"
+    - "The second model counts every space as a separate word"
+  answer: C
+  explain: |
+    Every model family has its own tokenizer with its own vocabulary of pieces, so the same text can split into different numbers of tokens. The 0.75-words rule is only an average for English; exact counts require the model's own tokenizer, and other languages often need more tokens.
+  why:
+    A: "Both counts can be correct for their own tokenizers."
+    B: "A given tokenizer splits the same text the same way every time."
+    D: "Spaces are usually attached to the next word's token; that is not why the counts differ."
+
+- id: tokens-07
+  skill: tokens
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    Using the rule of thumb that one token is about 4 characters of English text, about how many tokens is a 2,000-character message?
+  options:
+    - "500"
+    - "1,500"
+    - "2,000"
+    - "8,000"
+  ordered: true
+  answer: A
+  explain: |
+    With about 4 characters per token, 2,000 characters is about 2,000 / 4 = 500 tokens.
+  why:
+    B: "This multiplies by 0.75, the words rule, instead of dividing by 4 characters."
+    C: "Characters are not tokens; a token usually spans several characters."
+    D: "This multiplies by 4 instead of dividing."
+  verify: "2000 / 4"
+
+- id: tokens-08
+  skill: tokens
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why can an LLM that writes fluent essays still miscount the letters in a long word?
+  options:
+    - "It reads text letter by letter but forgets the earlier letters"
+    - "Its context window is too small to hold a single word"
+    - "Counting requires internet access, which models never have"
+    - "It sees tokens, which group letters, rather than individual letters"
+  answer: D
+  explain: |
+    A tokenizer turns a word into one or a few tokens, each standing for a chunk of letters, so the model never directly sees the individual letters. Tasks about spelling, counting letters, or reversing words are therefore surprisingly error-prone for LLMs.
+  why:
+    A: "The model does not read letter by letter; it reads tokens."
+    B: "A single word takes only a few tokens, far below any context window."
+    C: "Counting letters needs no internet; the problem is how the text is tokenized."
+
+# ---------------------------------------------------------------- transformers-attention
+- id: transformers-attention-01
+  skill: transformers-attention
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In a transformer, what does self-attention do?
+  options:
+    - "It deletes tokens that are not important to the meaning"
+    - "It lets each token weigh every other token to build its meaning in context"
+    - "It reads the tokens one at a time from left to right"
+    - "It checks each token against a dictionary of definitions"
+  answer: B
+  explain: |
+    Self-attention lets every token look at all the other tokens in the context, decide how much each one matters to its own meaning, and blend in their information. In "The bank raised its interest rates," attention from "bank" to "interest rates" signals the financial meaning of "bank."
+  why:
+    A: "Attention reweights tokens; it does not delete them."
+    C: "Reading one token at a time is how recurrent networks work; transformers process all the tokens together."
+    D: "Attention uses learned vectors, not dictionary lookups."
+
+- id: transformers-attention-02
+  skill: transformers-attention
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why do transformers add positional encodings to their token embeddings?
+  options:
+    - "To shrink each token's vector so training runs faster"
+    - "To mark which tokens are nouns and which are verbs"
+    - "Because attention by itself has no sense of word order"
+    - "To translate the input into a different language first"
+  answer: C
+  explain: |
+    Self-attention compares tokens with each other regardless of where they sit, so without extra information "dog bites man" and "man bites dog" would look alike. Positional encodings add each token's position to its vector, giving the model a sense of order.
+  why:
+    A: "Positional encodings add information; they do not shrink vectors to speed up training."
+    B: "Parts of speech are learned from context, not marked by positional encodings."
+    D: "No translation happens; positional encodings only record order."
+
+- id: transformers-attention-03
+  skill: transformers-attention
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In self-attention, each token produces a query, a key, and a value. Which statement describes how they are used?
+  options:
+    - "A token's query is matched against other tokens' keys to weight their values"
+    - "The query is the user's prompt, the key is the answer, and the value is its score"
+    - "Keys and values are copied from a dictionary, and the query picks one word"
+    - "Only the value is used; queries and keys are removed after pretraining"
+  answer: A
+  explain: |
+    Each token's query is compared with every token's key, usually by a scaled dot product passed through softmax, to produce attention weights that sum to 1. The token's output is the weighted sum of the values. Think of a search: the query is what you are looking for, the keys are labels to match against, and the values are the content you collect.
+  why:
+    B: "Queries, keys, and values are vectors computed for every token, not the prompt, answer, and score."
+    C: "All three are learned vectors computed from the tokens themselves, not dictionary entries."
+    D: "Queries and keys are used every time attention is computed, during training and use alike."
+
+- id: transformers-attention-04
+  skill: transformers-attention
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does an encoder-only model such as BERT differ from a decoder-only model such as GPT?
+  options:
+    - "BERT generates text one token at a time; GPT reads text in both directions"
+    - "BERT is a recurrent network; GPT is a convolutional network"
+    - "BERT works only on images, while GPT works only on text"
+    - "BERT reads both directions at once; GPT predicts each token from earlier ones"
+  answer: D
+  explain: |
+    BERT, introduced by Google in 2018, is an encoder trained to fill in hidden words using the context on both their left and right, which makes it strong at understanding tasks such as classification and search. GPT models are decoders that generate text left to right, predicting each next token from the ones before it.
+  why:
+    A: "This swaps them: GPT generates token by token, and BERT reads in both directions."
+    B: "Both are transformers, not recurrent or convolutional networks."
+    C: "Both are language models that work on text."
+
+- id: transformers-attention-05
+  skill: transformers-attention
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is a transformer, in AI?
+  options:
+    - "A device that converts electrical voltage for AI hardware"
+    - "A neural network architecture that uses attention to process sequences"
+    - "A program that converts images into written descriptions"
+    - "A rule-based system for translating between languages"
+  answer: B
+  explain: |
+    The transformer is a neural network architecture, introduced in the 2017 paper "Attention Is All You Need," that processes all the tokens of a sequence at once and uses self-attention to relate them. It is the architecture behind modern large language models.
+  why:
+    A: "That is an electrical transformer, a different meaning of the word."
+    C: "Captioning images is one task some transformers can do, not what the term means."
+    D: "Transformers learn from data rather than following hand-written translation rules."
+
+- id: transformers-attention-06
+  skill: transformers-attention
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why do transformers train much faster than recurrent networks on large text collections?
+  options:
+    - "They process all the positions in a sequence in parallel"
+    - "They use far smaller training datasets than recurrent networks"
+    - "They skip backpropagation and update weights at random"
+    - "They read only the first and last word of each sentence"
+  answer: A
+  explain: |
+    A recurrent network must finish one step before starting the next, so it cannot spread a sequence's work across many processors. A transformer computes attention for every position at the same time, which GPUs handle in parallel, and that let transformers scale to enormous datasets.
+  why:
+    B: "Transformers are usually trained on far larger datasets."
+    C: "Transformers are trained with backpropagation and gradient descent like other networks."
+    D: "Transformers attend to every token, not just two."
+
+- id: transformers-attention-07
+  skill: transformers-attention
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    In one attention head, a token's attention weights over four tokens are 0.35, 0.3, 0.15, and x. What is x?
+  options:
+    - "0.15"
+    - "0.2"
+    - "0.25"
+    - "0.8"
+  ordered: true
+  answer: B
+  explain: |
+    Attention weights come from a softmax, so they sum to 1. The missing weight is 1 - (0.35 + 0.3 + 0.15) = 1 - 0.8 = 0.2.
+  why:
+    A: "Nothing requires the last weight to repeat an earlier one."
+    C: "This assumes equal weights of 1/4, but attention weights differ by relevance."
+    D: "0.8 is the sum of the other weights, not what remains."
+  verify: "1 - (0.35 + 0.3 + 0.15)"
+
+- id: transformers-attention-08
+  skill: transformers-attention
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    During training, a GPT-style decoder blocks each token from attending to the tokens after it. Why?
+  options:
+    - "Later tokens are usually punctuation and carry no meaning"
+    - "Attending to later tokens would use too much memory"
+    - "Blocking them makes the model read the sentence backward"
+    - "It must predict each next token without seeing it first"
+  answer: D
+  explain: |
+    The decoder is trained to predict the next token. If a position could attend to the tokens after it, it could simply look at the answer. This masking, called causal or masked attention, keeps training honest and matches how the model generates text, one token at a time from left to right.
+  why:
+    A: "Later tokens carry as much meaning as earlier ones; the issue is that one of them is the answer."
+    B: "Memory is not the reason; the mask prevents seeing the token being predicted."
+    C: "The model still reads left to right; it simply cannot peek ahead."
+
+- id: transformers-attention-09
+  skill: transformers-attention
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Transformers use multi-head attention. What is the benefit of having several attention heads?
+  options:
+    - "Each head stores a different copy of the training data"
+    - "Each head handles a different user's conversation"
+    - "Each head can track a different kind of link between tokens"
+    - "Each head checks the output for spelling mistakes"
+  answer: C
+  explain: |
+    Each attention head has its own learned queries, keys, and values, so different heads can pick up different patterns at the same time, such as grammatical links, which noun a pronoun refers to, or related topics. Their outputs are then combined.
+  why:
+    A: "Heads compute attention; they do not store training data."
+    B: "One model serves many users, but heads are internal parts of every computation."
+    D: "Heads relate tokens to each other; they are not spell-checkers."
+
+# ---------------------------------------------------------------- llm-training
+- id: llm-training-01
+  skill: llm-training
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    During pretraining, what task does a GPT-style language model learn?
+  options:
+    - "Predicting the next token in huge amounts of text"
+    - "Answering questions written by paid human experts"
+    - "Ranking pairs of answers from best to worst"
+    - "Classifying web pages as true or false"
+  answer: A
+  explain: |
+    Pretraining is next-token prediction: given the text so far, predict the token that comes next, across a vast collection of web pages, books, and code. Doing this well forces the model to absorb grammar, facts, and patterns of reasoning.
+  why:
+    B: "Learning from human-written answers is instruction tuning, a later step."
+    C: "Ranking answers is part of reinforcement learning from human feedback, which comes after pretraining."
+    D: "Pretraining does not label pages true or false, which is one reason models can repeat false information."
+
+- id: llm-training-02
+  skill: llm-training
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which sequence describes reinforcement learning from human feedback (RLHF), after a model has been pretrained?
+  options:
+    - "People rank outputs, then the model is pretrained, then a reward model is built"
+    - "A reward model is trained first, then people write demonstrations, then pretraining"
+    - "Train on human demonstrations, train a reward model on human rankings, then optimize against it"
+    - "Optimize the model with rewards, then collect demonstrations, then have people rank outputs"
+  answer: C
+  explain: |
+    First, the model is fine-tuned on demonstrations of good responses written by people. Next, people rank several of the model's answers to the same prompt, and a reward model learns to predict those rankings. Finally, reinforcement learning tunes the model to produce answers the reward model scores highly. OpenAI's InstructGPT and ChatGPT were trained this way.
+  why:
+    A: "Pretraining comes before any human feedback, not in the middle."
+    B: "The reward model is learned from human rankings, so it cannot come first, and pretraining is not a later step."
+    D: "The reinforcement learning step needs a reward model, which needs human rankings first."
+
+- id: llm-training-03
+  skill: llm-training
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is fine-tuning a language model?
+  options:
+    - "Writing a more detailed prompt so the model answers better"
+    - "Further training a pretrained model on a smaller, focused dataset"
+    - "Lowering the temperature so the model gives the same answer"
+    - "Deleting parts of the model that are rarely used"
+  answer: B
+  explain: |
+    Fine-tuning continues training a pretrained model on a smaller dataset for a specific purpose, such as medical notes or a company's support style, and it changes the model's weights. Prompting, by contrast, changes only the input and leaves the weights alone.
+  why:
+    A: "Writing better prompts changes the input, not the model's weights."
+    C: "Temperature is a sampling setting (lesson 6.5), not training."
+    D: "Removing parts of a model is a compression technique, not fine-tuning."
+
+- id: llm-training-04
+  skill: llm-training
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why can LLM pretraining use enormous amounts of text without people labeling it?
+  options:
+    - "Pretraining does not need any loss function at all"
+    - "Volunteers label all of the text in advance for free"
+    - "The model copies the text instead of learning from it"
+    - "The next token in the text serves as the label for the text before it"
+  answer: D
+  explain: |
+    Pretraining is self-supervised: the data supplies its own labels. Every position in a text gives a training example, with the text so far as the input and the actual next token as the label, so no human labeling is needed and the model can learn from vast collections.
+  why:
+    A: "Pretraining minimizes cross-entropy on the next token, a loss function like any other."
+    B: "No one labels pretraining text; that would be impossible at this scale."
+    C: "The model learns patterns in its weights rather than storing copies."
+
+- id: llm-training-05
+  skill: llm-training
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In OpenAI's 2022 InstructGPT study, human evaluators preferred answers from a 1.3-billion-parameter model fine-tuned with human feedback over answers from the 175-billion-parameter GPT-3. What does this show?
+  options:
+    - "Training with human feedback can matter more than raw model size"
+    - "Smaller models always know more facts than larger models"
+    - "Human evaluators cannot tell different models apart"
+    - "GPT-3 was never pretrained on any text before testing"
+  answer: A
+  explain: |
+    InstructGPT was fine-tuned on human demonstrations and then with reinforcement learning from human feedback. With about one hundredth of GPT-3's parameters, it still produced answers people preferred, showing that aligning a model with what people want can matter more than size alone.
+  why:
+    B: "The study measured preferences for answers, not which model knows more facts."
+    C: "Evaluators showed a clear preference, so they could tell the models apart."
+    D: "GPT-3 was pretrained on a huge text collection; it simply was not tuned to follow instructions."
+
+- id: llm-training-06
+  skill: llm-training
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is instruction tuning?
+  options:
+    - "Writing detailed instructions in every prompt to a model"
+    - "Pretraining a model on as much internet text as possible"
+    - "Fine-tuning on examples of instructions paired with good responses"
+    - "Teaching people how to write instructions for a chatbot"
+  answer: C
+  explain: |
+    Instruction tuning is supervised fine-tuning on many examples of requests paired with high-quality responses, often written by people. It turns a base model that merely continues text into an assistant that follows instructions.
+  why:
+    A: "Writing instructions in prompts is prompting, which does not change the model."
+    B: "Training on large amounts of raw text is pretraining, which comes first."
+    D: "Instruction tuning trains the model, not the people who use it."
+
+- id: llm-training-07
+  skill: llm-training
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A training text is 10 tokens long. How many next-token predictions can a model practice on it during pretraining?
+  options:
+    - "5"
+    - "9"
+    - "10"
+    - "45"
+  ordered: true
+  answer: B
+  explain: |
+    Each token after the first serves as the label for the tokens before it: the first token predicts the second, the first two predict the third, and so on, up to the first nine predicting the tenth. That gives 10 - 1 = 9 predictions.
+  why:
+    A: "This splits the text into separate pairs instead of using every position."
+    C: "The first token has nothing before it, so it cannot be a prediction target."
+    D: "This counts every possible pair of tokens, not next-token predictions."
+  verify: "10 - 1"
+
+- id: llm-training-08
+  skill: llm-training
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In RLHF, what does the reward model do?
+  options:
+    - "It writes the demonstration answers used for fine-tuning"
+    - "It pays the human labelers for each ranking they give"
+    - "It splits training text into tokens before pretraining"
+    - "It predicts how highly people would rate a model's response"
+  answer: D
+  explain: |
+    The reward model is trained on human rankings of model outputs so that it can score new responses the way people would. Reinforcement learning then adjusts the language model to produce responses the reward model scores highly, without a person rating every answer.
+  why:
+    A: "Demonstrations are written by people in the supervised fine-tuning step."
+    B: "Despite the name, the reward is a score for responses, not payment."
+    C: "Splitting text into tokens is the tokenizer's job."
