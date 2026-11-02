@@ -1,0 +1,48 @@
+# Lesson 2.5 flashcards
+
+- id: fc-gaussian
+  term: Gaussian Distribution
+  def: The normal distribution, a symmetric, bell-shaped, continuous distribution whose mean, median, and mode are equal. It is defined by its mean and standard deviation.
+  skill: normal-props
+  virginia: true
+
+- id: fc-normal-properties
+  term: Normal curve properties
+  def: Symmetric with one peak, tails that never touch the axis, and a total area of 1. A larger SD makes the curve wider and flatter. For a continuous variable, P(X = exact value) = 0.
+  skill: normal-props
+
+- id: fc-normal-in-ai
+  term: The normal distribution in AI
+  def: Used for random weight initialization, Gaussian noise models, Gaussian naive Bayes, and z-score anomaly detection. Diffusion models learn to remove Gaussian noise.
+  skill: normal-props
+
+- id: fc-empirical-rule
+  term: 68-95-99.7 rule
+  def: About 68%, 95%, and 99.7% of a normal distribution lie within 1, 2, and 3 SD of the mean (exactly 68.27%, 95.45%, 99.73%).
+  skill: empirical-rule
+
+- id: fc-normal-tails
+  term: Normal tail areas
+  def: Beyond 1 SD on one side is about 16%, beyond 2 SD is about 2.5%, and beyond 3 SD is about 0.15%. Between the mean and 1 SD is 34%.
+  skill: empirical-rule
+
+- id: fc-z-score
+  term: z-score
+  def: The number of standard deviations a value lies from the mean, z = (x - mean) / SD. Rearranged, x = mean + z x SD.
+  example: "Mean 70, SD 8: a score of 82 has z = 1.5."
+  skill: z-scores
+
+- id: fc-standard-normal
+  term: Standard normal distribution
+  def: N(0, 1), the normal distribution with mean 0 and SD 1. Every normal distribution becomes it after standardizing.
+  skill: z-scores
+
+- id: fc-z-percentiles
+  term: Percentiles of common z values
+  def: z = -2 is about the 2.5th percentile, -1 the 16th, 0 the 50th, 1 the 84th, and 2 the 97.5th.
+  skill: z-scores
+
+- id: fc-critical-values
+  term: Critical z values
+  def: 1.645, 1.96, and 2.576 leave 5%, 2.5%, and 0.5% above them. They are the multipliers for 90%, 95%, and 99% confidence intervals.
+  skill: z-scores

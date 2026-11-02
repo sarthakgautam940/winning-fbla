@@ -1,0 +1,525 @@
+# Lesson 2.5: The normal distribution and z-scores
+
+# ---------------------------------------------------------------- normal-props
+- id: normal-props-01
+  skill: normal-props
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Which statement is true of every normal distribution?
+  options:
+    - "It is skewed to the right, with a long upper tail."
+    - "It is symmetric, and its mean, median, and mode are equal."
+    - "Its values can only be whole numbers."
+    - "Its tails touch the horizontal axis at 3 standard deviations."
+  answer: B
+  explain: |
+    A normal curve is a symmetric bell with one peak at the center, where the mean, median, and mode all sit.
+  why:
+    A: "Normal distributions are symmetric, with no long tail on one side."
+    C: "A normal distribution is continuous, so values can fall anywhere."
+    D: "The tails approach the axis forever without touching it."
+
+- id: normal-props-02
+  skill: normal-props
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why is the normal distribution so important in statistics and data science?
+  options:
+    - "Every dataset collected in practice follows a normal distribution."
+    - "It is the only distribution that has a mean."
+    - "It guarantees that sample data contain no outliers."
+    - "Many measurements and all large-sample means are about normal."
+  answer: D
+  explain: |
+    Heights, measurement errors, and test scores are roughly normal, and the central limit theorem makes the means of large samples approximately normal. Many statistical methods are built on that fact.
+  why:
+    A: "Many datasets, such as incomes, are skewed rather than normal."
+    B: "Every distribution has a mean; the normal is special for other reasons."
+    C: "Normal data can still contain extreme values."
+
+- id: normal-props-03
+  skill: normal-props
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which two numbers completely determine a normal distribution?
+  options:
+    - "The mean and the standard deviation"
+    - "The median and the range"
+    - "The mode and the sample size"
+    - "The minimum and the maximum"
+  answer: A
+  explain: |
+    The mean sets the center and the standard deviation sets the spread. Knowing both pins down the entire curve, written N(mean, SD).
+  why:
+    B: "The range is not a parameter of a normal distribution, whose tails are unlimited."
+    C: "Sample size does not define the shape of the curve."
+    D: "A normal distribution has no minimum or maximum; its tails go on forever."
+
+- id: normal-props-04
+  skill: normal-props
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Two normal distributions have the same mean, but distribution B has a larger standard deviation than distribution A. How does B's curve compare with A's?
+  options:
+    - "Narrower and taller, with the same center"
+    - "Shifted to the right, with the same shape"
+    - "Wider and flatter, with the same center"
+    - "Skewed to the right, with the same center"
+  answer: C
+  explain: |
+    A larger standard deviation spreads the values out. Since the total area must stay 1, a wider curve must also be lower at its peak. The equal means keep the center in the same place.
+  why:
+    A: "Narrower and taller describes a smaller standard deviation."
+    B: "Shifting right would require a larger mean, not a larger standard deviation."
+    D: "Normal distributions stay symmetric whatever their standard deviation."
+
+- id: normal-props-05
+  skill: normal-props
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Test scores follow a normal distribution, treated as continuous. What is the probability that a randomly chosen score equals exactly 70?
+  options:
+    - "0"
+    - "About 0.01"
+    - "About 0.34"
+    - "About 0.5"
+  answer: A
+  explain: |
+    For a continuous distribution, probability is area under the curve, and a single point has no width, so its area is 0. Probabilities are found for intervals, such as between 69.5 and 70.5.
+  why:
+    B: "Any nonzero answer treats a single point as if it had width."
+    C: "34% is the area between the mean and one standard deviation, an interval."
+    D: "0.5 is the area on one side of the mean, not at a single value."
+
+- id: normal-props-06
+  skill: normal-props
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Which of these variables is LEAST likely to follow a normal distribution?
+  options:
+    - "Heights of adult women in a country"
+    - "Errors when a precise scale weighs the same object repeatedly"
+    - "Scores on a large, well-designed standardized test"
+    - "Annual household incomes in a country"
+  answer: D
+  explain: |
+    Incomes are strongly skewed to the right: most households earn moderate amounts and a few earn enormous amounts. The other three are classic examples of roughly normal data.
+  why:
+    A: "Heights within a group are a classic example of roughly normal data."
+    B: "Random measurement errors are typically close to normal."
+    C: "Large standardized tests are usually designed to give roughly normal scores."
+
+- id: normal-props-07
+  skill: normal-props
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    Which machine learning practice directly uses the normal distribution?
+  options:
+    - "Drawing a neural network's starting weights at random from a normal curve"
+    - "One-hot encoding a categorical feature such as color"
+    - "Joining two database tables on a customer ID"
+    - "Splitting a dataset into training and test sets by date"
+  answer: A
+  explain: |
+    Neural networks commonly start from small random weights drawn from a normal distribution with mean 0. Gaussian noise models, Gaussian naive Bayes, and z-score anomaly detection are other uses.
+  why:
+    B: "One-hot encoding creates 0-or-1 columns; no distribution is involved."
+    C: "Joining tables is a database operation, unrelated to the normal distribution."
+    D: "A date-based split uses order in time, not a probability distribution."
+
+- id: normal-props-08
+  skill: normal-props
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What happens to the tails of a normal curve far from the mean?
+  options:
+    - "They rise again to form a second peak."
+    - "They touch the horizontal axis at 3 standard deviations."
+    - "They approach the horizontal axis but never touch it."
+    - "They stop at the minimum and maximum values."
+  answer: C
+  explain: |
+    The curve gets ever closer to the axis as you move away from the mean, but its height never reaches zero, so extreme values are possible, just very rare.
+  why:
+    A: "A normal curve has a single peak."
+    B: "Even beyond 3 standard deviations, about 0.3% of the area remains."
+    D: "A normal distribution has no fixed minimum or maximum."
+
+# ---------------------------------------------------------------- empirical-rule
+- id: empirical-rule-01
+  skill: empirical-rule
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    About what percent of a normal distribution lies within 2 standard deviations of the mean?
+  options:
+    - "50%"
+    - "68%"
+    - "95%"
+    - "99.7%"
+  ordered: true
+  answer: C
+  explain: |
+    The empirical rule says about 68%, 95%, and 99.7% lie within 1, 2, and 3 standard deviations. Within 2, that is about 95% (exactly 95.45%).
+  why:
+    A: "50% lies on one side of the mean."
+    B: "68% lies within 1 standard deviation."
+    D: "99.7% lies within 3 standard deviations."
+
+- id: empirical-rule-02
+  skill: empirical-rule
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    Scores are normally distributed with mean 500 and standard deviation 100. About what percent of scores are above 700?
+  options:
+    - "2.5%"
+    - "5%"
+    - "16%"
+    - "95%"
+  ordered: true
+  answer: A
+  explain: |
+    700 is 2 standard deviations above the mean. About 95% lies within 2 SD, leaving 5% split between the two tails, so about 2.5% lies above 700.
+  why:
+    B: "5% is both tails together; only the upper tail is above 700."
+    C: "16% lies more than 1 standard deviation above the mean, which is above 600."
+    D: "95% lies within 2 standard deviations, between 300 and 700."
+  verify: "(100 - 95) / 2"
+
+- id: empirical-rule-03
+  skill: empirical-rule
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Scores are normally distributed with mean 500 and standard deviation 100. About what percent of scores fall between 400 and 700?
+  options:
+    - "68%"
+    - "81.5%"
+    - "95%"
+    - "97.5%"
+  ordered: true
+  answer: B
+  explain: |
+    400 is 1 SD below the mean, so 34% lies between 400 and 500. 700 is 2 SD above, so 47.5% lies between 500 and 700. Together that is 34% + 47.5% = 81.5%.
+  why:
+    A: "68% is the share between 400 and 600, within 1 SD on both sides."
+    C: "95% is the share between 300 and 700."
+    D: "97.5% is the share below 700."
+  verify: "68 / 2 + 95 / 2"
+
+- id: empirical-rule-04
+  skill: empirical-rule
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    The heights of 1,000 students are normally distributed. About how many students have heights within 1 standard deviation of the mean?
+  options:
+    - "160"
+    - "340"
+    - "680"
+    - "950"
+  ordered: true
+  answer: C
+  explain: |
+    About 68% of a normal distribution lies within 1 standard deviation, and 68% of 1,000 is 680.
+  why:
+    A: "160 is about the number more than 1 SD above the mean, one tail only."
+    B: "340 is the number on just one side, between the mean and 1 SD."
+    D: "950 is about the number within 2 standard deviations."
+  verify: "0.68 * 1000"
+
+- id: empirical-rule-05
+  skill: empirical-rule
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Adult heights in a group are normally distributed with mean 66 inches and standard deviation 3 inches. About 16% of the group is taller than what height?
+  options:
+    - "63 inches"
+    - "66 inches"
+    - "69 inches"
+    - "72 inches"
+  answer: C
+  explain: |
+    About 16% of a normal distribution lies more than 1 standard deviation above the mean. One SD above 66 is 66 + 3 = 69 inches.
+  why:
+    A: "About 16% are shorter than 63 inches, 1 SD below the mean."
+    B: "Half the group is taller than the mean of 66 inches."
+    D: "Only about 2.5% are taller than 72 inches, 2 SD above the mean."
+  verify: |
+    ans = f"{66 + 3} inches"
+
+- id: empirical-rule-06
+  skill: empirical-rule
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    About what percent of a normal distribution lies more than 1 standard deviation below the mean?
+  options:
+    - "2.5%"
+    - "16%"
+    - "32%"
+    - "34%"
+  ordered: true
+  answer: B
+  explain: |
+    About 68% lies within 1 SD, leaving 32% in the two tails. By symmetry, half of that, 16%, lies more than 1 SD below the mean.
+  why:
+    A: "2.5% lies more than 2 standard deviations below the mean."
+    C: "32% is both tails together."
+    D: "34% lies between the mean and 1 SD below it, not beyond it."
+  verify: "(100 - 68) / 2"
+
+- id: empirical-rule-07
+  skill: empirical-rule
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Exactly 95% of a normal distribution lies within how many standard deviations of the mean?
+  options:
+    - "1.282"
+    - "1.645"
+    - "1.96"
+    - "2"
+  ordered: true
+  answer: C
+  explain: |
+    The empirical rule rounds to "about 95% within 2," but 2 standard deviations actually hold 95.45%. Exactly 95% lies within 1.96 standard deviations, the multiplier used for 95% confidence intervals.
+  why:
+    A: "Within 1.282 standard deviations lies 80%."
+    B: "Within 1.645 standard deviations lies 90%."
+    D: "Within 2 standard deviations lies 95.45%, slightly more than 95%."
+
+- id: empirical-rule-08
+  skill: empirical-rule
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    About what percent of a normal distribution lies between the mean and 2 standard deviations above the mean?
+  options:
+    - "34%"
+    - "47.5%"
+    - "68%"
+    - "95%"
+  ordered: true
+  answer: B
+  explain: |
+    About 95% lies within 2 SD on both sides. By symmetry, half of that, 47.5%, lies between the mean and 2 SD above it.
+  why:
+    A: "34% is between the mean and 1 SD above."
+    C: "68% is within 1 SD on both sides."
+    D: "95% covers 2 SD on both sides, not one side."
+  verify: "95 / 2"
+
+# ---------------------------------------------------------------- z-scores
+- id: z-scores-01
+  skill: z-scores
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    Quiz scores have mean 70 and standard deviation 8. What is the z-score of a score of 82?
+  options:
+    - "0.15"
+    - "1.5"
+    - "10.25"
+    - "12"
+  ordered: true
+  answer: B
+  explain: |
+    z = (x - mean) / SD = (82 - 70) / 8 = 12 / 8 = 1.5. The score is 1.5 standard deviations above the mean.
+  why:
+    A: "This divides by 80 instead of the standard deviation of 8."
+    C: "This divides the score by the SD without subtracting the mean."
+    D: "This is the distance from the mean before dividing by the standard deviation."
+  verify: "(82 - 70) / 8"
+
+- id: z-scores-02
+  skill: z-scores
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    Ana scored 85 on a chemistry test (mean 75, standard deviation 5). Ben scored 90 on a history test (mean 80, standard deviation 8). Who did better relative to their class, and why?
+  options:
+    - "Ana, because her z-score of 2.0 is higher than Ben's z-score of 1.25"
+    - "Ben, because his raw score of 90 is higher than Ana's score of 85"
+    - "Ben, because the history test had a larger standard deviation"
+    - "Neither, because scores from different tests cannot be compared"
+  answer: A
+  explain: |
+    Ana's z-score is (85 - 75) / 5 = 2.0 and Ben's is (90 - 80) / 8 = 1.25. Relative to their classes, Ana is further above the mean.
+  why:
+    B: "Raw scores on tests with different means and spreads cannot be compared directly."
+    C: "A larger standard deviation makes the same raw gap less impressive, not more."
+    D: "z-scores exist precisely to compare values across different scales."
+
+- id: z-scores-03
+  skill: z-scores
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    A value in a normal distribution has a z-score of 1. About what percentile is it at?
+  options:
+    - "34th"
+    - "68th"
+    - "84th"
+    - "95th"
+  answer: C
+  explain: |
+    50% of the distribution lies below the mean, and another 34% lies between the mean and z = 1. So about 84% lies below z = 1, the 84th percentile.
+  why:
+    A: "34% is only the share between the mean and z = 1."
+    B: "68% is the share between z = -1 and z = 1."
+    D: "The 95th percentile is at about z = 1.645."
+
+- id: z-scores-04
+  skill: z-scores
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What does a z-score of -2 tell you about a value?
+  options:
+    - "It is 2 points below the mean."
+    - "It is 2 standard deviations above the mean."
+    - "It is twice the size of the mean."
+    - "It is 2 standard deviations below the mean."
+  answer: D
+  explain: |
+    A z-score counts standard deviations from the mean, and the negative sign means below. So z = -2 is 2 standard deviations below the mean.
+  why:
+    A: "z-scores are measured in standard deviations, not raw points."
+    B: "A negative z-score means below the mean."
+    C: "A z-score compares distance from the mean, not size relative to it."
+
+- id: z-scores-05
+  skill: z-scores
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A distribution has mean 50 and standard deviation 6. Which value has a z-score of -1.5?
+  options:
+    - "41"
+    - "44"
+    - "48.5"
+    - "59"
+  ordered: true
+  answer: A
+  explain: |
+    x = mean + z x SD = 50 + (-1.5)(6) = 50 - 9 = 41.
+  why:
+    B: "44 has z = -1, one standard deviation below the mean."
+    C: "This subtracts 1.5 points instead of 1.5 standard deviations."
+    D: "59 is 1.5 standard deviations above the mean; the sign is negative."
+  verify: "50 + (-1.5) * 6"
+
+- id: z-scores-06
+  skill: z-scores
+  tier: champion
+  type: recall
+  use: quiz
+  stem: |
+    Which z-value has about 5% of the standard normal distribution above it?
+  options:
+    - "1.282"
+    - "1.645"
+    - "1.96"
+    - "2.576"
+  ordered: true
+  answer: B
+  explain: |
+    z = 1.645 leaves 5% in the upper tail, so it is the 95th percentile. It is also the multiplier for 90% confidence intervals.
+  why:
+    A: "1.282 leaves 10% above it."
+    C: "1.96 leaves 2.5% above it."
+    D: "2.576 leaves 0.5% above it."
+
+- id: z-scores-07
+  skill: z-scores
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    What are the mean and standard deviation of the standard normal distribution?
+  options:
+    - "Mean 1 and standard deviation 0"
+    - "Mean 0 and standard deviation 0"
+    - "Mean 100 and standard deviation 15"
+    - "Mean 0 and standard deviation 1"
+  answer: D
+  explain: |
+    The standard normal distribution, N(0, 1), is what any normal distribution becomes after every value is converted to a z-score.
+  why:
+    A: "A standard deviation of 0 would mean every value is identical."
+    B: "A standard deviation of 0 would mean no spread at all."
+    C: "Mean 100 and SD 15 is a common scale for IQ scores, not the standard normal."
+
+- id: z-scores-08
+  skill: z-scores
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    A value is exactly equal to the mean of its distribution. What is its z-score?
+  options:
+    - "1"
+    - "-1"
+    - "The value of the mean itself"
+    - "0"
+  answer: D
+  explain: |
+    z = (x - mean) / SD, and x - mean = 0 when x equals the mean, so z = 0.
+  why:
+    A: "z = 1 is one standard deviation above the mean."
+    B: "z = -1 is one standard deviation below the mean."
+    C: "A z-score is a distance in standard deviations, not the raw value."
+
+- id: z-scores-09
+  skill: z-scores
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A raw score of 95 has a z-score of 2.5 in a distribution with standard deviation 4. What is the mean of the distribution?
+  options:
+    - "85"
+    - "87.5"
+    - "92.5"
+    - "105"
+  ordered: true
+  answer: A
+  explain: |
+    Rearrange z = (x - mean) / SD to mean = x - z x SD = 95 - 2.5 x 4 = 95 - 10 = 85.
+  why:
+    B: "This subtracts 2 x 4 instead of 2.5 x 4."
+    C: "This subtracts 2.5 points instead of 2.5 standard deviations."
+    D: "This adds instead of subtracting; the score is above the mean."
+  verify: "95 - 2.5 * 4"
