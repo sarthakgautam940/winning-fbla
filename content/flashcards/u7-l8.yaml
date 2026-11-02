@@ -1,0 +1,42 @@
+# Lesson 7.8 flashcards
+
+- id: fc-state-space
+  term: States, operators, start, goal
+  def: A search problem has states (configurations), operators (actions that change states), a start state, a goal state or test, and often a path cost. All reachable states form the state space.
+  skill: search-basics
+
+- id: fc-bfs-dfs
+  term: Breadth-first vs. depth-first search
+  def: BFS explores level by level with a queue, finds the shallowest goal, and needs a lot of memory. DFS goes deep down one branch with a stack and needs little memory. Neither considers path cost.
+  skill: search-basics
+
+- id: fc-heuristic
+  term: Heuristic
+  def: A rule-of-thumb estimate of the distance from a state to the goal, such as straight-line distance on a map. Admissible heuristics never overestimate.
+  skill: search-basics
+
+- id: fc-a-star
+  term: A* search
+  def: Expands the node with the lowest f(n) = g(n) + h(n), the cost so far plus the estimated cost to go. With an admissible heuristic it finds a least-cost path. Greedy best-first uses h(n) alone.
+  skill: search-basics
+
+- id: fc-minimax
+  term: Minimax
+  def: Values a game tree bottom-up. MIN nodes take the minimum of their children, MAX nodes the maximum, and the root value is the best outcome MAX can guarantee against perfect play.
+  example: "Leaves (3, 5) and (2, 9): MIN values 3 and 2, so the root is 3."
+  skill: search-basics
+
+- id: fc-alpha-beta
+  term: Alpha-beta pruning
+  def: Skips game-tree branches that cannot change the decision, reaching the same answer as minimax while examining fewer nodes, so programs can search deeper.
+  skill: search-basics
+
+- id: fc-reasoning-types
+  term: AI4K12 reasoning problem types
+  def: Classification (decision trees, neural networks), prediction (regression), sequential decision (reinforcement learning), combinatorial search (BFS, DFS), heuristic search (A*), adversarial search (alpha-beta), logical deduction (resolution, rules), statistical inference (Bayesian networks).
+  skill: reasoning-types
+
+- id: fc-symbolic-numerical-methods
+  term: Symbolic vs. numerical methods for a task
+  def: Symbolic methods (search, logic) suit exact rules and clear goals, such as Sudoku. Numerical methods (neural networks on feature vectors) suit raw, messy data such as images, because they extract their own features.
+  skill: reasoning-types

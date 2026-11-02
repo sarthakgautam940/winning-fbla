@@ -34,8 +34,9 @@ Gate + proxy auth, design tokens (Figtree, JetBrains Mono), app shell, lesson re
 | u3 (DA) | l1-l8 | 194 | 69 | done, all lessons 0 errors 0 warnings, verified |
 | u4 (TL) | l1-l9 | 213 | 81 | done, all lessons 0 errors 0 warnings, verified (SQL against the sample DBs, Python by execution, R by reasoning) |
 | u5 (ML) | l1-l10 | 221 | 83 | done, all lessons 0 errors 0 warnings, verified |
-| u6 (AI) | l1-l6 | 174 | 77 | done, all lessons 0 errors 0 warnings, verified |
-| u7-u8 | | | | to do, next is u7-l1 (perception and big ideas), then u7-l2 ... u7-l8, u8-l1 ... u8-l7 |
+| u6 (AI) | l1-l6 | 177 | 77 | done, all lessons 0 errors 0 warnings, verified (3 AI3 questions added to u6-l3) |
+| u7 (PR) | l1-l8 | 200 | 71 | done, all lessons 0 errors 0 warnings, verified (truth tables, chaining, Bayes, BN joints, search orders by execution) |
+| u8 | | | | to do, next is u8-l1 (ethical dilemmas), then u8-l2 ... u8-l7 |
 
 Full `--check` (no filter) at fb5427c: 0 errors, 1 warning (Virginia cards for terms in later units, expected until those units exist).
 

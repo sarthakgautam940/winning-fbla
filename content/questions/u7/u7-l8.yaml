@@ -1,0 +1,549 @@
+# Lesson 7.8: Search and the kinds of reasoning problems
+
+# ---------------------------------------------------------------- search-basics
+- id: search-basics-01
+  skill: search-basics
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A navigation app plans a route from home to school by searching a map. In this search problem, what are the operators?
+  options:
+    - "Traveling along a road from one place to the next"
+    - "The home where the trip begins"
+    - "The school where the trip ends"
+    - "The total distance of the finished route"
+  answer: A
+  explain: |
+    Operators, or actions, move the search from one state to another; here, traveling along a road changes the current location. Home is the start state, school is the goal state, and distance is the path cost.
+  why:
+    B: "Home is the start state."
+    C: "School is the goal state."
+    D: "Distance is the path cost, used to compare solutions."
+
+- id: search-basics-02
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In a search tree, A is the start. A's children, from left to right, are B, C, and D; B's children are E and F; D's child is G. In what order does breadth-first search visit the nodes?
+  options:
+    - "A, B, E, F, C, D, G"
+    - "A, B, C, D, G, F, E"
+    - "A, B, C, D, E, F, G"
+    - "E, F, G, B, C, D, A"
+  answer: C
+  explain: |
+    Breadth-first search goes level by level, left to right: first A, then the whole next level, B, C, and D, then the level below, E, F, and G.
+  why:
+    A: "This is depth-first order, which finishes B's branch before moving on."
+    B: "Within a level, breadth-first search takes nodes left to right, so E and F come before G."
+    D: "This starts from the bottom, but search always begins at the start node."
+  verify: |
+    tree = {"A": ["B", "C", "D"], "B": ["E", "F"], "D": ["G"]}
+    order, queue = [], ["A"]
+    while queue:
+        n = queue.pop(0)
+        order.append(n)
+        queue.extend(tree.get(n, []))
+    ans = ", ".join(order)
+
+- id: search-basics-03
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which search strategy is guaranteed to find the goal that is the fewest steps from the start?
+  options:
+    - "Depth-first search"
+    - "Greedy best-first search"
+    - "Random search"
+    - "Breadth-first search"
+  answer: D
+  explain: |
+    Breadth-first search explores every node one step away before any node two steps away, so the first goal it reaches is the shallowest one. The cost is memory, because it stores entire levels of the tree.
+  why:
+    A: "Depth-first search may find a deep goal down one branch before a shallow goal elsewhere."
+    B: "Greedy best-first follows the heuristic, which can lead it to a longer path first."
+    C: "Random search has no guarantee of finding any particular goal first."
+
+- id: search-basics-04
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which node does A* search choose to expand next?
+  options:
+    - "The node with the lowest g(n) + h(n), cost so far plus estimated cost to go"
+    - "The node with the lowest h(n), the estimated cost to go"
+    - "The node that was added to the frontier first"
+    - "The node that was added to the frontier most recently"
+  answer: A
+  explain: |
+    A* adds the cost already paid, g(n), to the heuristic estimate of the remaining cost, h(n), and expands the node with the lowest total. With a heuristic that never overestimates, this finds a least-cost path.
+  why:
+    B: "Using only h(n) is greedy best-first search."
+    C: "First in, first out is breadth-first search."
+    D: "Last in, first out is depth-first search."
+
+- id: search-basics-05
+  skill: search-basics
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    In a game tree, MAX moves first and chooses between two MIN nodes. The left MIN node's leaves are 6 and 2, and the right MIN node's leaves are 5 and 7. What is the minimax value of the root?
+  options:
+    - "2"
+    - "5"
+    - "6"
+    - "7"
+  ordered: true
+  answer: B
+  explain: |
+    Each MIN node takes the smaller of its leaves: the left is worth 2 and the right is worth 5. MAX takes the larger of those, 5, by choosing the right branch.
+  why:
+    A: "2 is the left MIN node's value; MAX would avoid that branch."
+    C: "6 assumes MIN would let MAX have the larger leaf on the left."
+    D: "7 is the largest leaf, but MIN would never allow it."
+  verify: "max(min(6, 2), min(5, 7))"
+
+- id: search-basics-06
+  skill: search-basics
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In a search problem, what is the goal state?
+  options:
+    - "The state where the search begins"
+    - "Any state that has many operators"
+    - "The state, or test, that says the problem is solved"
+    - "The most expensive state in the problem"
+  answer: C
+  explain: |
+    The goal state, or goal test, defines success: the search stops when it reaches a state that satisfies it, such as arriving at the destination or putting the puzzle tiles in order.
+  why:
+    A: "The state where the search begins is the start state."
+    B: "How many operators apply to a state does not make it the goal."
+    D: "Cost has nothing to do with being the goal."
+
+- id: search-basics-07
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In a search tree, A is the start. A's children, from left to right, are B, C, and D; B's children are E and F; D's child is G. Taking children left to right, in what order does depth-first search visit the nodes?
+  options:
+    - "A, B, C, D, E, F, G"
+    - "A, D, G, C, B, F, E"
+    - "A, E, F, B, G, D, C"
+    - "A, B, E, F, C, D, G"
+  answer: D
+  explain: |
+    Depth-first search goes as deep as it can before backing up: A, then B and all of B's subtree, E and F, then back up to C, then D and its child G.
+  why:
+    A: "This is breadth-first order, which finishes each level first."
+    B: "This takes children right to left instead of left to right."
+    C: "Search visits a parent before its children, so B must come before E and F."
+  verify: |
+    tree = {"A": ["B", "C", "D"], "B": ["E", "F"], "D": ["G"]}
+    order, stack = [], ["A"]
+    while stack:
+        n = stack.pop()
+        order.append(n)
+        stack.extend(reversed(tree.get(n, [])))
+    ans = ", ".join(order)
+
+- id: search-basics-08
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A puzzle's search tree grows wider very quickly at each level. Why might depth-first search be preferred over breadth-first search?
+  options:
+    - "It always finds the shortest solution"
+    - "It needs far less memory, storing only the current path"
+    - "It considers the cost of every step"
+    - "It explores every level completely before going deeper"
+  answer: B
+  explain: |
+    Breadth-first search must store an entire level of the tree, which grows exponentially, while depth-first search keeps only the current path and the siblings along it. The trade-off is that depth-first search may find a longer solution first.
+  why:
+    A: "Finding the shortest solution is breadth-first search's strength, not depth-first's."
+    C: "Neither breadth-first nor depth-first search considers step costs."
+    D: "Finishing each level first describes breadth-first search."
+
+- id: search-basics-09
+  skill: search-basics
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Two nodes wait to be expanded. Node X has path cost so far g = 7 and heuristic estimate h = 2. Node Y has g = 3 and h = 4. Which node does A* expand next, and why?
+  options:
+    - "X, because its heuristic estimate is smaller"
+    - "X, because its path cost so far is larger"
+    - "Both, because their estimates are close"
+    - "Y, because its total g + h is smaller"
+  answer: D
+  explain: |
+    A* compares f = g + h: X has 7 + 2 = 9, and Y has 3 + 4 = 7, so A* expands Y. Greedy best-first search, which looks only at h, would choose X.
+  why:
+    A: "Choosing by the heuristic alone is greedy best-first search."
+    B: "A larger cost so far makes a node less attractive, not more."
+    C: "A* expands one node at a time, the one with the lowest f."
+  verify: |
+    f = {"X": 7 + 2, "Y": 3 + 4}
+    ans = "Y, because its total g + h is smaller" if f["Y"] < f["X"] else "X, because its heuristic estimate is smaller"
+
+- id: search-basics-10
+  skill: search-basics
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    What does alpha-beta pruning add to minimax search?
+  options:
+    - "It reaches the same decision while skipping branches that cannot affect it"
+    - "It finds a better move than minimax could find"
+    - "It removes the need for an evaluation function"
+    - "It lets the opponent's moves be ignored entirely"
+  answer: A
+  explain: |
+    Alpha-beta pruning skips any branch that is already known to be no better than an option found earlier. The final decision is exactly the same as plain minimax, but fewer nodes are examined, so a program can search deeper in the same time.
+  why:
+    B: "Alpha-beta always picks the same move as minimax; it is just faster."
+    C: "Programs still score positions at their depth limit with an evaluation function."
+    D: "Minimax with alpha-beta still models the opponent's best replies."
+
+- id: search-basics-11
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In route-finding search, what is a heuristic?
+  options:
+    - "The exact length of the best route, known in advance"
+    - "A complete list of every road on the map"
+    - "A quick estimate of the distance left to the goal"
+    - "A rule that the search must visit every city once"
+  answer: C
+  explain: |
+    A heuristic is a rule of thumb that estimates how far a state is from the goal. Straight-line distance is quick to compute and roughly tracks road distance, so it guides best-first search and A* toward the destination.
+  why:
+    A: "If the exact best length were known in advance, no search would be needed."
+    B: "A list of roads is part of the problem, not an estimate."
+    D: "Visiting every city once is a different problem, not a heuristic."
+
+- id: search-basics-12
+  skill: search-basics
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A* is guaranteed to find a least-cost path when its heuristic is admissible. What does admissible mean?
+  options:
+    - "The heuristic is always exactly correct"
+    - "The heuristic never overestimates the true remaining cost"
+    - "The heuristic can be computed in under a second"
+    - "The heuristic is approved by the problem's designer"
+  answer: B
+  explain: |
+    An admissible heuristic may underestimate but never overestimates the remaining cost. Straight-line distance is admissible for road routes, because no road is shorter than a straight line. With such a heuristic, A* cannot be lured past the cheapest path.
+  why:
+    A: "A perfect heuristic would be ideal, but A* needs only one that never overestimates."
+    C: "Speed matters in practice but is not what admissible means."
+    D: "Admissible is a mathematical property, not an approval."
+
+- id: search-basics-13
+  skill: search-basics
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    MAX chooses among three MIN nodes. Their leaves are (4, 7), (6, 8), and (1, 9). What is the minimax value of the root?
+  options:
+    - "1"
+    - "4"
+    - "6"
+    - "9"
+  ordered: true
+  answer: C
+  explain: |
+    Each MIN node takes its smallest leaf: 4, 6, and 1. MAX takes the largest of those, 6, by choosing the middle branch.
+  why:
+    A: "1 is the worst MIN value, which MAX avoids."
+    B: "4 is the first MIN node's value, but the middle branch is better for MAX."
+    D: "9 is the largest leaf, but MIN would never allow it."
+  verify: "max(min(4, 7), min(6, 8), min(1, 9))"
+
+- id: search-basics-14
+  skill: search-basics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Steps in a route have different costs: some roads are short, and some are long. Why might breadth-first search miss the cheapest route?
+  options:
+    - "It ignores path cost and finds the route with the fewest steps"
+    - "It always chooses the most expensive road first"
+    - "It never reaches the goal when costs differ"
+    - "It only works on problems with exactly one route"
+  answer: A
+  explain: |
+    Breadth-first search counts steps, not costs, so it finds the route with the fewest roads, which may still be the longest in miles. Searches that use cost, such as A*, can find the cheapest route.
+  why:
+    B: "It does not prefer expensive roads; it simply ignores cost."
+    C: "It still reaches the goal; the route found just may not be the cheapest."
+    D: "It works on problems with many routes."
+
+- id: search-basics-15
+  skill: search-basics
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In a sliding-tile puzzle, what is a state?
+  options:
+    - "Sliding one tile into the empty space"
+    - "The number of moves made so far"
+    - "The finished, ordered arrangement only"
+    - "One arrangement of all the tiles on the board"
+  answer: D
+  explain: |
+    A state is one complete configuration of the problem, here a particular arrangement of the tiles. Sliding a tile is an operator that turns one state into another, and the ordered arrangement is the goal state.
+  why:
+    A: "Sliding a tile is an operator, not a state."
+    B: "The number of moves is the path cost so far."
+    C: "The ordered arrangement is the goal state, just one of many states."
+
+- id: search-basics-16
+  skill: search-basics
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    MAX chooses between two MIN nodes. The left MIN node's leaves are 5 and 8, and the right MIN node's leaves are 3 and 7, searched left to right. Using alpha-beta pruning, which leaf never needs to be examined?
+  options:
+    - "The 7"
+    - "The 5"
+    - "The 8"
+    - "None; every leaf must be examined"
+  answer: A
+  explain: |
+    The left MIN node is worth 5, so MAX can already guarantee 5. At the right MIN node, the first leaf is 3, so MIN can hold that branch to 3 or less, worse for MAX than 5. Nothing the last leaf, 7, could show would change MAX's choice, so it is pruned.
+  why:
+    B: "The 5 is needed to value the left MIN node."
+    C: "The 8 must be checked to confirm the left MIN node is worth 5."
+    D: "Once the right branch is known to be worth at most 3, the 7 cannot matter."
+  verify: |
+    left = min(5, 8)
+    ans = "The 7" if 3 <= left else "None; every leaf must be examined"
+
+# ---------------------------------------------------------------- reasoning-types
+- id: reasoning-types-01
+  skill: reasoning-types
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A bank wants to decide whether each new transaction is fraudulent or legitimate. Which kind of reasoning problem is this?
+  options:
+    - "Prediction of a number"
+    - "Classification"
+    - "Adversarial search"
+    - "Combinatorial search"
+  answer: B
+  explain: |
+    Sorting each transaction into a category, fraud or legitimate, is classification. Decision trees, nearest neighbors, and neural networks are typical algorithms for it.
+  why:
+    A: "Prediction estimates a number, such as an amount, not a category."
+    C: "Adversarial search chooses moves against an opponent in a game."
+    D: "Combinatorial search looks for an arrangement or path that works."
+
+- id: reasoning-types-02
+  skill: reasoning-types
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A program must choose good chess moves against a human opponent. Which kind of reasoning problem is this, and which algorithm does AI4K12 pair with it?
+  options:
+    - "Statistical inference, with Bayesian networks"
+    - "Logical deduction, with resolution theorem proving"
+    - "Adversarial search, with minimax and alpha-beta pruning"
+    - "Prediction, with linear regression"
+  answer: C
+  explain: |
+    Choosing moves against an opponent who plays against you is adversarial search. Minimax considers the opponent's best replies, and alpha-beta pruning makes the search fast enough to look many moves ahead.
+  why:
+    A: "Bayesian networks reason about uncertain evidence, not opponents' moves."
+    B: "Resolution derives conclusions from facts and rules, not game moves."
+    D: "Regression predicts numbers from features; it does not plan against an opponent."
+
+- id: reasoning-types-03
+  skill: reasoning-types
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A utility wants to estimate tomorrow's peak electricity demand in megawatts. Which kind of reasoning problem is this?
+  options:
+    - "Prediction"
+    - "Classification"
+    - "Logical deduction"
+    - "Heuristic search"
+  answer: A
+  explain: |
+    Estimating a continuous number, such as demand in megawatts, is prediction. Regression and neural networks are typical algorithms.
+  why:
+    B: "Classification assigns categories, not continuous numbers."
+    C: "Deduction derives certain conclusions from rules, not numerical forecasts."
+    D: "Heuristic search finds paths through large state spaces."
+
+- id: reasoning-types-04
+  skill: reasoning-types
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A robot arm learns to stack blocks by trying many sequences of moves and receiving a reward only when the stack stands. Which kind of reasoning problem is this, and which approach fits?
+  options:
+    - "Classification, with a decision tree"
+    - "Statistical inference, with a Bayesian network"
+    - "Combinatorial search, with breadth-first search over every move"
+    - "Sequential decision making, with reinforcement learning"
+  answer: D
+  explain: |
+    Choosing a series of actions to maximize a reward that comes at the end is a sequential decision problem. Reinforcement learning, with Q-tables or neural networks, learns a good policy from trial and error.
+  why:
+    A: "Classification labels single examples; it does not plan sequences of actions."
+    B: "Bayesian networks estimate probabilities from evidence, not action sequences."
+    C: "Exhaustively searching every move sequence is impractical for a physical arm with uncertain outcomes."
+
+- id: reasoning-types-05
+  skill: reasoning-types
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A diagnostic system must estimate which disease is most likely given symptoms and test results that are only partly reliable. Which kind of reasoning problem is this?
+  options:
+    - "Logical deduction"
+    - "Statistical inference"
+    - "Adversarial search"
+    - "Combinatorial search"
+  answer: B
+  explain: |
+    Reasoning about what is probably true from uncertain evidence is statistical inference, which AI4K12 pairs with Bayesian networks.
+  why:
+    A: "Logical deduction needs certain facts and rules, not partly reliable evidence."
+    C: "There is no opponent making moves."
+    D: "The task is to weigh evidence, not to find an arrangement or path."
+
+- id: reasoning-types-06
+  skill: reasoning-types
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A school's system applies fixed graduation requirements to each student's record to decide, with certainty, whether the student may graduate. Which kind of reasoning problem is this?
+  options:
+    - "Prediction"
+    - "Sequential decision making"
+    - "Logical deduction"
+    - "Statistical inference"
+  answer: C
+  explain: |
+    Deriving certain conclusions from facts and fixed rules is logical deduction. IF-THEN rules or resolution theorem proving solve it, and the system can show exactly which requirement each decision rests on.
+  why:
+    A: "No number is being estimated."
+    B: "No series of actions is being chosen for a reward."
+    D: "The rules are exact, so there is no uncertainty to weigh."
+
+- id: reasoning-types-07
+  skill: reasoning-types
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A moving company must find an arrangement of boxes that fits them all into one truck. Which kind of reasoning problem is this?
+  options:
+    - "Classification"
+    - "Prediction"
+    - "Statistical inference"
+    - "Combinatorial search"
+  answer: D
+  explain: |
+    Finding an arrangement or path that satisfies constraints is combinatorial search. AI4K12 lists packing objects into containers as a classic search problem.
+  why:
+    A: "Nothing is being sorted into categories."
+    B: "No number is being estimated."
+    C: "The problem has exact constraints, not uncertain evidence."
+
+- id: reasoning-types-08
+  skill: reasoning-types
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why can a neural network classify photos from their raw pixels when a decision tree working on the same raw pixels usually cannot?
+  options:
+    - "Decision trees cannot handle more than two classes"
+    - "Networks learn features from pixels; trees need given features"
+    - "Neural networks need no training data at all"
+    - "Decision trees only work on written text"
+  answer: B
+  explain: |
+    A single pixel says almost nothing about what a photo shows, so a decision tree splitting on raw pixels struggles. A neural network learns layers of features, from edges up to whole objects, turning raw pixels into useful features, which AI4K12 notes as the key difference.
+  why:
+    A: "Decision trees handle many classes."
+    C: "Neural networks need large amounts of training data."
+    D: "Decision trees work on any features, mostly tables of numbers and categories."
+
+- id: reasoning-types-09
+  skill: reasoning-types
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A navigation service must find good routes through a road network with millions of intersections, too many to explore exhaustively. Which kind of reasoning problem is this, and which algorithm fits?
+  options:
+    - "Heuristic search, with A*"
+    - "Adversarial search, with minimax"
+    - "Classification, with a decision tree"
+    - "Logical deduction, with resolution"
+  answer: A
+  explain: |
+    When a state space is too large to search blindly, heuristic search uses an estimate, such as straight-line distance, to focus on promising paths. A* is the standard algorithm.
+  why:
+    B: "There is no opponent, so adversarial search does not apply."
+    C: "Routes are paths to find, not categories to assign."
+    D: "Resolution derives conclusions from logic; it does not find routes."
+
+- id: reasoning-types-10
+  skill: reasoning-types
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A Sudoku puzzle has exact rules and a clearly defined goal. Which approach is the natural fit?
+  options:
+    - "A large language model trained on puzzle descriptions"
+    - "A Bayesian network over the digits"
+    - "Symbolic search that tries values and checks the rules"
+    - "Clustering the digits into similar groups"
+  answer: C
+  explain: |
+    With exact rules and a clear goal, symbolic search fits: try a value, check it against the rules, and back up when a choice fails. Statistical methods add uncertainty where none exists.
+  why:
+    A: "A language model may make rule-breaking mistakes; the exact rules call for search."
+    B: "Nothing in a Sudoku is uncertain, so probabilities add nothing."
+    D: "Grouping digits does not solve the puzzle's constraints."
