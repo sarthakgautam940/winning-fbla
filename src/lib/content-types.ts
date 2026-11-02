@@ -88,8 +88,12 @@ export interface Catalog {
   skills: Record<string, SkillInfo>;
   skillOrder: string[];
   questions: QMeta[];
+  // Unit-test and practice-test questions are not in the bank, but their
+  // answers still count toward skill mastery.
+  testMeta: Record<string, { skill: string; area: AreaId; tier: Tier; objective: string; type: QType; src: string }>;
   practiceTests: { id: string; n: number; title: string; count: number; minutes: number }[];
   flashcardCount: number;
+  cardIds: string[];
   builtAt: string;
 }
 

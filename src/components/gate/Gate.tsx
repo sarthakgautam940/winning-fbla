@@ -120,11 +120,6 @@ export function Gate() {
     if (!live()) return;
     setHeadline((h) => ({ ...h, caret: false }));
     setLeaving(true);
-    try {
-      sessionStorage.setItem("wf-just-unlocked", "1");
-    } catch {
-      // storage can be unavailable; the welcome fade is optional
-    }
     await sleep(reduced ? 50 : 720);
     router.replace(safeNext());
   }, [router, typeOut]);
