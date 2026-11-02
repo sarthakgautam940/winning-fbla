@@ -1,0 +1,59 @@
+# Lesson 8.3 flashcards
+
+- id: fc-fairness
+  term: Fairness
+  def: "In AI, decisions that do not unjustly favor or disadvantage people, especially on the basis of protected characteristics such as race, sex, or age. It can be defined in several precise ways, by group or by individual, and the definitions can conflict."
+  skill: fairness
+  virginia: true
+
+- id: fc-bias-detection
+  term: Bias Detection
+  def: "Testing data and models for unfair patterns: checking whether the data represent every group, comparing outcomes and error rates for each group, and auditing systems before and after deployment."
+  skill: fairness
+  virginia: true
+
+- id: fc-demographic-parity
+  term: Demographic (statistical) parity
+  def: "Every group receives the positive outcome at the same rate, whatever the true outcomes. Approval rate = number approved / number in the group. Criticized for ignoring who actually qualifies."
+  skill: fairness
+
+- id: fc-four-fifths-rule
+  term: Four-fifths rule
+  def: "From the 1978 U.S. Uniform Guidelines on Employee Selection Procedures: a group's selection rate below 80 percent of the highest group's rate is generally regarded as evidence of adverse impact. A rule of thumb, not a verdict."
+  example: "Rates of 30 and 40 percent give 0.30 / 0.40 = 0.75, below 0.80."
+  skill: fairness
+
+- id: fc-equal-opportunity-odds
+  term: Equal opportunity and equalized odds
+  def: "From Hardt, Price, and Srebro (2016). Equal opportunity: equal true positive rates across groups (qualified people equally likely to be approved). Equalized odds: equal true positive rates and equal false positive rates."
+  skill: fairness
+
+- id: fc-predictive-parity
+  term: Predictive parity
+  def: "Equal precision across groups: among the people a model labels positive, the same share are truly positive in every group. Northpointe used it to defend COMPAS."
+  skill: fairness
+
+- id: fc-group-rates
+  term: Fairness rates to compute per group
+  def: "Approval rate = approved / group size. True positive rate = qualified and approved / qualified. False positive rate = unqualified but approved / unqualified. Precision = qualified and approved / approved."
+  skill: fairness
+
+- id: fc-individual-fairness
+  term: Individual fairness
+  def: "From Dwork and colleagues (2012): similar individuals should be treated similarly, using a task-specific similarity metric. The practical difficulty is agreeing on that metric."
+  skill: fairness
+
+- id: fc-fairness-unawareness
+  term: Fairness through unawareness
+  def: "Trying to be fair by hiding protected attributes from the model. It fails on its own because other features, such as ZIP code, can act as proxies for the hidden attribute."
+  skill: fairness
+
+- id: fc-fairness-impossibility
+  term: Fairness impossibility results
+  def: "When base rates differ between groups, fairness definitions conflict. Chouldechova (2017): predictive parity forces unequal false positive or false negative rates. Kleinberg, Mullainathan, and Raghavan (2016): calibration and balance for both classes cannot all hold except with perfect prediction or equal base rates."
+  skill: fairness
+
+- id: fc-mitigation-stages
+  term: Pre-, in-, and post-processing
+  def: "Pre-processing changes the training data (reweighing, more representative data). In-processing changes the learning procedure (a fairness penalty, adversarial debiasing). Post-processing adjusts a trained model's outputs, treating it as a black box (group-specific thresholds). AI Fairness 360 (IBM Research, 2018) offers all three."
+  skill: fairness

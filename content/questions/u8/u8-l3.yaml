@@ -1,0 +1,563 @@
+# Lesson 8.3: Fairness and fixing bias
+
+# ---------------------------------------------------------------- fairness
+- id: fairness-01
+  skill: fairness
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A loan model approves 30 of 50 applicants from group A and 18 of 40 applicants from group B. What is group B's approval rate?
+  options:
+    - "18%"
+    - "36%"
+    - "45%"
+    - "60%"
+  ordered: true
+  answer: C
+  explain: |
+    Group B's approval rate is its approvals divided by its applicants: 18 / 40 = 0.45, or 45 percent. Group A's rate is 30 / 50 = 60 percent, so the two groups are not approved at the same rate.
+  why:
+    A: "18 is the number of approvals, not a percentage."
+    B: "36% divides by group A's 50 applicants instead of group B's 40."
+    D: "60% is group A's approval rate."
+  verify: "18 / 40"
+
+- id: fairness-02
+  skill: fairness
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A loan model satisfies demographic parity between two groups. What must be true?
+  options:
+    - "Each group is approved at the same rate, whatever its members' true outcomes"
+    - "Qualified applicants in each group are approved at the same rate"
+    - "Among approved applicants, the same share repays in each group"
+    - "The model never receives the applicants' group membership as an input"
+  answer: A
+  explain: |
+    Demographic parity, also called statistical parity, requires every group to receive the positive outcome at the same rate. It compares approval rates only and ignores who would actually repay.
+  why:
+    B: "Equal approval rates among qualified applicants is equal opportunity."
+    C: "Equal repayment rates among approved applicants is predictive parity."
+    D: "Hiding group membership is fairness through unawareness, which does not guarantee equal rates."
+
+- id: fairness-03
+  skill: fairness
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A hiring model selects 50 percent of applicants from group X and 35 percent from group Y. What is the ratio of group Y's selection rate to group X's?
+  options:
+    - "0.15"
+    - "0.35"
+    - "0.70"
+    - "1.43"
+  ordered: true
+  answer: C
+  explain: |
+    Divide the lower rate by the higher one: 0.35 / 0.50 = 0.70. Under the U.S. four-fifths rule for hiring, a ratio below 0.80 is generally treated as evidence of adverse impact, so this gap would be flagged.
+  why:
+    A: "0.15 is the difference between the rates, not their ratio."
+    B: "0.35 is group Y's selection rate itself."
+    D: "1.43 divides the rates the wrong way round, X over Y."
+  verify: "0.35 / 0.50"
+
+- id: fairness-04
+  skill: fairness
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    A loan model's results for two groups are shown below.
+
+    | Group | Would repay | Approved (would repay) | Would not repay | Approved (would not repay) |
+    |---|---|---|---|---|
+    | A | 40 | 36 | 60 | 6 |
+    | B | 80 | 72 | 20 | 2 |
+
+    Which fairness definitions does the model satisfy?
+  options:
+    - "Demographic parity only"
+    - "Equalized odds, but not demographic parity"
+    - "Both demographic parity and equalized odds"
+    - "Neither demographic parity nor equalized odds"
+  answer: B
+  explain: |
+    True positive rates are 36 / 40 = 0.9 and 72 / 80 = 0.9, and false positive rates are 6 / 60 = 0.1 and 2 / 20 = 0.1, so equalized odds holds. Approval rates are 42 / 100 = 42 percent and 74 / 100 = 74 percent, so demographic parity fails, because group B has more applicants who would repay.
+  why:
+    A: "Approval rates are 42 and 74 percent, so demographic parity is the definition that fails."
+    C: "Approval rates differ, so demographic parity does not hold."
+    D: "Both true positive and false positive rates match, so equalized odds does hold."
+  verify: |
+    tprA, tprB = 36 / 40, 72 / 80
+    fprA, fprB = 6 / 60, 2 / 20
+    appA, appB = (36 + 6) / 100, (72 + 2) / 100
+    eodds = abs(tprA - tprB) < 1e-9 and abs(fprA - fprB) < 1e-9
+    dp = abs(appA - appB) < 1e-9
+    ans = {(True, False): "Equalized odds, but not demographic parity",
+           (False, True): "Demographic parity only",
+           (True, True): "Both demographic parity and equalized odds",
+           (False, False): "Neither demographic parity nor equalized odds"}[(eodds, dp)]
+
+- id: fairness-05
+  skill: fairness
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which principle defines individual fairness?
+  options:
+    - "Every group receives positive outcomes at the same overall rate"
+    - "Qualified people in every group are equally likely to be approved"
+    - "A model never receives any personal information about individuals"
+    - "Individuals who are similar for the task are treated similarly"
+  answer: D
+  explain: |
+    Individual fairness, from Dwork and colleagues (2012), requires that similar individuals be treated similarly, with similarity measured by a metric suited to the task. It judges fairness person by person rather than group by group.
+  why:
+    A: "Equal rates for every group is demographic parity, a group definition."
+    B: "Equal approval among qualified people is equal opportunity, also a group definition."
+    C: "Refusing all personal information is not individual fairness, and it would leave the model nothing to decide with."
+
+- id: fairness-06
+  skill: fairness
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Two groups have different base rates of reoffending. A risk score has predictive parity: among people it labels high risk, the same share reoffends in each group. What did Chouldechova (2017) show must then be true?
+  options:
+    - "Its false positive or false negative rates must differ between the groups"
+    - "Its false positive and false negative rates must be equal in both groups"
+    - "It must flag both groups at exactly the same overall rate"
+    - "It must be perfectly accurate for at least one of the two groups"
+  answer: A
+  explain: |
+    When base rates differ, a score with predictive parity cannot also have equal false positive and false negative rates across groups. That is why ProPublica, which compared error rates, and Northpointe, which checked predictive parity, reached opposite verdicts on COMPAS.
+  why:
+    B: "This is exactly what cannot happen alongside predictive parity when base rates differ."
+    C: "Nothing forces equal flag rates; with different base rates, equal flag rates would be unlikely."
+    D: "The result concerns how errors are balanced, not perfect accuracy for any group."
+
+- id: fairness-07
+  skill: fairness
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    After a credit model is trained, a team sets a different approval threshold for each group so that their true positive rates match. Which kind of bias mitigation is this?
+  options:
+    - "Pre-processing"
+    - "In-processing"
+    - "Fairness through unawareness"
+    - "Post-processing"
+  answer: D
+  explain: |
+    Post-processing changes a trained model's outputs, for example with group-specific thresholds, without touching the training data or the learning algorithm. Hardt, Price, and Srebro (2016) showed how to adjust any learned predictor this way to meet their fairness definitions.
+  why:
+    A: "Pre-processing changes the training data before training."
+    B: "In-processing changes the learning procedure itself, such as the training objective."
+    C: "Fairness through unawareness hides protected attributes; it does not adjust thresholds."
+
+- id: fairness-08
+  skill: fairness
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which fairness definition requires equal true positive rates across groups and nothing more?
+  options:
+    - "Demographic parity"
+    - "Equal opportunity"
+    - "Predictive parity"
+    - "Individual fairness"
+  answer: B
+  explain: |
+    Equal opportunity (Hardt, Price, and Srebro, 2016) requires that people who truly qualify are equally likely to receive the positive prediction in every group, which means equal true positive rates. Equalized odds adds equal false positive rates.
+  why:
+    A: "Demographic parity compares overall positive rates, not true positive rates."
+    C: "Predictive parity compares precision: the share of positive predictions that are correct."
+    D: "Individual fairness compares similar individuals, not group rates."
+
+- id: fairness-09
+  skill: fairness
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    In group B, 80 applicants would repay a loan and 120 would not. The model approves 60 of those who would repay and 18 of those who would not. What is group B's true positive rate?
+  options:
+    - "15%"
+    - "39%"
+    - "75%"
+    - "76.9%"
+  ordered: true
+  answer: C
+  explain: |
+    The true positive rate is the share of truly positive cases that the model approves: 60 / 80 = 0.75, or 75 percent. It is the same quantity as recall.
+  why:
+    A: "15% is the false positive rate, 18 / 120."
+    B: "39% is the overall approval rate, 78 / 200."
+    D: "76.9% is precision, 60 / 78, the share of approvals that would repay."
+  verify: "60 / 80"
+
+- id: fairness-10
+  skill: fairness
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A screening model reviews 150 people who are healthy and 50 who are sick. It flags 45 of the sick people and 30 of the healthy people for follow-up. What is the model's false positive rate?
+  options:
+    - "15%"
+    - "20%"
+    - "40%"
+    - "90%"
+  ordered: true
+  answer: B
+  explain: |
+    The false positive rate is the share of truly negative cases that the model wrongly flags: 30 / 150 = 0.20, or 20 percent. Equalized odds requires this rate, along with the true positive rate, to match across groups.
+  why:
+    A: "15% divides by all 200 people instead of the 150 who are healthy."
+    C: "40% is the share of flagged people who are healthy, 30 / 75, which is 1 minus precision."
+    D: "90% is the true positive rate, 45 / 50."
+  verify: "30 / 150"
+
+- id: fairness-11
+  skill: fairness
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Group A has 60 applicants who would repay and 40 who would not; group B has 40 who would repay and 60 who would not. In both groups the model approves 90 percent of those who would repay and 15 percent of those who would not. What share of group B's approved applicants would repay?
+  options:
+    - "75%"
+    - "80%"
+    - "85%"
+    - "90%"
+  ordered: true
+  answer: B
+  explain: |
+    Group B's approvals are 0.9 × 40 = 36 people who would repay and 0.15 × 60 = 9 who would not, so 36 / 45 = 80 percent would repay. In group A the share is 54 / 60 = 90 percent. The model satisfies equalized odds, yet predictive parity fails, because the groups' base rates differ.
+  why:
+    A: "75% compares the two groups' approval counts, 45 / 60, instead of computing a share within group B."
+    C: "85% is 1 minus the false positive rate, which is not the share of approvals who would repay."
+    D: "90% is the true positive rate, and also group A's precision, not group B's."
+  verify: "0.9 * 40 / (0.9 * 40 + 0.15 * 60)"
+
+- id: fairness-12
+  skill: fairness
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A company wants qualified candidates from every group to have the same chance of receiving an offer. It does not require equal offer rates overall. Which fairness definition matches this goal?
+  options:
+    - "Equal opportunity"
+    - "Demographic parity"
+    - "Predictive parity"
+    - "Fairness through unawareness"
+  answer: A
+  explain: |
+    Equal opportunity requires that people who truly qualify are equally likely to receive the positive outcome in each group, which means equal true positive rates. It allows overall offer rates to differ when the groups' qualification rates differ.
+  why:
+    B: "Demographic parity requires equal offer rates overall, which the company explicitly does not require."
+    C: "Predictive parity concerns the share of offers that go to qualified people, not each qualified person's chance."
+    D: "Ignoring group membership does not guarantee that qualified people in each group have equal chances."
+
+- id: fairness-13
+  skill: fairness
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Kleinberg, Mullainathan, and Raghavan proved that three fairness conditions for risk scores, calibration within groups and balance for the positive and negative classes, cannot all hold at once except in two special cases. What are they?
+  options:
+    - "A very large training set, or a model with few parameters"
+    - "Removing the protected attribute, or adding more features"
+    - "Equal group sizes, or a test set balanced by group"
+    - "Perfect prediction, or equal base rates across the groups"
+  answer: D
+  explain: |
+    The theorem says the three conditions conflict unless the model predicts perfectly or every group has the same base rate. Real problems rarely meet either case, so teams must choose which kinds of fairness to prioritize.
+  why:
+    A: "No amount of data or model size escapes the result; it is about the conditions themselves."
+    B: "Removing the attribute or adding features does not change the base rates the theorem depends on."
+    C: "Group sizes and test-set balance play no role; base rates and prediction quality do."
+
+- id: fairness-14
+  skill: fairness
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What is the approach of making a model fair by never letting it see protected attributes called, and why does it fall short?
+  options:
+    - "Fairness through unawareness; other features can act as proxies for the attribute"
+    - "Demographic parity; it forces every group to receive equal approval rates"
+    - "Individual fairness; it cannot measure how similar two people are"
+    - "Equalized odds; it needs true outcomes, which are rarely recorded"
+  answer: A
+  explain: |
+    Fairness through unawareness simply removes protected attributes from the inputs. It falls short because features such as ZIP code, school, or activities can carry the same information, so the model can still treat groups differently.
+  why:
+    B: "Demographic parity is a different definition that explicitly compares group rates."
+    C: "Individual fairness depends on a similarity metric; it is not the approach of hiding attributes."
+    D: "Equalized odds compares error rates by group; it is not about hiding attributes."
+
+- id: fairness-15
+  skill: fairness
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which practice is the most direct way to detect bias in a trained classifier?
+  options:
+    - "Check its overall accuracy on a large, randomly chosen test set"
+    - "Remove the protected attributes from its training data"
+    - "Compare its outcomes and error rates separately for each group"
+    - "Train it for more epochs until its validation loss stops falling"
+  answer: C
+  explain: |
+    Bias detection means testing for unfair patterns, and the basic test is disaggregated evaluation: compute approval rates, true positive rates, and false positive rates for each group and compare them. An overall number can hide a group that the model fails.
+  why:
+    A: "One overall accuracy can hide poor performance for a small group."
+    B: "Removing attributes is an attempted fix, not a way to detect bias, and proxies can keep the bias alive."
+    D: "More training changes how well the model fits; it reveals nothing about differences between groups."
+
+- id: fairness-16
+  skill: fairness
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A medical screening tool flags patients for further testing. Missing a sick patient is far more harmful than a false alarm. Which fairness definition focuses on the harm that matters most here?
+  options:
+    - "Demographic parity"
+    - "Equal opportunity"
+    - "Predictive parity"
+    - "Individual fairness"
+  answer: B
+  explain: |
+    Equal opportunity requires equal true positive rates across groups. Equal true positive rates also mean equal false negative rates, so sick patients in every group are equally likely to be caught, and the costly miss is shared equally.
+  why:
+    A: "Demographic parity equalizes flag rates and ignores who is actually sick."
+    C: "Predictive parity equalizes the share of flagged patients who are sick, not the chance that a sick patient is caught."
+    D: "Individual fairness compares similar patients; it does not target the miss rate for each group."
+
+- id: fairness-17
+  skill: fairness
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Before training, a team gives extra weight to training examples from an underrepresented group so the model does not learn to neglect them. Which kind of bias mitigation is this?
+  options:
+    - "In-processing"
+    - "Post-processing"
+    - "Fairness through unawareness"
+    - "Pre-processing"
+  answer: D
+  explain: |
+    Pre-processing changes the training data before the model learns from it. Reweighing training examples is a standard pre-processing method; the AI Fairness 360 toolkit lists it alongside others such as the disparate impact remover.
+  why:
+    A: "In-processing changes the learning procedure, such as the objective, rather than the data."
+    B: "Post-processing adjusts a trained model's outputs."
+    C: "Fairness through unawareness removes attributes; it does not reweight examples."
+
+- id: fairness-18
+  skill: fairness
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A team adds a penalty to its model's training objective that grows whenever the model's error rates differ between groups. Which kind of bias mitigation is this?
+  options:
+    - "Pre-processing"
+    - "Post-processing"
+    - "In-processing"
+    - "Bias detection"
+  answer: C
+  explain: |
+    In-processing changes the learning procedure itself. A fairness penalty in the objective makes the model trade some accuracy for smaller gaps between groups while it trains.
+  why:
+    A: "Pre-processing changes the data, not the objective."
+    B: "Post-processing works on a finished model's outputs."
+    D: "Detection measures bias; a training penalty is an attempt to reduce it."
+
+- id: fairness-19
+  skill: fairness
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A bank buys a credit model from a vendor and cannot see its training data or change how it was trained. Which kind of bias mitigation can the bank still apply, and why?
+  options:
+    - "Post-processing, because it adjusts the model's outputs while treating it as a black box"
+    - "Pre-processing, because reweighting the vendor's data needs no access to the data"
+    - "In-processing, because a fairness penalty can be added after training is complete"
+    - "None, because every bias fix requires retraining the model from scratch"
+  answer: A
+  explain: |
+    The AI Fairness 360 paper notes that when a model can only be treated as a black box, with no ability to modify the training data or the learning algorithm, only post-processing can be used. Group-specific thresholds or adjusted outputs are typical examples.
+  why:
+    B: "Pre-processing modifies the training data, which the bank cannot access."
+    C: "In-processing changes the learning procedure during training, which the bank cannot touch."
+    D: "Post-processing reduces bias without any retraining."
+
+- id: fairness-20
+  skill: fairness
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A company selects 120 of 300 male applicants and 45 of 150 female applicants. Under the four-fifths rule, is there evidence of adverse impact?
+  options:
+    - "Yes: the ratio of selection rates is 0.75, below four-fifths"
+    - "No: the ratio of selection rates is 1.33, above four-fifths"
+    - "No: the gap is only 10 percentage points, under 20 points"
+    - "Yes: the women's selection rate, 30 percent, is below 80 percent"
+  answer: A
+  explain: |
+    Men are selected at 120 / 300 = 40 percent and women at 45 / 150 = 30 percent. The ratio of the lower rate to the higher is 0.30 / 0.40 = 0.75, below four-fifths (0.80), which the U.S. Uniform Guidelines generally treat as evidence of adverse impact.
+  why:
+    B: "1.33 divides the higher rate by the lower; the rule compares a group's rate with the highest group's rate."
+    C: "The rule uses the ratio of the rates, not the difference in percentage points."
+    D: "The rule compares the two groups' rates with each other, not one rate with 80 percent."
+  verify: |
+    r = (45 / 150) / (120 / 300)
+    ans = f"Yes: the ratio of selection rates is {r:.2f}, below four-fifths" if r < 0.8 else "No"
+
+- id: fairness-21
+  skill: fairness
+  tier: competitive
+  type: visual
+  use: bank
+  stem: |
+    A hiring model's results for two groups are shown below. Which statement is correct?
+
+    | Group | Qualified | Qualified and hired | Not qualified | Not qualified but hired |
+    |---|---|---|---|---|
+    | X | 50 | 40 | 50 | 10 |
+    | Y | 50 | 40 | 50 | 20 |
+  options:
+    - "It satisfies equalized odds, since true positive rates match"
+    - "It satisfies neither definition, since hiring rates differ"
+    - "It satisfies equalized odds but not equal opportunity"
+    - "It satisfies equal opportunity but not equalized odds"
+  answer: D
+  explain: |
+    True positive rates are 40 / 50 = 0.8 in both groups, so equal opportunity holds. False positive rates are 10 / 50 = 0.2 and 20 / 50 = 0.4, so equalized odds, which needs both rates to match, fails.
+  why:
+    A: "Equalized odds also requires equal false positive rates, and these are 0.2 and 0.4."
+    B: "Different hiring rates rule out demographic parity, but equal opportunity still holds."
+    C: "Equalized odds includes equal opportunity, so it cannot hold while equal opportunity fails."
+  verify: |
+    tprX, tprY = 40 / 50, 40 / 50
+    fprX, fprY = 10 / 50, 20 / 50
+    eo = abs(tprX - tprY) < 1e-9
+    eodds = eo and abs(fprX - fprY) < 1e-9
+    ans = "It satisfies equal opportunity but not equalized odds" if eo and not eodds else "other"
+
+- id: fairness-22
+  skill: fairness
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why do some researchers criticize demographic parity as a fairness goal?
+  options:
+    - "It requires far more training data than any other fairness definition"
+    - "It can be checked only after a model has been used for several years"
+    - "It ignores who actually qualifies, so it can force wrong approvals or rejections"
+    - "It applies only when the protected attribute has exactly two groups"
+  answer: C
+  explain: |
+    Demographic parity compares approval rates without looking at true outcomes. If qualification rates truly differ between groups, equal approval rates require approving some people who would not repay or rejecting some who would; Hardt, Price, and Srebro argued that it often cripples a model's usefulness.
+  why:
+    A: "It needs no special amount of data; it only compares rates."
+    B: "It can be checked on any test set as soon as predictions exist."
+    D: "It can compare any number of groups."
+
+- id: fairness-23
+  skill: fairness
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    ProPublica concluded that COMPAS was unfair to Black defendants, while its maker, Northpointe, concluded that it was fair. Which statement best explains how both analyses could be correct?
+  options:
+    - "One side made an arithmetic error, and the other side's numbers were right"
+    - "They used different fairness definitions, which cannot all hold when base rates differ"
+    - "They studied defendants from different states, so their data did not overlap"
+    - "Northpointe tested a newer version of COMPAS that had already been corrected"
+  answer: B
+  explain: |
+    ProPublica compared error rates and found more false positives for Black defendants; Northpointe checked predictive parity and found similar reoffense rates among those labeled high risk. When base rates differ, both cannot hold at once, as Chouldechova (2017) and Kleinberg, Mullainathan, and Raghavan (2016) showed.
+  why:
+    A: "Neither side's arithmetic was simply wrong; they measured different things."
+    C: "The disagreement did not come from different data; the two sides applied different definitions of fairness."
+    D: "The dispute was about how to define fairness, not about different versions of the tool."
+
+- id: fairness-24
+  skill: fairness
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is the main practical difficulty of individual fairness?
+  options:
+    - "Agreeing on a task-specific way to measure how similar two people are"
+    - "It requires every group to receive positive outcomes at the same rate"
+    - "It can be computed only for models with fewer than ten input features"
+    - "It needs the protected attribute removed from every record first"
+  answer: A
+  explain: |
+    Individual fairness requires that similar individuals be treated similarly, so everything depends on the similarity metric. Deciding which differences between two applicants are relevant to the task is itself a value judgment that people must agree on.
+  why:
+    B: "Equal rates for groups is demographic parity, a different definition."
+    C: "The difficulty is conceptual, not a limit on the number of features."
+    D: "Individual fairness does not require removing attributes; it depends on how similarity is defined."
+
+- id: fairness-25
+  skill: fairness
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does bias detection mean in AI?
+  options:
+    - "Removing protected attributes so that a model cannot see them"
+    - "Encrypting training data so that no outsider can read it"
+    - "Finding programming errors that cause a model to crash"
+    - "Testing data and models for unfair patterns across groups"
+  answer: D
+  explain: |
+    Bias detection is the work of finding unfair patterns before and after deployment: checking whether the data represent every group, comparing outcomes and error rates by group, and auditing systems, as the Gender Shades study did for commercial face analysis.
+  why:
+    A: "Removing attributes is an attempted fix, and a weak one, not detection."
+    B: "Encryption protects privacy and security; it does not reveal unfairness."
+    C: "Crash bugs are a reliability problem, not a fairness one."
+
+- id: fairness-26
+  skill: fairness
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What is AI Fairness 360, released by IBM Research in 2018?
+  options:
+    - "A European law requiring fairness audits of high-risk AI systems"
+    - "A benchmark of 360 face images balanced by skin type and gender"
+    - "An open-source toolkit of fairness metrics and bias mitigation algorithms"
+    - "A certification that proves a model is fair for every group of users"
+  answer: C
+  explain: |
+    AI Fairness 360 is an open-source Python toolkit with metrics for measuring bias in datasets and models and algorithms for reducing it at the pre-processing, in-processing, and post-processing stages, such as reweighing and equalized odds post-processing.
+  why:
+    A: "It is software, not a law; the EU AI Act is the European law that regulates high-risk systems."
+    B: "The number is part of its name, not a count of images."
+    D: "No toolkit can certify a model fair for every group, since fairness definitions conflict."
