@@ -1,0 +1,544 @@
+# Lesson 3.2: Histograms and boxplots
+
+# ---------------------------------------------------------------- histograms
+- id: histograms-01
+  skill: histograms
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    The histogram shows how many minutes 50 students spent on a homework app in one week. Which bin contains the median?
+  figure:
+    type: histogram
+    caption: Weekly minutes on a homework app
+    xLabel: Minutes
+    yLabel: Students
+    bins:
+      - { from: 0, to: 15, count: 18 }
+      - { from: 15, to: 30, count: 12 }
+      - { from: 30, to: 45, count: 9 }
+      - { from: 45, to: 60, count: 7 }
+      - { from: 60, to: 75, count: 4 }
+  options:
+    - "0 to 15 minutes"
+    - "15 to 30 minutes"
+    - "30 to 45 minutes"
+    - "45 to 60 minutes"
+  answer: B
+  explain: |
+    With 50 values, the median is the average of the 25th and 26th values. The running totals are 18, then 30, so the 25th and 26th values both fall in the 15 to 30 minute bin.
+  why:
+    A: "This is the tallest bar, the modal bin, but it holds only the first 18 values."
+    C: "This bin sits in the middle of the axis, but the median depends on the counts, not on the axis."
+    D: "By the start of this bin, 39 values have already been counted, well past the middle."
+
+- id: histograms-02
+  skill: histograms
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    How would you describe the shape of this distribution?
+  figure:
+    type: histogram
+    caption: Songs streamed per day by 49 listeners
+    xLabel: Songs streamed
+    yLabel: Listeners
+    bins:
+      - { from: 0, to: 20, count: 22 }
+      - { from: 20, to: 40, count: 13 }
+      - { from: 40, to: 60, count: 7 }
+      - { from: 60, to: 80, count: 4 }
+      - { from: 80, to: 100, count: 2 }
+      - { from: 100, to: 120, count: 1 }
+  options:
+    - "Skewed left"
+    - "Symmetric"
+    - "Uniform"
+    - "Skewed right"
+  answer: D
+  explain: |
+    The peak is at the low end and a long tail stretches to the right toward a few heavy listeners. A distribution is named for the direction of its tail, so this one is skewed right.
+  why:
+    A: "Left skew would have the long tail on the left, with most values high."
+    B: "The two sides do not mirror each other; the right side trails off much farther."
+    C: "The bars are far from equal in height."
+
+- id: histograms-03
+  skill: histograms
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    An analyst redraws a histogram of the same data with much wider bins, and two peaks that were visible before merge into one. What does this show?
+  options:
+    - "Wide bins can hide real features such as a second peak."
+    - "The data must have changed between the two charts."
+    - "The histogram with wider bins is the more accurate one."
+    - "Changing the bin width changes the mean of the data."
+  answer: A
+  explain: |
+    The data are the same, but wide bins lump values from both groups together, so the dip between the peaks disappears. Bin width changes the picture, which is why analysts try several widths before describing a shape.
+  why:
+    B: "The same data were binned two ways; only the display changed."
+    C: "Wider bins show less detail, so they are not more accurate."
+    D: "The mean depends on the data values, not on how they are binned for display."
+
+- id: histograms-04
+  skill: histograms
+  tier: core
+  type: visual
+  use: quiz
+  stem: |
+    The histogram shows the daily high temperatures in a city over 60 days. On how many days was the high at least 80 degrees?
+  figure:
+    type: histogram
+    caption: Daily high temperatures over 60 days
+    xLabel: High temperature (degrees F)
+    yLabel: Days
+    bins:
+      - { from: 50, to: 60, count: 5 }
+      - { from: 60, to: 70, count: 12 }
+      - { from: 70, to: 80, count: 20 }
+      - { from: 80, to: 90, count: 15 }
+      - { from: 90, to: 100, count: 8 }
+  options:
+    - "8"
+    - "15"
+    - "23"
+    - "35"
+  ordered: true
+  answer: C
+  explain: |
+    "At least 80" covers the 80 to 90 bin and the 90 to 100 bin: 15 + 8 = 23 days.
+  why:
+    A: "This counts only the 90 to 100 bin."
+    B: "This counts only the 80 to 90 bin."
+    D: "This adds the 70 to 80 and 80 to 90 bins, which includes days below 80."
+  verify: "15 + 8"
+
+- id: histograms-05
+  skill: histograms
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A histogram of home prices in a city has a long tail to the right. How do the mean and the median most likely compare?
+  options:
+    - "The mean is less than the median."
+    - "The mean and the median are equal."
+    - "They cannot be compared from the shape."
+    - "The mean is greater than the median."
+  answer: D
+  explain: |
+    The few very expensive homes in the right tail pull the mean upward, while the median, the middle price, barely moves. Right skew puts the mean above the median.
+  why:
+    A: "That is the pattern for left skew, where low values pull the mean down."
+    B: "Equal mean and median fit a symmetric distribution, not a skewed one."
+    C: "The shape is exactly what tells you which way the mean is pulled."
+
+- id: histograms-06
+  skill: histograms
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A histogram of customer arrival times at a restaurant shows two clear peaks, one near 12:30 p.m. and one near 7 p.m. What is the best interpretation?
+  options:
+    - "The data mix two groups of diners, lunch and dinner."
+    - "The arrival times are skewed to the right."
+    - "The histogram was drawn with too few bins."
+    - "The mean arrival time is the busiest time."
+  answer: A
+  explain: |
+    Two peaks, a bimodal shape, usually mean that two different groups have been combined. Here the lunch crowd and the dinner crowd each form their own peak.
+  why:
+    B: "Skew describes one peak with a long tail, not two separate peaks."
+    C: "Too few bins tend to hide peaks, not create them."
+    D: "The mean falls between the two peaks, in the quiet afternoon, so it is not the busiest time."
+
+- id: histograms-07
+  skill: histograms
+  tier: champion
+  type: visual
+  use: quiz
+  stem: |
+    The histogram shows the minutes 20 workers spent on a task. Using the midpoint of each bin, what is the best estimate of the mean time?
+  figure:
+    type: histogram
+    caption: Minutes spent on a task by 20 workers
+    xLabel: Minutes
+    yLabel: Workers
+    bins:
+      - { from: 0, to: 10, count: 8 }
+      - { from: 10, to: 20, count: 8 }
+      - { from: 20, to: 30, count: 4 }
+  options:
+    - "6.67"
+    - "13"
+    - "15"
+    - "20"
+  ordered: true
+  answer: B
+  explain: |
+    The bin midpoints are 5, 15, and 25 minutes. Weight each by its count: (5 × 8 + 15 × 8 + 25 × 4) / 20 = (40 + 120 + 100) / 20 = 260 / 20 = 13 minutes.
+  why:
+    A: "This averages the bar heights, 20 workers / 3 bins, which is not a time."
+    C: "This averages the three midpoints without weighting them by their counts."
+    D: "This is the number of workers, not a time."
+  verify: "(5 * 8 + 15 * 8 + 25 * 4) / 20"
+
+- id: histograms-08
+  skill: histograms
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In a frequency histogram, what does the height of each bar show?
+  options:
+    - "The average of the values in that bin"
+    - "The largest value in that bin"
+    - "The number of values in that bin"
+    - "The width of that bin"
+  answer: C
+  explain: |
+    A frequency histogram counts how many values fall in each bin, and the bar's height is that count. A relative frequency histogram shows the proportion or percent instead.
+  why:
+    A: "A histogram does not show averages within bins; the values inside a bin are hidden."
+    B: "The largest value in a bin is hidden too; only the count is shown."
+    D: "Bin width is shown along the horizontal axis, and all bins usually have the same width."
+
+- id: histograms-09
+  skill: histograms
+  tier: competitive
+  type: visual
+  use: bank
+  stem: |
+    The histogram shows the percent of homework completed by 50 students. Which statement is most likely true?
+  figure:
+    type: histogram
+    caption: Percent of homework completed by 50 students
+    xLabel: Percent completed
+    yLabel: Students
+    bins:
+      - { from: 0, to: 20, count: 2 }
+      - { from: 20, to: 40, count: 3 }
+      - { from: 40, to: 60, count: 5 }
+      - { from: 60, to: 80, count: 12 }
+      - { from: 80, to: 100, count: 28 }
+  options:
+    - "The mean is less than the median."
+    - "The mean is greater than the median."
+    - "The distribution has two peaks."
+    - "The distribution is roughly uniform."
+  answer: A
+  explain: |
+    Most students completed nearly everything, and a tail of low values stretches to the left, so the distribution is skewed left. The low values pull the mean below the median.
+  why:
+    B: "The mean exceeds the median in right-skewed data, where the tail is on the right."
+    C: "There is only one peak, at the high end."
+    D: "The bars rise steeply from left to right, so they are far from equal."
+
+- id: histograms-10
+  skill: histograms
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which data would most likely produce a roughly uniform histogram?
+  options:
+    - "The heights of 600 adults"
+    - "The incomes of 600 households"
+    - "The wait times of 600 clinic patients"
+    - "The results of 600 rolls of a fair die"
+  answer: D
+  explain: |
+    Each face of a fair die is equally likely, so over many rolls each value appears about 100 times and the bars come out roughly equal.
+  why:
+    A: "Adult heights cluster around the middle in a bell shape."
+    B: "Incomes are skewed right, with a long tail of high earners."
+    C: "Wait times are usually skewed right: most are short, a few are very long."
+
+- id: histograms-11
+  skill: histograms
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why can the exact median usually not be read from a histogram?
+  options:
+    - "The bars hide the individual values within each bin."
+    - "Histograms can be drawn only for categorical data."
+    - "The median always sits under the tallest bar."
+    - "Histograms do not show how many values there are."
+  answer: A
+  explain: |
+    A histogram records only how many values fall in each bin, not where they fall inside it. You can find which bin holds the median, but not the median's exact value.
+  why:
+    B: "Histograms are for numeric data, which is why bins exist at all."
+    C: "The tallest bar marks the modal bin, which need not hold the median."
+    D: "The bar heights add up to the total count, so the number of values is shown."
+
+# ---------------------------------------------------------------- boxplots
+- id: boxplots-01
+  skill: boxplots
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    The boxplot shows commute times for a company's employees. What is the median commute time?
+  figure:
+    type: boxplot
+    caption: Commute times
+    axisLabel: Minutes
+    groups:
+      - { label: Commute, min: 8, q1: 15, median: 22, q3: 30, max: 45 }
+  options:
+    - "15 minutes"
+    - "22 minutes"
+    - "26.5 minutes"
+    - "30 minutes"
+  ordered: true
+  answer: B
+  explain: |
+    The line inside the box marks the median, which here is 22 minutes. The box's edges are Q1 (15) and Q3 (30).
+  why:
+    A: "This is Q1, the left edge of the box."
+    C: "This is the midpoint of the minimum and the maximum, not the line inside the box."
+    D: "This is Q3, the right edge of the box."
+  verify: "22"
+
+- id: boxplots-02
+  skill: boxplots
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    The boxplot shows the weekly hours worked by a store's part-time staff. What is the interquartile range?
+  figure:
+    type: boxplot
+    caption: Weekly hours worked by part-time staff
+    axisLabel: Hours per week
+    groups:
+      - { label: Hours, min: 6, q1: 12, median: 18, q3: 26, max: 38 }
+  options:
+    - "6 hours"
+    - "8 hours"
+    - "14 hours"
+    - "32 hours"
+  ordered: true
+  answer: C
+  explain: |
+    The IQR is the length of the box: Q3 - Q1 = 26 - 12 = 14 hours.
+  why:
+    A: "This is the distance from Q1 to the median, only the lower half of the box."
+    B: "This is the distance from the median to Q3, only the upper half of the box."
+    D: "This is the range, the maximum minus the minimum."
+  verify: "26 - 12"
+
+- id: boxplots-03
+  skill: boxplots
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    The boxplots compare daily sales at two stores. Which statement is supported by the plots?
+  figure:
+    type: boxplot
+    caption: Daily sales at two stores
+    axisLabel: Daily sales (dollars)
+    groups:
+      - { label: Store X, min: 200, q1: 300, median: 380, q3: 450, max: 600 }
+      - { label: Store Y, min: 250, q1: 400, median: 430, q3: 470, max: 520 }
+  options:
+    - "Store X has the higher median and the smaller IQR."
+    - "Store Y has the higher median and the larger IQR."
+    - "The stores have the same median but different IQRs."
+    - "Store Y has the higher median and the smaller IQR."
+  answer: D
+  explain: |
+    Store Y's median (430) is above Store X's (380). Store Y's IQR is 470 - 400 = 70, while Store X's is 450 - 300 = 150, so Store Y's sales are both higher and more consistent.
+  why:
+    A: "Store X has the lower median and the larger IQR."
+    B: "Store Y's box is much shorter, so its IQR is smaller, not larger."
+    C: "The median lines sit at different values, 380 and 430."
+
+- id: boxplots-04
+  skill: boxplots
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    Two datasets produce exactly the same boxplot. Which statement must be true?
+  options:
+    - "They have the same five-number summary."
+    - "They have the same number of values."
+    - "They have the same mean."
+    - "They have the same shape, with the same number of peaks."
+  answer: A
+  explain: |
+    A boxplot is drawn from the five-number summary (and the outliers), so identical boxplots mean identical summaries. Everything else, including the sample size, the mean, and the number of peaks, can differ.
+  why:
+    B: "A boxplot does not show the sample size; 10 values and 10,000 values can give the same plot."
+    C: "A standard boxplot shows the median, and datasets with equal medians can have different means."
+    D: "Two clumps and an even spread can share the same five numbers, so the shapes can differ."
+
+- id: boxplots-05
+  skill: boxplots
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    About what percent of the data in a boxplot lie between Q1 and the median?
+  options:
+    - "10%"
+    - "25%"
+    - "50%"
+    - "75%"
+  ordered: true
+  answer: B
+  explain: |
+    The quartiles split the data into four parts of about equal size, so each section of the boxplot, including the stretch from Q1 to the median, holds about 25% of the values.
+  why:
+    A: "No section of a boxplot is defined by 10%; each of the four sections holds about a quarter."
+    C: "About 50% lies in the whole box, from Q1 to Q3."
+    D: "About 75% lies below Q3."
+  verify: "25"
+
+- id: boxplots-06
+  skill: boxplots
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    The boxplot shows the prices of used cars on a dealer's lot. What is the shape of the distribution?
+  figure:
+    type: boxplot
+    caption: Used car prices
+    axisLabel: Price (thousands of dollars)
+    groups:
+      - { label: Prices, min: 4, q1: 8, median: 10, q3: 16, max: 34 }
+  options:
+    - "Skewed left"
+    - "Roughly symmetric"
+    - "Skewed right"
+    - "Bimodal"
+  answer: C
+  explain: |
+    The median (10) sits much closer to Q1 (8) than to Q3 (16), and the right whisker (16 to 34) is far longer than the left (4 to 8). Both signs point to a long right tail, so the prices are skewed right.
+  why:
+    A: "Left skew would put the median near Q3, with a long left whisker."
+    B: "The two halves of the box and the two whiskers are very unequal."
+    D: "A boxplot cannot show whether there are two peaks."
+
+- id: boxplots-07
+  skill: boxplots
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    The boxplot shows the points a player scored per game in a season. Why is the value 35 drawn as a separate point?
+  figure:
+    type: boxplot
+    caption: Points per game
+    axisLabel: Points
+    groups:
+      - { label: Points, min: 4, q1: 10, median: 14, q3: 18, max: 26, outliers: [35] }
+  options:
+    - "It lies more than 1.5 × IQR above Q3."
+    - "It is the most common value in the data."
+    - "It is more than twice the median."
+    - "It is the largest value in the data."
+  answer: A
+  explain: |
+    The IQR is 18 - 10 = 8, so the upper fence is 18 + 1.5 × 8 = 30. The value 35 lies beyond the fence, so it is drawn as an outlier, and the whisker stops at 26, the largest value inside the fence.
+  why:
+    B: "The most common value would not be singled out; outliers are unusual values."
+    C: "Twice the median is not the rule; the fences are based on the IQR."
+    D: "Being the largest value is not enough; the whisker reaches the maximum unless it lies past the fence."
+
+- id: boxplots-08
+  skill: boxplots
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Two boxplots of customer wait times look identical. One summarizes 12 customers and the other summarizes 12,000. What can you conclude?
+  options:
+    - "The two groups must have identical wait times."
+    - "The boxplot of 12 customers must contain an error."
+    - "The boxplot of 12,000 customers is the more reliable summary."
+    - "The two groups must have the same mean wait time."
+  answer: C
+  explain: |
+    A boxplot does not show its sample size. Quartiles from 12 values could shift a lot if a few more customers were added, while quartiles from 12,000 values are pinned down, so the larger group's summary is far more trustworthy.
+  why:
+    A: "Identical boxplots mean identical five-number summaries, not identical data."
+    B: "A small sample can easily produce any five-number summary; nothing suggests an error."
+    D: "Boxplots show medians, and equal medians do not require equal means."
+
+- id: boxplots-09
+  skill: boxplots
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In a boxplot, the box extends from which value to which value?
+  options:
+    - "From the minimum to the maximum"
+    - "From the mean to the median"
+    - "From Q1 to Q3"
+    - "From the median to Q3"
+  answer: C
+  explain: |
+    The box runs from the first quartile to the third quartile, so its length is the interquartile range, and it holds the middle half of the data. The whiskers reach toward the minimum and maximum.
+  why:
+    A: "The minimum and maximum are reached by the whiskers, not the box."
+    B: "A standard boxplot does not mark the mean, and the box is defined by quartiles."
+    D: "The median to Q3 is only the upper half of the box."
+
+- id: boxplots-10
+  skill: boxplots
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A boxplot uses the 1.5 × IQR rule, with Q1 = 20 and Q3 = 32. Which value would be drawn as a separate point?
+  options:
+    - "3"
+    - "8"
+    - "45"
+    - "51"
+  ordered: true
+  answer: D
+  explain: |
+    The IQR is 32 - 20 = 12, and 1.5 × 12 = 18. The fences are 20 - 18 = 2 and 32 + 18 = 50, so only 51 lies outside them.
+  why:
+    A: "3 is above the lower fence of 2, so it is not an outlier."
+    B: "8 is well inside the lower fence."
+    C: "45 is below the upper fence of 50."
+  verify: |
+    iqr = 32 - 20
+    ans = [v for v in [3, 8, 45, 51] if v < 20 - 1.5 * iqr or v > 32 + 1.5 * iqr][0]
+
+- id: boxplots-11
+  skill: boxplots
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A boxplot of 200 delivery times has Q3 = 42 minutes. About how many deliveries took longer than 42 minutes?
+  options:
+    - "25"
+    - "50"
+    - "100"
+    - "150"
+  ordered: true
+  answer: B
+  explain: |
+    About 75% of the data lie at or below Q3, so about 25% lie above it: 0.25 × 200 = 50 deliveries.
+  why:
+    A: "This uses the percentage, 25, as if it were the count."
+    C: "About 100 deliveries lie above the median, not above Q3."
+    D: "About 150 deliveries lie at or below Q3."
+  verify: "0.25 * 200"

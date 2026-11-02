@@ -1,0 +1,43 @@
+# Lesson 3.2 flashcards
+
+- id: fc-histogram
+  term: Histogram
+  def: A chart of one numeric variable split into equal bins, with bar heights showing the count (or percent) in each bin. Its bars touch, and it reveals shape, center, spread, gaps, and outliers.
+  skill: histograms
+  virginia: true
+
+- id: fc-histogram-shapes
+  term: Distribution shapes
+  def: Skewed right has a long right tail (mean above median); skewed left has a long left tail (mean below median). Symmetric sides mirror each other. Bimodal has two peaks, often two groups mixed. Uniform has roughly equal bars.
+  skill: histograms
+
+- id: fc-median-bin
+  term: Median bin and mean estimate
+  def: Add counts from the left until you pass the middle position to find the median's bin. Estimate the mean by weighting each bin's midpoint by its count.
+  skill: histograms
+
+- id: fc-bin-width
+  term: Bin width
+  def: Wide bins can merge peaks and hide gaps; narrow bins can turn noise into a jagged picture. The same data can look very different, so try several widths.
+  skill: histograms
+
+- id: fc-boxplot
+  term: Boxplot
+  def: A display of the five-number summary. The box runs from Q1 to Q3 (the IQR) with a line at the median, whiskers reach the most extreme non-outliers, and points beyond 1.5 x IQR from the box are outliers.
+  skill: boxplots
+  virginia: true
+
+- id: fc-boxplot-quarters
+  term: Boxplot sections
+  def: Each of the four sections (two whiskers and two halves of the box) holds about 25% of the data. A longer section means more spread, not more values.
+  skill: boxplots
+
+- id: fc-boxplot-skew
+  term: Skew in a boxplot
+  def: Right skew puts the median near Q1 with a long right whisker; left skew puts it near Q3 with a long left whisker.
+  skill: boxplots
+
+- id: fc-boxplot-hides
+  term: What a boxplot hides
+  def: The sample size, the mean, and shape features such as two peaks or gaps. Different datasets can share one boxplot.
+  skill: boxplots
