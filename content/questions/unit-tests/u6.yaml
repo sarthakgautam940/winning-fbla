@@ -1,0 +1,510 @@
+# Unit 6 test: AI Basics
+
+- id: ut6-01
+  skill: ai-definitions
+  tier: core
+  type: scenario
+  stem: |
+    A music app's AI recommends songs very well, but it cannot play chess, write essays, or drive a car. What kind of AI is this?
+  options:
+    - "Narrow AI"
+    - "Artificial general intelligence"
+    - "Superintelligence"
+    - "Self-aware AI"
+  answer: A
+  explain: |
+    Narrow, or weak, AI performs a specific task, sometimes better than people, but cannot carry its skill over to unrelated tasks.
+  why:
+    B: "Artificial general intelligence would handle any intellectual task a person can, not just one."
+    C: "Superintelligence would surpass humans across the board."
+    D: "Nothing suggests the app is aware of itself; it performs a single task."
+
+- id: ut6-02
+  skill: ai-definitions
+  tier: competitive
+  type: concept
+  stem: |
+    Russell and Norvig group definitions of AI into four approaches. Which approach does the Turing test represent?
+  options:
+    - "Thinking humanly"
+    - "Thinking rationally"
+    - "Acting humanly"
+    - "Acting rationally"
+  answer: C
+  explain: |
+    The Turing test asks whether a machine's conversation is indistinguishable from a person's, so it represents acting humanly. Thinking humanly is cognitive modeling, thinking rationally is the laws-of-thought approach, and acting rationally is the rational agent approach.
+  why:
+    A: "Thinking humanly models how human minds work inside (cognitive modeling)."
+    B: "Thinking rationally is the laws-of-thought, logic-based approach."
+    D: "Acting rationally is the rational agent approach: doing the best thing, not imitating people."
+
+- id: ut6-03
+  skill: ai-history
+  tier: competitive
+  type: recall
+  stem: |
+    Which list puts these AI milestones in chronological order?
+  options:
+    - "ELIZA, Dartmouth workshop, AlexNet, Deep Blue defeats Kasparov"
+    - "Dartmouth workshop, Deep Blue defeats Kasparov, ELIZA, AlexNet"
+    - "Dartmouth workshop, ELIZA, AlexNet, Deep Blue defeats Kasparov"
+    - "Dartmouth workshop, ELIZA, Deep Blue defeats Kasparov, AlexNet"
+  answer: D
+  explain: |
+    The Dartmouth workshop met in 1956, ELIZA was described in 1966, Deep Blue won its match against Kasparov in 1997, and AlexNet won the ImageNet challenge in 2012.
+  why:
+    A: "The Dartmouth workshop, in 1956, came a decade before ELIZA."
+    B: "ELIZA (1966) came long before Deep Blue (1997)."
+    C: "Deep Blue's win (1997) came before AlexNet (2012)."
+  verify: |
+    years = {"Dartmouth workshop": 1956, "ELIZA": 1966, "Deep Blue defeats Kasparov": 1997, "AlexNet": 2012}
+    ans = ", ".join(sorted(years, key=years.get))
+
+- id: ut6-04
+  skill: ai-history
+  tier: competitive
+  type: recall
+  stem: |
+    Which event is often called the birth of AI as a research field, and also gave the field its name?
+  options:
+    - "Alan Turing's 1950 paper on the imitation game"
+    - "The 1956 Dartmouth summer research project"
+    - "Joseph Weizenbaum's 1966 paper describing ELIZA"
+    - "IBM's announcement of Deep Blue's 1997 victory"
+  answer: B
+  explain: |
+    The term "artificial intelligence" was introduced in the August 1955 proposal for the Dartmouth Summer Research Project on Artificial Intelligence, by John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon. The workshop met in the summer of 1956 and is often called the birth of AI as a field.
+  why:
+    A: "Turing's paper asked whether machines can think and proposed the imitation game, but the term came five years later."
+    C: "ELIZA came a decade after the term was coined."
+    D: "Deep Blue's victory came more than 40 years after the term was coined."
+
+- id: ut6-05
+  skill: computer-vision
+  tier: core
+  type: scenario
+  stem: |
+    A phone app draws a box around every car and pedestrian in a street photo and labels each box. Which computer vision task is this?
+  options:
+    - "Image classification"
+    - "Object detection"
+    - "Image segmentation"
+    - "Optical character recognition"
+  answer: B
+  explain: |
+    Object detection finds each object in an image, draws a bounding box around it, and labels it. Image classification gives one label to the whole image, and segmentation labels every pixel.
+  why:
+    A: "Classification assigns a single label to the entire image."
+    C: "Segmentation labels each pixel rather than drawing boxes."
+    D: "Optical character recognition reads text from images."
+
+- id: ut6-06
+  skill: computer-vision
+  tier: competitive
+  type: scenario
+  stem: |
+    A self-driving car's vision system labels every pixel in a camera image as road, sidewalk, vehicle, or sky. Which task is this?
+  options:
+    - "Image classification"
+    - "Object detection"
+    - "Image segmentation"
+    - "Facial recognition"
+  answer: C
+  explain: |
+    Segmentation assigns a class to every pixel, giving the car the exact shape and position of the road, sidewalks, and vehicles rather than just boxes or a single label.
+  why:
+    A: "Classification gives one label for the entire image."
+    B: "Detection draws boxes around objects but does not label each pixel."
+    D: "Facial recognition identifies people from their faces."
+
+- id: ut6-07
+  skill: nlp-speech
+  tier: competitive
+  type: scenario
+  stem: |
+    A company runs 50,000 product reviews through an AI system to measure whether customers feel positive, negative, or neutral about each product. Which NLP task is this?
+  options:
+    - "Machine translation"
+    - "Sentiment analysis"
+    - "Named entity recognition"
+    - "Speech synthesis"
+  answer: B
+  explain: |
+    Sentiment analysis classifies the opinion or emotional tone expressed in text, such as positive, negative, or neutral.
+  why:
+    A: "Machine translation converts text from one language to another."
+    C: "Named entity recognition finds the names of people, places, and organizations."
+    D: "Speech synthesis turns text into spoken audio."
+
+- id: ut6-08
+  skill: nlp-speech
+  tier: champion
+  type: concept
+  stem: |
+    Why is the sentence "I saw the man with the telescope" hard for a natural language processing system?
+  options:
+    - "It contains a word that has two accepted spellings"
+    - "It is too short for a model to find any meaning in it"
+    - "It uses a rare word that most models have never seen"
+    - "Its structure allows two readings, so who had the telescope is unclear"
+  answer: D
+  explain: |
+    The phrase "with the telescope" can attach to "saw," meaning the speaker used a telescope, or to "the man," meaning he was holding one. This structural ambiguity gives two valid parse trees, and choosing between them takes context or world knowledge.
+  why:
+    A: "Every word in the sentence has one standard spelling."
+    B: "Short sentences can be perfectly clear; this one has two valid structures."
+    C: "All of its words are common."
+
+- id: ut6-09
+  skill: ai-subfields
+  tier: core
+  type: scenario
+  stem: |
+    A warehouse machine senses its surroundings with cameras and lidar, plans a path, and physically picks up and moves boxes. Which AI subfield does this belong to most directly?
+  options:
+    - "Robotics"
+    - "Natural language processing"
+    - "Expert systems"
+    - "Recommender systems"
+  answer: A
+  explain: |
+    Robotics combines sensing, planning, and physical action in the world, often summed up as a sense-plan-act cycle.
+  why:
+    B: "NLP works with human language, not physical movement."
+    C: "Expert systems apply rules to reach conclusions; they do not act physically."
+    D: "Recommender systems suggest items to users."
+
+- id: ut6-10
+  skill: genai-nature
+  tier: core
+  type: concept
+  stem: |
+    What distinguishes generative AI from a discriminative model such as a spam classifier?
+  options:
+    - "It produces only images and cannot work with text at all"
+    - "It learns without needing any training data at all"
+    - "It creates new content that resembles its training data"
+    - "It is always more accurate than discriminative models"
+  answer: C
+  explain: |
+    A discriminative model learns to separate classes and assign labels, such as spam or not spam. A generative model learns the patterns of its training data well enough to produce new examples: text, images, audio, or code.
+  why:
+    A: "Generative AI produces text, images, audio, code, and more."
+    B: "Generative models are trained on very large datasets."
+    D: "Neither kind is always more accurate; they do different jobs."
+
+- id: ut6-11
+  skill: genai-models
+  tier: competitive
+  type: concept
+  stem: |
+    An artist trains a GAN to produce new landscape paintings. How do its two networks push each other to improve?
+  options:
+    - "The generator copies training paintings exactly, and the discriminator compresses them"
+    - "Both networks paint landscapes, and the better painting of each pair is kept"
+    - "The discriminator labels paintings so the generator can memorize the labels"
+    - "The generator tries to fool the discriminator, which tries to spot the fakes"
+  answer: D
+  explain: |
+    In a generative adversarial network, the generator creates samples and the discriminator tries to tell them apart from real data. As the discriminator gets better at spotting fakes, the generator must produce more realistic paintings to fool it.
+  why:
+    A: "The generator creates new samples rather than copying, and compressing data describes an autoencoder."
+    B: "Only the generator produces paintings; the discriminator judges them."
+    C: "The discriminator's verdicts guide the generator's training; nothing is memorized."
+
+- id: ut6-12
+  skill: genai-models
+  tier: champion
+  type: concept
+  stem: |
+    How does a diffusion model generate a new image?
+  options:
+    - "It starts from random noise and removes noise step by step"
+    - "It retrieves the closest image from its training set"
+    - "A generator and a discriminator compete until training ends"
+    - "It predicts one pixel at a time from left to right, like a language model"
+  answer: A
+  explain: |
+    A diffusion model is trained to reverse a process that gradually adds noise to images. To generate, it begins with pure noise and denoises it over many steps into a new image.
+  why:
+    B: "Generation creates new images; it does not look up stored ones."
+    C: "That describes a GAN."
+    D: "That describes an autoregressive approach, not diffusion."
+
+- id: ut6-13
+  skill: genai-uses
+  tier: core
+  type: scenario
+  stem: |
+    Which of these is an application of generative AI?
+  options:
+    - "Predicting tomorrow's high temperature from past weather"
+    - "Flagging credit card transactions that look fraudulent"
+    - "Grouping customers into segments by purchase history"
+    - "Creating synthetic medical images to help train a diagnostic model"
+  answer: D
+  explain: |
+    Generating new, realistic medical images is a generative task, and synthetic data can help train models when real patient data are scarce or private. The other tasks predict a number, assign a label, or find groups.
+  why:
+    A: "Predicting a temperature is regression, a predictive task."
+    B: "Flagging fraud is classification."
+    C: "Grouping customers is clustering."
+
+- id: ut6-14
+  skill: genai-limits
+  tier: competitive
+  type: scenario
+  stem: |
+    A user pastes a 400-page technical manual into a chatbot and asks about chapter 1, but the chatbot seems unaware of the early chapters. Which limitation is the most likely cause?
+  options:
+    - "The model's knowledge cutoff"
+    - "The model's context window"
+    - "A temperature setting that is too low"
+    - "Poisoning of the model's training data"
+  answer: B
+  explain: |
+    The context window is the maximum number of tokens a model can consider at once. Text beyond that limit is cut off or never seen, so a very long document may not fit.
+  why:
+    A: "A knowledge cutoff limits what the model learned in training, not what it can read in a prompt."
+    C: "Temperature controls randomness, not how much text the model can see."
+    D: "Nothing suggests tampering with the training data."
+
+- id: ut6-15
+  skill: llm-definition
+  tier: core
+  type: concept
+  stem: |
+    Which description best fits a large language model (LLM)?
+  options:
+    - "A neural network trained on huge amounts of text to predict the next token"
+    - "A database that stores every sentence on the internet and looks up answers"
+    - "A rule-based program written by experts to answer questions"
+    - "A search engine that ranks web pages by how popular they are"
+  answer: A
+  explain: |
+    An LLM is a very large neural network, usually a transformer, pretrained on enormous text collections to predict the next token. That simple objective gives it broad abilities to generate and work with language.
+  why:
+    B: "An LLM stores learned patterns in its weights; it does not look up stored sentences."
+    C: "LLMs learn from data rather than following hand-written rules."
+    D: "Ranking web pages is what a search engine does."
+
+- id: ut6-16
+  skill: tokens
+  tier: competitive
+  type: calculation
+  stem: |
+    Using OpenAI's rule of thumb for English, in which 1 token is about 0.75 words, about how many tokens is a 1,500-word essay?
+  options:
+    - "1,125"
+    - "1,500"
+    - "2,000"
+    - "6,000"
+  ordered: true
+  answer: C
+  explain: |
+    If 1 token is about 0.75 words, divide the words by 0.75 to get tokens: 1,500 / 0.75 = 2,000. Equivalently, 1 word is about 1.33 tokens.
+  why:
+    A: "1,125 multiplies by 0.75 instead of dividing."
+    B: "1,500 assumes exactly one token per word."
+    D: "6,000 multiplies by 4, mixing up the 4-characters-per-token rule with words."
+  verify: "1500 / 0.75"
+
+- id: ut6-17
+  skill: transformers-attention
+  tier: competitive
+  type: concept
+  stem: |
+    In the sentence "The trophy didn't fit in the suitcase because it was too big," what does self-attention help a transformer do as it processes the word "it"?
+  options:
+    - "Translate the whole sentence into another language first"
+    - "Count how many tokens the sentence contains in total"
+    - "Delete the words that carry little or no meaning"
+    - "Weigh how much each other word, such as trophy, matters to it"
+  answer: D
+  explain: |
+    Self-attention lets each token look at every other token in the input and decide how much each one matters to its meaning. Linking "it" to "trophy" is exactly this kind of context building.
+  why:
+    A: "Translation is a task a model can perform, not what attention does inside it."
+    B: "Counting tokens is the tokenizer's job, not attention's."
+    C: "Attention reweights words; it does not delete them."
+
+- id: ut6-18
+  skill: transformers-attention
+  tier: champion
+  type: concept
+  stem: |
+    BERT and GPT are both built from transformers. Which statement about them is accurate?
+  options:
+    - "BERT is an encoder reading in both directions; GPT is a decoder generating left to right"
+    - "BERT generates text from left to right, while GPT reads text in both directions"
+    - "Both are recurrent networks that read one word at a time, in order"
+    - "BERT is a generative adversarial network, and GPT is a diffusion model"
+  answer: A
+  explain: |
+    BERT, short for Bidirectional Encoder Representations from Transformers, uses the encoder to read context on both sides of each word, which suits understanding tasks. GPT models use a decoder that predicts the next token from left to right, which suits generation.
+  why:
+    B: "This swaps the two designs."
+    C: "Transformers replaced recurrence with attention."
+    D: "Neither is a GAN or a diffusion model; both are transformers."
+
+- id: ut6-19
+  skill: llm-training
+  tier: competitive
+  type: concept
+  stem: |
+    In reinforcement learning from human feedback (RLHF), what do human labelers typically provide?
+  options:
+    - "The full text of every document used in pretraining"
+    - "New model architectures for the team to test"
+    - "Rankings of different model responses, used to train a reward model"
+    - "Hand-written rules the model must follow word for word"
+  answer: C
+  explain: |
+    In RLHF, people compare or rank model outputs. Those preferences train a reward model, and reinforcement learning then tunes the language model toward responses people prefer.
+  why:
+    A: "Pretraining text comes from large collections, not from labelers writing documents."
+    B: "Labelers judge outputs; they do not design architectures."
+    D: "RLHF learns from preferences rather than rigid rules."
+
+- id: ut6-20
+  skill: llm-training
+  tier: champion
+  type: concept
+  stem: |
+    OpenAI's InstructGPT study found that human evaluators preferred outputs from a 1.3-billion-parameter model fine-tuned with RLHF over outputs from the 175-billion-parameter GPT-3. What does this suggest?
+  options:
+    - "Smaller models always outperform larger ones on every task"
+    - "GPT-3 was trained on too little text to be useful"
+    - "Evaluators prefer shorter answers regardless of quality"
+    - "Instruction tuning can matter more than size for helpfulness"
+  answer: D
+  explain: |
+    Fine-tuning on human demonstrations and preferences taught the far smaller model to follow instructions in ways people preferred. Size alone does not make a model helpful; alignment with what users want matters too.
+  why:
+    A: "The result concerns instruction-following after RLHF, not a rule that smaller is always better."
+    B: "The study did not show that GPT-3 lacked data."
+    C: "Nothing in the result is about answer length."
+
+- id: ut6-21
+  skill: prompting
+  tier: core
+  type: scenario
+  stem: |
+    A prompt shows a model three reviews, each labeled positive or negative, and then asks it to label a fourth review. What technique is this?
+  options:
+    - "Zero-shot prompting"
+    - "Few-shot prompting"
+    - "Fine-tuning"
+    - "Retrieval-augmented generation"
+  answer: B
+  explain: |
+    Few-shot prompting includes a few worked examples in the prompt so the model can infer the pattern. Zero-shot gives only the instruction, and fine-tuning changes the model's weights.
+  why:
+    A: "Zero-shot prompting includes no examples."
+    C: "Fine-tuning retrains the model; this only changes the prompt."
+    D: "RAG retrieves documents to add context; it does not supply labeled examples."
+
+- id: ut6-22
+  skill: prompting
+  tier: competitive
+  type: scenario
+  stem: |
+    A model often gets multi-step math word problems wrong. Which prompt change is most likely to help?
+  options:
+    - "Ask it to work through the problem step by step before answering"
+    - "Ask it to answer in as few words as possible to save tokens"
+    - "Raise the temperature so it explores more answers"
+    - "Remove the numbers so the model focuses on the words"
+  answer: A
+  explain: |
+    Chain-of-thought prompting asks the model to show its intermediate reasoning, which improves accuracy on multi-step problems. Writing out the steps also makes errors easier to spot.
+  why:
+    B: "Forcing a terse answer leaves no room for intermediate steps."
+    C: "Higher temperature adds randomness, which usually hurts exact calculation."
+    D: "The numbers are needed to solve the problem."
+
+- id: ut6-23
+  skill: sampling
+  tier: competitive
+  type: concept
+  stem: |
+    At temperature 1, a model gives its most likely next word a probability of about 56 percent. What happens to that probability if the temperature is lowered to 0.25?
+  options:
+    - "It falls toward 0, so the word is rarely chosen"
+    - "It stays about 56 percent, since temperature only affects length"
+    - "It rises toward 1, so the model almost always picks that word"
+    - "Every word becomes equally likely"
+  answer: C
+  explain: |
+    Lower temperature sharpens the probability distribution, concentrating it on the most likely tokens. In the course's example, the top word's probability rises from about 56 percent at temperature 1 to about 96 percent at 0.25, so the output becomes more focused and repeatable.
+  why:
+    A: "Lowering the temperature favors the top word more, not less."
+    B: "Temperature reshapes the probabilities; it does not set the output length."
+    D: "Nearly equal probabilities come from a very high temperature, not a low one."
+  verify: |
+    z = np.array([4.0, 3.2, 2.6, 1.4, 0.2])
+    p = lambda t: np.exp(z / t) / np.exp(z / t).sum()
+    ok = p(1)[0] < p(0.25)[0] and p(0.25)[0] > 0.9
+    ans = "It rises toward 1, so the model almost always picks that word" if ok else "other"
+
+- id: ut6-24
+  skill: embeddings
+  tier: competitive
+  type: calculation
+  stem: |
+    Two documents have embedding vectors a = (1, 1, 0, 1) and b = (1, 0, 1, 1). What is their cosine similarity, to the nearest thousandth?
+  options:
+    - "0.333"
+    - "0.667"
+    - "1"
+    - "2"
+  ordered: true
+  answer: B
+  explain: |
+    Cosine similarity divides the dot product by the product of the lengths. The dot product is 1 + 0 + 0 + 1 = 2, and each vector has length √3, so the similarity is 2 / 3, about 0.667.
+  why:
+    A: "0.333 divides by 3 + 3 = 6 instead of by √3 × √3 = 3."
+    C: "1 would mean the vectors point in exactly the same direction, but they differ."
+    D: "2 is the raw dot product, before dividing by the lengths."
+  verify: |
+    a = np.array([1, 1, 0, 1])
+    b = np.array([1, 0, 1, 1])
+    ans = float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+
+- id: ut6-25
+  skill: rag-agents
+  tier: competitive
+  type: scenario
+  stem: |
+    A company connects its chatbot to a search over its own policy documents and adds the most relevant passages to each prompt before the model answers. What is this technique, and what is its main benefit?
+  options:
+    - "Fine-tuning; it permanently retrains the model's weights on the policies"
+    - "Few-shot prompting; it shows the model labeled examples"
+    - "Temperature scaling; it makes the answers more creative"
+    - "Retrieval-augmented generation; it grounds answers in current, specific sources"
+  answer: D
+  explain: |
+    Retrieval-augmented generation retrieves relevant documents and places them in the prompt, so the model answers from those sources rather than from memory alone. It keeps answers current and specific without retraining.
+  why:
+    A: "Fine-tuning changes the weights; retrieval only changes the prompt."
+    B: "Few-shot prompting adds examples of the task, not reference documents."
+    C: "Temperature controls randomness, not access to documents."
+
+- id: ut6-26
+  skill: llm-capabilities
+  tier: champion
+  type: scenario
+  stem: |
+    A student asks a chatbot that has no tools for four kinds of help. Which answer should the student double-check most carefully?
+  options:
+    - "Its count of how many times the letter r appears in a long essay"
+    - "Its three-sentence summary of a news article"
+    - "Its translation of a short paragraph from Spanish into English"
+    - "Its draft of a polite email declining an invitation"
+  answer: A
+  explain: |
+    LLMs process text as tokens rather than individual letters, and they generate likely text rather than counting, so exact character counts are a known weak spot. Summarizing, translating, and drafting play to their strengths.
+  why:
+    B: "Summarizing is one of the things LLMs do well."
+    C: "Translation is a well-established strength of LLMs."
+    D: "Drafting routine messages is a core strength."
