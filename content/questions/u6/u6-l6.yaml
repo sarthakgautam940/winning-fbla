@@ -109,17 +109,17 @@
   stem: |
     Why do large generative AI models raise environmental concerns?
   options:
-    - "They print every answer on paper before displaying it"
-    - "Training and running them uses large amounts of electricity"
-    - "They require users to replace their phones every year"
-    - "They store their training data on plastic storage devices"
+    - "Every conversation is saved forever, so storage alone uses most of their power"
+    - "Training and running them takes heavy computation that uses a lot of electricity"
+    - "Each answer permanently uses up rare metals inside the chips that compute it"
+    - "Their network traffic slows the internet for everyone in the same region"
   answer: B
   explain: |
-    Training a large model and then serving it to many users take enormous amounts of computation in data centers, which consume large amounts of electricity. NIST's 2024 Generative AI Profile lists environmental impacts among the 12 risks of generative AI, and cost and energy are good reasons to use smaller models when they are accurate enough.
+    Training a large model and then serving it to many users take enormous amounts of computation in data centers, which consume large amounts of electricity. NIST's 2024 Generative AI Profile lists environmental impacts, caused by the high compute used to train and operate models, among the 12 risks of generative AI, and cost and energy are good reasons to use smaller models when they are accurate enough.
   why:
-    A: "Answers are digital; nothing is printed."
-    C: "Generative AI does not require new phones every year."
-    D: "Storage media are not the main concern; computation is."
+    A: "NIST ties the environmental risk to the compute used to train and operate models, not to storing conversations."
+    C: "Chips are not used up by computing an answer; the concern is the electricity the computation draws."
+    D: "NIST ties the risk to high compute use, not to network traffic."
 
 - id: genai-limits-07
   skill: genai-limits

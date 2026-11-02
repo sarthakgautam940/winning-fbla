@@ -1,0 +1,735 @@
+# Lesson 8.1: Ethical dilemmas in AI
+
+# ---------------------------------------------------------------- av-dilemmas
+- id: av-dilemmas-01
+  skill: av-dilemmas
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    When people discuss self-driving cars, what question does the trolley problem raise?
+  options:
+    - "Whether a car may break a traffic rule, such as crossing a solid line, to avoid a hazard"
+    - "Which party is legally responsible when an automated car injures someone on a public road"
+    - "How a car should be programmed to choose between harms when a crash cannot be avoided"
+    - "How many miles of road testing a car needs before it is as safe as a human driver"
+  answer: C
+  explain: |
+    Philippa Foot's 1967 thought experiment, named the trolley problem by Judith Jarvis Thomson in 1976, asks whether a runaway tram should be steered toward one worker to spare five. For self-driving cars it becomes a design question: how should the car be programmed to choose between harms when a crash is unavoidable?
+  why:
+    A: "This is a real design question about following rules, but no one has to be harmed in it."
+    B: "This is the liability question, a separate dilemma about who answers for a crash."
+    D: "This is the safety-testing question of how safe is safe enough."
+
+- id: av-dilemmas-02
+  skill: av-dilemmas
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A car can steer within its lane and control its speed at the same time on the highway, but the driver must watch the road constantly and be ready to take over at any moment. Under SAE J3016, which level of driving automation is this?
+  options:
+    - "Level 1"
+    - "Level 2"
+    - "Level 3"
+    - "Level 4"
+  ordered: true
+  answer: B
+  explain: |
+    Support for steering and speed together is Level 2, partial driving automation. At Levels 0 to 2 the human is still driving and must supervise at all times; only from Level 3 does an automated driving system perform the whole driving task while it is engaged.
+  why:
+    A: "Level 1 supports steering or speed, not both at once."
+    C: "At Level 3 the system drives while engaged, and the human takes over only when alerted or after an evident malfunction."
+    D: "At Level 4 no human driving is needed within the feature's defined conditions."
+
+- id: av-dilemmas-03
+  skill: av-dilemmas
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    In the 2018 crash in Tempe, Arizona, an Uber test vehicle in autonomous mode struck and killed a pedestrian. What did the National Transportation Safety Board name as the probable cause?
+  options:
+    - "The pedestrian's decision to cross the road outside a marked crosswalk at night"
+    - "A sensor failure that kept the system from detecting the pedestrian at all"
+    - "Arizona's decision to allow automated vehicles to be tested on public roads"
+    - "The safety operator's failure to watch the road while distracted by a phone"
+  answer: D
+  explain: |
+    The NTSB found that the operator was visually distracted by a personal phone and failed to monitor the road; that was the probable cause. The system had detected the pedestrian 5.6 seconds before impact but never classified the pedestrian accurately, and its design relied on the operator for emergency braking.
+  why:
+    A: "Crossing outside a crosswalk was listed as a contributing factor, not the probable cause."
+    B: "The system did detect the pedestrian, 5.6 seconds before impact; it failed to classify the pedestrian and predict the path."
+    C: "The NTSB cited Arizona's insufficient oversight of testing as a contributing factor, not the probable cause."
+
+- id: av-dilemmas-04
+  skill: av-dilemmas
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    After the 2018 Uber crash in Tempe, prosecutors declined to charge Uber as a company, and the backup operator later pleaded guilty to endangerment. Which liability problem does this outcome illustrate most directly?
+  options:
+    - "Blame can fall on the human backup even when the system's design relied on that person to brake"
+    - "Courts treat the automated driving system itself as the legal driver responsible for a crash"
+    - "The company that builds an automated system is automatically held criminally responsible for its crashes"
+    - "Liability questions disappear once a car's system is rated at Level 3 or higher under SAE J3016"
+  answer: A
+  explain: |
+    The NTSB found that Uber's design left emergency braking to the human operator rather than the system, yet the criminal case was brought against the operator, not the company. That gap between who designs a system and who is held responsible is the central liability problem of automated driving.
+  why:
+    B: "Software cannot be charged with a crime; the case was brought against a human operator."
+    C: "Prosecutors declined to charge Uber, the opposite of automatic responsibility."
+    D: "SAE J3016 is a technical classification of automation levels; it does not settle who is legally responsible."
+
+- id: av-dilemmas-05
+  skill: av-dilemmas
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A carmaker argues that its automated cars should be deployed widely as soon as they crash less often than the average human driver. A safety group argues they should wait until the cars are far safer than human drivers. What are the two sides weighing?
+  options:
+    - "Testing in simulation against testing on public roads with people who never consented"
+    - "The manufacturer's liability for a crash against the liability of the person in the driver's seat"
+    - "Lives saved by deploying sooner against harm from deploying a system that is still immature"
+    - "Following programmed traffic rules against minimizing harm in a crash that cannot be avoided"
+  answer: C
+  explain: |
+    This is the safety-testing dilemma of how safe is safe enough. Deploying a car that is already safer than average could prevent crashes sooner, while waiting avoids putting a still-immature system on the road; both sides are protecting lives.
+  why:
+    A: "Simulation versus road testing is a question of how to test, not when a car is safe enough to deploy."
+    B: "Liability is about who answers after a crash, not about the safety bar for deployment."
+    D: "This is the trolley-style programming question, not the question of when to deploy."
+
+- id: av-dilemmas-06
+  skill: av-dilemmas
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Under SAE J3016, at which levels of driving automation must a human driver supervise the driving at all times?
+  options:
+    - "Levels 0 to 2 only"
+    - "Levels 0 to 3 only"
+    - "Levels 0 to 4 only"
+    - "Levels 0 to 5"
+  ordered: true
+  answer: A
+  explain: |
+    Levels 0 to 2 are driver support features: the human is driving and must supervise constantly. From Level 3 up, an automated driving system performs the entire driving task while it is engaged.
+  why:
+    B: "At Level 3 the system drives while engaged; the human must take over only when alerted or after an evident malfunction."
+    C: "At Level 4 no human driving is needed within the feature's defined conditions."
+    D: "At Level 5 the system can drive in all conditions a human could, with no human driving needed."
+
+- id: av-dilemmas-07
+  skill: av-dilemmas
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which consideration makes testing self-driving cars on public roads an ethical dilemma rather than only an engineering trade-off?
+  options:
+    - "Road testing costs more per mile than simulation, but its data is easier to analyze"
+    - "Road testing requires local permits, while simulation requires expensive computing power"
+    - "Road testing takes longer than simulation, but it gives engineers more realistic sensor data"
+    - "Other road users bear risk they never agreed to, but real-world testing is needed to make cars safe"
+  answer: D
+  explain: |
+    A dilemma sets moral values against each other. Here the safety and consent of people who share the road conflict with the safety gains that only real-world testing can deliver. The other options are practical trade-offs of cost, logistics, and time, with no moral value on either side.
+  why:
+    A: "Cost and ease of analysis are practical concerns; neither side involves a moral value."
+    B: "Permits and computing power are logistical costs, not conflicting moral values."
+    C: "Time and realism are engineering considerations; no one's rights are at stake in the choice as stated."
+
+- id: av-dilemmas-08
+  skill: av-dilemmas
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    The Moral Machine experiment gathered 40 million decisions about crash dilemmas from people in 233 countries and territories and found three broad clusters of countries with different patterns of preference. Which conclusion does the clustering support?
+  options:
+    - "People everywhere ranked the same preferences in the same order, so one rule would satisfy all"
+    - "Any single crash rule programmed into cars worldwide would fit some regions' views better than others"
+    - "Most participants preferred that cars spare animals over humans when the two were in conflict"
+    - "The experiment showed that real crashes usually force a choice between two groups of people"
+  answer: B
+  explain: |
+    The study found strong shared preferences, such as sparing humans over animals and more lives over fewer, but its Western, Eastern, and Southern clusters differed in their patterns. A single global rule would therefore match some regions' moral preferences better than others.
+  why:
+    A: "The clusters exist because patterns differed across regions, so preferences were not identical everywhere."
+    C: "This reverses a finding: the strongest preference was to spare humans over animals."
+    D: "The study used hypothetical dilemmas; it did not measure how often real crashes take this form."
+
+# ---------------------------------------------------------------- surveillance
+- id: surveillance-01
+  skill: surveillance
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A city wants cameras that identify people by their faces as they walk through public squares. Which concern is about privacy and consent?
+  options:
+    - "People are identified without ever agreeing to it, and a face cannot be changed if its data leaks"
+    - "The new cameras may need more electricity and maintenance than the older cameras they replace"
+    - "Officers may lose skill at recognizing suspects if they come to rely on the system's matches"
+    - "The system may slow down as more cameras are added and more faces must be compared at once"
+  answer: A
+  explain: |
+    Privacy and consent concern people's control over information about themselves. People crossing a square never agreed to be identified, and unlike a password, a face cannot be replaced if the data is stolen or misused.
+  why:
+    B: "Electricity and maintenance are operating costs, not questions of privacy or consent."
+    C: "Losing skill through overreliance is a real concern, but it is about automation bias, not privacy."
+    D: "Speed at scale is an engineering limit, not a question of consent."
+
+- id: surveillance-02
+  skill: surveillance
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    License-plate cameras installed to collect highway tolls are later used to record which cars park near a union meeting. What is this an example of?
+  options:
+    - "A chilling effect"
+    - "Misidentification"
+    - "Function creep"
+    - "Data minimization"
+  answer: C
+  explain: |
+    Function creep is the gradual expansion of a system beyond its original purpose. Cameras built to collect tolls are now tracking who attends a meeting, a use far beyond the one they were installed for.
+  why:
+    A: "A chilling effect is what may follow, if people skip the meeting because they know they are watched; it is not the expansion itself."
+    B: "Misidentification is a wrong match, and nothing here says the cameras matched the wrong cars."
+    D: "Data minimization is the opposite practice: collecting only the data a stated purpose needs."
+
+- id: surveillance-03
+  skill: surveillance
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which statement correctly distinguishes function creep from a chilling effect?
+  options:
+    - "Function creep is people avoiding lawful activity because they are watched; a chilling effect is a system spreading beyond its purpose"
+    - "Function creep is a system spreading beyond its original purpose; a chilling effect is people avoiding lawful activity because they are watched"
+    - "Function creep is a system misidentifying more people over time; a chilling effect is a system collecting more data than it needs"
+    - "Function creep is a model slowly losing accuracy; a chilling effect is the public losing trust in a company after a data breach"
+  answer: B
+  explain: |
+    Function creep describes what happens to the system: it is used for more than its original purpose. A chilling effect describes what happens to people: knowing they are watched, they avoid lawful activities such as protests or support groups.
+  why:
+    A: "This swaps the two definitions."
+    C: "Neither term means misidentification or over-collection; those are separate problems."
+    D: "A model losing accuracy and lost trust after a breach are different problems from either term."
+
+- id: surveillance-04
+  skill: surveillance
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In January 2020, Detroit police arrested Robert Williams for a theft Williams did not commit. What led to the arrest?
+  options:
+    - "A predictive-policing model ranked Williams's neighborhood as the likeliest site of the next theft"
+    - "A license-plate reader logged a car registered to Williams near the store on the day of the theft"
+    - "A fingerprint search returned a partial match that an examiner wrongly confirmed as a full match"
+    - "A facial-recognition search wrongly matched store surveillance video to an old driver's-license photo"
+  answer: D
+  explain: |
+    A facial-recognition search wrongly matched surveillance video of the theft to Williams's old driver's-license photo, and Williams was held about 30 hours. In a 2024 settlement, Detroit paid $300,000 and adopted rules that bar arrests based solely on facial-recognition results.
+  why:
+    A: "Predictive policing forecasts where crime may happen; this arrest came from a face match, not a location forecast."
+    B: "A license-plate reader tracks cars, not faces, and no plate match was involved."
+    C: "No fingerprint evidence was involved; the error came from a face-recognition match."
+
+- id: surveillance-05
+  skill: surveillance
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Police in an EU country propose scanning every face in a train station in real time to find people on a watch list. How does the EU AI Act treat this use?
+  options:
+    - "It is a banned practice, apart from narrowly defined law-enforcement exceptions"
+    - "It is allowed without limits, because public safety outweighs privacy in public places"
+    - "It is a minimal-risk use, so no new rules apply as long as footage is deleted daily"
+    - "It is allowed as long as signs tell passengers that cameras are in use in the station"
+  answer: A
+  explain: |
+    The EU AI Act lists real-time remote biometric identification by law enforcement in publicly accessible spaces among its banned practices, with only narrowly defined exceptions. On this security-versus-liberty question, the Act comes down mostly on the side of liberty.
+  why:
+    B: "The Act does the opposite: it bans this practice except in narrow cases."
+    C: "Minimal-risk systems are things like spam filters; real-time face identification by police is a banned practice."
+    D: "Signs do not make a banned practice lawful; the ban applies regardless of notice."
+
+- id: surveillance-06
+  skill: surveillance
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A school considers AI cameras that flag "suspicious behavior" in hallways. Supporters point to student safety; opponents say students will feel watched and stop speaking freely. Which pair of values is in tension?
+  options:
+    - "Accuracy and speed"
+    - "Transparency and explainability"
+    - "Safety and freedom"
+    - "Efficiency and employment"
+  answer: C
+  explain: |
+    Supporters are protecting safety, and opponents are protecting freedom of expression, which a chilling effect would erode. Naming the two values in tension is the fastest way to identify a dilemma.
+  why:
+    A: "Accuracy and speed are technical qualities; neither side's argument is about them."
+    B: "Transparency and explainability are design criteria that usually support each other; neither is the source of this conflict."
+    D: "Efficiency versus employment is the automation-and-jobs dilemma, which this scenario does not involve."
+
+- id: surveillance-07
+  skill: surveillance
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A face-recognition system has an overall error rate of 1 percent, but most of its errors fall on one demographic group. Why does this make its use in policing especially harmful?
+  options:
+    - "Errors concentrated in one group cancel out when averaged, so the overall rate overstates the harm"
+    - "Wrongful stops and arrests fall mostly on that group, even though the overall accuracy looks high"
+    - "A 1 percent error rate is low enough that police no longer need to review the system's matches"
+    - "Police can correct each error at once, so the main cost is the time spent on extra checks"
+  answer: B
+  explain: |
+    An overall error rate averages over everyone, so it can hide a group that bears most of the errors. In policing, each error can mean a wrongful stop or arrest, so the harm lands mostly on that group even when the system looks accurate overall.
+  why:
+    A: "Errors do not cancel out; averaging hides the disparity, so the overall rate understates the harm to that group."
+    C: "A low overall rate still leaves errors, here concentrated in one group, so matches still need human review."
+    D: "Errors are not corrected at once: Robert Williams was held about 30 hours after a wrongful face match."
+
+- id: surveillance-08
+  skill: surveillance
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Why did privacy regulators in Canada, Italy, Greece, France, and the Netherlands act against Clearview AI?
+  options:
+    - "It tested self-driving software on public roads without telling the people nearby"
+    - "It used deepfaked video calls to trick employees into sending money to fraudsters"
+    - "It released a chatbot that exposed users' private conversations to other users"
+    - "It built a face-search database from billions of images scraped from the internet"
+  answer: D
+  explain: |
+    Clearview AI scraped more than three billion facial images from the internet to build a face-search tool. Canada's privacy commissioners concluded in 2021 that this amounted to mass identification and surveillance, and Italy, Greece, and France each fined the company 20 million euros, with the Netherlands following at 30.5 million euros.
+  why:
+    A: "This describes a safety-testing concern for automated vehicles, not Clearview's business."
+    B: "This describes the 2024 Arup deepfake fraud, not Clearview."
+    C: "This describes a chatbot privacy failure; Clearview's case was about scraping faces."
+
+# ---------------------------------------------------------------- genai-dilemmas
+- id: genai-dilemmas-01
+  skill: genai-dilemmas
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    An employee joins a video call in which the company's finance chief, seen and heard on screen, orders urgent transfers. The finance chief was never on the call. Which harm of generative AI does this show?
+  options:
+    - "A hallucination"
+    - "Deepfake fraud"
+    - "Function creep"
+    - "A chilling effect"
+  answer: B
+  explain: |
+    A deepfake is synthetic audio or video that realistically shows a person saying or doing something they never did. In January 2024, an employee in Arup's Hong Kong office made 15 transfers totaling about US$25 million after a video call with deepfaked colleagues.
+  why:
+    A: "A hallucination is false content a model presents as fact, not an impersonation built to deceive."
+    C: "Function creep is a system spreading beyond its original purpose."
+    D: "A chilling effect is self-censorship by people who know they are watched."
+
+- id: genai-dilemmas-02
+  skill: genai-dilemmas
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    An engineer pastes a company's confidential source code into a public chatbot to get help fixing a bug. Which form of intellectual property is most directly put at risk?
+  options:
+    - "Copyright"
+    - "Patent"
+    - "Trademark"
+    - "Trade secret"
+  answer: D
+  explain: |
+    A trade secret is valuable because it is not generally known, and it is protected only while its owner takes reasonable steps to keep it secret. Sharing the code outside the company risks ending that protection. In 2023, Samsung restricted generative AI tools after engineers uploaded internal source code.
+  why:
+    A: "Source code is also covered by copyright, but copyright does not depend on secrecy, so disclosure does not end it."
+    B: "A patent is a government grant for a new, useful, non-obvious invention; nothing here involves a patented invention."
+    C: "A trademark identifies the source of goods or services, such as a brand name or logo, not source code."
+
+- id: genai-dilemmas-03
+  skill: genai-dilemmas
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A teacher allows AI tools for brainstorming but not for writing final essays. A student has an AI system write the essay, changes a few words, and submits it. What is the core ethical problem?
+  options:
+    - "The student presents AI-written work as the student's own and breaks the class rule"
+    - "The essay may contain hallucinations, so the main problem is accuracy, not honesty"
+    - "The student has infringed the AI company's copyright in the essay it generated"
+    - "The student edited the essay, so the only problem is that the tool was not cited"
+  answer: A
+  explain: |
+    Academic integrity means being honest about who did the work. Submitting AI-written text as your own misrepresents authorship, and here it also breaks an explicit class rule. Changing a few words does not make the essay the student's work.
+  why:
+    B: "Hallucinations are a separate risk; even a perfectly accurate AI essay would still misrepresent who wrote it."
+    C: "Under the Copyright Office's 2023 guidance, expression determined by an AI is not protected, and the issue here is honesty, not infringement."
+    D: "Light editing does not change who wrote the essay, and citing the tool would still break the rule against AI-written essays."
+
+- id: genai-dilemmas-04
+  skill: genai-dilemmas
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A report predicts that self-driving taxis will replace most human taxi drivers within two years. If Amara's Law holds, what should a city planner expect?
+  options:
+    - "More change than predicted in the next two years, then little change after that"
+    - "Exactly the predicted change, because expert forecasts of technology are usually accurate"
+    - "Less change than predicted in two years, but possibly more than predicted over decades"
+    - "No real change at any point, because new technologies rarely affect how people work"
+  answer: C
+  explain: |
+    Amara's Law says we tend to overestimate a technology's effect in the short run and underestimate it in the long run. So a two-year forecast of sweeping change is likely too high, while the effects decades out may be larger than anyone now predicts.
+  why:
+    A: "This reverses Amara's Law, which says the short run is overestimated and the long run underestimated."
+    B: "Amara's Law is about the typical error in forecasts, so it does not assume they are accurate."
+    D: "Amara's Law expects large long-run effects, not none."
+
+- id: genai-dilemmas-05
+  skill: genai-dilemmas
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A school district can run its homework-help chatbot on a very large model or on a much smaller model that answers its students' questions almost as well. Which ethical consideration favors the smaller model?
+  options:
+    - "It cannot hallucinate, because a model with fewer parameters stores fewer facts to mix up"
+    - "It needs far less computation, so it uses less energy and has a smaller environmental impact"
+    - "It removes the need for teachers to check how students are using the chatbot"
+    - "Its answers count as trade secrets, so the students' questions automatically stay private"
+  answer: B
+  explain: |
+    NIST lists environmental impacts, caused by the high compute used to train and operate models, among the risks of generative AI. When a smaller model is accurate enough for the task, it does the job with far less computation and energy.
+  why:
+    A: "Models of every size can hallucinate; being smaller does not remove the risk."
+    C: "Human oversight is still needed with any model; size does not change that."
+    D: "Trade-secret status has nothing to do with users' privacy, and nothing makes answers trade secrets automatically."
+
+- id: genai-dilemmas-06
+  skill: genai-dilemmas
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which project is the clearest example of AI used for social good?
+  options:
+    - "A database of predicted protein structures shared openly to speed up scientific research"
+    - "A feed algorithm tuned to keep users scrolling longer so a platform can sell more ads"
+    - "A video generator that makes a politician appear to say things the politician never said"
+    - "A text tool that writes thousands of personalized messages urging people to click a payment link"
+  answer: A
+  explain: |
+    The AlphaFold Protein Structure Database gives researchers open access to more than 200 million predicted protein structures to accelerate scientific research, a clear public benefit. The other projects serve a narrow interest at the public's expense or are tools for deception.
+  why:
+    B: "Maximizing scrolling for ad revenue serves the platform, often at the cost of users' well-being."
+    C: "Fabricated video of a politician is a deepfake used for misinformation."
+    D: "Mass messages pushing people to a payment link are a phishing scam."
+
+- id: genai-dilemmas-07
+  skill: genai-dilemmas
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why is a text generator that writes fluent, personalized emails described as dual-use?
+  options:
+    - "It can run either on a company's own servers or in a cloud service, depending on the budget"
+    - "It produces both text and images, so it falls under two separate kinds of regulation"
+    - "It is trained on both public and private data, so two owners have competing claims to it"
+    - "The capability that helps a business write to customers also helps scammers write phishing emails"
+  answer: D
+  explain: |
+    A dual-use technology can serve both beneficial and harmful purposes with the same capability. Fluent, personalized writing helps legitimate businesses, and it also makes phishing emails more convincing.
+  why:
+    A: "Where a model runs is a deployment choice, not what dual-use means."
+    B: "The stem describes only a text generator, and dual-use is about purposes, not output types."
+    C: "Mixed training data raises privacy and ownership questions, but dual-use refers to good and harmful uses."
+
+- id: genai-dilemmas-08
+  skill: genai-dilemmas
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A news site wants an AI system to write routine sports summaries. It could cover far more games, but its freelance writers would lose most of their hours. Which dilemma does the site face?
+  options:
+    - "Copyright protection for the summaries against the cost of registering each one"
+    - "Fast publication of results against the accuracy of the scores in each summary"
+    - "Efficiency and wider coverage against the livelihoods of the writers it would replace"
+    - "The players' privacy against the public's interest in detailed sports statistics"
+  answer: C
+  explain: |
+    The site gains efficiency and can cover more games, but the cost falls on the people whose work is automated. Naming those two values, efficiency and livelihoods, identifies the dilemma.
+  why:
+    A: "Copyright registration is not at issue; the conflict is between efficiency and jobs."
+    B: "Nothing in the scenario raises doubts about accuracy."
+    D: "Player privacy is not mentioned; the cost falls on the writers."
+
+- id: genai-dilemmas-09
+  skill: genai-dilemmas
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Artists object that an image generator was trained on millions of their copyrighted works without permission or payment. The developer replies that training is how the model learns general patterns. Which question is at the center of this dispute?
+  options:
+    - "Whether training a model on copyrighted works is lawful and fair to their creators"
+    - "Whether people who type prompts can copyright the images the generator produces"
+    - "Whether the generator imitates each artist's style accurately enough to be useful"
+    - "Whether the developer can patent the general idea of an image generator"
+  answer: A
+  explain: |
+    The artists' objection is about the input: their works were used for training without permission or payment. Whether such training is lawful is a live legal question; the U.S. Copyright Office devoted Part 3 of its AI report to generative AI training, released as a pre-publication version in May 2025.
+  why:
+    B: "Copyright in the generated output is a separate question about who owns what the model makes, not about the training data."
+    C: "Accuracy of imitation is a technical question; the dispute is about permission and payment."
+    D: "Patents protect inventions, and the artists' complaint is about the use of their works."
+
+- id: genai-dilemmas-10
+  skill: genai-dilemmas
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A startup's trained model weights are its most valuable asset, and it does not want to publish them. Which protection fits, and what does it require?
+  options:
+    - "Patent protection, which begins automatically the moment the weights are created"
+    - "Trade secret protection, which lasts only while the company keeps the weights secret"
+    - "Trademark protection, which covers any valuable data that identifies the company"
+    - "Copyright protection, which requires registering the weights before any protection begins"
+  answer: B
+  explain: |
+    A trade secret protects information that is valuable because it is not generally known, as long as its owner makes reasonable efforts to keep it secret, with no fixed time limit. That fits unpublished model weights. Patents must be granted, trademarks identify brands, and copyright needs no registration to exist.
+  why:
+    A: "Patents are granted by the government after an application; it is copyright that begins automatically."
+    C: "A trademark identifies the source of goods or services, such as a name or logo, not valuable data."
+    D: "Copyright protection starts when a work is created; registration is voluntary."
+
+# ---------------------------------------------------------------- ethics-principles
+- id: ethics-principles-01
+  skill: ethics-principles
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A bank's loan model must show each rejected applicant the main factors behind the decision. Which ethical design criterion does this practice serve most directly?
+  options:
+    - "Fairness"
+    - "Respect for privacy"
+    - "Accountability"
+    - "Explainability"
+  answer: D
+  explain: |
+    Explainability means the system can give understandable reasons for a decision. Showing each applicant the main factors behind a denial is that criterion in practice.
+  why:
+    A: "Fairness asks whether people and groups are treated equitably, which showing reasons does not test."
+    B: "Respect for privacy is about protecting personal data, not explaining decisions."
+    C: "Accountability means someone is answerable for the decision; explaining it is a separate criterion."
+
+- id: ethics-principles-02
+  skill: ethics-principles
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    After an AI system wrongly denies a student's scholarship, the school names an official who must review the case, fix the error, and answer for the outcome. Which ethical design criterion does this address?
+  options:
+    - "Transparency"
+    - "Explainability"
+    - "Accountability"
+    - "Fairness"
+  answer: C
+  explain: |
+    Accountability means identifiable people are answerable for an AI system's decisions, with a way to contest and correct them. Naming an official who reviews, fixes, and answers for the outcome puts that in place.
+  why:
+    A: "Transparency is openness about how a system works and is used, such as publishing a model card."
+    B: "Explainability is giving understandable reasons for a decision, not assigning someone to answer for it."
+    D: "Fairness concerns equitable treatment across people and groups, which this step does not test."
+
+- id: ethics-principles-03
+  skill: ethics-principles
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    An engineer argues that a car must never be programmed to deliberately steer into a person, even if doing so would save more lives overall. Which kind of ethical reasoning is this?
+  options:
+    - "Utilitarian: judge an action by its total consequences"
+    - "Deontological: some actions are wrong whatever their results"
+    - "Explicability: make the car's decision understandable"
+    - "Autonomy: let each passenger pick the car's crash setting"
+  answer: B
+  explain: |
+    Deontological ethics holds that some actions are right or wrong in themselves, regardless of consequences. The engineer refuses to deliberately harm anyone even when the totals favor it, which is a rule-based, duty-based position.
+  why:
+    A: "A utilitarian would accept steering into one person to save more lives overall; the engineer rejects exactly that."
+    C: "Explicability is about making AI intelligible and accountable, not about whether an action is permitted."
+    D: "Nothing in the argument appeals to passengers' choices; it states a rule that holds regardless of outcome."
+
+- id: ethics-principles-04
+  skill: ethics-principles
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A hospital is deciding whether to deploy a diagnostic AI that would catch more cancers overall but is less accurate for one small group of patients. Which statement correctly labels the two main arguments?
+  options:
+    - "'Deploy it, since it saves the most lives in total' is utilitarian; 'never knowingly treat one group worse' is deontological"
+    - "'Deploy it, since it saves the most lives in total' is deontological; 'never knowingly treat one group worse' is utilitarian"
+    - "Both arguments are utilitarian, since each one is ultimately about which choice leads to fewer deaths"
+    - "Both arguments are deontological, since each one appeals to the hospital's duty to its patients"
+  answer: A
+  explain: |
+    Counting total lives saved judges the choice by its consequences, which is utilitarian reasoning. Refusing to knowingly treat one group worse, whatever the totals, treats fair treatment as a duty, which is deontological reasoning. Real dilemmas often set the two frameworks against each other like this.
+  why:
+    B: "This swaps the labels: counting total lives is the consequence-based view."
+    C: "The second argument holds even if it costs lives overall, so it is not about minimizing deaths."
+    D: "The first argument depends entirely on totals, which is consequence-based, not duty-based."
+
+- id: ethics-principles-05
+  skill: ethics-principles
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A company tests a mental-health chatbot extensively to make sure it never gives advice that could hurt vulnerable users. Which bioethics principle does this testing serve most directly?
+  options:
+    - "Beneficence"
+    - "Non-maleficence"
+    - "Autonomy"
+    - "Justice"
+  answer: B
+  explain: |
+    Non-maleficence means do no harm. Testing to prevent advice that could hurt vulnerable users is aimed at avoiding harm, while beneficence would be the chatbot's positive goal of helping them.
+  why:
+    A: "Beneficence is doing good, the chatbot's purpose; testing to prevent harm serves non-maleficence."
+    C: "Autonomy is people keeping the power to decide for themselves."
+    D: "Justice concerns sharing benefits fairly and preserving solidarity."
+
+- id: ethics-principles-06
+  skill: ethics-principles
+  tier: competitive
+  type: visual
+  use: bank
+  stem: |
+    A team builds an ethical matrix for an AI tool that schedules shifts for warehouse workers. Each cell says whether the tool helps, harms, or does not affect that stakeholder on that value.
+
+    | Stakeholder | Efficiency | Privacy | Fairness |
+    |---|---|---|---|
+    | Company | Helps | No effect | No effect |
+    | Workers | Helps | Harms | Harms |
+    | Customers | Helps | No effect | No effect |
+
+    Which conclusion does the matrix support?
+  options:
+    - "The tool harms every stakeholder on at least one value, so the project should be cancelled"
+    - "The tool helps every stakeholder on efficiency, so it raises no concerns worth addressing"
+    - "Customers bear the largest costs, so the team should consult them before any other group"
+    - "The costs fall on the workers, so the team should address their privacy and fairness first"
+  answer: D
+  explain: |
+    Only the workers' row shows harms, on privacy and fairness, while every stakeholder gains efficiency. The matrix makes that conflict visible before launch, so the team knows whose concerns to address.
+  why:
+    A: "Only the workers' row shows any harm; the company and customers have none."
+    B: "Shared efficiency gains do not cancel the harms in the workers' row."
+    C: "The customers' row shows no harms at all; the costs fall on the workers."
+
+- id: ethics-principles-07
+  skill: ethics-principles
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A bank uses a model to detect possible fraud. Which design keeps a human in the loop?
+  options:
+    - "The model freezes flagged accounts at once, and customers can email the bank to complain later"
+    - "The model's flags are logged, and an auditor reviews a random sample of them once a year"
+    - "The model flags possible fraud, and an analyst reviews each flag before any account is frozen"
+    - "The model decides which accounts to freeze, and the bank publishes the model's overall accuracy"
+  answer: C
+  explain: |
+    In a human-in-the-loop design, a person reviews or approves each high-stakes decision before it takes effect. Here an analyst checks every flag before an account is frozen.
+  why:
+    A: "A complaint channel after the fact supports accountability, but the model acts alone first."
+    B: "A yearly audit is oversight after the fact; no person approves individual decisions."
+    D: "Publishing accuracy is transparency, but the model still acts alone on each account."
+
+- id: ethics-principles-08
+  skill: ethics-principles
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A company publishes a model card describing its hiring model's training data, intended uses, and known limits, but it cannot tell any applicant why that applicant was rejected. Which statement is accurate?
+  options:
+    - "It has improved transparency but still lacks explainability for individual decisions"
+    - "It has achieved explainability, because the model card explains how the model works"
+    - "It has achieved accountability, because publishing documentation makes the model answerable"
+    - "It has improved fairness, because describing the training data removes bias from it"
+  answer: A
+  explain: |
+    A model card is a transparency tool: it is open about the data, intended uses, and limits. Explainability is the ability to give understandable reasons for a particular decision, which the company still cannot do for its applicants.
+  why:
+    B: "Describing the model in general is not the same as explaining an individual decision."
+    C: "Accountability needs identifiable people who answer for decisions and a way to contest them, not just documentation."
+    D: "Describing biased data does not remove the bias; it only makes the data's limits visible."
+
+- id: ethics-principles-09
+  skill: ethics-principles
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which situation is an ethical dilemma rather than a simple case of wrongdoing?
+  options:
+    - "A company secretly sells customers' location data to advertisers for profit"
+    - "A student turns in a classmate's homework as the student's own work"
+    - "A hospital weighs sharing patient records to train a life-saving model, at a risk to privacy"
+    - "An app hides a monthly fee in fine print so that users are charged without noticing"
+  answer: C
+  explain: |
+    In an ethical dilemma, every option costs something that matters. Sharing the records risks patients' privacy, while refusing gives up a model that could save lives. The other situations are plain wrongdoing, because nothing of moral weight sits on the other side.
+  why:
+    A: "Selling data in secret serves only profit; no competing moral value makes it a dilemma."
+    B: "Copying is plain dishonesty, with no important value on the other side."
+    D: "A hidden fee deceives users for profit alone, so there is no real conflict of values."
+
+- id: ethics-principles-10
+  skill: ethics-principles
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which description best defines the stakeholders of an AI system?
+  options:
+    - "The company that builds the system, since it carries the legal responsibility"
+    - "The users who accept the system's terms of service and operate it directly"
+    - "The engineers and managers who design, build, and maintain the system"
+    - "Anyone the system affects or who has an interest in it, including non-users"
+  answer: D
+  explain: |
+    A stakeholder is anyone with something at stake in a system: users, the people it makes decisions about, workers, the company, and the public. AI4K12 stresses that a system's stakeholders often hold different values, which is why tools like the ethical matrix list them all.
+  why:
+    A: "The company is one stakeholder, but the definition covers everyone affected."
+    B: "Users are stakeholders, but so are people who never use the system, such as pedestrians near a self-driving car."
+    C: "Builders are one group of stakeholders among many."

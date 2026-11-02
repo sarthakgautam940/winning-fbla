@@ -1,0 +1,97 @@
+# Lesson 8.1 flashcards
+
+- id: fc-ethical-dilemma
+  term: Ethical Dilemma
+  def: "A situation in which every available choice conflicts with some important moral value or duty, so no option is free of cost and reasonable people can disagree. Identify one by naming the values in tension."
+  example: "A hospital weighs sharing patient records to train a life-saving model, at a risk to privacy."
+  skill: ethics-principles
+  virginia: true
+
+- id: fc-surveillance
+  term: Surveillance
+  def: "The systematic monitoring of people's behavior, communications, or movements, often to influence, manage, or control them. AI scales it up through face recognition on public cameras, license-plate readers, and tracking of online activity."
+  skill: surveillance
+  virginia: true
+
+- id: fc-accountability
+  term: Accountability
+  def: "Identifiable people and organizations are answerable for an AI system's decisions and impacts, with ways to explain, audit, contest, and correct them. 'The algorithm did it' is never an acceptable answer."
+  skill: ethics-principles
+  virginia: true
+
+- id: fc-trolley-problem
+  term: Trolley problem
+  def: "A thought experiment from Philippa Foot (1967), named by Judith Jarvis Thomson (1976): should a runaway tram be steered to kill one person instead of five? For self-driving cars, it asks how a car should choose between harms when a crash cannot be avoided."
+  skill: av-dilemmas
+
+- id: fc-moral-machine
+  term: Moral Machine experiment
+  def: "A 2018 study in Nature of 40 million decisions about crash dilemmas from people in 233 countries and territories. Strongest preferences: spare humans over animals, more lives over fewer, the young over the old. Countries formed Western, Eastern, and Southern clusters."
+  skill: av-dilemmas
+
+- id: fc-sae-levels
+  term: SAE J3016 levels of driving automation
+  def: "Level 0 no automation, 1 driver assistance (steering or speed), 2 partial (steering and speed), 3 conditional, 4 high, 5 full. At Levels 0 to 2 the human drives and must supervise at all times; at Levels 3 to 5 the system drives while engaged."
+  skill: av-dilemmas
+
+- id: fc-uber-tempe
+  term: Uber Tempe crash (2018)
+  def: "An Uber test vehicle in autonomous mode killed a pedestrian in Tempe, Arizona. The NTSB found the system detected the pedestrian 5.6 seconds before impact but relied on the human operator to brake; the probable cause was the operator's phone distraction. Uber was not charged; the operator pleaded guilty to endangerment in 2023."
+  skill: av-dilemmas
+
+- id: fc-function-creep
+  term: Function creep and chilling effect
+  def: "Function creep: a system spreads beyond its original purpose, as when toll cameras end up tracking who attends a protest. Chilling effect: people avoid lawful activity because they know they are watched."
+  skill: surveillance
+
+- id: fc-face-recognition-cases
+  term: Facial recognition cases
+  def: "Robert Williams was wrongly arrested in Detroit in January 2020 after a false face match; a 2024 settlement paid $300,000 and barred arrests based solely on face recognition. Clearview AI scraped over three billion faces and was fined by regulators in Italy, Greece, France, and the Netherlands."
+  skill: surveillance
+
+- id: fc-deepfake
+  term: Deepfake
+  def: "Synthetic audio, images, or video that realistically show a person saying or doing something they never did. Used for fraud, non-consensual imagery, and misinformation."
+  example: "In January 2024, an Arup employee in Hong Kong made transfers totaling about US$25 million after a video call with deepfaked colleagues."
+  skill: genai-dilemmas
+
+- id: fc-ip-types
+  term: Copyright, patent, trademark, trade secret
+  def: "Copyright: original creative works, protected from the moment they are fixed in a tangible form. Patent: new, useful, non-obvious inventions, granted for up to 20 years from filing. Trademark: a word, phrase, or design that identifies the source of goods or services. Trade secret: valuable information kept secret, protected as long as it stays secret."
+  skill: genai-dilemmas
+
+- id: fc-amaras-law
+  term: Amara's Law
+  def: "We tend to overestimate the effect of a technology in the short run and underestimate it in the long run. AI4K12 uses it when discussing how AI will change jobs and industries."
+  skill: genai-dilemmas
+
+- id: fc-dual-use
+  term: Dual-use technology
+  def: "A capability that can serve both helpful and harmful purposes, such as fluent email writing that helps a business reach customers and helps a scammer write phishing emails."
+  skill: genai-dilemmas
+
+- id: fc-utilitarian-deontological
+  term: Utilitarian vs. deontological ethics
+  def: "Utilitarian (consequentialist): judge an action by its consequences and choose the greatest overall good. Deontological (duty-based): some actions are right or wrong in themselves, whatever the consequences."
+  example: "Steering into one person to save five is acceptable to a utilitarian; a deontologist may say deliberately targeting anyone is wrong."
+  skill: ethics-principles
+
+- id: fc-ai4people-principles
+  term: Beneficence, non-maleficence, autonomy, justice, explicability
+  def: "AI4People (2018) adopted the four core principles of bioethics for AI: beneficence (do good), non-maleficence (do no harm), autonomy (people keep the power to decide), and justice (share benefits fairly, preserve solidarity). It added explicability: intelligibility and accountability."
+  skill: ethics-principles
+
+- id: fc-ai4k12-criteria
+  term: AI4K12 ethical design criteria
+  def: "Fairness, transparency, explainability, accountability, respect for privacy, and adherence to societal values: the standards a system that makes decisions about people should meet."
+  skill: ethics-principles
+
+- id: fc-ethical-matrix
+  term: Ethical matrix
+  def: "A grid with stakeholders down one side and values across the top. Each cell records how the system affects that stakeholder on that value, which exposes conflicts before launch."
+  skill: ethics-principles
+
+- id: fc-human-in-the-loop
+  term: Human in the loop
+  def: "A design in which a person reviews or approves each high-stakes decision, such as an arrest, a loan, or a medical treatment, before it takes effect, instead of letting the system act alone."
+  skill: ethics-principles
