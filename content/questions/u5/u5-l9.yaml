@@ -1,0 +1,551 @@
+# Lesson 5.9: Neural networks
+
+# ---------------------------------------------------------------- neurons
+- id: neurons-01
+  skill: neurons
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A neuron has inputs $$x_1 = 3$$ and $$x_2 = 2$$, weights $$w_1 = 0.4$$ and $$w_2 = -0.5$$, and bias $$b = 0.3$$. It uses the ReLU activation. What is its output?
+  options:
+    - "0"
+    - "0.2"
+    - "0.5"
+    - "2.5"
+  ordered: true
+  answer: C
+  explain: |
+    The weighted sum is z = 3 × 0.4 + 2 × (-0.5) + 0.3 = 1.2 - 1.0 + 0.3 = 0.5. ReLU passes positive values through unchanged, so the output is 0.5.
+  why:
+    A: "ReLU outputs 0 only when z is negative, and here z is positive."
+    B: "This leaves out the bias of 0.3."
+    D: "This adds 1.0 instead of subtracting it, ignoring the sign of the second weight."
+  verify: "max(0, 3 * 0.4 + 2 * -0.5 + 0.3)"
+
+- id: neurons-02
+  skill: neurons
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What does the bias term let an artificial neuron do?
+  options:
+    - "Ignore any inputs that have negative weights"
+    - "Scale every input by one shared amount"
+    - "Store the correct label for each example"
+    - "Shift the threshold at which it activates"
+  answer: D
+  explain: |
+    The bias is added to the weighted sum, so it moves the point at which the neuron activates: a large bias makes it activate easily, and a negative bias means the inputs must push harder. It works like the intercept of a line, and training learns it along with the weights.
+  why:
+    A: "Negative weights still count; they push the sum down instead of being ignored."
+    B: "Scaling inputs is the job of the weights, and each input has its own."
+    C: "Labels belong to the training data, not to the neuron."
+
+- id: neurons-03
+  skill: neurons
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A neuron has weights $$w_1 = 1$$ and $$w_2 = 1$$ and a step activation that outputs 1 when z is at least 0 and 0 otherwise. Each input is 0 or 1. Which bias makes the neuron compute AND, outputting 1 only when both inputs are 1?
+  options:
+    - "-2.5"
+    - "-1.5"
+    - "-0.5"
+    - "0.5"
+  ordered: true
+  answer: B
+  explain: |
+    With bias -1.5, the pair (1, 1) gives z = 1 + 1 - 1.5 = 0.5, so the neuron outputs 1. A single 1 gives z = -0.5 and (0, 0) gives z = -1.5, so both output 0. That is exactly AND.
+  why:
+    A: "With this bias even (1, 1) gives z = -0.5, so the neuron never outputs 1."
+    C: "With this bias one input is enough to reach z = 0.5, so the neuron computes OR."
+    D: "With this bias even (0, 0) gives z = 0.5, so the neuron always outputs 1."
+  verify: |
+    def fire(b, x1, x2):
+        return 1 if x1 + x2 + b >= 0 else 0
+    pairs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+    ans = [b for b in (-2.5, -1.5, -0.5, 0.5) if all(fire(b, x1, x2) == (x1 and x2) for x1, x2 in pairs)][0]
+
+- id: neurons-04
+  skill: neurons
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    XOR outputs 1 when exactly one of its two inputs is 1. Why can't a single perceptron learn XOR?
+  options:
+    - "XOR needs more training examples than one neuron can store"
+    - "A perceptron can accept only one input at a time"
+    - "XOR's outputs are probabilities, which a step cannot produce"
+    - "Its boundary is one straight line, and no line splits XOR's classes"
+  answer: D
+  explain: |
+    A perceptron outputs 1 on one side of the line where its weighted sum equals 0, so it can only separate classes with a single straight line. XOR's 1s, at (0, 1) and (1, 0), sit on one diagonal of a square and its 0s, at (0, 0) and (1, 1), sit on the other, and no straight line separates the two diagonals. A network with a hidden layer can compute XOR.
+  why:
+    A: "XOR has only four input pairs; the limit is the shape of the boundary, not memory."
+    B: "A perceptron takes several inputs at once, each with its own weight."
+    C: "XOR's outputs are 0 and 1, exactly what a step activation produces."
+
+- id: neurons-05
+  skill: neurons
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A fully connected network has 3 inputs, one hidden layer of 4 neurons, and 2 output neurons. How many trainable parameters (weights and biases) does it have?
+  options:
+    - "20"
+    - "24"
+    - "26"
+    - "29"
+  ordered: true
+  answer: C
+  explain: |
+    Input to hidden has 3 × 4 = 12 weights and 4 biases, for 16. Hidden to output has 4 × 2 = 8 weights and 2 biases, for 10. The total is 16 + 10 = 26.
+  why:
+    A: "This counts the 20 weights but leaves out the 6 biases."
+    B: "This multiplies the three layer sizes together."
+    D: "This gives the 3 input nodes biases too, but input nodes only pass values along."
+  verify: "(3 * 4 + 4) + (4 * 2 + 2)"
+
+- id: neurons-06
+  skill: neurons
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A network reads 28 × 28 pixel grayscale images, so its input layer has 784 values. It has one fully connected hidden layer of 128 neurons and an output layer of 10 neurons. How many parameters does it have?
+  options:
+    - "101,632"
+    - "101,770"
+    - "102,554"
+    - "1,003,520"
+  ordered: true
+  answer: B
+  explain: |
+    Input to hidden: 784 × 128 = 100,352 weights plus 128 biases, for 100,480. Hidden to output: 128 × 10 = 1,280 weights plus 10 biases, for 1,290. The total is 100,480 + 1,290 = 101,770.
+  why:
+    A: "This counts the weights but leaves out the 138 biases."
+    C: "This also gives the 784 input values biases, but the input layer has no parameters."
+    D: "This multiplies the three layer sizes together."
+  verify: "(784 * 128 + 128) + (128 * 10 + 10)"
+
+- id: neurons-07
+  skill: neurons
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    In a neural network, what are the hidden layers?
+  options:
+    - "The layers whose weights are kept secret from users"
+    - "The layers that are removed once training ends"
+    - "The layers that hold the raw input features"
+    - "The layers between the input and output layers"
+  answer: D
+  explain: |
+    Hidden layers sit between the input layer and the output layer. They are called hidden because their values are neither data you supply nor predictions you read: they are intermediate features the network learns on its own.
+  why:
+    A: "Hidden means not directly observed, not secret."
+    B: "Hidden layers stay in the trained network and are used for every prediction."
+    C: "The raw features enter at the input layer."
+
+- id: neurons-08
+  skill: neurons
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A neuron has weights 0.2, 0.5, and 0.1 for inputs 10, 4, and 20, and a bias of -3. What is its weighted sum z, before the activation is applied?
+  options:
+    - "3"
+    - "6"
+    - "9"
+    - "31"
+  ordered: true
+  answer: A
+  explain: |
+    Multiply each input by its weight and add the bias: z = 0.2 × 10 + 0.5 × 4 + 0.1 × 20 - 3 = 2 + 2 + 2 - 3 = 3.
+  why:
+    B: "This leaves out the bias of -3."
+    C: "This adds 3 instead of subtracting it."
+    D: "This adds the raw inputs and the bias, ignoring the weights."
+  verify: "0.2 * 10 + 0.5 * 4 + 0.1 * 20 - 3"
+
+- id: neurons-09
+  skill: neurons
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What was the perceptron, introduced by Frank Rosenblatt in 1958?
+  options:
+    - "The first computer to defeat a world chess champion"
+    - "A rule-based expert system for configuring computers"
+    - "A statistical test for comparing two sample means"
+    - "A single artificial neuron that learns its weights from examples"
+  answer: D
+  explain: |
+    Rosenblatt's perceptron, first described in a 1957 report and published in 1958, is a single artificial neuron with a step activation whose weights are adjusted from labeled examples. It is the ancestor of today's neural networks.
+  why:
+    A: "Defeating a world chess champion was IBM's Deep Blue, in 1997."
+    B: "A rule-based system for configuring computers describes the expert system XCON."
+    C: "Comparing two means is a job for a statistical test such as the t-test."
+
+- id: neurons-10
+  skill: neurons
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A network sorts photos into 5 kinds of fruit. How is its output layer usually set up?
+  options:
+    - "5 neurons with a softmax activation"
+    - "1 neuron with a sigmoid activation"
+    - "5 neurons with a ReLU activation"
+    - "2 neurons with a step activation"
+  answer: A
+  explain: |
+    A multiclass problem gets one output neuron per class, and softmax turns their scores into probabilities that add up to 1. The prediction is the class with the highest probability.
+  why:
+    B: "A single sigmoid neuron suits a yes-or-no problem with two classes."
+    C: "ReLU outputs have no upper limit and do not form probabilities."
+    D: "Two step neurons cannot give a separate score to each of five classes."
+
+# ---------------------------------------------------------------- activations
+- id: activations-01
+  skill: activations
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which activation function always outputs a value between 0 and 1?
+  options:
+    - "ReLU"
+    - "tanh"
+    - "Linear (identity)"
+    - "Sigmoid"
+  answer: D
+  explain: |
+    The sigmoid squashes any input into the range 0 to 1, which is why it is used for outputs read as probabilities. tanh ranges from -1 to 1, ReLU from 0 upward with no limit, and a linear activation is unbounded.
+  why:
+    A: "ReLU outputs 0 for negative inputs but has no upper limit for positive ones."
+    B: "tanh ranges from -1 to 1."
+    C: "A linear activation returns its input unchanged, so it can be any number."
+
+- id: activations-02
+  skill: activations
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why do the hidden layers of a neural network need nonlinear activation functions?
+  options:
+    - "Without them, the network could not be trained on data"
+    - "Without them, stacked layers collapse into one linear function"
+    - "Nonlinear functions make each forward pass run faster"
+    - "Nonlinear functions guarantee that the network cannot overfit"
+  answer: B
+  explain: |
+    A weighted sum of weighted sums is still a weighted sum, so without nonlinear activations a network of any depth computes what a single linear layer could. Nonlinear activations such as ReLU let it represent curved boundaries and complex patterns.
+  why:
+    A: "A purely linear network can still be trained; it just cannot learn nonlinear patterns."
+    C: "Activations add a little computation; speed is not their purpose."
+    D: "Networks with nonlinear activations can still overfit, which is why regularization exists."
+
+- id: activations-03
+  skill: activations
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A ReLU neuron receives weighted sums of -2.5, 0, and 3.2 for three different inputs. What are its three outputs?
+  options:
+    - "0, 0, and 3.2"
+    - "-2.5, 0, and 3.2"
+    - "2.5, 0, and 3.2"
+    - "0, 1, and 1"
+  answer: A
+  explain: |
+    ReLU outputs max(0, z): negative sums become 0, and zero or positive sums pass through unchanged. So -2.5 becomes 0, 0 stays 0, and 3.2 stays 3.2.
+  why:
+    B: "This passes the sums through unchanged, but ReLU replaces negatives with 0."
+    C: "ReLU does not take absolute values; it sets negatives to 0."
+    D: "This is a step activation, which outputs only 0 or 1."
+  verify: |
+    out = [max(0, z) for z in (-2.5, 0, 3.2)]
+    ans = f"{out[0]:g}, {out[1]:g}, and {out[2]:g}"
+
+- id: activations-04
+  skill: activations
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A network's softmax output layer gives probabilities for three classes. Two of them are 0.7 and 0.2. What is the third?
+  options:
+    - "0.1"
+    - "0.3"
+    - "0.45"
+    - "0.9"
+  ordered: true
+  answer: A
+  explain: |
+    Softmax outputs always add up to 1, so the third probability is 1 - 0.7 - 0.2 = 0.1.
+  why:
+    B: "This subtracts only the larger probability from 1."
+    C: "This averages the two given probabilities."
+    D: "This adds the two given probabilities instead of subtracting their sum from 1."
+  verify: "1 - 0.7 - 0.2"
+
+- id: activations-05
+  skill: activations
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    A deep network uses sigmoid activations in every hidden layer. It trains very slowly, and the weights of its earliest layers barely change. What is the most likely cause?
+  options:
+    - "Exploding outputs, since sigmoid values grow without limit"
+    - "Data leakage from the test set into the training set"
+    - "Too few output neurons for the number of classes"
+    - "Vanishing gradients, as small sigmoid slopes multiply across layers"
+  answer: D
+  explain: |
+    The sigmoid's slope is at most 0.25 and nearly 0 where the curve flattens. Backpropagation multiplies these slopes layer by layer, so the gradient reaching the earliest layers shrinks toward zero and they barely learn. Using ReLU in the hidden layers, whose slope is 1 for positive inputs, is a standard fix.
+  why:
+    A: "Sigmoid outputs stay between 0 and 1, so they cannot grow without limit."
+    B: "Leakage inflates test scores; it does not slow learning in early layers."
+    C: "The output layer's size changes what is predicted, not how gradients reach early layers."
+
+- id: activations-06
+  skill: activations
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    How does the tanh activation differ from the sigmoid?
+  options:
+    - "tanh outputs only the values 0 and 1"
+    - "tanh outputs values from -1 to 1, centered on 0"
+    - "tanh outputs any value from 0 to infinity"
+    - "tanh outputs probabilities that sum to 1"
+  answer: B
+  explain: |
+    Both are S-shaped curves, but tanh ranges from -1 to 1 and outputs 0 when its input is 0, while the sigmoid ranges from 0 to 1 and outputs 0.5 at 0. Being centered on zero often helps hidden layers train.
+  why:
+    A: "Outputs of only 0 and 1 describe the step activation."
+    C: "A range from 0 to infinity describes ReLU."
+    D: "Probabilities that sum to 1 describe softmax."
+
+- id: activations-07
+  skill: activations
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A softmax output layer receives scores of 3, 1, and 0 for three classes. Using $$e^3 \approx 20.09$$, $$e^1 \approx 2.72$$, and $$e^0 = 1$$, what probability does it give the first class, to the nearest hundredth?
+  options:
+    - "0.33"
+    - "0.75"
+    - "0.84"
+    - "0.88"
+  ordered: true
+  answer: C
+  explain: |
+    Softmax divides each exponential by their total: 20.09 / (20.09 + 2.72 + 1) = 20.09 / 23.81, about 0.84.
+  why:
+    A: "This splits the probability equally, ignoring the scores."
+    B: "This divides the score by the sum of the scores, 3 / 4, skipping the exponentials."
+    D: "This treats e to the 0 as 0 instead of 1, dividing by 22.81."
+  verify: "math.exp(3) / (math.exp(3) + math.exp(1) + math.exp(0))"
+
+- id: activations-08
+  skill: activations
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    What does the sigmoid function output when its input is 0?
+  options:
+    - "0"
+    - "0.25"
+    - "0.5"
+    - "1"
+  ordered: true
+  answer: C
+  explain: |
+    The sigmoid is 1 / (1 + e to the negative z). At z = 0 that is 1 / (1 + 1) = 0.5, the midpoint of its range and the usual classification threshold.
+  why:
+    A: "0 is the output of ReLU and of tanh at 0, not of the sigmoid."
+    B: "0.25 is the sigmoid's slope at 0, not its value."
+    D: "The sigmoid only approaches 1 for large positive inputs."
+  verify: "1 / (1 + math.exp(-0))"
+
+# ---------------------------------------------------------------- nn-training
+- id: nn-training-01
+  skill: nn-training
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which sequence lists one training step of a neural network in the correct order?
+  options:
+    - "Forward pass, compute loss, backpropagation, update weights"
+    - "Backpropagation, forward pass, update weights, compute loss"
+    - "Update weights, forward pass, compute loss, backpropagation"
+    - "Compute loss, forward pass, update weights, backpropagation"
+  answer: A
+  explain: |
+    The network first makes predictions (forward pass), then measures how wrong they are (loss), then works out how each weight contributed to the loss (backpropagation), and finally adjusts the weights (update). The loop repeats for every batch.
+  why:
+    B: "Backpropagation starts from the loss, so it cannot come before the forward pass."
+    C: "Updates use gradients, which do not exist until the loss is computed and backpropagated."
+    D: "The loss compares predictions with labels, so the forward pass must come first."
+
+- id: nn-training-02
+  skill: nn-training
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    During training, what does backpropagation compute?
+  options:
+    - "The network's predictions for each new input example"
+    - "The best learning rate to use for the next epoch"
+    - "A new random starting value for every weight"
+    - "The gradient of the loss with respect to every weight and bias"
+  answer: D
+  explain: |
+    Backpropagation works backward from the loss, layer by layer, using the chain rule to find how much each weight and bias contributed to the error. Gradient descent then uses those gradients to update the parameters.
+  why:
+    A: "Predictions come from the forward pass."
+    B: "The learning rate is a hyperparameter chosen before training, not computed by backpropagation."
+    C: "Random starting values are set once, before training begins."
+
+- id: nn-training-03
+  skill: nn-training
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A training set has 6,000 examples, and the batch size is 50. How many iterations (weight updates) make up one epoch?
+  options:
+    - "50"
+    - "120"
+    - "6,000"
+    - "300,000"
+  ordered: true
+  answer: B
+  explain: |
+    One epoch passes through all 6,000 examples, 50 at a time, so it takes 6,000 / 50 = 120 batches, and each batch is one update.
+  why:
+    A: "50 is the number of examples in each batch, not the number of batches."
+    C: "One update per example would be true only with a batch size of 1."
+    D: "This multiplies the two numbers instead of dividing."
+  verify: "6000 / 50"
+
+- id: nn-training-04
+  skill: nn-training
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A network trains for 10 epochs on 1,030 examples with a batch size of 100. The final, smaller batch of each epoch is kept. How many weight updates happen in total?
+  options:
+    - "100"
+    - "103"
+    - "110"
+    - "1,030"
+  ordered: true
+  answer: C
+  explain: |
+    Each epoch has 10 full batches of 100 plus one batch of the last 30 examples, so 11 updates. Over 10 epochs that is 11 × 10 = 110.
+  why:
+    A: "This drops the last batch of 30 examples in each epoch."
+    B: "Updates come in whole batches, so 10.3 batches per epoch is impossible."
+    D: "This counts one update per example for a single epoch."
+  verify: "math.ceil(1030 / 100) * 10"
+
+- id: nn-training-05
+  skill: nn-training
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    While a network trains, its loss jumps up and down and then grows larger every epoch. Which change is most likely to help?
+  options:
+    - "Lower the learning rate"
+    - "Raise the learning rate"
+    - "Remove the activation functions"
+    - "Train for many more epochs"
+  answer: A
+  explain: |
+    A loss that bounces and then climbs means each update overshoots the minimum by more than the last, which is divergence. A smaller learning rate takes smaller steps that can settle into the minimum.
+  why:
+    B: "Larger steps would overshoot even more."
+    C: "Removing activations makes the network linear and does nothing to stop overshooting."
+    D: "More epochs of diverging updates only make the loss worse."
+
+- id: nn-training-06
+  skill: nn-training
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In neural network training, what is an epoch?
+  options:
+    - "One update of the weights using a single batch"
+    - "One full pass through the entire training set"
+    - "The number of examples processed in each batch"
+    - "One layer of neurons between input and output"
+  answer: B
+  explain: |
+    An epoch is one complete pass through every example in the training set. With mini-batches, one epoch contains many iterations, one per batch.
+  why:
+    A: "One update from one batch is an iteration."
+    C: "The number of examples per batch is the batch size."
+    D: "A layer between input and output is a hidden layer."
+
+- id: nn-training-07
+  skill: nn-training
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why are a network's weights usually set to small random values before training, rather than all to 0?
+  options:
+    - "Random weights guarantee training reaches the global minimum"
+    - "Zero weights would make the training data impossible to load"
+    - "If every weight starts equal, neurons in a layer learn the same thing"
+    - "Random weights remove the need for activation functions"
+  answer: C
+  explain: |
+    If every weight in a layer starts with the same value, every neuron in that layer computes the same output and receives the same gradient, so the neurons stay identical and the layer acts like a single neuron. Small random starting values break this symmetry, so different neurons can learn different features.
+  why:
+    A: "Nothing guarantees the global minimum; random starts only break the symmetry."
+    B: "Starting weights have nothing to do with loading data."
+    D: "Activation functions are still needed to make the network nonlinear."
+
+- id: nn-training-08
+  skill: nn-training
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    After a network is trained, what does it compute to classify a new image?
+  options:
+    - "Only the forward pass, with its weights held fixed"
+    - "A forward pass followed by backpropagation"
+    - "Backpropagation followed by a weight update"
+    - "A full epoch over the original training set"
+  answer: A
+  explain: |
+    Making predictions with a trained model, called inference, needs only the forward pass: the input flows through the layers while the learned weights stay fixed. Backpropagation and weight updates happen only during training.
+  why:
+    B: "Backpropagation needs a known label to compute a loss, so it belongs to training."
+    C: "Updating weights is training, not prediction."
+    D: "Prediction does not revisit the training set."

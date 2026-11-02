@@ -1,0 +1,65 @@
+# Lesson 5.9 flashcards
+
+- id: fc-neural-network
+  term: Neural Network
+  def: A model made of layers of connected artificial neurons, in which each layer's outputs feed the next layer and the weights and biases are learned from data.
+  skill: neurons
+  virginia: true
+
+- id: fc-artificial-neuron
+  term: Artificial neuron
+  def: Computes a weighted sum of its inputs plus a bias, z = w1x1 + w2x2 + ... + b, then applies an activation function to produce its output.
+  example: "Inputs 4 and 1, weights 0.5 and -1, bias 0.5: z = 1.5, so ReLU outputs 1.5."
+  skill: neurons
+
+- id: fc-neuron-bias
+  term: Bias (in a neuron)
+  def: A learned number added to the weighted sum. It shifts the neuron's threshold, like the intercept of a line, so the neuron can activate even when every input is 0.
+  skill: neurons
+
+- id: fc-perceptron
+  term: Perceptron
+  def: Frank Rosenblatt's single trainable neuron (1958) with a step activation. It draws one straight boundary, so it can compute AND and OR but not XOR.
+  skill: neurons
+
+- id: fc-nn-layers
+  term: Input, hidden, and output layers
+  def: The input layer holds the features (one node each, no computation); hidden layers learn intermediate features; the output layer gives the prediction, with one neuron per class for multiclass problems.
+  skill: neurons
+
+- id: fc-parameter-count
+  term: Counting a network's parameters
+  def: Each fully connected layer has inputs × neurons weights plus one bias per neuron. Add up the layers; the input layer has no parameters.
+  example: "3 inputs, 4 hidden, 2 outputs: (12 + 4) + (8 + 2) = 26."
+  skill: neurons
+
+- id: fc-activation-ranges
+  term: Activation function ranges
+  def: Step gives 0 or 1; sigmoid 0 to 1; tanh -1 to 1; ReLU, max(0, z), 0 to infinity. Without a nonlinear activation, stacked layers collapse into one linear model.
+  skill: activations
+
+- id: fc-softmax
+  term: Softmax
+  def: Turns a list of class scores into probabilities between 0 and 1 that sum to 1, by raising e to each score and dividing by the total. Used in multiclass output layers.
+  skill: activations
+
+- id: fc-vanishing-gradients
+  term: Vanishing gradients
+  def: In deep networks with sigmoid or tanh, small slopes multiply during backpropagation, so the early layers get tiny gradients and barely learn. ReLU, with slope 1 for positive inputs, helps.
+  skill: activations
+
+- id: fc-backpropagation
+  term: Backpropagation
+  def: The algorithm that computes the gradient of the loss with respect to every weight and bias, working backward from the output with the chain rule; gradient descent then makes the update. Popularized in 1986 by Rumelhart, Hinton, and Williams.
+  skill: nn-training
+
+- id: fc-nn-training-loop
+  term: Neural network training loop
+  def: Forward pass, compute loss, backpropagation, update weights, repeated for every batch. Inference (prediction) is the forward pass alone.
+  skill: nn-training
+
+- id: fc-epoch-batch-iteration
+  term: Epoch, batch size, iteration
+  def: An epoch is one pass through all the training data; batch size is the number of examples per update; an iteration is one update. Iterations per epoch = examples / batch size, rounded up.
+  example: "2,500 examples, batch size 200: 13 iterations per epoch."
+  skill: nn-training
