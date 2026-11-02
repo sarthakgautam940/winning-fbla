@@ -33,7 +33,8 @@ Gate + proxy auth, design tokens (Figtree, JetBrains Mono), app shell, lesson re
 | u2 (PS) | l1-l8 | 209 | 79 | done, all lessons 0 errors 0 warnings, verified |
 | u3 (DA) | l1-l8 | 194 | 69 | done, all lessons 0 errors 0 warnings, verified |
 | u4 (TL) | l1-l9 | 213 | 81 | done, all lessons 0 errors 0 warnings, verified (SQL against the sample DBs, Python by execution, R by reasoning) |
-| u5-u8 | | | | to do, in order u5-l1 onward |
+| u5 (ML) | l1-l10 | 221 | 83 | done, all lessons 0 errors 0 warnings, verified |
+| u6-u8 | | | | to do, in order u6-l1 onward |
 
 Full `--check` (no filter) at fb5427c: 0 errors, 1 warning (Virginia cards for terms in later units, expected until those units exist).
 
@@ -44,3 +45,6 @@ Order of work: u1-l2 ... u1-l8, u2 (l1, l2, l4-l8), u3, u4 (incl. l9), u5, u6, u
 ## Open issues
 
 - R cannot be executed locally; R snippets are checked by reasoning only.
+- Visual QA to-do: the neuron-playground widget hint (src/components/widgets/ml-widgets.tsx) writes "w1·x1" with a middot; change to the × sign during the QA pass and scan src for any other middots.
+- Facts not yet verified, so not used: Minsky and Papert's 1969 book Perceptrons (verify before citing it in u6-l1 history).
+- Flashcard ids already taken that later units must not reuse: fc-gan, fc-autoencoder, fc-cnn, fc-rnn, fc-lstm (u5-l10), fc-training-loop (u4-l7).

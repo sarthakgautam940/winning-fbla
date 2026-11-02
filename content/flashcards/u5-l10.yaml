@@ -1,0 +1,63 @@
+# Lesson 5.10 flashcards
+
+- id: fc-deep-learning
+  term: Deep Learning
+  def: The branch of machine learning that uses neural networks with many layers to learn features directly from raw data such as pixels, audio, or text. "Deep" refers to the number of layers.
+  skill: deep-learning
+  virginia: true
+
+- id: fc-feature-hierarchy
+  term: Feature hierarchy (representation learning)
+  def: A deep network learns its own features layer by layer, from simple to complex. In images, edges and colors come first, then parts such as eyes or wheels, then whole objects.
+  skill: deep-learning
+
+- id: fc-dl-vs-classical
+  term: Deep learning vs. classical machine learning
+  def: Classical machine learning relies on features designed by people and works well on small structured tables. Deep learning learns features from raw, unstructured data but needs far more data and computing power and is harder to explain.
+  skill: deep-learning
+
+- id: fc-alexnet
+  term: AlexNet (2012)
+  def: A deep convolutional network by Krizhevsky, Sutskever, and Hinton, trained on two GPUs, that won the 2012 ImageNet challenge with 15.3 percent top-5 error against 26.2 percent for the next entry. The turning point for deep learning.
+  skill: deep-learning
+
+- id: fc-cnn
+  term: Convolutional neural network (CNN)
+  def: A network for images and other grids. Convolutional layers slide small kernels across the input and share weights; pooling layers shrink the feature maps; fully connected layers make the final prediction.
+  skill: deep-architectures
+
+- id: fc-convolution-kernel
+  term: Kernel (filter) and feature map
+  def: A kernel is a small grid of weights that slides over an image. At each position it multiplies the covered pixels by its weights and adds them, producing one value of the feature map.
+  example: "Stride 1, no padding: a 6 × 6 image and a 3 × 3 kernel give a 4 × 4 feature map (n - k + 1)."
+  skill: deep-architectures
+
+- id: fc-max-pooling
+  term: Max pooling
+  def: Shrinks a feature map by keeping only the largest value in each window, usually 2 × 2, which halves the width and the height. Average pooling keeps the mean instead.
+  skill: deep-architectures
+
+- id: fc-rnn
+  term: Recurrent neural network (RNN)
+  def: Reads a sequence one element at a time and carries a hidden state, its memory, from each step to the next through a recurrent connection. Used for text, speech, and time series.
+  skill: deep-architectures
+
+- id: fc-lstm
+  term: LSTM (long short-term memory)
+  def: A recurrent network (Hochreiter and Schmidhuber, 1997) with a cell state and forget, input, and output gates, so it can remember information across long sequences where a plain RNN's gradients vanish.
+  skill: deep-architectures
+
+- id: fc-transformers-vs-rnns
+  term: Transformers vs. RNNs
+  def: Transformers (2017) process all positions at once and use attention to connect any two words directly, so they train in parallel on GPUs. RNNs process one step at a time and lose distant information.
+  skill: deep-architectures
+
+- id: fc-autoencoder
+  term: Autoencoder
+  def: An unsupervised network that rebuilds its own input through a narrow bottleneck (encoder, code, decoder). Used for compression, denoising, and anomaly detection, since unusual inputs rebuild poorly.
+  skill: deep-architectures
+
+- id: fc-gan
+  term: Generative adversarial network (GAN)
+  def: Two networks trained against each other (Goodfellow and colleagues, 2014). A generator turns random noise into fake samples, and a discriminator tries to tell real from fake, until the fakes look real.
+  skill: deep-architectures

@@ -1,0 +1,549 @@
+# Lesson 5.10: Deep learning
+
+# ---------------------------------------------------------------- deep-learning
+- id: deep-learning-01
+  skill: deep-learning
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Which statement best defines deep learning?
+  options:
+    - "Learning with many-layered neural networks that find their own features"
+    - "Any machine learning model that is trained on a very large dataset"
+    - "AI systems that follow if-then rules written by human experts"
+    - "Statistical methods that search for the deep causes behind correlations"
+  answer: A
+  explain: |
+    Deep learning is the part of machine learning that uses neural networks with many layers. The layers learn useful features directly from raw inputs such as pixels, sound, or text, instead of relying on features designed by people. "Deep" refers to the number of layers.
+  why:
+    B: "Data size alone does not make a method deep learning; a linear regression on huge data is still classical machine learning."
+    C: "Rules written by experts describe expert systems, which do not learn from data."
+    D: "Deep refers to the number of layers, not to finding causes."
+
+- id: deep-learning-02
+  skill: deep-learning
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why does stacking many layers help a network recognize objects in photos?
+  options:
+    - "Extra layers let the network skip the training step entirely"
+    - "Each added layer stores a separate copy of the training images"
+    - "Each layer builds more complex features from the simpler ones below it"
+    - "More layers make the network's decisions easier to explain"
+  answer: C
+  explain: |
+    Depth creates a hierarchy of features. Early layers detect simple patterns such as edges, middle layers combine edges into textures and parts, and later layers combine parts into whole objects, so complex concepts are built from simple ones.
+  why:
+    A: "Deep networks still need training, usually a great deal of it."
+    B: "Layers hold learned weights, not stored copies of the data."
+    D: "Deeper networks are usually harder to explain, not easier."
+
+- id: deep-learning-03
+  skill: deep-learning
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    To classify bird photos with a classical method, a team first measures features by hand, such as beak length and wing color. How would a deep learning approach differ?
+  options:
+    - "It would need those same hand-measured features as input"
+    - "It would learn useful features directly from the raw pixels"
+    - "It would skip labels and group the photos without supervision"
+    - "It would replace the photos with a table of summary statistics"
+  answer: B
+  explain: |
+    Classical machine learning depends on feature engineering: people decide which measurements matter. A deep network takes the raw pixels and learns its own features during training, which is why it excels on unstructured data such as images, audio, and text.
+  why:
+    A: "Needing hand-made features is the classical approach the question contrasts with."
+    C: "Deep learning is often supervised; learning its own features does not mean dropping the labels."
+    D: "Deep learning works on raw data rather than reducing it to a summary table first."
+
+- id: deep-learning-04
+  skill: deep-learning
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In the term "deep learning," what does the word "deep" refer to?
+  options:
+    - "The large size of the training dataset"
+    - "The complex meaning the model understands"
+    - "The long time the model takes to train"
+    - "The many layers in the neural network"
+  answer: D
+  explain: |
+    "Deep" refers to depth, the number of layers between input and output. A deep network has many hidden layers, from several to hundreds; the word says nothing about how much the model understands.
+  why:
+    A: "Deep networks often need big datasets, but the name refers to their layers."
+    B: "Depth describes the network's structure; a many-layered model does not understand meaning the way people do."
+    C: "Long training is a consequence of size, not what the word means."
+
+- id: deep-learning-05
+  skill: deep-learning
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Compared with classical machine learning, what does deep learning typically need much more of?
+  options:
+    - "Hand-designed features and expert-written rules"
+    - "Large amounts of data and parallel computing such as GPUs"
+    - "Small, carefully cleaned datasets with few columns"
+    - "Manual tuning of every individual weight"
+  answer: B
+  explain: |
+    Deep networks have millions of parameters, so they need large datasets to learn them without overfitting, and their training is mostly matrix multiplication, which graphics processing units (GPUs) run in parallel. AlexNet, in 2012, learned from about 1.2 million labeled images using two GPUs.
+  why:
+    A: "Hand-designed features are exactly what deep learning replaces."
+    C: "Small datasets favor classical methods; deep networks tend to overfit them."
+    D: "Training sets the weights automatically through backpropagation and gradient descent."
+
+- id: deep-learning-06
+  skill: deep-learning
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A credit union has 3,000 past loans, each described by 12 numeric columns, and regulators require it to explain every decision. Which approach is the best fit?
+  options:
+    - "A deep convolutional network trained from scratch"
+    - "A large transformer pretrained on internet text"
+    - "A classical model such as a decision tree or logistic regression"
+    - "A generative adversarial network trained on the loans"
+  answer: C
+  explain: |
+    With a few thousand rows of structured data and a need for explanations, classical models are the stronger choice: they train well on small tables and their decisions can be explained. Deep learning shines with large amounts of unstructured data, and its many-layered decisions are hard to explain.
+  why:
+    A: "Convolutional networks are built for images and would overfit 3,000 rows."
+    B: "A text model does not fit a small numeric table, and its decisions are hard to explain."
+    D: "A GAN generates new data; it does not make explainable loan decisions."
+
+- id: deep-learning-07
+  skill: deep-learning
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Why is AlexNet's 2012 ImageNet result considered a turning point for deep learning?
+  options:
+    - "Its deep convolutional network, trained on GPUs, beat the field by a wide margin"
+    - "It was the first neural network ever trained with backpropagation"
+    - "It proved that hand-designed features beat learned ones on images"
+    - "It was the first program to defeat a world chess champion"
+  answer: A
+  explain: |
+    In the 2012 ImageNet challenge, AlexNet, a deep convolutional network trained on two GPUs by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton, reached a top-5 error of 15.3 percent, while the next-best entry had 26.2 percent. That gap drew the field toward deep learning.
+  why:
+    B: "Backpropagation was popularized in 1986, decades before AlexNet."
+    C: "It showed the opposite: learned features beat hand-designed ones."
+    D: "Defeating a world chess champion was IBM's Deep Blue, in 1997."
+
+- id: deep-learning-08
+  skill: deep-learning
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which statement correctly relates artificial intelligence (AI), machine learning (ML), and deep learning (DL)?
+  options:
+    - "AI is a subset of ML, which is a subset of DL"
+    - "ML is a subset of DL, which is a subset of AI"
+    - "AI, ML, and DL are separate fields with no overlap"
+    - "DL is a subset of ML, which is a subset of AI"
+  answer: D
+  explain: |
+    AI is the broad goal of making machines do tasks that need intelligence. Machine learning is the part of AI in which systems learn from data, and deep learning is the part of machine learning that uses many-layered neural networks.
+  why:
+    A: "This reverses the nesting; AI is the broadest of the three."
+    B: "Deep learning is the narrowest of the three, inside machine learning."
+    C: "The three are nested, not separate."
+
+- id: deep-learning-09
+  skill: deep-learning
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In a deep network trained to recognize objects in photos, what do the earliest layers typically learn to detect?
+  options:
+    - "Whole objects, such as faces and cars"
+    - "Simple patterns, such as edges and color blobs"
+    - "The text labels attached to each photo"
+    - "Object parts, such as eyes and wheels"
+  answer: B
+  explain: |
+    Feature hierarchies run from simple to complex. The first layers respond to edges, color contrasts, and small textures; middle layers combine them into parts such as eyes or wheels; and the last layers respond to whole objects.
+  why:
+    A: "Whole objects are detected in the last layers, built from simpler features."
+    C: "Labels are used to compute the loss; the layers learn features of the image itself."
+    D: "Object parts appear in the middle layers, which combine the simpler patterns below them."
+
+- id: deep-learning-10
+  skill: deep-learning
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why are graphics processing units (GPUs) used to train deep networks?
+  options:
+    - "They store far more training data than ordinary hard drives"
+    - "They choose the network's architecture automatically"
+    - "They remove the need for backpropagation"
+    - "They perform thousands of multiplications in parallel"
+  answer: D
+  explain: |
+    Training a network is mostly matrix multiplication: millions of multiply-and-add operations that do not depend on each other. GPUs, first built for graphics, run thousands of these at once, which makes training many times faster than on an ordinary processor.
+  why:
+    A: "GPUs compute; storing data is the job of drives and memory."
+    B: "The architecture is chosen by people or by a search, not by the hardware."
+    C: "Backpropagation still computes the gradients; GPUs just run it faster."
+
+# ---------------------------------------------------------------- deep-architectures
+- id: deep-architectures-01
+  skill: deep-architectures
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A hospital wants a model that flags signs of pneumonia in chest X-ray images. Which architecture is the most natural choice?
+  options:
+    - "A convolutional neural network"
+    - "A recurrent neural network"
+    - "A generative adversarial network"
+    - "An autoencoder with no labels"
+  answer: A
+  explain: |
+    X-rays are images, and convolutional networks are designed for grids of pixels: their kernels detect local patterns anywhere in the image. Medical imaging is one of their most common uses.
+  why:
+    B: "Recurrent networks are designed for sequences such as text or time series."
+    C: "A GAN generates new images; it is not built to classify them."
+    D: "An autoencoder learns to rebuild images without labels; with labeled X-rays, a classifier fits the task directly."
+
+- id: deep-architectures-02
+  skill: deep-architectures
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A 3 × 3 kernel slides over a grayscale image. At one position it covers the patch below. What value does it produce there?
+
+    | Row | Image patch | Kernel |
+    |---|---|---|
+    | 1 | 1, 2, 0 | 0, 1, 0 |
+    | 2 | 3, 1, 2 | 1, 1, 1 |
+    | 3 | 0, 2, 1 | 0, 1, 0 |
+  options:
+    - "1"
+    - "5"
+    - "10"
+    - "12"
+  ordered: true
+  answer: C
+  explain: |
+    Multiply each pixel by the kernel weight in the same position and add. Only the five cells where the kernel holds 1 count: 2 in the top row, 3, 1, and 2 in the middle row, and 2 in the bottom row. Their sum is 2 + 3 + 1 + 2 + 2 = 10.
+  why:
+    A: "This uses only the center cell."
+    B: "This adds the kernel's weights without multiplying by the pixels."
+    D: "This adds every pixel in the patch, ignoring the kernel's zeros."
+  verify: |
+    patch = [[1, 2, 0], [3, 1, 2], [0, 2, 1]]
+    kernel = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
+    ans = sum(patch[i][j] * kernel[i][j] for i in range(3) for j in range(3))
+
+- id: deep-architectures-03
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why were long short-term memory (LSTM) networks developed?
+  options:
+    - "Convolutional networks could not be trained on graphics hardware"
+    - "Feedforward networks needed a better way to process images"
+    - "Recurrent networks ran too slowly on single processors"
+    - "Plain recurrent networks forget information from far back in a sequence"
+  answer: D
+  explain: |
+    A plain recurrent network passes its memory through every time step, and during training its gradients shrink as they are multiplied back through many steps, so it forgets information from far back. Hochreiter and Schmidhuber's LSTM (1997) adds a cell state controlled by gates, which lets information and gradients flow across long stretches of a sequence.
+  why:
+    A: "LSTMs are recurrent networks for sequences; they have nothing to do with training convolutional networks."
+    B: "Images are the job of convolutional networks, not LSTMs."
+    C: "LSTMs add computation at each step; speed was not the problem they solved."
+
+- id: deep-architectures-04
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is a key advantage of transformers over recurrent neural networks for processing text?
+  options:
+    - "They read one word at a time, which keeps memory use low"
+    - "They process all positions at once, using attention between words"
+    - "They need no training data, because attention is built in"
+    - "They work only on short sentences, which makes them more accurate"
+  answer: B
+  explain: |
+    A recurrent network must process a sequence step by step, so its training cannot be spread across the positions, and distant words connect only through many steps. A transformer uses attention to relate every position to every other position directly and processes them all at once, which trains efficiently on GPUs and scales to huge datasets.
+  why:
+    A: "Reading one word at a time describes a recurrent network."
+    C: "Transformers learn their weights from very large amounts of data."
+    D: "Transformers handle long passages well; that is one of their strengths."
+
+- id: deep-architectures-05
+  skill: deep-architectures
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A utility wants to forecast tomorrow's hourly electricity demand from the past month of hourly readings. Which architecture fits this data best?
+  options:
+    - "A recurrent network such as an LSTM"
+    - "A convolutional network for images"
+    - "A generative adversarial network"
+    - "An autoencoder for compressing images"
+  answer: A
+  explain: |
+    Hourly readings form a time series, a sequence in which order matters. Recurrent networks such as LSTMs are designed for sequences, carrying information from earlier time steps forward to predict later ones.
+  why:
+    B: "Convolutional networks are designed for grids of pixels."
+    C: "A GAN generates new data rather than forecasting from past values."
+    D: "Compressing images does not forecast a sequence of readings."
+
+- id: deep-architectures-06
+  skill: deep-architectures
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Max pooling with 2 × 2 windows and a stride of 2 is applied to this 4 × 4 feature map. What value appears in the bottom-left cell of the 2 × 2 output?
+
+    | | Column 1 | Column 2 | Column 3 | Column 4 |
+    |---|---|---|---|---|
+    | Row 1 | 5 | 1 | 0 | 2 |
+    | Row 2 | 3 | 2 | 4 | 1 |
+    | Row 3 | 2 | 7 | 1 | 3 |
+    | Row 4 | 0 | 4 | 6 | 2 |
+  options:
+    - "0"
+    - "3.25"
+    - "7"
+    - "13"
+  ordered: true
+  answer: C
+  explain: |
+    The bottom-left window covers rows 3 and 4 of columns 1 and 2, which hold 2, 7, 0, and 4. Max pooling keeps the largest of them, 7.
+  why:
+    A: "This keeps the smallest value instead of the largest."
+    B: "This averages the window, which is average pooling."
+    D: "This adds the window's values instead of taking the maximum."
+  verify: |
+    fm = [[5, 1, 0, 2], [3, 2, 4, 1], [2, 7, 1, 3], [0, 4, 6, 2]]
+    ans = max(fm[2][0], fm[2][1], fm[3][0], fm[3][1])
+
+- id: deep-architectures-07
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What distinguishes a recurrent neural network from a feedforward network?
+  options:
+    - "It has no hidden layers between its input and its output"
+    - "It sends information only forward, from input to output"
+    - "It can process only images of a single fixed size"
+    - "It has a loop that carries a hidden state from one step to the next"
+  answer: D
+  explain: |
+    In a feedforward network, information flows one way, from input to output. A recurrent network adds a recurrent connection: its hidden state from one step of a sequence is fed back in with the next element, giving it a memory of what came before.
+  why:
+    A: "Recurrent networks have hidden layers; their hidden state is what carries the memory."
+    B: "Flowing only forward is the definition of a feedforward network."
+    C: "Fixed-size images are the typical input of convolutional networks; recurrent networks handle sequences of varying length."
+
+- id: deep-architectures-08
+  skill: deep-architectures
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A bank trains an autoencoder only on normal card transactions. For one new transaction, the reconstruction is far from the original. What does this most likely indicate?
+  options:
+    - "The autoencoder needs labels for every transaction"
+    - "The transaction is unusual and may be fraudulent"
+    - "The transaction is a perfect copy of a training example"
+    - "The bottleneck layer should be removed entirely"
+  answer: B
+  explain: |
+    An autoencoder learns to compress and rebuild the kind of data it was trained on. A transaction unlike anything normal is rebuilt poorly, so a large reconstruction error is a standard signal of an anomaly worth checking.
+  why:
+    A: "Autoencoders learn without labels; the input is its own target."
+    C: "A copy of a training example would be rebuilt well, not poorly."
+    D: "Without the bottleneck the network could simply copy its input and would learn nothing useful."
+
+- id: deep-architectures-09
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In a generative adversarial network (GAN), what does the discriminator do?
+  options:
+    - "It judges whether each sample is real or generated"
+    - "It creates new samples from random noise"
+    - "It compresses inputs through a narrow bottleneck"
+    - "It labels every training example by hand"
+  answer: A
+  explain: |
+    A GAN pits two networks against each other. The generator turns random noise into fake samples, and the discriminator tries to tell real training samples from generated ones; each improves by competing until the fakes are hard to tell from real data.
+  why:
+    B: "Creating samples from noise is the generator's job."
+    C: "A bottleneck is part of an autoencoder."
+    D: "GANs learn from unlabeled real samples; no one labels them by hand."
+
+- id: deep-architectures-10
+  skill: deep-architectures
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A 5 × 5 kernel slides over a 28 × 28 image one pixel at a time (a stride of 1), with no padding. What is the size of the resulting feature map?
+  options:
+    - "23 × 23"
+    - "24 × 24"
+    - "28 × 28"
+    - "32 × 32"
+  ordered: true
+  answer: B
+  explain: |
+    Along each side, the kernel can start at positions 1 through 24, because a 5-wide kernel starting at position 24 ends at position 28. So the feature map is (28 - 5 + 1) × (28 - 5 + 1) = 24 × 24.
+  why:
+    A: "This subtracts the kernel size but forgets to add 1 for the first position."
+    C: "Keeping the size at 28 × 28 would need padding around the edges."
+    D: "This adds the kernel size instead of subtracting it."
+  verify: |
+    n = 28 - 5 + 1
+    ans = f"{n} × {n}"
+
+- id: deep-architectures-11
+  skill: deep-architectures
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which architecture are large language models such as GPT built on?
+  options:
+    - "The convolutional neural network"
+    - "The generative adversarial network"
+    - "The transformer"
+    - "The autoencoder"
+  answer: C
+  explain: |
+    GPT stands for generative pre-trained transformer. Since the 2017 paper "Attention Is All You Need," the transformer has been the architecture behind large language models, because attention lets it learn from huge amounts of text in parallel.
+  why:
+    A: "Convolutional networks are built mainly for images."
+    B: "GANs generate data by pitting two networks against each other; language models do not work that way."
+    D: "Autoencoders compress and rebuild their input; GPT predicts the next token."
+
+- id: deep-architectures-12
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why does a convolutional layer need far fewer weights than a fully connected layer on the same image?
+  options:
+    - "It ignores every pixel except those in the center of the image"
+    - "It converts the image to text before processing it"
+    - "It stores only the weights of the final output layer"
+    - "It reuses one small kernel's weights at every position in the image"
+  answer: D
+  explain: |
+    A fully connected layer gives every pixel its own weight for every neuron. A convolutional layer slides the same small kernel, such as 3 × 3 = 9 weights, across the whole image. This weight sharing cuts the parameter count enormously and lets the layer detect a pattern wherever it appears.
+  why:
+    A: "The kernel visits every part of the image, not just the center."
+    B: "Convolutional networks work on pixel grids directly."
+    C: "Every layer has weights; convolutional layers simply share theirs."
+
+- id: deep-architectures-13
+  skill: deep-architectures
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In the sentence "The trophy did not fit in the suitcase because it was too big," a model must link "it" to "trophy." Why do transformers handle links like this better than plain recurrent networks?
+  options:
+    - "Attention connects any two words directly, however far apart"
+    - "Transformers read the sentence strictly from right to left"
+    - "Transformers remove short words such as 'it' before processing"
+    - "Recurrent networks cannot represent nouns such as 'trophy'"
+  answer: A
+  explain: |
+    In a recurrent network, information about "trophy" must survive many updates of the hidden state before it reaches "it," and it fades along the way. A transformer's attention lets "it" look directly at every other word and weigh how relevant each one is, so distant connections are as easy to learn as nearby ones.
+  why:
+    B: "Reading direction is not the advantage; what matters is that attention reaches earlier words directly."
+    C: "Pronouns carry meaning and are kept; resolving them is exactly what attention helps with."
+    D: "Recurrent networks can represent any word; their weakness is carrying information across long distances."
+
+- id: deep-architectures-14
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What do the gates inside an LSTM cell do?
+  options:
+    - "They split each image into a grid of small overlapping patches"
+    - "They turn random noise into realistic new training samples"
+    - "They decide what information to keep, add, and output at each step"
+    - "They block any input that the network has never seen before"
+  answer: C
+  explain: |
+    An LSTM's forget gate decides what to drop from its cell state, its input gate decides what new information to add, and its output gate decides what to pass on. Learning these gates lets the network keep important information across long sequences.
+  why:
+    A: "Scanning an image in patches is what convolutional layers do."
+    B: "Turning noise into samples is a GAN generator's job."
+    D: "Gates filter information inside the memory; they do not reject new inputs."
+
+- id: deep-architectures-15
+  skill: deep-architectures
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why is an autoencoder considered an unsupervised learning method?
+  options:
+    - "It never adjusts its weights during training"
+    - "It is trained only by rewards from an environment"
+    - "It uses labels written by human experts for each example"
+    - "Its training target is its own input, so it needs no labels"
+  answer: D
+  explain: |
+    An autoencoder is trained to make its output match its input after squeezing it through a narrow bottleneck. Because the input itself is the target, no human labels are needed.
+  why:
+    A: "Autoencoders adjust their weights by backpropagation like any network."
+    B: "Learning from rewards is reinforcement learning."
+    C: "Needing human labels would make it supervised."
+
+- id: deep-architectures-16
+  skill: deep-architectures
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A team is building a system that translates sentences from Spanish to English. Which architecture is designed for this kind of language task and processes all the words of a sentence in parallel?
+  options:
+    - "A convolutional neural network"
+    - "A transformer"
+    - "k-means clustering"
+    - "A generative adversarial network"
+  answer: B
+  explain: |
+    Translation turns one sequence of words into another, and the transformer was designed for exactly this kind of sequence task. Its attention relates every word to every other word at once, so it processes the whole sentence in parallel instead of one word at a time.
+  why:
+    A: "Convolutional networks are designed for grids of pixels."
+    C: "k-means groups unlabeled points into clusters; it does not translate."
+    D: "A GAN generates realistic data by competition, not translations of given sentences."
