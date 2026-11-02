@@ -1,0 +1,868 @@
+# Lesson 2.8: Random variables and expected value
+
+# ---------------------------------------------------------------- rv-dist
+- id: rv-dist-01
+  skill: rv-dist
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    The table shows the probability distribution of X, the number of cars owned by a randomly chosen household in a town. What is P(X = 3)?
+
+    | x | 0 | 1 | 2 | 3 |
+    |---|---|---|---|---|
+    | P(X = x) | 0.15 | 0.35 | 0.30 | ? |
+  options:
+    - "0.20"
+    - "0.25"
+    - "0.35"
+    - "0.80"
+  ordered: true
+  answer: A
+  explain: |
+    The probabilities in a distribution must add up to 1, so P(X = 3) = 1 - (0.15 + 0.35 + 0.30) = 1 - 0.80 = 0.20.
+  why:
+    B: "This assumes the four values are equally likely, 1/4 each."
+    C: "This leaves P(X = 0) out of the sum before subtracting from 1."
+    D: "This is the total of the given probabilities, not what remains."
+  verify: "1 - (0.15 + 0.35 + 0.30)"
+
+- id: rv-dist-02
+  skill: rv-dist
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Each list gives the probabilities for all the possible values of a random variable. Which list could be a valid probability distribution?
+  options:
+    - "0.2, 0.3, 0.4, 0.2"
+    - "0.5, 0.6, -0.1"
+    - "0.3, 0.3, 0.3"
+    - "0.25, 0.25, 0.25, 0.25"
+  answer: D
+  explain: |
+    A valid distribution needs every probability between 0 and 1 and a total of exactly 1. Four values at 0.25 each meet both rules.
+  why:
+    A: "These add up to 1.1, which is more than 1."
+    B: "These add up to 1, but a probability can never be negative."
+    C: "These add up to only 0.9, so some probability is missing."
+
+- id: rv-dist-03
+  skill: rv-dist
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    The table shows the distribution of X, the number of support tickets a customer opens in a month. What is P(X ≥ 2)?
+
+    | x | 0 | 1 | 2 | 3 |
+    |---|---|---|---|---|
+    | P(X = x) | 0.45 | 0.30 | 0.15 | 0.10 |
+  options:
+    - "0.15"
+    - "0.25"
+    - "0.55"
+    - "0.75"
+  ordered: true
+  answer: B
+  explain: |
+    "At least 2" means 2 or 3 tickets: 0.15 + 0.10 = 0.25. As a check, 1 - P(X ≤ 1) = 1 - 0.75 = 0.25.
+  why:
+    A: "This includes only X = 2 and leaves out X = 3."
+    C: "This is P(X ≥ 1), which also counts customers with exactly 1 ticket."
+    D: "This is P(X ≤ 1), the complement of what was asked."
+  verify: "0.15 + 0.10"
+
+- id: rv-dist-04
+  skill: rv-dist
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    The time a customer spends on a checkout page is a continuous random variable T, measured in seconds. Which statement is true?
+  options:
+    - "The probability that T is exactly 30 is 0."
+    - "P(T = 30) equals the height of the curve at 30."
+    - "P(T < 30) is less than P(T ≤ 30)."
+    - "T can take only whole numbers of seconds."
+  answer: A
+  explain: |
+    For a continuous variable, probability is the area under the curve over an interval. A single point has no width, so the probability of any exact value is 0. That is also why P(T < 30) and P(T ≤ 30) are equal.
+  why:
+    B: "The height of the curve is not a probability; only areas under it are."
+    C: "Including the single point 30 adds a probability of 0, so the two are equal."
+    D: "Time is measured, so it can take any value in an interval, not only whole seconds."
+
+- id: rv-dist-05
+  skill: rv-dist
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    X is the number of goals a soccer team scores in a match. What is the probability that the team scores at most 2 goals?
+
+    | x | 0 | 1 | 2 | 3 | 4 |
+    |---|---|---|---|---|---|
+    | P(X = x) | 0.20 | 0.35 | 0.25 | 0.15 | 0.05 |
+  options:
+    - "0.25"
+    - "0.55"
+    - "0.80"
+    - "0.95"
+  ordered: true
+  answer: C
+  explain: |
+    "At most 2" means 0, 1, or 2 goals: 0.20 + 0.35 + 0.25 = 0.80.
+  why:
+    A: "This is only P(X = 2)."
+    B: "This is P(X < 2), which leaves out exactly 2 goals."
+    D: "This is P(X ≤ 3), which also counts 3 goals."
+  verify: "0.20 + 0.35 + 0.25"
+
+- id: rv-dist-06
+  skill: rv-dist
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which pair of conditions must every discrete probability distribution meet?
+  options:
+    - "Each value of X is positive, and each probability is below 0.5."
+    - "Each probability is equal, and every value of X is a whole number."
+    - "Each probability is between 0 and 1, and the values of X sum to 1."
+    - "Each probability is between 0 and 1, and the probabilities sum to 1."
+  answer: D
+  explain: |
+    A probability can never be negative or greater than 1, and because the list covers every possible value, the probabilities must total exactly 1. The values of X themselves can be any numbers.
+  why:
+    A: "Values of X can be zero or negative, and a single probability can be as large as 1."
+    B: "Values need not be equally likely, and X can take values that are not whole numbers."
+    C: "It is the probabilities that sum to 1, not the values of X."
+
+# ---------------------------------------------------------------- expected-value
+- id: expected-value-01
+  skill: expected-value
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    X is the number of items a shopper returns after an online order. What is E(X)?
+
+    | x | 0 | 1 | 2 |
+    |---|---|---|---|
+    | P(X = x) | 0.5 | 0.3 | 0.2 |
+  options:
+    - "0"
+    - "0.3"
+    - "0.7"
+    - "1.0"
+  ordered: true
+  answer: C
+  explain: |
+    Multiply each value by its probability and add: 0 × 0.5 + 1 × 0.3 + 2 × 0.2 = 0 + 0.3 + 0.4 = 0.7.
+  why:
+    A: "This is the most likely value (the mode), not the weighted average."
+    B: "This includes the X = 1 term but leaves out the X = 2 term."
+    D: "This averages 0, 1, and 2 without weighting them by their probabilities."
+  verify: "0 * 0.5 + 1 * 0.3 + 2 * 0.2"
+
+- id: expected-value-02
+  skill: expected-value
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    What is the expected value of a single roll of a fair six-sided die?
+  options:
+    - "3"
+    - "3.5"
+    - "6"
+    - "21"
+  ordered: true
+  answer: B
+  explain: |
+    Each face has probability 1/6, so E(X) = (1 + 2 + 3 + 4 + 5 + 6) / 6 = 21/6 = 3.5. An expected value does not have to be a possible outcome.
+  why:
+    A: "This picks a face near the middle, but the long-run average of the faces is 3.5."
+    C: "This is the largest face, not the average."
+    D: "This is the sum of the faces before dividing by 6."
+  verify: "sum(range(1, 7)) / 6"
+
+- id: expected-value-03
+  skill: expected-value
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A game pays out, in dollars, the sum shown on two fair six-sided dice. What is the expected payout?
+  options:
+    - "$3.50"
+    - "$7.00"
+    - "$12.00"
+    - "$42.00"
+  ordered: true
+  answer: B
+  explain: |
+    Expected values add: E(first die + second die) = 3.5 + 3.5 = 7, so the expected payout is $7.00.
+  why:
+    A: "This is the expected value of only one die."
+    C: "This is the largest possible sum, not the average."
+    D: "This adds every face of both dice, 21 + 21, without dividing by 6."
+  verify: "2 * sum(range(1, 7)) / 6"
+
+- id: expected-value-04
+  skill: expected-value
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    An online store calculates that the expected number of items returned per order is 0.7. What does this mean?
+  options:
+    - "Most orders have exactly 0.7 items returned."
+    - "70% of orders have exactly one item returned."
+    - "Any single order will probably have about 1 item returned."
+    - "Over many orders, returns average about 0.7 items per order."
+  answer: D
+  explain: |
+    An expected value is a long-run average. No single order can return 0.7 items, but across many orders the total returns divided by the number of orders settles near 0.7.
+  why:
+    A: "Returns are counted in whole items, so no order has 0.7 returns."
+    B: "An average of 0.7 can come from many mixes, such as some orders with 2 returns and many with none."
+    C: "The most likely number of returns can be 0 even when the average is 0.7."
+
+- id: expected-value-05
+  skill: expected-value
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A random variable X takes the values 0, 10, and k with probabilities 0.5, 0.3, and 0.2. If E(X) = 7, what is k?
+  options:
+    - "4"
+    - "7"
+    - "20"
+    - "35"
+  ordered: true
+  answer: C
+  explain: |
+    E(X) = 0 × 0.5 + 10 × 0.3 + 0.2k = 3 + 0.2k. Setting 3 + 0.2k = 7 gives 0.2k = 4, so k = 20.
+  why:
+    A: "This finds 0.2k = 4 but stops before dividing by 0.2."
+    B: "This assumes k equals the expected value itself."
+    D: "This divides 7 by 0.2 and forgets the 3 contributed by the value 10."
+  verify: "(7 - 0 * 0.5 - 10 * 0.3) / 0.2"
+
+- id: expected-value-06
+  skill: expected-value
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    A carnival spinner pays the prizes shown, with the probabilities in the chart. What is the expected prize for one spin?
+  figure:
+    type: bar
+    caption: Prize probabilities for one spin
+    xLabel: Prize
+    yLabel: Probability
+    categories: ["$0", "$5", "$20"]
+    series:
+      - values: [0.70, 0.25, 0.05]
+  options:
+    - "$1.00"
+    - "$1.25"
+    - "$2.25"
+    - "$8.33"
+  ordered: true
+  answer: C
+  explain: |
+    Weight each prize by its probability: 0 × 0.70 + 5 × 0.25 + 20 × 0.05 = 0 + 1.25 + 1.00 = $2.25.
+  why:
+    A: "This counts only the $20 prize."
+    B: "This counts only the $5 prize."
+    D: "This averages the three prize amounts without weighting them by their probabilities."
+  verify: "0 * 0.70 + 5 * 0.25 + 20 * 0.05"
+
+# ---------------------------------------------------------------- ev-decisions
+- id: ev-decisions-01
+  skill: ev-decisions
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A school sells 1,000 raffle tickets at $5 each. There is one $2,000 prize and two $500 prizes. What are the expected net winnings for one ticket?
+  options:
+    - "-$3.00"
+    - "-$2.00"
+    - "$2.00"
+    - "$3.00"
+  ordered: true
+  answer: B
+  explain: |
+    The prizes total $2,000 + 2 × $500 = $3,000, spread over 1,000 tickets, so the expected prize is $3.00 per ticket. Subtracting the $5 price leaves an expected net loss of $2.00 per ticket.
+  why:
+    A: "This counts only the $2,000 prize and leaves out the two $500 prizes."
+    C: "This subtracts in the wrong order, price minus prize, which flips the sign."
+    D: "This is the expected prize before subtracting the ticket price."
+  verify: "(2000 + 2 * 500) / 1000 - 5"
+
+- id: ev-decisions-02
+  skill: ev-decisions
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A game costs $4 to play. You roll a fair die and win $18 if it shows a 6, and nothing otherwise. Is the game fair?
+  options:
+    - "No; the expected net winnings are -$1."
+    - "Yes; the expected net winnings are $0."
+    - "No; the expected net winnings are $3."
+    - "No; the expected net winnings are $14."
+  answer: A
+  explain: |
+    The expected prize is 18 × 1/6 = $3. Subtracting the $4 cost leaves an average loss of $1 per play, so the game is not fair. It would be fair at a price of $3.
+  why:
+    B: "A fair game needs the expected prize to equal the cost, but $3 is less than $4."
+    C: "This is the expected prize, before subtracting the cost of playing."
+    D: "This assumes you always win, subtracting the cost from the full $18 prize."
+  verify: |
+    net = 18 / 6 - 4
+    ans = f"No; the expected net winnings are -${abs(net):g}." if net < 0 else "other"
+
+- id: ev-decisions-03
+  skill: ev-decisions
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A $40 extended warranty covers a laptop repair that costs $250. The chance of needing the repair during the warranty period is 12%. Based on expected value alone, should you buy the warranty?
+  options:
+    - "Yes, because the repair would cost $250."
+    - "Yes, because the expected cost of $30 is under $40."
+    - "No, because a repair is needed less than half the time."
+    - "No, because the expected repair cost, $30, is under $40."
+  answer: D
+  explain: |
+    The expected repair cost without the warranty is 0.12 × $250 = $30. Paying $40 to avoid an expected $30 cost loses $10 on average, so on expected value alone the warranty is a poor deal.
+  why:
+    A: "This compares the price with the full repair cost and ignores that the repair is unlikely."
+    B: "This finds the right expected cost but draws the opposite conclusion; paying more than the expected cost loses money on average."
+    C: "Probability alone does not decide; a very costly repair could justify a warranty even at a low chance."
+
+- id: ev-decisions-04
+  skill: ev-decisions
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    A marketing email goes to 500 customers, and each one responds with probability 0.04, independently. How many responses should the company expect?
+  options:
+    - "4"
+    - "20"
+    - "200"
+    - "480"
+  ordered: true
+  answer: B
+  explain: |
+    The expected number of successes is n × p = 500 × 0.04 = 20.
+  why:
+    A: "This reads 0.04 as a count of 4 rather than as 4% of 500."
+    C: "This multiplies by 0.4 instead of 0.04, a decimal slip."
+    D: "This is the expected number of customers who do not respond."
+  verify: "500 * 0.04"
+
+- id: ev-decisions-05
+  skill: ev-decisions
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A company can launch Product A, which earns a profit of $90,000 with probability 0.5 and loses $30,000 otherwise, or Product B, which earns $40,000 for certain. Based on expected value, which product is better, and by how much?
+  options:
+    - "Product A, by $5,000"
+    - "Product A, by $20,000"
+    - "Product B, by $10,000"
+    - "Product B, by $25,000"
+  answer: C
+  explain: |
+    Weight each outcome of Product A by its probability: 0.5 × 90,000 - 0.5 × 30,000 = 45,000 - 15,000 = $30,000. Product B's certain $40,000 is $10,000 more.
+  why:
+    A: "This ignores the possible loss, giving Product A an expected value of $45,000."
+    B: "This adds the loss as if it were a gain, giving Product A an expected value of $60,000."
+    D: "This subtracts the full $30,000 loss instead of weighting it by its probability of 0.5."
+  verify: |
+    ea = 0.5 * 90000 - 0.5 * 30000
+    eb = 40000
+    ans = f"Product {'B' if eb > ea else 'A'}, by ${abs(eb - ea):,.0f}"
+
+- id: ev-decisions-06
+  skill: ev-decisions
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A game pays $30 if a fair die shows a 6 and $6 if it shows a 5, and nothing otherwise. What price to play would make the game fair?
+  options:
+    - "$1"
+    - "$5"
+    - "$6"
+    - "$36"
+  ordered: true
+  answer: C
+  explain: |
+    The expected prize is 30 × 1/6 + 6 × 1/6 = 5 + 1 = $6. A game is fair when the price equals the expected prize, so the fair price is $6.
+  why:
+    A: "This counts only the $6 prize."
+    B: "This counts only the $30 prize."
+    D: "This adds the prizes without weighting them by their probabilities."
+  verify: "30 / 6 + 6 / 6"
+
+- id: ev-decisions-07
+  skill: ev-decisions
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Why do insurance companies set each premium above the customer's expected claim cost?
+  options:
+    - "So that across many customers, premiums exceed the claims paid"
+    - "Because every customer is certain to file a claim each year"
+    - "Because expected value applies only to games of chance"
+    - "So that every customer comes out ahead in the long run"
+  answer: A
+  explain: |
+    Each customer's claim is uncertain, but across thousands of customers the average claim settles near its expected value. Charging more than that expected value lets the insurer pay claims and costs and still earn a profit.
+  why:
+    B: "Most customers file no claim in a given year; insurers rely on averages across many customers."
+    C: "Expected value applies to any uncertain quantity, including insurance claims."
+    D: "If premiums exceed expected claims, customers as a group pay in more than they receive."
+
+# ---------------------------------------------------------------- ev-rules
+- id: ev-rules-01
+  skill: ev-rules
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A restaurant server's weekly tips X have an expected value of $120. Weekly pay is $200 plus half of the tips, so pay is Y = 200 + 0.5X. What is E(Y)?
+  options:
+    - "$60"
+    - "$160"
+    - "$260"
+    - "$320"
+  ordered: true
+  answer: C
+  explain: |
+    By linearity, E(200 + 0.5X) = 200 + 0.5 × E(X) = 200 + 0.5 × 120 = 200 + 60 = $260.
+  why:
+    A: "This is half the expected tips but leaves out the $200 base pay."
+    B: "This halves the base pay as well, applying 0.5 to the whole sum."
+    D: "This adds all of the tips instead of half."
+  verify: "200 + 0.5 * 120"
+
+- id: ev-rules-02
+  skill: ev-rules
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A random variable X has a standard deviation of 4. What is the standard deviation of Y = 3X + 10?
+  options:
+    - "4"
+    - "12"
+    - "22"
+    - "36"
+  ordered: true
+  answer: B
+  explain: |
+    Adding 10 shifts every value equally and does not change the spread. Multiplying by 3 stretches every distance by 3, so the standard deviation becomes 3 × 4 = 12. The variance becomes 9 × 16 = 144.
+  why:
+    A: "This ignores the multiplier as well as the shift."
+    C: "This applies the shift of 10 to the spread, which adding a constant never changes."
+    D: "This multiplies by 3 squared, which is how the variance changes, but applies it to the standard deviation."
+  verify: "abs(3) * 4"
+
+- id: ev-rules-03
+  skill: ev-rules
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A coffee shop's expected morning sales are $850, and its expected afternoon sales are $620. Sales in the two periods are not independent. What are the expected total daily sales?
+  options:
+    - "$735, the average of the two expected values"
+    - "Unknown, because the two periods are not independent"
+    - "Unknown, because the standard deviations are not given"
+    - "$1,470, the sum of the two expected values"
+  answer: D
+  explain: |
+    Expected values always add, E(X + Y) = E(X) + E(Y), whether or not the variables are independent. So the expected total is $850 + $620 = $1,470.
+  why:
+    A: "A daily total is the sum of the two periods, not their average."
+    B: "Adding expected values does not require independence; only the rule for adding variances does."
+    C: "Expected values add without any information about spread."
+
+- id: ev-rules-04
+  skill: ev-rules
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    X has the distribution below, and E(X) = 2.1. What is Var(X)?
+
+    | x | 1 | 2 | 3 |
+    |---|---|---|---|
+    | P(X = x) | 0.2 | 0.5 | 0.3 |
+  options:
+    - "0.49"
+    - "0.70"
+    - "2.10"
+    - "4.90"
+  ordered: true
+  answer: A
+  explain: |
+    First $$E(X^2) = 1 \times 0.2 + 4 \times 0.5 + 9 \times 0.3 = 0.2 + 2.0 + 2.7 = 4.9$$. Then $$\text{Var}(X) = E(X^2) - \mu^2 = 4.9 - 2.1^2 = 4.9 - 4.41 = 0.49$$.
+  why:
+    B: "This is the standard deviation, the square root of the variance."
+    C: "This is the mean, E(X), not the variance."
+    D: "This is E(X squared) before subtracting the squared mean."
+  verify: |
+    xs = [1, 2, 3]
+    ps = [0.2, 0.5, 0.3]
+    mu = sum(x * p for x, p in zip(xs, ps))
+    ans = sum((x - mu) ** 2 * p for x, p in zip(xs, ps))
+
+- id: ev-rules-05
+  skill: ev-rules
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Salaries at a company have a mean of $50,000 and a standard deviation of $8,000. Every employee gets a 10% raise plus a $1,000 bonus. What are the new mean and standard deviation?
+  options:
+    - "$56,000 and $8,800"
+    - "$56,000 and $9,800"
+    - "$55,000 and $8,800"
+    - "$56,000 and $8,000"
+  answer: A
+  explain: |
+    Each new salary is 1.1X + 1,000. The mean becomes 1.1 × 50,000 + 1,000 = $56,000. The standard deviation is stretched by 1.1 but not shifted by the bonus: 1.1 × 8,000 = $8,800.
+  why:
+    B: "This adds the $1,000 bonus to the standard deviation, but a constant does not change spread."
+    C: "This applies the 10% raise to the mean but forgets the $1,000 bonus."
+    D: "This leaves the standard deviation unchanged, but a percentage raise stretches every gap by 1.1."
+  verify: |
+    ans = f"${1.1 * 50000 + 1000:,.0f} and ${1.1 * 8000:,.0f}"
+
+- id: ev-rules-06
+  skill: ev-rules
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    X and Y are independent random variables with standard deviations 5 and 12. What is the standard deviation of X + Y?
+  options:
+    - "7"
+    - "13"
+    - "17"
+    - "169"
+  ordered: true
+  answer: B
+  explain: |
+    For independent variables the variances add: Var(X + Y) = 25 + 144 = 169. The standard deviation is the square root, $$\sqrt{169} = 13$$.
+  why:
+    A: "This subtracts the standard deviations."
+    C: "This adds the standard deviations; for independent variables it is the variances that add."
+    D: "This is the variance of X + Y, not its standard deviation."
+  verify: "math.sqrt(5 ** 2 + 12 ** 2)"
+
+# ---------------------------------------------------------------- distributions
+- id: distributions-01
+  skill: distributions
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    An inspector tests 20 randomly chosen light bulbs, and each bulb is defective with probability 0.03, independently of the others. X is the number of defective bulbs. Which distribution does X follow?
+  options:
+    - "Poisson"
+    - "Uniform"
+    - "Normal"
+    - "Binomial"
+  answer: D
+  explain: |
+    There is a fixed number of trials (20), each bulb is either defective or not, the bulbs are independent, and the probability is the same for every bulb. Those are the four binomial conditions.
+  why:
+    A: "A Poisson variable counts events in an interval with no fixed number of trials."
+    B: "The possible counts, 0 to 20, are far from equally likely."
+    C: "X is a discrete count, while the normal distribution is continuous."
+
+- id: distributions-02
+  skill: distributions
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A help desk receives an average of 6 calls per hour, and calls arrive independently at a steady rate. X is the number of calls in a randomly chosen hour. Which distribution best models X?
+  options:
+    - "Poisson"
+    - "Binomial"
+    - "Uniform"
+    - "Normal"
+  answer: A
+  explain: |
+    X counts events in a fixed interval of time at a constant average rate, with no fixed number of trials and no maximum. That is the Poisson setting, with mean and variance both equal to 6.
+  why:
+    B: "A binomial variable needs a fixed number of trials, and there is no fixed number of possible calls."
+    C: "Counts near 6 are much more likely than counts near 0 or 20, so the values are not equally likely."
+    D: "X is a discrete count, while the normal distribution is continuous."
+
+- id: distributions-03
+  skill: distributions
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    A basketball player makes 70% of free throws, independently of one another. In 20 attempts, what is the expected number of free throws made?
+  options:
+    - "4.2"
+    - "6"
+    - "14"
+    - "20"
+  ordered: true
+  answer: C
+  explain: |
+    The number made is binomial with n = 20 and p = 0.7, so its mean is np = 20 × 0.7 = 14.
+  why:
+    A: "This is the variance, np(1 - p) = 20 × 0.7 × 0.3."
+    B: "This is the expected number of misses, 20 × 0.3."
+    D: "This is the number of attempts, not the expected number made."
+  verify: "20 * 0.7"
+
+- id: distributions-04
+  skill: distributions
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    X is binomial with n = 50 and p = 0.2. What is the variance of X?
+  options:
+    - "2.83"
+    - "8"
+    - "10"
+    - "40"
+  ordered: true
+  answer: B
+  explain: |
+    The variance of a binomial variable is np(1 - p) = 50 × 0.2 × 0.8 = 8.
+  why:
+    A: "This is the standard deviation, the square root of 8."
+    C: "This is the mean, np = 10."
+    D: "This is n(1 - p), which leaves out the factor p."
+  verify: "50 * 0.2 * 0.8"
+
+- id: distributions-05
+  skill: distributions
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    The number of typos per page in a long report follows a Poisson distribution with a mean of 9. What is the standard deviation of the number of typos per page?
+  options:
+    - "3"
+    - "4.5"
+    - "9"
+    - "81"
+  ordered: true
+  answer: A
+  explain: |
+    A Poisson distribution has a variance equal to its mean, so the variance is 9 and the standard deviation is $$\sqrt{9} = 3$$.
+  why:
+    B: "This halves the mean, which is not a rule for the Poisson distribution."
+    C: "This is the variance, which equals the mean; the standard deviation is its square root."
+    D: "This squares the mean instead of taking its square root."
+  verify: "math.sqrt(9)"
+
+- id: distributions-06
+  skill: distributions
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    A delivery is equally likely to arrive at any moment between 10 and 40 minutes after an order is placed. What is the expected delivery time, in minutes?
+  options:
+    - "15"
+    - "20"
+    - "25"
+    - "30"
+  ordered: true
+  answer: C
+  explain: |
+    A continuous uniform distribution on [a, b] has mean (a + b) / 2 = (10 + 40) / 2 = 25 minutes.
+  why:
+    A: "This is half the width of the interval, (40 - 10) / 2, without adding the start time."
+    B: "This is half of the upper limit, 40 / 2, which ignores the lower limit."
+    D: "This is the width of the interval, 40 - 10."
+  verify: "(10 + 40) / 2"
+
+- id: distributions-07
+  skill: distributions
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A fair coin is flipped 4 times. What is the probability of getting exactly 2 heads?
+  options:
+    - "0.0625"
+    - "0.2"
+    - "0.375"
+    - "0.5"
+  ordered: true
+  answer: C
+  explain: |
+    The number of heads is binomial with n = 4 and p = 0.5. There are C(4, 2) = 6 ways to place 2 heads among 4 flips, and each sequence has probability $$0.5^4 = 0.0625$$, so the probability is 6 × 0.0625 = 0.375.
+  why:
+    A: "This is the probability of one particular sequence, such as HHTT, but 6 sequences have exactly 2 heads."
+    B: "This treats the 5 possible counts, 0 through 4, as equally likely."
+    D: "Two heads is the expected count, but the chance of getting exactly 2 is lower than 0.5."
+  verify: "comb(4, 2) * 0.5 ** 4"
+
+# ---------------------------------------------------------------- var-types
+- id: var-types-01
+  skill: var-types
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which of these is a continuous random variable?
+  options:
+    - "The number of emails a person receives in a day"
+    - "The number of unread emails in a person's inbox"
+    - "The number of email accounts a person has"
+    - "The time a person spends reading email in a day"
+  answer: D
+  explain: |
+    Time is measured and can take any value in an interval, such as 37.4 minutes, so it is continuous. The other three are counts, which are discrete.
+  why:
+    A: "A number of emails is a count, so it is discrete."
+    B: "Unread emails are counted in whole numbers, so the variable is discrete."
+    C: "Accounts are counted, so the variable is discrete."
+
+- id: var-types-02
+  skill: var-types
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A study examines whether the number of hours students sleep affects their test scores. Which is the response variable?
+  options:
+    - "The test score"
+    - "The hours of sleep"
+    - "The number of students in the study"
+    - "The school the students attend"
+  answer: A
+  explain: |
+    The response variable is the outcome being measured, here the test score. Hours of sleep is the explanatory variable, the one thought to influence the score.
+  why:
+    B: "Hours of sleep is the explanatory variable, the suspected influence on the score."
+    C: "The number of students is the sample size, not a variable measured on each student."
+    D: "The school could be a confounding variable, but it is not the outcome being studied."
+
+- id: var-types-03
+  skill: var-types
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which variable is discrete?
+  options:
+    - "The height of a plant in centimeters"
+    - "The number of customers in a store at noon"
+    - "The weight of a package in kilograms"
+    - "The temperature outside at noon"
+  answer: B
+  explain: |
+    Customers are counted in whole numbers with gaps between them (0, 1, 2, and so on), so the count is discrete. Height, weight, and temperature are measured and can take any value in an interval.
+  why:
+    A: "Height is measured and can take any value in a range, so it is continuous."
+    C: "Weight is measured, so it is continuous."
+    D: "Temperature is measured on a continuous scale."
+
+- id: var-types-04
+  skill: var-types
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A study finds that cities with more firefighters have more fire damage each year. Which variable most likely confounds this association?
+  options:
+    - "The number of firefighters in each city"
+    - "The amount of fire damage in each city"
+    - "The average age of each city's firefighters"
+    - "The population and size of each city"
+  answer: D
+  explain: |
+    Bigger cities have more buildings and more fires, so they suffer more fire damage, and they also employ more firefighters. City size is linked to both variables, which creates the association without firefighters causing the damage.
+  why:
+    A: "The number of firefighters is the explanatory variable in the association, not a third variable."
+    B: "Fire damage is the response variable in the association."
+    C: "Firefighter age is not clearly linked to both the number of firefighters and the damage."
+
+- id: var-types-05
+  skill: var-types
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Shoes are sold in half sizes, such as 8, 8.5, and 9. How should shoe size, as sold, be classified?
+  options:
+    - "Discrete, because only separate values are possible"
+    - "Continuous, because sizes can include decimals"
+    - "Continuous, because foot length is measured"
+    - "Categorical, because sizes are printed as labels"
+  answer: A
+  explain: |
+    Shoe size as sold takes separate values in steps of a half, with no sizes in between, so it is discrete. Foot length itself is continuous, but the size scale groups it into separate steps.
+  why:
+    B: "Decimals do not make a variable continuous; what matters is the gaps between possible values."
+    C: "Foot length is continuous, but the variable here is the size as sold, which comes in steps."
+    D: "Sizes are numbers with a meaningful order and spacing, so they are not mere labels."
+
+- id: var-types-06
+  skill: var-types
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    In an experiment, a researcher gives plants different amounts of fertilizer and measures how tall they grow. What is the amount of fertilizer?
+  options:
+    - "The dependent variable"
+    - "The independent variable"
+    - "A confounding variable"
+    - "A control group"
+  answer: B
+  explain: |
+    The researcher sets the amount of fertilizer, so it is the independent (explanatory) variable. Plant height is the dependent (response) variable.
+  why:
+    A: "The dependent variable is the measured outcome, plant height."
+    C: "A confounder is a third variable linked to both; fertilizer is the variable being tested."
+    D: "A control group is a set of subjects that receives no treatment, not a variable."
+
+- id: var-types-07
+  skill: var-types
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which variable is qualitative (categorical)?
+  options:
+    - "Annual income"
+    - "Number of siblings"
+    - "Distance to school"
+    - "Favorite music genre"
+  answer: D
+  explain: |
+    A favorite music genre is a category with no numeric value, so it is qualitative. Income, siblings, and distance are numbers, so they are quantitative.
+  why:
+    A: "Income is a numeric amount, so it is quantitative."
+    B: "Siblings are counted, so the variable is quantitative and discrete."
+    C: "Distance is measured, so it is quantitative and continuous."

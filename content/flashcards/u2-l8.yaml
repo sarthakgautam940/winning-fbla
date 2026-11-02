@@ -1,0 +1,71 @@
+# Lesson 2.8 flashcards
+
+- id: fc-random-variable
+  term: Random variable
+  def: A number whose value depends on the outcome of a random process, such as the number of heads in 3 flips or the time a page takes to load.
+  skill: rv-dist
+
+- id: fc-discrete-variable
+  term: Discrete Variable
+  def: A variable that takes separate, countable values with gaps between them, such as counts of customers or goals. Decimals alone do not make a variable continuous; shoe sizes are discrete.
+  skill: var-types
+  virginia: true
+
+- id: fc-continuous-variable
+  term: Continuous Variable
+  def: A variable that can take any value in an interval, such as time, height, or temperature. For a continuous X, P(X = a) = 0 for any exact value, so probabilities come from intervals.
+  skill: var-types
+  virginia: true
+
+- id: fc-probability-distribution
+  term: Probability Distribution
+  def: A list of every possible value of a random variable with its probability. Every probability is from 0 to 1, and together they sum to 1.
+  skill: rv-dist
+  virginia: true
+
+- id: fc-expected-value
+  term: Expected Value
+  def: The long-run average of a random variable, E(X) = sum of x times P(x). A fair die has E = 3.5, and two dice have an expected sum of 7.
+  skill: expected-value
+  virginia: true
+
+- id: fc-fair-game
+  term: Fair game
+  def: A game whose expected net winnings, E(prize) minus the cost, equal 0. Insurers and casinos set prices above the expected payout.
+  skill: ev-decisions
+
+- id: fc-expected-count
+  term: Expected count
+  def: In n independent trials with success probability p, the expected number of successes is np.
+  example: "500 emails with a 4% response rate: expect 20 responses."
+  skill: ev-decisions
+
+- id: fc-linearity
+  term: Linearity of expectation
+  def: E(aX + b) = aE(X) + b, and E(X + Y) = E(X) + E(Y) always, even for dependent variables.
+  skill: ev-rules
+
+- id: fc-variance-rv
+  term: Variance of a random variable
+  def: Var(X) = sum of (x - mean)^2 times P(x), or E(X^2) - mean^2. Var(aX + b) = a^2 Var(X), and for independent X and Y, Var(X + Y) = Var(X) + Var(Y).
+  skill: ev-rules
+
+- id: fc-binomial
+  term: Binomial distribution
+  def: The number of successes in a fixed number n of independent trials with the same success probability p. Mean np, variance np(1 - p).
+  skill: distributions
+
+- id: fc-poisson
+  term: Poisson distribution
+  def: The number of events in a fixed interval of time or space at a constant average rate. Its mean and variance are equal.
+  skill: distributions
+
+- id: fc-uniform
+  term: Uniform distribution
+  def: Every outcome, or every interval of equal width, is equally likely. A continuous uniform on [a, b] has mean (a + b) / 2.
+  skill: distributions
+
+- id: fc-explanatory-response
+  term: Explanatory vs. response variable
+  def: The explanatory (independent) variable is the suspected influence or the input a researcher sets. The response (dependent) variable is the outcome measured. A confounder is linked to both.
+  skill: var-types
