@@ -1,0 +1,510 @@
+# Lesson 7.5: Rule-based reasoning and expert systems
+
+# ---------------------------------------------------------------- chaining
+- id: chaining-01
+  skill: chaining
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is forward chaining?
+  options:
+    - "Starting from a goal and working back to the facts that would prove it"
+    - "Starting from known facts and applying rules to add new facts"
+    - "Training a neural network one layer at a time from input to output"
+    - "Asking the user every question before applying any rules"
+  answer: B
+  explain: |
+    Forward chaining is data-driven: it starts with the known facts, fires every rule whose conditions are satisfied, and adds the conclusions as new facts, repeating until nothing new can be added or a goal is reached.
+  why:
+    A: "Starting from a goal and working back is backward chaining."
+    C: "Forward chaining is a rule-based reasoning method, not neural network training."
+    D: "Forward chaining works from the facts it has; it does not front-load every question."
+
+- id: chaining-02
+  skill: chaining
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is backward chaining?
+  options:
+    - "Undoing the last rule an expert system applied"
+    - "Applying every rule whose conditions match the current facts"
+    - "Reading a rule base from the last rule to the first"
+    - "Starting from a goal and proving the conditions of rules that conclude it"
+  answer: D
+  explain: |
+    Backward chaining is goal-driven: it starts with a hypothesis, finds rules whose conclusion is that hypothesis, and tries to prove their conditions as subgoals, working back until it reaches known facts or must ask the user.
+  why:
+    A: "Undoing a step is backtracking, not backward chaining."
+    B: "Applying every matching rule to the facts is forward chaining."
+    C: "The order rules are listed in has nothing to do with the reasoning direction."
+
+- id: chaining-03
+  skill: chaining
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A rule base holds three rules:
+
+    ```text
+    R1: IF it is raining THEN the ground is wet
+    R2: IF the ground is wet AND it is cold THEN the road is icy
+    R3: IF the road is icy THEN school starts late
+    ```
+
+    The known facts are "it is raining" and "it is cold." Which new facts does forward chaining add?
+  options:
+    - "Wet ground, an icy road, and a late start"
+    - "Only wet ground, then it stops"
+    - "Only a late start to school"
+    - "Nothing, since no rule uses both facts"
+  answer: A
+  explain: |
+    R1 fires on "raining" and adds "the ground is wet." Now R2's conditions, wet ground and cold, both hold, so it adds "the road is icy." That lets R3 add "school starts late." Forward chaining keeps going until no rule can add anything new.
+  why:
+    B: "Forward chaining does not stop after one rule; the new fact lets R2 fire."
+    C: "The final conclusion comes only after the two facts in between are derived."
+    D: "Rules can build on facts that earlier rules added, so the chain continues."
+
+- id: chaining-04
+  skill: chaining
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In an expert system, what does the inference engine do?
+  options:
+    - "It stores the facts and rules gathered from human experts"
+    - "It collects new training data from the internet"
+    - "It applies the rules to the facts to reach conclusions"
+    - "It draws the screens that users interact with"
+  answer: C
+  explain: |
+    The inference engine is the reasoning part: it matches rules against the facts in working memory and applies them, by forward or backward chaining, to reach conclusions. The knowledge base stores the rules, and the user interface handles the screens.
+  why:
+    A: "Storing facts and rules is the job of the knowledge base."
+    B: "Classic expert systems do not gather training data; experts supply their rules."
+    D: "Screens and questions belong to the user interface."
+
+- id: chaining-05
+  skill: chaining
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A medical advice system is asked whether a patient has one particular infection. It looks for rules that would conclude that infection and asks only the questions needed to test them. Which reasoning approach is it using?
+  options:
+    - "Forward chaining"
+    - "Backward chaining"
+    - "Unsupervised clustering"
+    - "Gradient descent"
+  answer: B
+  explain: |
+    Starting from a specific hypothesis and working back to the evidence that would confirm it is backward chaining. Because it pursues one goal, it asks only relevant questions, which is why goal-driven reasoning suits diagnosis; MYCIN worked this way.
+  why:
+    A: "Forward chaining would start from the known facts and derive whatever follows, not test one hypothesis."
+    C: "Clustering groups unlabeled data; it does not test a hypothesis with rules."
+    D: "Gradient descent trains models; it is not a rule-based reasoning strategy."
+
+- id: chaining-06
+  skill: chaining
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A factory's monitoring system receives a constant stream of sensor readings, and rules raise alarms whenever readings match dangerous patterns. Which reasoning approach fits best?
+  options:
+    - "Forward chaining, because new data should trigger whatever conclusions follow"
+    - "Backward chaining, because each alarm must be proven before any data arrives"
+    - "Neither, because rules cannot work with sensor data"
+    - "Backward chaining, because there are many facts and few rules"
+  answer: A
+  explain: |
+    When data arrives continuously and the goal is to notice whatever follows from it, data-driven forward chaining fits: each new reading can fire rules immediately. Backward chaining suits checking one hypothesis at a time.
+  why:
+    B: "Backward chaining starts from a goal; here the data comes first and the conclusions follow."
+    C: "Rules can test sensor values directly, such as IF temperature is above a limit THEN raise an alarm."
+    D: "A flood of incoming data is the classic case for forward chaining, not backward."
+
+- id: chaining-07
+  skill: chaining
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Using the rule base below with the goal "school starts late," in what order does backward chaining take up these subgoals?
+
+    ```text
+    R1: IF it is raining THEN the ground is wet
+    R2: IF the ground is wet AND it is cold THEN the road is icy
+    R3: IF the road is icy THEN school starts late
+    ```
+  options:
+    - "It is raining, then the ground is wet, then the road is icy"
+    - "The road is icy, then it is cold, then school starts late"
+    - "It is cold, then it is raining, then the road is icy"
+    - "The road is icy, then the ground is wet and it is cold, then it is raining"
+  answer: D
+  explain: |
+    The goal is concluded by R3, so its condition, "the road is icy," becomes the first subgoal. That is concluded by R2, whose conditions, "the ground is wet" and "it is cold," become the next subgoals. "The ground is wet" is concluded by R1, so "it is raining" comes last. Backward chaining moves from the goal toward the basic facts.
+  why:
+    A: "This is the forward order, from facts toward the goal."
+    B: "School starting late is the goal itself, not a later subgoal, and the ground's wetness is skipped."
+    C: "Backward chaining begins from the rule that concludes the goal, so the icy road comes first."
+
+- id: chaining-08
+  skill: chaining
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What is the purpose of an expert system's explanation facility?
+  options:
+    - "To translate the system's answers into other languages"
+    - "To delete rules that experts no longer agree with"
+    - "To show how a conclusion was reached and why a question is asked"
+    - "To speed up the inference engine's calculations"
+  answer: C
+  explain: |
+    The explanation facility traces the reasoning: which rules fired to reach a conclusion, and why the system is asking a particular question. Being able to explain itself is a major strength of rule-based systems compared with neural networks.
+  why:
+    A: "Translation is not its purpose; explanation of the reasoning is."
+    B: "Editing rules is the job of the knowledge acquisition tools."
+    D: "Speed belongs to the inference engine, not the explanation facility."
+
+- id: chaining-09
+  skill: chaining
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    MYCIN, the Stanford expert system that advised doctors on antibiotics, used a goal-oriented control structure. Which kind of reasoning is that?
+  options:
+    - "Forward chaining"
+    - "Backward chaining"
+    - "Reinforcement learning"
+    - "Deep learning"
+  answer: B
+  explain: |
+    A goal-oriented control structure starts from a hypothesis, such as a particular infection, and works back through rules to the evidence that would support it: backward chaining. It let MYCIN ask doctors only questions relevant to the goal it was pursuing.
+  why:
+    A: "Forward chaining is data-driven, the opposite of goal-oriented."
+    C: "MYCIN was a hand-built rule-based system, not a learning agent."
+    D: "MYCIN predates deep learning by decades and used rules, not neural networks."
+
+- id: chaining-10
+  skill: chaining
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    R1, also called XCON, configured computer orders for Digital Equipment Corporation using a production system whose recognize-act cycle repeatedly fired rules that matched the current data. Which kind of reasoning is that?
+  options:
+    - "Forward chaining"
+    - "Backward chaining"
+    - "Abduction from effects to causes"
+    - "Statistical inference with Bayes' rule"
+  answer: A
+  explain: |
+    Firing whichever rules match the current data, adding their results, and repeating is data-driven forward chaining. It suited configuration, where R1 built up a complete computer system step by step from the customer's order.
+  why:
+    B: "Backward chaining starts from a goal and works back; R1 worked forward from the order data."
+    C: "Abduction reasons from observations to likely explanations, which is not configuration."
+    D: "R1 used rules, not probabilities."
+
+- id: chaining-11
+  skill: chaining
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A rule base holds R1: IF A THEN B; R2: IF B THEN C; and R3: IF C AND D THEN E. The known facts are A and D. Under forward chaining, how many rule firings happen before no rule can add a new fact?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    R1 fires on A and adds B. R2 fires on B and adds C. R3 now has both C and D, so it fires and adds E. No rule can add anything new after that, so there are 3 firings.
+  why:
+    A: "Firing R1 adds B, which lets R2 fire, so the chain continues."
+    B: "After R2 adds C, R3's conditions, C and D, are both satisfied."
+    D: "There are only three rules, and each fires once; nothing new remains for a fourth firing."
+  verify: |
+    rules = [({"A"}, "B"), ({"B"}, "C"), ({"C", "D"}, "E")]
+    facts = {"A", "D"}
+    fired, changed = 0, True
+    while changed:
+        changed = False
+        for cond, concl in rules:
+            if cond <= facts and concl not in facts:
+                facts.add(concl)
+                fired += 1
+                changed = True
+    ans = fired
+
+- id: chaining-12
+  skill: chaining
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is the knowledge acquisition bottleneck?
+  options:
+    - "Computers running out of memory while storing large rule bases"
+    - "Users taking too long to answer an expert system's questions"
+    - "Networks being too slow to download rules from servers"
+    - "The slow, difficult work of turning experts' know-how into explicit rules"
+  answer: D
+  explain: |
+    Experts often cannot state all the rules they use, and capturing their knowledge through interviews is slow and expensive. This bottleneck limited how far expert systems could scale and helped bring on the second AI winter.
+  why:
+    A: "Memory is not the main limit; extracting the rules is."
+    B: "Slow users are an interface issue, not the bottleneck in building the knowledge base."
+    C: "Download speed has nothing to do with capturing expert knowledge."
+
+- id: chaining-13
+  skill: chaining
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    In a rule-based system, where are the IF-THEN rules kept, and where are the facts about the current case kept?
+  options:
+    - "Rules in the knowledge base; facts in working memory"
+    - "Rules in working memory; facts in the knowledge base"
+    - "Both in the user interface"
+    - "Both in the explanation facility"
+  answer: A
+  explain: |
+    The knowledge base holds the domain rules, which stay the same from case to case. Working memory holds the facts about the case at hand, which change as the inference engine adds conclusions.
+  why:
+    B: "This swaps the two: the rules are the lasting knowledge, while case facts change."
+    C: "The user interface asks questions and shows results; it stores neither rules nor facts."
+    D: "The explanation facility reports on the reasoning; it is not where knowledge is stored."
+
+- id: chaining-14
+  skill: chaining
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A Prolog program contains facts and rules, and a user asks the query grandparent(X, sam). How does Prolog search for answers?
+  options:
+    - "It derives every possible fact first, then checks whether the query is among them"
+    - "It works backward from the query, matching rules whose heads fit and proving their bodies"
+    - "It trains a neural network on the facts and predicts the answer"
+    - "It samples random facts until one happens to satisfy the query"
+  answer: B
+  explain: |
+    Prolog answers queries by backward chaining: it unifies the query with the head (conclusion) of a rule, then tries to prove that rule's body (conditions) as subgoals, working down to stored facts. This goal-driven search explores only what the query needs.
+  why:
+    A: "Deriving everything first is forward chaining, which Prolog does not use to answer queries."
+    C: "Prolog is a logic programming language; it does not train neural networks."
+    D: "Prolog's search is systematic, not random."
+
+# ---------------------------------------------------------------- kr-ml
+- id: kr-ml-01
+  skill: kr-ml
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is neuro-symbolic AI?
+  options:
+    - "A neural network that has been trained on a symbol dataset"
+    - "Any AI system that runs on specialized brain-inspired chips"
+    - "Combining neural networks with symbolic rules, logic, or search"
+    - "A rule-based system that has no learning component at all"
+  answer: C
+  explain: |
+    Neuro-symbolic AI combines the strengths of both traditions: neural networks for learning and perception from raw data, and symbolic methods such as rules, logic, knowledge graphs, and search for explicit reasoning. A system might detect objects with a neural network and then reason about them with rules.
+  why:
+    A: "Training on a symbol dataset is still purely neural; the term means combining the two approaches."
+    B: "The hardware it runs on does not define the approach."
+    D: "A purely rule-based system is symbolic AI alone."
+
+- id: kr-ml-02
+  skill: kr-ml
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which of these systems is an example of connectionist AI?
+  options:
+    - "An expert system made of IF-THEN rules"
+    - "A knowledge graph of products and brands"
+    - "A Prolog program of facts and rules"
+    - "A neural network that recognizes faces"
+  answer: D
+  explain: |
+    Connectionist AI learns from examples with networks of simple connected units, its knowledge spread across learned weights. A face-recognition neural network is connectionist; rules, knowledge graphs, and logic programs are symbolic.
+  why:
+    A: "IF-THEN rules are symbolic knowledge."
+    B: "A knowledge graph stores explicit, symbolic facts."
+    C: "Prolog programs are symbolic logic."
+
+- id: kr-ml-03
+  skill: kr-ml
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    DeepMind's AlphaGo, which beat Go champion Lee Sedol in 2016, combined deep neural networks with tree search. Why is this an example of combining the two traditions of AI?
+  options:
+    - "Learned networks judged positions and moves, while symbolic search looked ahead"
+    - "It replaced all of its search with rules written by Go experts"
+    - "It used only neural networks, with no search of any kind"
+    - "It searched every possible game of Go to the very end"
+  answer: A
+  explain: |
+    AlphaGo's neural networks, trained on expert games and self-play, judged board positions and suggested promising moves, and its tree search used those judgments to look ahead through possible sequences of play. Learned pattern recognition guided a classic symbolic search.
+  why:
+    B: "AlphaGo learned its judgment from games rather than relying on expert-written rules."
+    C: "Tree search was central to how AlphaGo chose moves."
+    D: "Go has far too many possible games to search exhaustively, which is why the networks guided the search."
+
+- id: kr-ml-04
+  skill: kr-ml
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A bank's lending model must never base decisions on an applicant's race, even if some pattern in the data would seem to help. What is the most reliable way to guarantee this?
+  options:
+    - "Hope the neural network learns on its own to ignore race"
+    - "Train the model longer so that it overfits less"
+    - "Enforce the requirement as an explicit rule, and test that it holds"
+    - "Raise the model's temperature so its decisions vary more"
+  answer: C
+  explain: |
+    Learned models pick up whatever patterns lower their error, including proxies for protected traits, so a legal requirement should not be left to chance. Encoding it as an explicit constraint, by removing the attribute and checking for proxies, and auditing the results, makes the guarantee checkable. This is one reason explicit knowledge still matters alongside machine learning (lesson 8.3).
+  why:
+    A: "A network has no built-in reason to ignore a feature that improves its accuracy."
+    B: "Training longer does not create a guarantee about which information is used."
+    D: "Temperature affects random sampling in generative models, not fairness constraints."
+
+- id: kr-ml-05
+  skill: kr-ml
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    How can a knowledge graph help a large language model answer factual questions?
+  options:
+    - "It replaces the language model's tokenizer"
+    - "It permanently retrains the model after every question"
+    - "It makes the model's answers longer and more detailed"
+    - "It supplies verified facts that are added to the model's context"
+  answer: D
+  explain: |
+    Retrieving relevant facts from a knowledge graph and placing them in the prompt grounds the model's answer in stored, checkable knowledge, which reduces hallucination. This pairs symbolic knowledge with a neural language model, much like retrieval-augmented generation.
+  why:
+    A: "The tokenizer splits text; a knowledge graph supplies facts."
+    B: "Adding facts to the context changes no weights."
+    C: "The goal is accuracy, not length."
+
+- id: kr-ml-06
+  skill: kr-ml
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A company wants to build a knowledge graph from millions of news articles. How can machine learning help?
+  options:
+    - "By drawing the graph's nodes in attractive colors"
+    - "By deleting articles that mention more than one company"
+    - "By extracting entities and the relationships between them from the text"
+    - "By converting the articles into images for storage"
+  answer: C
+  explain: |
+    Models for named entity recognition and relation extraction can read text and pull out entities, such as companies and people, and relationships, such as "acquired" or "is CEO of," which become triples in the graph. Learning builds the symbolic structure.
+  why:
+    A: "Visual styling does not build the knowledge."
+    B: "Deleting articles throws away exactly the relationships the graph needs."
+    D: "Turning text into images makes extraction harder, not easier."
+
+- id: kr-ml-07
+  skill: kr-ml
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which is a strength of connectionist AI compared with symbolic AI?
+  options:
+    - "It learns patterns directly from raw data such as images"
+    - "Every conclusion can be traced to a rule an expert wrote"
+    - "It needs no training data at all"
+    - "It never makes confident mistakes"
+  answer: A
+  explain: |
+    Neural networks learn useful features from raw data such as pixels, sound, and text, tasks where writing rules by hand is hopeless. The trade-off is that their decisions are hard to explain and they can be confidently wrong.
+  why:
+    B: "Traceable rules are a strength of symbolic AI."
+    C: "Neural networks need large amounts of training data."
+    D: "Neural networks can make confident mistakes, such as hallucinations."
+
+- id: kr-ml-08
+  skill: kr-ml
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A system answers questions about store hours. The hours for one store changed yesterday. Why is fixing this easier if the hours live in a knowledge base rather than only in a neural network's weights?
+  options:
+    - "Knowledge bases never contain mistakes"
+    - "Neural networks cannot store any facts"
+    - "Knowledge bases update themselves from the internet"
+    - "The fact can be edited directly, with no retraining"
+  answer: D
+  explain: |
+    Explicit knowledge can be corrected in place: change the store's hours in the knowledge base, and every answer that uses them is right immediately. A fact absorbed into a network's weights can only be changed by retraining or fine-tuning, which is slow and imprecise.
+  why:
+    A: "Knowledge bases can contain errors; the advantage is that errors are easy to fix."
+    B: "Networks do absorb facts in their weights; they are just hard to edit."
+    C: "Someone or something must update the entry; it does not happen on its own."
+
+- id: kr-ml-09
+  skill: kr-ml
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A hospital wants a system for a rare disease, with only a few dozen recorded cases but well-established expert guidelines. Why might explicit rules be a good starting point?
+  options:
+    - "Rules work even with too little data to train a reliable model"
+    - "Rules automatically learn new patterns from every new case"
+    - "Rules can be built without consulting any experts"
+    - "Rules are guaranteed never to need updating"
+  answer: A
+  explain: |
+    A few dozen cases are far too few to train a reliable neural network, but expert guidelines can be written as rules that work from day one. As more cases accumulate, learned models can be added and checked against the rules.
+  why:
+    B: "Classic rules do not learn; that is a weakness of purely symbolic systems."
+    C: "The rules come from experts, so experts must be consulted."
+    D: "Guidelines change, so rule bases need maintenance."
+
+- id: kr-ml-10
+  skill: kr-ml
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A delivery robot uses a neural network to recognize a stop sign in its camera feed and a programmed rule that says "IF a stop sign is detected THEN stop." What kind of design is this?
+  options:
+    - "Purely symbolic AI"
+    - "Neuro-symbolic AI"
+    - "Purely connectionist AI"
+    - "Unsupervised clustering"
+  answer: B
+  explain: |
+    The neural network handles perception, recognizing the sign from raw pixels, and the explicit rule handles the decision. Combining learned perception with symbolic rules is neuro-symbolic AI.
+  why:
+    A: "The sign is recognized by a neural network, so the system is not purely symbolic."
+    C: "The stopping decision comes from an explicit rule, so it is not purely connectionist."
+    D: "Nothing here groups unlabeled data."

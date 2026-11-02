@@ -1,0 +1,43 @@
+# Lesson 7.5 flashcards
+
+- id: fc-forward-chaining
+  term: Forward Chaining
+  def: Data-driven reasoning that starts from known facts and repeatedly applies rules whose conditions are satisfied, adding their conclusions, until nothing new can be added or a goal is reached. Suits monitoring and configuration (R1/XCON).
+  skill: chaining
+  virginia: true
+
+- id: fc-backward-chaining
+  term: Backward Chaining
+  def: Goal-driven reasoning that starts from a hypothesis, finds rules that conclude it, and proves their conditions as subgoals back to known facts, asking only relevant questions. Suits diagnosis (MYCIN) and Prolog queries.
+  skill: chaining
+  virginia: true
+
+- id: fc-rules-facts
+  term: Knowledge base and working memory
+  def: A rule-based system keeps its IF-THEN rules in the knowledge base and the facts about the current case in working memory; the inference engine matches rules to facts.
+  skill: chaining
+
+- id: fc-expert-system
+  term: Expert system
+  def: A program that captures experts' knowledge in a narrow domain. Parts include a knowledge base, an inference engine, working memory, a user interface, an explanation facility, and knowledge acquisition tools.
+  skill: chaining
+
+- id: fc-knowledge-bottleneck
+  term: Knowledge acquisition bottleneck
+  def: The slow, difficult work of turning experts' know-how into explicit rules. Along with brittleness and no learning, it limited expert systems.
+  skill: chaining
+
+- id: fc-mycin-xcon
+  term: MYCIN and R1/XCON
+  def: MYCIN (Stanford, 1970s) advised on antibiotics with a goal-oriented, backward-chaining control structure and about 200 rules; it was never in routine clinical use. R1/XCON configured DEC computer orders with forward-chaining rules (772 by 1980).
+  skill: chaining
+
+- id: fc-neuro-symbolic
+  term: Neuro-symbolic AI
+  def: Combining neural networks (learning and perception) with symbolic rules, logic, knowledge graphs, or search. AlphaGo paired deep neural networks with tree search.
+  skill: kr-ml
+
+- id: fc-explicit-knowledge
+  term: Why explicit knowledge still matters
+  def: Explicit rules guarantee hard constraints such as laws and safety, explain decisions, work with little data, and can be corrected directly without retraining.
+  skill: kr-ml
