@@ -1,0 +1,60 @@
+# Lesson 7.7 flashcards
+
+- id: fc-bayesian-network
+  term: Bayesian Network
+  def: A probabilistic model that represents random variables and their dependencies with a directed acyclic graph, plus a conditional probability table at each node. It compactly encodes a joint distribution and supports reasoning from evidence.
+  skill: bn-structure
+  virginia: true
+
+- id: fc-node
+  term: Node
+  def: In a Bayesian network, a node represents a random variable, such as whether it rains. In any graph, a node is one of the points that edges connect.
+  skill: bn-structure
+  virginia: true
+
+- id: fc-edge
+  term: Edge
+  def: In a Bayesian network, a directed arrow from a parent node to a child node, showing a direct influence or dependence. A missing edge means no direct dependence.
+  skill: bn-structure
+  virginia: true
+
+- id: fc-dag
+  term: Directed Acyclic Graph (DAG)
+  def: A graph whose edges all have directions and that contains no directed cycles, so following the arrows never returns to the starting node. Bayesian networks must be DAGs.
+  skill: bn-structure
+  virginia: true
+
+- id: fc-cpt
+  term: Conditional probability table (CPT)
+  def: A node's probabilities for every combination of its parents' values. A root node's table is its prior. A true-or-false node with k true-or-false parents lists 2^k probabilities.
+  skill: bn-structure
+
+- id: fc-bn-joint
+  term: Joint probability in a Bayesian network
+  def: Multiply each node's probability given its parents. Sprinkler network, cloudy, sprinkler off, rain, wet grass is 0.5 × 0.9 × 0.8 × 0.9 = 0.324.
+  skill: bn-joint
+
+- id: fc-bn-parameters
+  term: Counting parameters
+  def: Sum 2^k over the nodes, where k is the number of parents (true-or-false variables). The sprinkler network needs 1 + 2 + 2 + 4 = 9 numbers; a full joint table over n variables needs 2^n - 1 (15).
+  skill: bn-joint
+
+- id: fc-chain-fork-collider
+  term: Chain, fork, collider
+  def: In a chain (A → B → C) or fork (A ← B → C), the ends become independent once B is known. In a collider (A → C ← B), the causes are independent until C is known, then become dependent.
+  skill: bn-independence
+
+- id: fc-explaining-away
+  term: Explaining away
+  def: When a common effect is observed, confirming one cause makes the other less likely. Wet grass plus known rain makes the sprinkler a less likely explanation.
+  skill: bn-independence
+
+- id: fc-markov-blanket
+  term: Markov blanket
+  def: A node's parents, its children, and its children's other parents. Given its Markov blanket, a node is independent of all other nodes.
+  skill: bn-independence
+
+- id: fc-bn-inference
+  term: Predictive vs. diagnostic inference
+  def: Predictive reasoning runs from causes to effects (cloudy, so rain?). Diagnostic reasoning runs from effects to causes with Bayes' rule (wet grass, so rain?). Large networks use sampling-based approximate inference.
+  skill: bn-inference

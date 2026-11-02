@@ -1,0 +1,630 @@
+# Lesson 7.7: Bayesian networks
+
+# ---------------------------------------------------------------- bn-structure
+- id: bn-structure-01
+  skill: bn-structure
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is a Bayesian network?
+  options:
+    - "A graph of random variables and their dependencies, with probability tables"
+    - "A neural network whose weights are set by Bayes' rule"
+    - "A computer network that shares probabilities between servers"
+    - "A list of IF-THEN rules that are always true"
+  answer: A
+  explain: |
+    A Bayesian network represents random variables as nodes in a directed acyclic graph, with arrows for direct dependencies and a conditional probability table at each node. It compactly encodes a joint probability distribution and supports reasoning from evidence.
+  why:
+    B: "A Bayesian network is a probabilistic graphical model, not a neural network."
+    C: "The 'network' is a graph of variables, not computers."
+    D: "Certain IF-THEN rules are logic-based; Bayesian networks reason with probabilities."
+
+- id: bn-structure-02
+  skill: bn-structure
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    In a Bayesian network, what does a node represent?
+  options:
+    - "A rule that must always be true"
+    - "A layer of artificial neurons"
+    - "A single training example"
+    - "A random variable, such as whether it rains"
+  answer: D
+  explain: |
+    Each node is a random variable that can take values, such as Rain being true or false. Arrows between nodes show direct dependencies, and each node carries a table of probabilities given its parents.
+  why:
+    A: "Rules belong to logic-based systems; nodes in a Bayesian network hold uncertain variables."
+    B: "Layers of neurons belong to neural networks."
+    C: "Training examples are data, not parts of the network's structure."
+
+- id: bn-structure-03
+  skill: bn-structure
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In a Bayesian network, what does an edge from Rain to WetGrass represent?
+  options:
+    - "WetGrass causes Rain"
+    - "Rain directly influences WetGrass"
+    - "Rain and WetGrass are always both true"
+    - "Rain and WetGrass are independent"
+  answer: B
+  explain: |
+    An edge points from a parent to a child and represents a direct influence or dependence: whether it rains directly affects whether the grass is wet. The child's probability table is given for each value of its parents.
+  why:
+    A: "The arrow points from the influence to what it influences, so Rain affects WetGrass, not the reverse."
+    C: "An edge expresses a probabilistic dependence, not a certainty."
+    D: "An edge marks dependence; independence is shown by the absence of an edge."
+
+- id: bn-structure-04
+  skill: bn-structure
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why must a Bayesian network's graph be acyclic?
+  options:
+    - "So that every node can have at most one parent"
+    - "So that the arrows can be drawn without crossing"
+    - "So the product of the probability tables defines one consistent distribution"
+    - "So that the network can be stored in a spreadsheet"
+  answer: C
+  explain: |
+    A Bayesian network defines its joint distribution by multiplying each variable's probability given its parents. With a directed cycle, such as A → B → C → A, a variable would in effect depend on itself, and the product would not define a valid distribution.
+  why:
+    A: "Nodes can have several parents; WetGrass has two in the sprinkler network."
+    B: "Arrows may cross on paper; what matters is that no directed cycle exists."
+    D: "Storage format has nothing to do with the acyclic requirement."
+
+- id: bn-structure-05
+  skill: bn-structure
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In the sprinkler network, Cloudy points to Sprinkler and to Rain, and Sprinkler and Rain both point to WetGrass. What are the parents of WetGrass?
+  options:
+    - "Cloudy only"
+    - "Cloudy, Sprinkler, and Rain"
+    - "WetGrass has no parents"
+    - "Sprinkler and Rain"
+  answer: D
+  explain: |
+    A node's parents are the nodes with arrows pointing directly into it. Sprinkler and Rain both point to WetGrass, so they are its parents. Cloudy influences WetGrass only indirectly, through them.
+  why:
+    A: "Cloudy has no arrow into WetGrass; it is a grandparent, not a parent."
+    B: "Only direct arrows make parents, and Cloudy's influence is indirect."
+    C: "WetGrass has two incoming arrows, so it has two parents."
+
+- id: bn-structure-06
+  skill: bn-structure
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In the sprinkler network, WetGrass has two parents, Sprinkler and Rain. What does its conditional probability table hold?
+  options:
+    - "The probability of WetGrass for each combination of Sprinkler and Rain"
+    - "The probability of Sprinkler and Rain for each value of WetGrass"
+    - "A single probability that the grass is wet on any day"
+    - "The number of days on which the grass was wet last year"
+  answer: A
+  explain: |
+    A conditional probability table gives a node's probabilities for every combination of its parents' values. With two true-or-false parents there are four combinations, so WetGrass's table lists four probabilities of wet grass.
+  why:
+    B: "This reverses the direction; a node's table conditions on its parents, not the other way around."
+    C: "A single number would be a root node's prior, but WetGrass has parents."
+    D: "The table holds probabilities, not raw counts."
+
+- id: bn-structure-07
+  skill: bn-structure
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which set of edges could NOT be the structure of a Bayesian network?
+  options:
+    - "A → B, A → C, B → D, C → D"
+    - "A → C, B → C, C → D"
+    - "A → B, B → C, C → A"
+    - "A → B, B → C, A → C"
+  answer: C
+  explain: |
+    Following A → B → C → A leads back to the start, a directed cycle, so this graph is not a DAG and cannot be a Bayesian network. The other structures have no directed cycles, even where arrows converge on the same node.
+  why:
+    A: "Two paths lead from A to D, but no path returns to its start."
+    B: "Two arrows meet at C, which is allowed; there is no cycle."
+    D: "A reaches C in two ways, but the arrows never loop back to A."
+
+- id: bn-structure-08
+  skill: bn-structure
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What is a directed acyclic graph (DAG)?
+  options:
+    - "A graph whose edges have no direction at all"
+    - "A graph with directed edges and no directed cycles"
+    - "A graph in which every node connects to every other node"
+    - "A graph that must form a single straight line"
+  answer: B
+  explain: |
+    In a DAG, every edge points one way, and no path that follows the arrows ever returns to its starting node. Bayesian networks must be DAGs so that their probability tables multiply into one consistent distribution.
+  why:
+    A: "Edges in a DAG have directions; that is what 'directed' means."
+    C: "A DAG may be sparse; full connectivity is not required."
+    D: "A DAG can branch and merge; a straight line is just one special case."
+
+# ---------------------------------------------------------------- bn-joint
+- id: bn-joint-01
+  skill: bn-joint
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    Use the sprinkler network's tables:
+
+    | Node | Probabilities |
+    |---|---|
+    | Cloudy | $$P(C) = 0.5$$ |
+    | Sprinkler | $$P(S \mid C) = 0.1$$, $$P(S \mid \neg C) = 0.5$$ |
+    | Rain | $$P(R \mid C) = 0.8$$, $$P(R \mid \neg C) = 0.2$$ |
+    | WetGrass | $$P(W \mid S, R) = 0.99$$, $$P(W \mid S, \neg R) = 0.9$$, $$P(W \mid \neg S, R) = 0.9$$, $$P(W \mid \neg S, \neg R) = 0$$ |
+
+    What is the probability that it is not cloudy, the sprinkler is on, it does not rain, and the grass is wet?
+  options:
+    - "0.036"
+    - "0.045"
+    - "0.18"
+    - "0.36"
+  ordered: true
+  answer: C
+  explain: |
+    Multiply each node's probability given its parents: $$P(\neg C) = 0.5$$, $$P(S \mid \neg C) = 0.5$$, $$P(\neg R \mid \neg C) = 1 - 0.2 = 0.8$$, and $$P(W \mid S, \neg R) = 0.9$$. The product is 0.5 × 0.5 × 0.8 × 0.9 = 0.18.
+  why:
+    A: "This uses P(S given C) = 0.1, but the day is not cloudy."
+    B: "This uses 0.2 for rain instead of 1 - 0.2 = 0.8 for no rain."
+    D: "This leaves out the factor 0.5 for the day not being cloudy."
+  verify: "0.5 * 0.5 * (1 - 0.2) * 0.9"
+
+- id: bn-joint-02
+  skill: bn-joint
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In the sprinkler network, Cloudy is the parent of Sprinkler and Rain, and Sprinkler and Rain are the parents of WetGrass. Which product equals the joint probability $$P(C, S, R, W)$$?
+  options:
+    - "$$P(C)\\, P(S)\\, P(R)\\, P(W)$$"
+    - "$$P(W)\\, P(S \\mid W)\\, P(R \\mid W)\\, P(C \\mid W)$$"
+    - "$$P(C \\mid S, R)\\, P(W \\mid C)$$"
+    - "$$P(C)\\, P(S \\mid C)\\, P(R \\mid C)\\, P(W \\mid S, R)$$"
+  answer: D
+  explain: |
+    A Bayesian network's joint distribution is the product of each variable's probability given its own parents. Cloudy has no parents, Sprinkler and Rain each have Cloudy, and WetGrass has Sprinkler and Rain.
+  why:
+    A: "Multiplying unconditional probabilities would assume every variable is independent of every other."
+    B: "This conditions on WetGrass, reversing the arrows of the network."
+    C: "This mixes up parents and children and leaves out factors."
+
+- id: bn-joint-03
+  skill: bn-joint
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    In the sprinkler network, $$P(C) = 0.5$$, $$P(S \mid C) = 0.1$$, $$P(R \mid C) = 0.8$$, and $$P(W \mid S, R) = 0.99$$. What is the probability that all four variables are true: it is cloudy, the sprinkler is on, it rains, and the grass is wet?
+  options:
+    - "0.0099"
+    - "0.0396"
+    - "0.198"
+    - "0.396"
+  ordered: true
+  answer: B
+  explain: |
+    Multiply each node's probability given its parents: 0.5 × 0.1 × 0.8 × 0.99 = 0.0396. The low sprinkler probability on cloudy days makes this combination rare.
+  why:
+    A: "This uses the rain probability for a day that is not cloudy, 0.2, instead of 0.8."
+    C: "This uses the sprinkler probability for a day that is not cloudy, 0.5, instead of 0.1."
+    D: "This leaves out the sprinkler factor, 0.1."
+  verify: "0.5 * 0.1 * 0.8 * 0.99"
+
+- id: bn-joint-04
+  skill: bn-joint
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    A Bayesian network has four true-or-false variables with edges A → C, B → C, and C → D. How many numbers do its conditional probability tables need?
+  options:
+    - "4"
+    - "8"
+    - "15"
+    - "16"
+  ordered: true
+  answer: B
+  explain: |
+    A true-or-false node with k true-or-false parents needs $$2^k$$ numbers. A and B have no parents (1 each), C has two parents (4), and D has one parent (2): 1 + 1 + 4 + 2 = 8.
+  why:
+    A: "This gives every node a single number, ignoring the parent combinations."
+    C: "15 is the size of a full joint table, $$2^4 - 1$$, which the network avoids."
+    D: "16 counts every combination of four variables, without subtracting 1 or using the network's structure."
+  verify: "1 + 1 + 2 ** 2 + 2 ** 1"
+
+- id: bn-joint-05
+  skill: bn-joint
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why does a Bayesian network usually need far fewer numbers than a full joint probability table over the same variables?
+  options:
+    - "Each variable needs probabilities only given its own parents"
+    - "Bayesian networks round every probability to one decimal place"
+    - "Bayesian networks store only the most likely outcome"
+    - "A full joint table repeats every number twice"
+  answer: A
+  explain: |
+    Every missing edge is an independence assumption, so each variable needs a table only for its few parents rather than for every other variable. The joint distribution is then rebuilt by multiplying the small tables.
+  why:
+    B: "Rounding is not what saves space; the network's structure does."
+    C: "A Bayesian network defines the probability of every outcome, not just the most likely one."
+    D: "A full joint table has one entry per combination; it does not repeat entries."
+
+- id: bn-joint-06
+  skill: bn-joint
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A true-or-false node has three true-or-false parents. How many probabilities does its conditional probability table list (one probability of true for each parent combination)?
+  options:
+    - "3"
+    - "6"
+    - "8"
+    - "16"
+  ordered: true
+  answer: C
+  explain: |
+    Three true-or-false parents have $$2^3 = 8$$ combinations of values, and the table lists the node's probability of being true for each one.
+  why:
+    A: "This counts the parents instead of the combinations of their values."
+    B: "This multiplies 3 by 2 instead of raising 2 to the third power."
+    D: "This doubles the count, as if both true and false had to be listed."
+  verify: "2 ** 3"
+
+- id: bn-joint-07
+  skill: bn-joint
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A full joint probability table lists a probability for every combination of five true-or-false variables. How many numbers must actually be specified, given that all the probabilities sum to 1?
+  options:
+    - "5"
+    - "16"
+    - "25"
+    - "31"
+  ordered: true
+  answer: D
+  explain: |
+    Five true-or-false variables have $$2^5 = 32$$ combinations. Because the probabilities must add up to 1, the last one is determined by the others, so 32 - 1 = 31 numbers are needed.
+  why:
+    A: "This counts the variables, not the combinations of their values."
+    B: "16 is the count for four variables, $$2^4$$."
+    C: "This squares 5 instead of raising 2 to the fifth power."
+  verify: "2 ** 5 - 1"
+
+- id: bn-joint-08
+  skill: bn-joint
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    In the sprinkler network, $$P(C) = 0.5$$, $$P(S \mid \neg C) = 0.5$$, $$P(R \mid \neg C) = 0.2$$, and $$P(W \mid \neg S, \neg R) = 0$$. What is the probability that every variable is false: not cloudy, sprinkler off, no rain, and dry grass?
+  options:
+    - "0"
+    - "0.05"
+    - "0.2"
+    - "0.4"
+  ordered: true
+  answer: C
+  explain: |
+    Use 1 minus each probability for the false values: $$P(\neg C) = 0.5$$, $$P(\neg S \mid \neg C) = 0.5$$, $$P(\neg R \mid \neg C) = 0.8$$, and $$P(\neg W \mid \neg S, \neg R) = 1 - 0 = 1$$. The product is 0.5 × 0.5 × 0.8 × 1 = 0.2.
+  why:
+    A: "This uses 0 for dry grass, but that is the probability of wet grass; dry grass has probability 1."
+    B: "This uses 0.2 for no rain instead of 1 - 0.2 = 0.8."
+    D: "This leaves out the factor 0.5 for the day not being cloudy."
+  verify: "0.5 * (1 - 0.5) * (1 - 0.2) * (1 - 0)"
+
+# ---------------------------------------------------------------- bn-independence
+- id: bn-independence-01
+  skill: bn-independence
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    In the sprinkler network, both Sprinkler and Rain point to WetGrass. You see that the grass is wet, and then you learn that it rained last night. What happens to your belief that the sprinkler ran?
+  options:
+    - "It goes up, because wet grass and rain both suggest water"
+    - "It stays exactly the same, because the sprinkler and rain are separate"
+    - "It becomes certain, because the grass is wet"
+    - "It goes down, because the rain already explains the wet grass"
+  answer: D
+  explain: |
+    Sprinkler and Rain are two causes of a common effect, a collider. Once the effect, wet grass, is observed, learning that one cause happened makes the other less necessary as an explanation, so its probability drops. This is explaining away.
+  why:
+    A: "Rain competes with the sprinkler to explain the wet grass; it does not support it."
+    B: "Observing the common effect makes the two causes dependent, so the belief does change."
+    C: "Wet grass has another explanation, the rain, so the sprinkler is far from certain."
+
+- id: bn-independence-02
+  skill: bn-independence
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In the sprinkler network, Cloudy points to both Sprinkler and Rain. If you already know whether it is cloudy, what does seeing the sprinkler running tell you about rain?
+  options:
+    - "That rain is certain"
+    - "That rain is impossible"
+    - "Nothing more about rain"
+    - "That rain is more likely than before"
+  answer: C
+  explain: |
+    Sprinkler ← Cloudy → Rain is a fork: Cloudy is a common cause. Without knowing Cloudy, the sprinkler hints at the weather and so at rain; but once Cloudy is known, Sprinkler and Rain are independent, and the sprinkler adds no information about rain.
+  why:
+    A: "Nothing in the network makes rain certain from the sprinkler."
+    B: "The sprinkler does not rule out rain; the two can happen together."
+    D: "Once the common cause is known, the sprinkler carries no further information about rain."
+
+- id: bn-independence-03
+  skill: bn-independence
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In the network Burglary → Alarm ← Earthquake, burglaries and earthquakes happen independently. Which statement is correct?
+  options:
+    - "Burglary and Earthquake are dependent even when nothing is known about the alarm"
+    - "Burglary and Earthquake become dependent once the alarm is known to have gone off"
+    - "Knowing the alarm went off makes Burglary and Earthquake independent of everything"
+    - "The network is invalid because two arrows point into Alarm"
+  answer: B
+  explain: |
+    Alarm is a collider, a common effect. With no information about the alarm, the two causes stay independent. Once the alarm is observed, they become dependent: learning there was an earthquake explains the alarm and makes a burglary less likely.
+  why:
+    A: "Without evidence about the common effect, the two causes are independent."
+    C: "Observing a collider creates dependence between its causes; it does not remove it."
+    D: "Arrows may converge on a node; only directed cycles are forbidden."
+
+- id: bn-independence-04
+  skill: bn-independence
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In the chain Fire → Smoke → Alarm, the alarm responds only to smoke. Once you know whether there is smoke, what does learning about a fire add about the alarm?
+  options:
+    - "Nothing more about the alarm"
+    - "That the alarm is certain to sound"
+    - "That the alarm is certainly broken"
+    - "That smoke must be absent"
+  answer: A
+  explain: |
+    In a chain, the middle node blocks the path. Once Smoke is known, Fire and Alarm are independent: the alarm's behavior depends only on the smoke, so knowing about the fire adds nothing.
+  why:
+    B: "The alarm's chance depends on the known smoke level, not on the fire directly."
+    C: "Nothing in the chain says the alarm is broken."
+    D: "Smoke is already known, so the fire cannot change it."
+
+- id: bn-independence-05
+  skill: bn-independence
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In a Bayesian network, which nodes make up a node's Markov blanket?
+  options:
+    - "Its parents and nothing else in the network"
+    - "Every other node in the whole network"
+    - "Its parents, children, and children's other parents"
+    - "Only the root nodes, which have no parents"
+  answer: C
+  explain: |
+    Given its Markov blanket, its parents, its children, and its children's other parents, a node is independent of every other node in the network. In the sprinkler network, Sprinkler's Markov blanket is Cloudy, WetGrass, and Rain.
+  why:
+    A: "Parents alone miss the children, which also carry information about the node."
+    B: "The point of the blanket is that the rest of the network becomes irrelevant."
+    D: "Root nodes have no special role in a given node's blanket."
+
+- id: bn-independence-06
+  skill: bn-independence
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What does the absence of an edge between two nodes in a Bayesian network indicate?
+  options:
+    - "The two variables are always equal"
+    - "There is no direct dependence between them"
+    - "One variable was measured incorrectly"
+    - "The network contains a cycle"
+  answer: B
+  explain: |
+    A missing edge is an independence assumption: neither variable directly influences the other. They may still be related indirectly through other nodes, as Cloudy is related to WetGrass through Sprinkler and Rain.
+  why:
+    A: "A missing edge says nothing about the variables being equal."
+    C: "Edges reflect the model's structure, not measurement quality."
+    D: "Removing edges can only remove cycles, never create them."
+
+- id: bn-independence-07
+  skill: bn-independence
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In the chain Fire → Smoke → Alarm, nothing is known about smoke. Are Fire and Alarm dependent?
+  options:
+    - "Yes, because a fire makes smoke, and so the alarm, more likely"
+    - "No, because there is no edge directly between Fire and Alarm"
+    - "No, because chains always make their ends independent"
+    - "Only if the alarm is known to be broken"
+  answer: A
+  explain: |
+    Influence flows along the chain: a fire raises the chance of smoke, which raises the chance of an alarm, so the ends are dependent. Only when the middle node, Smoke, is known does the chain become blocked, making Fire and Alarm independent.
+  why:
+    B: "Variables can be dependent through intermediate nodes even without a direct edge."
+    C: "A chain's ends are independent only once the middle node is known."
+    D: "The dependence exists because of the chain, regardless of whether the alarm is broken."
+
+# ---------------------------------------------------------------- bn-inference
+- id: bn-inference-01
+  skill: bn-inference
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A system observes that the grass is wet and computes how likely it is that it rained. What kind of reasoning is this?
+  options:
+    - "Predictive reasoning, from causes to effects"
+    - "Diagnostic reasoning, from effects to causes"
+    - "Logical deduction with certain rules"
+    - "Clustering of unlabeled data"
+  answer: B
+  explain: |
+    Reasoning from an observed effect, wet grass, back to a possible cause, rain, is diagnostic: it runs against the direction of the arrows and uses Bayes' rule. Predictive reasoning runs with the arrows, from causes to effects.
+  why:
+    A: "Predictive reasoning would start from rain and ask about wet grass."
+    C: "The conclusion is a probability, not a certain deduction."
+    D: "No unlabeled data is being grouped."
+
+- id: bn-inference-02
+  skill: bn-inference
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    In a network Rain → WetGrass, rain has prior probability 0.3. The grass is wet with probability 0.8 when it rains and 0.2 when it does not. The grass is wet. What is the probability that it rained?
+  options:
+    - "24%"
+    - "30%"
+    - "63%"
+    - "80%"
+  ordered: true
+  answer: C
+  explain: |
+    The probability of rain and wet grass is 0.3 × 0.8 = 0.24, and of no rain and wet grass is 0.7 × 0.2 = 0.14, so wet grass has probability 0.38. The posterior is 0.24 / 0.38, about 0.63.
+  why:
+    A: "0.24 is the joint probability of rain and wet grass, before dividing by the probability of wet grass."
+    B: "30 percent is the prior, before the wet grass is taken into account."
+    D: "80 percent is the probability of wet grass given rain, the reverse condition."
+  verify: "0.3 * 0.8 / (0.3 * 0.8 + 0.7 * 0.2)"
+
+- id: bn-inference-03
+  skill: bn-inference
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    When do Bayesian network systems typically switch from exact inference to approximate, sampling-based inference?
+  options:
+    - "When the network has only two or three nodes"
+    - "When every probability in the network is exactly 0 or 1"
+    - "When the network has no evidence at all"
+    - "When the network is too large and connected for exact methods"
+  answer: D
+  explain: |
+    Exact inference can take time that grows exponentially with the size and connectedness of the network. Approximate methods simulate many random samples and count outcomes, trading a little accuracy for speed in large networks.
+  why:
+    A: "Tiny networks are exactly where exact inference is fast and easy."
+    B: "Probabilities of 0 or 1 make the network simpler, not harder."
+    C: "Without evidence, simple queries are often easy; size and connectivity drive the cost."
+
+- id: bn-inference-04
+  skill: bn-inference
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Given that it is cloudy, a system computes how likely it is to rain. What kind of reasoning is this?
+  options:
+    - "Predictive reasoning, from a cause to its effect"
+    - "Diagnostic reasoning, from an effect to its cause"
+    - "Explaining away between two causes"
+    - "Unification of two logical expressions"
+  answer: A
+  explain: |
+    Cloudiness influences rain, so reasoning from Cloudy to Rain follows the arrow from cause to effect: predictive, or causal, reasoning.
+  why:
+    B: "Diagnostic reasoning would start from an effect, such as wet grass, and ask about its causes."
+    C: "Explaining away involves two causes of an observed common effect."
+    D: "Unification is a step in logical inference, not probabilistic reasoning."
+
+- id: bn-inference-05
+  skill: bn-inference
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    In the sprinkler network, $$P(C) = 0.5$$, $$P(S \mid C) = 0.1$$, and $$P(S \mid \neg C) = 0.5$$. With no evidence about anything, what is the probability that the sprinkler is on?
+  options:
+    - "0.1"
+    - "0.3"
+    - "0.5"
+    - "0.6"
+  ordered: true
+  answer: B
+  explain: |
+    Average over the two cases of the parent: $$P(S) = P(C)\, P(S \mid C) + P(\neg C)\, P(S \mid \neg C) = 0.5 \times 0.1 + 0.5 \times 0.5 = 0.05 + 0.25 = 0.3$$.
+  why:
+    A: "0.1 is the sprinkler probability on cloudy days only."
+    C: "0.5 is the sprinkler probability on clear days only."
+    D: "This adds the two conditional probabilities without weighting them by how likely each case is."
+  verify: "0.5 * 0.1 + 0.5 * 0.5"
+
+- id: bn-inference-06
+  skill: bn-inference
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A clinic wants a system that combines a patient's symptoms and test results, each of which is only partly reliable, to estimate the probability of several diseases. Which approach fits best?
+  options:
+    - "A logic-based expert system with exceptionless rules"
+    - "A clustering algorithm with no labeled cases"
+    - "A Bayesian network with diseases as parents of symptoms and tests"
+    - "A spreadsheet that lists every symptom alphabetically"
+  answer: C
+  explain: |
+    Medical diagnosis combines uncertain evidence, which is exactly what Bayesian networks do: diseases are parents of the symptoms and test results they cause, and diagnostic inference runs from observed evidence back to the probabilities of each disease.
+  why:
+    A: "Exceptionless rules break down when evidence is only partly reliable."
+    B: "Clustering groups data without labels; it does not estimate disease probabilities from evidence."
+    D: "An alphabetical list does no reasoning at all."
+
+- id: bn-inference-07
+  skill: bn-inference
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why can exact inference become impractical in large Bayesian networks?
+  options:
+    - "Because Bayes' rule stops working with more than ten variables"
+    - "Because the work can grow exponentially with the network's size and connections"
+    - "Because large networks always contain directed cycles"
+    - "Because probabilities in large networks must all be zero"
+  answer: B
+  explain: |
+    Exact inference must account for many combinations of the variables' values, and in large, densely connected networks the number of combinations can grow exponentially. That is why such systems often use approximate methods, such as sampling.
+  why:
+    A: "Bayes' rule holds for any number of variables; the issue is the cost of applying it."
+    C: "A Bayesian network can never contain a directed cycle, whatever its size."
+    D: "Probabilities in large networks can take any values between 0 and 1."
