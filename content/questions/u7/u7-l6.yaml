@@ -1,0 +1,496 @@
+# Lesson 7.6: Logic versus probability
+
+# ---------------------------------------------------------------- logic-vs-prob
+- id: logic-vs-prob-01
+  skill: logic-vs-prob
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is logic-based reasoning?
+  options:
+    - "Deriving certain conclusions from facts and rules with formal logic"
+    - "Estimating how likely each conclusion is from noisy evidence"
+    - "Learning patterns from data by adjusting a network's weights"
+    - "Choosing actions by trial and error to earn rewards"
+  answer: A
+  explain: |
+    Logic-based reasoning treats statements as true or false and applies formal rules of inference, so that true premises guarantee true conclusions. Expert systems, theorem provers, and Prolog programs reason this way.
+  why:
+    B: "Estimating likelihoods from noisy evidence is probability-based reasoning."
+    C: "Adjusting weights from data is machine learning with neural networks."
+    D: "Trial and error with rewards is reinforcement learning."
+
+- id: logic-vs-prob-02
+  skill: logic-vs-prob
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is probability-based reasoning?
+  options:
+    - "Proving conclusions that are guaranteed to be true"
+    - "Storing knowledge only as exact IF-THEN rules"
+    - "Using degrees of belief that are updated as evidence arrives"
+    - "Grouping similar data points without labels"
+  answer: C
+  explain: |
+    Probability-based reasoning represents uncertainty with probabilities between 0 and 1 and revises them with evidence, often using Bayes' rule, to find the most likely conclusions. It fits problems with noisy, incomplete, or exception-filled information.
+  why:
+    A: "Guaranteed conclusions come from logic-based reasoning."
+    B: "Exact IF-THEN rules are the tool of logic-based systems."
+    D: "Grouping without labels is clustering, a learning method."
+
+- id: logic-vs-prob-03
+  skill: logic-vs-prob
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A self-driving car must decide whether a blurry shape in heavy fog is a pedestrian, using camera and radar readings that are often noisy. Which kind of reasoning fits best?
+  options:
+    - "Logic-based reasoning, because the car needs certain answers"
+    - "Logic-based reasoning, because sensor data is always exact"
+    - "Neither, because cars cannot reason about objects"
+    - "Probability-based reasoning, because the evidence is uncertain"
+  answer: D
+  explain: |
+    Noisy, incomplete sensor evidence calls for degrees of belief: the car estimates how likely the shape is to be a pedestrian and updates that estimate as new readings arrive. Strict logic cannot express "probably a pedestrian."
+  why:
+    A: "The car wants certainty, but noisy evidence cannot provide it; logic would break."
+    B: "Sensor data in fog is noisy, the opposite of exact."
+    C: "Perception and reasoning about objects is exactly what self-driving systems do."
+
+- id: logic-vs-prob-04
+  skill: logic-vs-prob
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which statement is an example of fuzzy logic rather than probability?
+  options:
+    - "There is a 70 percent chance that it will rain tomorrow"
+    - "Water at 38 degrees Celsius is 'hot' to a degree of 0.6"
+    - "A flagged transaction has a 15 percent chance of being fraud"
+    - "The team has a 0.25 probability of winning the tournament"
+  answer: B
+  explain: |
+    Fuzzy logic gives the degree to which a vague property, such as hot, holds: the water is not uncertain, just somewhat hot. The other statements are probabilities: uncertainty about whether something crisp, rain, fraud, or a win, is true.
+  why:
+    A: "Rain will either happen or not; 70 percent measures uncertainty, which is probability."
+    C: "The transaction either is fraud or is not; 15 percent is a probability."
+    D: "The team will either win or not; 0.25 is a probability."
+
+- id: logic-vs-prob-05
+  skill: logic-vs-prob
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Tax software must apply published eligibility rules exactly and show users which rule determined each result. Which kind of reasoning fits best?
+  options:
+    - "Logic-based reasoning with explicit rules"
+    - "Probability-based reasoning with Bayes' rule"
+    - "Fuzzy logic with degrees of eligibility"
+    - "Unsupervised clustering of taxpayers"
+  answer: A
+  explain: |
+    The rules are exact, the answers must be guaranteed, and each result must be explained, all strengths of logic-based reasoning. Probabilities would add uncertainty where the law demands certainty.
+  why:
+    B: "Probabilities fit uncertain evidence, not exact published rules."
+    C: "Eligibility under the law is yes or no, not a matter of degree."
+    D: "Clustering finds groups; it does not apply rules."
+
+- id: logic-vs-prob-06
+  skill: logic-vs-prob
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What is the main weakness of classical logic-based reasoning?
+  options:
+    - "It cannot explain how it reached its conclusions"
+    - "It always needs huge amounts of training data"
+    - "It is brittle: it cannot express uncertainty or exceptions"
+    - "Its conclusions are never certain, even with true premises"
+  answer: C
+  explain: |
+    Classical logic treats every statement as fully true or fully false, so it has no way to say "usually" or "probably," and a rule with exceptions becomes a false rule. Real-world knowledge is full of such uncertainty, which is where probability helps.
+  why:
+    A: "Clear, step-by-step explanation is one of logic's strengths."
+    B: "Logic systems run on hand-written rules, not training data."
+    D: "With true premises and valid rules, logic's conclusions are certain."
+
+- id: logic-vs-prob-07
+  skill: logic-vs-prob
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A logic-based system concludes "Tweety flies" from the rules "Tweety is a bird" and "all birds fly." It then learns that Tweety is a penguin. Why is this hard for classical logic?
+  options:
+    - "Penguins cannot be represented as constants in logic"
+    - "Logic cannot store more than one fact about the same animal"
+    - "The system must first retrain its weights on penguin data"
+    - "It treats rules as exceptionless, so it cannot simply withdraw the conclusion"
+  answer: D
+  explain: |
+    In classical logic, adding facts never removes earlier conclusions, and "all birds fly" is either true or false. The penguin fact contradicts the rule rather than overriding a default. Probability handles this gracefully: "a bird flies with probability 0.9," and learning about penguins simply lowers that belief.
+  why:
+    A: "Any individual, including a penguin, can be named by a constant."
+    B: "Logic can hold many facts about the same individual."
+    C: "Logic-based systems have no weights to retrain."
+
+- id: logic-vs-prob-08
+  skill: logic-vs-prob
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    An email filter reports, "This message is 97 percent likely to be spam." Which kind of reasoning does this report reflect?
+  options:
+    - "Logic-based reasoning with a proof"
+    - "Probability-based reasoning with a degree of belief"
+    - "Fuzzy logic with a degree of membership"
+    - "Forward chaining with certain rules"
+  answer: B
+  explain: |
+    "97 percent likely" is a degree of belief about whether a crisp statement, "this is spam," is true. That is probability-based reasoning; a logic system could only say spam or not spam.
+  why:
+    A: "A logic proof would give a certain yes or no, not 97 percent."
+    C: "The message either is spam or is not; 97 percent measures uncertainty, not vagueness."
+    D: "Forward chaining with certain rules gives true-or-false conclusions."
+
+- id: logic-vs-prob-09
+  skill: logic-vs-prob
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which is a strength of probability-based reasoning compared with logic-based reasoning?
+  options:
+    - "It handles noisy and incomplete evidence gracefully"
+    - "It guarantees that every conclusion is certainly true"
+    - "It never needs any numbers or data to work"
+    - "Its conclusions are always easier to explain"
+  answer: A
+  explain: |
+    Probability was built for uncertainty: it weighs evidence that is noisy, partial, or only usually reliable, and it updates beliefs smoothly as more evidence arrives. Logic, in contrast, needs exact facts and exceptionless rules.
+  why:
+    B: "Certain conclusions are logic's strength; probability gives likely ones."
+    C: "Probabilities must be estimated from data or from experts."
+    D: "Step-by-step proofs are usually easier to explain than probability calculations."
+
+- id: logic-vs-prob-10
+  skill: logic-vs-prob
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Lotfi Zadeh's 1965 paper introduced fuzzy sets. What idea does fuzzy logic add?
+  options:
+    - "Probabilities that a crisp event will happen"
+    - "Membership in vague categories as a matter of degree"
+    - "Random sampling of possible answers"
+    - "Rules that are checked only in backward order"
+  answer: B
+  explain: |
+    Fuzzy logic lets membership in a vague category, such as warm, tall, or fast, range from 0 to 1, so something can be warm to degree 0.7. It models vagueness, which differs from probability's uncertainty about crisp events.
+  why:
+    A: "Probabilities of crisp events belong to probability theory, not fuzzy logic."
+    C: "Random sampling is a probabilistic technique, not the idea of fuzzy sets."
+    D: "The order of rule checking describes chaining, not fuzziness."
+
+- id: logic-vs-prob-11
+  skill: logic-vs-prob
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    AI4K12 pairs each kind of reasoning problem with an algorithm. Which algorithm does it pair with statistical inference problems?
+  options:
+    - "Resolution theorem proving"
+    - "Alpha-beta pruning"
+    - "Bayesian networks"
+    - "IF-THEN rules"
+  answer: C
+  explain: |
+    Statistical inference, reasoning with probabilities from evidence, is paired with Bayesian networks (lesson 7.7). Logical deduction is paired with resolution theorem proving or IF-THEN rules, and adversarial search with alpha-beta pruning.
+  why:
+    A: "Resolution theorem proving is paired with logical deduction."
+    B: "Alpha-beta pruning is paired with adversarial search in games."
+    D: "IF-THEN rules are paired with logical deduction."
+
+- id: logic-vs-prob-12
+  skill: logic-vs-prob
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Engineers must prove that a new computer chip design always meets its written specification. Which kind of reasoning fits best?
+  options:
+    - "Probability-based reasoning, to estimate how often it works"
+    - "Logic-based reasoning, to prove the design meets the specification"
+    - "Fuzzy logic, to rate how well the chip works"
+    - "Clustering, to group similar chip designs"
+  answer: B
+  explain: |
+    When the requirement is a guarantee and the specification is exact, logic-based reasoning fits: automated theorem provers check that the design satisfies the specification in every case. A probability that it usually works would not be enough.
+  why:
+    A: "An estimate of how often it works falls short of a proof that it always works."
+    C: "The specification is met or not; there is no vague degree to rate."
+    D: "Grouping designs does not prove anything about this one."
+
+# ---------------------------------------------------------------- bayes-reasoning
+- id: bayes-reasoning-01
+  skill: bayes-reasoning
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A disease affects 2 percent of a population. A test detects 95 percent of people who have it, but it also gives a positive result for 10 percent of people who do not. A person tests positive. About how likely is it that the person has the disease?
+  options:
+    - "2%"
+    - "16%"
+    - "90%"
+    - "95%"
+  ordered: true
+  answer: B
+  explain: |
+    Imagine 1,000 people: 20 have the disease and 980 do not. The test flags 95 percent of the 20, which is 19, and 10 percent of the 980, which is 98. Of the 19 + 98 = 117 positives, 19 have the disease: 19 / 117 is about 0.16, or 16 percent.
+  why:
+    A: "2 percent is the prior, the belief before the test result is known."
+    C: "90 percent is the share of healthy people who test negative, not the posterior."
+    D: "95 percent is the test's detection rate, the likelihood, not the posterior."
+  verify: "0.02 * 0.95 / (0.02 * 0.95 + 0.98 * 0.10)"
+
+- id: bayes-reasoning-02
+  skill: bayes-reasoning
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    In Bayes' rule, what is the posterior?
+  options:
+    - "The belief in a hypothesis before any evidence is seen"
+    - "The probability of the evidence if the hypothesis is true"
+    - "The total probability of the evidence across all cases"
+    - "The updated belief in a hypothesis after seeing the evidence"
+  answer: D
+  explain: |
+    The posterior, P(H given E), is the belief after taking the evidence into account. It is computed from the prior and the likelihood: posterior = likelihood × prior / evidence.
+  why:
+    A: "The belief before evidence is the prior."
+    B: "The probability of the evidence given the hypothesis is the likelihood."
+    C: "The overall probability of the evidence is the evidence term, P(E)."
+
+- id: bayes-reasoning-03
+  skill: bayes-reasoning
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In Bayes' rule, what does the prior represent?
+  options:
+    - "The belief in a hypothesis before the new evidence is considered"
+    - "The belief in a hypothesis after the new evidence is considered"
+    - "How accurate the test or sensor is"
+    - "The number of hypotheses being compared"
+  answer: A
+  explain: |
+    The prior, P(H), is the starting belief, often a base rate such as "1 percent of transactions are fraud." Bayes' rule combines it with the likelihood of the evidence to produce the posterior.
+  why:
+    B: "The belief after the evidence is the posterior."
+    C: "A test's accuracy enters through the likelihood, P(E given H)."
+    D: "The number of hypotheses is not a term in Bayes' rule."
+
+- id: bayes-reasoning-04
+  skill: bayes-reasoning
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A fraud detector flags 90 percent of fraudulent transactions. In Bayes' rule, which term is this 90 percent?
+  options:
+    - "The prior, P(fraud)"
+    - "The posterior, P(fraud given a flag)"
+    - "The likelihood, P(flag given fraud)"
+    - "The evidence, P(flag)"
+  answer: C
+  explain: |
+    "Flags 90 percent of fraudulent transactions" is the probability of the evidence (a flag) given the hypothesis (fraud): the likelihood. A common mistake is to read it as the posterior, the chance that a flagged transaction is fraud, which can be far lower.
+  why:
+    A: "The prior is how common fraud is before any flag, the base rate."
+    B: "The posterior reverses the condition: the chance of fraud given a flag."
+    D: "The evidence term is the overall chance of a flag, from frauds and false alarms together."
+
+- id: bayes-reasoning-05
+  skill: bayes-reasoning
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    After one positive test, a patient's probability of having a disease is about 16 percent. A second, independent test with the same accuracy (it detects 95 percent of cases and gives false positives 10 percent of the time) is also positive. Using 16 percent as the new prior, about how likely is the disease now?
+  options:
+    - "16%"
+    - "32%"
+    - "65%"
+    - "95%"
+  ordered: true
+  answer: C
+  explain: |
+    The old posterior becomes the new prior. Out of 1,000 similar patients, about 162 have the disease and 838 do not. The second test flags 95 percent of the 162, about 154, and 10 percent of the 838, about 84. So 154 / (154 + 84) is about 0.65, or 65 percent.
+  why:
+    A: "This ignores the second test, as if the evidence changed nothing."
+    B: "Beliefs do not simply double with each positive test; Bayes' rule must be applied."
+    D: "95 percent is the test's detection rate, not the updated belief."
+  verify: |
+    p = 0.02 * 0.95 / (0.02 * 0.95 + 0.98 * 0.10)
+    ans = p * 0.95 / (p * 0.95 + (1 - p) * 0.10)
+
+- id: bayes-reasoning-06
+  skill: bayes-reasoning
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A fraud detector catches 90 percent of fraud, yet only about 15 percent of the transactions it flags turn out to be fraud. What best explains the gap?
+  options:
+    - "Fraud is rare, so false alarms on many legitimate transactions outnumber true alerts"
+    - "The detector must be broken, since 90 percent and 15 percent cannot both be true"
+    - "Most fraudsters learn to avoid detection after the first alert"
+    - "Bayes' rule always lowers a probability by a factor of six"
+  answer: A
+  explain: |
+    The base rate dominates. When only 1 percent of transactions are fraud, even a small false-alarm rate applied to the other 99 percent produces more flags than the real frauds do, so most alerts are false alarms. The likelihood (90 percent) and the posterior (15 percent) answer different questions.
+  why:
+    B: "Both numbers are consistent; they condition in opposite directions."
+    C: "The gap follows from the base rate alone, with no change in fraudsters' behavior."
+    D: "Bayes' rule can raise or lower a belief; there is no fixed factor."
+
+- id: bayes-reasoning-07
+  skill: bayes-reasoning
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A naive Bayes spam filter sees an email containing both "free" and "winner." Its estimates: P(spam) = 0.4, P(free given spam) = 0.5, P(winner given spam) = 0.3; P(not spam) = 0.6, P(free given not spam) = 0.1, P(winner given not spam) = 0.05. What is the posterior probability that the email is spam?
+  options:
+    - "6%"
+    - "40%"
+    - "50%"
+    - "95%"
+  ordered: true
+  answer: D
+  explain: |
+    Multiply each class's prior by its word likelihoods: spam scores 0.4 × 0.5 × 0.3 = 0.06, and not spam scores 0.6 × 0.1 × 0.05 = 0.003. Normalize: 0.06 / (0.06 + 0.003) is about 0.95, so the email is about 95 percent likely to be spam.
+  why:
+    A: "0.06 is the spam score before dividing by the total of both scores."
+    B: "40 percent is the prior, which ignores the words in the email."
+    C: "50 percent is the likelihood of 'free' in spam, only one piece of the calculation."
+  verify: |
+    s = 0.4 * 0.5 * 0.3
+    h = 0.6 * 0.1 * 0.05
+    ans = s / (s + h)
+
+- id: bayes-reasoning-08
+  skill: bayes-reasoning
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In Bayes' rule, what role does the evidence term P(E) play?
+  options:
+    - "It is the belief before any evidence is seen"
+    - "It scales the result so the posteriors add up to 1"
+    - "It measures how well the hypothesis explains the evidence"
+    - "It is the final answer the rule produces"
+  answer: B
+  explain: |
+    P(E) is the overall probability of the evidence, adding up every way it can occur: from the hypothesis being true and from it being false. Dividing by it normalizes the result, so the posteriors of all the hypotheses sum to 1.
+  why:
+    A: "The belief before the evidence is the prior."
+    C: "How well the hypothesis explains the evidence is the likelihood."
+    D: "The final answer is the posterior."
+
+- id: bayes-reasoning-09
+  skill: bayes-reasoning
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A hypothesis starts with a prior of 0.5. The observed evidence has probability 0.8 if the hypothesis is true and 0.2 if it is false. What is the posterior?
+  options:
+    - "0.2"
+    - "0.5"
+    - "0.8"
+    - "0.9"
+  ordered: true
+  answer: C
+  explain: |
+    Posterior = (0.8 × 0.5) / (0.8 × 0.5 + 0.2 × 0.5) = 0.4 / 0.5 = 0.8. With an even prior, the evidence alone decides, and it favors the hypothesis four to one.
+  why:
+    A: "0.2 is the probability of the evidence if the hypothesis is false."
+    B: "0.5 is the prior, before the evidence is used."
+    D: "This overshoots; with a 0.5 prior the posterior equals 0.4 / 0.5."
+  verify: "0.8 * 0.5 / (0.8 * 0.5 + 0.2 * 0.5)"
+
+- id: bayes-reasoning-10
+  skill: bayes-reasoning
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Naive Bayes assumes that features such as words are independent of one another given the class, which is rarely true in real text. Why does it still often classify well?
+  options:
+    - "Because real text actually satisfies the independence assumption"
+    - "Because it ignores the prior and uses only the most common word"
+    - "Because it only needs to rank the classes correctly, not to get exact probabilities"
+    - "Because it retrains itself after every email it classifies"
+  answer: C
+  explain: |
+    The independence assumption distorts the probability estimates, but classification only needs the right class to score highest. As long as the evidence pushes in the right direction, the ranking often comes out correct, which is why naive Bayes works well for tasks such as spam filtering.
+  why:
+    A: "Words in real text are often related, so the assumption is usually false."
+    B: "Naive Bayes uses the prior and every observed feature."
+    D: "A trained naive Bayes model does not retrain after each classification."
+
+- id: bayes-reasoning-11
+  skill: bayes-reasoning
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A reasoning system updates its belief with Bayes' rule after one piece of evidence. When a second, independent piece of evidence arrives, what does it use as its new prior?
+  options:
+    - "The original prior from before any evidence"
+    - "Always 0.5, to stay neutral"
+    - "The likelihood of the first piece of evidence"
+    - "The posterior from the first update"
+  answer: D
+  explain: |
+    Bayesian reasoning accumulates evidence: each posterior becomes the prior for the next update. Starting over from the original prior would throw away what the first piece of evidence taught.
+  why:
+    A: "Going back to the original prior discards the first piece of evidence."
+    B: "A fixed 0.5 ignores everything the system already knows."
+    C: "The likelihood is one ingredient of the update, not the updated belief."
+
+- id: bayes-reasoning-12
+  skill: bayes-reasoning
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which kind of reasoning updates beliefs with Bayes' rule?
+  options:
+    - "Logic-based reasoning with exact rules"
+    - "Probability-based reasoning"
+    - "Fuzzy logic with membership degrees"
+    - "Forward chaining over IF-THEN rules"
+  answer: B
+  explain: |
+    Bayes' rule is the central tool of probability-based reasoning: it turns a prior belief and the likelihood of new evidence into an updated posterior belief.
+  why:
+    A: "Logic-based reasoning works with true and false, not with degrees of belief."
+    C: "Fuzzy logic measures degrees of vague properties, not beliefs updated by evidence."
+    D: "Forward chaining applies certain rules to facts."

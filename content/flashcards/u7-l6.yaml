@@ -1,0 +1,39 @@
+# Lesson 7.6 flashcards
+
+- id: fc-logic-based-reasoning
+  term: Logic-Based Reasoning
+  def: Deriving conclusions from facts and rules with formal logic, so true premises guarantee true conclusions. Statements are true or false. Precise and explainable, but brittle with uncertainty and exceptions.
+  skill: logic-vs-prob
+  virginia: true
+
+- id: fc-probability-based-reasoning
+  term: Probability-Based Reasoning
+  def: Representing uncertainty with degrees of belief from 0 to 1 and updating them with evidence, often by Bayes' rule, to reach the most likely conclusions. Handles noisy, incomplete evidence.
+  skill: logic-vs-prob
+  virginia: true
+
+- id: fc-logic-or-probability
+  term: Choosing logic or probability
+  def: Use logic when facts and rules are exact and guarantees matter (tax rules, proofs, configuration). Use probability when evidence is noisy or incomplete (diagnosis, sensors, spam). AI4K12 pairs statistical inference with Bayesian networks.
+  skill: logic-vs-prob
+
+- id: fc-fuzzy-logic
+  term: Fuzzy logic
+  def: Degrees of membership in vague categories (Zadeh, 1965), such as warm to degree 0.7. It models vagueness, unlike probability, which models uncertainty about crisp events (a 70 percent chance of rain).
+  skill: logic-vs-prob
+
+- id: fc-prior-likelihood-posterior
+  term: Prior, likelihood, posterior
+  def: Prior P(H) is the belief before evidence; likelihood P(E given H) is how probable the evidence is if H is true; posterior P(H given E) is the belief after evidence. Posterior = likelihood × prior / P(E).
+  skill: bayes-reasoning
+
+- id: fc-sequential-update
+  term: Sequential Bayesian updating
+  def: Each posterior becomes the prior for the next piece of evidence, so beliefs accumulate. A second positive test starts from the first test's posterior, not the original base rate.
+  skill: bayes-reasoning
+
+- id: fc-naive-bayes-reasoning
+  term: Naive Bayes as reasoning
+  def: For each class, multiply the prior by each feature's likelihood (assuming independence given the class), then pick the largest, or divide by the total to get posteriors.
+  example: "Spam 0.4 × 0.5 × 0.3 = 0.06; not spam 0.003; P(spam) = 0.06 / 0.063, about 95%."
+  skill: bayes-reasoning
