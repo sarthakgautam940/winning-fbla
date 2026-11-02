@@ -1,0 +1,505 @@
+# Lesson 4.8: R for data science
+# R cannot be executed in this build; every result below is checked by reasoning.
+
+# ---------------------------------------------------------------- r-basics
+- id: r-basics-01
+  skill: r-basics
+  tier: core
+  type: code
+  use: check
+  stem: |
+    Which line assigns the value 5 to the name x in R, using R's conventional assignment operator?
+  options:
+    - "`x <- 5`"
+    - "`x == 5`"
+    - "`x := 5`"
+    - "`let x = 5`"
+  answer: A
+  explain: |
+    R's conventional assignment operator is the arrow <-. (A plain = also works in most places, but <- is the R convention.)
+  why:
+    B: "== tests whether two values are equal; it does not assign."
+    C: ":= is not R's assignment operator."
+    D: "let is JavaScript syntax, not R."
+
+- id: r-basics-02
+  skill: r-basics
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    What does `x[2]` return in R?
+
+    ```r
+    x <- c(10, 20, 30, 40)
+    x[2]
+    ```
+  options:
+    - "10"
+    - "20"
+    - "30"
+    - "An error"
+  answer: B
+  explain: |
+    R counts positions from 1, so x[2] is the second element, 20.
+  why:
+    A: "10 is x[1], the first element."
+    C: "30 is what Python's x[2] would give, because Python counts from 0."
+    D: "Position 2 exists, so there is no error."
+
+- id: r-basics-03
+  skill: r-basics
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    What does `x[-1]` return in R?
+
+    ```r
+    x <- c(10, 20, 30, 40)
+    x[-1]
+    ```
+  options:
+    - "40"
+    - "10 20 30"
+    - "20 30 40"
+    - "An error, because positions cannot be negative"
+  answer: C
+  explain: |
+    In R, a negative index removes that position, so x[-1] returns every element except the first. In Python, x[-1] would instead be the last element.
+  why:
+    A: "40 is what Python's x[-1] returns; R reads -1 as 'drop position 1'."
+    B: "This drops the last element, which in R would be x[-4]."
+    D: "Negative indexes are allowed in R; they mean removal."
+
+- id: r-basics-04
+  skill: r-basics
+  tier: core
+  type: code
+  use: quiz
+  stem: |
+    What does `x * 2` give in R?
+
+    ```r
+    x <- c(1, 2, 3)
+    x * 2
+    ```
+  options:
+    - "1 2 3 1 2 3"
+    - "12"
+    - "An error, because x is a vector"
+    - "2 4 6"
+  answer: D
+  explain: |
+    R vectors are vectorized, so arithmetic applies to every element at once: each value is doubled.
+  why:
+    A: "Repeating the values is what * 2 does to a Python list, not to an R vector."
+    B: "This doubles the sum; the multiplication happens element by element."
+    C: "Arithmetic on vectors is R's normal behavior."
+
+- id: r-basics-05
+  skill: r-basics
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    What does this R expression return?
+
+    ```r
+    mean(c(4, NA, 8))
+    ```
+  options:
+    - "NA"
+    - "4"
+    - "6"
+    - "An error"
+  answer: A
+  explain: |
+    A missing value makes the whole calculation unknown, so mean() returns NA. Adding na.rm = TRUE would skip the missing value and return 6.
+  why:
+    B: "4 is the first value, not a mean."
+    C: "6 is the result only with na.rm = TRUE."
+    D: "mean() returns NA rather than raising an error."
+
+- id: r-basics-06
+  skill: r-basics
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    `students` is an R data frame with columns name, grade, and gpa. What does `students$gpa` return?
+  options:
+    - "The first row of the data frame"
+    - "The number of rows in the data frame"
+    - "The gpa column, as a vector"
+    - "A new data frame with gpa removed"
+  answer: C
+  explain: |
+    The $ operator extracts one column of a data frame by name, returning its values as a vector.
+  why:
+    A: "The first row is students[1, ]."
+    B: "The row count comes from nrow(students)."
+    D: "Removing a column needs code such as students$gpa <- NULL or select(-gpa)."
+
+- id: r-basics-07
+  skill: r-basics
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What is the difference between `install.packages("dplyr")` and `library(dplyr)` in R?
+  options:
+    - "They are two names for the same command."
+    - "install.packages downloads it once; library loads it in each session."
+    - "library downloads it once; install.packages loads it in each session."
+    - "install.packages updates R itself; library lists the packages."
+  answer: B
+  explain: |
+    install.packages() downloads and installs a package from CRAN, which is needed only once per computer. library() loads an installed package into the current session, which must happen again every time R restarts.
+  why:
+    A: "Installing and loading are separate steps."
+    C: "This swaps the two commands."
+    D: "Neither command updates R; library loads one package."
+
+- id: r-basics-08
+  skill: r-basics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is a factor in R?
+  options:
+    - "A function that multiplies two vectors"
+    - "A numeric value that can never be missing"
+    - "A package downloaded from CRAN"
+    - "A categorical variable stored with a fixed set of levels"
+  answer: D
+  explain: |
+    A factor holds categorical data, such as "low", "medium", and "high", as a vector with a defined set of allowed values called levels. Models and charts then treat it as categories.
+  why:
+    A: "Multiplication uses the * operator."
+    B: "Factors can contain NA like any other vector."
+    C: "Packages are collections of functions, not a data type."
+
+- id: r-basics-09
+  skill: r-basics
+  tier: champion
+  type: code
+  use: bank
+  stem: |
+    What does this R expression return, to the nearest hundredth?
+
+    ```r
+    sd(c(2, 4, 4, 4, 5, 5, 7, 9))
+    ```
+  options:
+    - "2.00"
+    - "2.14"
+    - "4.00"
+    - "4.57"
+  ordered: true
+  answer: B
+  explain: |
+    R's sd() divides by n - 1, giving the sample standard deviation. The squared deviations from the mean of 5 sum to 32, so the variance is 32 / 7, about 4.57, and its square root is about 2.14.
+  why:
+    A: "This is the population standard deviation, dividing by n, which is NumPy's default, not R's."
+    C: "This is the population variance, 32 / 8."
+    D: "This is the sample variance, before taking the square root."
+  verify: "statistics.stdev([2, 4, 4, 4, 5, 5, 7, 9])"
+
+# ---------------------------------------------------------------- tidyverse
+- id: tidyverse-01
+  skill: tidyverse
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which dplyr verb keeps only the rows that meet a condition?
+  options:
+    - "`filter()`"
+    - "`select()`"
+    - "`mutate()`"
+    - "`arrange()`"
+  answer: A
+  explain: |
+    filter() keeps the rows for which a condition is true, like SQL's WHERE clause.
+  why:
+    B: "select() chooses columns, not rows."
+    C: "mutate() adds or changes columns."
+    D: "arrange() sorts rows without removing any."
+
+- id: tidyverse-02
+  skill: tidyverse
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this pipe chain produce?
+
+    ```r
+    students |>
+      filter(grade >= 11) |>
+      arrange(desc(gpa)) |>
+      select(name)
+    ```
+  options:
+    - "Every student's name, sorted alphabetically"
+    - "The single highest GPA among grades 11 and 12"
+    - "The names of students below grade 11, by GPA"
+    - "The names of grade 11 and 12 students, from highest GPA down"
+  answer: D
+  explain: |
+    Read each pipe as "then": keep students in grade 11 or higher, then sort by GPA from highest to lowest, then keep only the name column.
+  why:
+    A: "filter removes the younger students, and the sort is by GPA, not by name."
+    B: "No summarise step collapses the rows to one value."
+    C: "The filter keeps grade 11 and up, not the students below it."
+
+- id: tidyverse-03
+  skill: tidyverse
+  tier: core
+  type: code
+  use: check
+  stem: |
+    In `ggplot(df, aes(x = height, y = weight)) + geom_point()`, what does `aes()` do?
+  options:
+    - "It sets the colors and fonts of the chart's theme."
+    - "It maps variables to visual properties, here the x and y positions."
+    - "It removes rows with missing values before plotting."
+    - "It saves the finished chart to a file."
+  answer: B
+  explain: |
+    aes() defines the aesthetic mappings: which variables control which visual properties. Here height sets each point's x position and weight sets its y position; geom_point() then draws the points.
+  why:
+    A: "Themes are set with theme() functions, not aes()."
+    C: "aes() maps variables; it does not filter rows."
+    D: "Saving a chart uses ggsave()."
+
+- id: tidyverse-04
+  skill: tidyverse
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which pair correctly matches a dplyr verb with its SQL counterpart?
+  options:
+    - "arrange() and ORDER BY"
+    - "select() and WHERE"
+    - "filter() and the SELECT column list"
+    - "mutate() and GROUP BY"
+  answer: A
+  explain: |
+    arrange() sorts rows, which is what ORDER BY does in SQL.
+  why:
+    B: "select() chooses columns, like SQL's column list; WHERE matches filter()."
+    C: "filter() keeps rows, like WHERE; the column list matches select()."
+    D: "mutate() creates columns; GROUP BY matches group_by()."
+
+- id: tidyverse-05
+  skill: tidyverse
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    The data frame `scores` has 120 rows, one per student, covering 3 classes. How many rows does this code return?
+
+    ```r
+    scores |>
+      group_by(class) |>
+      summarise(avg = mean(score))
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "120"
+  ordered: true
+  answer: C
+  explain: |
+    group_by() splits the rows by class, and summarise() collapses each group into one row of summary values, so the result has one row per class: 3 rows.
+  why:
+    A: "Without group_by(), summarise() would return 1 row; here there are 3 groups."
+    B: "There are 3 classes, so 3 groups."
+    D: "summarise() collapses the rows; mutate() would keep all 120."
+  verify: "3"
+
+- id: tidyverse-06
+  skill: tidyverse
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which tidyr function turns wide data, with one column per year, into long data with one row per year?
+  options:
+    - "`pivot_wider()`"
+    - "`mutate()`"
+    - "`summarise()`"
+    - "`pivot_longer()`"
+  answer: D
+  explain: |
+    pivot_longer() gathers several columns into name and value pairs, producing long, tidy data. It plays the role that melt plays in pandas.
+  why:
+    A: "pivot_wider() goes the other way, from long data to wide."
+    B: "mutate() adds columns; it does not reshape the table."
+    C: "summarise() collapses rows into summaries."
+
+- id: tidyverse-07
+  skill: tidyverse
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    Which ggplot2 layer draws a histogram of a numeric variable?
+  options:
+    - "`geom_point()`"
+    - "`geom_line()`"
+    - "`geom_histogram()`"
+    - "`facet_wrap()`"
+  answer: C
+  explain: |
+    geom_histogram() bins a numeric variable and draws a bar for each bin's count. The other geoms draw other marks.
+  why:
+    A: "geom_point() draws points, as in a scatterplot."
+    B: "geom_line() connects points, as in a line chart."
+    D: "facet_wrap() splits a chart into small multiples; it draws no marks of its own."
+
+- id: tidyverse-08
+  skill: tidyverse
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why does ggplot2 code join its parts with `+` while dplyr code chains its steps with `|>`?
+  options:
+    - "The two symbols are interchangeable in both packages."
+    - "ggplot2 adds layers to one plot; a pipe passes data to the next step."
+    - "+ is faster than the pipe for large data frames."
+    - "dplyr cannot be used in the same script as ggplot2."
+  answer: B
+  explain: |
+    In ggplot2, + adds a layer, such as a geom or a theme, to a single plot object. A pipe passes the result of one function into the next function as its first argument, which is how dplyr steps are chained.
+  why:
+    A: "Using a pipe between ggplot2 layers, or + between dplyr steps, produces errors."
+    C: "The choice is about meaning, not speed."
+    D: "The two are often used together: a dplyr pipeline can feed a ggplot2 chart."
+
+# ---------------------------------------------------------------- r-vs-python
+- id: r-vs-python-01
+  skill: r-vs-python
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A public health research team needs advanced statistical tests and publication-quality charts, and its members already work in R. Which choice fits best?
+  options:
+    - "R, using its built-in statistics and ggplot2"
+    - "Python, because R cannot produce charts"
+    - "Excel, because it is the only tool with statistical tests"
+    - "Apache Spark, because the team needs statistics"
+  answer: A
+  explain: |
+    R was built for statistics, has the tests built in, and ggplot2 produces publication-quality graphics. A team that already knows R loses nothing by staying with it.
+  why:
+    B: "R is known for its graphics, especially ggplot2."
+    C: "R and Python both offer far more statistical tests than Excel."
+    D: "Spark spreads big data across clusters; it is not the natural tool for detailed statistical analysis."
+
+- id: r-vs-python-02
+  skill: r-vs-python
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is RStudio?
+  options:
+    - "A package that adds ggplot2 to R"
+    - "A cloud database for storing R data"
+    - "An integrated development environment for writing R code"
+    - "The original language that R was based on"
+  answer: C
+  explain: |
+    RStudio is the most popular IDE for R, with panes for code, the console, plots, and data. The company that makes it renamed itself Posit in 2022, but the IDE kept the RStudio name.
+  why:
+    A: "ggplot2 is its own package, installed from CRAN."
+    B: "RStudio is an editor, not a database."
+    D: "R was based on the S language."
+
+- id: r-vs-python-03
+  skill: r-vs-python
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A startup needs to train a deep neural network and deploy it inside its web application. Which language is the more natural choice?
+  options:
+    - "R, because it was built for statistics"
+    - "SQL, because it stores the training data"
+    - "Excel, because it is easy to share"
+    - "Python, because of PyTorch and its general-purpose tools"
+  answer: D
+  explain: |
+    Python leads in deep learning, with frameworks such as PyTorch and TensorFlow, and as a general-purpose language it fits naturally into web applications and production systems.
+  why:
+    A: "R excels at statistics, but deep learning and deployment are Python's strengths."
+    B: "SQL queries data; it does not train neural networks."
+    C: "Excel cannot train or deploy a deep neural network."
+
+- id: r-vs-python-04
+  skill: r-vs-python
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What do R Markdown and Quarto documents have in common?
+  options:
+    - "They mix text, code, and output, and render to HTML or PDF."
+    - "They are databases that store R data frames permanently on disk."
+    - "They remove the need to write any code at all for an analysis."
+    - "They can only display results that were produced by Python."
+  answer: A
+  explain: |
+    Both create reproducible documents in which narrative text, code, and the code's output live together, so a report rebuilds itself when the data changes. Quarto, from Posit, works with Python, R, Julia, and Observable.
+  why:
+    B: "They are document formats, not databases."
+    C: "They are built around code; the code produces the results."
+    D: "R Markdown is built around R, and Quarto supports several languages."
+
+- id: r-vs-python-05
+  skill: r-vs-python
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which R package is used to build interactive web apps and dashboards?
+  options:
+    - "dplyr"
+    - "tidyr"
+    - "Shiny"
+    - "readr"
+  answer: C
+  explain: |
+    Shiny turns R code into interactive web applications, such as dashboards with sliders and dropdown menus that update charts live.
+  why:
+    A: "dplyr manipulates data frames."
+    B: "tidyr reshapes data between wide and long forms."
+    D: "readr reads data files such as CSVs."
+
+- id: r-vs-python-06
+  skill: r-vs-python
+  tier: champion
+  type: recall
+  use: bank
+  stem: |
+    Ross Ihaka and Robert Gentleman created R at the University of Auckland as a version of which earlier language?
+  options:
+    - "C"
+    - "SAS"
+    - "Python"
+    - "S"
+  answer: D
+  explain: |
+    R began as an implementation of a dialect of S, a statistics language. Ihaka and Gentleman first announced it in 1993, and R 1.0.0 arrived in 2000.
+  why:
+    A: "Parts of R are written in C, but R's language is based on S."
+    B: "SAS is a separate commercial statistics package."
+    C: "Python is a separate language that was not R's model."

@@ -1,0 +1,47 @@
+# Lesson 4.8 flashcards
+
+- id: fc-r-language
+  term: R Language
+  def: A free, open-source language for statistical computing and graphics, created by Ross Ihaka and Robert Gentleman at the University of Auckland as a version of S (announced 1993, version 1.0.0 in 2000).
+  skill: r-basics
+  virginia: true
+
+- id: fc-r-syntax
+  term: R syntax essentials
+  def: Assign with <-, build vectors with c(), and index from 1, so x[1] is the first element. A negative index removes elements (x[-1] drops the first). Arithmetic is vectorized.
+  skill: r-basics
+
+- id: fc-r-data
+  term: Data frames, factors, NA
+  def: A data frame is R's table, and df$col selects a column. A factor stores categories with fixed levels. NA marks missing values; mean(x, na.rm = TRUE) skips them. sd() uses n - 1.
+  skill: r-basics
+
+- id: fc-cran
+  term: CRAN, install.packages, library
+  def: CRAN is the Comprehensive R Archive Network of package mirrors, with more than 25,000 packages. install.packages() downloads a package once; library() loads it in each session.
+  skill: r-basics
+
+- id: fc-dplyr
+  term: dplyr verbs
+  def: filter (rows, like WHERE), select (columns), mutate (new columns), arrange (sort, like ORDER BY), group_by and summarise (grouped summaries, like GROUP BY with aggregates).
+  skill: tidyverse
+
+- id: fc-r-pipes
+  term: R pipes
+  def: "%>% (from magrittr, 2014) and the native |> (R 4.1.0, 2021) pass a result into the next function: x |> f(y) means f(x, y). Read a pipe as \"then.\""
+  skill: tidyverse
+
+- id: fc-ggplot2
+  term: ggplot2 and the grammar of graphics
+  def: Hadley Wickham's charting package (2007). A chart is data plus aes() mappings plus geoms (geom_point, geom_histogram, geom_boxplot), joined with +, with facets, scales, and themes as extra layers.
+  skill: tidyverse
+
+- id: fc-r-tools
+  term: RStudio, R Markdown, Quarto, Shiny
+  def: RStudio is the main R IDE, made by Posit. R Markdown and Quarto mix text, code, and output in reproducible documents. Shiny builds interactive web apps in R.
+  skill: r-vs-python
+
+- id: fc-r-vs-python
+  term: R or Python?
+  def: Choose R for statistics-heavy analysis and ggplot2 graphics; choose Python for deep learning, production systems, and general-purpose programming. Many teams use both.
+  skill: r-vs-python
