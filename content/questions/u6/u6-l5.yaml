@@ -1,0 +1,639 @@
+# Lesson 6.5: Using LLMs well
+
+# ---------------------------------------------------------------- prompting
+- id: prompting-01
+  skill: prompting
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A prompt shows a model three example reviews, each labeled positive or negative, and then gives a new review to label. What kind of prompting is this?
+  options:
+    - "Few-shot prompting"
+    - "Zero-shot prompting"
+    - "Fine-tuning"
+    - "Retrieval-augmented generation"
+  answer: A
+  explain: |
+    Including a few examples of the task in the prompt is few-shot prompting; the model picks up the pattern from them. A zero-shot prompt would ask for the label with no examples.
+  why:
+    B: "Zero-shot prompting gives no examples."
+    C: "Fine-tuning changes the model's weights through extra training; a prompt does not."
+    D: "RAG adds retrieved documents to the prompt, not labeled examples of the task."
+
+- id: prompting-02
+  skill: prompting
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is chain-of-thought prompting?
+  options:
+    - "Linking several chatbots so each one checks the last"
+    - "Asking the same question many times and taking a vote"
+    - "Prompting the model to show intermediate reasoning steps before answering"
+    - "Giving the model a chain of keywords instead of full sentences"
+  answer: C
+  explain: |
+    Chain-of-thought prompting shows worked examples with step-by-step reasoning, or asks the model to reason step by step, before it gives the final answer. Introduced by researchers at Google in 2022, it improves accuracy on multi-step problems such as math word problems.
+  why:
+    A: "Linking chatbots is a multi-agent design, not chain-of-thought."
+    B: "Voting over many answers is a separate technique; chain-of-thought concerns the reasoning inside one answer."
+    D: "Chain-of-thought adds reasoning steps, not a list of keywords."
+
+- id: prompting-03
+  skill: prompting
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A user gives a model five examples of a new formatting style in a prompt, and the model follows the style perfectly. What happened to the model's weights?
+  options:
+    - "They were updated to store the new style permanently"
+    - "They did not change; the examples only shaped this response"
+    - "They were reset to their values from before pretraining"
+    - "They were copied into a new model for this user only"
+  answer: B
+  explain: |
+    Learning from examples in the prompt, called in-context learning, uses the examples only as context for the current response. No weights change, and once the examples leave the context window the model no longer uses them. Changing weights requires training, such as fine-tuning.
+  why:
+    A: "Permanent changes to the weights require training, such as fine-tuning."
+    C: "Nothing is reset; the trained weights stay exactly as they were."
+    D: "No new model is created; the same model simply reads the examples in its context."
+
+- id: prompting-04
+  skill: prompting
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is zero-shot prompting?
+  options:
+    - "Asking the model to answer with zero words of explanation"
+    - "Retraining the model from zero on a new dataset"
+    - "Turning the temperature down to zero before asking"
+    - "Asking the model to do a task without giving any examples"
+  answer: D
+  explain: |
+    A zero-shot prompt describes the task and gives the input, with no worked examples, and relies on what the model learned in training. Adding a few examples makes it few-shot.
+  why:
+    A: "Zero-shot refers to the number of examples, not the length of the answer."
+    B: "Retraining from scratch is pretraining, not prompting."
+    C: "Temperature is a sampling setting, separate from how many examples a prompt contains."
+
+- id: prompting-05
+  skill: prompting
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A company's customer-service chatbot always answers politely, stays on the topic of the company's products, and never gives medical advice, whatever users type. Where are these rules most likely set?
+  options:
+    - "In a system prompt that frames every conversation"
+    - "In each user's own message, retyped every time"
+    - "In the temperature setting of the model"
+    - "In the model's tokenizer vocabulary"
+  answer: A
+  explain: |
+    A system prompt is a set of instructions, written by the developer and usually hidden from users, that sits at the start of every conversation and sets the assistant's role, tone, and rules. Users' messages come after it.
+  why:
+    B: "Users do not supply the company's rules; the developer does, once, in the system prompt."
+    C: "Temperature controls randomness, not which topics are allowed."
+    D: "The tokenizer only splits text into tokens."
+
+- id: prompting-06
+  skill: prompting
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why does asking an LLM to work through a math word problem step by step often improve its accuracy?
+  options:
+    - "It makes the model switch to a separate, built-in calculator"
+    - "It raises the temperature so that more answers are tried"
+    - "Each written step becomes context that the next predictions build on"
+    - "It retrains the model on math problems during the conversation"
+  answer: C
+  explain: |
+    An LLM produces one token at a time, each based on everything before it. When it writes out intermediate steps, those steps become part of the context, so later tokens can build on worked-out partial results instead of jumping straight to a guessed answer.
+  why:
+    A: "The model has no hidden calculator; a real calculator requires tool use."
+    B: "Chain-of-thought has nothing to do with the temperature setting."
+    D: "No retraining happens during a conversation; the weights stay fixed."
+
+- id: prompting-07
+  skill: prompting
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In generative AI, what is a prompt?
+  options:
+    - "The model's final answer, after it has been checked"
+    - "A warning that appears when the model makes a mistake"
+    - "The time limit a model has to answer a question"
+    - "The input of instructions, questions, or examples given to the model"
+  answer: D
+  explain: |
+    A prompt is everything you give a generative model to work from: instructions, a question, context, and any examples. The model generates its response from the prompt, so a clearer, more specific prompt usually gets a better response.
+  why:
+    A: "The answer is the model's output, not the prompt."
+    B: "Warnings come from the application, not the prompt."
+    C: "A prompt is content, not a time limit."
+
+- id: prompting-08
+  skill: prompting
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which revision of the prompt "Tell me about photosynthesis" is most likely to get a useful answer for a science class?
+  options:
+    - "Tell me everything you know about photosynthesis, please"
+    - "Explain photosynthesis to ninth graders in five sentences, with one example"
+    - "Photosynthesis. Photosynthesis. Photosynthesis. Explain it."
+    - "Tell me about photosynthesis, and be very smart about it"
+  answer: B
+  explain: |
+    Good prompts specify the task, the audience, the length or format, and what to include. This revision tells the model exactly who the answer is for and what shape it should take, while the others only repeat or decorate the vague request.
+  why:
+    A: "Asking for everything gives no audience, length, or focus."
+    C: "Repeating a word adds no useful instructions."
+    D: "Telling the model to be smart does not say what kind of answer is needed."
+
+# ---------------------------------------------------------------- sampling
+- id: sampling-01
+  skill: sampling
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What happens when you lower an LLM's temperature toward 0?
+  options:
+    - "Its answers become more random and creative"
+    - "It forgets the earlier parts of the conversation"
+    - "It almost always picks the most likely next token"
+    - "It writes longer answers with more detail"
+  answer: C
+  explain: |
+    A low temperature sharpens the probability distribution, so the top token wins nearly every time. Answers become focused, predictable, and repeatable, which suits factual questions and code.
+  why:
+    A: "More randomness comes from raising the temperature."
+    B: "Forgetting is about the context window, not the temperature."
+    D: "Temperature affects which tokens are chosen, not how long the answer is."
+
+- id: sampling-02
+  skill: sampling
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why can an LLM give different answers to exactly the same prompt?
+  options:
+    - "It samples each next token from probabilities, so choices can differ"
+    - "It searches the internet again every time the prompt is sent"
+    - "It is retrained on each prompt just before answering"
+    - "It randomly deletes some words from the prompt each time"
+  answer: A
+  explain: |
+    At each step the model has a probability for every possible next token, and with the temperature above 0 it draws from those probabilities rather than always taking the top one. A different early choice changes everything that follows, so the answers vary.
+  why:
+    B: "A plain LLM does not search the internet; its answer comes from its weights and the prompt."
+    C: "Models are not retrained between prompts."
+    D: "The prompt is read as written; the variation comes from sampling."
+
+- id: sampling-03
+  skill: sampling
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does top-k sampling choose the next token?
+  options:
+    - "It always picks the single most likely token"
+    - "It picks a token completely at random from the whole vocabulary"
+    - "It keeps the fewest tokens whose probabilities add up to k"
+    - "It samples only from the k most likely tokens"
+  answer: D
+  explain: |
+    Top-k sampling cuts the list down to the k highest-probability tokens and then samples among them, so very unlikely tokens can never be chosen. Keeping the fewest tokens whose probabilities reach a threshold is top-p sampling.
+  why:
+    A: "Always taking the top token is greedy decoding, the same as k = 1."
+    B: "Sampling from the whole vocabulary would allow absurd tokens; top-k prevents that."
+    C: "Reaching a probability total describes top-p, which uses p, not k."
+
+- id: sampling-04
+  skill: sampling
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    The five most likely next tokens have probabilities 0.5, 0.3, 0.1, 0.06, and 0.04. With top-p (nucleus) sampling at p = 0.85, how many tokens remain as candidates?
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+  ordered: true
+  answer: B
+  explain: |
+    Top-p keeps the smallest set of top tokens whose probabilities add up to at least p. The first two add to 0.8, short of 0.85; adding the third gives 0.9, which reaches it. So three tokens remain.
+  why:
+    A: "0.5 + 0.3 = 0.8 falls short of 0.85, so a third token is needed."
+    C: "Three tokens already reach 0.9, so a fourth is not included."
+    D: "Keeping all five ignores the cutoff entirely."
+  verify: |
+    probs = [0.5, 0.3, 0.1, 0.06, 0.04]
+    total, k = 0, 0
+    for p in probs:
+        total += p
+        k += 1
+        if total >= 0.85:
+            break
+    ans = k
+
+- id: sampling-05
+  skill: sampling
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A writer wants an LLM to brainstorm many unusual names for a fantasy city. Which temperature setting fits best?
+  options:
+    - "A value of 0, for complete predictability"
+    - "A low value, such as 0.1"
+    - "A higher value, such as 1.2"
+    - "Any value, since temperature does not affect variety"
+  answer: C
+  explain: |
+    Brainstorming benefits from variety, and a higher temperature flattens the probabilities so that less likely, more surprising tokens are chosen more often. Very high values drift into nonsense, so creative tasks usually use moderate to high settings.
+  why:
+    A: "A temperature of 0 gives nearly the same answer every time, the opposite of brainstorming."
+    B: "A low temperature favors the most predictable names."
+    D: "Temperature directly controls how varied the output is."
+
+- id: sampling-06
+  skill: sampling
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Raising an LLM's temperature from 1 to 2 makes the probability of its most likely next token fall from 55.8 percent to 38.6 percent. What happens to the ranking of the candidate tokens?
+  options:
+    - "It stays the same; only the gaps between them shrink"
+    - "It reverses, so the least likely token becomes the most likely"
+    - "It becomes random, so any order is equally likely"
+    - "It changes so that rare tokens always rank first"
+  answer: A
+  explain: |
+    Temperature divides every raw score by the same number before the softmax, which keeps their order. A higher temperature narrows the gaps between the probabilities, so the distribution is flatter, but the most likely token is still the most likely.
+  why:
+    B: "Dividing all the scores by the same positive number never reverses their order."
+    C: "The probabilities flatten, but they are not randomized."
+    D: "Rare tokens gain probability but stay below the common ones."
+
+- id: sampling-07
+  skill: sampling
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    For the prompt "The weather today is," a model's top tokens are "sunny" (0.45), "cloudy" (0.30), "rainy" (0.15), "cold" (0.07), and "purple" (0.03). With top-k sampling at k = 3, which tokens can be chosen?
+  options:
+    - "Only sunny"
+    - "Sunny and cloudy"
+    - "Any of the five words"
+    - "Sunny, cloudy, and rainy"
+  answer: D
+  explain: |
+    Top-k keeps the k most likely tokens and samples among them, so with k = 3 the candidates are "sunny," "cloudy," and "rainy." "Cold" and "purple" can never be chosen.
+  why:
+    A: "Only the top token is greedy decoding, the same as k = 1."
+    B: "Two tokens would be k = 2."
+    C: "Top-k removes everything below the top k."
+
+# ---------------------------------------------------------------- embeddings
+- id: embeddings-01
+  skill: embeddings
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is an embedding?
+  options:
+    - "A secret code hidden inside a model's output text"
+    - "A small model placed inside a larger model"
+    - "A link that embeds a web page inside a chat window"
+    - "A vector of numbers that represents the meaning of data"
+  answer: D
+  explain: |
+    An embedding turns a word, sentence, document, or image into a list of numbers, placed so that items with similar meanings have nearby vectors. Search, recommendations, and retrieval-augmented generation all rely on comparing embeddings.
+  why:
+    A: "Hidden codes in output are watermarks, a different idea."
+    B: "A model inside a model is not what the term means."
+    C: "Embedding a web page is a web-design term, unrelated to AI embeddings."
+
+- id: embeddings-02
+  skill: embeddings
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    Two embeddings are A = (3, 4) and B = (4, 3). What is their cosine similarity?
+  options:
+    - "0.04"
+    - "0.96"
+    - "1"
+    - "24"
+  ordered: true
+  answer: B
+  explain: |
+    The dot product is 3 × 4 + 4 × 3 = 24. Each vector has length $$\sqrt{9 + 16} = 5$$, so the cosine similarity is 24 / (5 × 5) = 0.96: the vectors point in nearly the same direction.
+  why:
+    A: "This is 1 minus the similarity, a distance, not the similarity itself."
+    C: "A similarity of exactly 1 would need the vectors to point in exactly the same direction."
+    D: "24 is the dot product before dividing by the two lengths."
+  verify: "(3 * 4 + 4 * 3) / (5 * 5)"
+
+- id: embeddings-03
+  skill: embeddings
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A travel site returns a page titled "Inexpensive airfare deals" when a user searches for "cheap flights," even though the two share no words. What kind of search is this?
+  options:
+    - "Semantic search using embeddings"
+    - "Exact keyword matching"
+    - "Alphabetical sorting of page titles"
+    - "Searching by the date a page was posted"
+  answer: A
+  explain: |
+    Semantic search compares the embeddings of the query and the documents, so phrases with the same meaning match even without shared words. A keyword search would miss this page, because none of its words appear in the query.
+  why:
+    B: "Keyword matching needs shared words, and these phrases share none."
+    C: "Sorting titles alphabetically does not find pages by meaning."
+    D: "The posting date has nothing to do with matching meaning."
+
+- id: embeddings-04
+  skill: embeddings
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Two embeddings are A = (1, 0, 1) and B = (1, 1, 0). What is their cosine similarity?
+  options:
+    - "0"
+    - "0.25"
+    - "0.5"
+    - "0.71"
+  ordered: true
+  answer: C
+  explain: |
+    The dot product is 1 × 1 + 0 × 1 + 1 × 0 = 1. Each vector has length $$\sqrt{2}$$, and $$\sqrt{2} \times \sqrt{2} = 2$$, so the cosine similarity is 1/2 = 0.5.
+  why:
+    A: "The vectors share a nonzero first entry, so they are not perpendicular."
+    B: "This divides by the squared lengths multiplied together, 2 × 2 = 4, instead of by the lengths."
+    D: "This divides by the length of only one vector, the square root of 2."
+  verify: "1 / (math.sqrt(2) * math.sqrt(2))"
+
+- id: embeddings-05
+  skill: embeddings
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What job does a vector database do in an AI application?
+  options:
+    - "It stores the model's weights between training runs"
+    - "It translates text into many different languages"
+    - "It keeps a log of every prompt users have typed"
+    - "It stores embeddings and quickly finds those nearest a query"
+  answer: D
+  explain: |
+    A vector database holds large numbers of embeddings and is built to find the ones most similar to a query's embedding quickly. It powers semantic search and the retrieval step of retrieval-augmented generation.
+  why:
+    A: "Model weights are saved as model files, not as searchable embeddings."
+    B: "Translation is a language task, not a storage system."
+    C: "Logging prompts is ordinary record keeping, not similarity search."
+
+- id: embeddings-06
+  skill: embeddings
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Two text embeddings have a cosine similarity close to 1. What does that suggest?
+  options:
+    - "The two texts have very similar meanings"
+    - "The two texts share no meaning at all"
+    - "One text is exactly one word long"
+    - "The two texts are in different languages"
+  answer: A
+  explain: |
+    Cosine similarity measures the angle between vectors. A value near 1 means they point in almost the same direction, which in a good embedding means the texts mean nearly the same thing; a value near 0 means they are unrelated.
+  why:
+    B: "Unrelated meanings give a cosine similarity near 0."
+    C: "The length of a text does not set its similarity to another."
+    D: "Good multilingual embeddings place translations close together, so language alone does not decide it."
+
+- id: embeddings-07
+  skill: embeddings
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In a good text embedding model, which pair of words would most likely have the highest cosine similarity?
+  options:
+    - "doctor and banana"
+    - "doctor and volcano"
+    - "doctor and physician"
+    - "doctor and calendar"
+  answer: C
+  explain: |
+    Embeddings place words used in similar contexts near each other, and "doctor" and "physician" are used almost interchangeably, so their vectors point in nearly the same direction. The other words appear in unrelated contexts.
+  why:
+    A: "Bananas and doctors appear in unrelated contexts."
+    B: "Volcanoes and doctors appear in unrelated contexts."
+    D: "Calendars and doctors are only loosely connected."
+
+- id: embeddings-08
+  skill: embeddings
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which 2013 work from Google made word embeddings widely known?
+  options:
+    - "AlexNet"
+    - "word2vec"
+    - "BERT"
+    - "ELIZA"
+  answer: B
+  explain: |
+    In 2013, Tomas Mikolov and colleagues at Google introduced word2vec, models that learn word embeddings from large amounts of text, so that words used in similar contexts get similar vectors.
+  why:
+    A: "AlexNet was a 2012 image-recognition network."
+    C: "BERT is a 2018 transformer model, which came later."
+    D: "ELIZA was a 1966 conversation program."
+
+# ---------------------------------------------------------------- rag-agents
+- id: rag-agents-01
+  skill: rag-agents
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What does retrieval-augmented generation (RAG) add to an LLM's process?
+  options:
+    - "It retrains the model every night on new documents"
+    - "It removes the model's need for a context window"
+    - "It raises the temperature so the answers sound more natural"
+    - "It finds relevant documents and adds them to the prompt before answering"
+  answer: D
+  explain: |
+    RAG retrieves passages relevant to the question, usually by comparing embeddings in a vector database, inserts them into the prompt, and then has the model generate an answer grounded in them. The model's weights stay the same.
+  why:
+    A: "RAG changes the prompt, not the weights; no retraining happens."
+    B: "Retrieved passages go into the context window, so RAG depends on it."
+    C: "Temperature is unrelated to retrieval."
+
+- id: rag-agents-02
+  skill: rag-agents
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why does retrieval-augmented generation (RAG) tend to reduce hallucinations?
+  options:
+    - "It makes the model refuse every question it cannot answer"
+    - "It deletes the parts of the model that produce false facts"
+    - "The model answers from real passages placed in its context"
+    - "It guarantees that every answer is verified by a human"
+  answer: C
+  explain: |
+    Without RAG, the model must reconstruct facts from patterns in its weights, which is where invented details come from. With RAG, the relevant facts sit in the prompt, so the model can use and cite them. It is not a guarantee: wrong passages, or a misreading, can still produce errors.
+  why:
+    A: "RAG supplies information; it does not force refusals."
+    B: "No part of the model is deleted; hallucination is not stored in one place."
+    D: "RAG is automatic; human review is a separate safeguard."
+
+- id: rag-agents-03
+  skill: rag-agents
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An assistant must give the exact total of a 40-item invoice. Which approach is most reliable?
+  options:
+    - "Have the model call a calculator tool and use its result"
+    - "Raise the temperature so the model tries several totals"
+    - "Ask the model to estimate the total from memory"
+    - "Add more examples of invoices to the prompt"
+  answer: A
+  explain: |
+    LLMs predict tokens and can slip on exact arithmetic, while a calculator computes exactly. With tool use, the model writes a request for the calculation, the application runs the calculator, and the exact result goes back into the context.
+  why:
+    B: "More randomness makes an exact total less likely, not more."
+    C: "Estimating from learned patterns is exactly how arithmetic errors happen."
+    D: "More examples may help the format, but they do not make long arithmetic exact."
+
+- id: rag-agents-04
+  skill: rag-agents
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which sequence describes the loop an AI agent repeats as it works toward a goal?
+  options:
+    - "Act, observe, perceive, plan, then repeat"
+    - "Perceive, plan, act, observe, then repeat"
+    - "Plan, observe, perceive, act, then repeat"
+    - "Observe, act, plan, perceive, then repeat"
+  answer: B
+  explain: |
+    An agent takes in its goal and situation (perceive), decides on next steps (plan), uses a tool or takes an action (act), reads the result (observe), and repeats until the goal is met. Each observation feeds the next round of planning.
+  why:
+    A: "Acting before perceiving and planning means acting blindly."
+    C: "An agent cannot observe results before it has acted."
+    D: "Acting before any plan skips the decision step."
+
+- id: rag-agents-05
+  skill: rag-agents
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A company wants its chatbot to answer questions from its own policy documents, which change every week, without retraining the model. Which technique fits best?
+  options:
+    - "Pretraining a new model from scratch"
+    - "Raising the temperature"
+    - "Zero-shot prompting alone"
+    - "Retrieval-augmented generation"
+  answer: D
+  explain: |
+    Retrieval-augmented generation searches the current policy documents for passages relevant to each question and places them in the prompt, so the answers stay up to date as the documents change. No retraining is needed.
+  why:
+    A: "Pretraining from scratch is enormously expensive and would be out of date within a week."
+    B: "Temperature changes randomness, not what the model knows."
+    C: "Without the documents in the prompt, the model cannot know private, changing policies."
+
+- id: rag-agents-06
+  skill: rag-agents
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A RAG system answers "Our refund window is 60 days," but the real policy says 30 days. The retrieved passage came from an outdated 2019 policy file still in the database. What does this show?
+  options:
+    - "RAG systems cannot use documents of any kind"
+    - "The model must have been trained on the wrong policy"
+    - "RAG is only as reliable as the documents it retrieves"
+    - "The temperature was set too low for an accurate answer"
+  answer: C
+  explain: |
+    The model answered faithfully from the passage it was given, and the passage was wrong. RAG grounds answers in retrieved documents, so outdated or incorrect documents produce wrong answers; keeping the collection current and checking sources are part of running a RAG system.
+  why:
+    A: "The system did use a document; the document was outdated."
+    B: "The answer came from the retrieved passage, not from training."
+    D: "Temperature does not decide which passage is retrieved."
+
+- id: rag-agents-07
+  skill: rag-agents
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How does an AI agent differ from a basic chatbot?
+  options:
+    - "It pursues a goal over several steps, using tools to take actions"
+    - "It replies to messages but cannot use any outside tools"
+    - "It is trained without any data, using only hand-written rules"
+    - "It answers questions about images but never about text"
+  answer: A
+  explain: |
+    A basic chatbot responds to one message at a time. An agent is given a goal and works toward it over many steps: planning, using tools such as search or code, observing the results, and adjusting. That autonomy makes agents powerful but riskier, so their permissions should be limited.
+  why:
+    B: "Replying without tools describes a basic chatbot, not an agent."
+    C: "Agents are usually built on LLMs, which learn from data."
+    D: "Handling images is multimodality, a separate idea from agency."
+
+- id: rag-agents-08
+  skill: rag-agents
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    An AI agent can read a user's email and send replies on its own. Which safeguard best limits the risk of a costly mistake?
+  options:
+    - "Giving the agent full access to every account it might need"
+    - "Requiring a person to approve messages before they are sent"
+    - "Raising the temperature so the agent tries more options"
+    - "Letting the agent run longer without checking its progress"
+  answer: B
+  explain: |
+    Agents act on their own, so an early mistake can compound and real actions can cause real harm. Limiting permissions and keeping a human in the loop for important actions, such as sending messages or spending money, are standard safeguards (lesson 8.4).
+  why:
+    A: "More access means more possible damage; permissions should be as narrow as the task allows."
+    C: "More randomness makes an agent less predictable, not safer."
+    D: "Less oversight lets mistakes pile up unnoticed."

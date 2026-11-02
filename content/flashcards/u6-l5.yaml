@@ -1,0 +1,65 @@
+# Lesson 6.5 flashcards
+
+- id: fc-prompt
+  term: Prompt
+  def: The input given to a generative AI model to produce a response, including instructions, questions, context, and examples. Specific prompts (task, audience, format, constraints) get better answers.
+  skill: prompting
+  virginia: true
+
+- id: fc-zero-few-shot
+  term: Zero-shot vs. few-shot prompting
+  def: Zero-shot asks for a task with no examples. Few-shot includes a few worked examples so the model copies the pattern. Both are in-context learning, which changes no weights.
+  skill: prompting
+
+- id: fc-chain-of-thought
+  term: Chain-of-thought prompting
+  def: Showing or asking for intermediate reasoning steps before the final answer (Wei and colleagues, Google, 2022). Each written step becomes context for the next, which helps on multi-step problems.
+  skill: prompting
+
+- id: fc-system-prompt
+  term: System prompt and role prompt
+  def: A system prompt is developer-set instructions, usually hidden, that frame every conversation with a role, tone, and rules. A role prompt asks the model to take a perspective, such as a patient tutor.
+  skill: prompting
+
+- id: fc-temperature
+  term: Temperature
+  def: A sampling setting that divides the model's scores before the softmax. Low (near 0) gives focused, repeatable answers; high gives varied, creative, more error-prone ones. It never changes the ranking of tokens.
+  skill: sampling
+
+- id: fc-top-k-top-p
+  term: Top-k and top-p sampling
+  def: Top-k samples only from the k most likely tokens. Top-p (nucleus) samples from the smallest set of top tokens whose probabilities add up to at least p. Both cut off the unlikely tail.
+  example: "Probabilities 0.5, 0.3, 0.1: with p = 0.85, three tokens remain."
+  skill: sampling
+
+- id: fc-embedding
+  term: Embedding
+  def: A vector of numbers that represents the meaning of data such as a word, sentence, document, or image, placed so that items with similar meanings have nearby vectors.
+  skill: embeddings
+  virginia: true
+
+- id: fc-cosine-similarity
+  term: Cosine similarity
+  def: The dot product of two vectors divided by the product of their lengths. 1 means the same direction (very similar), 0 unrelated, and negative values opposite.
+  example: "(3, 4) and (4, 3): 24 / (5 × 5) = 0.96."
+  skill: embeddings
+
+- id: fc-semantic-search
+  term: Semantic search and vector databases
+  def: Semantic search matches meaning by comparing embeddings, so "cheap flights" finds "inexpensive airfare." A vector database stores embeddings and quickly finds those nearest a query.
+  skill: embeddings
+
+- id: fc-rag
+  term: Retrieval-augmented generation (RAG)
+  def: Retrieve relevant passages by embedding search, add them to the prompt, then generate a grounded answer. It reduces hallucination and adds current or private knowledge without retraining, but it is only as good as its documents.
+  skill: rag-agents
+
+- id: fc-tool-use
+  term: Tool use (function calling)
+  def: The model writes a structured request for a tool, such as a calculator, search, or code runner. The application runs it, and the result returns to the model's context.
+  skill: rag-agents
+
+- id: fc-ai-agent
+  term: AI agent (agentic AI)
+  def: A system that pursues a goal by looping through perceive, plan, act, observe, and repeat, using tools along the way. Its autonomy calls for limited permissions and human approval of important actions.
+  skill: rag-agents
