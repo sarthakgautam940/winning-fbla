@@ -1,0 +1,591 @@
+# Lesson 1.4: Number systems
+
+# ---------------------------------------------------------------- base-binary
+- id: base-binary-01
+  skill: base-binary
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    In the binary number $$1000000_2$$, a 1 is followed by six 0s. What is the decimal value of this number?
+  options:
+    - "6"
+    - "12"
+    - "32"
+    - "64"
+  ordered: true
+  answer: D
+  explain: |
+    The 1 sits in the seventh place from the right, whose value is $$2^6 = 64$$, and every other place is 0. A 1 followed by n zeros is always $$2^n$$.
+  why:
+    A: "This counts the zeros instead of using them to find the place value."
+    B: "This multiplies the number of zeros by 2 instead of raising 2 to that power."
+    C: "This is $$2^5$$, one place too low; the rightmost place is $$2^0$$."
+  verify: "int('1000000', 2)"
+
+- id: base-binary-02
+  skill: base-binary
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    What is $$110101_2$$ in decimal?
+  options:
+    - "26"
+    - "43"
+    - "52"
+    - "53"
+  ordered: true
+  answer: D
+  explain: |
+    The place values for six bits are 32, 16, 8, 4, 2, 1. The 1s sit under 32, 16, 4, and 1, which add to 53.
+  why:
+    A: "This drops the last bit, as if the number were $$11010_2$$."
+    B: "This reads the bits backward, which gives $$101011_2$$."
+    C: "This misses the 1 in the rightmost place; the number ends in 1, so it must be odd."
+  verify: "int('110101', 2)"
+
+- id: base-binary-03
+  skill: base-binary
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is 90 written in binary?
+  options:
+    - "101101"
+    - "1010110"
+    - "1011010"
+    - "1011100"
+  ordered: true
+  answer: C
+  explain: |
+    90 = 64 + 16 + 8 + 2. Writing 1s in those places and 0s elsewhere, across 64, 32, 16, 8, 4, 2, 1, gives 1011010.
+  why:
+    A: "This is 45, half of 90; it comes from dropping the final 0 that marks 90 as even."
+    B: "This is 86 (64 + 16 + 4 + 2); it puts a 1 in the 4s place instead of the 8s place."
+    D: "This is 92 (64 + 16 + 8 + 4); it uses the 4s place where the 2s place belongs."
+  verify: "format(90, 'b')"
+
+- id: base-binary-04
+  skill: base-binary
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    What is $$10011_2$$ in decimal?
+  options:
+    - "18"
+    - "19"
+    - "25"
+    - "38"
+  ordered: true
+  answer: B
+  explain: |
+    Five bits have place values 16, 8, 4, 2, 1. The 1s sit under 16, 2, and 1, so the value is 16 + 2 + 1 = 19.
+  why:
+    A: "This forgets the 1s place; a number ending in 1 is odd."
+    C: "This reads the bits backward, as $$11001_2$$."
+    D: "This shifts every bit one place left, as $$100110_2$$."
+  verify: "int('10011', 2)"
+
+- id: base-binary-05
+  skill: base-binary
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Counting in binary, what number comes right after $$10111_2$$?
+  options:
+    - "10110"
+    - "11000"
+    - "11111"
+    - "101111"
+  ordered: true
+  answer: B
+  explain: |
+    Adding 1 to the three trailing 1s turns each into 0 and carries into the next place: $$10111_2 + 1 = 11000_2$$, which is 23 + 1 = 24.
+  why:
+    A: "This is the number before $$10111_2$$, not after it."
+    C: "Adding 1 carries rather than turning the 0 into a 1 and leaving the other bits alone."
+    D: "This appends a digit instead of adding 1."
+  verify: "format(int('10111', 2) + 1, 'b')"
+
+- id: base-binary-06
+  skill: base-binary
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A binary number ends in 0. What must be true of its value?
+  options:
+    - "It is even."
+    - "It is odd."
+    - "It is a power of 2."
+    - "It is less than 10."
+  answer: A
+  explain: |
+    Every binary place except the rightmost is worth an even amount (2, 4, 8, ...). The rightmost place is worth 1, so when it holds 0, the total is a sum of even numbers, which is even.
+  why:
+    B: "A number is odd only when its last bit is 1."
+    C: "$$110_2 = 6$$ ends in 0 but is not a power of 2."
+    D: "$$1100100_2 = 100$$ ends in 0 and is far larger than 10."
+
+- id: base-binary-07
+  skill: base-binary
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Which binary number equals $$2^{10} - 1$$, which is 1,023?
+  options:
+    - "1111111111"
+    - "10000000000"
+    - "11111111110"
+    - "11111111111"
+  ordered: true
+  answer: A
+  explain: |
+    A run of n ones equals $$2^n - 1$$, one less than the next power of two. So $$2^{10} - 1$$ is ten 1s in a row.
+  why:
+    B: "This is $$2^{10} = 1024$$ itself, a 1 followed by ten zeros."
+    C: "This is 2,046, double the target; it appends a 0 to the right answer."
+    D: "Eleven 1s equal $$2^{11} - 1 = 2047$$."
+  verify: "format(2**10 - 1, 'b')"
+
+- id: base-binary-08
+  skill: base-binary
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    What is 13 written in binary?
+  options:
+    - "1001"
+    - "1011"
+    - "1100"
+    - "1101"
+  ordered: true
+  answer: D
+  explain: |
+    13 = 8 + 4 + 1. Writing 1s in the 8s, 4s, and 1s places and a 0 in the 2s place gives 1101.
+  why:
+    A: "This is 9; it leaves out the 4s place."
+    B: "This is 11, which is 1101 read backward."
+    C: "This is 12; it misses the 1 in the 1s place, though 13 is odd."
+  verify: "format(13, 'b')"
+
+- id: base-binary-09
+  skill: base-binary
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    What is 200 written in binary?
+  options:
+    - "11000100"
+    - "11001000"
+    - "11010000"
+    - "11100000"
+  ordered: true
+  answer: B
+  explain: |
+    200 = 128 + 64 + 8. Across the places 128, 64, 32, 16, 8, 4, 2, 1, that gives 11001000.
+  why:
+    A: "This is 196 (128 + 64 + 4); it puts the last 1 one place too far right."
+    C: "This is 208 (128 + 64 + 16); it puts the last 1 one place too far left."
+    D: "This is 224 (128 + 64 + 32); it uses 32 where 8 belongs."
+  verify: "format(200, 'b')"
+
+# ---------------------------------------------------------------- base-hex
+- id: base-hex-01
+  skill: base-hex
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What decimal value does the hexadecimal digit C represent?
+  options:
+    - "11"
+    - "12"
+    - "13"
+    - "14"
+  ordered: true
+  answer: B
+  explain: |
+    Hex continues past 9 with A = 10, B = 11, C = 12, D = 13, E = 14, F = 15.
+  why:
+    A: "11 is B."
+    C: "13 is D."
+    D: "14 is E."
+  verify: "int('C', 16)"
+
+- id: base-hex-02
+  skill: base-hex
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is $$2F_{16}$$ in decimal?
+  options:
+    - "32"
+    - "35"
+    - "46"
+    - "47"
+  ordered: true
+  answer: D
+  explain: |
+    The places are 16 and 1, and F is 15. So $$2F_{16} = 2 \times 16 + 15 = 47$$.
+  why:
+    A: "This counts the 2 in the 16s place but leaves out the F."
+    B: "This uses decimal place values: 2 times 10 plus 15."
+    C: "This treats F as 14; F is 15."
+  verify: "int('2F', 16)"
+
+- id: base-hex-03
+  skill: base-hex
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is $$3C_{16}$$ in binary?
+  options:
+    - "111100"
+    - "111101"
+    - "1111000"
+    - "11000011"
+  ordered: true
+  answer: A
+  explain: |
+    Each hex digit becomes four bits: 3 is 0011 and C (12) is 1100. Together that is 00111100, which is 111100 without the leading zeros.
+  why:
+    B: "This converts C as 1101, which is 13 (D); C is 12."
+    C: "This appends an extra 0, doubling the value to 120."
+    D: "This swaps the two nibbles, which converts C3 instead of 3C."
+  verify: "format(int('3C', 16), 'b')"
+
+- id: base-hex-04
+  skill: base-hex
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    What is 255 written in hexadecimal?
+  options:
+    - "EF"
+    - "FE"
+    - "FF"
+    - "100"
+  answer: C
+  explain: |
+    255 = 15 x 16 + 15, so both digits are F. FF is the largest two-digit hex number, the value of eight 1 bits.
+  why:
+    A: "EF is 14 x 16 + 15 = 239."
+    B: "FE is 15 x 16 + 14 = 254, one less than 255."
+    D: "Hex 100 is 256, one more than 255."
+  verify: "format(255, 'X')"
+
+- id: base-hex-05
+  skill: base-hex
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    What is $$1A3_{16}$$ in decimal?
+  options:
+    - "203"
+    - "419"
+    - "435"
+    - "929"
+  ordered: true
+  answer: B
+  explain: |
+    The places are 256, 16, and 1, and A is 10. So $$1A3_{16} = 1 \times 256 + 10 \times 16 + 3 = 419$$.
+  why:
+    A: "This uses decimal place values (100, 10, 1) instead of 256, 16, 1."
+    C: "This treats A as 11; A is 10."
+    D: "This reads the digits right to left, converting 3A1 instead."
+  verify: "int('1A3', 16)"
+
+- id: base-hex-06
+  skill: base-hex
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    What is $$1011010_2$$ in hexadecimal?
+  options:
+    - "5A"
+    - "5B"
+    - "A5"
+    - "B2"
+  answer: A
+  explain: |
+    Group the bits in fours from the right and pad the left group: 0101 1010. Those nibbles are 5 and 10 (A), so the answer is 5A, which is 90 in decimal.
+  why:
+    B: "This reads the right nibble 1010 as 11; it is 10 (A)."
+    C: "This swaps the two nibbles."
+    D: "This groups from the left (1011 010) instead of from the right."
+  verify: "format(int('1011010', 2), 'X')"
+
+- id: base-hex-07
+  skill: base-hex
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    What is the largest decimal value that can be written with three hexadecimal digits?
+  options:
+    - "999"
+    - "4,095"
+    - "4,096"
+    - "65,535"
+  ordered: true
+  answer: B
+  explain: |
+    The largest three-digit hex number is FFF. Since n hex digits reach $$16^n - 1$$, that is $$16^3 - 1 = 4096 - 1 = 4095$$.
+  why:
+    A: "999 is the largest three-digit decimal number, not hexadecimal."
+    C: "$$16^3 = 4096$$ needs four hex digits (1000)."
+    D: "65,535 is FFFF, the largest four-digit hex number."
+  verify: "16**3 - 1"
+
+- id: base-hex-08
+  skill: base-hex
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why do programmers often write binary values in hexadecimal?
+  options:
+    - "Hex values take up less memory inside the computer than binary."
+    - "Processors can execute only instructions written in hex."
+    - "Hex can represent some numbers that binary cannot."
+    - "Each hex digit stands for exactly four bits, so long binary values become short."
+  answer: D
+  explain: |
+    Because $$16 = 2^4$$, every hex digit maps to one 4-bit nibble, so a byte is exactly two hex digits. Hex is a compact, readable way to write binary, which is why it appears in color codes and memory addresses.
+  why:
+    A: "Inside the computer everything is binary; hex only changes how humans write the values."
+    B: "Processors run binary machine code; hex is a notation for people."
+    C: "Every whole number can be written in any base, including binary."
+
+- id: base-hex-09
+  skill: base-hex
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    What is 500 written in hexadecimal?
+  options:
+    - "1E4"
+    - "1F0"
+    - "1F4"
+    - "4F1"
+  answer: C
+  explain: |
+    500 = 1 x 256 + 244, and 244 = 15 x 16 + 4. The digits are 1, 15 (F), and 4, so 500 is 1F4.
+  why:
+    A: "This miscounts 244 / 16 as 14 (E); 15 x 16 = 240 fits."
+    B: "This drops the remainder of 4 in the 1s place."
+    D: "This writes the remainders in the order found, which reverses the digits."
+  verify: "format(500, 'X')"
+
+# ---------------------------------------------------------------- base-other
+- id: base-other-01
+  skill: base-other
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is $$157_8$$ in decimal?
+  options:
+    - "111"
+    - "133"
+    - "157"
+    - "489"
+  ordered: true
+  answer: A
+  explain: |
+    Octal places are 64, 8, and 1. So $$157_8 = 1 \times 64 + 5 \times 8 + 7 = 64 + 40 + 7 = 111$$.
+  why:
+    B: "This uses base-9 places (81, 9, 1) instead of 64, 8, 1."
+    C: "This reads the octal digits as if they were decimal."
+    D: "This reads the digits from right to left, converting 751 instead."
+  verify: "int('157', 8)"
+
+- id: base-other-02
+  skill: base-other
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which of these could NOT be a binary number?
+  options:
+    - "1001"
+    - "1010"
+    - "1021"
+    - "1111"
+  ordered: true
+  answer: C
+  explain: |
+    A digit must be less than its base, and binary allows only 0 and 1. The digit 2 in 1021 is impossible in base 2.
+  why:
+    A: "1001 uses only 0s and 1s, so it is a valid binary number (9)."
+    B: "1010 uses only 0s and 1s, so it is a valid binary number (10)."
+    D: "1111 uses only 1s, so it is a valid binary number (15)."
+  verify: |
+    ans = [o for o in ["1001", "1010", "1021", "1111"] if set(o) - set("01")][0]
+
+- id: base-other-03
+  skill: base-other
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    What is $$1101011_2$$ in octal?
+  options:
+    - "153"
+    - "351"
+    - "651"
+    - "6B"
+  answer: A
+  explain: |
+    Group the bits in threes from the right and pad the left group: 001 101 011. Those groups are 1, 5, and 3, so the octal value is 153.
+  why:
+    B: "This writes the three groups in reverse order."
+    C: "This groups from the left (110 101 1) instead of from the right."
+    D: "This groups in fours, which converts to hexadecimal, not octal."
+  verify: "format(int('1101011', 2), 'o')"
+
+- id: base-other-04
+  skill: base-other
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In Python code, what does the prefix in `0x1F` tell you?
+  options:
+    - "The number is written in binary."
+    - "The number is written in octal."
+    - "The number is written in hexadecimal."
+    - "The number is stored in a variable named x."
+  answer: C
+  explain: |
+    The prefix 0x marks a hexadecimal literal, so `0x1F` is $$1 \times 16 + 15 = 31$$. Binary uses 0b and octal uses 0o.
+  why:
+    A: "Binary literals start with 0b."
+    B: "Octal literals start with 0o."
+    D: "The x is part of the prefix, not a variable name."
+
+- id: base-other-05
+  skill: base-other
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Which value is the largest?
+  options:
+    - "11111111 (binary)"
+    - "377 (octal)"
+    - "FE (hexadecimal)"
+    - "256 (decimal)"
+  answer: D
+  explain: |
+    Convert each to decimal: $$11111111_2 = 255$$, $$377_8 = 3 \times 64 + 7 \times 8 + 7 = 255$$, and $$FE_{16} = 254$$. So 256 is the largest, and the binary and octal values are equal.
+  why:
+    A: "Eight 1s are $$2^8 - 1 = 255$$, one less than 256."
+    B: "$$377_8$$ is 192 + 56 + 7 = 255, one less than 256."
+    C: "FE is 15 x 16 + 14 = 254."
+  verify: |
+    vals = {
+        "11111111 (binary)": int("11111111", 2),
+        "377 (octal)": int("377", 8),
+        "FE (hexadecimal)": int("FE", 16),
+        "256 (decimal)": 256,
+    }
+    ans = max(vals, key=vals.get)
+
+- id: base-other-06
+  skill: base-other
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    The numeral 10 stands for a different value in each base. What decimal values does 10 represent in binary, octal, and hexadecimal, respectively?
+  options:
+    - "2, 8, 16"
+    - "1, 7, 15"
+    - "2, 10, 16"
+    - "10, 10, 10"
+  answer: A
+  explain: |
+    In any base, 10 means one of the base and nothing more. So it is 2 in binary, 8 in octal, and 16 in hexadecimal.
+  why:
+    B: "These are the largest single digits of each base, which are one less than 10 in that base."
+    C: "In octal, 10 is eight, not ten."
+    D: "Only in decimal does the numeral 10 mean ten."
+
+- id: base-other-07
+  skill: base-other
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    What is $$243_5$$ (a base-5 number) in decimal?
+  options:
+    - "33"
+    - "43"
+    - "73"
+    - "243"
+  ordered: true
+  answer: C
+  explain: |
+    Base 5 has places 25, 5, and 1. So $$243_5 = 2 \times 25 + 4 \times 5 + 3 = 50 + 20 + 3 = 73$$.
+  why:
+    A: "This uses 5 for the leftmost place instead of 25."
+    B: "This uses places 10, 5, and 1, mixing decimal and base 5."
+    D: "This reads the base-5 digits as if they were decimal."
+  verify: "int('243', 5)"
+
+- id: base-other-08
+  skill: base-other
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which digits does the octal number system use?
+  options:
+    - "Seven digits, 0 to 6"
+    - "Eight digits, 1 to 8"
+    - "Ten digits, 0 to 9"
+    - "Eight digits, 0 to 7"
+  answer: D
+  explain: |
+    Base b uses b digits, from 0 to b - 1. Octal is base 8, so its digits run from 0 to 7.
+  why:
+    A: "Base 8 needs eight digits, not seven."
+    B: "Digits start at 0, and no base-8 digit can equal 8."
+    C: "Ten digits belong to decimal, base 10."
+
+- id: base-other-09
+  skill: base-other
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    What is $$52_8$$ in binary?
+  options:
+    - "10101"
+    - "101010"
+    - "101100"
+    - "110100"
+  ordered: true
+  answer: B
+  explain: |
+    Each octal digit becomes three bits: 5 is 101 and 2 is 010. Together that is 101010, which is 42 in decimal.
+  why:
+    A: "This reverses the bits, giving 21 instead of 42."
+    C: "This converts 2 as 100 instead of 010."
+    D: "This converts decimal 52 to binary instead of octal 52."
+  verify: "format(int('52', 8), 'b')"

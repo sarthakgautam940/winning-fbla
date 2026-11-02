@@ -1,0 +1,65 @@
+# Lesson 1.4 flashcards
+
+- id: fc-base-radix
+  term: Base (radix)
+  def: The number of digits a number system uses. In base b, digits run from 0 to b - 1 and place values are powers of b from the right.
+  skill: base-other
+
+- id: fc-binary
+  term: Binary
+  def: Base 2, with digits 0 and 1. The place values from the right are 1, 2, 4, 8, 16, 32, 64, 128, and so on.
+  skill: base-binary
+
+- id: fc-powers-of-two
+  term: Powers of two to memorize
+  def: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1,024; also $$2^{16} = 65{,}536$$.
+  skill: base-binary
+
+- id: fc-binary-to-decimal
+  term: Binary to decimal
+  def: Add the place values under each 1, or start at 0 and, for each bit from the left, double the total and add the bit.
+  example: "1011001 gives 64 + 16 + 8 + 1 = 89."
+  skill: base-binary
+
+- id: fc-decimal-to-binary
+  term: Decimal to binary
+  def: Subtract the largest powers of two that fit, or divide by 2 repeatedly and read the remainders from the last one to the first.
+  example: "77 = 64 + 8 + 4 + 1, which is 1001101."
+  skill: base-binary
+
+- id: fc-binary-patterns
+  term: Binary shortcuts
+  def: A last bit of 1 means odd. A 1 followed by n zeros equals $$2^n$$. A run of n ones equals $$2^n - 1$$, so 11111111 is 255.
+  skill: base-binary
+
+- id: fc-hexadecimal
+  term: Hexadecimal
+  def: Base 16, with digits 0 to 9 then A = 10, B = 11, C = 12, D = 13, E = 14, F = 15. Its place values are 1, 16, 256, 4,096.
+  skill: base-hex
+
+- id: fc-nibble-trick
+  term: Nibble trick (hex and binary)
+  def: One hex digit is exactly four bits. Swap each hex digit for its 4-bit pattern, or group bits in fours from the right.
+  example: "3C becomes 0011 1100; 1011010 becomes 0101 1010, which is 5A."
+  skill: base-hex
+
+- id: fc-largest-n-digits
+  term: Largest n-digit number in base b
+  def: $$b^n - 1$$. So FF = 255, FFF = 4,095, and eight binary 1s = 255.
+  skill: base-hex
+
+- id: fc-octal
+  term: Octal
+  def: Base 8, with digits 0 to 7 and place values 1, 8, 64, 512. One octal digit is exactly three bits, so group bits in threes from the right.
+  example: "157 in octal is 64 + 40 + 7 = 111."
+  skill: base-other
+
+- id: fc-base-prefixes
+  term: Base prefixes
+  def: "In Python and many other languages, 0b marks binary, 0o marks octal, and 0x marks hexadecimal. 0x1F is 31."
+  skill: base-other
+
+- id: fc-valid-digits
+  term: Valid digits rule
+  def: Every digit must be less than the base. A 2 cannot appear in binary, an 8 cannot appear in octal, and a G cannot appear in hex.
+  skill: base-other
