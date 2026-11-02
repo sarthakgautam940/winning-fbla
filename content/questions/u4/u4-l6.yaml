@@ -1,0 +1,540 @@
+# Lesson 4.6: Cleaning and wrangling with pandas
+
+# ---------------------------------------------------------------- pandas-cleaning
+- id: pandas-cleaning-01
+  skill: pandas-cleaning
+  tier: core
+  type: code
+  use: check
+  stem: |
+    What does `df.isna().sum()` return?
+  options:
+    - "The number of missing values in each column"
+    - "The total of every numeric column"
+    - "The rows that contain no missing values"
+    - "The number of columns that have no data type"
+  answer: A
+  explain: |
+    isna() marks each missing cell True, and sum() adds those True values (each counts as 1) down every column, giving a count of missing values per column.
+  why:
+    B: "df.sum() alone would total the columns; isna() first turns the cells into True and False."
+    C: "Keeping complete rows is what dropna() does."
+    D: "Every column has a data type; this counts missing cells."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"a": [1, None], "b": [None, None]})
+    ans = "The number of missing values in each column" if df.isna().sum().tolist() == [1, 2] else "other"
+
+- id: pandas-cleaning-02
+  skill: pandas-cleaning
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    A DataFrame has 4 rows. Ben is missing both his gpa and his club, and Dev is missing only his gpa. How many rows does `df.dropna(subset=["club"])` keep?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    With subset=["club"], only the club column is checked, so only Ben's row is removed. Dev stays, because his club is present, leaving 3 rows.
+  why:
+    A: "Only one row has a missing club, so only one row is removed."
+    B: "This is what dropna() with no subset gives, removing any row with any missing value."
+    D: "Ben's missing club does remove his row."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"name": ["Ava", "Ben", "Chloe", "Dev"], "gpa": [3.6, None, 3.9, None], "club": ["Robotics", None, "Debate", "Robotics"]})
+    ans = len(df.dropna(subset=["club"]))
+
+- id: pandas-cleaning-03
+  skill: pandas-cleaning
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    A city column holds " Austin", "denver", "DENVER ", and "Boston". Which code makes the two Denver entries identical?
+  options:
+    - "`df['city'].str.upper()`"
+    - "`df['city'].str.contains('Denver')`"
+    - "`df['city'].str.strip().str.title()`"
+    - "`df['city'].astype(float)`"
+  answer: C
+  explain: |
+    strip() removes the stray spaces and title() gives every value the same capitalization, so both entries become "Denver" and are counted together.
+  why:
+    A: "Upper case alone leaves the trailing space, so 'DENVER ' still differs from 'DENVER'."
+    B: "contains() tests for a match and returns True or False; it does not clean the values."
+    D: "City names are text and cannot be converted to numbers."
+  verify: |
+    import pandas as pd
+    s = pd.Series([" Austin", "denver", "DENVER ", "Boston"])
+    ans = "`df['city'].str.strip().str.title()`" if s.str.strip().str.title().nunique() == 3 else "other"
+
+- id: pandas-cleaning-04
+  skill: pandas-cleaning
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    d = pd.DataFrame({"a": [1, 1, 2], "b": [5, 5, 5]})
+    print(d.drop_duplicates(subset=["b"]).shape)
+    ```
+  options:
+    - "`(3, 2)`"
+    - "`(1, 2)`"
+    - "`(2, 2)`"
+    - "`(1, 1)`"
+  answer: B
+  explain: |
+    With subset=["b"], rows count as duplicates whenever column b matches. All three rows have b = 5, so only the first is kept, but both columns remain: shape (1, 2).
+  why:
+    A: "Nothing would be removed only if every b value were different."
+    C: "This compares whole rows; with subset, only column b is compared."
+    D: "subset limits which columns are compared; it does not remove any columns."
+  verify: |
+    import pandas as pd
+    d = pd.DataFrame({"a": [1, 1, 2], "b": [5, 5, 5]})
+    ans = "`" + str(d.drop_duplicates(subset=["b"]).shape) + "`"
+
+- id: pandas-cleaning-05
+  skill: pandas-cleaning
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    s = pd.Series(["7", "x", "9"])
+    print(pd.to_numeric(s, errors="coerce").tolist())
+    ```
+  options:
+    - "`[7.0, nan, 9.0]`"
+    - "`[7, 9]`"
+    - "An error, because 'x' is not a number"
+    - "`['7', 'x', '9']`"
+  answer: A
+  explain: |
+    errors="coerce" converts every value it can and turns the rest into NaN instead of raising an error. NaN is a float, so the whole column becomes floats.
+  why:
+    B: "Coercing keeps every position; it marks bad values as NaN rather than dropping them."
+    C: "An error is the default behavior, but errors='coerce' replaces it with NaN."
+    D: "The values are converted to numbers, not left as text."
+  verify: |
+    import pandas as pd
+    ans = "`" + str(pd.to_numeric(pd.Series(["7", "x", "9"]), errors="coerce").tolist()) + "`"
+
+- id: pandas-cleaning-06
+  skill: pandas-cleaning
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    An analyst runs `df.dropna()` on its own line, without assigning the result, and then prints `df`. What do they see?
+  options:
+    - "df is unchanged, because dropna returned a new DataFrame."
+    - "df without the rows that had missing values."
+    - "An empty DataFrame, because dropna clears it."
+    - "df with every missing value replaced by 0."
+  answer: A
+  explain: |
+    pandas methods return new objects and leave the original alone. The cleaned result was never stored, so df still has its missing values. Writing df = df.dropna() keeps the change.
+  why:
+    B: "The rows were removed only from the returned copy, which was discarded."
+    C: "dropna removes only rows with missing values, and here it did not change df at all."
+    D: "Replacing missing values is what fillna does, not dropna."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"x": [1, None]})
+    df.dropna()
+    ans = "df is unchanged, because dropna returned a new DataFrame." if len(df) == 2 else "other"
+
+- id: pandas-cleaning-07
+  skill: pandas-cleaning
+  tier: core
+  type: code
+  use: bank
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    print(pd.Series([" Hi ", "yo"]).str.strip().str.len().tolist())
+    ```
+  options:
+    - "`[4, 2]`"
+    - "`[3, 2]`"
+    - "`[2, 2]`"
+    - "`[6]`"
+  answer: C
+  explain: |
+    The .str methods apply to every value in turn: strip() removes the spaces around " Hi ", leaving "Hi", and len() then measures each string, giving 2 and 2.
+  why:
+    A: "This counts the two spaces, as if strip() had not run."
+    B: "strip() removes spaces from both ends, not just one."
+    D: "str.len() returns one length per value, not a single total."
+  verify: |
+    import pandas as pd
+    ans = "`" + str(pd.Series([" Hi ", "yo"]).str.strip().str.len().tolist()) + "`"
+
+- id: pandas-cleaning-08
+  skill: pandas-cleaning
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why convert a column of date strings such as "2025-06-15" with `pd.to_datetime`?
+  options:
+    - "It makes the dates take up less space on disk."
+    - "It hides the dates from anyone who opens the file."
+    - "It turns each date into a random number for modeling."
+    - "Real dates sort in time order and support date arithmetic."
+  answer: D
+  explain: |
+    Converted dates can be subtracted (June 15 minus June 1 is 14 days), sorted chronologically in any format, and broken into parts with .dt, such as .dt.month or .dt.day_name().
+  why:
+    A: "Storage size is not the reason for the conversion."
+    B: "Conversion changes the type, not who can see the data."
+    C: "Dates become datetime values, not random numbers."
+
+- id: pandas-cleaning-09
+  skill: pandas-cleaning
+  tier: champion
+  type: code
+  use: bank
+  stem: |
+    The orders table below has four rows, and the third row is an exact copy of the second. What does `df.duplicated().tolist()` return?
+
+    | order_id | amount |
+    |---|---|
+    | 101 | 12.50 |
+    | 102 | 8.00 |
+    | 102 | 8.00 |
+    | 103 | 20.00 |
+  options:
+    - "`[False, True, True, False]`"
+    - "`[True, False, True, False]`"
+    - "`[False, False, False, False]`"
+    - "`[False, False, True, False]`"
+  answer: D
+  explain: |
+    duplicated() marks each row that repeats an earlier row. The first copy of order 102 is not a duplicate yet; only its second copy is, so only the third position is True.
+  why:
+    A: "By default the first occurrence is kept unmarked, so the second row is False."
+    B: "The first row has nothing earlier to repeat."
+    C: "The third row is an exact repeat, so it is flagged."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"order_id": [101, 102, 102, 103], "amount": ["12.50", "8.00", "8.00", "20.00"]})
+    ans = "`" + str(df.duplicated().tolist()) + "`"
+
+- id: pandas-cleaning-10
+  skill: pandas-cleaning
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    s = pd.Series([3, None, 5])
+    print(s.fillna(0).tolist())
+    ```
+  options:
+    - "`[3.0, 0.0, 5.0]`"
+    - "`[3.0, 5.0]`"
+    - "`[3, None, 5]`"
+    - "`[0.0, 0.0, 0.0]`"
+  answer: A
+  explain: |
+    fillna(0) replaces only the missing value with 0. The column is stored as floats because it contained a missing value, so all three print with decimals.
+  why:
+    B: "Removing the missing value is what dropna() does."
+    C: "fillna fills the gap; the None does not survive."
+    D: "fillna replaces only missing values, not every value."
+  verify: |
+    import pandas as pd
+    ans = "`" + str(pd.Series([3, None, 5]).fillna(0).tolist()) + "`"
+
+- id: pandas-cleaning-11
+  skill: pandas-cleaning
+  tier: core
+  type: code
+  use: check
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    print(pd.Series([88, 72]).apply(lambda s: s * 2).tolist())
+    ```
+  options:
+    - "`[88, 72, 88, 72]`"
+    - "`[160]`"
+    - "`[90, 74]`"
+    - "`[176, 144]`"
+  answer: D
+  explain: |
+    apply calls the function once for each value, and this lambda doubles its input, so 88 becomes 176 and 72 becomes 144. The vectorized form, multiplying the Series by 2, gives the same result faster.
+  why:
+    A: "Repeating the values is what * 2 does to a Python list, not what apply does."
+    B: "apply returns one result per value, not one combined total."
+    C: "The lambda multiplies by 2; it does not add 2."
+  verify: |
+    import pandas as pd
+    ans = "`" + str(pd.Series([88, 72]).apply(lambda s: s * 2).tolist()) + "`"
+
+# ---------------------------------------------------------------- pandas-reshape
+- id: pandas-reshape-01
+  skill: pandas-reshape
+  tier: core
+  type: code
+  use: check
+  stem: |
+    A sales table has region and units columns. The East rows have 10, 6, and 2 units, and the West rows have 4 and 8. What does `sales.groupby("region")["units"].sum()` return?
+  options:
+    - "East 3 and West 2"
+    - "East 6 and West 6"
+    - "30, the total of all units"
+    - "East 18 and West 12"
+  answer: D
+  explain: |
+    groupby splits the rows by region, sums the units in each group, and returns a Series indexed by region: East 10 + 6 + 2 = 18 and West 4 + 8 = 12.
+  why:
+    A: "These are the row counts per region, which count() or value_counts() would give."
+    B: "These are the means per region, which mean() would give."
+    C: "Without groupby, sum() would give the grand total."
+  verify: |
+    import pandas as pd
+    sales = pd.DataFrame({"region": ["East", "West", "East", "West", "East"], "units": [10, 4, 6, 8, 2]})
+    r = sales.groupby("region")["units"].sum()
+    ans = f"East {r['East']} and West {r['West']}"
+
+- id: pandas-reshape-02
+  skill: pandas-reshape
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    The students DataFrame has 3 rows: Ava, Ben, and Chloe. In the scores DataFrame, Ava has 2 scores, Ben has none, and Chloe has 1. How many rows does `students.merge(scores, on="student_id", how="left")` return?
+  options:
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+  ordered: true
+  answer: B
+  explain: |
+    A left merge keeps every student. Ava matches two scores and so appears twice, Chloe appears once, and Ben appears once with NaN for score: 2 + 1 + 1 = 4 rows.
+  why:
+    A: "Ava appears once for each of her two scores, so the count exceeds the 3 students."
+    C: "This adds an unmatched score, which only an outer merge keeps."
+    D: "Ben, with no scores, appears only once."
+  verify: |
+    import pandas as pd
+    students = pd.DataFrame({"student_id": [1, 2, 3], "name": ["Ava", "Ben", "Chloe"]})
+    scores = pd.DataFrame({"student_id": [1, 1, 3], "score": [88, 92, 95]})
+    ans = len(students.merge(scores, on="student_id", how="left"))
+
+- id: pandas-reshape-03
+  skill: pandas-reshape
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    A table has one row per region and a separate column for each quarter's units (Q1, Q2, Q3, Q4). Which method turns it into a long table with one row per region and quarter?
+  options:
+    - "`melt`"
+    - "`pivot_table`"
+    - "`concat`"
+    - "`merge`"
+  answer: A
+  explain: |
+    melt unpivots wide data: it keeps the identifier column (region) and turns the quarter columns into variable and value pairs, one row per region and quarter.
+  why:
+    B: "pivot_table goes the other way, from long data to wide."
+    C: "concat stacks tables; it does not reshape columns into rows."
+    D: "merge joins two tables on a key; it does not reshape one table."
+
+- id: pandas-reshape-04
+  skill: pandas-reshape
+  tier: core
+  type: code
+  use: quiz
+  stem: |
+    A Series holds "a", "b", "a", "c", "a", and "b". What does `.value_counts()` return?
+  options:
+    - "c 1, b 2, a 3"
+    - "a 1, b 1, c 1"
+    - "a 3, b 2, c 1"
+    - "6, the number of values"
+  answer: C
+  explain: |
+    value_counts() counts each distinct value and sorts the counts from most common to least common, so a (3) comes first, then b (2), then c (1).
+  why:
+    A: "value_counts sorts in descending order, so the most common value comes first."
+    B: "These count each distinct value only once, ignoring how often it repeats."
+    D: "The total number of values is len(), not value_counts()."
+  verify: |
+    import pandas as pd
+    vc = pd.Series(["a", "b", "a", "c", "a", "b"]).value_counts()
+    ans = ", ".join(f"{k} {v}" for k, v in vc.items())
+
+- id: pandas-reshape-05
+  skill: pandas-reshape
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    `d` is a DataFrame with 3 rows and 2 columns. What does this code print?
+
+    ```python
+    print(pd.concat([d, d], axis=1).shape)
+    ```
+  options:
+    - "`(6, 2)`"
+    - "`(6, 4)`"
+    - "`(3, 2)`"
+    - "`(3, 4)`"
+  answer: D
+  explain: |
+    With axis=1, concat places the DataFrames side by side, so the rows stay at 3 and the columns double to 4.
+  why:
+    A: "This is the default axis=0 result, which stacks rows."
+    B: "concat combines along one axis, not both."
+    C: "This is the shape of d alone."
+  verify: |
+    import pandas as pd
+    d = pd.DataFrame({"a": [1, 1, 2], "b": [5, 5, 5]})
+    ans = "`" + str(pd.concat([d, d], axis=1).shape) + "`"
+
+- id: pandas-reshape-06
+  skill: pandas-reshape
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    The students DataFrame has IDs 1, 2, and 3. The scores DataFrame has the student IDs 1, 1, 3, and 4. How many rows does an outer merge on student_id return?
+  options:
+    - "3"
+    - "4"
+    - "5"
+    - "7"
+  ordered: true
+  answer: C
+  explain: |
+    An outer merge keeps every match plus every unmatched row from both sides. The matches give 3 rows (Ava twice and Chloe once), Ben adds 1 unmatched row, and student 4's score adds another: 5 rows.
+  why:
+    A: "This is the inner merge, which keeps only the matches."
+    B: "This is the left merge, which drops the unmatched score for student 4."
+    D: "This adds the two table sizes, which counts the matched rows twice."
+  verify: |
+    import pandas as pd
+    students = pd.DataFrame({"student_id": [1, 2, 3], "name": ["Ava", "Ben", "Chloe"]})
+    scores = pd.DataFrame({"student_id": [1, 1, 3, 4], "score": [88, 92, 95, 70]})
+    ans = len(students.merge(scores, on="student_id", how="outer"))
+
+- id: pandas-reshape-07
+  skill: pandas-reshape
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In pandas, `merge(..., how="left")` corresponds to which SQL operation?
+  options:
+    - "INNER JOIN"
+    - "LEFT JOIN"
+    - "UNION"
+    - "GROUP BY"
+  answer: B
+  explain: |
+    merge mirrors SQL joins, and how="left" keeps every row of the left DataFrame, filling unmatched columns with NaN, just as LEFT JOIN fills them with NULL.
+  why:
+    A: "INNER JOIN corresponds to how='inner'."
+    C: "UNION stacks query results, which is closer to pd.concat."
+    D: "GROUP BY corresponds to groupby, not merge."
+
+- id: pandas-reshape-08
+  skill: pandas-reshape
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    The West rows of a sales table have 4 and 8 units. In the result of `sales.groupby("region")["units"].agg(["count", "mean"])`, what is the mean for West?
+  options:
+    - "4.0"
+    - "6.0"
+    - "8.0"
+    - "12.0"
+  ordered: true
+  answer: B
+  explain: |
+    agg applies each listed function to every group. West's units are 4 and 8, so its count is 2 and its mean is (4 + 8) / 2 = 6.0.
+  why:
+    A: "This is West's minimum."
+    C: "This is West's maximum."
+    D: "This is West's sum, before dividing by the count."
+  verify: |
+    import pandas as pd
+    sales = pd.DataFrame({"region": ["East", "West", "East", "West", "East"], "units": [10, 4, 6, 8, 2]})
+    ans = sales.groupby("region")["units"].agg(["count", "mean"]).loc["West", "mean"]
+
+- id: pandas-reshape-09
+  skill: pandas-reshape
+  tier: champion
+  type: code
+  use: bank
+  stem: |
+    What kind of object does `t.groupby("g")["v"].sum()` return, and what is its index?
+  options:
+    - "A DataFrame whose index is 0, 1, 2, and so on"
+    - "A Series whose index holds the group labels"
+    - "A single number, the sum of the whole column"
+    - "A list of sums in the order the rows appeared"
+  answer: B
+  explain: |
+    Grouping one column and applying one function returns a Series. Its index is the group labels, sorted by default, and its values are the per-group results.
+  why:
+    A: "A plain integer index would lose the group labels; they become the index instead."
+    C: "groupby gives one result per group, not one overall total."
+    D: "pandas returns a labeled Series, not a plain list."
+  verify: |
+    import pandas as pd
+    t = pd.DataFrame({"g": ["a", "b", "a"], "v": [1, 2, 3]})
+    r = t.groupby("g")["v"].sum()
+    ans = "A Series whose index holds the group labels" if type(r).__name__ == "Series" and list(r.index) == ["a", "b"] else "other"
+
+- id: pandas-reshape-10
+  skill: pandas-reshape
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    A long sales table has these rows: East Q1 10, East Q2 6, West Q1 4, and West Q2 8 units. It is turned into a wide table with `pivot_table(index="region", columns="quarter", values="units", aggfunc="sum")`. What value is in the West row and the Q2 column?
+  options:
+    - "4"
+    - "6"
+    - "8"
+    - "10"
+  ordered: true
+  answer: C
+  explain: |
+    The pivot puts regions in rows and quarters in columns, and each cell holds the units for that pair. West's Q2 row in the long table has 8 units.
+  why:
+    A: "4 is West in Q1."
+    B: "6 is East in Q2."
+    D: "10 is East in Q1."
+  verify: |
+    import pandas as pd
+    sales = pd.DataFrame({"region": ["East", "East", "West", "West"], "quarter": ["Q1", "Q2", "Q1", "Q2"], "units": [10, 6, 4, 8]})
+    ans = sales.pivot_table(index="region", columns="quarter", values="units", aggfunc="sum").loc["West", "Q2"]

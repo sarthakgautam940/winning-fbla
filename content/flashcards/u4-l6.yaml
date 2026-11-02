@@ -1,0 +1,36 @@
+# Lesson 4.6 flashcards
+
+- id: fc-pandas-missing
+  term: isna, dropna, fillna
+  def: isna().sum() counts missing values per column. dropna() removes rows with missing values (subset= limits the check). fillna(value) fills them; ffill() carries the last value forward.
+  skill: pandas-cleaning
+
+- id: fc-pandas-new-objects
+  term: Methods return new objects
+  def: pandas methods leave the original unchanged and return a result, so write df = df.dropna() to keep the change.
+  skill: pandas-cleaning
+
+- id: fc-pandas-duplicates-types
+  term: drop_duplicates, astype, to_numeric
+  def: duplicated() flags repeated rows and drop_duplicates() removes them (subset= and keep= adjust it). astype() converts types; pd.to_numeric(..., errors="coerce") turns bad values into NaN.
+  skill: pandas-cleaning
+
+- id: fc-pandas-str-dt
+  term: .str and .dt accessors
+  def: The .str accessor applies string methods to a whole column (strip, lower, title, replace, contains). pd.to_datetime makes real dates, and .dt gives parts such as year, month, and day_name.
+  skill: pandas-cleaning
+
+- id: fc-groupby
+  term: groupby and value_counts
+  def: groupby splits rows into groups, applies a function, and combines the results, returning results indexed by group. agg applies several functions. value_counts counts categories, most common first.
+  skill: pandas-reshape
+
+- id: fc-merge-concat
+  term: merge, join, concat
+  def: merge combines DataFrames on a key, like a SQL join (how="inner", "left", "right", "outer"). join merges on the index. concat stacks rows (axis=0) or places tables side by side (axis=1).
+  skill: pandas-reshape
+
+- id: fc-pivot-melt
+  term: pivot_table and melt
+  def: pivot_table turns long data wide, aggregating each cell (mean by default). melt turns wide data long, keeping id_vars as identifiers.
+  skill: pandas-reshape
