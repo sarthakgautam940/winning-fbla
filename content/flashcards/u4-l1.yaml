@@ -1,0 +1,58 @@
+# Lesson 4.1 flashcards
+
+- id: fc-relational-database
+  term: Relational Database
+  def: A database that stores data in tables of rows and columns, linked through primary and foreign keys, and queried with SQL. E. F. Codd introduced the relational model at IBM in 1970.
+  skill: rdb-concepts
+  virginia: true
+
+- id: fc-table-vocab
+  term: Table, row, column, schema
+  def: A table (relation) holds one kind of thing; a row (record, tuple) is one instance; a column (field, attribute) is one property with a data type. The schema is the structure of tables, columns, types, keys, and relationships.
+  skill: rdb-concepts
+
+- id: fc-primary-foreign-key
+  term: Primary key and foreign key
+  def: A primary key uniquely identifies each row and is never NULL. A foreign key refers to another table's primary key. A composite key uses two or more columns.
+  skill: keys
+
+- id: fc-relationships
+  term: One-to-many and many-to-many
+  def: One-to-many puts the foreign key on the "many" side (students.club_id). Many-to-many needs a junction table of paired keys (enrollments).
+  skill: keys
+
+- id: fc-referential-integrity
+  term: Referential integrity
+  def: Every foreign key value must match an existing primary key, or be NULL if allowed. A student pointing to a nonexistent club violates it.
+  skill: keys
+
+- id: fc-normalization
+  term: Normalization (1NF, 2NF, 3NF)
+  def: Organizing tables to remove redundancy and update, insertion, and deletion anomalies. 1NF, single values per cell. 2NF, no partial dependency on part of a composite key. 3NF, no transitive dependency between non-key columns.
+  skill: normalization
+
+- id: fc-denormalization
+  term: Denormalization
+  def: Deliberately repeating data or combining tables to make reads faster, common in data warehouses, at the cost of possible anomalies.
+  skill: normalization
+
+- id: fc-acid
+  term: ACID
+  def: Atomicity (all or nothing), Consistency (rules hold after each transaction), Isolation (concurrent transactions do not interfere), Durability (committed changes survive crashes). COMMIT saves; ROLLBACK undoes.
+  skill: db-integrity
+
+- id: fc-index
+  term: Index
+  def: A separate data structure that lets a database find rows by a column's values without scanning the whole table. It speeds reads at the cost of extra storage and slower writes.
+  skill: db-integrity
+  virginia: true
+
+- id: fc-constraints
+  term: SQL constraints
+  def: PRIMARY KEY (unique, not NULL), FOREIGN KEY (must match another table), NOT NULL (required), UNIQUE (no repeats), CHECK (condition such as a range), DEFAULT (value when none is given).
+  skill: db-integrity
+
+- id: fc-nosql
+  term: NoSQL
+  def: '"Not only SQL" databases that use non-table models: document (MongoDB), key-value (Redis), wide-column (Cassandra), and graph (Neo4j). They favor flexible schemas and horizontal scaling.'
+  skill: sql-nosql

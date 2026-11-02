@@ -31,7 +31,8 @@ Gate + proxy auth, design tokens (Figtree, JetBrains Mono), app shell, lesson re
 | u0 | l1-l3 | none (no skills) | none | done |
 | u1 (DL) | l1-l8 | 222 | 121 | done, all lessons 0 errors 0 warnings, verified |
 | u2 (PS) | l1-l8 | 209 | 79 | done, all lessons 0 errors 0 warnings, verified |
-| u3-u8 | | | | to do, in order u3-l1 onward |
+| u3 (DA) | l1-l8 | 194 | 69 | done, all lessons 0 errors 0 warnings, verified |
+| u4-u8 | | | | to do, in order u4-l1 onward |
 
 Full `--check` (no filter) at fb5427c: 0 errors, 1 warning (Virginia cards for terms in later units, expected until those units exist).
 

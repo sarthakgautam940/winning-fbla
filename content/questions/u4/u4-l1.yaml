@@ -1,0 +1,652 @@
+# Lesson 4.1: Relational databases
+
+# ---------------------------------------------------------------- rdb-concepts
+- id: rdb-concepts-01
+  skill: rdb-concepts
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    In a relational database table of students, what does each row represent?
+  options:
+    - "One record, such as a single student"
+    - "One attribute recorded for every student"
+    - "The table's column names and data types"
+    - "A link between the table and another table"
+  answer: A
+  explain: |
+    Each row (also called a record or tuple) is one instance of the thing the table stores, here one student. Each column holds one attribute, such as grade, for every row.
+  why:
+    B: "An attribute recorded for every row is a column."
+    C: "Column names and data types belong to the schema."
+    D: "Links between tables are made by keys, not by individual rows."
+
+- id: rdb-concepts-02
+  skill: rdb-concepts
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What makes a database relational?
+  options:
+    - "It stores every record as a separate JSON document."
+    - "It keeps all of its data in one very large table."
+    - "It stores data in tables that are linked through key values."
+    - "It can only be read by programs written in Python."
+  answer: C
+  explain: |
+    A relational database organizes data into tables of rows and columns and connects the tables through primary and foreign keys. It is queried with SQL.
+  why:
+    A: "Storing JSON documents describes a document database, a kind of NoSQL."
+    B: "Relational design splits data into several related tables rather than one big one."
+    D: "Relational databases are queried with SQL from many languages and tools."
+
+- id: rdb-concepts-03
+  skill: rdb-concepts
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which of these is a relational database management system (RDBMS)?
+  options:
+    - "MongoDB"
+    - "Redis"
+    - "Neo4j"
+    - "PostgreSQL"
+  answer: D
+  explain: |
+    PostgreSQL is an open source relational (more precisely, object-relational) database system that uses and extends SQL. The other three are NoSQL databases.
+  why:
+    A: "MongoDB is a document database, a kind of NoSQL."
+    B: "Redis is an in-memory key-value database."
+    C: "Neo4j is a graph database."
+
+- id: rdb-concepts-04
+  skill: rdb-concepts
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is a database schema?
+  options:
+    - "The complete set of rows currently stored in the database"
+    - "The structure of tables, columns, data types, keys, and links"
+    - "A backup copy of the database kept on another server"
+    - "A single query that reads data from every table"
+  answer: B
+  explain: |
+    The schema is the database's design: which tables exist, what columns and data types they have, which keys they use, and how the tables relate. It describes the data rather than containing it.
+  why:
+    A: "The rows are the data, not the schema that structures them."
+    C: "A backup is a copy of the data, not its design."
+    D: "A query retrieves data; the schema defines where the data lives."
+
+- id: rdb-concepts-05
+  skill: rdb-concepts
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In the relational model introduced by E. F. Codd in 1970, what is a "relation"?
+  options:
+    - "A foreign key that connects two tables"
+    - "A one-to-many link between two entities"
+    - "A table: a set of rows with named columns"
+    - "A query that combines rows from two tables"
+  answer: C
+  explain: |
+    In relational theory, a relation is a table, formally a set of tuples (rows) over named attributes (columns). The word refers to the table itself, not to a relationship between tables, which is a common confusion.
+  why:
+    A: "A foreign key creates a relationship, but a relation is the table itself."
+    B: "One-to-many is a kind of relationship between tables, not the meaning of relation."
+    D: "Combining tables is a join, an operation on relations."
+
+- id: rdb-concepts-06
+  skill: rdb-concepts
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Who introduced the relational model of data, in a 1970 paper written while working at IBM?
+  options:
+    - "E. F. Codd"
+    - "Alan Turing"
+    - "John Tukey"
+    - "Grace Hopper"
+  answer: A
+  explain: |
+    E. F. Codd defined the relational model in "A Relational Model of Data for Large Shared Data Banks," published in 1970 while he worked at IBM's San Jose research lab.
+  why:
+    B: "Alan Turing is known for computation theory and the Turing test."
+    C: "John Tukey is known for exploratory data analysis and the boxplot."
+    D: "Grace Hopper is known for early compilers and the COBOL language."
+
+# ---------------------------------------------------------------- keys
+- id: keys-01
+  skill: keys
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    The school database's students table has the columns student_id, name, grade, gpa, and club_id. Which column is the primary key?
+  options:
+    - "name"
+    - "student_id"
+    - "grade"
+    - "club_id"
+  answer: B
+  explain: |
+    A primary key must be unique and never NULL for every row. Each student has a distinct student_id, while names could repeat, many students share a grade, and club_id repeats and can be NULL.
+  why:
+    A: "Two students could share a name, so name cannot guarantee uniqueness."
+    C: "Many students are in the same grade."
+    D: "club_id repeats across students, can be NULL, and is a foreign key to clubs."
+
+- id: keys-02
+  skill: keys
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    In the school database, each student belongs to at most one club, and a club can have many students. What is the relationship between clubs and students?
+  options:
+    - "One-to-one"
+    - "Many-to-many"
+    - "No relationship"
+    - "One-to-many"
+  answer: D
+  explain: |
+    One club relates to many students, while each student relates to at most one club, which is a one-to-many relationship. The foreign key sits on the "many" side, in students.club_id.
+  why:
+    A: "One-to-one would allow only one student per club."
+    B: "Many-to-many would let a student belong to several clubs, which needs a junction table."
+    C: "The club_id foreign key links the two tables."
+
+- id: keys-03
+  skill: keys
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    In the students table, the column club_id holds values that match club_id in the clubs table. What kind of column is students.club_id?
+  options:
+    - "A foreign key"
+    - "A primary key"
+    - "A composite key"
+    - "An index-only column"
+  answer: A
+  explain: |
+    A foreign key is a column in one table that refers to the primary key of another. students.club_id points to clubs.club_id, which links each student to a club.
+  why:
+    B: "students.club_id repeats and can be NULL, so it cannot be the primary key."
+    C: "A composite key is a primary key made of several columns."
+    D: "Indexes are a performance tool; this column's role is to reference another table."
+
+- id: keys-04
+  skill: keys
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Students take many courses, and each course has many students. How does the school database store this relationship?
+  options:
+    - "It lists every course a student takes in one cell of the students table."
+    - "It adds a course_id foreign key column to the students table."
+    - "It uses an enrollments table whose rows pair a student_id with a course_id."
+    - "It stores each student's name inside the courses table."
+  answer: C
+  explain: |
+    A many-to-many relationship needs a junction table. Each row of enrollments links one student to one course, so a student can appear with many courses and a course with many students.
+  why:
+    A: "A list in one cell breaks first normal form and is hard to query."
+    B: "One foreign key column would allow only one course per student."
+    D: "Copying names into courses repeats data and still cannot track scores per pair."
+
+- id: keys-05
+  skill: keys
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    The clubs table holds club_id values 1 through 4, and students.club_id is a foreign key to it. Which change would violate referential integrity?
+  options:
+    - "Adding a new club with club_id 5"
+    - "Adding a student whose club_id is NULL"
+    - "Deleting a club that has no students"
+    - "Adding a student whose club_id is 7"
+  answer: D
+  explain: |
+    Referential integrity requires every foreign key value to match an existing primary key or be NULL. No club has ID 7, so that student would point to a club that does not exist.
+  why:
+    A: "A new club adds a valid key; nothing points to a missing row."
+    B: "A NULL foreign key means the student has no club, which is allowed here."
+    C: "Deleting a club no student references leaves no broken links."
+
+- id: keys-06
+  skill: keys
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why does the enrollments table use the pair (student_id, course_id) as its primary key?
+  options:
+    - "Because neither column is unique alone, but each pair is"
+    - "Because a primary key must always contain exactly two columns"
+    - "Because student_id is already the key of the students table"
+    - "Because pairs of columns make queries run faster"
+  answer: A
+  explain: |
+    A student appears once for each course taken, and a course appears once for each student, so neither column is unique by itself. Each student-course pair appears only once, so the pair works as a composite key.
+  why:
+    B: "Most primary keys are a single column; this one needs two."
+    C: "Being a key elsewhere does not make student_id unique in enrollments."
+    D: "The composite key exists to identify rows uniquely, not to speed up queries."
+
+- id: keys-07
+  skill: keys
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which two properties must a primary key have?
+  options:
+    - "It must be a number, and it must be the first column."
+    - "It must be unique for every row, and it must never be NULL."
+    - "It must be indexed, and it must be named id."
+    - "It must refer to another table, and it may repeat."
+  answer: B
+  explain: |
+    A primary key's job is to identify each row, so no two rows may share a value and no row may lack one. Its data type, name, and position do not matter.
+  why:
+    A: "Keys can be text, such as the course IDs STAT1 and CS1, and can sit in any column."
+    C: "Keys are usually indexed automatically, but the name id is only a convention."
+    D: "Referring to another table and repeating describe a foreign key."
+
+# ---------------------------------------------------------------- normalization
+- id: normalization-01
+  skill: normalization
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is the main purpose of normalizing a relational database?
+  options:
+    - "To make every table contain the same number of rows"
+    - "To store all of the data in a single table"
+    - "To reduce redundancy and prevent update anomalies"
+    - "To convert text columns into numeric columns"
+  answer: C
+  explain: |
+    Normalization splits data into well-structured, linked tables so each fact is stored once. That removes the repetition that causes update, insertion, and deletion anomalies.
+  why:
+    A: "Tables naturally hold different numbers of rows."
+    B: "Normalization usually splits data into more tables, not one."
+    D: "Data types are chosen by meaning; normalization is about structure."
+
+- id: normalization-02
+  skill: normalization
+  tier: core
+  type: visual
+  use: quiz
+  stem: |
+    Which normal form does this table violate?
+
+    | student_id | name | courses |
+    |---|---|---|
+    | 1 | Ava | STAT1, CS1 |
+    | 2 | Ben | STAT1 |
+    | 3 | Chloe | AI1, CS1 |
+  options:
+    - "Second normal form, because name depends on student_id"
+    - "First normal form, because one cell holds several values"
+    - "Third normal form, because courses is a key column"
+    - "None, because every row has a unique student_id"
+  answer: B
+  explain: |
+    First normal form requires every cell to hold a single value. The courses cells hold lists, which are hard to search and update. The fix is one row per student-course pair, as in the enrollments table.
+  why:
+    A: "A non-key column depending on the whole key is exactly what normal forms require."
+    C: "courses is not a key; the problem is that its cells hold lists."
+    D: "A unique key does not cure cells that hold several values."
+
+- id: normalization-03
+  skill: normalization
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A table repeats each club's advisor on every member's row. When the Robotics advisor changes, some rows are updated and others are missed, so the table now lists two different Robotics advisors. What is this problem called?
+  options:
+    - "An insertion anomaly"
+    - "A deletion anomaly"
+    - "A referential integrity error"
+    - "An update anomaly"
+  answer: D
+  explain: |
+    When the same fact is stored in many rows, changing it means changing every copy, and missing one leaves the data contradicting itself. That is an update anomaly, and normalization prevents it by storing each advisor once.
+  why:
+    A: "An insertion anomaly is being unable to add data, such as a club with no members."
+    B: "A deletion anomaly is losing facts by deleting a row, such as a club's last member."
+    C: "Referential integrity concerns foreign keys pointing to missing rows."
+
+- id: normalization-04
+  skill: normalization
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A table stores student_id (the primary key), club_id, and club_advisor. The advisor depends on club_id, not directly on the student. Which normal form does this violate?
+  options:
+    - "Third normal form, because of a transitive dependency"
+    - "First normal form, because of repeating groups"
+    - "Second normal form, because of a partial dependency"
+    - "None, because club_id is a foreign key"
+  answer: A
+  explain: |
+    club_advisor depends on club_id, which depends on student_id: a chain of non-key dependencies called a transitive dependency. Third normal form forbids it, and the fix is to move the advisor into a separate clubs table.
+  why:
+    B: "Each cell holds one value, so first normal form is satisfied."
+    C: "Partial dependencies require a composite key, and student_id is a single column."
+    D: "Being a foreign key does not prevent the advisor from being stored redundantly."
+
+- id: normalization-05
+  skill: normalization
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    An enrollments table has the composite primary key (student_id, course_id) and also stores course_title, which depends only on course_id. Which normal form does this violate?
+  options:
+    - "First normal form"
+    - "Third normal form"
+    - "Second normal form"
+    - "None; the table is fully normalized"
+  answer: C
+  explain: |
+    course_title depends on only part of the composite key, a partial dependency. Second normal form requires every non-key column to depend on the whole key, so the title belongs in the courses table.
+  why:
+    A: "Every cell holds a single value, so first normal form is met."
+    B: "The problem is a dependency on part of the key, which is checked at second normal form, before third."
+    D: "Repeating each title on every enrollment row is redundancy that normalization removes."
+
+- id: normalization-06
+  skill: normalization
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A company builds a data warehouse for reporting and combines several normalized tables into one wide table, even though this repeats some data. Why might this be a good choice?
+  options:
+    - "Wide tables prevent all update anomalies."
+    - "Fewer joins make frequent reads and reports faster."
+    - "Repeated data takes less storage space."
+    - "Normalized tables cannot be used for reporting."
+  answer: B
+  explain: |
+    Denormalization trades redundancy for speed. A reporting system reads data far more often than it changes it, so avoiding expensive joins can be worth the risk of anomalies.
+  why:
+    A: "Repeating data makes update anomalies more likely, not less."
+    C: "Repetition uses more storage, not less."
+    D: "Normalized tables can feed reports; they are just slower to join at scale."
+
+- id: normalization-07
+  skill: normalization
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Club details are stored only inside student rows. The school starts a new Film club that has no members yet and cannot record it without inventing a student. What is this problem called?
+  options:
+    - "An update anomaly"
+    - "A deletion anomaly"
+    - "A transitive dependency"
+    - "An insertion anomaly"
+  answer: D
+  explain: |
+    An insertion anomaly is being unable to add one fact without another, unrelated one. A separate clubs table lets a club exist with no members.
+  why:
+    A: "An update anomaly is inconsistent copies after a change."
+    B: "A deletion anomaly is losing facts when a row is removed."
+    C: "A transitive dependency is a cause of such problems, not the name of this one."
+
+# ---------------------------------------------------------------- db-integrity
+- id: db-integrity-01
+  skill: db-integrity
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which constraint ensures that every student's grade is between 9 and 12?
+  options:
+    - "CHECK"
+    - "UNIQUE"
+    - "NOT NULL"
+    - "FOREIGN KEY"
+  answer: A
+  explain: |
+    A CHECK constraint makes the database reject any value that fails a condition, such as CHECK (grade BETWEEN 9 AND 12).
+  why:
+    B: "UNIQUE forbids repeated values but allows any range."
+    C: "NOT NULL requires a value but does not limit which value."
+    D: "A foreign key requires a match in another table, not a range."
+
+- id: db-integrity-02
+  skill: db-integrity
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is the main trade-off of adding an index to a column?
+  options:
+    - "Faster inserts, but slower searches"
+    - "Less storage, but less accurate results"
+    - "Faster searches, but slower writes and more storage"
+    - "Stronger security, but no support for joins"
+  answer: C
+  explain: |
+    An index lets the database find rows by that column without scanning the whole table, which speeds searches, joins, and sorts. In exchange, it takes extra storage, and every insert, update, or delete must also update the index.
+  why:
+    A: "This reverses the trade-off: indexes speed reads and slow writes."
+    B: "Indexes use more storage and never change the results of a query."
+    D: "Indexes are about speed, and they help joins rather than block them."
+
+- id: db-integrity-03
+  skill: db-integrity
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A bank transfer subtracts $100 from one account, and then the system crashes before adding $100 to the other account. When the system restarts, the subtraction has been undone. Which ACID property is at work?
+  options:
+    - "Durability"
+    - "Atomicity"
+    - "Isolation"
+    - "Consistency"
+  answer: B
+  explain: |
+    Atomicity means a transaction happens completely or not at all. Because the deposit never happened, the withdrawal is rolled back, so no money vanishes.
+  why:
+    A: "Durability keeps committed changes after a crash; this transaction never committed."
+    C: "Isolation concerns transactions running at the same time."
+    D: "Consistency means rules hold after each transaction; here the all-or-nothing rule is what protects them."
+
+- id: db-integrity-04
+  skill: db-integrity
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which SQL command undoes all of the changes made in the current transaction?
+  options:
+    - "COMMIT"
+    - "DELETE"
+    - "DROP"
+    - "ROLLBACK"
+  answer: D
+  explain: |
+    ROLLBACK cancels the transaction and restores the data to its state before the transaction began. COMMIT does the opposite: it makes the changes permanent.
+  why:
+    A: "COMMIT saves the changes permanently."
+    B: "DELETE removes rows; it does not undo other changes."
+    C: "DROP removes a whole table or other object."
+
+- id: db-integrity-05
+  skill: db-integrity
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    An online store confirms an order, and seconds later the server loses power. When it restarts, the confirmed order is still in the database. Which ACID property guarantees this?
+  options:
+    - "Durability"
+    - "Atomicity"
+    - "Isolation"
+    - "Consistency"
+  answer: A
+  explain: |
+    Durability means that once a transaction is committed, its changes survive crashes and power failures, because they have been written to permanent storage.
+  why:
+    B: "Atomicity concerns transactions that did not finish; this one was committed."
+    C: "Isolation concerns transactions running at the same time."
+    D: "Consistency concerns rules holding after each transaction, not surviving a crash."
+
+- id: db-integrity-06
+  skill: db-integrity
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    Two customers try to buy the last seat on a flight at the same moment. The database makes sure the result is the same as if one purchase had finished before the other began, so only one succeeds. Which ACID property is this?
+  options:
+    - "Durability"
+    - "Atomicity"
+    - "Isolation"
+    - "Normalization"
+  answer: C
+  explain: |
+    Isolation means concurrent transactions do not interfere with each other; the outcome matches some order of running them one at a time. That prevents both customers from seeing the seat as available and both buying it.
+  why:
+    A: "Durability keeps committed changes after a crash."
+    B: "Atomicity makes each single transaction all-or-nothing; it does not coordinate two of them."
+    D: "Normalization is a table-design principle, not an ACID property."
+
+# ---------------------------------------------------------------- sql-nosql
+- id: sql-nosql-01
+  skill: sql-nosql
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    An app stores user profiles whose fields vary widely from user to user, and the data must spread across many servers as the app grows. Which kind of database fits best?
+  options:
+    - "A relational database with one fixed schema"
+    - "A spreadsheet saved as a CSV file"
+    - "A document database, a type of NoSQL"
+    - "A single table with a column for every possible field"
+  answer: C
+  explain: |
+    Document databases such as MongoDB store flexible, JSON-like documents, so each profile can have its own fields, and NoSQL systems are designed to scale horizontally across servers.
+  why:
+    A: "A fixed schema struggles with records whose fields keep varying."
+    B: "A CSV file has no query engine and does not scale across servers."
+    D: "One column per possible field leaves most cells empty and must change whenever a new field appears."
+
+- id: sql-nosql-02
+  skill: sql-nosql
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which type of NoSQL database stores data as nodes, relationships, and their properties?
+  options:
+    - "Key-value store"
+    - "Graph database"
+    - "Document database"
+    - "Wide-column store"
+  answer: B
+  explain: |
+    A graph database, such as Neo4j, stores entities as nodes and the connections between them as relationships, which suits social networks, recommendations, and fraud rings.
+  why:
+    A: "A key-value store keeps each value under a unique key."
+    C: "A document database stores JSON-like documents."
+    D: "A wide-column store holds rows with varying columns across many servers."
+
+- id: sql-nosql-03
+  skill: sql-nosql
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A bank's accounting system needs a fixed structure, complex joins between accounts and transactions, and strict ACID guarantees. Which kind of database is the natural choice?
+  options:
+    - "A relational database"
+    - "A key-value store used as a cache"
+    - "A graph database built for social networks"
+    - "A collection of separate CSV files"
+  answer: A
+  explain: |
+    Structured data with many relationships and strict consistency needs is the classic strength of relational databases, which join tables with SQL under ACID transactions.
+  why:
+    B: "A key-value cache gives fast lookups but no joins across related tables."
+    C: "Graph databases suit highly connected data, not standard accounting tables."
+    D: "Separate files offer no joins, constraints, or transactions."
+
+- id: sql-nosql-04
+  skill: sql-nosql
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which kind of database stores each value under a unique key, like a dictionary, and is often used for caching?
+  options:
+    - "Graph database"
+    - "Relational database"
+    - "Wide-column store"
+    - "Key-value store"
+  answer: D
+  explain: |
+    A key-value store, such as Redis, pairs each unique key with a value and retrieves it very quickly, which is ideal for caches and session data.
+  why:
+    A: "Graph databases store nodes and relationships."
+    B: "Relational databases store linked tables of rows and columns."
+    C: "Wide-column stores hold rows with varying columns partitioned across servers."
+
+- id: sql-nosql-05
+  skill: sql-nosql
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which statement about NoSQL databases is accurate?
+  options:
+    - "NoSQL databases never support transactions."
+    - "NoSQL databases cannot store structured data."
+    - "NoSQL databases always require a fixed schema."
+    - "NoSQL means 'not only SQL,' and some support ACID transactions."
+  answer: D
+  explain: |
+    NoSQL is read as "not only SQL." The category is defined by data models other than linked tables, not by giving up reliability: MongoDB, for example, supports multi-document ACID transactions.
+  why:
+    A: "Some NoSQL systems, such as MongoDB, support ACID transactions."
+    B: "NoSQL systems often hold highly structured data, such as documents with consistent fields."
+    C: "Flexible schemas are a hallmark of NoSQL, not a fixed schema."
+
+- id: sql-nosql-06
+  skill: sql-nosql
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A company records billions of sensor readings per day across data centers on several continents and needs very high write throughput. Which kind of database is designed for this?
+  options:
+    - "A single-server relational database"
+    - "A wide-column store such as Apache Cassandra"
+    - "A spreadsheet shared by email"
+    - "A document database used for product catalogs"
+  answer: B
+  explain: |
+    Wide-column stores like Cassandra partition data across many servers and handle enormous write volumes, which suits huge streams of logs and sensor data.
+  why:
+    A: "One server limits how far the system can scale."
+    C: "A spreadsheet cannot handle billions of rows or high write volumes."
+    D: "Document databases can scale too, but wide-column stores are built for massive write-heavy data like this."
