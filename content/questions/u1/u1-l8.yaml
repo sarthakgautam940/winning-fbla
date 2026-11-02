@@ -1,0 +1,638 @@
+# Lesson 1.8: The data science process
+
+# ---------------------------------------------------------------- ds-process
+- id: ds-process-01
+  skill: ds-process
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is the first step of a data science project?
+  options:
+    - "Collecting as much data as possible"
+    - "Defining the problem or question to answer"
+    - "Choosing a machine learning algorithm"
+    - "Cleaning the dataset"
+  answer: B
+  explain: |
+    The question comes first, because it decides which data is needed, where to get it, and how success will be measured. Collecting data before knowing the question risks gathering the wrong data.
+  why:
+    A: "Collecting data without a question risks gathering the wrong data."
+    C: "An algorithm can be chosen only after the problem and data are understood."
+    D: "There is nothing to clean until data has been collected for a defined purpose."
+
+- id: ds-process-02
+  skill: ds-process
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A team fills in missing ages and converts every date to the same format. Which stage of the data science process is this?
+  options:
+    - "Problem definition and scoping"
+    - "Modeling and model training"
+    - "Evaluation of model results"
+    - "Data cleaning and preparation"
+  answer: D
+  explain: |
+    Handling missing values and fixing inconsistent formats is cleaning and preparing the data, the wrangling that makes it usable before exploration and modeling.
+  why:
+    A: "Problem definition decides what question to answer; it does not touch the data."
+    B: "Modeling builds models on data that has already been prepared."
+    C: "Evaluation checks a model's results against the goal."
+
+- id: ds-process-03
+  skill: ds-process
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which sequence lists the stages of the data science process in the correct order?
+  options:
+    - "Define the problem, collect data, clean data, explore, model, evaluate, deploy"
+    - "Collect data, define the problem, model, clean data, explore, deploy, evaluate"
+    - "Define the problem, collect data, model, clean data, explore, evaluate, deploy"
+    - "Explore, collect data, define the problem, clean data, model, deploy, evaluate"
+  answer: A
+  explain: |
+    The question comes first, then the data is gathered, cleaned, and explored before modeling. Evaluation checks the model against the goal before it is deployed.
+  why:
+    B: "The problem must be defined before data is collected, and evaluation comes before deployment."
+    C: "Data must be cleaned and explored before it is modeled."
+    D: "You cannot explore data before collecting it, and the problem comes first."
+
+- id: ds-process-04
+  skill: ds-process
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    While building a model, a team realizes that a variable needed to answer the question was never collected. What does the data science process recommend?
+  options:
+    - "Finish the model without it and note the gap in the final report"
+    - "Skip to deployment and collect the variable afterward"
+    - "Go back to the collection stage, because the process is iterative"
+    - "Start an entirely new project with a different question"
+  answer: C
+  explain: |
+    The data science process is iterative: discoveries in later stages send you back to earlier ones. Returning to collection to gather the missing variable keeps the work aimed at the original question.
+  why:
+    A: "Building on data known to be incomplete wastes effort and weakens the result."
+    B: "Deploying a model that lacks key data puts a weak model into use."
+    D: "The question is still valid; only the data needs to be fixed."
+
+- id: ds-process-05
+  skill: ds-process
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A demand forecasting model that worked well last year now performs poorly because customer behavior has changed. Which stage of the process should catch this?
+  options:
+    - "Problem definition"
+    - "Monitoring after deployment"
+    - "Data collection"
+    - "Exploratory data analysis"
+  answer: B
+  explain: |
+    Models can drift as the world changes. Monitoring a deployed model's performance over time is how a team notices the decline and decides to retrain or rebuild.
+  why:
+    A: "The problem definition is still correct; the model's performance changed over time."
+    C: "Collection gathers data for a project; it does not watch a live model."
+    D: "EDA explores data before modeling; it does not track a deployed model."
+
+- id: ds-process-06
+  skill: ds-process
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    An analyst presents the findings of a project to managers in a short report with two clear charts and a recommendation. Which stage of the process is this?
+  options:
+    - "Communicating and interpreting results"
+    - "Collecting data from new sources"
+    - "Cleaning and preparing the data"
+    - "Building and training the model"
+  answer: A
+  explain: |
+    Explaining what the results mean and what to do about them to the people who will act is the communication stage, which closes out a project.
+  why:
+    B: "Collection gathers data; this step reports on a finished analysis."
+    C: "Cleaning prepares data; it happens long before results are presented."
+    D: "Modeling builds the models whose results are now being explained."
+
+- id: ds-process-07
+  skill: ds-process
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why should a team define the problem before it starts collecting data?
+  options:
+    - "Because data collection is the most expensive stage of any project"
+    - "Because data cannot be stored until the problem is written down"
+    - "Because models train faster when the problem is defined early"
+    - "Because the question decides which data, sources, and success measures are needed"
+  answer: D
+  explain: |
+    The question shapes everything after it: which variables to gather, from which sources, and what result would count as success. Without it, a team can collect plenty of data that cannot answer the real question.
+  why:
+    A: "Cost varies by project; the reason is that the question determines what to collect."
+    B: "Data can be stored at any time; the issue is collecting the right data."
+    C: "Training speed is unrelated to when the problem was defined."
+
+- id: ds-process-08
+  skill: ds-process
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A model scores well on its test data but does not meet the business goal set at the start of the project. In which stage should this be caught?
+  options:
+    - "Data preparation"
+    - "Modeling"
+    - "Evaluation"
+    - "Data collection"
+  answer: C
+  explain: |
+    Evaluation checks whether the model actually meets the original objective, not only whether its metrics are high. A model that scores well but does not serve the goal fails evaluation and goes back for rework.
+  why:
+    A: "Preparation readies the data; it does not judge the finished model."
+    B: "Modeling builds and tunes models; judging them against the goal is evaluation."
+    D: "Collection happens before any model exists."
+
+# ---------------------------------------------------------------- process-models
+- id: process-models-01
+  skill: process-models
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What do the letters of OSEMN stand for?
+  options:
+    - "Organize, Sort, Evaluate, Measure, Notify"
+    - "Observe, Store, Estimate, Map, Normalize"
+    - "Obtain, Scrub, Explore, Model, iNterpret"
+    - "Obtain, Simulate, Evaluate, Monitor, iNform"
+  answer: C
+  explain: |
+    OSEMN, pronounced "awesome," names five steps: obtain the data, scrub (clean) it, explore it, model it, and interpret the results.
+  why:
+    A: "None of these steps match OSEMN, which begins with obtaining data."
+    B: "OSEMN's steps are obtain, scrub, explore, model, interpret."
+    D: "The S is scrub (cleaning), the E is explore, and the M is model."
+
+- id: process-models-02
+  skill: process-models
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    What is the first phase of CRISP-DM?
+  options:
+    - "Business Understanding"
+    - "Data Understanding"
+    - "Data Preparation"
+    - "Modeling"
+  answer: A
+  explain: |
+    CRISP-DM opens with Business Understanding: defining the objectives from the organization's point of view and turning them into a data problem.
+  why:
+    B: "Data Understanding is the second phase, after the business goal is clear."
+    C: "Data Preparation is the third phase."
+    D: "Modeling is the fourth phase."
+
+- id: process-models-03
+  skill: process-models
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    In IBM's data science methodology (Rollins), which stage comes right after business understanding?
+  options:
+    - "Data collection"
+    - "Data requirements"
+    - "Modeling"
+    - "Analytic approach"
+  answer: D
+  explain: |
+    After defining the business problem, the analytic approach stage decides how data can answer it, for example with a descriptive, predictive, or classification approach. Data requirements come next.
+  why:
+    A: "Data collection is the fourth stage, after the approach and requirements are set."
+    B: "Data requirements come third, once the analytic approach is chosen."
+    C: "Modeling comes much later, after the data is prepared."
+
+- id: process-models-04
+  skill: process-models
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which sequence lists the six CRISP-DM phases in order?
+  options:
+    - "Data Understanding, Business Understanding, Modeling, Data Preparation, Deployment, Evaluation"
+    - "Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment"
+    - "Business Understanding, Data Preparation, Data Understanding, Modeling, Deployment, Evaluation"
+    - "Data Preparation, Business Understanding, Data Understanding, Evaluation, Modeling, Deployment"
+  answer: B
+  explain: |
+    CRISP-DM runs Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, and Deployment, though projects move back and forth between phases.
+  why:
+    A: "The business goal comes before data understanding, and evaluation comes before deployment."
+    C: "You must understand the data before preparing it, and evaluate before deploying."
+    D: "Preparation follows the two understanding phases, and modeling comes before evaluation."
+
+- id: process-models-05
+  skill: process-models
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A team joins three tables, handles missing values, and creates new features to build the final dataset. Which CRISP-DM phase is this?
+  options:
+    - "Data Understanding"
+    - "Modeling"
+    - "Data Preparation"
+    - "Evaluation"
+  answer: C
+  explain: |
+    Selecting, cleaning, constructing, integrating, and formatting the final dataset is the Data Preparation phase.
+  why:
+    A: "Data Understanding describes and explores the initial data rather than building the final dataset."
+    B: "Modeling builds models on the prepared dataset."
+    D: "Evaluation judges the model against the business objectives."
+
+- id: process-models-06
+  skill: process-models
+  tier: champion
+  type: recall
+  use: quiz
+  stem: |
+    What is the final stage of IBM's 10-stage data science methodology?
+  options:
+    - "Feedback"
+    - "Deployment"
+    - "Evaluation"
+    - "Monitoring"
+  answer: A
+  explain: |
+    Rollins' methodology ends with feedback: results from real use flow back to refine the model, closing the loop. Deployment is the ninth stage.
+  why:
+    B: "Deployment is the ninth stage, just before feedback."
+    C: "Evaluation is the eighth stage."
+    D: "Monitoring is part of the general lifecycle, but it is not one of IBM's ten named stages."
+
+- id: process-models-07
+  skill: process-models
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which CRISP-DM phase do practitioners most often report as taking the most time?
+  options:
+    - "Business Understanding"
+    - "Modeling"
+    - "Deployment"
+    - "Data Preparation"
+  answer: D
+  explain: |
+    Selecting, cleaning, combining, and formatting data is slow, careful work, and practitioners commonly report that it takes more time than any other phase.
+  why:
+    A: "Business Understanding is essential but usually shorter than preparing the data."
+    B: "Modeling is often faster than preparing the data that feeds it."
+    C: "Deployment matters, but preparation is the phase most often reported as the longest."
+
+- id: process-models-08
+  skill: process-models
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In the KDD process described by Fayyad, Piatetsky-Shapiro, and Smyth, how does data mining relate to knowledge discovery?
+  options:
+    - "Data mining is another name for the entire knowledge discovery process."
+    - "Data mining is one step within the larger knowledge discovery process."
+    - "Data mining happens before any data is selected."
+    - "Data mining replaces the need for interpretation."
+  answer: B
+  explain: |
+    KDD is the overall process of finding useful knowledge in data: selection, preprocessing, transformation, data mining, and interpretation or evaluation. Data mining is the step that extracts patterns.
+  why:
+    A: "The KDD authors separate the overall process from the data mining step."
+    C: "Selection comes first; data mining happens after the data is preprocessed and transformed."
+    D: "Mined patterns still have to be interpreted and evaluated."
+
+- id: process-models-09
+  skill: process-models
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    In OSEMN, removing duplicate records and fixing typos happens during which step?
+  options:
+    - "Obtain"
+    - "Explore"
+    - "Scrub"
+    - "Model"
+  answer: C
+  explain: |
+    Scrub is OSEMN's cleaning step: removing duplicates, fixing errors, and handling missing values.
+  why:
+    A: "Obtain gathers the data from its sources."
+    B: "Explore looks for patterns in data that has been cleaned."
+    D: "Model builds models on the cleaned data."
+
+# ---------------------------------------------------------------- eda
+- id: eda-01
+  skill: eda
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is the main purpose of exploratory data analysis (EDA)?
+  options:
+    - "To deploy a finished model into a product that customers use"
+    - "To prove a hypothesis using a formal statistical significance test"
+    - "To collect new data from additional sources that the team lacks"
+    - "To learn the data's patterns, outliers, and problems before modeling"
+  answer: D
+  explain: |
+    EDA uses summary statistics and charts to learn what the data looks like: distributions, relationships, missing values, and errors. That understanding guides cleaning and modeling.
+  why:
+    A: "Deployment comes at the end; EDA happens before modeling."
+    B: "Formal testing is confirmatory analysis; EDA explores and generates hypotheses."
+    C: "EDA examines data you already have."
+
+- id: eda-02
+  skill: eda
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which activity is part of exploratory data analysis?
+  options:
+    - "Deploying the finished model to the company's public website"
+    - "Plotting histograms and summary statistics for each variable"
+    - "Writing the project's final recommendation memo for managers"
+    - "Signing a contract to buy a third-party dataset from a vendor"
+  answer: B
+  explain: |
+    Histograms and summary statistics show each variable's distribution, center, spread, and outliers, which is exactly what EDA investigates.
+  why:
+    A: "Deployment happens after modeling and evaluation."
+    C: "The final memo is the communication stage."
+    D: "Acquiring data happens during collection, before EDA."
+
+- id: eda-03
+  skill: eda
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    When does exploratory data analysis usually happen in a project?
+  options:
+    - "Only after the model has been deployed and is in daily use"
+    - "Before the problem has been defined or any data collected"
+    - "After data is collected and cleaned, and before modeling"
+    - "Only when the final model performs poorly on the test data"
+  answer: C
+  explain: |
+    EDA needs data to explore, and its findings guide cleaning and modeling choices. So it comes after collection and initial cleaning and before modeling, with returns whenever something surprising turns up.
+  why:
+    A: "Waiting until deployment would let problems reach the model unnoticed."
+    B: "There is no data to explore before the problem is defined and data collected."
+    D: "EDA is a standard step in every project, not a fix for failure."
+
+- id: eda-04
+  skill: eda
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    During EDA, a histogram of customer ages shows one value of 340. What should happen next?
+  options:
+    - "Investigate it as a likely data error before modeling"
+    - "Keep it, because every value is real data"
+    - "Delete the entire age column"
+    - "Replace every age with the mean age"
+  answer: A
+  explain: |
+    No customer is 340 years old, so the value is almost certainly an entry error, perhaps 34. EDA's job is to catch problems like this so they can be checked and fixed before they distort a model.
+  why:
+    B: "An impossible value is an error to fix, not real information."
+    C: "One bad value does not justify discarding a whole useful column."
+    D: "Overwriting every age destroys the real information in the column."
+
+- id: eda-05
+  skill: eda
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    How does exploratory data analysis differ from confirmatory analysis?
+  options:
+    - "EDA uses only charts, while confirmatory analysis uses only tables."
+    - "EDA is done by managers, while confirmatory analysis is done by analysts."
+    - "EDA tests a hypothesis, while confirmatory analysis explores without one."
+    - "EDA explores openly to generate hypotheses, while confirmatory analysis tests them."
+  answer: D
+  explain: |
+    EDA looks at the data without a fixed question, discovering patterns worth investigating. Confirmatory analysis then tests a specific hypothesis formally, for example with a statistical test.
+  why:
+    A: "Both use charts and numbers; the difference is their purpose."
+    B: "The difference is purpose, not who does the work."
+    C: "This reverses the two."
+
+- id: eda-06
+  skill: eda
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    A pandas `describe()` call on a GPA column prints this summary. What is the median GPA?
+
+    ```text
+    count    7.00
+    mean     3.33
+    std      0.50
+    min      2.50
+    25%      3.05
+    50%      3.40
+    75%      3.70
+    max      3.90
+    ```
+  options:
+    - "3.05"
+    - "3.33"
+    - "3.40"
+    - "3.70"
+  ordered: true
+  answer: C
+  explain: |
+    In `describe()` output, the 50% row is the 50th percentile, which is the median. Here that is 3.40.
+  why:
+    A: "3.05 is the 25th percentile, the first quartile."
+    B: "3.33 is the mean, not the median."
+    D: "3.70 is the 75th percentile, the third quartile."
+  verify: "statistics.median([3.6, 2.9, 3.9, 3.2, 3.8, 2.5, 3.4])"
+
+- id: eda-07
+  skill: eda
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which statistician is most closely associated with exploratory data analysis?
+  options:
+    - "Edgar Codd"
+    - "John Tukey"
+    - "Doug Laney"
+    - "Hadley Wickham"
+  answer: B
+  explain: |
+    John Tukey championed looking at data before testing ideas about it, most famously in his 1977 book Exploratory Data Analysis. He also gave us the boxplot and the 1.5 x IQR outlier rule.
+  why:
+    A: "Codd created the relational model of databases."
+    C: "Laney described the three Vs of big data."
+    D: "Wickham defined tidy data and built the tidyverse, but EDA is associated with Tukey."
+
+# ---------------------------------------------------------------- reproducibility
+- id: reproducibility-01
+  skill: reproducibility
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which practice best makes a data analysis reproducible?
+  options:
+    - "Keeping every cleaning step in a script that is under version control"
+    - "Editing values directly in the spreadsheet whenever a mistake is found"
+    - "Saving only the final chart and deleting the intermediate files"
+    - "Overwriting the raw data file with the cleaned version"
+  answer: A
+  explain: |
+    A script records every step, so anyone can rerun the analysis from the original data and get the same result. Version control keeps the history of every change.
+  why:
+    B: "Hand edits leave no record of what changed, so they cannot be repeated."
+    C: "Deleting intermediate work makes the path to the result impossible to retrace."
+    D: "Overwriting the raw data destroys the starting point needed to rerun the work."
+
+- id: reproducibility-02
+  skill: reproducibility
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why do data scientists set a random seed before splitting data or training a model?
+  options:
+    - "To make the trained model more accurate on brand-new data"
+    - "To hide the training data from other users of the notebook"
+    - "So random steps give the same results on every run"
+    - "To speed up the training process on large datasets"
+  answer: C
+  explain: |
+    Random splits and random starting weights change from run to run. Fixing the seed makes the random numbers repeat exactly, so results can be reproduced and compared fairly.
+  why:
+    A: "A seed controls repeatability, not accuracy."
+    B: "A seed has nothing to do with access to data."
+    D: "Setting a seed does not change how fast training runs."
+
+- id: reproducibility-03
+  skill: reproducibility
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does a Jupyter notebook combine in one document?
+  options:
+    - "Code, its output, and written explanation"
+    - "A database and its backups"
+    - "A spreadsheet and a slide deck"
+    - "Compressed copies of every data file"
+  answer: A
+  explain: |
+    A notebook interleaves runnable code cells, the output they produce such as tables and charts, and text cells that explain the work, which makes analyses easy to follow and rerun.
+  why:
+    B: "Notebooks run code; they are not database systems."
+    C: "Notebooks are not spreadsheets or presentation software."
+    D: "Notebooks do not store compressed copies of data files."
+
+- id: reproducibility-04
+  skill: reproducibility
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    An analyst must present results to company executives who have five minutes. What is the best approach?
+  options:
+    - "Walk through every line of code in the order it was written"
+    - "Show all fifteen charts produced during the exploratory analysis"
+    - "Describe the cleaning steps in detail before mentioning any result"
+    - "Lead with the main finding and recommendation, supported by one clear chart"
+  answer: D
+  explain: |
+    Executives need the answer and what to do about it. Leading with the finding and recommendation, backed by one clear visual, respects their time; technical detail can follow if they ask.
+  why:
+    A: "Code walkthroughs suit technical reviewers, not executives deciding what to do."
+    B: "Fifteen exploratory charts bury the message."
+    C: "Cleaning details matter for reproducibility but should not come before the result."
+
+- id: reproducibility-05
+  skill: reproducibility
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What is the main purpose of a version control system such as Git?
+  options:
+    - "To track every change to code and files so earlier versions can be restored"
+    - "To speed up code by compiling it into machine language"
+    - "To encrypt data so that only the owner can read it"
+    - "To check code for grammar and spelling mistakes"
+  answer: A
+  explain: |
+    Git records each change to a project's files, so you can see what changed and when, restore earlier versions, and merge the work of several collaborators.
+  why:
+    B: "Compiling code is the job of a compiler, not version control."
+    C: "Encryption protects data; it is not what version control does."
+    D: "Checking spelling is not the purpose of version control."
+
+- id: reproducibility-06
+  skill: reproducibility
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A colleague reruns your analysis a month later on the same data and gets slightly different numbers. What is the most likely cause?
+  options:
+    - "The data changed because files age over time"
+    - "Your computer and theirs round numbers differently by law"
+    - "Unseeded randomness or different package versions in their environment"
+    - "Notebooks always produce different results on different days"
+  answer: C
+  explain: |
+    If the data is identical, differences usually come from random steps that were not seeded or from a library update that changed a default. Setting seeds and recording package versions prevents this.
+  why:
+    A: "Saved data files do not change on their own."
+    B: "Rounding is not set by law; the usual culprits are randomness and package versions."
+    D: "A notebook reproduces results exactly when seeds and versions are fixed."
+
+- id: reproducibility-07
+  skill: reproducibility
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why should the original raw data file be kept unchanged?
+  options:
+    - "Because raw data files cannot legally be edited by analysts"
+    - "So every cleaning step can be traced and redone from it"
+    - "Because the cleaned data always takes up more storage space"
+    - "So the analysis code runs faster on every later attempt"
+  answer: B
+  explain: |
+    With the raw file intact and every change made in code, anyone can rebuild the cleaned data and check each step. Overwriting the original makes errors impossible to trace.
+  why:
+    A: "Editing raw data is not illegal; it is poor practice because it destroys the starting point."
+    C: "Storage size is not the reason to keep the raw file."
+    D: "Keeping the raw file is about traceability, not speed."

@@ -1,0 +1,67 @@
+# Lesson 1.8 flashcards
+
+- id: fc-ds-lifecycle
+  term: Data science lifecycle
+  def: Define the problem, collect, clean and prepare, explore, model, evaluate, deploy and communicate, then monitor. It starts with the question and is iterative.
+  skill: ds-process
+
+- id: fc-model-drift
+  term: Model drift
+  def: A deployed model getting worse over time as real-world conditions change. Monitoring catches it so the model can be retrained.
+  skill: ds-process
+
+- id: fc-osemn
+  term: OSEMN
+  def: "Mason and Wiggins (2010): Obtain, Scrub, Explore, Model, iNterpret. Pronounced \"awesome\"."
+  skill: process-models
+
+- id: fc-crisp-dm
+  term: CRISP-DM
+  def: "Cross-Industry Standard Process for Data Mining (version 1.0 in 2000), with six phases: Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment. Projects move back and forth between phases."
+  skill: process-models
+
+- id: fc-ibm-methodology
+  term: "IBM's data science methodology"
+  def: "Rollins (2015), 10 stages: business understanding, analytic approach, data requirements, data collection, data understanding, data preparation, modeling, evaluation, deployment, feedback."
+  skill: process-models
+
+- id: fc-kdd
+  term: KDD process
+  def: "Knowledge Discovery in Databases (Fayyad and colleagues, 1996): selection, preprocessing, transformation, data mining, interpretation and evaluation. Data mining is one step within it."
+  skill: process-models
+
+- id: fc-eda
+  term: Exploratory Data Analysis (EDA)
+  def: The initial investigation of data with summary statistics and charts to understand patterns, outliers, missing values, and errors before modeling. It is associated with John Tukey (1977).
+  skill: eda
+  virginia: true
+
+- id: fc-eda-vs-confirmatory
+  term: EDA vs. confirmatory analysis
+  def: EDA explores openly and generates hypotheses. Confirmatory analysis tests a specific hypothesis formally.
+  skill: eda
+
+- id: fc-reproducibility
+  term: Reproducibility
+  def: Others can rerun the work from the original data and get the same results. It relies on untouched raw data, code instead of hand edits, version control, seeds, recorded environments, and documentation.
+  skill: reproducibility
+
+- id: fc-jupyter
+  term: Jupyter notebook
+  def: A document that combines code, its output, and written explanation. Jupyter grew out of IPython in 2014; its name comes from Julia, Python, and R.
+  skill: reproducibility
+
+- id: fc-git
+  term: Git (version control)
+  def: Tracks every change to code and files so earlier versions can be restored and collaborators' work merged.
+  skill: reproducibility
+
+- id: fc-random-seed
+  term: Random seed
+  def: A fixed starting value for random number generation, so random splits and initializations give the same results on every run.
+  skill: reproducibility
+
+- id: fc-data-storytelling
+  term: Data storytelling
+  def: Communicating results by giving the context, the finding, its implication, and a recommendation, matched to the audience and supported by a clear visual.
+  skill: reproducibility
