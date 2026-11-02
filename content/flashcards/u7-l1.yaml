@@ -1,0 +1,36 @@
+# Lesson 7.1 flashcards
+
+- id: fc-five-big-ideas
+  term: AI4K12's five big ideas
+  def: Perception (sensors), Representation & Reasoning (internal models used to reason), Learning (from data), Natural Interaction (communicating with people), and Societal Impact (positive and negative effects).
+  skill: big-ideas
+
+- id: fc-sense-deliberate-act
+  term: Sense-deliberate-act cycle
+  def: An agent senses the world, deliberates using a representation of it, and acts, then senses again. AI4K12 counts an agent as intelligent only if the cycle is non-trivial; a garage-door opener is not.
+  skill: big-ideas
+
+- id: fc-sensing-perception
+  term: Sensing vs. perception
+  def: Sensing detects a signal, such as pressure on a pad. Perception extracts meaning from sensor signals using knowledge, such as reading a license plate or recognizing a face.
+  skill: big-ideas
+
+- id: fc-sensor-encoding
+  term: How sensors encode the world
+  def: Camera, a grid of pixel values; microphone, thousands of samples per second; lidar and radar, depth images from reflection timing; GPS, latitude and longitude from satellite timing; accelerometer, acceleration on three axes.
+  skill: big-ideas
+
+- id: fc-sensor-fusion
+  term: Sensor fusion
+  def: Combining sensors so each covers the others' weaknesses. In self-driving cars, cameras read signs and lights, lidar gives precise depth, and radar works in fog and rain.
+  skill: big-ideas
+
+- id: fc-abstraction-pipeline
+  term: Feature extraction and abstraction pipelines
+  def: Perception moves from raw signal to abstract meaning. Vision runs pixels, edges, contours, surfaces, objects, scene; speech runs from the waveform up to words and sentences. Edge detection and spectrograms are early feature steps.
+  skill: big-ideas
+
+- id: fc-perception-inclusivity
+  term: Perception failures and inclusivity
+  def: Perception fails with poor sensor conditions, ambiguity, and gaps in training data, and it can work worse for underrepresented groups (dark or low-contrast faces, children's speech). Test accuracy group by group.
+  skill: big-ideas

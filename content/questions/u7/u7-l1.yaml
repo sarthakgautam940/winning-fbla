@@ -1,0 +1,322 @@
+# Lesson 7.1: Perception and the big ideas of AI
+
+# ---------------------------------------------------------------- big-ideas
+- id: big-ideas-01
+  skill: big-ideas
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    The AI4K12 guidelines organize what students should know about AI into five big ideas. Which list names them?
+  options:
+    - "Perception, Robotics & Control, Learning, Data Collection, Ethical Design"
+    - "Vision, Representation & Reasoning, Big Data, Natural Language, Automation"
+    - "Perception, Representation & Reasoning, Learning, Natural Interaction, Societal Impact"
+    - "Sensing, Logic & Search, Learning, Human Interaction, Economic Growth"
+  answer: C
+  explain: |
+    AI4K12 organizes AI into five big ideas: Perception (computers perceive the world with sensors), Representation & Reasoning (agents keep representations of the world and reason with them), Learning (computers learn from data), Natural Interaction (agents need many kinds of knowledge to interact naturally with people), and Societal Impact (AI can help and harm society).
+  why:
+    A: "Robotics, data collection, and ethical design are topics within the big ideas, not their names."
+    B: "Vision and natural language fall under Perception and Natural Interaction; big data and automation are not big ideas."
+    D: "Sensing, logic, and human interaction appear inside the big ideas, and economic growth is not one of them."
+
+- id: big-ideas-02
+  skill: big-ideas
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A customer-service voice assistant notices that a caller sounds upset, so it slows its speech and softens its tone. Which of AI4K12's big ideas does this example illustrate most directly?
+  options:
+    - "Natural Interaction"
+    - "Representation & Reasoning"
+    - "Learning"
+    - "Perception"
+  answer: A
+  explain: |
+    Natural Interaction covers what agents need to interact with people naturally: understanding language, recognizing emotions, and adapting their behavior. AI4K12 uses exactly this kind of example, a customer-service agent that changes its speech rate and tone for an upset caller.
+  why:
+    B: "The assistant does reason, but the example is about interacting with a person."
+    C: "Nothing in the example describes learning from data."
+    D: "Hearing the voice uses sensors, but recognizing emotion and adapting the conversation is the heart of Natural Interaction."
+
+- id: big-ideas-03
+  skill: big-ideas
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    According to AI4K12, an agent counts as intelligent only if it runs a non-trivial sense-deliberate-act cycle. Which system best fits?
+  options:
+    - "A garage-door opener that opens when its button is pressed"
+    - "A light that turns on whenever a motion sensor is triggered"
+    - "A doorbell that rings when someone presses it"
+    - "A robot vacuum that maps a room and plans a cleaning path"
+  answer: D
+  explain: |
+    The robot vacuum senses the room, deliberates by building a map and planning a route, and acts by moving and cleaning, then repeats. The other devices react directly to a single input with no real deliberation, so their cycles are trivial; AI4K12 uses the garage-door opener as its example of an agent that is not intelligent.
+  why:
+    A: "Opening on a button press involves no deliberation; AI4K12 names it as not intelligent."
+    B: "Switching on at a trigger is a fixed reaction, not reasoning about what to do."
+    C: "Ringing when pressed is a direct reaction with no decision."
+
+- id: big-ideas-04
+  skill: big-ideas
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which of these is an example of perception rather than just sensing?
+  options:
+    - "A store door that opens when someone steps on its pressure pad"
+    - "A camera system that reads license plates from passing cars"
+    - "A thermostat that records the room temperature every minute"
+    - "A microphone that converts sound into a stream of numbers"
+  answer: B
+  explain: |
+    Sensing detects a signal; perception extracts meaning from it using knowledge. Reading a license plate means finding the plate in an image and recognizing its characters, which is perception. The pressure pad, thermostat, and microphone only measure signals.
+  why:
+    A: "AI4K12 uses a pressure-pad door as its example of sensing without perception."
+    C: "Recording a temperature is measurement, with no interpretation."
+    D: "Digitizing sound is the sensing step; perception would be recognizing words in it."
+
+- id: big-ideas-05
+  skill: big-ideas
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How does a lidar sensor measure how far away objects are?
+  options:
+    - "It times how long laser pulses take to reflect back"
+    - "It compares the colors of objects in a photograph"
+    - "It counts how many satellites are visible overhead"
+    - "It measures how fast the vehicle is accelerating"
+  answer: A
+  explain: |
+    Lidar sends out pulses of laser light and measures how long each reflection takes to return; because light travels at a known speed, the time gives the distance. The result is a depth image in which each point holds a distance. Radar works the same way with radio waves.
+  why:
+    B: "Colors come from a camera and do not measure distance directly."
+    C: "Timing satellite signals is how GPS finds position."
+    D: "Measuring acceleration is the job of an accelerometer."
+
+- id: big-ideas-06
+  skill: big-ideas
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In the vision abstraction pipeline, which order runs from the rawest data to the most abstract?
+  options:
+    - "Edges, pixels, objects, contours, surfaces, scenes"
+    - "Scenes, objects, surfaces, contours, edges, pixels"
+    - "Pixels, edges, contours, surfaces, objects, scenes"
+    - "Pixels, objects, edges, scenes, surfaces, contours"
+  answer: C
+  explain: |
+    Perception builds up in stages: pixels form edges, edges form contours, contours mark the boundaries of surfaces, surfaces make up objects, and objects make up scenes. Each level draws on the one below, and higher-level knowledge can help interpret the lower levels.
+  why:
+    A: "Pixels are the raw data, so they come first, before edges."
+    B: "This runs from most abstract to least, the reverse of what was asked."
+    D: "Objects cannot be recognized before the edges and surfaces that form them."
+
+- id: big-ideas-07
+  skill: big-ideas
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does a smartphone's accelerometer measure?
+  options:
+    - "The phone's position on Earth in latitude and longitude"
+    - "Acceleration along three perpendicular axes"
+    - "The brightness and color of light hitting the screen"
+    - "The distance to objects, using reflected sound"
+  answer: B
+  explain: |
+    An accelerometer measures acceleration along three perpendicular axes (x, y, and z). Phones use it to tell which way they are tilted, to rotate the screen, and to count steps.
+  why:
+    A: "Latitude and longitude come from GPS."
+    C: "Light is measured by a camera or a light sensor."
+    D: "Distance from reflected sound is ultrasonic, or sonar, sensing."
+
+- id: big-ideas-08
+  skill: big-ideas
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An email service's spam filter gets better over time as millions of users mark messages as spam. Which of AI4K12's big ideas does this illustrate most directly?
+  options:
+    - "Perception"
+    - "Natural Interaction"
+    - "Societal Impact"
+    - "Learning"
+  answer: D
+  explain: |
+    The filter improves by finding patterns in labeled examples, which is the Learning big idea: computers can learn from data. Users who mark messages as spam supply the labels for supervised learning.
+  why:
+    A: "Perception is about extracting meaning from sensor signals such as images and sound."
+    B: "Natural Interaction concerns communicating with people, through language and emotion."
+    C: "Societal Impact is about effects on people and society, not how the filter improves."
+
+- id: big-ideas-09
+  skill: big-ideas
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does a computer turn sound captured by a microphone into data?
+  options:
+    - "It stores one number for the loudest moment of each minute"
+    - "It converts the sound into a grid of colored pixels"
+    - "It samples the sound wave thousands of times per second"
+    - "It writes down the words it hears as letters"
+  answer: C
+  explain: |
+    A microphone produces a continuously changing signal, and the computer records its value thousands of times per second (the sampling rate), storing each sample as a number (lesson 1.5). Recognizing words in that stream is a later step, perception.
+  why:
+    A: "One value per minute would lose almost all of the sound."
+    B: "Images are grids of pixels; sound is stored as a sequence of samples."
+    D: "Writing down words is speech recognition, a perception step that comes after digitizing."
+
+- id: big-ideas-10
+  skill: big-ideas
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    "Recognize speech" and "wreck a nice beach" can sound almost the same. How does a speech recognizer decide which one a speaker said?
+  options:
+    - "Knowledge of words and context resolves the sound-level ambiguity"
+    - "It picks whichever of the phrases has more letters in it"
+    - "It always chooses the first matching phrase in its dictionary"
+    - "It asks the speaker to spell out each word aloud"
+  answer: A
+  explain: |
+    Perception works in layers, from sounds to words to phrases, and knowledge at the higher layers, such as which words are likely together and what the conversation is about, settles ambiguity at the lower layers. In a conversation about voice assistants, "recognize speech" is far more likely.
+  why:
+    B: "Letter counts have nothing to do with which phrase was spoken."
+    C: "Dictionary order would ignore the context entirely."
+    D: "Recognizers resolve ambiguity from context, not by asking for spellings."
+
+- id: big-ideas-11
+  skill: big-ideas
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A speech recognition system works well for adults but makes many errors with young children. What is the most likely cause, and the best fix?
+  options:
+    - "Children speak too quietly; turn up the microphone volume only"
+    - "Children use different languages; translate their speech first"
+    - "The system is too new; wait for it to adjust on its own"
+    - "Children's speech was underrepresented in training; add it and test by age group"
+  answer: D
+  explain: |
+    Children's voices are higher-pitched and their articulation is less clear, and a model trained mostly on adult speech performs worse on them. The fix is to include children's speech in the training data and to measure accuracy separately for each age group, so gaps are found before release.
+  why:
+    A: "Volume is not the main issue; the model has not learned children's speech patterns."
+    B: "The children speak the same language; their voices differ."
+    C: "A deployed model does not improve by waiting; it needs better training data."
+
+- id: big-ideas-12
+  skill: big-ideas
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What distinguishes perception from sensing?
+  options:
+    - "Perception happens only in humans, and sensing only in machines"
+    - "Perception extracts meaning from sensor signals using knowledge"
+    - "Perception measures signals more precisely than sensing does"
+    - "Perception requires no sensors at all, only stored data"
+  answer: B
+  explain: |
+    Sensing is detecting a signal, such as light on a camera chip or pressure on a pad. Perception is interpreting that signal, using knowledge, to extract meaning: recognizing a face, reading a sign, or understanding a spoken word.
+  why:
+    A: "Both humans and machines can sense and perceive."
+    C: "Precision of measurement is a property of the sensor; perception adds interpretation."
+    D: "Perception works on the signals that sensors provide."
+
+- id: big-ideas-13
+  skill: big-ideas
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In speech recognition, what does a spectrogram show?
+  options:
+    - "How a sound's energy is spread across frequencies over time"
+    - "The written words a speaker said, in order"
+    - "The speaker's location, from GPS coordinates"
+    - "A list of all the words the system knows"
+  answer: A
+  explain: |
+    A spectrogram is a picture of sound: time runs along one axis, frequency along the other, and brightness shows how much energy each frequency band has at each moment. Feature extraction finds patterns in it, such as formants, bands of concentrated energy that help identify vowel sounds.
+  why:
+    B: "Written words are the output of recognition, not the spectrogram."
+    C: "Location comes from GPS, not from analyzing sound."
+    D: "A vocabulary list belongs to the language model, not to a picture of the sound."
+
+- id: big-ideas-14
+  skill: big-ideas
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does a GPS receiver work out where it is?
+  options:
+    - "It measures how far it has moved since it was turned on"
+    - "It reads the street signs that a camera sees nearby"
+    - "It times signals from several satellites to compute its position"
+    - "It asks the nearest cell phone tower for a street address"
+  answer: C
+  explain: |
+    GPS satellites broadcast signals with precise timing. By measuring how long the signals from several satellites take to arrive, the receiver computes its distance to each and, from those distances, its latitude and longitude.
+  why:
+    A: "Tracking motion is an accelerometer's job, and it cannot give a location on Earth."
+    B: "Reading signs is computer vision, not GPS."
+    D: "Cell towers can help some phones estimate location, but GPS itself relies on satellite timing."
+
+- id: big-ideas-15
+  skill: big-ideas
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    Why do many self-driving car designs combine cameras, radar, and lidar instead of relying on one kind of sensor?
+  options:
+    - "Using three sensors makes the car legally exempt from safety rules"
+    - "Each sensor covers weaknesses of the others, such as fog, darkness, or depth"
+    - "One sensor would produce too little data to fill the car's storage"
+    - "Combining sensors removes the need for any software to interpret them"
+  answer: B
+  explain: |
+    Cameras capture color and can read signs and lights but struggle in darkness and glare; lidar gives precise 3D distances; radar's radio waves keep working in fog and rain and can measure speed. Combining them, called sensor fusion, gives a more reliable picture than any one sensor alone.
+  why:
+    A: "No sensor setup exempts a car from safety rules."
+    C: "The goal is reliable perception, not filling storage."
+    D: "Fused sensor data still needs perception software to interpret it."
+
+- id: big-ideas-16
+  skill: big-ideas
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Feature extraction from images usually begins with edge detection. What does edge detection find?
+  options:
+    - "The exact names of the objects in an image"
+    - "The average color of the whole image"
+    - "The camera's location when the photo was taken"
+    - "Places where brightness changes sharply"
+  answer: D
+  explain: |
+    An edge is a place where image brightness changes sharply, such as the border between a dark object and a light background. Edge detectors look for these changes, often at several scales, and edges become the building blocks for contours, surfaces, and objects.
+  why:
+    A: "Naming objects comes at the end of the pipeline, built from edges and other features."
+    B: "An average color loses the detail that edges capture."
+    C: "Location is information from GPS, not an image feature."
