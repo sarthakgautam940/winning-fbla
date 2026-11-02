@@ -1,0 +1,548 @@
+# Lesson 3.6: Working with many variables
+
+# ---------------------------------------------------------------- multivariate
+- id: multivariate-01
+  skill: multivariate
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A retailer studies how a customer's age, income, and region together relate to the customer's annual spending. What kind of analysis is this?
+  options:
+    - "Univariate analysis"
+    - "Bivariate analysis"
+    - "Multivariate analysis"
+    - "Descriptive analysis of one variable"
+  answer: C
+  explain: |
+    The study looks at four variables at once (age, income, region, and spending), so it is multivariate. Bivariate analysis would relate just two of them.
+  why:
+    A: "Univariate analysis examines a single variable."
+    B: "Bivariate analysis examines exactly two variables."
+    D: "Describing one variable is univariate, but this study relates several."
+
+- id: multivariate-02
+  skill: multivariate
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A company wants to sort its customers into groups with similar buying habits, using 12 purchase variables and no outcome variable. Which kind of method fits?
+  options:
+    - "A dependence method, such as multiple regression"
+    - "An interdependence method, such as cluster analysis"
+    - "A dependence method, such as logistic regression"
+    - "A univariate method, such as a histogram"
+  answer: B
+  explain: |
+    No variable is singled out as an outcome; the goal is to find structure among the customers. That calls for an interdependence method, and grouping similar cases is the job of cluster analysis.
+  why:
+    A: "Multiple regression needs an outcome variable to predict."
+    C: "Logistic regression also needs an outcome, a category to predict."
+    D: "A histogram shows one variable, but the grouping uses 12."
+
+- id: multivariate-03
+  skill: multivariate
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which of these is a univariate analysis?
+  options:
+    - "A scatterplot of height against weight"
+    - "A two-way table of grade level by club membership"
+    - "A regression of price on size and age"
+    - "A histogram of the ages of club members"
+  answer: D
+  explain: |
+    A histogram of one variable, age, describes a single variable's distribution, which is univariate analysis.
+  why:
+    A: "A scatterplot relates two variables, so it is bivariate."
+    B: "A two-way table crosses two categorical variables, so it is bivariate."
+    C: "Regressing price on two predictors involves three variables, so it is multivariate."
+
+- id: multivariate-04
+  skill: multivariate
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A district wants to test whether three teaching methods produce different average scores in both math and reading, comparing the two outcomes at once. Which technique fits best?
+  options:
+    - "MANOVA"
+    - "Factor analysis"
+    - "Cluster analysis"
+    - "Principal component analysis"
+  answer: A
+  explain: |
+    MANOVA (multivariate analysis of variance) is a dependence method that compares group means on several outcome variables at the same time. Here the groups are the teaching methods and the outcomes are math and reading scores.
+  why:
+    B: "Factor analysis looks for latent factors among variables and has no outcome."
+    C: "Cluster analysis discovers groups of similar cases; here the groups are already known."
+    D: "PCA reduces many variables to a few components and tests no group differences."
+
+- id: multivariate-05
+  skill: multivariate
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Which pair consists of two dependence methods?
+  options:
+    - "Factor analysis and cluster analysis"
+    - "Principal component analysis and multidimensional scaling"
+    - "Multiple regression and discriminant analysis"
+    - "Cluster analysis and principal component analysis"
+  answer: C
+  explain: |
+    Both multiple regression (numeric outcome) and discriminant analysis (assigning cases to known groups) use predictors to explain a designated dependent variable. The other methods find structure without any outcome, which makes them interdependence methods.
+  why:
+    A: "Both of these find structure without an outcome, so both are interdependence methods."
+    B: "PCA and multidimensional scaling are both interdependence methods."
+    D: "Cluster analysis and PCA are both interdependence methods."
+
+- id: multivariate-06
+  skill: multivariate
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why might an analyst use a multivariate method instead of comparing variables two at a time?
+  options:
+    - "It can show one variable's effect while holding others constant."
+    - "It always produces a higher correlation than two-variable methods."
+    - "It removes the need to clean the data first."
+    - "It proves that the predictors cause the outcome."
+  answer: A
+  explain: |
+    Comparing variables in pairs can be misled by confounders. A multivariate method such as multiple regression estimates each variable's association with the outcome while the others are held constant, which helps untangle their effects.
+  why:
+    B: "Using more variables does not guarantee stronger correlations."
+    C: "Every method, multivariate or not, needs clean data."
+    D: "Holding observed variables constant still cannot rule out unmeasured confounders, so it does not prove causation."
+
+# ---------------------------------------------------------------- multiple-regression
+- id: multiple-regression-01
+  skill: multiple-regression
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A store's weekly sales model is predicted units = 120 + 8 × (ads run) - 4 × (price in dollars). What does it predict for a week with 10 ads and a price of $15?
+  options:
+    - "140 units"
+    - "180 units"
+    - "200 units"
+    - "260 units"
+  ordered: true
+  answer: A
+  explain: |
+    Substitute both values: 120 + 8 × 10 - 4 × 15 = 120 + 80 - 60 = 140 units.
+  why:
+    B: "This leaves out the ads term and keeps only the price term."
+    C: "This leaves out the price term entirely."
+    D: "This adds the price term instead of subtracting it."
+  verify: "120 + 8 * 10 - 4 * 15"
+
+- id: multiple-regression-02
+  skill: multiple-regression
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    An analyst adds a new predictor to a regression model. R squared rises from 0.700 to 0.705, but adjusted R squared falls from 0.690 to 0.684. What does this suggest?
+  options:
+    - "The new predictor greatly improves the model and should be kept."
+    - "The model now explains less of the variation than before."
+    - "Adjusted R squared was calculated incorrectly."
+    - "The new predictor adds too little to justify the extra complexity."
+  answer: D
+  explain: |
+    R squared never falls when a predictor is added, so its tiny rise means little. Adjusted R squared penalizes each extra predictor, and its drop shows the new one improved the fit less than chance alone would.
+  why:
+    A: "A gain of 0.005 in R squared, paired with a drop in adjusted R squared, is not a great improvement."
+    B: "R squared rose slightly, so the model explains slightly more variation, not less."
+    C: "Adjusted R squared is designed to fall in exactly this situation."
+
+- id: multiple-regression-03
+  skill: multiple-regression
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A salary model, in thousands of dollars, is predicted salary = 25 + 1.8 × (years of experience) + 0.9 × (years of education). What does the coefficient 1.8 mean?
+  options:
+    - "Every employee's salary rises by $1,800 each year they work."
+    - "Experience explains 1.8% of the variation in employee salaries."
+    - "Predicted salary is $1,800 higher per year of experience, education fixed."
+    - "An employee with no experience at all is predicted to earn $1,800."
+  answer: C
+  explain: |
+    A coefficient is the change in the predicted outcome for a one-unit increase in its predictor, holding the other predictors constant. Salary is in thousands, so 1.8 means $1,800 more per year of experience among people with the same education.
+  why:
+    A: "The coefficient compares people with different experience; it is not a raise each employee receives over time."
+    B: "Explained variation is measured by R squared, not by a coefficient."
+    D: "The predicted salary with no experience and no education is the intercept, $25,000."
+
+- id: multiple-regression-04
+  skill: multiple-regression
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A home-price model uses both size in square feet and number of rooms as predictors, and the two are very highly correlated. What problem is most likely?
+  options:
+    - "The model can no longer make any predictions."
+    - "The model's R squared must be close to 0."
+    - "The residuals will all be positive."
+    - "The coefficients become unstable and hard to interpret."
+  answer: D
+  explain: |
+    This is multicollinearity. The model cannot separate the effects of two predictors that move together, so their coefficients can swing wildly or flip sign with small changes in the data, even though overall predictions may remain accurate.
+  why:
+    A: "The model still predicts; the trouble is interpreting the individual coefficients."
+    B: "Correlated predictors can still explain a lot of variation, so R squared can be high."
+    C: "Multicollinearity has no effect on the signs of the residuals."
+
+- id: multiple-regression-05
+  skill: multiple-regression
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    A regression model has R squared = 0.64. What does this mean?
+  options:
+    - "The correlation between each predictor and y is 0.64."
+    - "The model explains 64% of the variation in y."
+    - "The model's predictions are correct 64% of the time."
+    - "The slope of the regression line is 0.64."
+  answer: B
+  explain: |
+    R squared, the coefficient of determination, is the share of the variability in the outcome that the model explains. The other 36% remains in the residuals.
+  why:
+    A: "R squared summarizes the whole model; for a single predictor it equals r squared, so r would be 0.8."
+    C: "R squared is not an accuracy rate for predictions."
+    D: "R squared is not a slope; slopes depend on the units of the variables."
+
+- id: multiple-regression-06
+  skill: multiple-regression
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A model with k = 4 predictors fit to n = 50 observations has R squared = 0.80. Using adjusted R squared = 1 - (1 - R squared)(n - 1)/(n - k - 1), what is adjusted R squared, to the nearest thousandth?
+  options:
+    - "0.782"
+    - "0.787"
+    - "0.800"
+    - "0.816"
+  ordered: true
+  answer: A
+  explain: |
+    Compute (n - 1)/(n - k - 1) = 49/45, about 1.089. Then adjusted R squared = 1 - 0.20 × 1.089 = 1 - 0.218 = 0.782.
+  why:
+    B: "This uses n - k = 46 in the denominator instead of n - k - 1 = 45."
+    C: "This is R squared itself, without the adjustment."
+    D: "This flips the fraction, using 45/49 instead of 49/45."
+  verify: "1 - (1 - 0.80) * (50 - 1) / (50 - 4 - 1)"
+
+- id: multiple-regression-07
+  skill: multiple-regression
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which is an assumption of multiple linear regression?
+  options:
+    - "Every predictor must be a categorical variable."
+    - "The errors have about the same variance at every predicted value."
+    - "The outcome variable can take only two values."
+    - "Each predictor must be uncorrelated with the outcome."
+  answer: B
+  explain: |
+    Linear regression assumes equal variance of the errors (homoscedasticity), along with a linear relationship, independent errors, and normally distributed errors, the LINE conditions. A residual plot that fans out signals a violation.
+  why:
+    A: "Predictors can be numeric, and categorical ones are encoded as numbers."
+    C: "A two-valued outcome calls for logistic regression."
+    D: "Predictors are useful precisely because they are correlated with the outcome."
+
+# ---------------------------------------------------------------- logistic-regression
+- id: logistic-regression-01
+  skill: logistic-regression
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What range of values can a logistic regression model's predicted probability take?
+  options:
+    - "Any real number"
+    - "Any positive number"
+    - "Between 0 and 1"
+    - "Between -1 and 1"
+  answer: C
+  explain: |
+    The sigmoid function squeezes any linear score into the interval between 0 and 1, so the output is always a valid probability.
+  why:
+    A: "The linear score z can be any real number, but the sigmoid maps it into 0 to 1."
+    B: "Odds can be any positive number, but probabilities cannot exceed 1."
+    D: "That is the range of the correlation coefficient r, not of a probability."
+
+- id: logistic-regression-02
+  skill: logistic-regression
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    In a logistic regression, the coefficient on x is 0.693. By about what factor does each one-unit increase in x multiply the odds of the outcome?
+  options:
+    - "0.5"
+    - "0.693"
+    - "1.693"
+    - "2"
+  ordered: true
+  answer: D
+  explain: |
+    The coefficient is added to the log-odds, which multiplies the odds by e to the power of the coefficient: $$e^{0.693} \approx 2$$. Each one-unit increase in x doubles the odds.
+  why:
+    A: "This would be the factor for a coefficient of about -0.693, which halves the odds."
+    B: "This is the change in the log-odds, not the factor applied to the odds."
+    C: "This adds 1 to the coefficient instead of raising e to its power."
+  verify: "math.exp(0.693)"
+
+- id: logistic-regression-03
+  skill: logistic-regression
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A company wants to predict whether each customer will cancel their subscription (yes or no) from usage data. Which method is designed for this kind of outcome?
+  options:
+    - "Logistic regression"
+    - "Multiple linear regression"
+    - "Principal component analysis"
+    - "Cluster analysis"
+  answer: A
+  explain: |
+    The outcome is a category with two values, so this is a classification problem. Logistic regression predicts the probability of each class and assigns a class with a threshold.
+  why:
+    B: "Linear regression predicts a numeric outcome and can give probabilities below 0 or above 1."
+    C: "PCA reduces the number of variables and predicts no outcome."
+    D: "Clustering finds groups without labels; here the outcome is known."
+
+- id: logistic-regression-04
+  skill: logistic-regression
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A spam filter outputs a predicted probability of 0.62 for an email and uses a threshold of 0.7. How is the email classified?
+  options:
+    - "Spam, because 0.62 is above 0.5"
+    - "Not spam, because 0.62 is below 0.7"
+    - "Spam, because any positive probability counts"
+    - "Unclassified, because the odds are not given"
+  answer: B
+  explain: |
+    The email is labeled spam only if its probability meets the threshold. With a threshold of 0.7, a probability of 0.62 falls short, so the email is classified as not spam.
+  why:
+    A: "0.5 is the default threshold, but this filter uses 0.7."
+    C: "Almost every email has some positive probability; the threshold decides the class."
+    D: "The probability and the threshold are all that is needed."
+
+- id: logistic-regression-05
+  skill: logistic-regression
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In a logistic regression that predicts loan default, the coefficient on income is negative. What does this mean?
+  options:
+    - "Higher income goes with a higher chance of default."
+    - "Income has no relationship with default."
+    - "Income must be removed from the model."
+    - "Higher income goes with a lower chance of default."
+  answer: D
+  explain: |
+    A negative coefficient lowers the log-odds as the predictor rises, so the predicted probability of default falls as income increases, holding the other predictors constant.
+  why:
+    A: "That would be a positive coefficient."
+    B: "A coefficient of 0 would mean no relationship; a negative one points downward."
+    C: "A negative coefficient is a meaningful finding, not a reason to remove the predictor."
+
+- id: logistic-regression-06
+  skill: logistic-regression
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A logistic regression predicts p = 0.8 for a customer. What are the odds and the log-odds?
+  options:
+    - "Odds 4, log-odds about 1.39"
+    - "Odds 0.8, log-odds about -0.22"
+    - "Odds 0.25, log-odds about -1.39"
+    - "Odds 1.25, log-odds about 0.22"
+  answer: A
+  explain: |
+    The odds are p / (1 - p) = 0.8 / 0.2 = 4. The log-odds is the natural log of the odds: ln 4 is about 1.39, which is the model's linear score z for this customer.
+  why:
+    B: "This treats the probability itself as the odds."
+    C: "This inverts the odds, 0.2 / 0.8, which are the odds of the other outcome."
+    D: "This divides 1 by the probability, which does not give the odds."
+  verify: |
+    p = 0.8
+    o = p / (1 - p)
+    ans = f"Odds {o:g}, log-odds about {math.log(o):.2f}"
+
+- id: logistic-regression-07
+  skill: logistic-regression
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why is ordinary linear regression a poor choice for predicting a yes-or-no outcome?
+  options:
+    - "It cannot use more than one predictor."
+    - "It can predict probabilities below 0 or above 1."
+    - "It requires the outcome to be normally distributed."
+    - "It always overfits small datasets."
+  answer: B
+  explain: |
+    A straight line keeps rising or falling without limit, so for extreme predictor values it gives impossible probabilities. Logistic regression's sigmoid keeps every prediction between 0 and 1.
+  why:
+    A: "Linear regression handles many predictors; that is multiple regression."
+    C: "The normality assumption concerns the errors, and it is not the main problem here."
+    D: "Overfitting depends on model complexity, not on the outcome being yes or no."
+
+# ---------------------------------------------------------------- interdependence
+- id: interdependence-01
+  skill: interdependence
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is the main purpose of principal component analysis (PCA)?
+  options:
+    - "To predict a categorical outcome from several predictors"
+    - "To reduce many correlated variables to a few components"
+    - "To assign each case to one of several known groups"
+    - "To test whether group means differ on one outcome"
+  answer: B
+  explain: |
+    PCA builds new uncorrelated variables, the principal components, ordered by how much variance they capture. Keeping the first few summarizes many correlated variables with little loss of information.
+  why:
+    A: "Predicting a category is the job of logistic regression or discriminant analysis."
+    C: "Assigning cases to known groups is classification or discriminant analysis."
+    D: "Comparing group means is ANOVA (or MANOVA for several outcomes)."
+
+- id: interdependence-02
+  skill: interdependence
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    PCA on a 5-variable dataset gives the variance explained shown in the table. What is the smallest number of components that together explain at least 85% of the variance?
+
+    | Component | PC1 | PC2 | PC3 | PC4 | PC5 |
+    |---|---|---|---|---|---|
+    | Variance explained | 55% | 25% | 10% | 6% | 4% |
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    Add the shares in order: 55% after one component, 80% after two, and 90% after three. Three components are the fewest that reach 85%.
+  why:
+    A: "One component explains only 55%."
+    B: "Two components reach 80%, still short of 85%."
+    D: "Four components explain 96%, but three already pass 85%."
+  verify: |
+    shares = [55, 25, 10, 6, 4]
+    total = 0
+    for i, s in enumerate(shares, start=1):
+        total += s
+        if total >= 85:
+            ans = i
+            break
+
+- id: interdependence-03
+  skill: interdependence
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Survey answers about enjoying parties, talking to strangers, and seeking attention all rise and fall together. Which method models them as driven by one unobserved trait?
+  options:
+    - "Factor analysis, which finds latent factors behind observed variables"
+    - "Cluster analysis, which sorts the survey questions into groups"
+    - "Logistic regression, which predicts each answer as a yes or no"
+    - "Multiple regression, which predicts one answer from the others"
+  answer: A
+  explain: |
+    Factor analysis assumes that observed variables share hidden causes, latent factors such as extraversion, and estimates how strongly each variable reflects each factor. PCA, by contrast, only summarizes variance without modeling a hidden cause.
+  why:
+    B: "Cluster analysis groups cases by similarity; it does not model a hidden trait."
+    C: "Logistic regression predicts an outcome; it does not uncover an underlying trait."
+    D: "Regression singles out one outcome, while the goal here is the shared structure."
+
+- id: interdependence-04
+  skill: interdependence
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    How does cluster analysis differ from classification?
+  options:
+    - "Clustering needs labeled examples; classification does not."
+    - "Clustering works only with categorical variables."
+    - "Clustering discovers groups; classification predicts known labels."
+    - "Clustering always produces exactly two groups."
+  answer: C
+  explain: |
+    Cluster analysis finds groups of similar cases with no labels given in advance. Classification learns from labeled examples and assigns new cases to those predefined classes.
+  why:
+    A: "This reverses them: classification is the one that needs labels."
+    B: "Clustering is commonly done on numeric variables, such as purchase amounts."
+    D: "The number of clusters is a choice, often more than two."
+
+- id: interdependence-05
+  skill: interdependence
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Before running PCA on income (in dollars) and age (in years), an analyst standardizes both variables. Why?
+  options:
+    - "PCA works only on variables between 0 and 1."
+    - "Standardizing removes outliers from the data."
+    - "Standardizing makes the two variables uncorrelated."
+    - "PCA chases variance, so income's large values would dominate."
+  answer: D
+  explain: |
+    Incomes vary by thousands of dollars while ages vary by tens of years, so unstandardized income would have far more variance and would control the first component. Converting both to z-scores puts them on equal footing.
+  why:
+    A: "PCA runs on any numeric variables; scaling is about fairness between them."
+    B: "Standardizing rescales values but keeps outliers."
+    C: "Standardizing does not change the correlation between variables."
+
+- id: interdependence-06
+  skill: interdependence
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Which statement about principal components is true?
+  options:
+    - "Each component is one of the original variables."
+    - "Every component explains the same share of the variance."
+    - "Components are uncorrelated, and the first explains the most variance."
+    - "PCA needs an outcome variable to choose its components."
+  answer: C
+  explain: |
+    Each component is a weighted combination of the original variables. The first points in the direction of greatest variance, each later one captures the most remaining variance, and all of them are uncorrelated with one another.
+  why:
+    A: "Components are new variables built as combinations of the originals."
+    B: "Components are ordered by variance explained, from largest to smallest."
+    D: "PCA is an interdependence method and uses no outcome variable."

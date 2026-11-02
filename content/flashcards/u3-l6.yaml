@@ -1,0 +1,49 @@
+# Lesson 3.6 flashcards
+
+- id: fc-multivariate-analysis
+  term: Multivariate Analysis
+  def: Studying three or more variables at once to understand how they relate jointly, often to measure one variable's effect while holding the others constant.
+  skill: multivariate
+  virginia: true
+
+- id: fc-dependence-interdependence
+  term: Dependence vs. interdependence methods
+  def: Dependence methods explain or predict a designated outcome (multiple regression, logistic regression, discriminant analysis, MANOVA). Interdependence methods find structure with no outcome (PCA, factor analysis, cluster analysis, multidimensional scaling).
+  skill: multivariate
+
+- id: fc-multiple-regression
+  term: Multiple linear regression
+  def: Predicts a numeric outcome as y-hat = b0 + b1x1 + ... + bkxk. Each coefficient is the change in predicted y per one-unit change in its predictor, holding the others constant.
+  skill: multiple-regression
+
+- id: fc-multicollinearity
+  term: Multicollinearity
+  def: Strong correlation between predictors, such as size and number of rooms. Coefficients become unstable and hard to interpret, though predictions may stay accurate.
+  skill: multiple-regression
+
+- id: fc-r-squared-adjusted
+  term: R squared and adjusted R squared
+  def: R squared is the share of the variation in y the model explains, and it never falls when predictors are added. Adjusted R squared penalizes extra predictors and can fall.
+  skill: multiple-regression
+
+- id: fc-logistic-regression
+  term: Logistic Regression
+  def: A classification method that passes a linear score through the sigmoid, p = 1 / (1 + e^-z), to get a probability between 0 and 1, then applies a threshold (usually 0.5).
+  skill: logistic-regression
+  virginia: true
+
+- id: fc-log-odds
+  term: Log-odds (logit)
+  def: The natural log of the odds, ln(p / (1 - p)). Logistic regression is linear in the log-odds; a one-unit increase in x multiplies the odds by e to the power of its coefficient.
+  example: "p = 0.5 gives log-odds 0; a coefficient of 0.693 doubles the odds."
+  skill: logistic-regression
+
+- id: fc-pca
+  term: Principal component analysis (PCA)
+  def: Builds uncorrelated components from combinations of the variables, ordered by variance explained, to reduce dimensions. Standardize variables first.
+  skill: interdependence
+
+- id: fc-factor-cluster
+  term: Factor analysis and cluster analysis
+  def: Factor analysis finds latent factors that drive observed variables. Cluster analysis groups similar cases with no labels, unlike classification, which predicts known labels.
+  skill: interdependence
