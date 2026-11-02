@@ -1,0 +1,681 @@
+# Lesson 2.7: Probability essentials
+
+# ---------------------------------------------------------------- prob-basics
+- id: prob-basics-01
+  skill: prob-basics
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    Two fair six-sided dice are rolled. What is the probability that the sum is 7?
+  options:
+    - "$$\\frac{1}{12}$$"
+    - "$$\\frac{1}{11}$$"
+    - "$$\\frac{1}{6}$$"
+    - "$$\\frac{7}{36}$$"
+  ordered: true
+  answer: C
+  explain: |
+    Two dice have 6 × 6 = 36 equally likely ordered outcomes, and 6 of them sum to 7: (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), and (6, 1). The probability is 6/36 = 1/6.
+  why:
+    A: "This counts (1, 6) and (6, 1) as the same outcome, leaving only 3 of the 36."
+    B: "This treats the 11 possible sums, 2 through 12, as equally likely, but they are not."
+    D: "This uses the sum itself, 7, as the number of favorable outcomes."
+  verify: "Fraction(sum(1 for a in range(1, 7) for b in range(1, 7) if a + b == 7), 36)"
+
+- id: prob-basics-02
+  skill: prob-basics
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A website runs on three servers that fail independently. On any given day, each server fails with probability 0.1. What is the probability that at least one server fails today?
+  options:
+    - "0.1"
+    - "0.271"
+    - "0.3"
+    - "0.729"
+  ordered: true
+  answer: B
+  explain: |
+    The complement of "at least one fails" is "none fail." Each server survives with probability 0.9, so P(none fail) = $$0.9^3 = 0.729$$, and P(at least one fails) = 1 - 0.729 = 0.271.
+  why:
+    A: "This is the chance that one particular server fails."
+    C: "This adds 0.1 three times, which double-counts days when two or more servers fail."
+    D: "This is the chance that no server fails, the complement of what was asked."
+  verify: "1 - 0.9 ** 3"
+
+- id: prob-basics-03
+  skill: prob-basics
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    An event has probability 0.2. What are the odds in favor of the event?
+  options:
+    - "1 to 4"
+    - "1 to 5"
+    - "4 to 1"
+    - "5 to 1"
+  answer: A
+  explain: |
+    Odds in favor compare the chance for the event with the chance against it: 0.2 to 0.8, which simplifies to 1 to 4. Out of every 5 equally likely chances, 1 is for the event and 4 are against it.
+  why:
+    B: "This writes the probability 1/5 as if it were odds; odds compare for with against, not for with the total."
+    C: "These are the odds against the event."
+    D: "This compares the total number of chances with the chances for the event."
+  verify: |
+    p = Fraction(1, 5)
+    o = p / (1 - p)
+    ans = f"{o.numerator} to {o.denominator}"
+
+- id: prob-basics-04
+  skill: prob-basics
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A student flips a coin 50 times, gets 29 heads, and reports that the probability of heads is 29/50 = 0.58. What kind of probability did the student find?
+  options:
+    - "Theoretical probability"
+    - "Conditional probability"
+    - "Joint probability"
+    - "Experimental probability"
+  answer: D
+  explain: |
+    A probability computed from observed results, the relative frequency of the event over many trials, is an experimental (empirical) probability. The theoretical probability of heads for a fair coin is 0.5.
+  why:
+    A: "Theoretical probability comes from reasoning about equally likely outcomes, which gives 0.5 here."
+    B: "A conditional probability restricts attention to cases where another event occurred, and none is given."
+    C: "A joint probability is the chance that two events both happen."
+
+- id: prob-basics-05
+  skill: prob-basics
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A fair coin is flipped many times. According to the law of large numbers, what happens as the number of flips grows?
+  options:
+    - "The proportion of heads tends to get closer to 0.5."
+    - "After a long run of tails, heads becomes more likely."
+    - "The number of heads gets closer to exactly half the flips."
+    - "Every block of 10 flips will contain about 5 heads."
+  answer: A
+  explain: |
+    The law of large numbers is about proportions: the share of heads settles toward 0.5 over many flips. The coin has no memory, so no flip becomes more likely to land heads, and the raw count of heads can drift further from exactly half even as the proportion settles.
+  why:
+    B: "This is the gambler's fallacy; independent flips do not correct a streak."
+    C: "The gap between the count of heads and half the flips typically grows; only the proportion settles."
+    D: "Short blocks vary a lot; the law describes the long run, not every small group."
+
+- id: prob-basics-06
+  skill: prob-basics
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    An email filter wrongly blocks 5% of legitimate emails, independently of one another. You send 2 legitimate emails. What is the probability that at least one of them is blocked?
+  options:
+    - "0.0025"
+    - "0.0975"
+    - "0.1"
+    - "0.9025"
+  ordered: true
+  answer: B
+  explain: |
+    The complement of "at least one blocked" is "neither blocked." Each email gets through with probability 0.95, so P(neither blocked) = $$0.95^2 = 0.9025$$, and P(at least one blocked) = 1 - 0.9025 = 0.0975.
+  why:
+    A: "This is the chance that both emails are blocked."
+    C: "This adds 5% twice, which counts the case where both are blocked two times."
+    D: "This is the chance that neither email is blocked."
+  verify: "1 - 0.95 ** 2"
+
+- id: prob-basics-07
+  skill: prob-basics
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A model reports that the odds a customer will renew a subscription are 4 to 1. What probability of renewal does this represent?
+  options:
+    - "0.2"
+    - "0.25"
+    - "0.75"
+    - "0.8"
+  ordered: true
+  answer: D
+  explain: |
+    Odds of 4 to 1 mean 4 chances for renewal and 1 against, out of 5 equally likely chances. The probability is 4 / (4 + 1) = 0.8.
+  why:
+    A: "This is the probability that the customer does not renew."
+    B: "This inverts the odds to 1/4 instead of converting them to a probability."
+    C: "This treats 1/4 as the chance of not renewing; the 1 is out of 5 chances, not 4."
+  verify: "4 / (4 + 1)"
+
+# ---------------------------------------------------------------- prob-rules
+- id: prob-rules-01
+  skill: prob-rules
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    Of an online store's customers, 40% have bought electronics, 30% have bought books, and 10% have bought both. What percent have bought electronics or books?
+  options:
+    - "12%"
+    - "60%"
+    - "70%"
+    - "80%"
+  ordered: true
+  answer: B
+  explain: |
+    Adding 40% and 30% counts the 10% who bought both twice, so subtract it once: 40% + 30% - 10% = 60%.
+  why:
+    A: "This multiplies the two percentages, which would give P(both) only if the purchases were independent."
+    C: "This adds the two groups without subtracting the overlap."
+    D: "This adds the overlap instead of subtracting it."
+  verify: "40 + 30 - 10"
+
+- id: prob-rules-02
+  skill: prob-rules
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A bag holds 5 red and 3 blue tokens. Two tokens are drawn without replacement. What is the probability that both are red?
+  options:
+    - "$$\\frac{5}{16}$$"
+    - "$$\\frac{5}{14}$$"
+    - "$$\\frac{25}{64}$$"
+    - "$$\\frac{5}{8}$$"
+  ordered: true
+  answer: B
+  explain: |
+    The first draw is red with probability 5/8. Then 4 red tokens remain among 7, so the second is red with probability 4/7. Multiply: $$\frac{5}{8} \times \frac{4}{7} = \frac{20}{56} = \frac{5}{14}$$, about 0.357.
+  why:
+    A: "This uses 4 red tokens for the second draw but keeps 8 tokens in total, when only 7 remain."
+    C: "This treats the draws as if the first token were put back, which is drawing with replacement."
+    D: "This is only the probability that the first token is red."
+  verify: "Fraction(5, 8) * Fraction(4, 7)"
+
+- id: prob-rules-03
+  skill: prob-rules
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Events A and B each have a positive probability, and they are mutually exclusive. Which statement must be true?
+  options:
+    - "A and B are independent."
+    - "P(A and B) = P(A) × P(B)."
+    - "P(A or B) = P(A) × P(B)."
+    - "A and B are not independent."
+  answer: D
+  explain: |
+    Mutually exclusive events cannot happen together, so P(A and B) = 0. If A happens, the chance of B drops to 0, which means A changes B's probability. That is dependence, so the events cannot be independent.
+  why:
+    A: "Mutually exclusive events with positive probabilities are always dependent."
+    B: "The product of two positive probabilities is positive, but P(A and B) is 0 for mutually exclusive events."
+    C: "For mutually exclusive events, P(A or B) is the sum P(A) + P(B), not the product."
+
+- id: prob-rules-04
+  skill: prob-rules
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    You flip a fair coin and roll a fair six-sided die. What is the probability of getting heads and a 6?
+  options:
+    - "$$\\frac{1}{12}$$"
+    - "$$\\frac{1}{6}$$"
+    - "$$\\frac{1}{2}$$"
+    - "$$\\frac{2}{3}$$"
+  ordered: true
+  answer: A
+  explain: |
+    The coin and the die are independent, so multiply: $$\frac{1}{2} \times \frac{1}{6} = \frac{1}{12}$$.
+  why:
+    B: "This is only the probability of rolling a 6, ignoring the coin."
+    C: "This is only the probability of heads, ignoring the die."
+    D: "This adds the two probabilities; 'and' for independent events calls for multiplying."
+  verify: "Fraction(1, 2) * Fraction(1, 6)"
+
+- id: prob-rules-05
+  skill: prob-rules
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A locker code is 3 digits, each from 0 to 9, and digits may repeat. How many different codes are possible?
+  options:
+    - "30"
+    - "720"
+    - "1,000"
+    - "59,049"
+  ordered: true
+  answer: C
+  explain: |
+    By the multiplication principle, each of the 3 positions has 10 choices: 10 × 10 × 10 = 1,000.
+  why:
+    A: "This adds 10 three times instead of multiplying."
+    B: "This is 10 × 9 × 8, which forbids repeated digits."
+    D: "This computes 3 to the 10th power, swapping the base and the exponent."
+  verify: "10 ** 3"
+
+- id: prob-rules-06
+  skill: prob-rules
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A box holds 10 chips, and 2 of them are defective. An inspector tests 2 chips drawn without replacement. What is the probability that at least one tested chip is defective, to the nearest thousandth?
+  options:
+    - "0.022"
+    - "0.360"
+    - "0.378"
+    - "0.400"
+  ordered: true
+  answer: C
+  explain: |
+    Use the complement. Both chips are good with probability $$\frac{8}{10} \times \frac{7}{9} = \frac{56}{90}$$, about 0.622. So P(at least one defective) = 1 - 0.622 = 0.378.
+  why:
+    A: "This is the probability that both chips are defective."
+    B: "This treats the draws as independent, as if the first chip were put back."
+    D: "This adds 0.2 twice, double-counting the case where both chips are defective."
+  verify: "1 - Fraction(8, 10) * Fraction(7, 9)"
+
+- id: prob-rules-07
+  skill: prob-rules
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which pair of events is independent?
+  options:
+    - "A die shows 6 on its first roll, and the same die shows 6 on its second roll"
+    - "The first card drawn is an ace, and the second card drawn without replacement is an ace"
+    - "A student is a freshman, and the same student is a senior"
+    - "It rains in a city today, and the city's streets are wet today"
+  answer: A
+  explain: |
+    A die has no memory, so the first roll does not change the probabilities for the second. The other pairs are dependent: removing a card changes the deck, being a freshman rules out being a senior, and rain makes wet streets more likely.
+  why:
+    B: "Without replacement, the first card changes what remains, so the draws are dependent."
+    C: "These events are mutually exclusive, which makes them dependent."
+    D: "Rain raises the chance of wet streets, so knowing one changes the other."
+
+- id: prob-rules-08
+  skill: prob-rules
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A data team of 6 analysts must choose 2 of them to present results together. How many different pairs are possible?
+  options:
+    - "12"
+    - "15"
+    - "30"
+    - "36"
+  ordered: true
+  answer: B
+  explain: |
+    Order does not matter in a pair, so count combinations: $$C(6, 2) = \frac{6 \times 5}{2 \times 1} = 15$$. Counting ordered choices gives 6 × 5 = 30, which lists each pair twice.
+  why:
+    A: "This multiplies 6 by 2, which is not a counting rule."
+    C: "This counts ordered choices, so each pair is counted twice."
+    D: "This counts ordered choices and also allows the same analyst to be picked twice."
+  verify: "comb(6, 2)"
+
+- id: prob-rules-09
+  skill: prob-rules
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Events A and B are independent, with P(A) = 0.5 and P(B) = 0.4. What is P(A or B)?
+  options:
+    - "0.2"
+    - "0.7"
+    - "0.8"
+    - "0.9"
+  ordered: true
+  answer: B
+  explain: |
+    Independence gives P(A and B) = 0.5 × 0.4 = 0.2. Then the addition rule gives P(A or B) = 0.5 + 0.4 - 0.2 = 0.7.
+  why:
+    A: "This is P(A and B), the overlap, not P(A or B)."
+    C: "This is 1 - 0.2, the chance that A and B do not both happen."
+    D: "This adds the probabilities without subtracting the overlap."
+  verify: "0.5 + 0.4 - 0.5 * 0.4"
+
+# ---------------------------------------------------------------- conditional
+- id: conditional-01
+  skill: conditional
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    An online store recorded whether 500 visitors clicked an ad.
+
+    | | Clicked | Did not click | Total |
+    |---|---|---|---|
+    | Mobile | 30 | 170 | 200 |
+    | Desktop | 20 | 280 | 300 |
+    | Total | 50 | 450 | 500 |
+
+    What is P(clicked | mobile)?
+  options:
+    - "0.06"
+    - "0.10"
+    - "0.15"
+    - "0.60"
+  ordered: true
+  answer: C
+  explain: |
+    "Given mobile" restricts attention to the 200 mobile visitors, and 30 of them clicked: 30/200 = 0.15.
+  why:
+    A: "This divides by all 500 visitors, which gives P(clicked and mobile)."
+    B: "This is the overall click rate, 50/500, which ignores the condition."
+    D: "This is P(mobile | clicked), 30/50, with the condition reversed."
+  verify: "30 / 200"
+
+- id: conditional-02
+  skill: conditional
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A study finds that 90% of people with a certain disease carry gene G. A headline reports, "If you carry gene G, you have a 90% chance of having the disease." What is wrong with the headline?
+  options:
+    - "It should report the complement, a 10% chance."
+    - "It assumes gene G and the disease are mutually exclusive."
+    - "Nothing, because the two probabilities are always equal."
+    - "It swaps P(G | disease) for P(disease | G)."
+  answer: D
+  explain: |
+    The study measured P(G | disease), the share of people with the disease who carry the gene. The headline claims P(disease | G), the share of gene carriers who have the disease. If the gene is common and the disease is rare, that second number can be tiny.
+  why:
+    A: "The complement of 90% answers a different question: the chance that a person with the disease lacks the gene."
+    B: "Mutually exclusive would mean no one has both, which contradicts the study."
+    C: "P(A | B) and P(B | A) generally differ because they divide by different groups."
+
+- id: conditional-03
+  skill: conditional
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    A teacher recorded whether 160 students used a study app and whether they passed an exam.
+
+    | | Passed | Failed | Total |
+    |---|---|---|---|
+    | Used the app | 45 | 15 | 60 |
+    | Did not use it | 75 | 25 | 100 |
+    | Total | 120 | 40 | 160 |
+
+    Are passing and using the app independent in this data?
+  options:
+    - "Yes, because P(passed | used the app) equals P(passed)."
+    - "No, because more non-users than users passed the exam."
+    - "No, because a student can both use the app and pass."
+    - "Yes, because the two groups have different sizes."
+  answer: A
+  explain: |
+    P(passed | used the app) = 45/60 = 0.75, and P(passed) = 120/160 = 0.75. Knowing that a student used the app does not change the chance of passing, so the events are independent in this data.
+  why:
+    B: "Raw counts mislead because the groups differ in size; compare rates instead."
+    C: "Being able to happen together means the events are not mutually exclusive, which says nothing about independence."
+    D: "Group sizes do not decide independence; the conditional rates do."
+
+- id: conditional-04
+  skill: conditional
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What does P(A | B) represent?
+  options:
+    - "The probability that A and B both occur"
+    - "The probability of B, given that A has occurred"
+    - "The probability that A or B occurs"
+    - "The probability of A, given that B has occurred"
+  answer: D
+  explain: |
+    The vertical bar is read "given." P(A | B) is the probability of A among only the cases where B has occurred, which equals P(A and B) / P(B).
+  why:
+    A: "That is the joint probability, P(A and B)."
+    B: "That is P(B | A), with the condition reversed."
+    C: "That is P(A or B), found with the addition rule."
+
+- id: conditional-05
+  skill: conditional
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Machine 1 makes 60% of a factory's parts, and 2% of its parts are defective. Machine 2 makes the other 40%, and 5% of its parts are defective. What is the probability that a randomly chosen part is defective?
+  options:
+    - "0.001"
+    - "0.032"
+    - "0.035"
+    - "0.070"
+  ordered: true
+  answer: B
+  explain: |
+    Add the two paths of the tree: $$0.6 \times 0.02 + 0.4 \times 0.05 = 0.012 + 0.020 = 0.032$$.
+  why:
+    A: "This multiplies the two defect rates, which has no meaning here."
+    C: "This averages 2% and 5% equally, ignoring that Machine 1 makes more of the parts."
+    D: "This adds the two defect rates without weighting them by each machine's share."
+  verify: "0.6 * 0.02 + 0.4 * 0.05"
+
+- id: conditional-06
+  skill: conditional
+  tier: competitive
+  type: visual
+  use: bank
+  stem: |
+    The tree shows a store's visitors by membership and by whether they buy something. What is the probability that a randomly chosen visitor buys something?
+  figure:
+    type: tree
+    caption: Membership, then purchase
+    root:
+      label: Visitor
+      children:
+        - label: Member
+          edge: "0.6"
+          children:
+            - { label: Buys, edge: "0.5" }
+            - { label: Does not buy, edge: "0.5" }
+        - label: Not a member
+          edge: "0.4"
+          children:
+            - { label: Buys, edge: "0.2" }
+            - { label: Does not buy, edge: "0.8" }
+  options:
+    - "0.10"
+    - "0.35"
+    - "0.38"
+    - "0.70"
+  ordered: true
+  answer: C
+  explain: |
+    Multiply along each path that ends in "Buys," then add: $$0.6 \times 0.5 + 0.4 \times 0.2 = 0.30 + 0.08 = 0.38$$.
+  why:
+    A: "This multiplies the two purchase rates, 0.5 and 0.2."
+    B: "This averages the two purchase rates without weighting them by group size."
+    D: "This adds the two purchase rates."
+  verify: "0.6 * 0.5 + 0.4 * 0.2"
+
+- id: conditional-07
+  skill: conditional
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    For two events, P(A) = 0.5, P(B) = 0.4, and P(A and B) = 0.2. Which statement is true?
+  options:
+    - "A and B are independent."
+    - "A and B are mutually exclusive."
+    - "P(A | B) = 0.4."
+    - "P(A or B) = 0.9."
+  answer: A
+  explain: |
+    P(A) × P(B) = 0.5 × 0.4 = 0.2, which equals P(A and B), so A and B are independent. Equivalently, P(A | B) = 0.2 / 0.4 = 0.5, which equals P(A).
+  why:
+    B: "Mutually exclusive events have P(A and B) = 0, but here it is 0.2."
+    C: "P(A | B) = 0.2 / 0.4 = 0.5; 0.4 is P(B)."
+    D: "This adds P(A) and P(B) without subtracting the overlap; P(A or B) is 0.7."
+
+# ---------------------------------------------------------------- bayes
+- id: bayes-01
+  skill: bayes
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    In Bayes' theorem, what is the prior?
+  options:
+    - "The probability of the evidence if the hypothesis is true"
+    - "The updated probability of the hypothesis after the evidence"
+    - "The overall probability of seeing the evidence"
+    - "The probability of the hypothesis before seeing the evidence"
+  answer: D
+  explain: |
+    The prior, P(A), is the probability of the hypothesis before the new evidence arrives. For a medical test, it is the base rate of the condition. Bayes' theorem combines it with the likelihood to produce the posterior.
+  why:
+    A: "That is the likelihood, P(B | A)."
+    B: "That is the posterior, P(A | B)."
+    C: "That is the evidence, P(B), the denominator of Bayes' theorem."
+
+- id: bayes-02
+  skill: bayes
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A condition affects 2% of a population. A screening test is positive for 90% of people who have the condition and for 10% of people who do not. A randomly chosen person tests positive. What is the probability that they have the condition, to the nearest tenth of a percent?
+  options:
+    - "1.8%"
+    - "2.0%"
+    - "15.5%"
+    - "90.0%"
+  ordered: true
+  answer: C
+  explain: |
+    Imagine 1,000 people: 20 have the condition, and 18 of them test positive. Of the 980 without it, 10% (98 people) also test positive. Of the 18 + 98 = 116 positives, 18 are real: 18/116 = 0.155, or 15.5%.
+  why:
+    A: "This multiplies the prior by the sensitivity but never divides by all the positive tests."
+    B: "This is the prior, which ignores the test result."
+    D: "This is P(positive | condition), the reverse of what was asked."
+  verify: "100 * (0.02 * 0.9) / (0.02 * 0.9 + 0.98 * 0.1)"
+
+- id: bayes-03
+  skill: bayes
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Of the email a company receives, 30% is spam. The word "winner" appears in 20% of spam emails and in 1% of legitimate emails. An email contains "winner." What is the probability that it is spam, to the nearest hundredth?
+  options:
+    - "0.06"
+    - "0.20"
+    - "0.30"
+    - "0.90"
+  ordered: true
+  answer: D
+  explain: |
+    Out of 1,000 emails, 300 are spam and 60 of those contain "winner." Of the 700 legitimate emails, 7 contain it. So P(spam | "winner") = 60 / (60 + 7) = 60/67, about 0.90.
+  why:
+    A: "This is P(spam and winner), the numerator, without dividing by all the emails that contain the word."
+    B: "This is P(winner | spam), the reverse conditional."
+    C: "This is the prior, which ignores the evidence of the word."
+  verify: "0.3 * 0.2 / (0.3 * 0.2 + 0.7 * 0.01)"
+
+- id: bayes-04
+  skill: bayes
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A condition affects 1% of people. A test is positive for 95% of people with the condition and for 5% of people without it. After one positive result, a person's chance of having the condition is about 16%. The person takes a second, independent test, and it is also positive. What is the chance now, to the nearest percent?
+  options:
+    - "32%"
+    - "78%"
+    - "90%"
+    - "95%"
+  ordered: true
+  answer: B
+  explain: |
+    The first posterior becomes the new prior. Of every 590 people who test positive once, 95 have the condition and 495 do not. On the second test, 95% of the 95 (about 90.25) and 5% of the 495 (about 24.75) test positive again, so the chance is 90.25 / 115, about 0.785, or 78%.
+  why:
+    A: "Doubling the first result is not a probability rule; each update must go through Bayes' theorem."
+    C: "This is P(two positives | condition), $$0.95^2$$, the reverse conditional."
+    D: "This is the test's sensitivity, which ignores the prior entirely."
+  verify: |
+    p = 0.01 * 0.95 / (0.01 * 0.95 + 0.99 * 0.05)
+    ans = 100 * 0.95 * p / (0.95 * p + 0.05 * (1 - p))
+
+- id: bayes-05
+  skill: bayes
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A test for a rare disease catches 99% of cases and rarely gives false positives, yet most people who test positive do not have the disease. What explains this?
+  options:
+    - "Because the disease is rare, false positives outnumber true positives."
+    - "The test must be much less accurate than its makers report."
+    - "Positive results are random when a disease is rare enough."
+    - "The sensitivity of a test always equals its false positive rate."
+  answer: A
+  explain: |
+    When a disease is rare, the healthy group is enormous. Even a small false positive rate applied to that huge group can produce more false positives than there are true cases, so most positives are false. Ignoring this is the base rate fallacy.
+  why:
+    B: "The test can be exactly as accurate as reported; the low base rate alone produces the effect."
+    C: "Positive results still depend strongly on whether a person has the disease."
+    D: "Sensitivity and the false positive rate are separate properties and are usually very different."
+
+- id: bayes-06
+  skill: bayes
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Supplier A provides 70% of a store's eggs, and 1% of them arrive cracked. Supplier B provides the other 30%, and 4% of them arrive cracked. A cracked egg is found. What is the probability that it came from Supplier B, to the nearest thousandth?
+  options:
+    - "0.040"
+    - "0.300"
+    - "0.632"
+    - "0.800"
+  ordered: true
+  answer: C
+  explain: |
+    Cracked eggs from Supplier B make up $$0.3 \times 0.04 = 0.012$$ of all eggs, and all cracked eggs make up $$0.007 + 0.012 = 0.019$$. So P(Supplier B | cracked) = 0.012 / 0.019, about 0.632.
+  why:
+    A: "This is P(cracked | Supplier B), the reverse conditional."
+    B: "This is the prior, Supplier B's share of the eggs, which ignores the evidence of the crack."
+    D: "This compares the crack rates alone, 4 / (1 + 4), ignoring how many eggs each supplier provides."
+  verify: "0.3 * 0.04 / (0.7 * 0.01 + 0.3 * 0.04)"
+
+- id: bayes-07
+  skill: bayes
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Out of 1,000 emails, 200 are spam. A filter flags 180 of the spam emails and 40 of the legitimate ones. If an email is flagged, what is the probability that it is spam, to the nearest percent?
+  options:
+    - "18%"
+    - "20%"
+    - "82%"
+    - "90%"
+  ordered: true
+  answer: C
+  explain: |
+    Restrict attention to the flagged emails: 180 + 40 = 220. Of those, 180 are spam, so P(spam | flagged) = 180/220, about 82%.
+  why:
+    A: "This divides by all 1,000 emails instead of only the flagged ones."
+    B: "This is the share of all emails that are spam, the prior."
+    D: "This is P(flagged | spam), 180/200, the reverse conditional."
+  verify: "100 * 180 / 220"

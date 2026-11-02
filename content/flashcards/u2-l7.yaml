@@ -1,0 +1,61 @@
+# Lesson 2.7 flashcards
+
+- id: fc-probability
+  term: Probability
+  def: A number from 0 (impossible) to 1 (certain). With equally likely outcomes, P(A) = favorable outcomes / total outcomes. All outcomes of a sample space sum to 1.
+  example: "Two dice have 36 ordered outcomes, and 6 sum to 7, so P(sum of 7) = 1/6."
+  skill: prob-basics
+
+- id: fc-theoretical-experimental
+  term: Theoretical vs. experimental probability
+  def: Theoretical probability comes from reasoning about equally likely outcomes. Experimental probability is the observed relative frequency from trials, and it tends toward the theoretical value as trials grow.
+  skill: prob-basics
+
+- id: fc-odds
+  term: Odds vs. probability
+  def: Odds in favor = P / (1 - P). Odds of a to b in favor mean P = a / (a + b), so odds of 1 to 4 are a probability of 1/5.
+  skill: prob-basics
+
+- id: fc-complement
+  term: Complement and "at least one"
+  def: P(not A) = 1 - P(A). For "at least one," use 1 - P(none) rather than adding the chances.
+  example: "At least one six in 4 rolls: 1 - (5/6)^4, about 0.518."
+  skill: prob-basics
+
+- id: fc-addition-rule
+  term: Addition rule
+  def: P(A or B) = P(A) + P(B) - P(A and B). For mutually exclusive events the overlap is 0, so just add.
+  skill: prob-rules
+
+- id: fc-multiplication-rule
+  term: Multiplication rule
+  def: P(A and B) = P(A) x P(B) for independent events, and P(A) x P(B | A) for dependent ones. Drawing without replacement makes draws dependent.
+  skill: prob-rules
+
+- id: fc-exclusive-vs-independent
+  term: Mutually exclusive vs. independent
+  def: Mutually exclusive means the events cannot happen together. Independent means one does not change the other's probability. Mutually exclusive events with positive probabilities are never independent.
+  skill: prob-rules
+
+- id: fc-counting
+  term: Permutations vs. combinations
+  def: Permutations count arrangements where order matters, n! / (n - k)!. Combinations count selections where it does not, n! / (k! (n - k)!).
+  example: "Choosing 2 of 5 people: 20 ordered pairs, 10 committees."
+  skill: prob-rules
+
+- id: fc-conditional-probability
+  term: Conditional Probability
+  def: The probability of an event given that another event has occurred, P(A | B) = P(A and B) / P(B). The group after "given" is the denominator, and P(A | B) is generally not P(B | A).
+  skill: conditional
+  virginia: true
+
+- id: fc-bayes
+  term: "Bayes' theorem"
+  def: P(A | B) = P(B | A) x P(A) / P(B). Prior P(A), likelihood P(B | A), posterior P(A | B), evidence P(B).
+  skill: bayes
+
+- id: fc-base-rate
+  term: Base rate fallacy
+  def: Ignoring the prior. With a rare condition, false positives from the large healthy group can outnumber true positives, so most positive results may be false.
+  example: "1% prevalence, 95% sensitivity, 5% false positives: P(condition | positive) = 95/590, about 16%."
+  skill: bayes
