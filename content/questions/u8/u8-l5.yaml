@@ -1,0 +1,582 @@
+# Lesson 8.5: Privacy risks and protections
+
+# ---------------------------------------------------------------- llm-privacy
+- id: llm-privacy-01
+  skill: llm-privacy
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Researchers repeatedly queried GPT-2 and got it to output names, phone numbers, and email addresses that appeared word for word in its training data. What kind of attack is this?
+  options:
+    - "Training-data extraction"
+    - "Membership inference"
+    - "Model inversion"
+    - "Prompt injection"
+  answer: A
+  explain: |
+    Training-data extraction queries a model so that it outputs text it memorized during training. Carlini and colleagues (2021) recovered hundreds of verbatim sequences from GPT-2 this way, including personal information.
+  why:
+    B: "Membership inference only decides whether a given record was in the training set; it does not recover the text itself."
+    C: "Model inversion reconstructs sensitive features, such as a face, rather than recovering exact memorized text."
+    D: "Prompt injection hijacks a model's behavior; it is not about recovering training data."
+
+- id: llm-privacy-02
+  skill: llm-privacy
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A model was trained only on records of patients with a rare disease. An attacker with query access determines that a particular person's record was part of the training set. What is this attack, and why does it harm privacy?
+  options:
+    - "Model inversion; it reveals the person's face"
+    - "Training-data extraction; it reveals the person's full record"
+    - "Membership inference; membership alone reveals the person has the disease"
+    - "Data poisoning; it changes what the model predicts for that person"
+  answer: C
+  explain: |
+    Membership inference decides whether a given record was in a model's training data. Because this model was trained only on patients with the disease, learning that someone's record was included reveals the diagnosis, even though no record was extracted.
+  why:
+    A: "Model inversion reconstructs features such as faces; this attack only tested membership."
+    B: "Nothing was recovered verbatim; the attacker learned only that the record was used."
+    D: "Poisoning tampers with training data; this attacker only queried the finished model."
+
+- id: llm-privacy-03
+  skill: llm-privacy
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A nurse wants to paste a patient's full medical history into a free public chatbot to get a quick summary. What is the main privacy problem?
+  options:
+    - "The summary may contain hallucinations that change the patient's diagnosis"
+    - "The patient's sensitive data leaves the hospital's control and may be stored by the provider"
+    - "The chatbot will immediately publish the medical history on the public internet"
+    - "Chatbots cannot understand medical terms, so the summary will be useless"
+  answer: B
+  explain: |
+    Once typed into a public chatbot, the data sits on the provider's servers under the provider's policies, outside the hospital's control, and the patient never agreed to share it. Data minimization says to share only what a task needs, which here means removing identifying details or using an approved tool.
+  why:
+    A: "Hallucination is a real risk, but it concerns accuracy, not privacy."
+    C: "This overstates the risk; the problem is loss of control over the data, not instant publication."
+    D: "Whether or not the summary is useful, the privacy problem is where the data goes."
+
+- id: llm-privacy-04
+  skill: llm-privacy
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does a model inversion attack try to do?
+  options:
+    - "Determine whether a specific record was in a model's training set"
+    - "Plant hidden triggers in a model's training data to control it later"
+    - "Make a model ignore its safety rules through role-play prompts"
+    - "Reconstruct sensitive training information, such as a face, from a model's outputs"
+  answer: D
+  explain: |
+    Model inversion uses a model's outputs to reconstruct sensitive information about the people in its training data. Fredrikson and colleagues (2015) recovered recognizable faces from a facial recognition model using only a person's name and the model's confidence values.
+  why:
+    A: "That is membership inference."
+    B: "Planting triggers is data poisoning."
+    C: "That is a jailbreak."
+
+- id: llm-privacy-05
+  skill: llm-privacy
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    In 2023, researchers asked ChatGPT to repeat the word "poem" forever. What happened?
+  options:
+    - "It eventually diverged and output memorized training data, over 10,000 examples in all"
+    - "It refused the request and warned the researchers about misuse of the service"
+    - "It repeated the word without end until the service crashed for all users"
+    - "It revealed its hidden system prompt but no data from its training set"
+  answer: A
+  explain: |
+    Nasr and colleagues found that the repeated-word prompt made ChatGPT diverge from its normal behavior and emit memorized training data at a far higher rate, recovering over 10,000 examples for about $200 of queries. Even a production chatbot can leak training data.
+  why:
+    B: "The model did not refuse; the attack worked."
+    C: "The model diverged into emitting training text; the study reports no service outage."
+    D: "The leak was training data, not the system prompt."
+
+- id: llm-privacy-06
+  skill: llm-privacy
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Fredrikson, Jha, and Ristenpart (2015) recovered recognizable images of people's faces from a facial recognition model using only each person's name and query access. What did the attack exploit, and what countermeasure did the authors explore?
+  options:
+    - "The model's training files; encrypting the training dataset"
+    - "The model's source code; keeping the code secret"
+    - "The confidence values it returned; reporting only rounded values"
+    - "The model's error logs; turning off logging on the server"
+  answer: C
+  explain: |
+    The attack exploited the confidence values the model revealed along with its predictions, using them to steer a reconstruction toward a person's face. Revealing only rounded confidence values was one of the basic countermeasures the authors tested.
+  why:
+    A: "The attacker never accessed the training files; query access was enough."
+    B: "The attack needed only queries, not source code."
+    D: "Logs played no role; the leak came through the model's normal outputs."
+
+- id: llm-privacy-07
+  skill: llm-privacy
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A company is about to train a chatbot on years of customer support transcripts. Which step most directly reduces the chance that the model memorizes and later leaks customers' phone numbers?
+  options:
+    - "Raising the temperature so that the model's outputs are more random"
+    - "Using a larger context window so the model reads whole transcripts"
+    - "Adding a disclaimer that answers may contain personal information"
+    - "Removing personal information from the transcripts before training"
+  answer: D
+  explain: |
+    A model cannot memorize data it never sees. Removing or replacing phone numbers and other personal details before training is data minimization applied to training data, and it attacks the leak at its source.
+  why:
+    A: "Randomness in sampling does not remove memorized data and can still surface it."
+    B: "Context size has nothing to do with what the model memorized during training."
+    C: "A disclaimer warns about leaks; it does not prevent them."
+
+- id: llm-privacy-08
+  skill: llm-privacy
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A hospital says its model is safe to share because an attacker could learn only whether a given patient's record was used in training, never the record itself. Why is this reasoning flawed?
+  options:
+    - "Membership inference also recovers the full text of each patient's record"
+    - "Membership can itself be sensitive, as when every patient in training had one diagnosis"
+    - "Attackers can learn membership only if they already have the hospital's database"
+    - "Learning membership is harmless unless the model was also poisoned in training"
+  answer: B
+  explain: |
+    Membership inference reveals only whether a record was used, but that fact can be private. If a model's training data came from patients with one condition, membership reveals the condition, so a model can leak sensitive information without exposing a single record.
+  why:
+    A: "Membership inference answers a yes-or-no question; it does not recover records."
+    C: "The attack needs only the record to test and query access to the model."
+    D: "Membership leakage needs no poisoning; it comes from how a model responds to data it was trained on."
+
+- id: llm-privacy-09
+  skill: llm-privacy
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    An employee wants a chatbot's help fixing a formula in a spreadsheet that lists customers' names and account numbers. What should the employee do first?
+  options:
+    - "Replace the names and account numbers with made-up values, sharing only what the task needs"
+    - "Paste the whole spreadsheet, because the chatbot needs all the data to fix a formula"
+    - "Ask the chatbot to promise that it will forget the data after answering"
+    - "Share the spreadsheet as an image instead, since images are not stored"
+  answer: A
+  explain: |
+    Data minimization means sharing only the data a task needs. Fixing a formula needs the formula and a few sample values, not real customers' names and account numbers.
+  why:
+    B: "A formula can be fixed with placeholder data; real personal data is not needed."
+    C: "A chatbot's promise does not control what the provider stores."
+    D: "Images can be stored just like text, and they still contain the personal data."
+
+- id: llm-privacy-10
+  skill: llm-privacy
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    NIST's Generative AI Profile lists data privacy among the risks of generative AI. What does that risk describe?
+  options:
+    - "Confidently stated but false content that misleads users"
+    - "High compute use in training and running models that affects ecosystems"
+    - "Leakage, unauthorized use, or de-anonymization of personal or sensitive data"
+    - "Content that makes it hard to tell fact from opinion or fiction"
+  answer: C
+  explain: |
+    NIST describes data privacy as impacts from leakage and unauthorized use, disclosure, or de-anonymization of biometric, health, location, or other personally identifiable or sensitive data. Memorization, membership inference, and model inversion are all routes to that harm.
+  why:
+    A: "That is confabulation, NIST's term for hallucination."
+    B: "That is NIST's environmental impacts risk."
+    D: "That describes NIST's information integrity risk."
+
+- id: llm-privacy-11
+  skill: llm-privacy
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which pairing correctly matches a privacy attack on a model with what the attacker learns?
+  options:
+    - "Membership inference: the exact text of a training document"
+    - "Model inversion: whether a record was in the training set"
+    - "Training-data extraction: a face rebuilt from confidence scores"
+    - "Model inversion: sensitive features, such as a recognizable face"
+  answer: D
+  explain: |
+    Model inversion reconstructs sensitive features of the people in the training data, such as faces. Membership inference learns only whether a record was in the training set, and training-data extraction recovers exact memorized text.
+  why:
+    A: "Membership inference learns only whether a record was used, not its text."
+    B: "Whether a record was used is membership inference."
+    C: "Rebuilding a face from confidence scores is model inversion; extraction recovers exact memorized text."
+
+- id: llm-privacy-12
+  skill: llm-privacy
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What does it mean for a language model to memorize part of its training data?
+  options:
+    - "It keeps a full copy of its training set in a database that it searches for every answer"
+    - "It can reproduce specific training text word for word, not just general patterns"
+    - "It saves each user's conversations into its weights as soon as the chat ends"
+    - "It learns only general patterns, so it can never repeat any exact training text"
+  answer: B
+  explain: |
+    Models mostly learn general patterns, but they can also store rare sequences, such as a phone number that appeared in their training text, and reproduce them exactly. That is what extraction attacks exploit.
+  why:
+    A: "A trained model does not search a stored copy of its data; memorized text lives in its weights."
+    C: "Conversations do not change a model's weights; memorization happens during training."
+    D: "Extraction attacks have recovered exact training text, so memorization is real."
+
+# ---------------------------------------------------------------- privacy-tech
+- id: privacy-tech-01
+  skill: privacy-tech
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A company replaces each customer's name with a random ID number and keeps a separate table linking the IDs back to names. Under the GDPR, what is the resulting data?
+  options:
+    - "Anonymous data, which falls outside the GDPR's data protection rules"
+    - "Encrypted data, which needs no lawful basis to be processed"
+    - "Pseudonymized data, which is still personal data under the GDPR"
+    - "Public data, which the company may share with anyone"
+  answer: C
+  explain: |
+    Replacing direct identifiers with codes is pseudonymization. Because the data can be linked back to people with additional information, here the separate key table, the GDPR still treats it as personal data.
+  why:
+    A: "Data is anonymous only if no one can reasonably identify the people; a key table makes that easy."
+    B: "Replacing names with ID numbers is not encryption, and the data still relates to identifiable people."
+    D: "Nothing about pseudonymization makes data public."
+
+- id: privacy-tech-02
+  skill: privacy-tech
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A medical dataset is released with names removed but keeps each patient's 5-digit ZIP code, full date of birth, and gender. Why is this risky?
+  options:
+    - "Together those fields are unique for most Americans and can be matched to public records"
+    - "Each 5-digit ZIP code secretly encodes a patient's full street address"
+    - "Dates of birth count as encrypted health data that may never be released"
+    - "Gender alone is enough to identify most of the patients in a dataset"
+  answer: A
+  explain: |
+    ZIP code, birth date, and gender are quasi-identifiers: harmless alone but identifying in combination. Sweeney estimated that 87 percent of Americans were likely unique on these three fields, and a later re-analysis found about 63 percent, so matching them to a voter list or other public record can put names back on the records.
+  why:
+    B: "A ZIP code covers an area, not a street address; the danger is the combination of fields."
+    C: "Birth dates are not encrypted; the risk is that they combine with other fields to identify people."
+    D: "Gender alone splits people into a few large groups; it is the combination that identifies."
+
+- id: privacy-tech-03
+  skill: privacy-tech
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A table is released with ZIP, Age, and Sex as quasi-identifiers and Condition as the sensitive attribute.
+
+    | ZIP | Age | Sex | Condition |
+    |---|---|---|---|
+    | 140** | 40 to 49 | M | Asthma |
+    | 140** | 40 to 49 | M | Flu |
+    | 140** | 40 to 49 | M | Asthma |
+    | 140** | 40 to 49 | M | Ulcer |
+    | 141** | 20 to 29 | F | Flu |
+    | 141** | 20 to 29 | F | Flu |
+    | 141** | 20 to 29 | F | Ulcer |
+
+    What is the largest k for which the table is k-anonymous?
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "7"
+  ordered: true
+  answer: B
+  explain: |
+    Group the records with identical quasi-identifiers: (140**, 40 to 49, M) has 4 records and (141**, 20 to 29, F) has 3. k is the size of the smallest group, so the table is 3-anonymous: every record matches at least 2 others.
+  why:
+    A: "2 is the number of groups, not the size of the smallest group."
+    C: "4 is the largest group; k is set by the smallest."
+    D: "7 is the total number of records."
+  verify: |
+    rows = ["140**|40 to 49|M"] * 4 + ["141**|20 to 29|F"] * 3
+    ans = min(rows.count(r) for r in set(rows))
+
+- id: privacy-tech-04
+  skill: privacy-tech
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A data curator lowers the differential privacy parameter ε (epsilon) from 1.0 to 0.1 for a statistic it publishes. What is the effect?
+  options:
+    - "Privacy gets weaker, and the published statistic becomes more accurate"
+    - "Nothing changes, because ε affects only how fast the statistic is computed"
+    - "Privacy gets weaker, but the published statistic becomes less accurate"
+    - "Privacy gets stronger, but more noise makes the statistic less accurate"
+  answer: D
+  explain: |
+    A smaller ε means a stronger privacy guarantee, which requires adding more noise, so the published statistic is less accurate. A larger ε means weaker privacy and less noise. Remember that a bigger ε is not more privacy.
+  why:
+    A: "This describes raising ε, not lowering it."
+    B: "ε controls the trade-off between privacy and accuracy, not computation speed."
+    C: "Lowering ε strengthens privacy; weaker privacy comes with a larger ε."
+
+- id: privacy-tech-05
+  skill: privacy-tech
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which statement describes differential privacy?
+  options:
+    - "Every record matches at least k minus 1 others on its quasi-identifiers"
+    - "Names are replaced with codes before the data are analyzed"
+    - "An analysis gives about the same result whether or not any one person's data is included"
+    - "Data are encrypted so that only authorized analysts can read them"
+  answer: C
+  explain: |
+    Differential privacy, introduced in 2006, adds calibrated random noise so that the result of an analysis is about the same with or without any one person's data. Because your presence barely changes the output, the output reveals little about you.
+  why:
+    A: "That is k-anonymity."
+    B: "That is pseudonymization."
+    D: "Encryption controls who can read data; it says nothing about what published results reveal."
+
+- id: privacy-tech-06
+  skill: privacy-tech
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A phone keyboard improves its word suggestions by training on each phone and sending only model updates, never what users typed, to a server that averages them. What is this technique?
+  options:
+    - "Federated learning"
+    - "Differential privacy"
+    - "k-anonymity"
+    - "Pseudonymization"
+  answer: A
+  explain: |
+    Federated learning trains a shared model across many devices that keep their data locally; only model updates go to a server, which averages them. Google tested it in 2017 on Gboard, its phone keyboard.
+  why:
+    B: "Differential privacy adds calibrated noise to results; this scenario describes where training happens and what is sent."
+    C: "k-anonymity generalizes records in a released table."
+    D: "Pseudonymization replaces identifiers with codes."
+
+- id: privacy-tech-07
+  skill: privacy-tech
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A system publishes a differentially private statistic every day, using ε = 0.5 for each release. Using the rule that privacy budgets add up over repeated releases, what is the total privacy loss after 30 releases?
+  options:
+    - "0.5"
+    - "15"
+    - "30"
+    - "60"
+  ordered: true
+  answer: B
+  explain: |
+    Privacy budgets add up: 30 releases × 0.5 = 15. Each new release spends more of the budget, which is why NIST's example of ε = 1 per user per day totals 365 over a year.
+  why:
+    A: "0.5 is the budget of one release; repeated releases add up."
+    C: "30 is the number of releases, not the total ε."
+    D: "60 divides 30 by 0.5 instead of multiplying."
+  verify: "30 * 0.5"
+
+- id: privacy-tech-08
+  skill: privacy-tech
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In a 4-anonymous medical table, every record in one group lists the diagnosis "diabetes." What can an attacker learn about a person known to be in that group?
+  options:
+    - "Nothing, because 4-anonymity guarantees that no information leaks"
+    - "The person's name, because the group has fewer than five records"
+    - "Only that at least four people in the whole table have diabetes"
+    - "That the person has diabetes, without finding the exact record"
+  answer: D
+  explain: |
+    k-anonymity hides which record is yours, not what is true of everyone in your group. When a group shares one sensitive value, membership in the group reveals it, a homogeneity attack. This weakness led to l-diversity, which requires several well-represented sensitive values per group.
+  why:
+    A: "k-anonymity protects identity, not attribute values, so the shared diagnosis leaks."
+    B: "With four matching records, the attacker still cannot tell which row is the person's."
+    C: "The attacker learns more than a count: the diagnosis of a specific known person."
+
+- id: privacy-tech-09
+  skill: privacy-tech
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A school app asks for every student's home address, although it only needs their grade level to work. Which principle does this practice violate?
+  options:
+    - "Data minimization"
+    - "Differential privacy"
+    - "Federated learning"
+    - "Pseudonymization"
+  answer: A
+  explain: |
+    Data minimization, one of the GDPR's core principles, means collecting only the data a purpose needs. An address the app does not need adds risk: it can leak in a breach and serves no purpose.
+  why:
+    B: "Differential privacy is a technique for publishing statistics, not a rule about what to collect."
+    C: "Federated learning is a way to train models without centralizing data."
+    D: "Pseudonymization replaces identifiers with codes; the problem here is collecting unnecessary data at all."
+
+- id: privacy-tech-10
+  skill: privacy-tech
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    In 2006, AOL publicly released about 20 million search queries with users' names replaced by ID numbers. What happened next?
+  options:
+    - "No one was identified, because the ID numbers were assigned at random"
+    - "Hackers broke into AOL's servers and stole the original search logs"
+    - "Reporters used the searches to identify one of the users by name"
+    - "AOL sold the queries to advertisers, who matched them to customers"
+  answer: C
+  explain: |
+    Replacing names with ID numbers was only pseudonymization: one user's searches, taken together, pointed to a single person, and The New York Times identified user No. 4417749 by name. AOL removed the data and apologized.
+  why:
+    A: "Random IDs did not help, because the searches themselves revealed who the user was."
+    B: "AOL released the data itself; no break-in was involved."
+    D: "The reported harm came from the public release, not from a sale."
+
+- id: privacy-tech-11
+  skill: privacy-tech
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Narayanan and Shmatikov re-identified people in the "anonymized" Netflix Prize dataset. What outside data did they match the ratings against?
+  options:
+    - "Netflix's own billing records"
+    - "Public movie reviews on IMDb"
+    - "Credit card statements"
+    - "Social media profile photos"
+  answer: B
+  explain: |
+    They matched the Netflix ratings and dates with public movie reviews posted on IMDb. Just 8 ratings with dates known within 14 days uniquely identified 99 percent of records, revealing apparent political preferences and other sensitive information.
+  why:
+    A: "Billing records were never released; the attack used public data anyone could access."
+    C: "No financial data was involved; public reviews were enough."
+    D: "The attack matched ratings and dates, not images."
+
+- id: privacy-tech-12
+  skill: privacy-tech
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Researchers introduced l-diversity in 2006 to fix a weakness of k-anonymity. What weakness?
+  options:
+    - "k-anonymity requires all data to be encrypted before it can be released"
+    - "k-anonymity works only on tables that have fewer than k columns"
+    - "k-anonymity cannot be computed by hand for tables with many records"
+    - "Groups whose records share one sensitive value can still reveal it"
+  answer: D
+  explain: |
+    k-anonymity hides which record belongs to whom, but if every record in a group has the same sensitive value, or an attacker has background knowledge, the value leaks anyway. l-diversity requires each group to contain several well-represented sensitive values.
+  why:
+    A: "k-anonymity uses generalization and suppression, not encryption."
+    B: "k counts matching records, not columns."
+    C: "Computing k is simple counting; the weakness is what the groups reveal."
+
+- id: privacy-tech-13
+  skill: privacy-tech
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    For its 2020 redistricting data, the U.S. Census Bureau set a total privacy-loss budget of ε = 19.61. Which technique does this describe?
+  options:
+    - "Differential privacy"
+    - "k-anonymity"
+    - "Federated learning"
+    - "Pseudonymization"
+  answer: A
+  explain: |
+    Epsilon is the privacy-loss parameter of differential privacy. The 2020 Census used a differential privacy system, though not for the apportionment counts that divide congressional seats among the states.
+  why:
+    B: "k-anonymity is measured by k, the size of the smallest group, not by ε."
+    C: "Federated learning trains models across devices; the census published statistics."
+    D: "Pseudonymization replaces identifiers with codes; it has no ε."
+
+- id: privacy-tech-14
+  skill: privacy-tech
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Google's 2017 test of federated learning on its Gboard keyboard also used a Secure Aggregation protocol. What does secure aggregation add?
+  options:
+    - "Each phone's raw typing is encrypted and then uploaded for training"
+    - "The model is trained only on phones that have opted in to share data"
+    - "The server can see only the average of many phones' updates, not any single one"
+    - "Noise is added to every word suggestion that appears on the keyboard"
+  answer: C
+  explain: |
+    In federated learning, phones send model updates rather than raw data, but an individual update can still say something about its owner's data. Secure aggregation lets the server combine updates so that it sees only their average.
+  why:
+    A: "Raw typing never leaves the phone in federated learning; only updates are sent."
+    B: "Opt-in policy is a separate choice; secure aggregation is about what the server can see."
+    D: "Adding noise is the idea behind differential privacy, not secure aggregation."
+
+- id: privacy-tech-15
+  skill: privacy-tech
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Under HIPAA's Safe Harbor method, how is health information de-identified?
+  options:
+    - "Every record is encrypted with a password kept by the hospital"
+    - "18 listed types of identifiers are removed from the records"
+    - "Each patient signs a form agreeing to share the records"
+    - "Patients' names are replaced with their initials"
+  answer: B
+  explain: |
+    Safe Harbor de-identifies health information by removing 18 listed types of identifiers, such as names, small geographic units, most date elements, and contact numbers, when the organization has no actual knowledge that the rest could identify someone. HIPAA's other method is Expert Determination.
+  why:
+    A: "Encryption is a security measure, not one of HIPAA's two de-identification methods."
+    C: "Patient authorization is a different route to sharing; it does not de-identify the data."
+    D: "Initials are a partial identifier; Safe Harbor removes names entirely."
+
+- id: privacy-tech-16
+  skill: privacy-tech
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Latanya Sweeney's 2000 study estimated what share of the U.S. population was likely uniquely identifiable by 5-digit ZIP code, gender, and date of birth alone?
+  options:
+    - "13%"
+    - "53%"
+    - "63%"
+    - "87%"
+  ordered: true
+  answer: D
+  explain: |
+    Sweeney estimated 87 percent, using 1990 census data. A 2006 re-analysis by Golle found about 63 percent; either way, most Americans are unique on these three quasi-identifiers.
+  why:
+    A: "13% is far too low; most people are unique on these fields."
+    B: "53% is Sweeney's figure for place, gender, and date of birth, not ZIP code."
+    C: "63% is Golle's later re-analysis, not Sweeney's estimate."

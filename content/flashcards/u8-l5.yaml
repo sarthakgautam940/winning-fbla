@@ -1,0 +1,66 @@
+# Lesson 8.5 flashcards
+
+- id: fc-privacy
+  term: Privacy
+  def: "People's ability to control information about themselves: what is collected, how it is used, and who can see it. Personal data, in the GDPR's definition, is any information relating to an identified or identifiable person."
+  skill: privacy-tech
+  virginia: true
+
+- id: fc-data-breach
+  term: Data Breach
+  def: "A breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to personal data (the GDPR's personal data breach)."
+  skill: llm-privacy
+  virginia: true
+
+- id: fc-differential-privacy
+  term: Differential Privacy
+  def: "A guarantee that an analysis gives about the same result whether or not any one person's data is included, achieved by adding calibrated random noise (Dwork, McSherry, Nissim, and Smith, 2006). Smaller epsilon means stronger privacy, more noise, and lower accuracy; budgets add up over releases."
+  example: "The 2020 U.S. Census redistricting data used a total budget of epsilon = 19.61."
+  skill: privacy-tech
+  virginia: true
+
+- id: fc-consent
+  term: Consent
+  def: "In the GDPR, a freely given, specific, informed, and unambiguous indication of a person's wishes, by a statement or a clear affirmative action, agreeing to the processing of their data."
+  skill: llm-privacy
+  virginia: true
+
+- id: fc-training-data-extraction
+  term: Memorization and training-data extraction
+  def: "Models can memorize rare training text and reproduce it word for word; extraction attacks query a model to make it output that text. GPT-2 leaked names, phone numbers, and emails (2021); a repeat-a-word attack pulled over 10,000 examples from ChatGPT for about $200 (2023)."
+  skill: llm-privacy
+
+- id: fc-membership-inference
+  term: Membership inference
+  def: "Given a record and query access to a model, deciding whether that record was in the training set (Shokri and colleagues, 2017). Membership alone can be sensitive, for example in a model trained only on patients with one disease."
+  skill: llm-privacy
+
+- id: fc-model-inversion
+  term: Model inversion
+  def: "Using a model's outputs to reconstruct sensitive information about the people in its training data. Fredrikson and colleagues (2015) recovered recognizable faces from a face-recognition model's confidence values; one countermeasure was returning only rounded values."
+  skill: llm-privacy
+
+- id: fc-pseudonymization
+  term: Anonymization vs. pseudonymization
+  def: "Anonymization: no one can reasonably identify the people; anonymous data falls outside the GDPR. Pseudonymization: direct identifiers are replaced with codes, but the data can be linked back with additional information, so it is still personal data."
+  skill: privacy-tech
+
+- id: fc-re-identification
+  term: Re-identification and quasi-identifiers
+  def: "Linking supposedly anonymous records back to people, usually with outside data. Quasi-identifiers such as ZIP code, birth date, and gender identify people in combination: Sweeney (2000) estimated 87 percent of Americans were unique on those three. AOL search logs (2006) and Netflix Prize ratings were re-identified."
+  skill: privacy-tech
+
+- id: fc-k-anonymity
+  term: k-anonymity
+  def: "Every record matches at least k minus 1 others on its quasi-identifiers (Sweeney, 2002), achieved by generalization and suppression. k is the size of the smallest group. It hides which record is yours but can leak a sensitive value a whole group shares, which l-diversity addresses."
+  skill: privacy-tech
+
+- id: fc-federated-learning
+  term: Federated learning
+  def: "Training a shared model across many devices that keep their data locally; each sends only a model update, and a server averages the updates (McMahan and colleagues, 2016 to 2017). Google's 2017 Gboard test added Secure Aggregation so the server sees only the average."
+  skill: privacy-tech
+
+- id: fc-data-minimization
+  term: Data minimization
+  def: "Collect, keep, and share only the data a purpose needs; one of the GDPR's core principles. Data you never collect cannot leak, so strip personal details before pasting anything into a chatbot."
+  skill: privacy-tech
