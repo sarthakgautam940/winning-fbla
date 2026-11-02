@@ -1,0 +1,424 @@
+# Lesson 2.4: Covariance and correlation
+
+# ---------------------------------------------------------------- covariance
+- id: covariance-01
+  skill: covariance
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    The covariance between hours of exercise per week and resting heart rate is negative. What does this mean?
+  options:
+    - "Exercise causes resting heart rate to fall."
+    - "The two variables have no relationship at all."
+    - "People who exercise more tend to have lower resting heart rates."
+    - "People who exercise more tend to have higher resting heart rates."
+  answer: C
+  explain: |
+    Negative covariance means that when one variable is above its mean, the other tends to be below its mean. So more exercise tends to go with a lower resting heart rate.
+  why:
+    A: "Covariance describes how variables move together; it cannot establish cause."
+    B: "A negative covariance shows a relationship; only a covariance near zero suggests none."
+    D: "That describes a positive covariance."
+
+- id: covariance-02
+  skill: covariance
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    The covariance between height in centimeters and weight in kilograms is 45. Height is then converted to meters. What happens?
+  options:
+    - "The covariance stays 45, because the people are the same."
+    - "The covariance becomes 0.45, although the relationship has not changed."
+    - "The covariance becomes 4,500, because meters are larger units."
+    - "The covariance becomes 1, because the units cancel."
+  answer: B
+  explain: |
+    Dividing every height by 100 divides every height deviation by 100, so the covariance becomes 45 / 100 = 0.45. The relationship is identical, which is why covariance cannot measure strength. The correlation would not change.
+  why:
+    A: "Covariance depends on the units of measurement, so rescaling one variable changes it."
+    C: "Converting centimeters to meters makes the numbers smaller, not larger."
+    D: "Covariance keeps the product of the units; it is correlation that is unit-free."
+
+- id: covariance-03
+  skill: covariance
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    For the paired data (1, 2), (2, 4), and (3, 9), what is the sample covariance of x and y?
+  options:
+    - "2.33"
+    - "3.5"
+    - "7"
+    - "37"
+  ordered: true
+  answer: B
+  explain: |
+    The means are 2 and 5. The deviation products are (-1)(-3) = 3, (0)(-1) = 0, and (1)(4) = 4, which sum to 7. Dividing by n - 1 = 2 gives 3.5.
+  why:
+    A: "This divides by n = 3, the population formula."
+    C: "This is the sum of the products before dividing."
+    D: "This multiplies the raw values without subtracting the means."
+  verify: "np.cov([1, 2, 3], [2, 4, 9])[0, 1]"
+
+- id: covariance-04
+  skill: covariance
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does covariance measure?
+  options:
+    - "How two variables change together"
+    - "How far one variable's values spread from their mean"
+    - "The middle value of two combined datasets"
+    - "The difference between two variables' means"
+  answer: A
+  explain: |
+    Covariance measures the joint variability of two variables: whether they tend to be above or below their means at the same time.
+  why:
+    B: "That describes the variance or standard deviation of a single variable."
+    C: "That describes a median."
+    D: "Comparing means is a different calculation."
+
+- id: covariance-05
+  skill: covariance
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    What is the covariance of a variable with itself, cov(x, x)?
+  options:
+    - "Always 0"
+    - "Always 1"
+    - "Its mean"
+    - "Its variance"
+  answer: D
+  explain: |
+    Replacing y with x in the covariance formula gives the sum of $$(x - \bar{x})^2$$ divided by n - 1, which is exactly the variance.
+  why:
+    A: "A variable always moves with itself, so the covariance is not 0 unless the values are all equal."
+    B: "The correlation of a variable with itself is 1; the covariance is its variance."
+    C: "The formula averages squared deviations, not the values themselves."
+
+- id: covariance-06
+  skill: covariance
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Var(X) = 9, Var(Y) = 16, and Cov(X, Y) = 6. What is Var(X + Y)?
+  options:
+    - "25"
+    - "31"
+    - "37"
+    - "49"
+  ordered: true
+  answer: C
+  explain: |
+    Var(X + Y) = Var(X) + Var(Y) + 2 Cov(X, Y) = 9 + 16 + 12 = 37. Because X and Y move together, their sum varies more than the two variances alone suggest.
+  why:
+    A: "This ignores the covariance, which is right only when X and Y are uncorrelated."
+    B: "This adds the covariance once; the formula adds it twice."
+    D: "This is (3 + 4) squared, which would require a perfect correlation."
+  verify: "9 + 16 + 2 * 6"
+
+- id: covariance-07
+  skill: covariance
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why can you NOT judge the strength of a relationship from the size of a covariance?
+  options:
+    - "Covariance can never be larger than 1."
+    - "Covariance is always positive."
+    - "Covariance ignores the direction of the relationship."
+    - "Covariance depends on the units and scales of the variables."
+  answer: D
+  explain: |
+    Rescaling a variable, such as hours to minutes, multiplies the covariance without changing the relationship at all. So a large covariance may reflect large units rather than a strong relationship.
+  why:
+    A: "Covariance has no upper limit; it is correlation that stays between -1 and 1."
+    B: "Covariance can be negative, zero, or positive."
+    C: "Covariance does show direction through its sign; scale is the problem."
+
+- id: covariance-08
+  skill: covariance
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Two variables have a covariance very close to zero. What is the best interpretation?
+  options:
+    - "They show little or no linear tendency to move together."
+    - "One variable causes the other to change by a fixed amount."
+    - "The two variables are measured in exactly the same units."
+    - "Both variables have a mean of zero across the dataset."
+  answer: A
+  explain: |
+    A covariance near zero means above-average values of one are not consistently paired with above- or below-average values of the other. There may still be a curved relationship that covariance does not detect.
+  why:
+    B: "Covariance never establishes cause, and near zero suggests no linear link."
+    C: "Covariance says nothing about whether the units match."
+    D: "The means can be any values; covariance uses deviations from them."
+
+- id: covariance-09
+  skill: covariance
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A scatterplot is divided at the mean of x and the mean of y. Most points fall in the upper-right and lower-left regions. What is the sign of the covariance?
+  options:
+    - "Negative"
+    - "Positive"
+    - "Zero"
+    - "It cannot be determined from the regions"
+  answer: B
+  explain: |
+    In the upper-right region both deviations are positive, and in the lower-left both are negative. Either way their product is positive, so the sum, and the covariance, is positive.
+  why:
+    A: "A negative covariance would put most points in the upper-left and lower-right."
+    C: "Zero would need the products to cancel, with points spread evenly across all four regions."
+    D: "The regions determine the signs of the products, and so the sign of the covariance."
+
+# ---------------------------------------------------------------- correlation
+- id: correlation-01
+  skill: correlation
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What values can the correlation coefficient r take?
+  options:
+    - "Any value from 0 to 1"
+    - "Any value from 0 to 100"
+    - "Any positive or negative number"
+    - "Any value from -1 to 1"
+  answer: D
+  explain: |
+    r is covariance divided by both standard deviations, which cancels the units and confines it to the range from -1 to 1. The sign shows direction and the size shows strength.
+  why:
+    A: "r can be negative, which shows a negative relationship."
+    B: "r is not a percentage; it is between -1 and 1."
+    C: "Unlike covariance, r can never go below -1 or above 1."
+
+- id: correlation-02
+  skill: correlation
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    Which value of r best describes the relationship shown in the scatterplot?
+  figure:
+    type: scatter
+    xLabel: Price (dollars)
+    yLabel: Weekly sales
+    caption: Price and weekly sales for 12 products
+    series:
+      - points: [[1.3, 63.1], [1.6, 55.4], [2.3, 51.4], [2.3, 56.8], [3.6, 60.1], [3.7, 56.8], [4.6, 49.1], [4.7, 53.8], [6.2, 47.0], [6.4, 42.1], [8.7, 41.6], [9.6, 32.6]]
+  options:
+    - "-0.9"
+    - "-0.3"
+    - "0.3"
+    - "0.9"
+  ordered: true
+  answer: A
+  explain: |
+    The points fall clearly from left to right, so r is negative, and they stay close to a straight line, so the relationship is strong. That matches r = -0.9.
+  why:
+    B: "The points follow the downward line far too closely for a weak correlation."
+    C: "The trend falls, so r must be negative."
+    D: "This has the right strength but the wrong direction; the points fall."
+  verify: |
+    pts = [[1.3, 63.1], [1.6, 55.4], [2.3, 51.4], [2.3, 56.8], [3.6, 60.1], [3.7, 56.8], [4.6, 49.1], [4.7, 53.8], [6.2, 47.0], [6.4, 42.1], [8.7, 41.6], [9.6, 32.6]]
+    ans = round(np.corrcoef([p[0] for p in pts], [p[1] for p in pts])[0, 1], 1)
+
+- id: correlation-03
+  skill: correlation
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    The correlation between two variables is r = -0.7. What is the coefficient of determination, $$r^2$$?
+  options:
+    - "-0.49"
+    - "0.49"
+    - "0.70"
+    - "0.84"
+  ordered: true
+  answer: B
+  explain: |
+    Squaring removes the sign: $$(-0.7)^2 = 0.49$$. So 49% of the variation in one variable is explained by its linear relationship with the other.
+  why:
+    A: "A square is never negative, so $$r^2$$ cannot be -0.49."
+    C: "This drops the sign but forgets to square."
+    D: "This takes the square root of 0.7 instead of squaring it."
+  verify: "(-0.7) ** 2"
+
+- id: correlation-04
+  skill: correlation
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A scatterplot shows points forming a perfect U shape, and the correlation is r = 0. What can you conclude?
+  options:
+    - "The two variables are unrelated."
+    - "The correlation must have been calculated incorrectly."
+    - "There is a strong relationship, but it is not linear."
+    - "The relationship is weak but linear."
+  answer: C
+  explain: |
+    r measures only linear association. A U shape is a strong, predictable relationship, but the falling half and rising half cancel, giving r = 0. So r = 0 means no linear relationship, not no relationship.
+  why:
+    A: "The U shape is a clear relationship; r simply cannot detect curves."
+    B: "A perfect U shape really does give r = 0."
+    D: "The relationship is strong, and it is curved, not linear."
+
+- id: correlation-05
+  skill: correlation
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What does a correlation of r = -0.95 indicate?
+  options:
+    - "A strong negative linear relationship"
+    - "A weak negative linear relationship"
+    - "A strong positive linear relationship"
+    - "No relationship between the variables"
+  answer: A
+  explain: |
+    The negative sign means one variable tends to fall as the other rises, and a size of 0.95 is very close to 1, so the relationship is strong and nearly linear.
+  why:
+    B: "A size of 0.95 is strong, not weak."
+    C: "The negative sign means the relationship is negative."
+    D: "An r this far from 0 shows a clear relationship."
+
+- id: correlation-06
+  skill: correlation
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Daily temperatures are converted from Celsius to Fahrenheit. What happens to the correlation between temperature and ice cream sales?
+  options:
+    - "It increases, because Fahrenheit numbers are larger."
+    - "It decreases, because the scale changed."
+    - "It becomes negative."
+    - "It stays the same."
+  answer: D
+  explain: |
+    r is unit-free: it is computed from standardized values, so converting units with a positive scale factor and a shift leaves it unchanged.
+  why:
+    A: "Larger numbers do not change r, which does not depend on units."
+    B: "Changing units does not weaken the relationship."
+    C: "Only multiplying one variable by a negative number would flip the sign."
+
+- id: correlation-07
+  skill: correlation
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Removing a single data point far from the others raises a dataset's correlation from 0.66 to 0.91. What does this show?
+  options:
+    - "The point should have been removed from the start."
+    - "The relationship became causal once the point was removed."
+    - "Correlation is sensitive to outliers, so check the scatterplot."
+    - "The two correlations prove the data contain an error."
+  answer: C
+  explain: |
+    One outlier changed r by a quarter of its range. That sensitivity is why you should always look at a scatterplot before trusting r, and investigate unusual points before deciding what to do with them.
+  why:
+    A: "An outlier may be real data; it must be investigated, not removed automatically."
+    B: "Removing a point has nothing to do with whether the relationship is causal."
+    D: "An outlier is not proof of an error; it may be a genuine extreme value."
+
+- id: correlation-08
+  skill: correlation
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which correlation shows the strongest linear relationship?
+  options:
+    - "-0.85"
+    - "0.2"
+    - "0.5"
+    - "0.7"
+  ordered: true
+  answer: A
+  explain: |
+    Strength is the size of r, ignoring the sign. |-0.85| = 0.85 is the largest, so it is the strongest relationship, even though it is negative.
+  why:
+    B: "0.2 is a weak relationship."
+    C: "0.5 is a moderate relationship, weaker than 0.85."
+    D: "0.7 is strong, but 0.85 in size is stronger."
+
+- id: correlation-09
+  skill: correlation
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Two variables have covariance 12. Their standard deviations are 3 and 5. What is the correlation r?
+  options:
+    - "0.48"
+    - "0.8"
+    - "1.33"
+    - "2.4"
+  ordered: true
+  answer: B
+  explain: |
+    r = cov / (sx sy) = 12 / (3 x 5) = 12 / 15 = 0.8.
+  why:
+    A: "This divides by 25, the square of 5, instead of 3 x 5."
+    C: "This divides by 9, the square of 3; and r can never exceed 1."
+    D: "This divides by only one standard deviation; r can never exceed 1."
+  verify: "12 / (3 * 5)"
+
+- id: correlation-10
+  skill: correlation
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What does a correlation of r = 0 mean?
+  options:
+    - "The variables are measured in different units."
+    - "There is no relationship of any kind between the variables."
+    - "One variable is always zero."
+    - "There is no linear relationship between the variables."
+  answer: D
+  explain: |
+    r measures only linear association, so r = 0 rules out a straight-line pattern but not a curved one, such as a U shape.
+  why:
+    A: "Correlation does not depend on units."
+    B: "A curved relationship can exist even when r = 0."
+    C: "r = 0 says nothing about the values themselves being zero."
+
+- id: correlation-11
+  skill: correlation
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    The correlation between x and y is 0.6. What is the correlation between y and x?
+  options:
+    - "-0.6"
+    - "0.36"
+    - "0.6"
+    - "1.67"
+  ordered: true
+  answer: C
+  explain: |
+    Correlation is symmetric: swapping which variable is x and which is y does not change r.
+  why:
+    A: "Swapping the variables does not change the direction of the relationship."
+    B: "0.36 is $$r^2$$, not the correlation."
+    D: "1.67 is 1 / 0.6, and r can never exceed 1."

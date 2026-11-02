@@ -1,0 +1,38 @@
+# Lesson 2.4 flashcards
+
+- id: fc-covariance
+  term: Covariance
+  def: A measure of how two variables change together. Positive means they move together, negative means opposite, and near zero means no linear tendency. Its size depends on the units.
+  skill: covariance
+  virginia: true
+
+- id: fc-covariance-formula
+  term: Sample covariance formula
+  def: The sum of $$(x - \bar{x})(y - \bar{y})$$ divided by n - 1. Its units are the product of the two variables' units.
+  skill: covariance
+
+- id: fc-variance-of-sum
+  term: Variance of a sum
+  def: Var(X + Y) = Var X + Var Y + 2 Cov(X, Y). Also, cov(x, x) equals the variance of x.
+  skill: covariance
+
+- id: fc-correlation
+  term: Correlation
+  def: A measure of the strength and direction of the linear relationship between two variables. Pearson's r = cov / (sx sy), from -1 to 1.
+  skill: correlation
+  virginia: true
+
+- id: fc-r-properties
+  term: Properties of r
+  def: r is unit-free (changing units leaves it unchanged), symmetric in x and y, and confined to -1 to 1. The sign gives direction and the size gives strength.
+  skill: correlation
+
+- id: fc-r-squared
+  term: r squared
+  def: The share of the variation in y explained by the linear relationship with x. r = -0.7 gives r squared = 0.49, or 49%.
+  skill: correlation
+
+- id: fc-r-blind-spots
+  term: What r misses
+  def: r measures only linear relationships, so a perfect U can give r = 0. It is also sensitive to outliers, so always look at the scatterplot.
+  skill: correlation
