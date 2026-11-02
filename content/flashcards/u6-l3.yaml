@@ -1,0 +1,67 @@
+# Lesson 6.3 flashcards
+
+- id: fc-generative-ai
+  term: Generative AI
+  def: Artificial intelligence that creates new content, such as text, images, audio, video, or code, by learning the patterns in its training data and producing new examples that follow them.
+  skill: genai-nature
+  virginia: true
+
+- id: fc-generative-vs-discriminative
+  term: Generative vs. discriminative (predictive) models
+  def: A discriminative model predicts a label or number for an existing example (spam filter, price predictor). A generative model learns the patterns of the data itself, so it can produce new examples.
+  skill: genai-nature
+
+- id: fc-foundation-model
+  term: Foundation model
+  def: A model trained on broad data at scale that can be adapted, by fine-tuning or prompting, to a wide range of tasks. Term coined by Stanford researchers in 2021; examples included BERT, GPT-3, and DALL-E.
+  skill: genai-nature
+
+- id: fc-multimodal
+  term: Multimodal model
+  def: A model that works with more than one kind of data, such as reading an image and a typed question and answering in text, or turning text into an image.
+  skill: genai-nature
+
+- id: fc-latent-space
+  term: Latent space
+  def: A compressed space of learned features in which similar items lie close together. Decoding a new point gives a new example; moving between points blends features.
+  skill: genai-models
+
+- id: fc-vae
+  term: Variational autoencoder (VAE)
+  def: An encoder maps each input to a region of a smooth latent space and a decoder turns sampled points back into data, so it can generate new examples. Kingma and Welling, 2013. Stable, but images tend to be blurry.
+  skill: genai-models
+
+- id: fc-diffusion-model
+  term: Diffusion model
+  def: Trained by adding noise to real images and learning to remove it one step at a time. Generates by starting from pure noise and denoising step by step, guided by a prompt. High quality, but slower.
+  skill: genai-models
+
+- id: fc-autoregressive
+  term: Autoregressive generation
+  def: Producing a sequence one piece at a time, each new token predicted from all the tokens so far, then appended. How GPT-style models (generative pre-trained transformers) write.
+  skill: genai-models
+
+- id: fc-mode-collapse
+  term: Mode collapse
+  def: A GAN failure in which the generator keeps producing a few outputs that fool the discriminator, covering only a small part of the real data's variety.
+  skill: genai-models
+
+- id: fc-genai-families
+  term: Four generative model families
+  def: GAN (generator vs. discriminator; sharp, unstable), VAE (smooth latent space; blurrier), diffusion (remove noise step by step; high quality, slow), autoregressive transformer (next token; text and code).
+  skill: genai-models
+
+- id: fc-synthetic-data
+  term: Synthetic data
+  def: Artificial data generated to mimic the statistical patterns of real data, used when real data is scarce, sensitive, or missing rare cases. It inherits the gaps and biases of its source and must be checked against real data.
+  skill: genai-uses
+
+- id: fc-genai-uses
+  term: Uses of generative AI by sector
+  def: Healthcare (clinical notes, candidate molecules), research (literature summaries, code, protein design), digital art and media, education, business, and software (code generation), plus synthetic data.
+  skill: genai-uses
+
+- id: fc-alphafold
+  term: AlphaFold2 and the 2024 Nobel Prize
+  def: Half of the 2024 Nobel Prize in Chemistry went to Demis Hassabis and John Jumper (Google DeepMind) for protein structure prediction with AlphaFold2; the other half went to David Baker for computational protein design.
+  skill: genai-uses

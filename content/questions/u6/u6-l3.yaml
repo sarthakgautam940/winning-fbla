@@ -1,0 +1,564 @@
+# Lesson 6.3: Generative AI
+
+# ---------------------------------------------------------------- genai-nature
+- id: genai-nature-01
+  skill: genai-nature
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which task calls for generative AI rather than a discriminative (predictive) model?
+  options:
+    - "Labeling each incoming email as spam or not spam"
+    - "Predicting next month's sales from past sales"
+    - "Flagging credit card transactions that look like fraud"
+    - "Creating a new illustration from a written description"
+  answer: D
+  explain: |
+    Generative AI produces new content, here an image that did not exist before. The other three tasks predict a label or a number for an existing example, which is the job of discriminative, or predictive, models.
+  why:
+    A: "Labeling emails is classification, a discriminative task."
+    B: "Forecasting a number is regression, a predictive task."
+    C: "Flagging fraud labels existing transactions, a discriminative task."
+
+- id: genai-nature-02
+  skill: genai-nature
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What does a generative model learn that a discriminative model does not need to?
+  options:
+    - "Which label to attach to each training example"
+    - "The patterns of the data itself, so it can produce new examples"
+    - "The boundary that separates one class from another"
+    - "A single number that summarizes each input"
+  answer: B
+  explain: |
+    A discriminative model learns only what it needs to separate classes or predict an output, such as the boundary between spam and not spam. A generative model learns how the data itself is distributed, what typical examples look like, so it can sample new examples that fit the same patterns.
+  why:
+    A: "Learning labels for examples is what discriminative, supervised models do."
+    C: "Learning the boundary between classes is exactly the discriminative approach."
+    D: "Summarizing inputs as numbers is a step many models share; it is not what makes a model generative."
+
+- id: genai-nature-03
+  skill: genai-nature
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    What is a foundation model?
+  options:
+    - "A large model trained on broad data that can be adapted to many tasks"
+    - "A small model built for one task, such as reading ZIP codes"
+    - "A set of ethical rules that every AI developer must follow"
+    - "The first version of a model, before any training has begun"
+  answer: A
+  explain: |
+    Stanford researchers coined the term in 2021 for models trained on broad data at scale that can be adapted, by fine-tuning or prompting, to a wide range of downstream tasks. BERT, GPT-3, and DALL-E were among their examples, and many generative AI tools are built on top of such models.
+  why:
+    B: "A small single-task model is the opposite of a foundation model."
+    C: "Ethical guidelines are not models at all."
+    D: "An untrained model has learned nothing; foundation models are already trained on huge datasets."
+
+- id: genai-nature-04
+  skill: genai-nature
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which statement best describes generative AI?
+  options:
+    - "AI that sorts existing data into predefined categories"
+    - "AI that follows hand-written rules to answer questions"
+    - "AI that creates new content based on patterns in its training data"
+    - "AI that controls robots in factories and warehouses"
+  answer: C
+  explain: |
+    Generative AI creates new text, images, audio, video, or code by learning patterns from large amounts of training data and producing new examples that follow those patterns.
+  why:
+    A: "Sorting data into categories is classification, a discriminative task."
+    B: "Following hand-written rules describes expert systems."
+    D: "Controlling robots is robotics, which may or may not involve generative models."
+
+- id: genai-nature-05
+  skill: genai-nature
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How do most generative AI models learn during pretraining?
+  options:
+    - "By finding statistical patterns in huge datasets, such as predicting the next word"
+    - "By storing every training example so that each output is an exact copy"
+    - "By following grammar and drawing rules written by human experts"
+    - "By having people label every output as correct or incorrect"
+  answer: A
+  explain: |
+    Generative models learn from enormous amounts of data, mostly without human labels, by solving a task the data itself supplies: predicting the next word, removing added noise, or rebuilding an input. Along the way they absorb statistical patterns, which lets them produce new content rather than copies, although they can occasionally reproduce memorized training data (lesson 8.5).
+  why:
+    B: "Outputs are new combinations of learned patterns, not stored copies, although some memorization can occur."
+    C: "Hand-written rules describe symbolic AI, not modern generative models."
+    D: "Pretraining needs no label for each output; human feedback is a later, smaller step (lesson 6.4)."
+
+- id: genai-nature-06
+  skill: genai-nature
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A bank has two models trained on past transactions. Model 1 labels each new transaction as fraud or not fraud. Model 2 creates realistic artificial transactions, including rare fraud patterns, to help train other systems. Which statement is accurate?
+  options:
+    - "Both models are generative, because both learned from transaction data"
+    - "Model 1 is generative, because it produces a label for every input"
+    - "Model 2 is discriminative, because it learned from labeled examples"
+    - "Model 1 is discriminative, and Model 2 is generative, producing synthetic data"
+  answer: D
+  explain: |
+    Model 1 predicts a label for an existing transaction, which makes it discriminative. Model 2 produces new transactions that follow the patterns of real ones, which makes it generative, and its output is synthetic data. What a model produces, not the data it trained on, decides which kind it is.
+  why:
+    A: "Learning from the same data does not make two models the same kind; their outputs differ."
+    B: "Producing a label is prediction, the mark of a discriminative model."
+    C: "Creating new examples is generation, whatever data the model trained on."
+
+- id: genai-nature-07
+  skill: genai-nature
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    Which of these is an example of generative AI output?
+  options:
+    - "A spam or not-spam label on an email"
+    - "A new song composed from a text prompt"
+    - "A predicted price for a used car"
+    - "A customer's assigned cluster number"
+  answer: B
+  explain: |
+    Generative AI creates new content, such as music, images, or text, from patterns it has learned. A label, a predicted price, and a cluster number are outputs of classification, regression, and clustering models that analyze existing data.
+  why:
+    A: "A spam label comes from a classification model."
+    C: "A predicted price comes from a regression model."
+    D: "A cluster number comes from an unsupervised clustering model."
+
+- id: genai-nature-08
+  skill: genai-nature
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A model accepts a photo and a typed question about it, then answers in text. What kind of model is it?
+  options:
+    - "A reactive machine"
+    - "An expert system"
+    - "A multimodal model"
+    - "A recommender system"
+  answer: C
+  explain: |
+    A multimodal model works with more than one kind of data, such as images and text together. Generative AI is increasingly multimodal: one model can read images, answer questions about them, and produce text or images in return.
+  why:
+    A: "A reactive machine is a functional type of AI with no memory; the term says nothing about handling several kinds of data."
+    B: "An expert system applies hand-written rules."
+    D: "A recommender system suggests items based on user behavior."
+
+- id: genai-nature-09
+  skill: genai-nature
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Naive Bayes is used for classification, yet it is called a generative classifier. Why?
+  options:
+    - "It models how features arise in each class, then applies Bayes' theorem"
+    - "It creates new emails and images as its main kind of output"
+    - "It was the very first model ever used to generate new text"
+    - "It learns only the boundary between classes, never the data itself"
+  answer: A
+  explain: |
+    Naive Bayes learns the probability of each feature given each class, a model of how data is produced within each class, and then uses Bayes' theorem to pick the most probable class. Because it models the data itself, it is generative in the technical sense, even though its job is classification. Logistic regression, which learns the boundary directly, is the matching discriminative classifier.
+  why:
+    B: "Naive Bayes outputs class predictions, not new content."
+    C: "The name has nothing to do with generating text."
+    D: "Learning only the boundary describes discriminative models such as logistic regression."
+
+# ---------------------------------------------------------------- genai-models
+- id: genai-models-01
+  skill: genai-models
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    In a generative adversarial network (GAN), what does the generator do?
+  options:
+    - "It decides whether each sample is real or fake"
+    - "It compresses images into a small latent code"
+    - "It turns random noise into new, realistic samples"
+    - "It adds noise to training images step by step"
+  answer: C
+  explain: |
+    The generator takes random noise as input and transforms it into a sample, such as an image, trying to make it indistinguishable from real training data. The discriminator judges real versus fake, and the two improve by competing.
+  why:
+    A: "Judging real versus fake is the discriminator's role."
+    B: "Compressing inputs into a code is what an autoencoder's encoder does."
+    D: "Adding noise step by step is how diffusion models are trained."
+
+- id: genai-models-02
+  skill: genai-models
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How does a diffusion model create a new image?
+  options:
+    - "It copies the closest image from its training set"
+    - "It predicts the image one pixel at a time from left to right"
+    - "It pits a generator against a discriminator in a contest"
+    - "It starts from random noise and removes noise step by step"
+  answer: D
+  explain: |
+    During training, noise is added to real images in many small steps, and the model learns to undo one step at a time. To generate, it starts from pure random noise and repeatedly removes a little noise, guided by the prompt, until a clean image emerges.
+  why:
+    A: "Diffusion models create new images; they do not look up stored ones."
+    B: "Predicting piece by piece in a fixed order is the autoregressive approach."
+    C: "A generator competing with a discriminator is a GAN."
+
+- id: genai-models-03
+  skill: genai-models
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    GPT-style language models are called autoregressive. What does that mean for how they write?
+  options:
+    - "They write every word of the answer at the same moment"
+    - "They predict one token at a time, each based on all the tokens before it"
+    - "They retrieve finished sentences from a database of answers"
+    - "They remove noise from a random paragraph until it reads well"
+  answer: B
+  explain: |
+    An autoregressive model generates a sequence one piece at a time: it predicts the next token from everything so far, adds that token to the sequence, and repeats. Each output becomes part of the input for the next step.
+  why:
+    A: "Tokens come one after another, not all at once."
+    C: "The model generates new text; it does not look up stored sentences."
+    D: "Removing noise step by step describes diffusion models."
+
+- id: genai-models-04
+  skill: genai-models
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In generative models, what is a latent space?
+  options:
+    - "A compressed space of learned features where similar items lie close together"
+    - "The folder on a server where the training images are stored"
+    - "The part of the screen where generated images are displayed"
+    - "The empty memory left over after a model finishes training"
+  answer: A
+  explain: |
+    A latent space is a compact representation the model learns, in which each point stands for a possible output and nearby points produce similar outputs. Decoding a new point gives a new example, and moving smoothly between two points blends their features.
+  why:
+    B: "A storage folder holds raw data; the latent space is a learned representation."
+    C: "The display has nothing to do with how the model represents data."
+    D: "The latent space is learned structure, not leftover memory."
+
+- id: genai-models-05
+  skill: genai-models
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A model is trained by adding noise to images and learning to reverse the process. Which family of generative model is it?
+  options:
+    - "Generative adversarial network"
+    - "Variational autoencoder"
+    - "Diffusion model"
+    - "Autoregressive transformer"
+  answer: C
+  explain: |
+    Adding noise and learning to remove it is the defining idea of diffusion models. To generate, they start from noise and denoise step by step.
+  why:
+    A: "A GAN trains a generator against a discriminator."
+    B: "A VAE encodes inputs into a latent space and decodes samples from it."
+    D: "An autoregressive transformer predicts the next token in a sequence."
+
+- id: genai-models-06
+  skill: genai-models
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A plain autoencoder learns to compress and rebuild its inputs, but a variational autoencoder (VAE) can also generate new examples. What change makes that possible?
+  options:
+    - "The VAE removes the bottleneck, so it can copy its input exactly"
+    - "The VAE encodes each input as a distribution in a smooth latent space"
+    - "The VAE adds a discriminator that labels outputs as real or fake"
+    - "The VAE predicts each pixel one at a time from left to right"
+  answer: B
+  explain: |
+    A VAE encodes each input as a small region of the latent space, described by a center and a spread, and its training keeps that space smooth and organized. As a result, almost any point sampled from the latent space decodes into a realistic new example, and moving between points blends features.
+  why:
+    A: "Without the bottleneck the network would just copy its input and learn nothing useful."
+    C: "A discriminator belongs to a GAN."
+    D: "Predicting one pixel at a time is the autoregressive approach."
+
+- id: genai-models-07
+  skill: genai-models
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which generative model family uses an encoder to map inputs into a smooth latent space and a decoder to turn sampled points back into new examples?
+  options:
+    - "Diffusion model"
+    - "Autoregressive transformer"
+    - "Generative adversarial network"
+    - "Variational autoencoder"
+  answer: D
+  explain: |
+    A variational autoencoder pairs an encoder, which maps inputs into a smooth latent space, with a decoder, which turns points from that space back into data. Sampling new points and decoding them produces new examples.
+  why:
+    A: "Diffusion models generate by removing noise step by step."
+    B: "Autoregressive transformers generate one token at a time."
+    C: "A GAN's generator turns noise into samples without an encoder, trained against a discriminator."
+
+- id: genai-models-08
+  skill: genai-models
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    During training, what is a diffusion model actually learning to do?
+  options:
+    - "Predict the noise added at a step, so it can remove it"
+    - "Tell real training images apart from generated ones"
+    - "Predict the next pixel in a fixed left-to-right order"
+    - "Compress each image into a single short text caption"
+  answer: A
+  explain: |
+    Training adds a known amount of random noise to real images and asks the model to predict that noise, or equivalently the cleaner image. A model that can remove a little noise at any step can, chained over many steps, turn pure noise into a new image.
+  why:
+    B: "Telling real from fake is a GAN discriminator's job."
+    C: "Predicting pieces in a fixed order is the autoregressive approach."
+    D: "Captioning images is an image-to-text task, not diffusion training."
+
+- id: genai-models-09
+  skill: genai-models
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    When has a GAN's generator done its job well?
+  options:
+    - "When the discriminator correctly flags every fake sample"
+    - "When its outputs are exact copies of the training images"
+    - "When the discriminator can no longer tell its samples from real ones"
+    - "When it has removed all of the noise from a single image"
+  answer: C
+  explain: |
+    The generator's goal is to fool the discriminator. When the discriminator does no better than a coin flip at telling generated samples from real ones, the generator's samples match the real data closely.
+  why:
+    A: "A discriminator that catches every fake means the generator is still failing."
+    B: "The goal is new samples that resemble the data, not copies of it."
+    D: "Removing noise step by step is how diffusion models generate."
+
+- id: genai-models-10
+  skill: genai-models
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A GAN trained on photos of many breeds of dogs keeps producing nearly identical images of a single breed. What is this failure called?
+  options:
+    - "Vanishing gradients"
+    - "Mode collapse"
+    - "Data leakage"
+    - "Overfitting to the test set"
+  answer: B
+  explain: |
+    In mode collapse, the generator finds a few outputs that fool the discriminator and keeps producing them, so it covers only a small part of the variety in the real data. It is a well-known weakness of GAN training, which can be unstable.
+  why:
+    A: "Vanishing gradients slow learning in the early layers of deep networks; they do not explain a lack of variety."
+    C: "Data leakage lets test information into training and inflates evaluation scores."
+    D: "A GAN is not scored on a test set this way, and the problem here is a lack of variety."
+
+- id: genai-models-11
+  skill: genai-models
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Compared with a GAN, why is a diffusion model usually slower to produce an image?
+  options:
+    - "It must retrain its weights for every new image"
+    - "It searches the internet for reference images first"
+    - "It needs a human to approve each intermediate image"
+    - "It refines the image over many denoising steps, not one pass"
+  answer: D
+  explain: |
+    A GAN's generator produces an image in a single pass through the network. A diffusion model starts from noise and runs the network again for every denoising step, often dozens of times or more, which costs time in exchange for high quality and variety.
+  why:
+    A: "Weights are fixed after training; nothing is retrained to make an image."
+    B: "Generation uses only what the model learned; it does not search the internet."
+    C: "No human approves intermediate steps; the process is automatic."
+
+# ---------------------------------------------------------------- genai-uses
+- id: genai-uses-01
+  skill: genai-uses
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A video game studio uses a model to produce dozens of concept sketches of a castle from a written description. Which use of generative AI is this?
+  options:
+    - "Healthcare and drug discovery"
+    - "Digital art and media"
+    - "Fraud detection in banking"
+    - "Robot navigation"
+  answer: B
+  explain: |
+    Creating images, music, video, and design ideas from prompts is generative AI's use in digital art and media. Artists often treat such drafts as a starting point and refine them.
+  why:
+    A: "Healthcare uses involve medical text, images, or molecules."
+    C: "Fraud detection is a discriminative task that labels transactions."
+    D: "Robot navigation is planning and control, not content creation."
+
+- id: genai-uses-02
+  skill: genai-uses
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Why might a hospital research team train a model on synthetic patient records instead of real ones?
+  options:
+    - "Synthetic records keep real patients' data private while preserving patterns"
+    - "Synthetic records are always more accurate than real medical records"
+    - "Synthetic records never contain any of the biases found in real data"
+    - "Synthetic records remove the need to test the model on real patients"
+  answer: A
+  explain: |
+    Synthetic data is artificial data generated to mimic the statistical patterns of real data. It lets teams share and train on realistic records without exposing real people's information, and it can add examples of rare cases. It must still be checked against real data, because it can inherit the original data's biases.
+  why:
+    B: "Synthetic data imitates real data; it cannot be more accurate than the reality it copies."
+    C: "A generator learns from real data, so it can reproduce that data's biases."
+    D: "Models trained on synthetic data still need testing on real cases before use."
+
+- id: genai-uses-03
+  skill: genai-uses
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A clinic uses an AI tool that listens to a doctor's visit and drafts the visit summary for the doctor to review. Which sector use of generative AI is this?
+  options:
+    - "Digital art"
+    - "Manufacturing"
+    - "Entertainment"
+    - "Healthcare"
+  answer: D
+  explain: |
+    Drafting clinical notes and summaries, which a clinician then reviews, is a common healthcare use of generative AI. Keeping the doctor in the loop matters because generated text can contain errors (lesson 8.6).
+  why:
+    A: "Digital art covers images, music, and video."
+    B: "Manufacturing uses involve products and factories."
+    C: "Entertainment covers games, films, and media."
+
+- id: genai-uses-04
+  skill: genai-uses
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    The 2024 Nobel Prize in Chemistry recognized work by Demis Hassabis and John Jumper of Google DeepMind. What was it for?
+  options:
+    - "Inventing the transformer architecture"
+    - "Building the first chess computer to beat a champion"
+    - "Predicting protein structures with AlphaFold2"
+    - "Creating the first large language model chatbot"
+  answer: C
+  explain: |
+    Hassabis and Jumper shared half of the 2024 Nobel Prize in Chemistry for protein structure prediction with AlphaFold2, which predicted the structures of virtually all of the roughly 200 million known proteins. The other half went to David Baker for computational protein design.
+  why:
+    A: "The transformer came from Vaswani and colleagues at Google in 2017."
+    B: "The chess computer was IBM's Deep Blue, in 1997."
+    D: "The prize honored protein science, not language models."
+
+- id: genai-uses-05
+  skill: genai-uses
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A fraud team trains a model on real transactions plus many synthetic fraud cases from a generative model. Testing on real data shows that it misses a type of fraud that was rare in the original data. What is the most likely explanation?
+  options:
+    - "Synthetic data can never be used to train any model at all"
+    - "The generator learned from the same data, so it rarely produced that pattern"
+    - "Real transactions should never be used to test a fraud model"
+    - "The model memorized every synthetic case, so it could not learn"
+  answer: B
+  explain: |
+    A generative model can only imitate the patterns it learned. If a fraud type was rare in the original data, the generator saw few examples and produced few or none, so the synthetic data could not fill that gap. Synthetic data inherits the gaps and biases of its source, which is why it must be validated on real data.
+  why:
+    A: "Synthetic data is widely used to add training examples; it just cannot invent patterns it never learned."
+    C: "Testing on real data is exactly how the gap was found, and it is the right practice."
+    D: "Memorizing synthetic cases would not explain missing one particular real pattern."
+
+- id: genai-uses-06
+  skill: genai-uses
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    How is generative AI used in drug discovery?
+  options:
+    - "It replaces clinical trials, so new drugs need no human testing"
+    - "It manufactures the finished medicines in chemical factories"
+    - "It sets the prices that pharmacies charge for each medicine"
+    - "It proposes new candidate molecules for chemists to make and test"
+  answer: D
+  explain: |
+    Generative models can design new molecules or proteins with desired properties, giving scientists promising candidates to make and test in the lab. The candidates still go through laboratory work and clinical trials before any drug reaches patients.
+  why:
+    A: "AI-designed candidates still need laboratory testing and clinical trials."
+    B: "Medicines are made in factories; the AI only helps choose what to make."
+    C: "Pricing is a business decision, not a scientific use of generative AI."
+
+- id: genai-uses-07
+  skill: genai-uses
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A graduate student uses an AI tool to summarize two hundred research papers and draft code for a data analysis. Which sector use is this?
+  options:
+    - "Digital art"
+    - "Customer service"
+    - "Research"
+    - "Entertainment"
+  answer: C
+  explain: |
+    Summarizing literature, drafting analysis code, and suggesting hypotheses are research uses of generative AI. The researcher still has to check the summaries and code, because generated output can contain errors.
+  why:
+    A: "Digital art covers images, music, and video."
+    B: "Customer service uses chatbots to answer customers."
+    D: "Entertainment covers games, film, and media."
+
+- id: genai-uses-08
+  skill: genai-uses
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A software developer types the start of a function, and an AI tool suggests the rest of the code. Which kind of generative AI use is this?
+  options:
+    - "Code generation for software development"
+    - "Image generation for digital art"
+    - "Synthetic data for privacy protection"
+    - "Speech synthesis for accessibility"
+  answer: A
+  explain: |
+    Generative models trained on large amounts of code can complete, write, and explain code, which speeds up software development. Developers should still review and test generated code, which can contain errors or security flaws.
+  why:
+    B: "Image generation creates pictures, not code."
+    C: "Synthetic data mimics real datasets; it does not complete code."
+    D: "Speech synthesis turns text into spoken audio."
