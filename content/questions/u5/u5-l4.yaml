@@ -1,0 +1,361 @@
+# Lesson 5.4: Choosing an approach for a problem
+
+- id: choose-approach-01
+  skill: choose-approach
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A hospital has 10,000 chest X-rays, each labeled by radiologists as showing pneumonia or not. It wants a model that flags pneumonia in new X-rays. Which approach fits?
+  options:
+    - "Unsupervised clustering"
+    - "Supervised classification"
+    - "Reinforcement learning"
+    - "Unsupervised dimensionality reduction"
+  answer: B
+  explain: |
+    Every X-ray has a known label, and the output is a category (pneumonia or not). Learning from labeled examples to predict a category is supervised classification.
+  why:
+    A: "Clustering is for data without labels, and these X-rays are labeled."
+    C: "No agent is taking actions for rewards."
+    D: "Dimensionality reduction compresses features; it does not predict a diagnosis."
+
+- id: choose-approach-02
+  skill: choose-approach
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A retailer wants to discover groups of shoppers with similar buying habits. No group labels exist. Which approach fits?
+  options:
+    - "Supervised regression"
+    - "Supervised classification"
+    - "Unsupervised clustering"
+    - "Reinforcement learning"
+  answer: C
+  explain: |
+    With no labels and a goal of finding groups, the problem is unsupervised clustering, for example with k-means on scaled features.
+  why:
+    A: "Regression needs a known numeric target for each example."
+    B: "Classification needs examples labeled with known groups."
+    D: "No agent is acting and earning rewards."
+
+- id: choose-approach-03
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A delivery drone must learn how to fly through a city by making trial flights, earning rewards for fast, safe deliveries and penalties for near-collisions. Which approach fits?
+  options:
+    - "Reinforcement learning"
+    - "Supervised regression"
+    - "Unsupervised clustering"
+    - "Supervised classification"
+  answer: A
+  explain: |
+    An agent (the drone) chooses actions, the actions change what happens next, and success is measured by rewards over time. That is the reinforcement learning setting.
+  why:
+    B: "There is no fixed dataset of correct numeric answers to learn from."
+    C: "The goal is learning actions, not finding groups in data."
+    D: "No examples are labeled with correct flight decisions."
+
+- id: choose-approach-04
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A bank wants to approve or deny loan applications automatically, and it must be able to tell every denied applicant the specific reasons. Which model fits this requirement best?
+  options:
+    - "A very deep neural network with millions of weights"
+    - "k-means clustering on applicants' incomes"
+    - "A large ensemble of thousands of hidden models"
+    - "A decision tree whose splits can be read as rules"
+  answer: D
+  explain: |
+    A decision tree's prediction is a chain of readable rules, such as "income below the threshold and debt above 40% of income," which can be given to the applicant as reasons. Logistic regression is another interpretable choice.
+  why:
+    A: "Deep networks are often black boxes whose weights do not translate into reasons."
+    B: "Clustering finds groups; it does not approve or deny applications."
+    C: "Huge ensembles can be accurate but are hard to explain decision by decision."
+
+- id: choose-approach-05
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A food delivery app wants to predict how many minutes each order will take, using thousands of past deliveries with their recorded times. Which approach fits?
+  options:
+    - "Supervised classification"
+    - "Supervised regression"
+    - "Unsupervised clustering"
+    - "Reinforcement learning"
+  answer: B
+  explain: |
+    The past deliveries are labeled with their times, and the output is a number of minutes, so this is supervised regression.
+  why:
+    A: "Classification predicts a category, but the output here is a number."
+    C: "The data has labels, and the goal is prediction, not grouping."
+    D: "The app is predicting from past data, not learning actions from rewards."
+
+- id: choose-approach-06
+  skill: choose-approach
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A credit card company wants to flag fraudulent transactions, using millions of past transactions that were each marked as fraud or legitimate. Which approach fits?
+  options:
+    - "Supervised classification"
+    - "Unsupervised clustering"
+    - "Reinforcement learning"
+    - "Supervised regression"
+  answer: A
+  explain: |
+    The past transactions carry labels, fraud or legitimate, and the model must predict one of those two categories for new transactions: supervised classification.
+  why:
+    B: "Clustering ignores the labels the company already has."
+    C: "No agent is taking actions to earn rewards."
+    D: "The output is a category, not a number."
+
+- id: choose-approach-07
+  skill: choose-approach
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A store wants to predict next week's total sales in dollars, using several years of weekly sales records. Which task is this?
+  options:
+    - "Classification"
+    - "Clustering"
+    - "Regression"
+    - "Association rule mining"
+  answer: C
+  explain: |
+    Past weeks have known sales, and the output is a dollar amount, a number, so the task is regression (specifically forecasting, since it predicts future values over time).
+  why:
+    A: "Classification would predict a category, not a dollar amount."
+    B: "Clustering finds groups and predicts no value."
+    D: "Association rules find items bought together."
+
+- id: choose-approach-08
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A game studio wants a computer opponent that improves by playing millions of games against itself, keeping strategies that lead to wins. Which approach fits?
+  options:
+    - "Supervised classification of board positions"
+    - "Unsupervised clustering of past games"
+    - "Supervised regression on final scores"
+    - "Reinforcement learning through self-play"
+  answer: D
+  explain: |
+    The opponent is an agent that acts, observes the results, and is rewarded for winning. Learning a strategy from rewards through self-play is reinforcement learning.
+  why:
+    A: "There are no labeled correct moves for each position."
+    B: "Grouping games does not teach the opponent how to play."
+    C: "Predicting scores is not the goal; choosing winning moves is."
+
+- id: choose-approach-09
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Before building a model, an engineer wants to compress 300 correlated sensor readings into a handful of summary features. No labels are involved. Which approach fits?
+  options:
+    - "Supervised classification of the readings"
+    - "Dimensionality reduction, such as PCA"
+    - "Reinforcement learning with rewards"
+    - "Supervised regression on each sensor"
+  answer: B
+  explain: |
+    Compressing many correlated features into fewer, without labels, is unsupervised dimensionality reduction. PCA is the standard method.
+  why:
+    A: "Nothing is being classified, and there are no labels."
+    C: "No agent is acting for rewards."
+    D: "No numeric target is being predicted."
+
+- id: choose-approach-10
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An online store wants to suggest products to each shopper based on what shoppers with similar purchase histories bought. Which approach is the standard choice?
+  options:
+    - "Collaborative filtering"
+    - "Linear regression on product prices"
+    - "Reinforcement learning with a robot"
+    - "Binary classification of each product"
+  answer: A
+  explain: |
+    Recommendation from the behavior of similar users is collaborative filtering. It learns from patterns in past purchases rather than from one labeled outcome.
+  why:
+    B: "Predicting prices does not decide what to recommend."
+    C: "There is no physical agent acting in an environment here."
+    D: "Labeling each product by itself ignores the shopper's similarity to others."
+
+- id: choose-approach-11
+  skill: choose-approach
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A small startup has only 300 labeled examples and limited computing power, and it needs a working classifier this week. Which choice is most sensible?
+  options:
+    - "A very deep neural network trained from scratch"
+    - "Reinforcement learning with a reward for accuracy"
+    - "A simple model such as logistic regression"
+    - "k-means clustering, ignoring the labels"
+  answer: C
+  explain: |
+    With little data and little computing power, a simple model is fast to train and less likely to overfit. A deep network trained from scratch needs far more data; transfer learning from a pretrained model would be the way to use deep learning here.
+  why:
+    A: "Deep networks trained from scratch overfit small datasets and need heavy computation."
+    B: "This is a labeled prediction problem, not an agent learning actions."
+    D: "Throwing away the labels discards the most useful information."
+
+- id: choose-approach-12
+  skill: choose-approach
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Which of these scenarios calls for reinforcement learning rather than supervised learning?
+  options:
+    - "Predicting a room's temperature an hour from now from sensor history"
+    - "Classifying thermostat sensor readings as normal or faulty"
+    - "Estimating a building's monthly energy bill from past bills"
+    - "Learning when to run the heat from daily comfort and cost feedback"
+  answer: D
+  explain: |
+    Deciding when to heat is a sequence of actions whose results (comfort and energy cost) come back as feedback over time, which is the reinforcement learning setting. The other three predict a value or a label from historical data.
+  why:
+    A: "Forecasting a temperature from past readings is supervised regression."
+    B: "Labeling readings as normal or faulty is supervised classification, given labeled examples."
+    C: "Estimating a bill from past bills is supervised regression."
+
+- id: choose-approach-13
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A wildlife group has two million camera-trap photos, each labeled with the animal it shows, and wants a model that identifies the animal in new photos. Which approach fits best?
+  options:
+    - "A convolutional neural network trained on the labeled photos"
+    - "Linear regression on the photo file sizes"
+    - "k-means clustering of the photos' pixel colors"
+    - "Association rules between animals and dates"
+  answer: A
+  explain: |
+    Labeled images with a category output call for supervised classification, and with millions of photos, a convolutional neural network, designed to learn features from raw pixels, is the standard choice.
+  why:
+    B: "File sizes say little about which animal is pictured, and the output is a category, not a number."
+    C: "Clustering ignores the labels and groups by color, not by species."
+    D: "Association rules find co-occurring items, not what is in a photo."
+
+- id: choose-approach-14
+  skill: choose-approach
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A network security team logs millions of connections but has no record of which connections were attacks. It wants to flag suspicious ones. Which approach fits?
+  options:
+    - "Supervised classification of attacks"
+    - "Unsupervised anomaly detection"
+    - "Supervised regression on connection length"
+    - "Reinforcement learning with an attacker"
+  answer: B
+  explain: |
+    Without labeled attacks, the team cannot train a classifier to recognize them. Unsupervised anomaly detection learns what normal traffic looks like and flags connections that do not fit.
+  why:
+    A: "Classifying attacks needs labeled examples of attacks, which the team lacks."
+    C: "Connection length is not the goal, and there is no target to predict."
+    D: "The goal is spotting unusual records, not training an agent through rewards."
+
+- id: choose-approach-15
+  skill: choose-approach
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    When deciding between supervised and unsupervised learning, which question should you ask first?
+  options:
+    - "How many features does the dataset have?"
+    - "Which programming language will we use?"
+    - "Do the examples have known outcomes to learn from?"
+    - "How fast does the model need to train?"
+  answer: C
+  explain: |
+    Labels decide the family: known outcomes for each example mean supervised learning, and no outcomes mean unsupervised learning (or reinforcement learning if an agent acts for rewards).
+  why:
+    A: "The number of features affects the method chosen, not the learning family."
+    B: "The language does not determine the type of learning."
+    D: "Training speed narrows the algorithm choice later, not the family."
+
+- id: choose-approach-16
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A marketing team wants to predict which customers will respond to a new offer, using records from past campaigns that show whether each customer responded. Which approach fits?
+  options:
+    - "Unsupervised clustering"
+    - "Reinforcement learning"
+    - "Dimensionality reduction"
+    - "Supervised classification"
+  answer: D
+  explain: |
+    The past campaigns recorded each customer's response, which is a label, and the output is a category (responds or not), so this is supervised classification.
+  why:
+    A: "The responses are labels, so the team need not discover groups blindly."
+    B: "The team is predicting from records, not training an agent with rewards."
+    C: "Compressing features does not predict who will respond."
+
+- id: choose-approach-17
+  skill: choose-approach
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A company wants to predict which customers will cancel their subscriptions, but it has never recorded who canceled in the past. What must happen before a supervised model can be trained?
+  options:
+    - "The company must collect past outcomes showing who canceled."
+    - "The company must switch to reinforcement learning."
+    - "The company must remove every feature from the data."
+    - "Nothing, because supervised models do not need labels."
+  answer: A
+  explain: |
+    Supervised learning needs labeled examples. Until the company records which customers canceled (and which stayed), it has no outcomes to learn from, and only unsupervised methods would apply.
+  why:
+    B: "Predicting cancellation from customer data is a labeled-prediction problem, not an agent acting for rewards."
+    C: "Features are the inputs the model needs."
+    D: "Labels are exactly what supervised learning requires."
+
+- id: choose-approach-18
+  skill: choose-approach
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which kind of output tells you that a supervised problem is a regression problem?
+  options:
+    - "A category, such as spam or not spam"
+    - "A continuous number, such as a price"
+    - "A group discovered from unlabeled data"
+    - "A sequence of actions earning rewards"
+  answer: B
+  explain: |
+    Regression predicts numbers on a continuous scale, such as prices, times, and temperatures. Predicting categories is classification.
+  why:
+    A: "A category output means classification."
+    C: "Discovered groups come from unsupervised clustering."
+    D: "Actions earning rewards describe reinforcement learning."

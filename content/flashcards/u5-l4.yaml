@@ -1,0 +1,21 @@
+# Lesson 5.4 flashcards
+
+- id: fc-three-questions
+  term: Choosing an approach, three questions
+  def: Are there labeled examples? What is being predicted? Does an agent act and earn rewards over time? Labels mean supervised; no labels mean unsupervised; actions and rewards mean reinforcement learning.
+  skill: choose-approach
+
+- id: fc-task-from-output
+  term: Task from the output
+  def: Supervised with a category output is classification; with a number output, regression. Unsupervised goals are clustering (groups), dimensionality reduction (fewer features), anomaly detection (unusual cases), and association rules (items together).
+  skill: choose-approach
+
+- id: fc-interpretability
+  term: Interpretability
+  def: Being able to explain why a model made a decision. Linear and logistic regression and decision trees are interpretable; deep networks are often black boxes. Prefer interpretable models when people need reasons.
+  skill: choose-approach
+
+- id: fc-algorithm-constraints
+  term: Picking an algorithm under constraints
+  def: Ensembles such as random forests and boosting for top accuracy on tables; deep learning for images, audio, and text; simple models or transfer learning for small datasets; k-means or DBSCAN for unlabeled groups.
+  skill: choose-approach
