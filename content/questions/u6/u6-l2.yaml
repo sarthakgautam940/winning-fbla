@@ -1,0 +1,590 @@
+# Lesson 6.2: The subfields of AI
+
+# ---------------------------------------------------------------- computer-vision
+- id: computer-vision-01
+  skill: computer-vision
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A self-driving car's camera system draws a box around each pedestrian and labels it "pedestrian." Which computer vision task is this?
+  options:
+    - "Image classification"
+    - "Object detection"
+    - "Optical character recognition"
+    - "Image generation"
+  answer: B
+  explain: |
+    Object detection finds each object in an image and reports both what it is and where it is, usually with a bounding box. Image classification gives one label to the whole image without locating anything.
+  why:
+    A: "Classification gives a single label for the whole image and does not locate objects."
+    C: "Optical character recognition reads text in images."
+    D: "Image generation creates new images rather than analyzing a real one."
+
+- id: computer-vision-02
+  skill: computer-vision
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A security camera records color video at 640 × 480 pixels, and each pixel stores red, green, and blue values. How many numbers describe one frame?
+  options:
+    - "3,360"
+    - "307,200"
+    - "921,600"
+    - "78,336,000"
+  ordered: true
+  answer: C
+  explain: |
+    One frame has 640 × 480 = 307,200 pixels, and each color pixel holds three numbers, so the frame is 307,200 × 3 = 921,600 numbers. A video is a long sequence of such frames.
+  why:
+    A: "This adds the width and height instead of multiplying them."
+    B: "This counts the pixels but forgets the three color values in each one."
+    D: "This multiplies by 255, the largest value a channel can hold, which is not a count of numbers."
+  verify: "640 * 480 * 3"
+
+- id: computer-vision-03
+  skill: computer-vision
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does an image classification model do?
+  options:
+    - "Draws a box around every object it finds"
+    - "Labels each pixel with the object it belongs to"
+    - "Creates a brand-new image from a text description"
+    - "Assigns a single label to the whole image"
+  answer: D
+  explain: |
+    Image classification answers "what is in this picture?" with one label, or a probability for each possible label, such as "cat" or "pneumonia present." It does not say where things are in the image.
+  why:
+    A: "Boxing each object is object detection."
+    B: "Labeling every pixel is image segmentation."
+    C: "Creating new images is image generation, a generative AI task."
+
+- id: computer-vision-04
+  skill: computer-vision
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A model for satellite images labels every pixel as road, building, water, or vegetation. Which task is this?
+  options:
+    - "Image segmentation"
+    - "Image classification"
+    - "Object detection"
+    - "Facial recognition"
+  answer: A
+  explain: |
+    Segmentation assigns a class to every pixel, producing a detailed map of where each kind of thing is. Detection draws boxes around objects, and classification gives one label for the whole image.
+  why:
+    B: "Classification would give the whole satellite image a single label."
+    C: "Detection draws boxes around objects; it does not label every pixel."
+    D: "Facial recognition identifies people from their faces."
+
+- id: computer-vision-05
+  skill: computer-vision
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In a street photo, one model colors every car pixel with the same label, while a second model gives each individual car its own outline. What does the second model do?
+  options:
+    - "It performs semantic segmentation instead of detection"
+    - "It performs instance segmentation, separating each object"
+    - "It performs image classification on every pixel twice"
+    - "It performs optical character recognition on license plates"
+  answer: B
+  explain: |
+    Semantic segmentation labels each pixel with a class, so all cars share one label; that is the first model. Instance segmentation goes further and separates individual objects of the same class, so each car gets its own mask; that is the second model.
+  why:
+    A: "Semantic segmentation is what the first model does: one label for all the cars."
+    C: "Classification labels whole images; running it twice would not separate the cars."
+    D: "Reading license plates is optical character recognition, which the description does not involve."
+
+- id: computer-vision-06
+  skill: computer-vision
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which kind of model has been the standard choice for computer vision tasks such as image classification?
+  options:
+    - "Linear regression model"
+    - "k-means clustering algorithm"
+    - "Naive Bayes classifier"
+    - "Convolutional neural network"
+  answer: D
+  explain: |
+    Convolutional neural networks slide small learned kernels across an image to detect edges, textures, and shapes, building up to whole objects (lesson 5.10). They have been the standard tool for image tasks since AlexNet's win in 2012.
+  why:
+    A: "Linear regression predicts numbers from a few features, not objects from raw pixels."
+    B: "k-means groups unlabeled data; it does not recognize objects."
+    C: "Naive Bayes suits text classification far better than raw images."
+
+- id: computer-vision-07
+  skill: computer-vision
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A library scans old printed newspapers and wants their text to be searchable. Which computer vision task turns the scanned images of text into editable text?
+  options:
+    - "Semantic segmentation"
+    - "Facial recognition"
+    - "Optical character recognition"
+    - "Human pose estimation"
+  answer: C
+  explain: |
+    Optical character recognition reads the letters in an image and outputs machine-readable text, which can then be searched and edited.
+  why:
+    A: "Segmentation labels regions of pixels but does not turn letters into text."
+    B: "Facial recognition identifies people's faces."
+    D: "Pose estimation locates the joints of a body to track its position."
+
+- id: computer-vision-08
+  skill: computer-vision
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which application depends mainly on computer vision?
+  options:
+    - "A store camera that identifies products as they are scanned"
+    - "An email filter that flags messages as spam"
+    - "A playlist that suggests songs based on listening history"
+    - "A phone assistant that turns speech into text"
+  answer: A
+  explain: |
+    Computer vision interprets images and video, so a camera that recognizes products is a vision system. Spam filtering is natural language processing, song suggestions come from a recommender system, and turning speech into text is speech recognition.
+  why:
+    B: "Spam filtering analyzes text, which is natural language processing."
+    C: "Suggesting songs from listening history is the job of a recommender system."
+    D: "Turning speech into text is speech recognition."
+
+# ---------------------------------------------------------------- nlp-speech
+- id: nlp-speech-01
+  skill: nlp-speech
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A company runs thousands of product reviews through a model that labels each one positive, negative, or neutral. Which NLP task is this?
+  options:
+    - "Machine translation"
+    - "Named entity recognition"
+    - "Sentiment analysis"
+    - "Speech synthesis"
+  answer: C
+  explain: |
+    Sentiment analysis classifies the opinion or emotional tone of text, such as whether a review is positive or negative. Companies use it to track customer opinion at a scale no person could read.
+  why:
+    A: "Translation converts text from one language to another."
+    B: "Named entity recognition finds the names of people, places, organizations, and dates."
+    D: "Speech synthesis turns text into spoken audio."
+
+- id: nlp-speech-02
+  skill: nlp-speech
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    "I saw the man with the telescope" can mean that I used the telescope or that the man had it. What kind of ambiguity is this?
+  options:
+    - "Attachment (syntactic) ambiguity"
+    - "Lexical ambiguity of a single word"
+    - "Reference ambiguity of a pronoun"
+    - "Ambiguity caused by a spelling error"
+  answer: A
+  explain: |
+    Every word is clear; the question is which part of the sentence "with the telescope" attaches to, the verb "saw" or the noun "man." The sentence has two valid parse trees with different meanings, which is attachment, or syntactic, ambiguity.
+  why:
+    B: "Lexical ambiguity comes from one word with several meanings; every word here is clear."
+    C: "Reference ambiguity is about which noun a pronoun points to, and this sentence has no unclear pronoun."
+    D: "Nothing is misspelled; the sentence's structure allows two readings."
+
+- id: nlp-speech-03
+  skill: nlp-speech
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Before counting words, a text pipeline deletes very common words such as "the," "is," and "of," and it trims "connected," "connecting," and "connects" down to "connect." What are these two steps called?
+  options:
+    - "Tokenization and translation"
+    - "Stop-word removal and stemming"
+    - "Named entity recognition and parsing"
+    - "Sentiment analysis and summarization"
+  answer: B
+  explain: |
+    Stop words are very common words that carry little meaning on their own, so they are often removed before analysis. Stemming cuts words down to a shared root, so different forms of the same word are counted together.
+  why:
+    A: "Tokenization splits text into units, and nothing here is translated."
+    C: "Named entity recognition finds names, and parsing builds sentence structure."
+    D: "These tasks judge or shorten text rather than prepare its words for counting."
+
+- id: nlp-speech-04
+  skill: nlp-speech
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A student dictates an essay aloud, and the computer types the words. Which technology converts the student's voice into text?
+  options:
+    - "Speech synthesis"
+    - "Machine translation"
+    - "Text summarization"
+    - "Speech recognition"
+  answer: D
+  explain: |
+    Speech recognition, also called automatic speech recognition or speech-to-text, turns spoken audio into written words. Speech synthesis goes the other way, from text to spoken audio.
+  why:
+    A: "Speech synthesis turns text into spoken audio, the opposite direction."
+    B: "Translation changes the language, not the medium."
+    C: "Summarization shortens text that already exists."
+
+- id: nlp-speech-05
+  skill: nlp-speech
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A customer types "I need to send this back, it arrived broken," and a chatbot works out that the customer wants a return. Which part of NLP is it using?
+  options:
+    - "Natural language generation (NLG)"
+    - "Speech synthesis"
+    - "Natural language understanding (NLU)"
+    - "Optical character recognition"
+  answer: C
+  explain: |
+    Natural language understanding extracts meaning and intent from text, here recognizing a return request. Natural language generation is the opposite job: producing text, such as the chatbot's reply.
+  why:
+    A: "Generation produces language, such as the reply; this step interprets the customer's message."
+    B: "Speech synthesis produces spoken audio, and this conversation is typed."
+    D: "Optical character recognition reads text in images."
+
+- id: nlp-speech-06
+  skill: nlp-speech
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    An NLP system tags "Maria Lopez" as a person, "Chicago" as a place, and "March 3" as a date. Which task is this?
+  options:
+    - "Sentiment analysis"
+    - "Named entity recognition"
+    - "Machine translation"
+    - "Text generation"
+  answer: B
+  explain: |
+    Named entity recognition finds and labels the names in text, such as people, organizations, places, and dates. Search engines, news tools, and assistants use it to pull key facts out of documents.
+  why:
+    A: "Sentiment analysis judges whether text is positive or negative."
+    C: "Translation converts text between languages."
+    D: "Text generation writes new text rather than labeling the words already there."
+
+- id: nlp-speech-07
+  skill: nlp-speech
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Compare "The bowling ball broke the shelf because it was heavy" with "The bowling ball broke the shelf because it was weak." Changing one word changes what "it" refers to. What does a system need to resolve "it" correctly in both?
+  options:
+    - "A larger dictionary of word definitions"
+    - "Correct spelling and punctuation in the input"
+    - "A faster parser that tags parts of speech"
+    - "Commonsense knowledge about how the world works"
+  answer: D
+  explain: |
+    These are Winograd-style sentences: the grammar is identical, and only knowledge of the world (heavy objects break things, weak shelves give way) tells you that "it" means the ball in the first sentence and the shelf in the second. Resolving pronouns like this tests commonsense reasoning, not vocabulary or grammar.
+  why:
+    A: "Both readings use ordinary words; definitions alone do not say which noun 'it' means."
+    B: "The sentences are already correctly written."
+    C: "The parts of speech are the same in both sentences, so grammar alone cannot settle the question."
+
+- id: nlp-speech-08
+  skill: nlp-speech
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    An n-gram is a sequence of n neighboring words. How many bigrams (2-grams) does the sentence "the cat sat on the mat" contain?
+  options:
+    - "3"
+    - "5"
+    - "6"
+    - "15"
+  ordered: true
+  answer: B
+  explain: |
+    The sentence has 6 words, and a bigram can start at any of the first 5: "the cat," "cat sat," "sat on," "on the," and "the mat." A text of n words has n - 1 bigrams.
+  why:
+    A: "This splits the words into separate pairs instead of overlapping ones."
+    C: "This counts the words, not the pairs of neighbors."
+    D: "This counts every possible pair of words, including pairs that are not next to each other."
+  verify: |
+    words = "the cat sat on the mat".split()
+    ans = len(list(zip(words, words[1:])))
+
+- id: nlp-speech-09
+  skill: nlp-speech
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    TF-IDF scores how important a word is to one document within a collection. Which word gets a high TF-IDF score in a particular news article?
+  options:
+    - "A word that appears often in almost every article"
+    - "A word that appears rarely here but often elsewhere"
+    - "A word that is longer than most of the others"
+    - "A word that appears often here but in few other articles"
+  answer: D
+  explain: |
+    TF-IDF multiplies term frequency (how often the word appears in this document) by inverse document frequency (how rare the word is across the collection). A word scores high when it is frequent in this article but rare in the others, which makes it a good clue to what the article is about.
+  why:
+    A: "Words common to almost every article, such as 'the,' get a very low inverse document frequency."
+    B: "Appearing rarely in this article gives the word a low term frequency."
+    C: "Word length plays no part in TF-IDF."
+
+- id: nlp-speech-10
+  skill: nlp-speech
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A parser analyzes "The old dog chased a red ball." In its parse tree, what kind of phrase is "the old dog"?
+  options:
+    - "A noun phrase (NP)"
+    - "A verb phrase (VP)"
+    - "A prepositional phrase (PP)"
+    - "An adjective phrase (AdjP)"
+  answer: A
+  explain: |
+    "The old dog" is built around the noun "dog," with a determiner and an adjective, so it is a noun phrase. "Chased a red ball" is the verb phrase, and a prepositional phrase would begin with a preposition such as "with" or "on."
+  why:
+    B: "The verb phrase is 'chased a red ball,' which is built around the verb."
+    C: "A prepositional phrase begins with a preposition, and this sentence has none."
+    D: "'Old' is an adjective, but the whole group is centered on the noun 'dog.'"
+
+- id: nlp-speech-11
+  skill: nlp-speech
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    The word "head" means a body part in "She bumped her head" and a leader in "She is the head of the club." What is it called when one word has several related meanings?
+  options:
+    - "Attachment ambiguity"
+    - "Homophones"
+    - "Polysemy"
+    - "Stemming"
+  answer: C
+  explain: |
+    Polysemy is one word with several related senses, and it creates lexical ambiguity that a system must resolve from context. People use context and world knowledge; neural systems learn to resolve word senses from the surrounding words.
+  why:
+    A: "Attachment ambiguity concerns how the parts of a sentence connect, not the meaning of one word."
+    B: "Homophones are different words that sound alike, such as 'their' and 'there.'"
+    D: "Stemming trims words to a root form; it is a processing step, not a kind of ambiguity."
+
+- id: nlp-speech-12
+  skill: nlp-speech
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In a bag-of-words representation, "dog bites man" and "man bites dog" look identical. Why?
+  options:
+    - "Bag-of-words removes all nouns before counting"
+    - "Bag-of-words counts words but ignores their order"
+    - "Bag-of-words turns both sentences into random numbers"
+    - "Bag-of-words keeps only the first word of each sentence"
+  answer: B
+  explain: |
+    A bag-of-words model represents a text by how many times each word appears and throws away word order. Both sentences contain "dog," "bites," and "man" once each, so their counts match even though their meanings are opposite. N-grams keep some order by counting short word sequences.
+  why:
+    A: "Nouns are kept; 'dog' and 'man' are both counted."
+    C: "The counts are systematic, not random."
+    D: "Every word is counted, not just the first."
+
+# ---------------------------------------------------------------- ai-subfields
+- id: ai-subfields-01
+  skill: ai-subfields
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which AI subfield is most central to a machine that picks items off warehouse shelves and places them in boxes?
+  options:
+    - "Robotics"
+    - "Natural language processing"
+    - "Speech synthesis"
+    - "Recommender systems"
+  answer: A
+  explain: |
+    Robotics builds machines that sense the physical world and act on it, here with cameras or other sensors to find items and arms or grippers to move them. It draws on computer vision and planning as well.
+  why:
+    B: "Natural language processing works with human language, not physical objects."
+    C: "Speech synthesis produces spoken audio."
+    D: "Recommender systems suggest items to people; they do not move them."
+
+- id: ai-subfields-02
+  skill: ai-subfields
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In the sense-plan-act cycle, which part of a delivery robot belongs to the "sense" step?
+  options:
+    - "The electric motors that turn its wheels"
+    - "The route it chooses around a parked car"
+    - "The lidar unit that measures distances to obstacles"
+    - "The gripper arm that hands over the package"
+  answer: C
+  explain: |
+    Sensing gathers information about the world: lidar measures distance with laser light, and cameras, GPS, and touch sensors add more. Planning decides what to do with that information, such as choosing a route, and acting carries out the plan through actuators such as motors and grippers.
+  why:
+    A: "Motors are actuators, which belong to the act step."
+    B: "Choosing a route is the plan step."
+    D: "A gripper is an actuator, part of the act step."
+
+- id: ai-subfields-03
+  skill: ai-subfields
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A shopping site shows "Customers who bought this item also bought..." based on the purchases of shoppers with similar histories. Which recommendation method is this?
+  options:
+    - "Content-based filtering"
+    - "An expert system"
+    - "Optical character recognition"
+    - "Collaborative filtering"
+  answer: D
+  explain: |
+    Collaborative filtering recommends items that similar users liked or bought, using patterns across many people's behavior. Content-based filtering instead recommends items whose features resemble what this user already liked, such as more mystery novels for a mystery reader.
+  why:
+    A: "Content-based filtering compares item features with the user's own past likes, not with other shoppers' purchases."
+    B: "An expert system applies rules written by human experts."
+    C: "Optical character recognition reads text in images."
+
+- id: ai-subfields-04
+  skill: ai-subfields
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A medical AI shows doctors how confident it is in each suggestion and highlights the parts of a scan it relied on. Which human-AI interaction goal does this design serve most directly?
+  options:
+    - "Replacing doctors so that no human reviews the result"
+    - "Helping users judge when to trust the system's advice"
+    - "Making the model's training run faster on GPUs"
+    - "Hiding the model's uncertainty to avoid confusing users"
+  answer: B
+  explain: |
+    Good human-AI interaction keeps people informed and in control. Showing confidence and evidence helps users trust the system when it is likely right and question it when it is not, instead of trusting it blindly or ignoring it.
+  why:
+    A: "Showing evidence to doctors keeps a human in the loop rather than removing one."
+    C: "What the interface shows has no effect on how fast the model trains."
+    D: "The design reveals the model's uncertainty instead of hiding it."
+
+- id: ai-subfields-05
+  skill: ai-subfields
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An online tutoring system notices from a student's facial expressions and long pauses that the student seems frustrated, and it offers a hint. Which area of AI does this belong to?
+  options:
+    - "Automated planning"
+    - "Optical character recognition"
+    - "Affective computing"
+    - "Collaborative filtering"
+  answer: C
+  explain: |
+    Affective computing builds systems that recognize and respond to human emotions, using cues such as facial expressions, tone of voice, gestures, and word choice. Emotion recognition is also contested: the EU AI Act lists emotion recognition in workplaces and education institutions among its banned practices.
+  why:
+    A: "Planning finds sequences of actions that reach a goal."
+    B: "Optical character recognition reads text in images."
+    D: "Collaborative filtering recommends items from other users' behavior."
+
+- id: ai-subfields-06
+  skill: ai-subfields
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What are the two core parts of a classic expert system?
+  options:
+    - "A knowledge base and an inference engine"
+    - "A generator network and a discriminator"
+    - "An encoder network and a decoder network"
+    - "A training set and a separate test set"
+  answer: A
+  explain: |
+    The knowledge base holds facts and if-then rules gathered from human experts, and the inference engine applies those rules to the facts of a case to reach conclusions. MYCIN, which advised doctors on antibiotics, and XCON, which configured computer orders, are classic examples.
+  why:
+    B: "A generator and a discriminator make up a GAN."
+    C: "An encoder and a decoder make up an autoencoder."
+    D: "Training and test sets are how machine learning models are built and evaluated."
+
+- id: ai-subfields-07
+  skill: ai-subfields
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A new streaming service has thousands of new users with no viewing history. Why does a purely collaborative filtering recommender struggle with them?
+  options:
+    - "It can only recommend movies that have won awards"
+    - "It needs a user's past behavior to find similar users"
+    - "It reads only plot summaries, which are missing"
+    - "It requires every user to rate every movie first"
+  answer: B
+  explain: |
+    Collaborative filtering finds users with similar histories and recommends what they liked, so a user with no history has nothing to match on. This is the cold-start problem. Services often ask new users about their tastes, or fall back on item features or popular titles until a history builds up.
+  why:
+    A: "Awards play no role; the recommendations come from user behavior."
+    C: "Reading item descriptions is content-based filtering, which can actually help with new users."
+    D: "It needs some history for each user, not a rating for every movie."
+
+- id: ai-subfields-08
+  skill: ai-subfields
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which AI subfield focuses on finding a sequence of actions that leads from a starting situation to a goal, such as scheduling deliveries or moving a robot through a building?
+  options:
+    - "Computer vision"
+    - "Sentiment analysis"
+    - "Speech synthesis"
+    - "Automated planning"
+  answer: D
+  explain: |
+    Automated planning searches for an ordered set of actions that turns the current state into a goal state while respecting constraints. It is used in logistics, robotics, and game characters, and it relies on the search methods of lesson 7.8.
+  why:
+    A: "Computer vision interprets images and video."
+    B: "Sentiment analysis judges the tone of text."
+    C: "Speech synthesis turns text into spoken audio."
+
+- id: ai-subfields-09
+  skill: ai-subfields
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A voice assistant hears "What's the weather tomorrow?" and answers out loud. In which order does it use these three technologies?
+  options:
+    - "Speech synthesis, then language understanding, then speech recognition"
+    - "Language understanding, then speech recognition, then speech synthesis"
+    - "Speech recognition, then language understanding, then speech synthesis"
+    - "Speech recognition, then speech synthesis, then language understanding"
+  answer: C
+  explain: |
+    First, speech recognition turns the audio into text. Next, natural language understanding works out the request, a forecast for tomorrow, and the assistant finds the answer and writes a reply. Finally, speech synthesis speaks the reply aloud.
+  why:
+    A: "Synthesis produces the spoken answer, so it must come last, not first."
+    B: "The assistant cannot understand words it has not yet turned from audio into text."
+    D: "The reply cannot be spoken before the request is understood."

@@ -1,0 +1,84 @@
+# Lesson 6.2 flashcards
+
+- id: fc-computer-vision
+  term: Computer Vision
+  def: The subfield of AI that enables computers to interpret and understand images and video, which they see as grids of pixel values.
+  skill: computer-vision
+  virginia: true
+
+- id: fc-vision-tasks
+  term: Classification, detection, segmentation
+  def: Image classification gives one label for the whole image. Object detection finds each object and boxes it. Segmentation labels every pixel; semantic segmentation by class, instance segmentation by individual object.
+  skill: computer-vision
+
+- id: fc-ocr
+  term: Optical character recognition (OCR)
+  def: The computer vision task that reads text in images, such as scanned pages or photos of signs, and outputs editable, searchable text.
+  skill: computer-vision
+
+- id: fc-nlp
+  term: Natural Language Processing (NLP)
+  def: The subfield of AI that enables computers to understand, interpret, and generate human language, written or spoken.
+  skill: nlp-speech
+  virginia: true
+
+- id: fc-nlu-nlg
+  term: NLU vs. NLG
+  def: Natural language understanding extracts meaning and intent from language (recognizing a return request). Natural language generation produces language (writing the reply).
+  skill: nlp-speech
+
+- id: fc-nlp-tasks
+  term: Common NLP tasks
+  def: Sentiment analysis (tone of text), machine translation, named entity recognition (people, places, dates), text classification, summarization, question answering, and conversation.
+  skill: nlp-speech
+
+- id: fc-language-ambiguity
+  term: Lexical, reference, and attachment ambiguity
+  def: Lexical ambiguity is one word with several meanings (polysemy when the meanings are related). Reference ambiguity is an unclear pronoun. Attachment ambiguity is unclear structure, as in "I saw the man with the telescope."
+  skill: nlp-speech
+
+- id: fc-winograd
+  term: Winograd sentences
+  def: Sentence pairs that differ by one word, which flips what a pronoun refers to; resolving them needs commonsense knowledge of the world. "The trophy did not fit in the suitcase because it was too big / too small."
+  skill: nlp-speech
+
+- id: fc-text-features
+  term: Stop words, stemming, bag-of-words, n-grams, TF-IDF
+  def: Stop-word removal drops common words; stemming trims words to a root; bag-of-words counts words, ignoring order; n-grams count runs of n words (n - 1 bigrams in n words); TF-IDF rates words frequent here but rare elsewhere.
+  skill: nlp-speech
+
+- id: fc-parse-tree
+  term: POS tagging and parse trees
+  def: Part-of-speech tagging labels each word (noun, verb, adjective). A parse tree groups words into phrases such as noun phrases (NP), verb phrases (VP), and prepositional phrases (PP).
+  skill: nlp-speech
+
+- id: fc-speech-tech
+  term: Speech recognition vs. speech synthesis
+  def: Speech recognition (ASR, speech-to-text) turns spoken audio into text. Speech synthesis (TTS, text-to-speech) turns text into spoken audio.
+  skill: nlp-speech
+
+- id: fc-robotics
+  term: Robotics
+  def: The field that designs and builds robots, machines that sense the physical world, decide what to do, and act on it, often with some independence.
+  skill: ai-subfields
+  virginia: true
+
+- id: fc-sense-plan-act
+  term: Sense, plan, act
+  def: The robot cycle. Sensors (cameras, lidar, GPS, touch) gather information, the robot plans what to do, and actuators (motors, wheels, grippers) carry it out; then it senses again.
+  skill: ai-subfields
+
+- id: fc-affective-computing
+  term: Affective computing
+  def: AI that recognizes and responds to human emotions from cues such as facial expressions, tone of voice, gestures, and word choice. The EU AI Act bans emotion recognition in workplaces and education institutions.
+  skill: ai-subfields
+
+- id: fc-recommenders
+  term: Content-based vs. collaborative filtering
+  def: Content-based filtering recommends items similar to what the user already liked. Collaborative filtering recommends what similar users liked. Collaborative filtering has a cold-start problem with new users and items.
+  skill: ai-subfields
+
+- id: fc-expert-system-parts
+  term: Expert system parts
+  def: A knowledge base of facts and if-then rules from human experts, plus an inference engine that applies the rules to reach conclusions. Examples are MYCIN (antibiotics) and XCON (computer orders).
+  skill: ai-subfields
