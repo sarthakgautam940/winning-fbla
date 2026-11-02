@@ -1,0 +1,31 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# generated content (rebuilt by `npm run content`, which runs before dev and build)
+/src/generated/
+
+# local verification environments and scratch output
+/scripts/.venv/
+/tmp/
+/coverage
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+
+# env files
+.env*
+!.env.example
+
+# vercel
+.vercel

@@ -1,0 +1,507 @@
+# Unit 2: Probability and Statistics Foundations. Bank questions, grouped by skill in curriculum order.
+
+# ---------------------------------------------------------------- variance-sd
+- id: variance-sd-01
+  skill: variance-sd
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Why are deviations from the mean squared before they are averaged to measure spread?
+  options:
+    - "Squaring makes the arithmetic easier to do by hand."
+    - "The raw deviations always add up to zero, so their average is always zero."
+    - "Squaring converts the deviations back into the original units."
+    - "Squaring reduces the influence of outliers on the result."
+  answer: B
+  explain: |
+    The values above the mean exactly balance the values below it, so the deviations of any dataset sum to zero and their plain average is always zero. Squaring removes the signs so the deviations can no longer cancel.
+  why:
+    A: "Squaring adds work; it is done to stop deviations from canceling, not for convenience."
+    C: "Squaring produces squared units; it is the square root, in the standard deviation, that returns to the original units."
+    D: "Squaring magnifies large deviations, so outliers count more, not less."
+
+- id: variance-sd-02
+  skill: variance-sd
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    The values 3, 5, and 7 make up an entire population. What is the population variance, to the nearest hundredth?
+  options:
+    - "1.63"
+    - "2.67"
+    - "4.00"
+    - "8.00"
+  ordered: true
+  answer: B
+  explain: |
+    The mean is 5, the deviations are negative 2, 0, and 2, and the squared deviations are 4, 0, and 4, which sum to 8. A population divides by $$N = 3$$, so the variance is $$8/3 \approx 2.67$$.
+  why:
+    A: "This is the population standard deviation, the square root of the variance."
+    C: "This divides by $$n - 1 = 2$$, which is the sample formula, but these values are a whole population."
+    D: "This is the sum of squared deviations before dividing by $$N$$."
+  verify: "statistics.pvariance([3, 5, 7])"
+
+- id: variance-sd-03
+  skill: variance-sd
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A random sample of four delivery times, in minutes, is 10, 12, 14, and 16. What is the sample standard deviation, to the nearest hundredth?
+  options:
+    - "2.00"
+    - "2.24"
+    - "2.58"
+    - "6.67"
+  ordered: true
+  answer: C
+  explain: |
+    The mean is 13 and the squared deviations are 9, 1, 1, and 9, which sum to 20. A sample divides by $$n - 1 = 3$$, giving a variance of about 6.67, and the square root is about 2.58.
+  why:
+    A: "This averages the absolute deviations (the mean absolute deviation) instead of squaring them."
+    B: "This divides by $$n = 4$$, the population formula, although the times are a sample."
+    D: "This is the sample variance; the standard deviation is its square root."
+  verify: "statistics.stdev([10, 12, 14, 16])"
+
+- id: variance-sd-04
+  skill: variance-sd
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A dataset of commute times is measured in minutes. In what units is its variance expressed?
+  options:
+    - "It has no units"
+    - "Minutes"
+    - "Minutes per observation"
+    - "Square minutes"
+  answer: D
+  explain: |
+    Variance averages squared deviations, and squaring a deviation in minutes gives square minutes. That is why the standard deviation, its square root, is used to describe spread in the original units.
+  why:
+    A: "Variance keeps units; the coefficient of variation is the spread measure with no units."
+    B: "Minutes are the units of the standard deviation, which takes the square root of the variance."
+    C: "Dividing by the number of values does not create a per-observation unit."
+
+- id: variance-sd-05
+  skill: variance-sd
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which statement about the standard deviation of a dataset is always true?
+  options:
+    - "It is never negative, and it is zero only when all the values are equal."
+    - "It is always smaller than the mean of the data."
+    - "It is measured in the squared units of the data."
+    - "It is not affected by outliers in the data."
+  answer: A
+  explain: |
+    A standard deviation is a square root, so it cannot be negative, and it is zero only when every deviation is zero, which means every value is the same.
+  why:
+    B: "Spread and center are separate; the values negative 10, 0, and 10 have mean 0 but a positive standard deviation."
+    C: "Squared units belong to the variance; the standard deviation is in the original units."
+    D: "An outlier has a large deviation, and squaring makes it count heavily, so standard deviation is very sensitive to outliers."
+
+- id: variance-sd-06
+  skill: variance-sd
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Each set below has a mean of 50. Which set has the largest standard deviation?
+  options:
+    - "40, 40, 50, 60, 60"
+    - "30, 50, 50, 50, 70"
+    - "32, 50, 50, 50, 68"
+    - "35, 35, 50, 65, 65"
+  answer: D
+  explain: |
+    Compare the sums of squared deviations. Four values 15 from the mean give $$4 \times 15^2 = 900$$, which beats every other set even though its range is smaller than the range of 30, 50, 50, 50, 70.
+  why:
+    A: "Four values only 10 from the mean give a sum of squares of 400."
+    B: "This set has the widest range, but only two values are away from the mean: $$2 \times 20^2 = 800$$, less than 900."
+    C: "Two deviations of 18 give $$2 \times 324 = 648$$, less than 900."
+  verify: |
+    sets = {
+        "40, 40, 50, 60, 60": [40, 40, 50, 60, 60],
+        "30, 50, 50, 50, 70": [30, 50, 50, 50, 70],
+        "32, 50, 50, 50, 68": [32, 50, 50, 50, 68],
+        "35, 35, 50, 65, 65": [35, 35, 50, 65, 65],
+    }
+    ans = max(sets, key=lambda k: statistics.pstdev(sets[k]))
+
+- id: variance-sd-07
+  skill: variance-sd
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A school's data team records the GPA of every one of its 1,240 students and wants to describe how spread out those GPAs are. Which version of the standard deviation should the team use?
+  options:
+    - "The population formula, because the data cover every student of interest"
+    - "The sample formula, because 1,240 students is a large dataset"
+    - "The sample formula, because GPA is a continuous variable"
+    - "The population formula, because GPAs fall between 0 and 4"
+  answer: A
+  explain: |
+    The choice depends on whether the data are the whole group you care about. Every student is included and the goal is to describe them, not to estimate a larger group, so the team divides by $$N$$.
+  why:
+    B: "Size does not decide the formula; a large sample still uses $$n - 1$$, and a small population still uses $$N$$."
+    C: "Whether a variable is continuous or discrete has nothing to do with choosing $$N$$ or $$n - 1$$."
+    D: "The range of possible GPA values is irrelevant to the choice."
+
+- id: variance-sd-08
+  skill: variance-sd
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A sample has $$n = 5$$, $$\sum x = 30$$, and $$\sum x^2 = 220$$. What is the sample variance?
+  options:
+    - "8"
+    - "10"
+    - "40"
+    - "44"
+  ordered: true
+  answer: B
+  explain: |
+    The sum of squares is $$\sum x^2 - (\sum x)^2 / n = 220 - 900/5 = 40$$. Dividing by $$n - 1 = 4$$ gives a sample variance of 10.
+  why:
+    A: "This divides the sum of squares by $$n = 5$$, which is the population variance."
+    C: "This is the sum of squared deviations before dividing by $$n - 1$$."
+    D: "This is $$\\sum x^2 / n$$, which forgets to subtract the squared mean."
+  verify: "(220 - 30**2 / 5) / 4"
+
+- id: variance-sd-09
+  skill: variance-sd
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A dataset of lengths has a variance of 49 square centimeters. What is its standard deviation?
+  options:
+    - "7 centimeters"
+    - "7 square centimeters"
+    - "24.5 centimeters"
+    - "2,401 square centimeters"
+  answer: A
+  explain: |
+    The standard deviation is the square root of the variance: $$\sqrt{49} = 7$$. Taking the square root also undoes the squaring of the units, so the answer is in centimeters.
+  why:
+    B: "The value is right, but the square root also turns square centimeters back into centimeters."
+    C: "This halves the variance instead of taking its square root."
+    D: "This squares the variance instead of taking its square root."
+  verify: |
+    ans = f"{math.sqrt(49):g} centimeters"
+
+- id: variance-sd-10
+  skill: variance-sd
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    The heights of a random sample of 6 plants have these deviations from the sample mean, in centimeters: negative 4, negative 2, negative 1, 1, 2, and 4. What is the sample variance?
+  options:
+    - "2.9"
+    - "7.0"
+    - "8.4"
+    - "42.0"
+  ordered: true
+  answer: C
+  explain: |
+    The squared deviations are 16, 4, 1, 1, 4, and 16, which sum to 42. A sample divides by $$n - 1 = 5$$, so the variance is $$42 / 5 = 8.4$$ square centimeters.
+  why:
+    A: "This is the standard deviation, the square root of the variance."
+    B: "This divides by $$n = 6$$, the population formula, but the plants are a sample."
+    D: "This is the sum of squared deviations before dividing by $$n - 1$$."
+  verify: "sum(d * d for d in [-4, -2, -1, 1, 2, 4]) / 5"
+
+# ---------------------------------------------------------------- sd-props
+- id: sd-props-01
+  skill: sd-props
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Every employee at a company receives a $2,000 raise. What happens to the standard deviation of the salaries?
+  options:
+    - "It stays the same."
+    - "It increases by $2,000."
+    - "It increases by the square root of $2,000."
+    - "It decreases slightly."
+  answer: A
+  explain: |
+    Every salary moves up by the same amount, so the mean also rises by $2,000 and every deviation from the mean is unchanged. Unchanged deviations give an unchanged standard deviation.
+  why:
+    B: "The mean rises by $2,000, but spread measures distances from the mean, and those do not change."
+    C: "Adding a constant has no effect on spread at all, rooted or not."
+    D: "Shifting every value equally does not make the values more alike."
+
+- id: sd-props-02
+  skill: sd-props
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A set of temperatures has a standard deviation of 5 degrees Celsius. The values are converted to Fahrenheit using $$F = 1.8C + 32$$. What is the standard deviation in degrees Fahrenheit?
+  options:
+    - "5"
+    - "9"
+    - "37"
+    - "41"
+  ordered: true
+  answer: B
+  explain: |
+    Multiplying every value by 1.8 multiplies every deviation by 1.8, so the standard deviation becomes $$1.8 \times 5 = 9$$. Adding 32 shifts all values equally and does not change the spread.
+  why:
+    A: "Multiplying by 1.8 stretches the spread; only the added 32 has no effect."
+    C: "This adds 32 to the spread and skips the factor of 1.8."
+    D: "This scales by 1.8 correctly but then adds 32, which does not affect spread."
+  verify: "1.8 * 5"
+
+- id: sd-props-03
+  skill: sd-props
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A dataset has a variance of 16. Every value is multiplied by 3. What is the new variance?
+  options:
+    - "16"
+    - "19"
+    - "48"
+    - "144"
+  ordered: true
+  answer: D
+  explain: |
+    Multiplying every value by 3 multiplies every deviation by 3, and variance squares the deviations, so the variance is multiplied by $$3^2 = 9$$: $$16 \times 9 = 144$$.
+  why:
+    A: "Multiplying changes the spread; only adding a constant leaves it unchanged."
+    B: "This adds 3, but the values were multiplied, not shifted."
+    C: "This multiplies by 3, which is what happens to the standard deviation, not the variance."
+  verify: "16 * 3**2"
+
+- id: sd-props-04
+  skill: sd-props
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A sample of 9 test scores has mean 80 and sample standard deviation 6. A tenth score of exactly 80 is added. What happens to the sample standard deviation?
+  options:
+    - "It increases slightly."
+    - "It stays exactly 6."
+    - "It decreases slightly."
+    - "It becomes 0."
+  answer: C
+  explain: |
+    The new score sits at the mean, so the mean stays 80 and the sum of squares does not change. But the sum of squares is now divided by 9 instead of 8, so the variance drops from 36 to 32 and the standard deviation falls to about 5.66.
+  why:
+    A: "A value at the mean adds a deviation of zero, so it cannot increase the spread."
+    B: "The sum of squares stays the same, but the divisor grows from 8 to 9."
+    D: "Only data whose values are all equal have a standard deviation of 0."
+
+- id: sd-props-05
+  skill: sd-props
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A data scientist removes one data point that sits far above all the others. What is the most likely effect on the mean and the standard deviation?
+  options:
+    - "Both decrease."
+    - "The mean decreases and the standard deviation stays the same."
+    - "The mean stays the same and the standard deviation decreases."
+    - "Both increase."
+  answer: A
+  explain: |
+    The high point pulled the mean upward, so removing it lowers the mean. It also had the largest squared deviation, so removing it shrinks the standard deviation.
+  why:
+    B: "The removed point had the largest deviation, so the spread shrinks too."
+    C: "Removing a high value lowers the mean as well."
+    D: "Removing a high value pulls the mean down and removes the largest squared deviation."
+
+- id: sd-props-06
+  skill: sd-props
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Quiz scores have a mean of 70 and a standard deviation of 8. The teacher multiplies every score by 1.1 and then adds 5 points. What are the new mean and standard deviation?
+  options:
+    - "Mean 77, standard deviation 8.8"
+    - "Mean 82, standard deviation 13.8"
+    - "Mean 82, standard deviation 8.8"
+    - "Mean 82.5, standard deviation 8.8"
+  answer: C
+  explain: |
+    The mean follows both steps: $$1.1 \times 70 + 5 = 82$$. The standard deviation follows only the multiplication: $$1.1 \times 8 = 8.8$$, because adding 5 shifts every score equally.
+  why:
+    A: "This multiplies the mean but forgets to add the 5 points."
+    B: "This adds 5 to the standard deviation, but adding a constant does not change spread."
+    D: "This adds the 5 points before multiplying, which is the reverse of what the teacher did."
+  verify: |
+    ans = f"Mean {1.1 * 70 + 5:g}, standard deviation {1.1 * 8:g}"
+
+- id: sd-props-07
+  skill: sd-props
+  tier: champion
+  type: code
+  use: check
+  stem: |
+    What is true about `a` and `b` after this code runs?
+
+    ```python
+    import numpy as np
+    import pandas as pd
+
+    x = [1, 3, 5]
+    a = np.std(x)
+    b = pd.Series(x).std()
+    ```
+  options:
+    - "`a` = `b` = 2.0"
+    - "`a` = 2.0 and `b` ≈ 1.63"
+    - "`a` = `b` ≈ 1.63"
+    - "`a` ≈ 1.63 and `b` = 2.0"
+  answer: D
+  explain: |
+    The sum of squares is 8. NumPy divides by $$n = 3$$ by default, so `a` is $$\sqrt{8/3} \approx 1.63$$. pandas divides by $$n - 1 = 2$$ by default, so `b` is $$\sqrt{4} = 2.0$$.
+  why:
+    A: "Only pandas uses the sample formula by default; NumPy's default divides by $$n$$."
+    B: "The defaults are reversed: NumPy is the population version and pandas the sample version."
+    C: "pandas does not match NumPy unless you pass `ddof=0`."
+  verify: |
+    a = np.std([1, 3, 5])
+    b = pd.Series([1, 3, 5]).std()
+    ans = f"a ≈ {a:.2f} and b = {b:.1f}" if abs(a - b) > 0.01 else "equal"
+
+# ---------------------------------------------------------------- coef-var
+- id: coef-var-01
+  skill: coef-var
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What does the coefficient of variation measure?
+  options:
+    - "The standard deviation as a percentage of the mean"
+    - "The variance divided by the number of values"
+    - "The difference between the largest and smallest values"
+    - "The strength of a linear relationship between two variables"
+  answer: A
+  explain: |
+    The coefficient of variation is $$s / \bar{x}$$, usually written as a percent. Because the units cancel, it measures spread relative to the size of the values.
+  why:
+    B: "Dividing the variance by the count is not a standard measure; it is not the coefficient of variation."
+    C: "That describes the range."
+    D: "That describes the correlation coefficient."
+
+- id: coef-var-02
+  skill: coef-var
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A machine fills bags with a mean of 500 grams and a standard deviation of 15 grams. What is the coefficient of variation?
+  options:
+    - "0.3%"
+    - "3%"
+    - "15%"
+    - "33.3%"
+  ordered: true
+  answer: B
+  explain: |
+    The coefficient of variation is the standard deviation divided by the mean: $$15 / 500 = 0.03$$, which is 3%.
+  why:
+    A: "This misplaces the decimal when converting 0.03 to a percent."
+    C: "This reports the standard deviation itself as a percent instead of dividing by the mean."
+    D: "This divides the mean by the standard deviation, which is upside down."
+  verify: "15 / 500"
+
+- id: coef-var-03
+  skill: coef-var
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    In a study, adult heights have a mean of 170 cm and a standard deviation of 8.5 cm. Adult weights have a mean of 65 kg and a standard deviation of 9.75 kg. Which statement is correct?
+  options:
+    - "Heights vary more, because their mean is larger."
+    - "The two cannot be compared, because they use different units."
+    - "Weights vary more relative to their mean: their CV is 15%, versus 5% for heights."
+    - "Weights vary more, because their standard deviation is a larger number."
+  answer: C
+  explain: |
+    The coefficient of variation removes the units: $$8.5 / 170 = 5\%$$ for heights and $$9.75 / 65 = 15\%$$ for weights. Relative to their means, weights are three times as variable.
+  why:
+    A: "A larger mean does not mean more variability; relative spread is the standard deviation divided by the mean."
+    B: "The coefficient of variation exists precisely to compare spread across different units."
+    D: "The conclusion is right, but 8.5 cm and 9.75 kg cannot be compared directly; the reason must be the CV."
+
+- id: coef-var-04
+  skill: coef-var
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    For which dataset is the coefficient of variation NOT a meaningful measure of relative spread?
+  options:
+    - "Monthly rainfall in millimeters"
+    - "Package weights in kilograms"
+    - "Daily temperatures in degrees Celsius"
+    - "Customer wait times in seconds"
+  answer: C
+  explain: |
+    The coefficient of variation divides by the mean, which only makes sense when zero means "none of the quantity". Zero degrees Celsius is an arbitrary point, and the mean can be near zero or negative, so the ratio is meaningless.
+  why:
+    A: "Rainfall has a true zero and a positive mean, so its CV is meaningful."
+    B: "Weight has a true zero and a positive mean, so its CV is meaningful."
+    D: "Wait time has a true zero and a positive mean, so its CV is meaningful."
+
+- id: coef-var-05
+  skill: coef-var
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Class X's scores have a mean of 80 and a standard deviation of 8. Class Y's scores have a mean of 60 and a standard deviation of 7.2. What is the coefficient of variation of the class with more relative variability?
+  options:
+    - "1.2%"
+    - "8.3%"
+    - "10%"
+    - "12%"
+  ordered: true
+  answer: D
+  explain: |
+    Class X's CV is $$8 / 80 = 10\%$$ and Class Y's is $$7.2 / 60 = 12\%$$. Class Y has the smaller standard deviation but the greater variability relative to its mean.
+  why:
+    A: "This slips a decimal place when converting 0.12 to a percent."
+    B: "This divides the mean by the standard deviation, which inverts the ratio."
+    C: "This is Class X's CV; it has the larger standard deviation but the smaller relative spread."
+  verify: "max(8 / 80, 7.2 / 60)"
+
+- id: coef-var-06
+  skill: coef-var
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    A dataset has a mean of 40 and a coefficient of variation of 25%. What is its standard deviation?
+  options:
+    - "0.625"
+    - "10"
+    - "65"
+    - "160"
+  ordered: true
+  answer: B
+  explain: |
+    The coefficient of variation is the standard deviation divided by the mean, so the standard deviation is $$0.25 \times 40 = 10$$.
+  why:
+    A: "This divides 25 by 40 instead of taking 25% of the mean."
+    C: "This adds the percentage to the mean."
+    D: "This divides the mean by 0.25 instead of multiplying."
+  verify: "0.25 * 40"

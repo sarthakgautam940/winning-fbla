@@ -1,0 +1,1880 @@
+# Curriculum: the single source of truth for structure.
+# Areas and objectives are quoted exactly from the 2026-2027 guidelines.
+# Units follow learning order. Every skill belongs to exactly one lesson.
+# Skill display numbers (1, 2, 3 ...) come from the order of `skills` across units.
+
+areas:
+  - id: DL
+    name: Data Literacy and Foundations
+    items: 20
+    objectives:
+      - { id: DL1, text: "Discuss the nature of data science" }
+      - { id: DL2, text: "Describe differences between structured and unstructured data" }
+      - { id: DL3, text: "Identify numeric and categorical data points" }
+      - { id: DL4, text: "Convert among common data representations (e.g., binary, hexadecimal, decimal)" }
+      - { id: DL5, text: "Describe the types of data that could be gathered from various sources" }
+      - { id: DL6, text: "Describe the importance of data wrangling and transformation" }
+      - { id: DL7, text: "Describe the stages of the data science process" }
+  - id: PS
+    name: Probability and Statistics Foundations
+    items: 15
+    objectives:
+      - { id: PS1, text: "Calculate the mean, median, mode, and range of a dataset" }
+      - { id: PS2, text: "Discuss the use of measures of statistical variance (e.g., standard deviation, variance, covariance)" }
+      - { id: PS3, text: "Discuss the characteristics and importance of Gaussian (normal) distribution" }
+      - { id: PS4, text: "Calculate the expected value of a random variable" }
+      - { id: PS5, text: "Differentiate between types of variables (e.g., continuous, discrete)" }
+  - id: DA
+    name: Data Analysis and Statistics for AI
+    items: 15
+    objectives:
+      - { id: DA1, text: "Select the most appropriate visual medium to display a dataset" }
+      - { id: DA2, text: "Describe different types of diagrams (e.g., boxplots, histograms, scatterplots)" }
+      - { id: DA3, text: "Discuss techniques for working with multivariate data (e.g., dependence and interdependence methods, multiple linear and logistic regression)" }
+      - { id: DA4, text: "Discuss the importance of cleaning data" }
+      - { id: DA5, text: "Identify factors that may affect data quality (e.g., duplicates, low quality sources, incomplete datasets)" }
+      - { id: DA6, text: "Describe how data science algorithms are applied to real-world problems (e.g., linear regression, decision trees, k-means)" }
+  - id: TL
+    name: Tools for Data and AI
+    items: 10
+    objectives:
+      - { id: TL1, text: "Write queries in SQL" }
+      - { id: TL2, text: "Describe common packages and libraries for working with data and AI (e.g., Pandas, NumPy, PyTorch)" }
+      - { id: TL3, text: "Discuss the use of Python for cleaning and wrangling datasets" }
+      - { id: TL4, text: "Discuss the use of R for data science" }
+      - { id: TL5, text: "Describe characteristics of relational databases" }
+  - id: AI
+    name: AI Basics
+    items: 10
+    objectives:
+      - { id: AI1, text: "Discuss the nature of generative AI" }
+      - { id: AI2, text: "Discuss capabilities and limitations of generative AI" }
+      - { id: AI3, text: "List uses of generative AI (e.g., healthcare, research, digital art)" }
+      - { id: AI4, text: "Describe AI subfields (e.g., computer vision, NLP, human interaction, robotics)" }
+      - { id: AI5, text: "Define large language models (LLMs)" }
+      - { id: AI6, text: "Discuss the capabilities of large language models (LLMs)" }
+  - id: ML
+    name: Machine Learning
+    items: 10
+    objectives:
+      - { id: ML1, text: "Discuss the nature of machine learning" }
+      - { id: ML2, text: "Describe the use of training, test, and validation datasets" }
+      - { id: ML3, text: "Describe how machine learning algorithms behave (e.g., neural networks, decision trees, learning functions)" }
+      - { id: ML4, text: "Characterize unsupervised, supervised, and reinforcement learning algorithms" }
+      - { id: ML5, text: "Select an appropriate machine learning algorithm to solve a reasoning problem (e.g., supervised, unsupervised, reinforcement)" }
+      - { id: ML6, text: "Explain the concept of deep learning" }
+  - id: PR
+    name: Perception, Representation, and Reasoning
+    items: 10
+    objectives:
+      - { id: PR1, text: "Explain how predicate logic is used in AI models" }
+      - { id: PR2, text: "Give examples of predicate logic" }
+      - { id: PR3, text: "Discuss differences between logic-based and probability-based reasoning" }
+      - { id: PR4, text: "Describe Bayesian networks and their components (e.g., nodes, edges, Directed Acyclic Graphs)" }
+      - { id: PR5, text: "Discuss the nature of knowledge representation and reasoning for AI" }
+  - id: PE
+    name: Privacy and Ethics
+    items: 10
+    objectives:
+      - { id: PE1, text: "Discuss dilemmas that arise from AI systems (e.g., self-driving vehicles, generative AI, surveillance)" }
+      - { id: PE2, text: "Describe how AI inherits bias (e.g., algorithmic bias)" }
+      - { id: PE3, text: "Discuss security and privacy risks associated with LLMs" }
+      - { id: PE4, text: "Discuss credibility concerns of LLMs (e.g., hallucinations, misinformation)" }
+
+units:
+  # ------------------------------------------------------------------ UNIT 0
+  - id: u0
+    n: 0
+    area: null
+    title: How to Win the Test
+    summary: The event, the scoring rules that decide ties, pacing at 30 seconds a question, elimination, and fast math without a personal calculator.
+    lessons:
+      - id: u0-l1
+        n: 1
+        title: The event and how it is scored
+        summary: Format, scoring, tiebreakers, rules and the test-day checklist, and what they mean for how you prepare.
+        minutes: 12
+        skills: []
+        objectives: []
+        outline:
+          - "What the test is: 100 questions, 50 minutes, eight areas"
+          - "How you are scored, and how ties are broken"
+          - "Rules and test-day checklist"
+          - "What this means for your preparation"
+          - "How this course is built (lessons, checks, quizzes, unit tests, practice tests)"
+      - id: u0-l2
+        n: 2
+        title: Pacing, elimination, and smart guessing
+        summary: A two-pass plan for 100 questions in 50 minutes, how to flag, when to submit, and how to eliminate and guess well.
+        minutes: 15
+        skills: []
+        objectives: []
+        outline:
+          - "The 30-second average and why most questions take less"
+          - "The two-pass method and flagging"
+          - "When to submit (the time tiebreaker)"
+          - "Elimination: how distractors are built"
+          - "Reading stems: NOT, EXCEPT, BEST, MOST LIKELY"
+          - "Never leave a blank"
+      - id: u0-l3
+        n: 3
+        title: Fast math without your own calculator
+        summary: Mental shortcuts and scratch-paper habits for means, medians, spread, z-scores, expected value, probability, base conversion and model metrics.
+        minutes: 18
+        skills: []
+        objectives: []
+        outline:
+          - "Using the built-in online calculator efficiently"
+          - "Laying out one sheet of scratch paper"
+          - "Shortcuts for the mean and the median"
+          - "Shortcuts for spread, z-scores and the empirical rule"
+          - "Expected value and probability shortcuts"
+          - "Powers of two and base conversion speed"
+          - "Metrics from a confusion matrix in seconds"
+
+  # ------------------------------------------------------------------ UNIT 1
+  - id: u1
+    n: 1
+    area: DL
+    title: Data Literacy and Foundations
+    summary: What data science is, the kinds of data and how computers store them, where data comes from, wrangling, and the data science process.
+    lessons:
+      - id: u1-l1
+        n: 1
+        title: What data science is
+        summary: The field, the people who do it, and the four kinds of analytics.
+        minutes: 18
+        skills: [ds-nature, ds-roles, ds-analytics]
+        objectives: [DL1]
+        vocab: [Data Science]
+        outline:
+          - "Data science in one sentence, and the three disciplines it combines"
+          - "Data, information, knowledge, and data literacy"
+          - "Who does the work: analysts, scientists, engineers, ML engineers [Competitive]"
+          - "Descriptive, diagnostic, predictive, prescriptive analytics"
+          - "Data science versus statistics, computer science, and business intelligence [Competitive]"
+        notes: "Use the Drew Conway Venn diagram idea (math/statistics, hacking/computing, substantive domain expertise) as a figure. DIKW pyramid. Data literacy as the ability to read, work with, analyze and argue with data."
+        figures: ["Three overlapping circles: statistics and math, computing, domain knowledge", "DIKW pyramid as a stepped diagram"]
+      - id: u1-l2
+        n: 2
+        title: Structured, semi-structured, and unstructured data
+        summary: How data is organized, the file formats you will meet, and metadata.
+        minutes: 18
+        skills: [data-structure, data-formats, metadata]
+        objectives: [DL2]
+        vocab: [Structured Data, Unstructured Data, CSV]
+        outline:
+          - "Structured data: rows, columns, and a schema"
+          - "Unstructured data: text, images, audio, video"
+          - "Semi-structured data: JSON, XML, logs [Competitive]"
+          - "File formats side by side: CSV, TSV, JSON, XML, Parquet, spreadsheets, media files"
+          - "Where each kind lives: databases, warehouses, lakes [Competitive]"
+          - "Metadata and data dictionaries"
+        notes: "Show the same record as CSV, JSON and XML. Parquet is columnar and compressed. Schema-on-write vs schema-on-read (Champion). Avoid quoting a precise percentage of unstructured data unless research/facts.md verifies it."
+      - id: u1-l3
+        n: 3
+        title: Numeric and categorical data
+        summary: Classify any data point instantly, including the trick cases test writers love.
+        minutes: 20
+        skills: [var-num-cat, var-disc-cont, var-levels]
+        objectives: [DL3, PS5]
+        vocab: [Numeric Data, Categorical Data]
+        outline:
+          - "Numeric versus categorical: the do-math test"
+          - "Trick cases: ZIP codes, phone numbers, IDs, jersey numbers, ratings"
+          - "Discrete versus continuous numbers"
+          - "Nominal and ordinal categories"
+          - "Levels of measurement: nominal, ordinal, interval, ratio [Competitive]"
+          - "Which summaries fit which level [Champion]"
+        notes: "Temperature in Celsius is interval; Kelvin is ratio. Binary yes/no is categorical. Likert scale is ordinal. Counts are discrete. Mode for nominal, median for ordinal, mean for interval/ratio."
+      - id: u1-l4
+        n: 4
+        title: Number systems
+        summary: Binary, hexadecimal, octal and decimal, converted in every direction quickly and correctly.
+        minutes: 25
+        skills: [base-binary, base-hex, base-other]
+        objectives: [DL4]
+        outline:
+          - "Place value in any base"
+          - "Binary to decimal"
+          - "Decimal to binary: two methods"
+          - "Hexadecimal: digits A to F, and the nibble trick"
+          - "Octal and the three-bit trick [Competitive]"
+          - "Spotting invalid digits and comparing across bases [Champion]"
+        widgets: [base-converter]
+        notes: "Memorize powers of 2 through 2^10 and 2^16. Prefixes 0b, 0x, 0o and subscripts. FF = 255. Worked examples in numbered steps for each direction."
+      - id: u1-l5
+        n: 5
+        title: How computers store data
+        summary: Bits and bytes, storage units, signed numbers, text encoding, colors, images and sound.
+        minutes: 25
+        skills: [bits-bytes, bin-arith, text-encoding, media-encoding]
+        objectives: [DL4]
+        outline:
+          - "Bits, nibbles, bytes, and how many values n bits can hold"
+          - "KB versus KiB: decimal and binary prefixes [Competitive]"
+          - "Binary addition and overflow [Competitive]"
+          - "Two's complement for negative numbers [Champion]"
+          - "Text: ASCII, Unicode, and UTF-8"
+          - "Colors: hex codes and RGB"
+          - "Images and sound as numbers, and file-size math [Competitive]"
+        notes: "2^n values, max 2^n - 1. Bits needed for N values is the ceiling of log2 N. ASCII A=65=0x41, a=97, 0=48. UTF-8 is 1 to 4 bytes and ASCII-compatible. #FF8000 to (255,128,0). 24-bit color: 16,777,216 colors. Image bytes = width x height x bytes per pixel."
+      - id: u1-l6
+        n: 6
+        title: Where data comes from
+        summary: Sources, collection methods, study designs, big data, and how organizations govern data.
+        minutes: 22
+        skills: [data-sources, study-types, big-data, data-gov]
+        objectives: [DL5]
+        vocab: [Data Source, Big Data, Data Governance, Data Pipeline, API]
+        outline:
+          - "Common sources and the data each produces"
+          - "APIs, web scraping, and open data [Competitive]"
+          - "Primary and secondary data"
+          - "Experiments versus observational studies"
+          - "Cross-sectional, longitudinal, and time series data [Competitive]"
+          - "Big data and the Vs"
+          - "Pipelines, ETL, governance, and lineage [Competitive]"
+        notes: "Only experiments with random assignment support cause-and-effect claims. Velocity relates to streaming sources like sensors and logs. Scraping ethics and terms of service. Data lineage = where data came from and how it changed."
+      - id: u1-l7
+        n: 7
+        title: Data wrangling and transformation
+        summary: Turning raw data into analysis-ready data, with the transformations that tests ask you to compute.
+        minutes: 25
+        skills: [wrangling, scaling, encoding-cats, feature-eng]
+        objectives: [DL6]
+        vocab: [Data Wrangling, Data Transformation, Feature Engineering, Normalization]
+        outline:
+          - "What wrangling is and why it takes so much of a project"
+          - "Tidy data: one variable per column, one observation per row"
+          - "Parsing and type conversion"
+          - "Scaling: min-max normalization and z-score standardization"
+          - "Encoding categories: one-hot and label encoding"
+          - "Binning, log transforms, and new features [Competitive]"
+        notes: "Normalization formula (x - min)/(max - min). Standardization (x - mean)/sd. One-hot creates one column per category (k-1 with drop_first). Scale features for distance-based methods and gradient descent; trees do not need scaling. Fit transforms on training data only. Note that 'normalization' also means something different in databases (Unit 4)."
+      - id: u1-l8
+        n: 8
+        title: The data science process
+        summary: The stages of a project in order, the named process models, EDA, and reproducible work.
+        minutes: 22
+        skills: [ds-process, process-models, eda, reproducibility]
+        objectives: [DL7]
+        vocab: [Exploratory Data Analysis (EDA)]
+        outline:
+          - "The lifecycle from question to deployment"
+          - "OSEMN"
+          - "CRISP-DM's six phases [Competitive]"
+          - "Other models you may see named [Champion]"
+          - "Exploratory data analysis"
+          - "Reproducibility, documentation, and communicating results"
+        figures: ["CRISP-DM cycle diagram with six phases and feedback arrows"]
+        notes: "First step is always understanding the problem/question. Data preparation is usually the most time-consuming phase. The process is iterative. Use research/facts.md for exact phase names."
+
+  # ------------------------------------------------------------------ UNIT 2
+  - id: u2
+    n: 2
+    area: PS
+    title: Probability and Statistics Foundations
+    summary: Center, spread, the normal distribution, probability, and expected value, computed fast and understood deeply.
+    lessons:
+      - id: u2-l1
+        n: 1
+        title: Mean, median, mode, and range
+        summary: Compute each one correctly every time, including from frequency tables and with missing values.
+        minutes: 22
+        skills: [mean, median, mode-range, center-choice]
+        objectives: [PS1]
+        vocab: [Mean, Median, Mode, Range]
+        outline:
+          - "The mean, and what it balances"
+          - "Means from frequency tables and weighted means"
+          - "Working backward: a missing value from the mean [Competitive]"
+          - "The median: sort first"
+          - "The mode and the range"
+          - "Outliers and skew: which center to report [Competitive]"
+        widgets: [stats-explorer]
+        notes: "Trap: median of an unsorted list. Right skew pulls the mean above the median. Combined mean of two groups uses weights."
+      - id: u2-l2
+        n: 2
+        title: Quartiles, percentiles, and outliers
+        summary: The five-number summary, the IQR, and the 1.5 x IQR rule.
+        minutes: 18
+        skills: [quartiles, outlier-rule]
+        objectives: [PS1, PS2]
+        vocab: [Quartile, Percentile, Outlier]
+        outline:
+          - "Quartiles and the five-number summary"
+          - "Percentiles and percentile rank"
+          - "The interquartile range"
+          - "Fences: the 1.5 x IQR rule"
+          - "Other outlier rules: z-scores [Competitive]"
+          - "Why software gives slightly different quartiles [Champion]"
+        notes: "Teach the median-of-halves method (exclude the median when n is odd) as the default and note that software interpolates. Use research/facts.md."
+      - id: u2-l3
+        n: 3
+        title: Variance and standard deviation
+        summary: What spread measures, population versus sample, and how to compute both quickly.
+        minutes: 25
+        skills: [variance-sd, sd-props, coef-var]
+        objectives: [PS2]
+        vocab: [Variance, Standard Deviation]
+        outline:
+          - "Deviations from the mean"
+          - "Variance: the average squared deviation"
+          - "Standard deviation and why we take the square root"
+          - "Population (divide by N) versus sample (divide by n - 1)"
+          - "How spread responds to shifting and scaling [Competitive]"
+          - "Coefficient of variation [Competitive]"
+          - "Software defaults: NumPy versus pandas [Champion]"
+        widgets: [stats-explorer]
+        notes: "Worked example with full table of deviations and squares. Bessel's correction rationale in plain words. SD is in original units; variance in squared units. Adding a constant leaves SD unchanged; multiplying by k multiplies SD by |k|."
+      - id: u2-l4
+        n: 4
+        title: Covariance and correlation
+        summary: How two variables move together, and how to read r.
+        minutes: 20
+        skills: [covariance, correlation]
+        objectives: [PS2]
+        vocab: [Covariance, Correlation]
+        outline:
+          - "Covariance: moving together or apart"
+          - "Why covariance is hard to compare [Competitive]"
+          - "Correlation r: from -1 to 1"
+          - "Reading r from a scatterplot"
+          - "r squared [Competitive]"
+          - "What r cannot see: curves and outliers [Competitive]"
+        notes: "r is unitless and unchanged by changing units (linear rescaling with positive factor). Covariance units are the product of the units. r = cov / (sx sy)."
+      - id: u2-l5
+        n: 5
+        title: The normal distribution and z-scores
+        summary: The bell curve's properties, the 68-95-99.7 rule, and standardizing with z.
+        minutes: 25
+        skills: [normal-props, empirical-rule, z-scores]
+        objectives: [PS3]
+        vocab: [Gaussian Distribution]
+        outline:
+          - "The shape and its two parameters"
+          - "Why the normal distribution matters, including in AI"
+          - "The 68-95-99.7 rule"
+          - "z-scores: how many standard deviations from the mean"
+          - "Comparing across different scales with z [Competitive]"
+          - "Percentiles from common z values [Champion]"
+        widgets: [normal-explorer]
+        notes: "Mean = median = mode. Tails approach but never touch the axis. Area under the curve = 1. Uses in AI: Gaussian noise, weight initialization, Gaussian naive Bayes, anomaly detection by z-score."
+      - id: u2-l6
+        n: 6
+        title: Samples, the central limit theorem, and inference
+        summary: Why sample means are predictable, standard error, and what confidence levels, p-values and power mean.
+        minutes: 22
+        skills: [clt, inference-basics]
+        objectives: [PS3]
+        outline:
+          - "Population versus sample, parameter versus statistic"
+          - "Sampling distributions"
+          - "The central limit theorem"
+          - "Standard error and sample size [Competitive]"
+          - "Confidence intervals and margin of error [Competitive]"
+          - "p-values, significance, Type I and II errors, and power [Champion]"
+        notes: "SE = sigma / sqrt(n); quadrupling n halves SE. Law of large numbers is a different idea. Keep inference at recognition level: what the terms mean and which way they move with n."
+      - id: u2-l7
+        n: 7
+        title: Probability essentials
+        summary: The rules you need, two-way tables, conditional probability, and Bayes' theorem.
+        minutes: 28
+        skills: [prob-basics, prob-rules, conditional, bayes]
+        objectives: [PS4]
+        vocab: [Conditional Probability]
+        outline:
+          - "Probability as a number from 0 to 1"
+          - "Complements and 'at least one'"
+          - "Addition rule: mutually exclusive or not"
+          - "Multiplication rule: independent or not"
+          - "Conditional probability and two-way tables"
+          - "Bayes' theorem and base rates [Competitive]"
+        widgets: [bayes-explorer]
+        notes: "Mutually exclusive is not the same as independent. P(A|B) is not P(B|A). Natural-frequency method for Bayes (out of 1,000 people)."
+      - id: u2-l8
+        n: 8
+        title: Random variables and expected value
+        summary: Probability distributions, expected value in games and decisions, and the distributions you should recognize.
+        minutes: 28
+        skills: [rv-dist, expected-value, ev-decisions, ev-rules, distributions, var-types]
+        objectives: [PS4, PS5]
+        vocab: [Expected Value, Probability Distribution, Discrete Variable, Continuous Variable]
+        outline:
+          - "Random variables, discrete and continuous"
+          - "Probability distributions: tables that sum to 1"
+          - "Expected value as a weighted average"
+          - "Expected value in games, insurance, and decisions"
+          - "Linearity of expectation and variance of a random variable [Champion]"
+          - "Distributions to recognize: uniform, binomial, Poisson, normal [Competitive]"
+          - "Types of variables in a study: explanatory, response, confounding [Competitive]"
+        notes: "Fair die E = 3.5, two dice E = 7. Fair game EV = 0. Binomial mean np, variance np(1-p). Poisson mean = variance. P(X = a) = 0 for continuous X."
+
+  # ------------------------------------------------------------------ UNIT 3
+  - id: u3
+    n: 3
+    area: DA
+    title: Data Analysis and Statistics for AI
+    summary: Choosing and reading charts, data quality and cleaning, multivariate methods, and how real algorithms are applied and evaluated.
+    lessons:
+      - id: u3-l1
+        n: 1
+        title: Choosing the right chart
+        summary: Match the chart to the data and the question, and spot charts that mislead.
+        minutes: 22
+        skills: [chart-choice, chart-types, misleading]
+        objectives: [DA1, DA2]
+        vocab: [Visualization]
+        outline:
+          - "Start from the question: distribution, comparison, composition, relationship, change over time"
+          - "The core charts and what each is for"
+          - "Pie charts and when to avoid them"
+          - "Heatmaps, violin plots, and scatterplot matrices [Competitive]"
+          - "Charts that mislead [Competitive]"
+        notes: "Histogram vs bar chart (continuous bins vs categories). Line charts for time. Scatterplots for two numeric variables. Truncated axes, 3D effects, dual axes."
+      - id: u3-l2
+        n: 2
+        title: Histograms and boxplots
+        summary: Read shape, center, spread, and outliers from the two workhorse charts.
+        minutes: 22
+        skills: [histograms, boxplots]
+        objectives: [DA2]
+        vocab: [Histogram, Boxplot]
+        outline:
+          - "Reading a histogram: shape, center, spread"
+          - "Skewed, symmetric, bimodal, and uniform shapes"
+          - "How bin width changes the picture [Competitive]"
+          - "Reading a boxplot: the five-number summary"
+          - "Comparing groups with side-by-side boxplots"
+          - "What a boxplot hides [Competitive]"
+        notes: "Each boxplot section holds about 25% of the data. Boxplots hide sample size and bimodality."
+      - id: u3-l3
+        n: 3
+        title: Scatterplots, correlation, and causation
+        summary: Describe relationships, and avoid the reasoning errors that test writers target.
+        minutes: 22
+        skills: [scatterplots, causation]
+        objectives: [DA2, DA3]
+        vocab: [Scatterplot]
+        outline:
+          - "Direction, form, strength, and outliers"
+          - "Lines of best fit and residuals [Competitive]"
+          - "Correlation is not causation"
+          - "Confounding and lurking variables"
+          - "Simpson's paradox [Champion]"
+        notes: "Residual = actual - predicted. Points above the line are underpredicted. Only randomized experiments establish causation."
+      - id: u3-l4
+        n: 4
+        title: Data quality and where bad data comes from
+        summary: The dimensions of data quality and the collection biases that damage it.
+        minutes: 22
+        skills: [data-quality, sampling-bias]
+        objectives: [DA5]
+        vocab: [Data Quality]
+        outline:
+          - "The dimensions of data quality"
+          - "Factors that hurt quality: duplicates, low-quality sources, incomplete data"
+          - "Sampling methods"
+          - "Collection biases: selection, survivorship, nonresponse, and more [Competitive]"
+          - "A bigger biased sample is still biased [Competitive]"
+        notes: "Dimensions: accuracy, completeness, consistency, timeliness, validity, uniqueness. Match scenarios to the dimension and to the bias."
+      - id: u3-l5
+        n: 5
+        title: Cleaning data
+        summary: Why cleaning matters and exactly how to handle missing values, duplicates, inconsistencies, and outliers.
+        minutes: 25
+        skills: [why-clean, missing-data, clean-issues, validate-clean]
+        objectives: [DA4, DA5]
+        vocab: [Data Cleaning, Imputation]
+        outline:
+          - "Garbage in, garbage out"
+          - "Missing data: MCAR, MAR, MNAR [Competitive]"
+          - "Deleting versus imputing"
+          - "Duplicates and inconsistent formats"
+          - "Outliers: investigate before you remove"
+          - "Validating that cleaning worked"
+        notes: "Median imputation is better for skewed data. Mean imputation shrinks variance. Never delete outliers just because they are extreme."
+      - id: u3-l6
+        n: 6
+        title: Working with many variables
+        summary: Dependence versus interdependence methods, multiple regression, logistic regression, and PCA.
+        minutes: 28
+        skills: [multivariate, multiple-regression, logistic-regression, interdependence]
+        objectives: [DA3]
+        vocab: [Multivariate Analysis, Logistic Regression]
+        outline:
+          - "Univariate, bivariate, multivariate"
+          - "Dependence versus interdependence methods"
+          - "Multiple linear regression and its coefficients"
+          - "R squared and adjusted R squared [Competitive]"
+          - "Logistic regression: probabilities through the sigmoid"
+          - "Odds and log-odds [Champion]"
+          - "PCA, factor analysis, and cluster analysis [Competitive]"
+        figures: ["Sigmoid curve with threshold line at 0.5"]
+        notes: "Coefficient interpretation: change in predicted y per one-unit change in x, holding others constant. Multicollinearity. Logistic regression is classification despite the name."
+      - id: u3-l7
+        n: 7
+        title: Algorithms on real problems
+        summary: Linear regression, decision trees, and k-means applied to real decisions, and how to match problems to algorithms.
+        minutes: 28
+        skills: [linreg-applied, tree-applied, kmeans-applied, algo-match]
+        objectives: [DA6]
+        vocab: [Linear Regression, Decision Tree, K-means Clustering]
+        outline:
+          - "Linear regression: slope, intercept, prediction"
+          - "Residuals and the danger of extrapolation [Competitive]"
+          - "Decision trees: following the branches"
+          - "k-means: the algorithm step by step"
+          - "Choosing k: elbow and silhouette [Competitive]"
+          - "Matching problems to algorithms"
+        widgets: [kmeans-stepper]
+        notes: "Interpret slope in context with units. Read a tree diagram to classify a new case. k-means needs scaled features and a chosen k."
+      - id: u3-l8
+        n: 8
+        title: Measuring model performance
+        summary: Regression errors, the confusion matrix, and choosing the right metric.
+        minutes: 28
+        skills: [reg-metrics, confusion-matrix, metric-choice]
+        objectives: [DA6]
+        vocab: [Accuracy, Precision, Recall, F1 Score]
+        outline:
+          - "Errors for numeric predictions: MAE, MSE, RMSE, R squared"
+          - "The confusion matrix"
+          - "Accuracy, precision, recall, specificity, F1"
+          - "When accuracy lies: imbalanced classes [Competitive]"
+          - "Precision or recall? Matching the metric to the cost"
+          - "Thresholds, ROC curves, and AUC [Champion]"
+        widgets: [threshold-explorer]
+        notes: "Precision = TP/(TP+FP). Recall = TP/(TP+FN). F1 = 2PR/(P+R). False positive = Type I error; false negative = Type II."
+
+  # ------------------------------------------------------------------ UNIT 4
+  - id: u4
+    n: 4
+    area: TL
+    title: Tools for Data and AI
+    summary: Relational databases, SQL from SELECT to window functions, Python with NumPy and pandas, the library map, and R.
+    lessons:
+      - id: u4-l1
+        n: 1
+        title: Relational databases
+        summary: Tables, keys, relationships, normalization, transactions, and how SQL databases differ from NoSQL.
+        minutes: 28
+        skills: [rdb-concepts, keys, normalization, db-integrity, sql-nosql]
+        objectives: [TL5]
+        vocab: [Relational Database, Index]
+        outline:
+          - "Tables, rows, and columns"
+          - "Primary keys and foreign keys"
+          - "One-to-one, one-to-many, many-to-many"
+          - "Normalization to third normal form [Competitive]"
+          - "Constraints, transactions, and ACID [Competitive]"
+          - "Indexes [Competitive]"
+          - "SQL versus NoSQL"
+        notes: "Use the course's sample databases (school and shop) shown in the Reference page. Junction tables for many-to-many. Referential integrity. Indexes speed reads and slow writes."
+      - id: u4-l2
+        n: 2
+        title: "SQL: selecting and filtering"
+        summary: SELECT, DISTINCT, ORDER BY, LIMIT, WHERE, and NULL.
+        minutes: 28
+        skills: [sql-select, sql-where, sql-null]
+        objectives: [TL1]
+        vocab: [SQL, Query]
+        outline:
+          - "SELECT and FROM"
+          - "Aliases, DISTINCT, ORDER BY, LIMIT"
+          - "WHERE with comparisons"
+          - "AND, OR, NOT, and parentheses"
+          - "IN, BETWEEN, LIKE"
+          - "NULL and IS NULL [Competitive]"
+        notes: "AND binds tighter than OR. BETWEEN is inclusive. LIKE: % any run, _ one character. = NULL is never true."
+      - id: u4-l3
+        n: 3
+        title: "SQL: aggregating and grouping"
+        summary: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING, and the logical order a query runs in.
+        minutes: 25
+        skills: [sql-aggregate, sql-order]
+        objectives: [TL1]
+        outline:
+          - "Aggregate functions"
+          - "COUNT(*) versus COUNT(column) [Competitive]"
+          - "GROUP BY"
+          - "HAVING versus WHERE"
+          - "The logical processing order [Competitive]"
+          - "Top-N queries"
+        widgets: [query-order]
+        notes: "Aggregates ignore NULL. Number of result rows = number of groups. Column aliases are not visible in WHERE."
+      - id: u4-l4
+        n: 4
+        title: "SQL: joins, subqueries, and changing data"
+        summary: Every join type and its row count, subqueries, set operations, data changes, and window functions.
+        minutes: 32
+        skills: [sql-joins, sql-subqueries, sql-dml-ddl, sql-window]
+        objectives: [TL1, TL5]
+        vocab: [JOIN]
+        outline:
+          - "INNER JOIN"
+          - "LEFT, RIGHT, and FULL OUTER JOIN"
+          - "Counting the rows a join returns [Competitive]"
+          - "Subqueries and EXISTS [Competitive]"
+          - "UNION, INTERSECT, EXCEPT [Competitive]"
+          - "INSERT, UPDATE, DELETE, CREATE TABLE"
+          - "Window functions and CTEs [Champion]"
+        widgets: [join-explorer]
+        notes: "LEFT JOIN keeps every left row; unmatched right columns are NULL. Duplicate keys multiply rows. DELETE without WHERE deletes every row. RANK vs DENSE_RANK vs ROW_NUMBER with ties."
+      - id: u4-l5
+        n: 5
+        title: Python for data with NumPy and pandas
+        summary: Arrays and vectorization, then Series, DataFrames, selection, and first looks at data.
+        minutes: 30
+        skills: [numpy, pandas-basics]
+        objectives: [TL2, TL3]
+        vocab: [Python, NumPy, Pandas, DataFrame, Series, Vectorization]
+        outline:
+          - "Python lists versus NumPy arrays"
+          - "Vectorization and broadcasting"
+          - "Shape, axis, and boolean masks [Competitive]"
+          - "pandas Series and DataFrames"
+          - "Reading and inspecting data: read_csv, head, info, describe"
+          - "Selecting data: columns, loc, iloc, boolean indexing"
+        notes: "[1,2]+[3,4] concatenates lists; arrays add element-wise. loc includes the end label; iloc excludes the end position. Use & and | with parentheses in pandas filters."
+      - id: u4-l6
+        n: 6
+        title: Cleaning and wrangling with pandas
+        summary: Missing values, duplicates, types, strings, grouping, merging, and reshaping, in code you can read at a glance.
+        minutes: 30
+        skills: [pandas-cleaning, pandas-reshape]
+        objectives: [TL3]
+        outline:
+          - "Finding and handling missing values"
+          - "Duplicates and data types"
+          - "Cleaning strings and dates [Competitive]"
+          - "groupby and agg"
+          - "merge, join, and concat"
+          - "pivot_table and melt [Competitive]"
+        notes: "Methods return new objects by default. value_counts sorts descending. merge how= mirrors SQL joins. Every printed output must come from a real run (mark code blocks with run)."
+      - id: u4-l7
+        n: 7
+        title: The library map and deep learning frameworks
+        summary: Which Python library does what, how PyTorch works, and the scikit-learn workflow.
+        minutes: 25
+        skills: [py-libraries, pytorch, sklearn]
+        objectives: [TL2]
+        vocab: [PyTorch]
+        outline:
+          - "The data stack: NumPy, pandas, Matplotlib, seaborn, SciPy"
+          - "The ML stack: scikit-learn and statsmodels"
+          - "Deep learning: PyTorch, TensorFlow, Keras, Hugging Face"
+          - "Inside PyTorch: tensors, autograd, modules, GPUs [Competitive]"
+          - "The scikit-learn workflow: fit, predict, transform [Competitive]"
+          - "Notebooks and other tools"
+        notes: "PyTorch training loop order: zero_grad, forward, loss, backward, step. Use research/facts.md for origins and versions; avoid version numbers that date quickly."
+      - id: u4-l8
+        n: 8
+        title: R for data science
+        summary: R's syntax, the tidyverse, ggplot2, and when to choose R or Python.
+        minutes: 25
+        skills: [r-basics, tidyverse, r-vs-python]
+        objectives: [TL4]
+        vocab: [R Language]
+        outline:
+          - "What R is for"
+          - "Vectors, assignment with <-, and indexing from 1"
+          - "Data frames, factors, and NA"
+          - "Packages and CRAN"
+          - "The tidyverse: dplyr verbs and pipes"
+          - "ggplot2 and the grammar of graphics [Competitive]"
+          - "RStudio, R Markdown, Quarto, and choosing R or Python"
+        notes: "R is not available to run in this build; keep R snippets simple and double-check semantics by reasoning. x[1] is the first element. sd() uses n - 1."
+
+  # ------------------------------------------------------------------ UNIT 5
+  - id: u5
+    n: 5
+    area: ML
+    title: Machine Learning
+    summary: How machines learn from data, the kinds of learning, data splits, overfitting, the core algorithms, neural networks, and deep learning.
+    lessons:
+      - id: u5-l1
+        n: 1
+        title: What machine learning is
+        summary: Learning from experience, and the vocabulary every ML question uses.
+        minutes: 20
+        skills: [ml-nature, ml-vocab]
+        objectives: [ML1]
+        vocab: [Feature, Target Variable, Hyperparameter]
+        outline:
+          - "Programs that improve with experience: task, performance, experience"
+          - "Machine learning versus traditional programming"
+          - "Features, labels, and examples"
+          - "Parameters versus hyperparameters"
+          - "Models, algorithms, training, and inference [Competitive]"
+      - id: u5-l2
+        n: 2
+        title: Supervised and unsupervised learning
+        summary: Classification, regression, clustering, and the other paradigms test writers name.
+        minutes: 24
+        skills: [supervised, unsupervised, other-paradigms]
+        objectives: [ML4]
+        vocab: [Supervised Learning, Unsupervised Learning]
+        outline:
+          - "Supervised learning: labeled examples"
+          - "Classification versus regression"
+          - "Unsupervised learning: structure without labels"
+          - "Semi-supervised and self-supervised learning [Competitive]"
+          - "Transfer learning, online learning, and batch learning [Competitive]"
+          - "Parametric versus non-parametric models [Champion]"
+      - id: u5-l3
+        n: 3
+        title: Reinforcement learning
+        summary: Agents, rewards, policies, and how Q-learning works.
+        minutes: 22
+        skills: [rl-basics, rl-details]
+        objectives: [ML4]
+        vocab: [Reinforcement Learning]
+        outline:
+          - "Agent, environment, state, action, reward"
+          - "Policies and trial and error"
+          - "Exploration versus exploitation"
+          - "Markov decision processes and discounting [Competitive]"
+          - "Q-learning [Champion]"
+          - "Where RL is used"
+      - id: u5-l4
+        n: 4
+        title: Choosing an approach for a problem
+        summary: Read a scenario and pick the learning type, the task, and a fitting algorithm.
+        minutes: 18
+        skills: [choose-approach]
+        objectives: [ML5]
+        outline:
+          - "Question one: are there labels?"
+          - "Question two: what is being predicted?"
+          - "Question three: is there feedback over time?"
+          - "Picking an algorithm, and when interpretability matters [Competitive]"
+          - "Scenario practice"
+      - id: u5-l5
+        n: 5
+        title: Training, validation, and test data
+        summary: Why data is split three ways, cross-validation, and data leakage.
+        minutes: 24
+        skills: [data-splits, cross-validation, leakage]
+        objectives: [ML2]
+        vocab: [Training Dataset, Validation Dataset, Test Dataset, Cross-Validation]
+        outline:
+          - "What each split is for"
+          - "Typical split sizes and stratification"
+          - "Why the test set is used once"
+          - "k-fold cross-validation [Competitive]"
+          - "Data leakage [Competitive]"
+          - "Splitting time series [Champion]"
+      - id: u5-l6
+        n: 6
+        title: Overfitting, underfitting, and regularization
+        summary: Diagnose a model from its errors, the bias-variance tradeoff, and the fixes.
+        minutes: 24
+        skills: [fit-tradeoff, regularization]
+        objectives: [ML2, ML3]
+        vocab: [Overfitting, Underfitting]
+        outline:
+          - "Underfitting and overfitting"
+          - "Reading training versus validation error"
+          - "The bias-variance tradeoff [Competitive]"
+          - "Fixes for each problem"
+          - "Regularization: L1, L2, dropout, early stopping [Competitive]"
+        widgets: [overfit-explorer]
+      - id: u5-l7
+        n: 7
+        title: Loss functions and gradient descent
+        summary: How a model measures its mistakes and walks downhill to fewer of them.
+        minutes: 25
+        skills: [loss-gd, linear-models]
+        objectives: [ML3]
+        vocab: [Gradient Descent]
+        outline:
+          - "Loss functions: MSE and cross-entropy"
+          - "Gradient descent in one picture"
+          - "The learning rate"
+          - "Batch, stochastic, and mini-batch [Competitive]"
+          - "Linear and logistic regression as learners"
+          - "One update step by hand [Champion]"
+        widgets: [gradient-descent]
+      - id: u5-l8
+        n: 8
+        title: Trees, ensembles, neighbors, and clusters
+        summary: How decision trees split, why forests and boosting win, and how k-NN, SVMs, naive Bayes, and clustering behave.
+        minutes: 32
+        skills: [decision-trees, ensembles, knn-svm-nb, clustering-dimred]
+        objectives: [ML3]
+        outline:
+          - "How a decision tree chooses a split"
+          - "Gini impurity and entropy [Competitive]"
+          - "Information gain [Champion]"
+          - "Pruning and depth"
+          - "Bagging, random forests, and boosting [Competitive]"
+          - "k-nearest neighbors"
+          - "Support vector machines and naive Bayes [Competitive]"
+          - "Clustering and dimensionality reduction algorithms"
+        widgets: [split-calculator]
+      - id: u5-l9
+        n: 9
+        title: Neural networks
+        summary: Neurons, weights, biases, activations, layers, and how training works.
+        minutes: 30
+        skills: [neurons, activations, nn-training]
+        objectives: [ML3, ML6]
+        vocab: [Neural Network]
+        outline:
+          - "One neuron: weighted sum, bias, activation"
+          - "Layers and networks"
+          - "Activation functions"
+          - "Counting parameters [Competitive]"
+          - "Forward pass, loss, backpropagation, update"
+          - "Epochs, batches, and iterations [Competitive]"
+        widgets: [neuron-playground]
+      - id: u5-l10
+        n: 10
+        title: Deep learning
+        summary: What makes learning deep, why depth helps, and the architectures behind images, sequences, and language.
+        minutes: 25
+        skills: [deep-learning, deep-architectures]
+        objectives: [ML6]
+        vocab: [Deep Learning]
+        outline:
+          - "What deep learning is"
+          - "Why depth helps: learned features"
+          - "What deep learning needs: data and compute"
+          - "Convolutional networks for images"
+          - "Recurrent networks and LSTMs for sequences [Competitive]"
+          - "Transformers, autoencoders, and GANs [Competitive]"
+
+  # ------------------------------------------------------------------ UNIT 6
+  - id: u6
+    n: 6
+    area: AI
+    title: AI Basics
+    summary: What AI is and where it came from, its subfields, generative AI, and how large language models work and behave.
+    lessons:
+      - id: u6-l1
+        n: 1
+        title: What AI is, and how it got here
+        summary: Definitions, AI versus ML versus deep learning, narrow versus general AI, and the milestones.
+        minutes: 24
+        skills: [ai-definitions, ai-history]
+        objectives: [AI4]
+        vocab: [Artificial Intelligence]
+        outline:
+          - "Defining artificial intelligence"
+          - "AI, machine learning, and deep learning"
+          - "Narrow, general, and super AI"
+          - "The Turing test"
+          - "A timeline of milestones [Competitive]"
+          - "AI winters and why they happened [Champion]"
+        figures: ["Nested regions: AI contains ML contains deep learning contains generative models"]
+      - id: u6-l2
+        n: 2
+        title: The subfields of AI
+        summary: Computer vision, natural language processing, speech, robotics, human-AI interaction, and more.
+        minutes: 22
+        skills: [computer-vision, nlp-speech, ai-subfields]
+        objectives: [AI4]
+        vocab: [Computer Vision, Natural Language Processing (NLP), Robotics]
+        outline:
+          - "Computer vision and its tasks"
+          - "Natural language processing and its tasks"
+          - "Speech recognition and synthesis"
+          - "Robotics"
+          - "Human-AI interaction"
+          - "Expert systems, planning, and recommender systems [Competitive]"
+      - id: u6-l3
+        n: 3
+        title: Generative AI
+        summary: What makes a model generative, the four model families, and where generative AI is used.
+        minutes: 24
+        skills: [genai-nature, genai-models, genai-uses]
+        objectives: [AI1, AI3]
+        vocab: [Generative AI]
+        outline:
+          - "Generative versus discriminative models"
+          - "What generative AI can produce"
+          - "GANs [Competitive]"
+          - "VAEs [Competitive]"
+          - "Diffusion models"
+          - "Autoregressive transformers"
+          - "Uses by sector"
+      - id: u6-l4
+        n: 4
+        title: How large language models work
+        summary: Tokens, context windows, transformers and attention, and the training pipeline from pretraining to RLHF.
+        minutes: 28
+        skills: [llm-definition, tokens, transformers-attention, llm-training]
+        objectives: [AI5]
+        vocab: [Large Language Model (LLM), Tokenization, Context Window, Transformer, Fine-tuning]
+        outline:
+          - "What an LLM is"
+          - "Tokens and tokenization"
+          - "Context windows"
+          - "The transformer and self-attention [Competitive]"
+          - "Pretraining: predicting the next token"
+          - "Fine-tuning, instruction tuning, and RLHF [Competitive]"
+      - id: u6-l5
+        n: 5
+        title: Using LLMs well
+        summary: Prompting, temperature and sampling, embeddings, retrieval-augmented generation, tools, and agents.
+        minutes: 26
+        skills: [prompting, sampling, embeddings, rag-agents]
+        objectives: [AI6]
+        vocab: [Prompt, Embedding]
+        outline:
+          - "Prompts: zero-shot, few-shot, chain-of-thought"
+          - "Temperature and sampling"
+          - "Embeddings and similarity [Competitive]"
+          - "Retrieval-augmented generation"
+          - "Tools, agents, and multimodal models [Competitive]"
+        widgets: [temperature-explorer]
+      - id: u6-l6
+        n: 6
+        title: Capabilities and limitations
+        summary: What generative AI and LLMs do well, where they fail, and why.
+        minutes: 20
+        skills: [genai-limits, llm-capabilities]
+        objectives: [AI2, AI6]
+        vocab: [Hallucination]
+        outline:
+          - "What LLMs do well"
+          - "Hallucination, briefly"
+          - "Knowledge cutoffs and context limits"
+          - "Non-determinism and prompt sensitivity"
+          - "Bias, cost, and energy [Competitive]"
+          - "Tasks that need tools [Competitive]"
+
+  # ------------------------------------------------------------------ UNIT 7
+  - id: u7
+    n: 7
+    area: PR
+    title: Perception, Representation, and Reasoning
+    summary: How AI perceives, represents knowledge, reasons with logic, and reasons under uncertainty with Bayesian networks.
+    lessons:
+      - id: u7-l1
+        n: 1
+        title: Perception and the big ideas of AI
+        summary: The five big ideas, sensors, and how machines turn signals into meaning.
+        minutes: 18
+        skills: [big-ideas]
+        objectives: [PR5]
+        outline:
+          - "The five big ideas in AI"
+          - "Perception: from signals to meaning"
+          - "The computer vision and speech pipelines"
+          - "Where perception fails [Competitive]"
+      - id: u7-l2
+        n: 2
+        title: Representing knowledge
+        summary: Semantic networks, frames, rules, ontologies, knowledge graphs, and the semantic web.
+        minutes: 25
+        skills: [kr-forms, kg-ontology]
+        objectives: [PR5]
+        vocab: [Knowledge Representation, Knowledge Graph, Ontology, Semantic Web]
+        outline:
+          - "What knowledge representation and reasoning means"
+          - "Semantic networks and inheritance"
+          - "Frames and production rules"
+          - "Ontologies"
+          - "Knowledge graphs and triples"
+          - "The semantic web: RDF, OWL, SPARQL [Competitive]"
+      - id: u7-l3
+        n: 3
+        title: Propositional and predicate logic
+        summary: The language of logic-based AI, from connectives and truth tables to predicates and quantifiers.
+        minutes: 26
+        skills: [prop-logic, fol-syntax]
+        objectives: [PR1, PR2]
+        vocab: [Predicate Logic]
+        outline:
+          - "Propositions and connectives"
+          - "Truth tables and the conditional"
+          - "Equivalences: contrapositive and De Morgan [Competitive]"
+          - "Why we need predicates"
+          - "Constants, variables, predicates, functions"
+          - "Quantifiers: for all, there exists"
+          - "How predicate logic is used in AI"
+      - id: u7-l4
+        n: 4
+        title: Translating and reasoning with logic
+        summary: English to logic and back, negation, and the inference rules that derive new facts.
+        minutes: 28
+        skills: [fol-translate, fol-negation, inference-rules]
+        objectives: [PR1, PR2]
+        vocab: [Inference]
+        outline:
+          - "All, some, no: the four patterns"
+          - "The classic trap: for-all with and"
+          - "Nested quantifiers and order [Champion]"
+          - "Negating quantified statements"
+          - "Modus ponens and modus tollens"
+          - "Fallacies that look valid [Competitive]"
+          - "Unification and resolution [Champion]"
+      - id: u7-l5
+        n: 5
+        title: Rule-based reasoning and expert systems
+        summary: Forward and backward chaining, expert systems, and combining knowledge with learning.
+        minutes: 22
+        skills: [chaining, kr-ml]
+        objectives: [PR1, PR5]
+        vocab: [Forward Chaining, Backward Chaining]
+        outline:
+          - "Rules and facts"
+          - "Forward chaining: data-driven"
+          - "Backward chaining: goal-driven"
+          - "Expert systems and their parts"
+          - "Symbolic and connectionist AI together [Competitive]"
+      - id: u7-l6
+        n: 6
+        title: Logic versus probability
+        summary: Certainty versus degrees of belief, and updating beliefs with Bayes' rule.
+        minutes: 20
+        skills: [logic-vs-prob, bayes-reasoning]
+        objectives: [PR3]
+        vocab: [Logic-Based Reasoning, Probability-Based Reasoning]
+        outline:
+          - "Logic-based reasoning: certain conclusions"
+          - "Probability-based reasoning: degrees of belief"
+          - "Strengths and weaknesses side by side"
+          - "Fuzzy logic is a different idea [Competitive]"
+          - "Updating beliefs with Bayes' rule"
+      - id: u7-l7
+        n: 7
+        title: Bayesian networks
+        summary: Nodes, edges, DAGs, conditional probability tables, joint probabilities, independence, and inference.
+        minutes: 32
+        skills: [bn-structure, bn-joint, bn-independence, bn-inference]
+        objectives: [PR4]
+        vocab: [Bayesian Network, Node, Edge, Directed Acyclic Graph (DAG)]
+        outline:
+          - "What a Bayesian network is"
+          - "Nodes, edges, and why the graph must be acyclic"
+          - "Conditional probability tables"
+          - "Computing a joint probability [Competitive]"
+          - "Counting parameters [Champion]"
+          - "Conditional independence and explaining away [Competitive]"
+          - "Inference: predictive and diagnostic reasoning"
+        widgets: [bayesnet-calculator]
+
+  # ------------------------------------------------------------------ UNIT 8
+  - id: u8
+    n: 8
+    area: PE
+    title: Privacy and Ethics
+    summary: The dilemmas AI creates, how bias gets in and how fairness is measured, LLM security and privacy, credibility, and the rules that govern AI.
+    lessons:
+      - id: u8-l1
+        n: 1
+        title: Ethical dilemmas in AI
+        summary: Self-driving cars, surveillance, generative AI, and the frameworks for reasoning about them.
+        minutes: 24
+        skills: [av-dilemmas, surveillance, genai-dilemmas, ethics-principles]
+        objectives: [PE1]
+        vocab: [Ethical Dilemma, Surveillance, Accountability]
+        outline:
+          - "What makes something an ethical dilemma"
+          - "Self-driving vehicles"
+          - "Surveillance and facial recognition"
+          - "Generative AI: deepfakes, copyright, jobs, and energy"
+          - "Ethical frameworks and principles [Competitive]"
+      - id: u8-l2
+        n: 2
+        title: How AI inherits bias
+        summary: Every stage where bias enters, and the documented cases that show it.
+        minutes: 24
+        skills: [bias-sources, bias-cases]
+        objectives: [PE2]
+        vocab: [Algorithmic Bias]
+        outline:
+          - "What algorithmic bias is"
+          - "Bias from data: historical, representation, measurement, labels"
+          - "Bias from design: proxies, aggregation, evaluation [Competitive]"
+          - "Bias from use: deployment and feedback loops [Competitive]"
+          - "Documented cases"
+        notes: "Every case must come from research/facts.md with correct dates and numbers."
+      - id: u8-l3
+        n: 3
+        title: Fairness and fixing bias
+        summary: Fairness definitions you can compute, why they conflict, and how teams reduce bias.
+        minutes: 22
+        skills: [fairness]
+        objectives: [PE2]
+        vocab: [Fairness, Bias Detection]
+        outline:
+          - "Group fairness: demographic parity"
+          - "Equal opportunity and equalized odds [Competitive]"
+          - "Individual fairness [Competitive]"
+          - "Why you cannot satisfy every definition at once [Champion]"
+          - "Detecting and reducing bias"
+      - id: u8-l4
+        n: 4
+        title: Security risks of LLMs
+        summary: Prompt injection, jailbreaks, poisoning, unsafe outputs, and too much agency.
+        minutes: 22
+        skills: [llm-security]
+        objectives: [PE3]
+        vocab: [Security]
+        outline:
+          - "Why LLMs create new security risks"
+          - "Direct and indirect prompt injection"
+          - "Jailbreaks"
+          - "Data and model poisoning [Competitive]"
+          - "Unsafe output handling and excessive agency [Competitive]"
+          - "Defenses"
+      - id: u8-l5
+        n: 5
+        title: Privacy risks and protections
+        summary: How LLMs leak data, and the techniques that protect privacy.
+        minutes: 25
+        skills: [llm-privacy, privacy-tech]
+        objectives: [PE3]
+        vocab: [Privacy, Data Breach, Differential Privacy, Consent]
+        outline:
+          - "Memorization and training-data extraction"
+          - "Membership inference and model inversion [Competitive]"
+          - "What happens to what you type"
+          - "Anonymization and re-identification"
+          - "k-anonymity [Competitive]"
+          - "Differential privacy and federated learning [Competitive]"
+      - id: u8-l6
+        n: 6
+        title: Credibility, hallucinations, and misinformation
+        summary: Why models make things up, how misinformation spreads, and how to verify.
+        minutes: 22
+        skills: [hallucination, misinformation]
+        objectives: [PE4]
+        vocab: [Misinformation]
+        outline:
+          - "What a hallucination is"
+          - "Why hallucinations happen"
+          - "Reducing hallucinations"
+          - "Misinformation, disinformation, and deepfakes"
+          - "Automation bias and overreliance [Competitive]"
+          - "Verifying what you read"
+      - id: u8-l7
+        n: 7
+        title: Laws, frameworks, and responsible AI
+        summary: The privacy laws and AI rules you should know, and the practices of responsible AI.
+        minutes: 26
+        skills: [ai-laws, responsible-ai]
+        objectives: [PE1, PE2, PE3]
+        vocab: [Transparency, Explainability, Ethics Guidelines]
+        outline:
+          - "Privacy laws: GDPR, CCPA and CPRA, HIPAA, COPPA, FERPA"
+          - "The EU AI Act's risk tiers [Competitive]"
+          - "The NIST AI Risk Management Framework [Competitive]"
+          - "Transparency and explainability: LIME and SHAP [Competitive]"
+          - "Accountability and human oversight"
+          - "Professional codes: ACM and IEEE"
+        notes: "Phrase legal status so it stays true; use only research/facts.md."
+
+# ---------------------------------------------------------------------- SKILLS
+# Each skill is one recognizable question type. `patterns` lists the variants
+# the question bank must cover (like 1, 1b, 1c in a skill grid).
+skills:
+  # Unit 1 ---------------------------------------------------------------
+  - id: ds-nature
+    name: What data science is
+    objectives: [DL1]
+    patterns: ["Pick the best definition of data science", "Name the three disciplines it combines", "Recognize data science work in a scenario", "Order data, information, knowledge (DIKW)", "Define data literacy"]
+  - id: ds-roles
+    name: Data roles and teams
+    objectives: [DL1]
+    patterns: ["Match a task to a data analyst, data scientist, data engineer, or ML engineer", "Identify who builds pipelines or deploys models", "Recognize database administrator and data steward duties"]
+  - id: ds-analytics
+    name: The four kinds of analytics
+    objectives: [DL1]
+    patterns: ["Classify a question as descriptive, diagnostic, predictive, or prescriptive", "Order the four by complexity and value", "Distinguish data science from statistics, computer science, and BI"]
+  - id: data-structure
+    name: Structured, semi-structured, or unstructured
+    objectives: [DL2]
+    patterns: ["Classify an example (tweets, sensor table, JSON, email, images)", "Properties: schema, searchability, storage", "Which kind needs NLP or computer vision to analyze", "Why semi-structured data is in between"]
+  - id: data-formats
+    name: File formats and storage
+    objectives: [DL2]
+    patterns: ["Identify a format from a snippet (CSV, JSON, XML)", "Strengths of each format", "Parquet and columnar storage", "Warehouse versus lake versus database", "Schema-on-write versus schema-on-read"]
+  - id: metadata
+    name: Metadata and data dictionaries
+    objectives: [DL2, DL5]
+    patterns: ["Define metadata", "Identify metadata in an example (EXIF, timestamps, column types)", "Descriptive, structural, administrative metadata", "What a data dictionary contains"]
+  - id: var-num-cat
+    name: Numeric or categorical
+    objectives: [DL3]
+    patterns: ["Classify a variable", "Trick numbers that are labels (ZIP, phone, ID, jersey)", "Pick the categorical variable in a table", "Binary yes/no and ratings"]
+  - id: var-disc-cont
+    name: Discrete or continuous
+    objectives: [DL3, PS5]
+    patterns: ["Classify counts versus measurements", "Find the continuous variable in a list", "Edge cases: age recorded in years, money, time"]
+  - id: var-levels
+    name: Levels of measurement
+    objectives: [DL3]
+    patterns: ["Classify as nominal, ordinal, interval, or ratio", "Which level has a true zero", "Which operations or ratios are meaningful", "Which measure of center fits each level"]
+  - id: base-binary
+    name: Binary and decimal
+    objectives: [DL4]
+    patterns: ["Binary to decimal", "Decimal to binary", "Place values and powers of two", "Count in binary / next number", "Even or odd from the last bit"]
+  - id: base-hex
+    name: Hexadecimal
+    objectives: [DL4]
+    patterns: ["Hex to decimal", "Decimal to hex", "Hex to binary and back by nibbles", "Values of A to F and FF", "Largest value with n hex digits"]
+  - id: base-other
+    name: Octal and other bases
+    objectives: [DL4]
+    patterns: ["Octal to decimal and binary", "Binary to octal by groups of three", "Invalid digits for a base", "Compare values written in different bases", "Prefixes 0b, 0o, 0x"]
+  - id: bits-bytes
+    name: Bits, bytes, and storage units
+    objectives: [DL4]
+    patterns: ["Values representable with n bits", "Largest unsigned value", "Bits needed for N distinct values", "KB versus KiB conversions", "Bits versus bytes (Mbps and MB/s)"]
+  - id: bin-arith
+    name: Binary arithmetic and signed numbers
+    objectives: [DL4]
+    patterns: ["Add two binary numbers", "Detect overflow in a fixed width", "Two's complement of a number", "Range of an n-bit signed integer", "Read a negative two's complement value"]
+  - id: text-encoding
+    name: Text encoding
+    objectives: [DL4]
+    patterns: ["ASCII code of a character", "Character from a code", "Uppercase and lowercase offset of 32", "ASCII versus Unicode versus UTF-8", "Bytes per character in UTF-8", "Why text becomes garbled"]
+  - id: media-encoding
+    name: Colors, images, and sound as numbers
+    objectives: [DL4]
+    patterns: ["Hex color to RGB", "RGB to hex", "Number of colors in 24-bit color", "Image file size", "Audio file size", "Lossless versus lossy compression"]
+  - id: data-sources
+    name: Data sources and collection methods
+    objectives: [DL5]
+    patterns: ["Match a source to the data it yields", "Choose a source for a goal", "APIs versus web scraping", "Open data portals and public records", "Pros and cons of surveys, sensors, logs"]
+  - id: study-types
+    name: Primary, secondary, and study design
+    objectives: [DL5]
+    patterns: ["Primary or secondary data", "Experiment or observational study", "Which design supports a causal claim", "Cross-sectional, longitudinal, time series", "Census versus sample", "First-, second-, third-party data"]
+  - id: big-data
+    name: Big data and the Vs
+    objectives: [DL5]
+    patterns: ["Match a scenario to volume, velocity, variety, veracity, value", "Batch versus streaming", "Tools for big data (recognition)"]
+  - id: data-gov
+    name: Pipelines, governance, and lineage
+    objectives: [DL5, DL6, DL7]
+    patterns: ["Define a data pipeline", "ETL versus ELT", "What data governance covers", "Data lineage and provenance", "Data stewardship and catalogs"]
+  - id: wrangling
+    name: Data wrangling and tidy data
+    objectives: [DL6]
+    patterns: ["Define data wrangling", "Why wrangling matters", "Identify a tidy table", "Wide versus long format", "Parsing and type conversion problems"]
+  - id: scaling
+    name: Normalization and standardization
+    objectives: [DL6]
+    patterns: ["Compute a min-max normalized value", "Compute a z-score standardized value", "Which models need scaling", "Fit the scaler on training data only", "Normalization versus standardization"]
+  - id: encoding-cats
+    name: Encoding categorical variables
+    objectives: [DL6]
+    patterns: ["Columns created by one-hot encoding", "When label encoding is appropriate", "The dummy variable trap", "High cardinality problems"]
+  - id: feature-eng
+    name: Feature engineering and transformations
+    objectives: [DL6]
+    patterns: ["Define feature engineering", "Choose a useful new feature", "Equal-width versus equal-frequency bins", "When to log-transform", "Feature selection versus extraction"]
+  - id: ds-process
+    name: Stages of the data science process
+    objectives: [DL7]
+    patterns: ["Put stages in order", "Which stage an activity belongs to", "The first step of any project", "The process is iterative", "Monitoring after deployment"]
+  - id: process-models
+    name: OSEMN, CRISP-DM, and other models
+    objectives: [DL7]
+    patterns: ["Expand OSEMN", "CRISP-DM phases in order", "The CRISP-DM phase that usually takes longest", "Match a task to a CRISP-DM phase"]
+  - id: eda
+    name: Exploratory data analysis
+    objectives: [DL7]
+    patterns: ["Purpose of EDA", "EDA techniques", "When EDA happens", "What EDA reveals before modeling"]
+  - id: reproducibility
+    name: Reproducibility and communication
+    objectives: [DL7]
+    patterns: ["Practices that make work reproducible", "Purpose of notebooks, version control, seeds", "Communicating results to stakeholders"]
+  # Unit 2 ---------------------------------------------------------------
+  - id: mean
+    name: Computing the mean
+    objectives: [PS1]
+    patterns: ["Mean of a list", "Mean from a frequency table", "Weighted mean", "Missing value from a known mean", "New mean after adding or removing a value", "Combined mean of two groups"]
+  - id: median
+    name: Computing the median
+    objectives: [PS1]
+    patterns: ["Median of an unsorted list (odd n)", "Median with even n", "Median from a frequency table", "Median position", "Effect of changing an extreme value"]
+  - id: mode-range
+    name: Mode and range
+    objectives: [PS1]
+    patterns: ["Find the mode", "Bimodal or no mode", "Mode of categorical data", "Compute the range", "Range and outliers"]
+  - id: center-choice
+    name: Outliers, skew, and choosing a center
+    objectives: [PS1]
+    patterns: ["Effect of an outlier on mean, median, mode", "Mean versus median under skew", "Best center for incomes or home prices", "Infer skew from mean and median"]
+  - id: quartiles
+    name: Quartiles, percentiles, five-number summary
+    objectives: [PS1, PS2]
+    patterns: ["Compute Q1 and Q3", "Compute the IQR", "Interpret a percentile", "Percentile rank", "Five-number summary from data"]
+  - id: outlier-rule
+    name: Finding outliers with fences
+    objectives: [PS2]
+    patterns: ["Compute the 1.5 x IQR fences", "Is a value an outlier", "z-score outlier rules", "What whiskers show"]
+  - id: variance-sd
+    name: Variance and standard deviation
+    objectives: [PS2]
+    patterns: ["Compute population variance", "Compute sample variance (n - 1)", "Standard deviation from variance", "Units of variance and SD", "Which dataset has the larger SD", "Meaning of SD = 0"]
+  - id: sd-props
+    name: How spread responds to changes
+    objectives: [PS2]
+    patterns: ["Add a constant to every value", "Multiply every value by a constant", "Effect of adding an outlier", "Effect of adding a value at the mean", "Software ddof defaults"]
+  - id: coef-var
+    name: Coefficient of variation
+    objectives: [PS2]
+    patterns: ["Compute CV", "Compare variability across different units", "When CV is meaningful"]
+  - id: covariance
+    name: Covariance
+    objectives: [PS2]
+    patterns: ["Interpret the sign", "Compute a small covariance", "Units of covariance", "Why covariance depends on scale", "Variance of a sum (Champion)"]
+  - id: correlation
+    name: Correlation coefficient r
+    objectives: [PS2]
+    patterns: ["Range and meaning of r", "Match r to a scatterplot", "Effect of changing units", "Compute r squared", "r near 0 with a strong curve", "Effect of an outlier on r"]
+  - id: normal-props
+    name: Properties of the normal distribution
+    objectives: [PS3]
+    patterns: ["Shape and symmetry", "Mean, median, mode equal", "Parameters mu and sigma", "Area under the curve", "Why the normal distribution matters", "Normal distribution in AI"]
+  - id: empirical-rule
+    name: The 68-95-99.7 rule
+    objectives: [PS3]
+    patterns: ["Percent within 1, 2, 3 SD", "Percent in a tail", "Percent between two values", "Expected count out of N", "Value at a given percent"]
+  - id: z-scores
+    name: z-scores and the standard normal
+    objectives: [PS3]
+    patterns: ["Compute z", "Find x from z", "Compare scores across distributions", "Interpret the sign and size of z", "Percentile from a common z"]
+  - id: clt
+    name: Sampling distributions and the CLT
+    objectives: [PS3]
+    patterns: ["State the CLT", "Shape of the sampling distribution", "Compute standard error", "Effect of sample size on SE", "CLT versus law of large numbers", "Parameter versus statistic"]
+  - id: inference-basics
+    name: Confidence, significance, and power
+    objectives: [PS3]
+    patterns: ["Meaning of a 95% confidence interval", "Margin of error and sample size", "Meaning of a p-value", "Type I and Type II errors", "What increases power"]
+  - id: prob-basics
+    name: Probability basics
+    objectives: [PS4]
+    patterns: ["Probability of an event with equally likely outcomes", "Complement", "At least one", "Theoretical versus experimental", "Odds versus probability"]
+  - id: prob-rules
+    name: Addition and multiplication rules
+    objectives: [PS4]
+    patterns: ["P(A or B) with overlap", "Mutually exclusive versus independent", "P(A and B) for independent events", "With and without replacement", "Counting outcomes"]
+  - id: conditional
+    name: Conditional probability and two-way tables
+    objectives: [PS4]
+    patterns: ["P(A | B) from a two-way table", "P(A | B) versus P(B | A)", "Test for independence", "Tree diagrams"]
+  - id: bayes
+    name: "Bayes' theorem"
+    objectives: [PS4]
+    patterns: ["Posterior from prior and likelihoods", "Medical test with a low base rate", "Spam filter probability", "Natural frequency method"]
+  - id: rv-dist
+    name: Random variables and distributions
+    objectives: [PS4, PS5]
+    patterns: ["Find the missing probability", "Is this a valid distribution", "Cumulative probability", "P(X = a) for a continuous variable"]
+  - id: expected-value
+    name: Expected value
+    objectives: [PS4]
+    patterns: ["EV of a probability table", "EV of a fair die", "EV of two dice", "EV as a long-run average"]
+  - id: ev-decisions
+    name: Expected value in games and decisions
+    objectives: [PS4]
+    patterns: ["Expected winnings minus cost", "Is the game fair", "Insurance or warranty decisions", "Compare two options by EV", "Expected count np"]
+  - id: ev-rules
+    name: Linearity of expectation and variance of X
+    objectives: [PS4]
+    patterns: ["E(aX + b)", "E(X + Y)", "Var(X) from a table", "Var(aX + b)"]
+  - id: distributions
+    name: Common distributions
+    objectives: [PS5]
+    patterns: ["Identify binomial, Poisson, uniform, normal from a scenario", "Binomial mean and variance", "Poisson mean equals variance", "Uniform mean"]
+  - id: var-types
+    name: Types of variables in a study
+    objectives: [PS5]
+    patterns: ["Explanatory versus response", "Independent versus dependent", "Confounding variable", "Discrete versus continuous random variable", "Quantitative versus qualitative"]
+  # Unit 3 ---------------------------------------------------------------
+  - id: chart-choice
+    name: Choosing the right chart
+    objectives: [DA1]
+    patterns: ["Distribution of one numeric variable", "Compare categories", "Change over time", "Relationship between two numeric variables", "Parts of a whole", "Many variables at once"]
+  - id: chart-types
+    name: Chart types and their features
+    objectives: [DA2]
+    patterns: ["Histogram versus bar chart", "What a heatmap shows", "Violin plots", "Bubble charts", "Scatterplot matrices", "Stem-and-leaf and dot plots"]
+  - id: misleading
+    name: Misleading visualizations
+    objectives: [DA1]
+    patterns: ["Truncated axis", "3D and area distortion", "Pie with too many slices", "Dual axes and cherry-picked ranges", "Best practices"]
+  - id: histograms
+    name: Reading histograms
+    objectives: [DA2]
+    patterns: ["Identify the shape", "Count values from bars", "Which bin holds the median", "Mean versus median from the shape", "Bin width effects"]
+  - id: boxplots
+    name: Reading boxplots
+    objectives: [DA2]
+    patterns: ["Read the five-number summary", "Compute the IQR from a plot", "Identify outliers", "Skew from a boxplot", "Compare two groups", "What boxplots hide"]
+  - id: scatterplots
+    name: Reading scatterplots
+    objectives: [DA2]
+    patterns: ["Direction, form, strength", "Estimate r", "Spot an outlier or influential point", "Residual sign", "Which variable goes on the x-axis"]
+  - id: causation
+    name: Correlation, causation, and confounding
+    objectives: [DA3]
+    patterns: ["Is the causal claim justified", "Identify the confounder", "Reverse causation", "Simpson's paradox", "What design proves causation"]
+  - id: data-quality
+    name: Dimensions of data quality
+    objectives: [DA5]
+    patterns: ["Match a problem to accuracy, completeness, consistency, timeliness, validity, or uniqueness", "Factors that affect quality", "Effect of low-quality sources", "Effect of incomplete datasets"]
+  - id: sampling-bias
+    name: Sampling methods and collection bias
+    objectives: [DA5]
+    patterns: ["Identify the sampling method", "Identify the bias", "Survivorship bias", "Nonresponse and voluntary response", "Fixing a biased sample"]
+  - id: why-clean
+    name: Why cleaning data matters
+    objectives: [DA4]
+    patterns: ["Garbage in, garbage out", "Effect of dirty data on a model", "Steps of cleaning", "Cleaning versus wrangling"]
+  - id: missing-data
+    name: Handling missing data
+    objectives: [DA4]
+    patterns: ["MCAR, MAR, or MNAR", "Delete or impute", "Mean versus median imputation", "Effect of imputation on variance", "Forward fill for time series", "Missing indicators"]
+  - id: clean-issues
+    name: Duplicates, inconsistencies, and outliers
+    objectives: [DA4, DA5]
+    patterns: ["Detect duplicates", "Fix inconsistent formats", "Invalid values", "How to treat an outlier"]
+  - id: validate-clean
+    name: Validating cleaned data
+    objectives: [DA4]
+    patterns: ["Checks after cleaning", "Assertions and constraints", "Documenting cleaning steps"]
+  - id: multivariate
+    name: Univariate, bivariate, multivariate methods
+    objectives: [DA3]
+    patterns: ["Classify an analysis", "Dependence or interdependence method", "Pick a technique for a goal"]
+  - id: multiple-regression
+    name: Multiple linear regression
+    objectives: [DA3]
+    patterns: ["Predict from an equation", "Interpret a coefficient", "R squared versus adjusted R squared", "Multicollinearity", "Assumptions"]
+  - id: logistic-regression
+    name: Logistic regression
+    objectives: [DA3]
+    patterns: ["When to use it", "Sigmoid output range", "Probability to class with a threshold", "Odds and log-odds", "Sign of a coefficient"]
+  - id: interdependence
+    name: PCA, factor analysis, cluster analysis
+    objectives: [DA3]
+    patterns: ["Purpose of PCA", "Read variance explained", "Factor analysis and latent factors", "Cluster analysis versus classification"]
+  - id: linreg-applied
+    name: Linear regression in practice
+    objectives: [DA6]
+    patterns: ["Predict with y = a + bx", "Interpret slope in context", "Interpret intercept", "Compute a residual", "Extrapolation", "Pick a regression problem"]
+  - id: tree-applied
+    name: Decision trees in practice
+    objectives: [DA6]
+    patterns: ["Classify a case by following a tree", "Root, internal, and leaf nodes", "Why trees are interpretable", "Typical applications"]
+  - id: kmeans-applied
+    name: k-means clustering in practice
+    objectives: [DA6]
+    patterns: ["Steps in order", "Compute a centroid", "Assign a point to a cluster", "Choosing k", "Why scale first", "Applications"]
+  - id: algo-match
+    name: Matching algorithms to problems
+    objectives: [DA6]
+    patterns: ["Regression, classification, or clustering", "Anomaly detection", "Association rules", "Recommendation", "Forecasting"]
+  - id: reg-metrics
+    name: Regression metrics
+    objectives: [DA6]
+    patterns: ["Compute MAE", "Compute MSE and RMSE", "Interpret R squared", "Which metric penalizes large errors", "Units of each metric"]
+  - id: confusion-matrix
+    name: Confusion matrix and metrics
+    objectives: [DA6]
+    patterns: ["Read TP, FP, TN, FN", "Compute accuracy", "Compute precision", "Compute recall", "Compute F1", "Specificity and false positive rate"]
+  - id: metric-choice
+    name: Choosing metrics and handling imbalance
+    objectives: [DA6]
+    patterns: ["Accuracy paradox", "Precision or recall for a scenario", "Threshold trade-off", "ROC and AUC", "Fixes for imbalanced classes"]
+  # Unit 4 ---------------------------------------------------------------
+  - id: rdb-concepts
+    name: Relational database concepts
+    objectives: [TL5]
+    patterns: ["Tables, rows, columns vocabulary", "What makes a database relational", "Examples of RDBMS", "Schema"]
+  - id: keys
+    name: Keys and relationships
+    objectives: [TL5]
+    patterns: ["Identify the primary key", "Identify a foreign key", "Relationship type from a description", "Junction tables", "Referential integrity violations", "Composite keys"]
+  - id: normalization
+    name: Normalization
+    objectives: [TL5]
+    patterns: ["Purpose of normalization", "Spot a 1NF violation", "Partial and transitive dependencies", "Update, insert, delete anomalies", "When to denormalize"]
+  - id: db-integrity
+    name: Constraints, transactions, indexes
+    objectives: [TL5]
+    patterns: ["Match a constraint to its rule", "ACID properties in a scenario", "COMMIT and ROLLBACK", "Trade-offs of indexes"]
+  - id: sql-nosql
+    name: SQL and NoSQL databases
+    objectives: [TL5]
+    patterns: ["Choose relational or NoSQL", "Document, key-value, column, graph stores", "Schema flexibility and scaling"]
+  - id: sql-select
+    name: SELECT, DISTINCT, ORDER BY, LIMIT
+    objectives: [TL1]
+    patterns: ["Write the query for a request", "Predict the result rows", "DISTINCT row count", "Sort on two columns", "Top-N with LIMIT"]
+  - id: sql-where
+    name: Filtering rows with WHERE
+    objectives: [TL1]
+    patterns: ["AND/OR precedence", "IN and BETWEEN", "LIKE patterns", "Count rows a filter returns", "Fix a broken WHERE"]
+  - id: sql-null
+    name: NULL in SQL
+    objectives: [TL1]
+    patterns: ["IS NULL versus = NULL", "COUNT(*) versus COUNT(column)", "AVG ignores NULL", "NULL in arithmetic", "COALESCE"]
+  - id: sql-aggregate
+    name: Aggregates, GROUP BY, HAVING
+    objectives: [TL1]
+    patterns: ["Compute an aggregate", "Rows returned by GROUP BY", "HAVING versus WHERE", "Write a grouped query", "Invalid column in SELECT"]
+  - id: sql-order
+    name: Logical query processing order
+    objectives: [TL1]
+    patterns: ["Order of clauses as executed", "Why an alias fails in WHERE", "Written order of clauses"]
+  - id: sql-joins
+    name: Joins and their row counts
+    objectives: [TL1]
+    patterns: ["Pick the join for a request", "Rows from INNER JOIN", "Rows from LEFT JOIN", "FULL OUTER and CROSS JOIN counts", "Find unmatched rows", "Duplicate keys multiply rows"]
+  - id: sql-subqueries
+    name: Subqueries and set operations
+    objectives: [TL1]
+    patterns: ["Subquery with IN", "Compare to an average with a subquery", "EXISTS", "UNION versus UNION ALL", "INTERSECT and EXCEPT"]
+  - id: sql-dml-ddl
+    name: Changing data and tables
+    objectives: [TL1]
+    patterns: ["INSERT syntax", "UPDATE with WHERE", "DELETE without WHERE", "CREATE TABLE with constraints", "DROP versus TRUNCATE versus DELETE", "DDL, DML, DCL, TCL"]
+  - id: sql-window
+    name: Window functions and CTEs
+    objectives: [TL1]
+    patterns: ["RANK versus DENSE_RANK versus ROW_NUMBER", "PARTITION BY", "Running totals", "Window functions keep rows", "WITH clauses"]
+  - id: numpy
+    name: NumPy arrays and vectorization
+    objectives: [TL2, TL3]
+    patterns: ["List versus array behavior", "Element-wise operations", "Broadcasting a scalar or row", "shape and axis", "Boolean masks", "np.std default"]
+  - id: pandas-basics
+    name: pandas Series and DataFrames
+    objectives: [TL3]
+    patterns: ["Series versus DataFrame", "What head, info, describe show", "shape output", "loc versus iloc", "Boolean filtering", "Selecting one or many columns"]
+  - id: pandas-cleaning
+    name: Cleaning with pandas
+    objectives: [TL3]
+    patterns: ["isna().sum()", "dropna options", "fillna", "drop_duplicates", "astype and to_datetime", "String methods"]
+  - id: pandas-reshape
+    name: Grouping, merging, reshaping in pandas
+    objectives: [TL3]
+    patterns: ["groupby result", "value_counts", "merge with how=", "concat by rows or columns", "pivot_table", "melt"]
+  - id: py-libraries
+    name: The Python library map
+    objectives: [TL2]
+    patterns: ["Match library to task", "Which library for deep learning", "Which library for plots", "Which library for classical ML", "Which library for statistics or scientific computing"]
+  - id: pytorch
+    name: PyTorch and deep learning frameworks
+    objectives: [TL2]
+    patterns: ["What a tensor is", "What autograd does", "Training loop order", "Moving to a GPU", "PyTorch versus TensorFlow/Keras"]
+  - id: sklearn
+    name: The scikit-learn workflow
+    objectives: [TL2, TL3]
+    patterns: ["fit, predict, transform", "train_test_split", "fit_transform on training data only", "Pick the right estimator class"]
+  - id: r-basics
+    name: R basics
+    objectives: [TL4]
+    patterns: ["Assignment with <-", "Indexing from 1", "Vector operations", "Data frames and $", "Factors and NA", "install.packages versus library"]
+  - id: tidyverse
+    name: The tidyverse and ggplot2
+    objectives: [TL4]
+    patterns: ["Match a dplyr verb to its job", "Read a pipe chain", "ggplot2 layers and aes", "tidyr reshaping"]
+  - id: r-vs-python
+    name: R, Python, and the wider toolkit
+    objectives: [TL4, TL2]
+    patterns: ["When to choose R", "When to choose Python", "RStudio, R Markdown, Quarto, Shiny", "Other tools: Excel, Tableau, Power BI, Spark"]
+  # Unit 5 ---------------------------------------------------------------
+  - id: ml-nature
+    name: What machine learning is
+    objectives: [ML1]
+    patterns: ["Identify T, P, and E", "ML versus traditional programming", "When ML is a good fit", "Training versus inference"]
+  - id: ml-vocab
+    name: Features, labels, parameters, hyperparameters
+    objectives: [ML1]
+    patterns: ["Feature or label", "Parameter or hyperparameter", "Model versus algorithm", "Examples and instances"]
+  - id: supervised
+    name: Supervised learning
+    objectives: [ML4]
+    patterns: ["Recognize supervised learning", "Classification or regression", "Binary versus multiclass", "Example algorithms"]
+  - id: unsupervised
+    name: Unsupervised learning
+    objectives: [ML4]
+    patterns: ["Recognize unsupervised learning", "Clustering, dimensionality reduction, association rules, anomaly detection", "Why evaluation is harder"]
+  - id: other-paradigms
+    name: Other learning paradigms
+    objectives: [ML4, ML1]
+    patterns: ["Semi-supervised", "Self-supervised", "Transfer learning", "Online versus batch", "Parametric versus non-parametric", "Lazy versus eager learners"]
+  - id: rl-basics
+    name: Reinforcement learning
+    objectives: [ML4]
+    patterns: ["Identify agent, environment, state, action, reward", "Policy", "Exploration versus exploitation", "How RL differs from supervised learning", "RL examples"]
+  - id: rl-details
+    name: MDPs and Q-learning
+    objectives: [ML4]
+    patterns: ["Parts of an MDP", "Effect of the discount factor", "Q-value meaning", "One Q-learning update"]
+  - id: choose-approach
+    name: Choosing an approach for a problem
+    objectives: [ML5]
+    patterns: ["Supervised, unsupervised, or reinforcement for a scenario", "Classification, regression, or clustering", "Pick an algorithm under constraints", "Interpretability requirements"]
+  - id: data-splits
+    name: Training, validation, and test sets
+    objectives: [ML2]
+    patterns: ["Purpose of each split", "Which split tunes hyperparameters", "Why not reuse the test set", "Typical proportions", "Stratified splits"]
+  - id: cross-validation
+    name: Cross-validation
+    objectives: [ML2]
+    patterns: ["k-fold procedure", "How many models are trained", "Training size per fold", "When cross-validation helps", "LOOCV"]
+  - id: leakage
+    name: Data leakage
+    objectives: [ML2]
+    patterns: ["Spot target leakage", "Preprocessing before splitting", "Time leakage", "Symptoms of leakage"]
+  - id: fit-tradeoff
+    name: Overfitting, underfitting, bias-variance
+    objectives: [ML2, ML3]
+    patterns: ["Diagnose from train and validation error", "High bias or high variance", "Fixes for overfitting", "Fixes for underfitting", "Model complexity curve"]
+  - id: regularization
+    name: Regularization
+    objectives: [ML3]
+    patterns: ["L1 versus L2", "Effect of increasing lambda", "Dropout", "Early stopping"]
+  - id: loss-gd
+    name: Loss functions and gradient descent
+    objectives: [ML3]
+    patterns: ["Pick the loss for a task", "Learning rate too high or too low", "One gradient descent step", "Batch, stochastic, mini-batch", "Local minima"]
+  - id: linear-models
+    name: Linear and logistic regression as learners
+    objectives: [ML3]
+    patterns: ["Compute a linear model prediction", "Compute a logistic model probability", "Decision boundary", "What training adjusts"]
+  - id: decision-trees
+    name: How decision trees learn
+    objectives: [ML3]
+    patterns: ["Compute Gini impurity", "Compute entropy", "Compute information gain", "Pick the best split", "Effect of max depth", "Pruning"]
+  - id: ensembles
+    name: Random forests, bagging, boosting
+    objectives: [ML3]
+    patterns: ["Bagging versus boosting", "What makes a random forest random", "Majority vote", "Which reduces variance and which reduces bias"]
+  - id: knn-svm-nb
+    name: k-NN, SVMs, and naive Bayes
+    objectives: [ML3]
+    patterns: ["Classify with k-NN", "Effect of k", "Why k-NN needs scaling", "Support vectors and margin", "Kernel trick", "Naive independence assumption"]
+  - id: clustering-dimred
+    name: Clustering and dimensionality reduction algorithms
+    objectives: [ML3, ML4]
+    patterns: ["One k-means iteration", "Read a dendrogram", "DBSCAN and noise", "PCA components"]
+  - id: neurons
+    name: Neurons, weights, and layers
+    objectives: [ML3, ML6]
+    patterns: ["Compute a neuron's output", "Role of the bias", "Perceptron limits (XOR)", "Count weights and biases", "Input, hidden, output layers"]
+  - id: activations
+    name: Activation functions
+    objectives: [ML3, ML6]
+    patterns: ["Output range of sigmoid, tanh, ReLU", "Compute ReLU or sigmoid", "Softmax for multiclass", "Why nonlinearity is needed", "Vanishing gradients"]
+  - id: nn-training
+    name: How neural networks are trained
+    objectives: [ML3, ML6]
+    patterns: ["Order of training steps", "What backpropagation computes", "Epochs, batches, iterations arithmetic", "Effect of learning rate"]
+  - id: deep-learning
+    name: What deep learning is
+    objectives: [ML6]
+    patterns: ["Define deep learning", "Why depth helps", "Deep learning versus classical ML features", "What deep learning needs"]
+  - id: deep-architectures
+    name: CNNs, RNNs, transformers, and more
+    objectives: [ML6]
+    patterns: ["Match architecture to data", "Convolution and pooling", "Why LSTMs exist", "Transformers versus RNNs", "Autoencoders and GANs"]
+  # Unit 6 ---------------------------------------------------------------
+  - id: ai-definitions
+    name: Defining AI
+    objectives: [AI4]
+    patterns: ["Best definition of AI", "AI, ML, DL nesting", "Narrow versus general AI", "The Turing test", "Symbolic versus connectionist"]
+  - id: ai-history
+    name: Milestones in AI history
+    objectives: [AI4]
+    patterns: ["Order milestones", "Match event to year", "Match person to contribution", "Causes of AI winters"]
+  - id: computer-vision
+    name: Computer vision
+    objectives: [AI4]
+    patterns: ["Name the task (classification, detection, segmentation)", "Images as numbers", "Applications", "Typical models"]
+  - id: nlp-speech
+    name: Natural language processing and speech
+    objectives: [AI4]
+    patterns: ["Name the NLP task", "Speech recognition versus synthesis", "NLU versus NLG", "Why language is hard"]
+  - id: ai-subfields
+    name: Robotics, human-AI interaction, other subfields
+    objectives: [AI4]
+    patterns: ["Match an application to a subfield", "Sense, plan, act", "Human-AI interaction goals", "Expert systems and recommenders"]
+  - id: genai-nature
+    name: What generative AI is
+    objectives: [AI1]
+    patterns: ["Generative versus discriminative", "What generative AI produces", "Foundation models", "How it learns patterns"]
+  - id: genai-models
+    name: GANs, VAEs, diffusion, transformers
+    objectives: [AI1]
+    patterns: ["Generator versus discriminator", "Latent space", "Noising and denoising", "Next-token generation", "Match description to family"]
+  - id: genai-uses
+    name: Uses of generative AI
+    objectives: [AI3]
+    patterns: ["Match a use to a sector", "Healthcare and drug discovery", "Research", "Digital art and media", "Synthetic data"]
+  - id: genai-limits
+    name: Capabilities and limits of generative AI
+    objectives: [AI2]
+    patterns: ["Identify a limitation", "Identify a capability", "Cost and energy", "Copyright uncertainty", "Non-determinism"]
+  - id: llm-definition
+    name: What a large language model is
+    objectives: [AI5]
+    patterns: ["Best definition of an LLM", "What makes it large", "Base model versus chat model", "Foundation model"]
+  - id: tokens
+    name: Tokens and context windows
+    objectives: [AI5, AI6]
+    patterns: ["What a token is", "Estimate tokens from words", "What a context window limits", "What happens when the context is full"]
+  - id: transformers-attention
+    name: Transformers and self-attention
+    objectives: [AI5]
+    patterns: ["What self-attention does", "Why transformers parallelize", "Encoder versus decoder", "Positional encoding", "Query, key, value"]
+  - id: llm-training
+    name: How LLMs are trained and aligned
+    objectives: [AI5]
+    patterns: ["Pretraining objective", "Fine-tuning", "Instruction tuning", "RLHF steps", "Self-supervised labels"]
+  - id: prompting
+    name: Prompting techniques
+    objectives: [AI6]
+    patterns: ["Zero-shot versus few-shot", "Chain-of-thought", "In-context learning changes no weights", "System and role prompts"]
+  - id: sampling
+    name: Temperature and sampling
+    objectives: [AI6]
+    patterns: ["Effect of low versus high temperature", "Top-k and top-p", "Why answers vary"]
+  - id: embeddings
+    name: Embeddings and semantic search
+    objectives: [AI6]
+    patterns: ["What an embedding is", "Compute cosine similarity", "Semantic versus keyword search", "Vector databases"]
+  - id: rag-agents
+    name: Retrieval, tools, agents, multimodal
+    objectives: [AI6]
+    patterns: ["How RAG works", "Why RAG reduces hallucination", "Tool use", "What an agent does", "Multimodal models"]
+  - id: llm-capabilities
+    name: What LLMs can and cannot do
+    objectives: [AI6, AI2]
+    patterns: ["List of LLM capabilities", "Tasks LLMs do unreliably", "Knowledge cutoff", "Memory across sessions"]
+  # Unit 7 ---------------------------------------------------------------
+  - id: big-ideas
+    name: The five big ideas and perception
+    objectives: [PR5]
+    patterns: ["Name the five big ideas", "Classify an example by big idea", "Perception pipeline", "Sensors", "Perception failures"]
+  - id: kr-forms
+    name: Ways to represent knowledge
+    objectives: [PR5]
+    patterns: ["Define KR and reasoning", "Semantic network and inheritance", "Frames, slots, fillers", "Production rules", "Match a representation to a use"]
+  - id: kg-ontology
+    name: Ontologies, knowledge graphs, semantic web
+    objectives: [PR5]
+    patterns: ["Ontology versus taxonomy", "Triples", "Knowledge graph uses", "RDF, OWL, SPARQL"]
+  - id: prop-logic
+    name: Propositional logic
+    objectives: [PR1]
+    patterns: ["Evaluate a compound statement", "When an implication is false", "Contrapositive, converse, inverse", "De Morgan's laws", "Limits of propositional logic"]
+  - id: fol-syntax
+    name: "Predicate logic: the language"
+    objectives: [PR1, PR2]
+    patterns: ["Identify constants, variables, predicates, functions", "Read a formula", "Arity", "How predicate logic is used in AI"]
+  - id: fol-translate
+    name: Translating English and predicate logic
+    objectives: [PR2]
+    patterns: ["All A are B", "Some A are B", "No A are B", "Spot the for-all-with-and error", "Nested quantifier order"]
+  - id: fol-negation
+    name: Negating quantified statements
+    objectives: [PR2]
+    patterns: ["Negate a universal", "Negate an existential", "Negate in English", "Negate an implication"]
+  - id: inference-rules
+    name: Inference rules
+    objectives: [PR1]
+    patterns: ["Apply modus ponens", "Apply modus tollens", "Spot a fallacy", "Unification substitution", "Resolution idea"]
+  - id: chaining
+    name: Forward chaining, backward chaining, expert systems
+    objectives: [PR1, PR5]
+    patterns: ["Forward or backward for a description", "Trace a rule base", "Parts of an expert system", "Which systems use which"]
+  - id: kr-ml
+    name: Combining learning with knowledge
+    objectives: [PR5]
+    patterns: ["Symbolic versus connectionist", "Neuro-symbolic AI", "Knowledge graphs with ML or LLMs", "Why explicit knowledge still matters"]
+  - id: logic-vs-prob
+    name: Logic versus probability
+    objectives: [PR3]
+    patterns: ["Which reasoning fits a scenario", "Strengths and weaknesses", "Fuzzy logic versus probability", "Certainty versus degrees of belief"]
+  - id: bayes-reasoning
+    name: Reasoning with Bayes' rule
+    objectives: [PR3]
+    patterns: ["Update a belief with evidence", "Prior, likelihood, posterior vocabulary", "Naive Bayes as reasoning"]
+  - id: bn-structure
+    name: Bayesian network structure
+    objectives: [PR4]
+    patterns: ["What nodes represent", "What edges represent", "Why the graph must be a DAG", "Parents and children", "What a CPT holds", "Spot an invalid network"]
+  - id: bn-joint
+    name: Computing with a Bayesian network
+    objectives: [PR4]
+    patterns: ["Factor the joint distribution", "Compute a full assignment's probability", "Count CPT parameters", "Compare with a full joint table"]
+  - id: bn-independence
+    name: Conditional independence and explaining away
+    objectives: [PR4]
+    patterns: ["Independence in a chain", "Independence in a fork", "Colliders and explaining away", "Markov blanket"]
+  - id: bn-inference
+    name: Inference in Bayesian networks
+    objectives: [PR4]
+    patterns: ["Predictive versus diagnostic reasoning", "A small posterior computation", "Exact versus approximate inference", "Applications"]
+  # Unit 8 ---------------------------------------------------------------
+  - id: av-dilemmas
+    name: Self-driving vehicles
+    objectives: [PE1]
+    patterns: ["Trolley problem framing", "Liability questions", "Levels of automation", "Safety testing trade-offs"]
+  - id: surveillance
+    name: Surveillance and facial recognition
+    objectives: [PE1]
+    patterns: ["Privacy and consent concerns", "Misidentification harms", "Function creep and chilling effects", "Security versus liberty"]
+  - id: genai-dilemmas
+    name: Generative AI dilemmas
+    objectives: [PE1]
+    patterns: ["Deepfake harms", "Copyright and training data", "Academic integrity", "Jobs and environmental cost", "Identify the dilemma in a scenario"]
+  - id: ethics-principles
+    name: Ethical frameworks and principles
+    objectives: [PE1]
+    patterns: ["Utilitarian versus deontological reasoning", "Match a principle to a practice", "Human in the loop", "Beneficence and non-maleficence"]
+  - id: bias-sources
+    name: Where AI bias comes from
+    objectives: [PE2]
+    patterns: ["Name the bias type in a scenario", "Proxy variables", "Feedback loops", "Bias at each pipeline stage"]
+  - id: bias-cases
+    name: Documented cases of AI bias
+    objectives: [PE2]
+    patterns: ["Match a case to its lesson", "What went wrong in a case", "Which bias type a case shows"]
+  - id: fairness
+    name: Fairness definitions and mitigation
+    objectives: [PE2]
+    patterns: ["Compute group positive rates", "Demographic parity", "Equal opportunity and equalized odds", "Fairness through unawareness fails", "Pre-, in-, and post-processing fixes"]
+  - id: llm-security
+    name: Security risks of LLMs
+    objectives: [PE3]
+    patterns: ["Direct versus indirect prompt injection", "Jailbreak", "Data poisoning", "Improper output handling", "Excessive agency", "Defenses"]
+  - id: llm-privacy
+    name: Privacy risks of LLMs
+    objectives: [PE3]
+    patterns: ["Memorization and extraction", "Membership inference", "Model inversion", "Sensitive data in prompts", "Mitigations"]
+  - id: privacy-tech
+    name: Privacy-preserving techniques
+    objectives: [PE3]
+    patterns: ["Anonymization versus pseudonymization", "Re-identification", "Compute k for k-anonymity", "Differential privacy and epsilon", "Federated learning", "Data minimization"]
+  - id: hallucination
+    name: Hallucinations
+    objectives: [PE4]
+    patterns: ["Define hallucination", "Why hallucinations happen", "Fabricated citations", "Ways to reduce hallucinations"]
+  - id: misinformation
+    name: Misinformation, deepfakes, automation bias
+    objectives: [PE4]
+    patterns: ["Misinformation versus disinformation", "Deepfakes and provenance", "Automation bias", "Verification habits"]
+  - id: ai-laws
+    name: Privacy laws and AI regulation
+    objectives: [PE1, PE3]
+    patterns: ["Match a law to a scenario", "GDPR rights", "COPPA and HIPAA scope", "EU AI Act risk tier for a system", "NIST AI RMF functions"]
+  - id: responsible-ai
+    name: Responsible AI in practice
+    objectives: [PE1, PE2, PE4]
+    patterns: ["Transparency versus explainability", "LIME and SHAP", "Model cards and datasheets", "Accountability and oversight", "ACM and IEEE codes"]

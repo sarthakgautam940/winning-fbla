@@ -1,0 +1,52 @@
+{
+  "name": "winning-fbla",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal study app for the FBLA Data Science & AI event (2026-2027).",
+  "scripts": {
+    "content": "tsx scripts/build-content.ts",
+    "content:check": "tsx scripts/build-content.ts --check",
+    "predev": "npm run content",
+    "dev": "next dev",
+    "prebuild": "npm run content",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "katex": "0.16.47",
+    "lucide-react": "1.66.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4.3.3",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "hast-util-to-html": "9.0.6",
+    "mdast-util-directive": "3.2.0",
+    "rehype-katex": "7.0.1",
+    "remark-directive": "4.0.0",
+    "remark-gfm": "4.0.1",
+    "remark-math": "6.0.0",
+    "remark-parse": "11.0.0",
+    "remark-rehype": "11.1.2",
+    "shiki": "4.5.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "4.23.15",
+    "typescript": "^5",
+    "unified": "11.0.5",
+    "unist-util-visit": "5.2.0",
+    "vitest": "5.0.5",
+    "yaml": "2.9.1",
+    "zod": "4.6.7"
+  }
+}

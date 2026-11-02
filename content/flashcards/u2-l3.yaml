@@ -1,0 +1,51 @@
+# Unit 2 flashcards. `virginia: true` marks terms from the Virginia FBLA vocabulary list.
+
+- id: fc-deviation
+  term: Deviation
+  def: The signed distance of a value from the mean, $$x - \bar{x}$$. The deviations of any dataset sum to zero.
+  skill: variance-sd
+
+- id: fc-variance
+  term: Variance
+  def: The average squared deviation from the mean. It measures spread in squared units.
+  example: "For the population 4, 8, 6, 5, 7 (mean 6), the squared deviations sum to 10, so the variance is 10 / 5 = 2."
+  skill: variance-sd
+  virginia: true
+
+- id: fc-standard-deviation
+  term: Standard Deviation
+  def: The square root of the variance, so it measures spread in the original units. Roughly the typical distance of values from the mean.
+  skill: variance-sd
+  virginia: true
+
+- id: fc-population-vs-sample-variance
+  term: Population vs. sample variance
+  def: "Population: divide the sum of squares by $$N$$ (symbols $$\\sigma^2$$, $$\\mu$$). Sample: divide by $$n - 1$$ (symbols $$s^2$$, $$\\bar{x}$$)."
+  skill: variance-sd
+
+- id: fc-bessels-correction
+  term: "Bessel's correction"
+  def: Dividing by $$n - 1$$ instead of $$n$$ for a sample, which corrects the tendency of a sample's own mean to understate the population's spread.
+  skill: variance-sd
+
+- id: fc-sum-of-squares-shortcut
+  term: Sum of squares shortcut
+  def: $$\sum (x - \bar{x})^2 = \sum x^2 - (\sum x)^2 / n$$. Lets you find variance from $$n$$, $$\sum x$$, and $$\sum x^2$$ alone.
+  skill: variance-sd
+
+- id: fc-linear-transform-spread
+  term: Shifting and scaling data
+  def: Adding $$c$$ to every value changes the mean but not the spread. Multiplying by $$k$$ multiplies the standard deviation by $$|k|$$ and the variance by $$k^2$$.
+  example: "Celsius SD 5 becomes Fahrenheit SD 1.8 x 5 = 9."
+  skill: sd-props
+
+- id: fc-ddof
+  term: ddof (NumPy and pandas)
+  def: "Delta degrees of freedom: the divisor is $$n$$ minus ddof. NumPy's `np.std` defaults to ddof=0 (population); pandas' `.std()` defaults to ddof=1 (sample)."
+  skill: sd-props
+
+- id: fc-coefficient-of-variation
+  term: Coefficient of variation (CV)
+  def: The standard deviation divided by the mean, as a percent. Compares relative spread across different units; meaningful only for data with a true zero.
+  example: "Mean 500 g, SD 15 g: CV = 15 / 500 = 3%."
+  skill: coef-var
