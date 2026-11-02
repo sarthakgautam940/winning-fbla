@@ -1,0 +1,478 @@
+# Lesson 3.1: Choosing the right chart
+
+# ---------------------------------------------------------------- chart-choice
+- id: chart-choice-01
+  skill: chart-choice
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A teacher has the exam scores of 120 students and wants to show how the scores are spread out: where most of them fall, and whether the distribution is skewed. Which chart is most appropriate?
+  options:
+    - "A pie chart"
+    - "A line chart"
+    - "A scatterplot"
+    - "A histogram"
+  answer: D
+  explain: |
+    The goal is the distribution of one numeric variable, and a histogram shows exactly that: how many scores fall in each range, where they cluster, and whether one tail is longer.
+  why:
+    A: "A pie chart shows parts of one whole, not the spread of a numeric variable."
+    B: "A line chart shows change over an ordered axis such as time, and the scores have no time order."
+    C: "A scatterplot needs two numeric variables, and only one is given."
+
+- id: chart-choice-02
+  skill: chart-choice
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A survey asks 400 students which apps they use, and students may choose more than one. The results are Video 82%, Messaging 75%, Music 61%, and Games 40%. Which chart is most appropriate?
+  options:
+    - "A pie chart, since the apps divide up the students"
+    - "A bar chart, since the percentages do not form one whole"
+    - "A line chart, since the apps can be ordered by use"
+    - "A histogram, since the data are given as percentages"
+  answer: B
+  explain: |
+    Because students could pick several apps, the percentages add up to 258%, not 100%. They are not parts of one whole, so a pie chart would be wrong. A bar chart compares the four percentages directly.
+  why:
+    A: "The students do not divide among the apps; one student can count toward several of them."
+    C: "A line chart implies change along an ordered axis such as time, which these categories lack."
+    D: "A histogram shows the distribution of one numeric variable, not values for separate categories."
+
+- id: chart-choice-03
+  skill: chart-choice
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A website team wants to show how its number of monthly visitors changed over the past three years. Which chart is most appropriate?
+  options:
+    - "A line chart"
+    - "A pie chart"
+    - "A histogram"
+    - "A boxplot"
+  answer: A
+  explain: |
+    The goal is change over time, and a line chart connects the monthly values in order so trends, seasonal cycles, and sudden changes are easy to see.
+  why:
+    B: "A pie chart shows parts of a whole at one moment, not change over time."
+    C: "A histogram shows how values are distributed and loses their time order."
+    D: "A boxplot summarizes a distribution and also loses the time order."
+
+- id: chart-choice-04
+  skill: chart-choice
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A manager wants to see whether stores that spend more on advertising also have higher sales, using data from 50 stores. Which chart is most appropriate?
+  options:
+    - "A pie chart"
+    - "A bar chart"
+    - "A scatterplot"
+    - "A line chart"
+  answer: C
+  explain: |
+    Advertising spend and sales are two numeric variables measured on the same stores, so a scatterplot, with one dot per store, shows whether and how they move together.
+  why:
+    A: "A pie chart shows parts of one whole, not a relationship between two variables."
+    B: "A bar chart compares categories, and these are two numeric variables."
+    D: "A line chart implies an ordered sequence such as time, which the 50 stores do not have."
+
+- id: chart-choice-05
+  skill: chart-choice
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An analyst wants to compare the distributions of commute times in four cities, including each city's median, spread, and outliers. Which display is most appropriate?
+  options:
+    - "A pie chart for each city"
+    - "A line chart with one line per city"
+    - "A single histogram of all the commute times"
+    - "Side-by-side boxplots, one for each city"
+  answer: D
+  explain: |
+    Side-by-side boxplots put each city's five-number summary on a common scale, so medians, spreads, and outliers can be compared at a glance.
+  why:
+    A: "Pie charts show parts of a whole and cannot show the spread of commute times."
+    B: "Lines imply change over time, and commute times are not a time series here."
+    C: "A single histogram mixes all four cities together, so they cannot be compared."
+
+- id: chart-choice-06
+  skill: chart-choice
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A nonprofit wants to show how its annual budget is divided among its four programs. Which chart fits this goal best?
+  options:
+    - "A pie chart"
+    - "A line chart"
+    - "A scatterplot"
+    - "A histogram"
+  answer: A
+  explain: |
+    The four programs are parts of one whole, the budget, and there are only a few of them, which is exactly the situation where a pie chart works. A bar chart or a stacked bar would also be reasonable.
+  why:
+    B: "A line chart shows change over time, and this is one year's budget."
+    C: "A scatterplot shows the relationship between two numeric variables."
+    D: "A histogram shows the distribution of one numeric variable, not shares of a total."
+
+- id: chart-choice-07
+  skill: chart-choice
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    During exploratory analysis, a data scientist wants to see the form of the relationship between every pair of six numeric variables, including any curves, clusters, or outliers. Which display is most appropriate?
+  options:
+    - "A heatmap of the correlation matrix"
+    - "A stacked bar chart of the six variables"
+    - "A scatterplot matrix of the six variables"
+    - "A pie chart for each of the six variables"
+  answer: C
+  explain: |
+    A scatterplot matrix draws every pair of variables as its own scatterplot, so it shows the form of each relationship. A correlation heatmap reduces each pair to one number, r, which measures only the strength of a linear relationship and can hide a curve or a cluster.
+  why:
+    A: "A correlation heatmap shows one number per pair, so curves, clusters, and outliers disappear."
+    B: "A stacked bar chart shows parts of totals, not relationships between pairs of variables."
+    D: "Pie charts show composition and cannot show how two variables relate."
+
+- id: chart-choice-08
+  skill: chart-choice
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A retailer wants to compare average revenue across 12 product categories that have long names. Which display is clearest?
+  options:
+    - "A horizontal bar chart sorted by revenue"
+    - "A pie chart with 12 slices"
+    - "A line chart with the categories on the x-axis"
+    - "A histogram of the 12 revenue values"
+  answer: A
+  explain: |
+    Horizontal bars leave room for long labels, and sorting by revenue makes the ranking readable at a glance. Bars along a common baseline are compared more accurately than slices or angles.
+  why:
+    B: "Twelve similar slices are almost impossible to compare by angle."
+    C: "A line implies an order between the categories that does not exist."
+    D: "A histogram would show how the 12 values are distributed, not which category earns what."
+
+# ---------------------------------------------------------------- chart-types
+- id: chart-types-01
+  skill: chart-types
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What is the main difference between a histogram and a bar chart?
+  options:
+    - "A histogram compares categories; a bar chart shows one numeric variable in bins."
+    - "A histogram shows change over time; a bar chart shows parts of a whole."
+    - "A histogram must start its axis at zero; a bar chart need not."
+    - "A histogram shows one numeric variable in bins; a bar chart compares categories."
+  answer: D
+  explain: |
+    A histogram's horizontal axis is a numeric scale cut into bins, so its bars touch and their order is fixed. A bar chart's horizontal axis lists separate categories, which could be reordered.
+  why:
+    A: "This reverses the two charts."
+    B: "Change over time is shown by a line chart, and parts of a whole by a pie or stacked bar."
+    C: "Bar charts are the ones whose value axis must start at zero."
+
+- id: chart-types-02
+  skill: chart-types
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A heatmap shows the correlations among 10 numeric variables as a 10-by-10 grid of colored cells. What does the color of each cell represent?
+  options:
+    - "How many observations each variable has"
+    - "The correlation between one pair of variables"
+    - "The average value of one of the variables"
+    - "Which of the variables are categorical"
+  answer: B
+  explain: |
+    Each cell sits at the crossing of one row variable and one column variable, and its color encodes the correlation between that pair. The diagonal cells compare each variable with itself, so they are all 1.
+  why:
+    A: "Cell colors encode the matrix values, here correlations, not sample sizes."
+    C: "Each cell involves two variables, so it cannot be the average of just one."
+    D: "A correlation matrix is computed from numeric variables, and its colors show correlation values."
+
+- id: chart-types-03
+  skill: chart-types
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What can a violin plot reveal that a boxplot of the same data cannot?
+  options:
+    - "Whether the data have two peaks"
+    - "Where the median of the data lies"
+    - "How wide the middle half of the data is"
+    - "The smallest and largest values"
+  answer: A
+  explain: |
+    A violin plot's outline is a smoothed histogram, so its width shows where values are dense. Two separate peaks appear as two bulges. A boxplot shows only five summary numbers, so two peaks can hide inside its box.
+  why:
+    B: "A boxplot already marks the median with a line inside the box."
+    C: "The box itself spans the middle half of the data, the interquartile range."
+    D: "A boxplot's whiskers and outlier dots already show the extremes."
+
+- id: chart-types-04
+  skill: chart-types
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is a scatterplot called when the size of each point shows a third numeric variable, such as population?
+  options:
+    - "A heatmap"
+    - "A violin plot"
+    - "A histogram"
+    - "A bubble chart"
+  answer: D
+  explain: |
+    A bubble chart is a scatterplot whose dots vary in size, so it can show three numeric variables at once: two by position and one by bubble size.
+  why:
+    A: "A heatmap uses color in a grid of cells, not point sizes."
+    B: "A violin plot shows the shape of one distribution."
+    C: "A histogram shows the distribution of one numeric variable with bars."
+
+- id: chart-types-05
+  skill: chart-types
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    For a small dataset, what is one advantage of a stem-and-leaf plot over a histogram?
+  options:
+    - "It shows how two variables are related"
+    - "It works only for categorical data"
+    - "It keeps every original data value visible"
+    - "It shows changes over time more clearly"
+  answer: C
+  explain: |
+    Each leaf is the last digit of an actual value, so the plot shows the shape of the distribution while keeping every original number readable. A histogram shows only counts per bin.
+  why:
+    A: "Like a histogram, a stem-and-leaf plot shows one variable, not a relationship."
+    B: "Stem-and-leaf plots are built from numeric values, splitting each into digits."
+    D: "Neither display is meant for time order; that is the job of a line chart."
+
+- id: chart-types-06
+  skill: chart-types
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why do the bars of a histogram touch, while the bars of a bar chart usually have gaps?
+  options:
+    - "Histogram bins are adjacent intervals on a continuous number line."
+    - "Histograms always show larger counts than bar charts."
+    - "Bar charts must leave room for labels inside each bar."
+    - "Touching bars show that the categories are unrelated."
+  answer: A
+  explain: |
+    Each histogram bin starts exactly where the previous one ends, because the bins cover a continuous numeric range. A bar chart's categories are separate, so gaps between the bars reflect that separation.
+  why:
+    B: "Bar spacing has nothing to do with the size of the counts."
+    C: "Labels usually sit below or beside the bars, and the gaps are not there for them."
+    D: "Touching bars signal a continuous scale; they say nothing about how categories relate."
+
+- id: chart-types-07
+  skill: chart-types
+  tier: competitive
+  type: visual
+  use: bank
+  stem: |
+    The stem-and-leaf plot shows 14 quiz scores. Its key is 6 | 4 = 64. What is the median score?
+
+    | Stem | Leaves |
+    |---|---|
+    | 5 | 2 8 |
+    | 6 | 1 4 4 9 |
+    | 7 | 0 3 5 5 8 |
+    | 8 | 2 6 |
+    | 9 | 1 |
+  options:
+    - "70"
+    - "71.5"
+    - "73"
+    - "75"
+  ordered: true
+  answer: B
+  explain: |
+    The plot lists the scores in order: 52, 58, 61, 64, 64, 69, 70, 73, 75, 75, 78, 82, 86, 91. With 14 values, the median is the average of the 7th and 8th values: (70 + 73) / 2 = 71.5.
+  why:
+    A: "This is only the 7th value; with an even count the median averages the 7th and 8th."
+    C: "This is only the 8th value."
+    D: "75 appears twice, which makes it a mode, not the median."
+  verify: "statistics.median([52, 58, 61, 64, 64, 69, 70, 73, 75, 75, 78, 82, 86, 91])"
+
+- id: chart-types-08
+  skill: chart-types
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A scatterplot matrix is drawn for 5 numeric variables. How many different pairs of variables does it compare?
+  options:
+    - "5"
+    - "10"
+    - "20"
+    - "25"
+  ordered: true
+  answer: B
+  explain: |
+    Each pair of different variables gets a scatterplot, and there are C(5, 2) = 10 pairs. The full 5-by-5 grid has 25 panels: 5 on the diagonal, often histograms, and 20 off the diagonal, which show each of the 10 pairs twice, once with each variable on the horizontal axis.
+  why:
+    A: "This counts the variables, not the pairs."
+    C: "This counts the off-diagonal panels, which show each pair twice."
+    D: "This counts every panel in the grid, including the diagonal."
+  verify: "comb(5, 2)"
+
+# ---------------------------------------------------------------- misleading
+- id: misleading-01
+  skill: misleading
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A bar chart compares Company A's sales of 50 units with Company B's 52 units. Its vertical axis starts at 49, so B's bar looks three times as tall as A's. What is the main problem?
+  options:
+    - "The bars should be sorted from tallest to shortest."
+    - "The chart should have been drawn as a pie chart."
+    - "The axis labels should use percentages instead."
+    - "The axis should start at zero, since bar length shows value."
+  answer: D
+  explain: |
+    Starting the axis at 49 leaves visible bars of 1 and 3 units, so a 4% difference looks like a tripling. Because a bar's length represents its value, a bar chart's value axis must start at zero.
+  why:
+    A: "Sorting would not fix the exaggerated difference between the two bars."
+    B: "A pie chart is for parts of a whole and would not be a better way to compare two sales totals."
+    C: "Changing the units does not fix a truncated axis."
+
+- id: misleading-02
+  skill: misleading
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why are 3D pie charts considered misleading?
+  options:
+    - "Perspective makes slices near the front look larger."
+    - "They cannot show more than three categories."
+    - "They require the data to be measured over time."
+    - "Their slices never add up to 100 percent."
+  answer: A
+  explain: |
+    Tilting a pie into 3D distorts the angles and areas: slices at the front look bigger and slices at the back look smaller than their true shares.
+  why:
+    B: "A 3D pie can show any number of slices; the problem is distortion, not a limit on categories."
+    C: "Pie charts show composition at one moment, so time is irrelevant."
+    D: "The slices still represent shares that add up to 100%; they are just drawn misleadingly."
+
+- id: misleading-03
+  skill: misleading
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A pie chart shows the market share of 12 brands, and most slices are between 6% and 10%. What change would make the comparison clearest?
+  options:
+    - "Add a 3D effect to the pie"
+    - "Use a different color for each brand"
+    - "Use a bar chart sorted by share"
+    - "Show the slices as a donut chart"
+  answer: C
+  explain: |
+    Twelve similar slices cannot be ranked by eye. Bars along a common baseline, sorted by share, show both the ranking and the size differences clearly.
+  why:
+    A: "A 3D effect adds distortion and makes the slices even harder to compare."
+    B: "The pie already needs separate colors; color does not make similar angles comparable."
+    D: "A donut chart is still a pie, with the same angle comparison problem."
+
+- id: misleading-04
+  skill: misleading
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A chart plots a city's monthly ice cream sales and its monthly sunburn cases on two vertical axes with different scales, and the two lines overlap almost exactly. Why should a reader be cautious?
+  options:
+    - "Line charts cannot show two series on one chart."
+    - "The overlap proves that ice cream causes sunburn."
+    - "Ice cream sales should be shown as a pie chart."
+    - "Either axis can be rescaled to make the lines overlap."
+  answer: D
+  explain: |
+    With dual axes, the designer picks both scales, and stretching or shifting either one can make almost any two rising series appear to track each other. The overlap says little about how strongly the variables are related, and even a real association (both rise in hot weather) would not show causation.
+  why:
+    A: "A line chart can show several series; the problem here is the two independent scales."
+    B: "Visual overlap cannot prove causation; hot weather likely drives both."
+    C: "Sales over months are a time series, so a line chart is the right type."
+
+- id: misleading-05
+  skill: misleading
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A company's report shows its stock price rising steadily over the past three months, but it leaves out the previous year, when the price fell 40%. What kind of misleading practice is this?
+  options:
+    - "A truncated value axis"
+    - "A cherry-picked range"
+    - "A 3D perspective effect"
+    - "A chart with dual axes"
+  answer: B
+  explain: |
+    Choosing a start date that hides the earlier fall makes a partial recovery look like steady growth. Showing only the range that supports the message is cherry-picking.
+  why:
+    A: "A truncated axis cuts off the bottom of the value scale, not part of the time range."
+    C: "Nothing here involves a 3D effect."
+    D: "Only one series, the stock price, is shown."
+
+- id: misleading-06
+  skill: misleading
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which practice makes a bar chart more honest and readable?
+  options:
+    - "Adding a 3D effect so the bars stand out"
+    - "Starting the value axis at zero and labeling its units"
+    - "Using a different random color for every bar"
+    - "Leaving the axes unlabeled to reduce clutter"
+  answer: B
+  explain: |
+    A zero baseline keeps each bar's length proportional to its value, and labeled units tell the reader what the numbers mean. Both are basic rules of honest charts.
+  why:
+    A: "3D effects distort the apparent sizes of the bars."
+    C: "Random colors suggest differences between the bars that do not exist in the data."
+    D: "Unlabeled axes leave the reader guessing what is being measured."
+
+- id: misleading-07
+  skill: misleading
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    An infographic shows revenue doubling by drawing the second coin icon twice as tall and twice as wide as the first. How many times larger does the second coin's area appear?
+  options:
+    - "1.4 times"
+    - "2 times"
+    - "4 times"
+    - "8 times"
+  ordered: true
+  answer: C
+  explain: |
+    Doubling both the height and the width multiplies the area by 2 × 2 = 4, so the icon looks four times as large even though revenue only doubled.
+  why:
+    A: "About 1.4 is the factor for each side that would double the area honestly."
+    B: "This is the true change in revenue, but scaling both dimensions grows the area faster."
+    D: "This would be the change in volume for a solid scaled in all three dimensions."
+  verify: "2 * 2"

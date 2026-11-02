@@ -1,0 +1,48 @@
+# Lesson 3.1 flashcards
+
+- id: fc-visualization
+  term: Visualization
+  def: Representing data graphically so patterns, trends, and outliers can be seen. Choose the chart from the question being asked and the types of variables involved.
+  skill: chart-choice
+  virginia: true
+
+- id: fc-chart-by-purpose
+  term: Chart by purpose
+  def: Distribution of one numeric variable, histogram or boxplot. Comparing categories, bar chart. Change over time, line chart. Relationship between two numeric variables, scatterplot. Parts of one whole, pie with few slices or stacked bar.
+  skill: chart-choice
+
+- id: fc-histogram-vs-bar
+  term: Histogram vs. bar chart
+  def: A histogram bins one numeric variable, so its bars touch and their order is fixed. A bar chart compares separate categories, so its bars have gaps and could be reordered.
+  skill: chart-types
+
+- id: fc-pie-chart-rules
+  term: When a pie chart works
+  def: Only for parts of one whole that sum to 100%, with about two to five clearly different slices. Use a bar chart for many or similar slices, multi-select survey results, or comparisons across groups.
+  skill: chart-choice
+
+- id: fc-heatmap
+  term: Heatmap
+  def: A grid of cells colored by value, such as a correlation matrix or visits by day and hour. Diverging color scales suit values with a meaningful midpoint; sequential scales suit plain magnitudes.
+  skill: chart-types
+
+- id: fc-violin-plot
+  term: Violin plot
+  def: A boxplot-like display whose outline is a smoothed histogram, so its width shows where values are dense. It can reveal two peaks that a boxplot hides.
+  skill: chart-types
+
+- id: fc-scatterplot-matrix
+  term: Scatterplot matrix (pair plot)
+  def: A grid with one scatterplot for every pair of numeric variables, often with histograms on the diagonal. It shows the form of each relationship, which a correlation heatmap reduces to one number.
+  skill: chart-types
+
+- id: fc-bubble-stem
+  term: Bubble chart, dot plot, stem-and-leaf plot
+  def: A bubble chart is a scatterplot with dot size as a third variable. Dot plots and stem-and-leaf plots show small datasets while keeping individual values.
+  skill: chart-types
+
+- id: fc-misleading-charts
+  term: Misleading chart tricks
+  def: Truncated bar axes, 3D and area distortion, pies with too many slices, dual axes with arbitrary scales, and cherry-picked time ranges.
+  example: "An icon scaled 2 times in height and width looks 4 times as big."
+  skill: misleading

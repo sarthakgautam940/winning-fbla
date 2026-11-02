@@ -26,12 +26,16 @@ Gate + proxy auth, design tokens (Figtree, JetBrains Mono), app shell, lesson re
 
 ## Content progress
 
-| Lesson | Lesson file | Questions | Flashcards | Status |
+| Unit | Lessons | Bank questions | Flashcards | Status |
 |---|---|---|---|---|
-| u0-l1, u0-l2, u0-l3 | yes | none (no skills) | none | done |
-| u1-l1 | yes | 23 | 15 | done |
-| u2-l3 | yes | 23 | 9 | done (pilot) |
-| all other lessons | | | | to do |
+| u0 | l1-l3 | none (no skills) | none | done |
+| u1 (DL) | l1-l8 | 222 | 121 | done, all lessons 0 errors 0 warnings, verified |
+| u2 (PS) | l1-l8 | 209 | 79 | done, all lessons 0 errors 0 warnings, verified |
+| u3-u8 | | | | to do, in order u3-l1 onward |
+
+Full `--check` (no filter) at fb5427c: 0 errors, 1 warning (Virginia cards for terms in later units, expected until those units exist).
+
+Conventions settled while writing (keep them): options length-matched as you draft (the validator warns when the correct option is over 1.6x the others); numeric options ascending with `ordered: true`; prose avoids negative signs ("an expected loss of $2"); multiplication sign × in prose; real-world cases only from research/facts.md, otherwise clearly hypothetical examples.
 
 Order of work: u1-l2 ... u1-l8, u2 (l1, l2, l4-l8), u3, u4 (incl. l9), u5, u6, u7 (incl. l8), u8. Then unit tests (`content/questions/unit-tests/u1..u8.yaml`, 25 each) and practice-test items (`content/questions/tests/<AREA>.yaml`, `test: 1..5`; per test DL 20, PS 15, DA 15, TL 10, AI 10, ML 10, PR 10, PE 10; tests 1-4 about 35/45/20 tiers, test 5 about 20/45/35; every objective in every test). Then strict check (`--strict`), cold solve, visual QA, push.
 
