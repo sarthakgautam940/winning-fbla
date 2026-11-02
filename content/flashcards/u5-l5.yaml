@@ -1,0 +1,41 @@
+# Lesson 5.5 flashcards
+
+- id: fc-training-dataset
+  term: Training Dataset
+  def: The data a model learns from; training fits the model's parameters to these examples.
+  skill: data-splits
+  virginia: true
+
+- id: fc-validation-dataset
+  term: Validation Dataset
+  def: Held-out data used during development to compare models, tune hyperparameters, and decide when to stop training (early stopping).
+  skill: data-splits
+  virginia: true
+
+- id: fc-test-dataset
+  term: Test Dataset
+  def: Held-out data used once, after every decision is made, to estimate performance on new data. Reusing it for decisions makes its score optimistic.
+  skill: data-splits
+  virginia: true
+
+- id: fc-split-sizes
+  term: Split sizes and stratification
+  def: Typical splits are 70/15/15, 80/10/10, or 80/20. Stratified splits keep class proportions equal in every split, which matters for imbalanced classes.
+  skill: data-splits
+
+- id: fc-cross-validation
+  term: Cross-Validation
+  def: Dividing the data into k folds and training k models, each validated on a different fold and trained on the other k - 1, then averaging the scores. Leave-one-out uses k = n.
+  example: "5-fold on 1,000 examples: each model trains on 800 and validates on 200."
+  skill: cross-validation
+  virginia: true
+
+- id: fc-data-leakage
+  term: Data leakage
+  def: Information unavailable at prediction time, or from the test data, slipping into training. Forms include target leakage, preprocessing before splitting, and overlap between splits. Symptom, scores too good to be true.
+  skill: leakage
+
+- id: fc-time-series-split
+  term: Splitting time series
+  def: Split chronologically, training on earlier periods and testing on later ones, with rolling or expanding windows for cross-validation. A random split leaks the future into training.
+  skill: leakage

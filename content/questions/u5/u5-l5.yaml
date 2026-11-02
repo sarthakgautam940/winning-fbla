@@ -1,0 +1,475 @@
+# Lesson 5.5: Training, validation, and test data
+
+# ---------------------------------------------------------------- data-splits
+- id: data-splits-01
+  skill: data-splits
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Which dataset provides the final, unbiased estimate of how well a finished model will perform on new data?
+  options:
+    - "The training dataset"
+    - "The validation dataset"
+    - "The full dataset, before splitting"
+    - "The test dataset"
+  answer: D
+  explain: |
+    The test set is held out until every modeling decision has been made, and it is used once at the end, so its score estimates performance on genuinely new data.
+  why:
+    A: "The model learned from the training set, so its score there is overly optimistic."
+    B: "The validation set guided tuning decisions, so its score is no longer unbiased."
+    C: "The full dataset includes the training data, which the model has already seen."
+
+- id: data-splits-02
+  skill: data-splits
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A dataset of 10,000 examples is split 70% for training, 15% for validation, and 15% for testing. How many examples are in the validation set?
+  options:
+    - "150"
+    - "1,500"
+    - "3,000"
+    - "7,000"
+  ordered: true
+  answer: B
+  explain: |
+    The validation set is 15% of 10,000: 0.15 × 10,000 = 1,500 examples. The test set also has 1,500 and the training set has 7,000.
+  why:
+    A: "This takes 15% of 1,000 instead of 10,000."
+    C: "This combines the validation and test sets."
+    D: "This is the training set."
+  verify: "0.15 * 10000"
+
+- id: data-splits-03
+  skill: data-splits
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A team checks its model on the test set after every change and keeps whichever changes raise the test score. Why does this make the final test score unreliable?
+  options:
+    - "Tuning against the test set makes its score optimistic."
+    - "The test set is usually too large to use more than once."
+    - "Test scores always fall each time they are checked."
+    - "The model forgets its training data after each check."
+  answer: A
+  explain: |
+    Each change kept because it helped the test score fits the model a little more closely to those particular test examples. The test set has become a second validation set, so its final score overstates performance on genuinely new data.
+  why:
+    B: "Test set size is not the issue; repeated decisions based on it are."
+    C: "Scores do not fall automatically; if anything, they creep upward as the model is fitted to the test set."
+    D: "Evaluating a model does not change what it learned."
+
+- id: data-splits-04
+  skill: data-splits
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A data scientist tries tree depths of 3, 5, and 10 and keeps the depth that scores best. Which dataset should those scores come from?
+  options:
+    - "The training dataset"
+    - "The test dataset"
+    - "The validation dataset"
+    - "Any dataset, since depth does not matter"
+  answer: C
+  explain: |
+    Choosing a hyperparameter such as tree depth is a tuning decision, and tuning decisions belong to the validation set. The test set stays untouched until the end.
+  why:
+    A: "Training scores favor the deepest tree, which may just be memorizing."
+    B: "Using the test set for tuning makes its final score optimistic."
+    D: "Depth strongly affects performance, which is why it must be tuned carefully."
+
+- id: data-splits-05
+  skill: data-splits
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A neural network uses early stopping. What tells it when to stop training?
+  options:
+    - "The training error reaching exactly zero"
+    - "The test error starting to rise"
+    - "A fixed number of minutes passing"
+    - "The validation error stopping its improvement"
+  answer: D
+  explain: |
+    Early stopping watches the validation error. When it stops improving, or starts rising while training error keeps falling, the model is beginning to overfit, so training stops.
+  why:
+    A: "Pushing training error to zero usually means the model is memorizing."
+    B: "The test set must not be used for training decisions such as when to stop."
+    C: "Early stopping responds to the model's performance, not to the clock."
+
+- id: data-splits-06
+  skill: data-splits
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Only 2% of the transactions in a dataset are fraud. A random split leaves the small test set with almost no fraud cases, so its results are unreliable. What is the best fix?
+  options:
+    - "Use a stratified split that keeps 2% fraud in each set"
+    - "Move all of the fraud cases into the training set"
+    - "Delete most of the legitimate transactions first"
+    - "Evaluate the model on the training set instead"
+  answer: A
+  explain: |
+    A stratified split preserves the class proportions in every split, so the test set contains its fair share of fraud cases and its scores mean something.
+  why:
+    B: "With no fraud in the test set, the model's fraud detection could not be measured at all."
+    C: "Deleting data distorts the real class mix the model will face."
+    D: "Training-set scores are overly optimistic."
+
+- id: data-splits-07
+  skill: data-splits
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What is the training dataset used for?
+  options:
+    - "Reporting the model's final performance"
+    - "Fitting the model's parameters"
+    - "Choosing between competing models"
+    - "Checking the model after it is deployed"
+  answer: B
+  explain: |
+    The training set is the data the model learns from: training adjusts the parameters, such as weights and coefficients, to fit these examples.
+  why:
+    A: "Final performance is measured on the test set."
+    C: "Comparing models is the validation set's job."
+    D: "Deployed models are monitored on new real-world data, not the training set."
+
+- id: data-splits-08
+  skill: data-splits
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A dataset has 10,000 examples, and 2% of them are positive. With a stratified split, 15% of the data goes to the test set. How many positive examples should the test set contain?
+  options:
+    - "2"
+    - "15"
+    - "30"
+    - "200"
+  ordered: true
+  answer: C
+  explain: |
+    The test set has 0.15 × 10,000 = 1,500 examples, and stratification keeps 2% of them positive: 0.02 × 1,500 = 30.
+  why:
+    A: "This uses the percentage itself as the count."
+    B: "This uses the test percentage as the count."
+    D: "This is the number of positives in the whole dataset."
+  verify: "0.02 * 0.15 * 10000"
+
+- id: data-splits-09
+  skill: data-splits
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A team with 10 million examples uses 98% for training and only 1% each for validation and testing. Why is this reasonable?
+  options:
+    - "1% of 10 million is 100,000 examples, enough to measure performance."
+    - "Large datasets do not need validation or test sets."
+    - "Smaller test sets always give more accurate estimates."
+    - "The model will be evaluated on the training set anyway."
+  answer: A
+  explain: |
+    What matters is the number of held-out examples, not the percentage. 100,000 examples measure performance precisely, so the remaining 98% can go to training, where more data helps.
+  why:
+    B: "Every model still needs held-out data to be judged fairly."
+    C: "Smaller test sets give noisier estimates; here the set is simply large enough."
+    D: "Evaluating on training data would be overly optimistic."
+  verify: |
+    ans = "1% of 10 million is 100,000 examples, enough to measure performance." if 0.01 * 10_000_000 == 100_000 else "other"
+
+# ---------------------------------------------------------------- cross-validation
+- id: cross-validation-01
+  skill: cross-validation
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A team runs 5-fold cross-validation on 1,000 examples. How many examples does each of the 5 models train on?
+  options:
+    - "200"
+    - "800"
+    - "1,000"
+    - "4,000"
+  ordered: true
+  answer: B
+  explain: |
+    Each fold holds 1,000 / 5 = 200 examples. Each model is validated on one fold and trained on the other four: 4 × 200 = 800 examples.
+  why:
+    A: "200 is the size of the one fold held out for validation."
+    C: "One fold is always held out, so no model trains on all 1,000."
+    D: "This multiplies the 800 training examples by the 5 rounds, counting examples more than once."
+  verify: "1000 - 1000 / 5"
+
+- id: cross-validation-02
+  skill: cross-validation
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In k-fold cross-validation, how many models are trained?
+  options:
+    - "One"
+    - "Two"
+    - "k - 1"
+    - "k"
+  answer: D
+  explain: |
+    Each of the k folds takes one turn as the validation set, and a fresh model is trained on the other k - 1 folds each time, so k models are trained and their scores averaged.
+  why:
+    A: "A single model would use only one validation set."
+    B: "Two models would cover only two of the k folds."
+    C: "Each model trains on k - 1 folds, but there are k models."
+
+- id: cross-validation-03
+  skill: cross-validation
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A research team has only 300 labeled examples. Why might it prefer k-fold cross-validation to a single validation split?
+  options:
+    - "Cross-validation needs no labeled data at all."
+    - "Cross-validation trains only one model, which saves time."
+    - "Cross-validation uses every example for validation and gives a steadier estimate."
+    - "Cross-validation guarantees that the final model will not overfit."
+  answer: C
+  explain: |
+    With few examples, a single held-out set is small and its score swings with the luck of the split. Cross-validation validates on every example once and averages several scores, giving a more reliable estimate.
+  why:
+    A: "Cross-validation still needs labels to score each fold."
+    B: "It trains k models, which costs more time, not less."
+    D: "It measures performance more reliably but does not prevent overfitting by itself."
+
+- id: cross-validation-04
+  skill: cross-validation
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A dataset has 50 examples, and a team uses leave-one-out cross-validation. How many models are trained, and how many examples does each train on?
+  options:
+    - "1 model trained on 49 examples"
+    - "49 models, each trained on 50 examples"
+    - "50 models, each trained on 49 examples"
+    - "50 models, each trained on 50 examples"
+  answer: C
+  explain: |
+    Leave-one-out is k-fold cross-validation with k = n. Each of the 50 examples takes one turn as the validation set, so 50 models are trained, each on the other 49 examples.
+  why:
+    A: "Leave-one-out repeats the process once for every example."
+    B: "Each model leaves one example out, so it trains on 49, and there is one model per example."
+    D: "Training on all 50 would leave nothing to validate on."
+  verify: |
+    n = 50
+    ans = f"{n} models, each trained on {n - 1} examples"
+
+- id: cross-validation-05
+  skill: cross-validation
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In 5-fold cross-validation, how many times is each example used for validation?
+  options:
+    - "Exactly once"
+    - "Never"
+    - "Four times"
+    - "Five times"
+  answer: A
+  explain: |
+    Each example belongs to exactly one fold, and each fold is the validation set in exactly one round. In the other four rounds, the example is used for training.
+  why:
+    B: "Every fold takes a turn as the validation set."
+    C: "Four is the number of rounds in which each example is used for training."
+    D: "Five is the total number of rounds, but an example validates in only one of them."
+
+- id: cross-validation-06
+  skill: cross-validation
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which statement describes cross-validation?
+  options:
+    - "Testing a model once on the test set at the very end"
+    - "Removing duplicate rows before training a model"
+    - "Training on one dataset and deploying to another company"
+    - "Training and validating repeatedly on different folds, then averaging the scores"
+  answer: D
+  explain: |
+    Cross-validation rotates which part of the data is held out for validation, trains a model for each rotation, and averages the results for a more reliable estimate of performance.
+  why:
+    A: "A single final check on the test set is test-set evaluation, not cross-validation."
+    B: "Removing duplicates is data cleaning."
+    C: "Reusing a model elsewhere relates to deployment or transfer learning."
+
+- id: cross-validation-07
+  skill: cross-validation
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A team trains a very large deep learning model that takes two weeks to train once, on a dataset of 50 million examples. Why would it likely skip 10-fold cross-validation?
+  options:
+    - "Cross-validation does not work for neural network models of any size."
+    - "Ten runs would take about 20 weeks, and one validation set suffices here."
+    - "Cross-validation requires unlabeled data, and this data is labeled."
+    - "A dataset this large cannot be divided evenly into ten folds."
+  answer: B
+  explain: |
+    Cross-validation multiplies training time by k. With 50 million examples, a single held-out validation set is already large enough to give a precise estimate, so the extra cost buys almost nothing.
+  why:
+    A: "Cross-validation works for any model; the issue here is cost."
+    C: "Cross-validation uses labeled data to score each fold."
+    D: "Any dataset can be divided into folds."
+
+# ---------------------------------------------------------------- leakage
+- id: leakage-01
+  skill: leakage
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A model predicts whether a hospital patient has pneumonia. One of its features is "received antibiotics for pneumonia," and the model scores nearly perfect accuracy. What is the problem?
+  options:
+    - "Target leakage: the feature reflects the diagnosis it is meant to predict."
+    - "Underfitting: the model is too simple for the data."
+    - "Class imbalance: too few patients have pneumonia."
+    - "Overlap: the same patients are in both training and test sets."
+  answer: A
+  explain: |
+    Antibiotics for pneumonia are given after the diagnosis, so the feature is a consequence of the target. It will not exist when the model must make a real prediction, and it makes test scores look far better than real performance.
+  why:
+    B: "Near-perfect accuracy is the opposite of underfitting."
+    C: "Imbalance would not explain a near-perfect score from one suspicious feature."
+    D: "Nothing suggests repeated patients; the feature itself carries the answer."
+
+- id: leakage-02
+  skill: leakage
+  tier: champion
+  type: scenario
+  use: check
+  stem: |
+    A team forecasts daily sales. It randomly assigns three years of days to training and test sets and reports an excellent test score. Why is the score misleading?
+  options:
+    - "Random splits always leave the test set too small to be useful."
+    - "Past sales data cannot be used to forecast future sales at all."
+    - "Training includes days after the test days, so the model sees the future."
+    - "Forecasting models must be tested on the same data they trained on."
+  answer: C
+  explain: |
+    A random split mixes the timeline, so the model trains on days that come after many of the days it is tested on. A real forecast never has that future information. The fix is a chronological split: train on earlier days and test on later ones.
+  why:
+    A: "Split size is not the issue; the order of time is."
+    B: "Past sales are the usual basis for sales forecasts."
+    D: "Testing on training data would be even more misleading."
+
+- id: leakage-03
+  skill: leakage
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Before splitting the data, an analyst standardizes every feature using the mean and standard deviation of the entire dataset, then trains and tests a model. What is wrong?
+  options:
+    - "Nothing, because the scaling uses correct formulas."
+    - "Standardizing features always lowers accuracy."
+    - "The data must be standardized twice, once per split."
+    - "Test-set statistics leaked into training; fit the scaler on training data only."
+  answer: D
+  explain: |
+    Using the whole dataset's mean and standard deviation lets information from the test rows shape how the training data is prepared. Splitting first and fitting the scaler on the training data alone keeps the test set unseen.
+  why:
+    A: "The formulas are fine; the problem is which data they were computed from."
+    B: "Standardizing often helps, as with k-NN; the issue is when it is fitted."
+    C: "The test set should be transformed with the training set's statistics, not refitted on its own."
+
+- id: leakage-04
+  skill: leakage
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A model scores 99.8% accuracy on its test set, but after deployment its accuracy falls to 60%. What should the team suspect first?
+  options:
+    - "The test set was too large."
+    - "The model needs more training epochs."
+    - "Data leakage made the test score too good to be true."
+    - "Accuracy is the wrong metric for every problem."
+  answer: C
+  explain: |
+    A near-perfect test score followed by a collapse in real use is the classic symptom of leakage: information unavailable at prediction time, or from the test data, slipped into training.
+  why:
+    A: "A large test set makes an estimate more reliable, not misleading."
+    B: "More training would not explain a gap between test and real-world results."
+    D: "The metric may matter, but it does not explain a drop from 99.8% to 60%."
+
+- id: leakage-05
+  skill: leakage
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A dataset has several rows per customer, one for each month. A random row split puts some months of the same customers in training and other months in the test set. What is the risk, and the fix?
+  options:
+    - "No risk, because each row is a different month."
+    - "Overlap: split by customer, so each customer's rows stay in one set."
+    - "Underfitting: add more months for each customer."
+    - "Imbalance: remove customers with many rows."
+  answer: B
+  explain: |
+    The model can recognize individual customers it saw in training, which inflates test scores. Keeping all of a customer's rows in the same split makes the test set genuinely new customers.
+  why:
+    A: "Different months of the same customer share many traits, so the test set is not truly new."
+    C: "More months per customer would not stop the model recognizing individuals."
+    D: "Removing customers wastes data and does not fix the overlap."
+
+- id: leakage-06
+  skill: leakage
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    An airline builds a model to predict, at the moment a ticket is booked, whether the flight will be delayed. One feature is the flight's actual departure time. Why should this feature be removed?
+  options:
+    - "The feature is not available at booking time, so it leaks the outcome."
+    - "Departure times are categorical, so models cannot use them."
+    - "Any feature involving time causes overfitting."
+    - "The feature makes the model take too long to train."
+  answer: A
+  explain: |
+    The actual departure time is known only after the flight leaves, and it nearly reveals the delay itself. A feature that will not exist when predictions are made is target leakage, however much it raises test scores.
+  why:
+    B: "Times can be represented as numbers; the problem is when they become known."
+    C: "Time-based features are often useful when they use only past information."
+    D: "Training speed has nothing to do with the problem."
+
+- id: leakage-07
+  skill: leakage
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is data leakage in machine learning?
+  options:
+    - "Losing data when a file is not saved properly"
+    - "Training data being shared with other companies"
+    - "A model that runs out of memory during training"
+    - "Information unavailable at prediction time slipping into training"
+  answer: D
+  explain: |
+    Leakage lets a model learn from information it will not have in real use, or from the data used to test it, so its evaluation scores overstate its real performance.
+  why:
+    A: "Losing a file is a storage problem, not leakage in the modeling sense."
+    B: "Sharing data raises privacy issues, but that is not this meaning of leakage."
+    C: "Running out of memory is a hardware problem."
