@@ -1,0 +1,859 @@
+# Practice-test items: Data Literacy and Foundations (20 per test)
+
+# ================================================================ Test 1
+- id: pt1-dl-01
+  test: 1
+  skill: ds-nature
+  objective: DL1
+  tier: core
+  type: scenario
+  stem: |
+    A hospital team combines statistics, programming, and doctors' knowledge of patient care to predict which patients will be readmitted within 30 days. Which field does this combination describe?
+  options:
+    - "Data science"
+    - "Database administration"
+    - "Business intelligence reporting"
+    - "Software quality testing"
+  answer: A
+  explain: |
+    Data science combines statistics, computing, and domain knowledge to turn data into insight and decisions. Predicting readmissions draws on all three.
+  why:
+    B: "Database administration keeps databases secure and running; it does not build predictive models."
+    C: "Business intelligence reporting mostly describes past performance."
+    D: "Software testing checks that programs work correctly."
+
+- id: pt1-dl-02
+  test: 1
+  skill: ds-analytics
+  objective: DL1
+  tier: competitive
+  type: scenario
+  stem: |
+    A coffee chain's data team receives four requests. Which one calls for diagnostic analytics?
+  options:
+    - "How many lattes did each store sell last week?"
+    - "Why did afternoon sales fall at the downtown store?"
+    - "How many lattes will each store sell next week?"
+    - "How many baristas should each store schedule tomorrow?"
+  answer: B
+  explain: |
+    Diagnostic analytics explains why something happened. Asking why afternoon sales fell means digging into the data for a cause, such as a road closure or a new competitor nearby.
+  why:
+    A: "This asks what happened, so it is descriptive."
+    C: "This asks what will happen, so it is predictive."
+    D: "This asks what to do, so it is prescriptive."
+
+- id: pt1-dl-03
+  test: 1
+  skill: ds-roles
+  objective: DL1
+  tier: core
+  type: scenario
+  stem: |
+    During the holiday rush, a company's customer database slows down. One employee adds indexes so queries run faster, tests that last night's backup can be restored, and installs security updates on the database server. Which role is this?
+  options:
+    - "Data engineer"
+    - "Data analyst"
+    - "Database administrator"
+    - "Machine learning engineer"
+  answer: C
+  explain: |
+    A database administrator (DBA) keeps databases secure, backed up, and running fast. Tuning indexes, testing backups, and patching the server are all DBA work.
+  why:
+    A: "Data engineers build the pipelines that move data into storage, not the upkeep of the database server itself."
+    B: "Data analysts query data to answer questions and report findings."
+    D: "Machine learning engineers deploy and monitor models in production."
+
+- id: pt1-dl-04
+  test: 1
+  skill: data-formats
+  objective: DL2
+  tier: competitive
+  type: scenario
+  stem: |
+    Every night, a retailer cleans the day's sales records, checks each one against fixed column definitions, and only then loads them, so the morning reports can query them right away. Which approach to structure is this?
+  options:
+    - "Schema-on-write"
+    - "Schema-on-read"
+    - "ELT (load, then transform)"
+    - "Stream processing"
+  answer: A
+  explain: |
+    Schema-on-write fits data to a defined structure before it is stored, which is how a data warehouse works. The data is ready to query the moment it lands.
+  why:
+    B: "Schema-on-read stores data as it arrives and applies structure only when someone reads it."
+    C: "ELT loads raw data first and transforms it later, the reverse of this order."
+    D: "Stream processing handles each record as it arrives; a nightly load is batch work."
+
+- id: pt1-dl-05
+  test: 1
+  skill: data-structure
+  objective: DL2
+  tier: core
+  type: scenario
+  stem: |
+    Which request could a company answer with an ordinary database query, without any AI to interpret the content?
+  options:
+    - "Which archived photos show a damaged package?"
+    - "Which support calls had an angry customer?"
+    - "Which orders over $100 shipped to Texas in May?"
+    - "Which product reviews are written sarcastically?"
+  answer: C
+  explain: |
+    Structured data has fields a query can filter on, such as amount, state, and date. Photos, recorded calls, and free-text reviews have no field that holds the answer, so a computer must first interpret their content.
+  why:
+    A: "Finding damage in photos needs computer vision, because no column records it."
+    B: "Judging anger in recorded calls needs speech and sentiment analysis."
+    D: "Detecting sarcasm in free text needs natural language processing."
+
+- id: pt1-dl-06
+  test: 1
+  skill: var-num-cat
+  objective: DL3
+  tier: core
+  type: concept
+  stem: |
+    A column records each customer's preferred payment method: card, cash, or mobile wallet. Which summary of this column makes sense?
+  options:
+    - "The average payment method"
+    - "The median payment method"
+    - "The standard deviation of the methods coded 1, 2, 3"
+    - "The percentage of customers who chose each method"
+  answer: D
+  explain: |
+    Payment method is categorical, so it is summarized by counting: how many customers, or what percentage, chose each method. The most common method, the mode, also works.
+  why:
+    A: "Categories have no numeric values to average."
+    B: "A median needs an order, and payment methods have none."
+    C: "Coding the methods as 1, 2, 3 gives labels, not quantities, so their spread means nothing."
+
+- id: pt1-dl-07
+  test: 1
+  skill: var-levels
+  objective: DL3
+  tier: competitive
+  type: concept
+  stem: |
+    A school publishes only each graduate's class rank: 1st, 2nd, 3rd, and so on. Which conclusion can be drawn from the ranks alone?
+  options:
+    - "The gap between 1st and 2nd equals the gap between 2nd and 3rd"
+    - "The 2nd-ranked graduate did twice as well as the 4th-ranked graduate"
+    - "The 1st-ranked graduate earned a perfect grade point average"
+    - "The 2nd-ranked graduate did better than the 9th-ranked graduate"
+  answer: D
+  explain: |
+    Ranks are ordinal: they show order and nothing more. You can say who finished ahead, but not by how much.
+  why:
+    A: "Equal gaps would require interval data; ranks hide the distances between graduates."
+    B: "A claim like twice as well requires ratio data, which ranks are not."
+    C: "A rank says nothing about the actual grade point average behind it."
+
+- id: pt1-dl-08
+  test: 1
+  skill: var-disc-cont
+  objective: DL3
+  tier: champion
+  type: concept
+  stem: |
+    Quiz scores in a class can be 0, 0.5, 1, 1.5, and so on up to 10, because half points are allowed. How should the score be classified?
+  options:
+    - "Continuous, because some scores are not whole numbers"
+    - "Continuous, because any score from 0 to 10 can occur"
+    - "Categorical, because each score is a separate label"
+    - "Discrete, because only 21 separate values are possible"
+  answer: D
+  explain: |
+    Points are counted in halves, so the scores form a fixed list of 21 separate values with gaps between them. Decimals do not make a variable continuous; being able to take any value in a range does.
+  why:
+    A: "Decimal values can still be discrete when only certain values are possible."
+    B: "A score of 7.3 cannot occur, so not every value in the range is possible."
+    C: "Scores are numbers you can average and compare, not labels."
+
+- id: pt1-dl-09
+  test: 1
+  skill: base-binary
+  objective: DL4
+  tier: core
+  type: calculation
+  stem: |
+    A garage door remote sends the 8-bit code 01101110. What is that code in decimal?
+  options:
+    - "55"
+    - "110"
+    - "118"
+    - "220"
+  ordered: true
+  answer: B
+  explain: |
+    The place values are 128, 64, 32, 16, 8, 4, 2, 1. The 1 bits sit under 64, 32, 8, 4, and 2, so the value is 64 + 32 + 8 + 4 + 2 = 110.
+  why:
+    A: "55 shifts every bit one place right, halving the value."
+    C: "118 reads the bits in reverse order, as 01110110."
+    D: "220 shifts every bit one place left, doubling the value."
+  verify: 'int("01101110", 2)'
+
+- id: pt1-dl-10
+  test: 1
+  skill: base-hex
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    A designer needs the decimal value 175 as a two-digit hexadecimal color component. What is it?
+  options:
+    - "AE"
+    - "AF"
+    - "BF"
+    - "FA"
+  answer: B
+  explain: |
+    175 / 16 = 10 remainder 15. The 16s digit is 10, written A, and the 1s digit is 15, written F, so 175 is AF.
+  why:
+    A: "AE writes the remainder 15 as E, but E is 14 and F is 15."
+    C: "BF is 191: it uses B (11) for the 16s digit instead of A (10)."
+    D: "FA reverses the two digits."
+  verify: 'format(175, "X")'
+
+- id: pt1-dl-11
+  test: 1
+  skill: bits-bytes
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    A school needs a unique binary ID for each of its 300 students, using as few bits as possible. How many bits does each ID need?
+  options:
+    - "8"
+    - "9"
+    - "10"
+    - "16"
+  ordered: true
+  answer: B
+  explain: |
+    8 bits give 2 to the 8th power = 256 IDs, which is not enough; 9 bits give 512, which covers all 300 students. So each ID needs 9 bits.
+  why:
+    A: "8 bits allow only 256 different IDs."
+    C: "10 bits would work, but they are more than the minimum."
+    D: "16 rounds up to two whole bytes, but an ID does not have to fill whole bytes."
+  verify: "math.ceil(math.log2(300))"
+
+- id: pt1-dl-12
+  test: 1
+  skill: text-encoding
+  objective: DL4
+  tier: champion
+  type: calculation
+  stem: |
+    A form saves each entry in UTF-8. A user types café résumé, which is 11 characters including the space. How many bytes are saved?
+  options:
+    - "11"
+    - "13"
+    - "14"
+    - "22"
+  ordered: true
+  answer: C
+  explain: |
+    In UTF-8, plain ASCII characters take 1 byte and é takes 2. The phrase has 8 ASCII characters (counting the space) and three é, so it takes 8 + 3 × 2 = 14 bytes.
+  why:
+    A: "11 gives every character 1 byte, which holds only for plain ASCII."
+    B: "13 misses one of the three é characters."
+    D: "22 gives every character 2 bytes, but plain letters take 1."
+  verify: 'len("café résumé".encode("utf-8"))'
+
+- id: pt1-dl-13
+  test: 1
+  skill: data-sources
+  objective: DL5
+  tier: core
+  type: scenario
+  stem: |
+    A city council wants residents to rate five proposed bus routes, answering the same questions about each one. Which data source fits best?
+  options:
+    - "Posts about buses on social media"
+    - "Tap records from transit fare cards"
+    - "Traffic sensor counts on main roads"
+    - "A survey sent to residents"
+  answer: D
+  explain: |
+    A survey lets the council ask every resident the same questions about the specific proposals. The other sources record existing behavior or unprompted opinions, not ratings of routes that do not exist yet.
+  why:
+    A: "Social media posts are unprompted, come from a self-selected group, and will not rate each proposal."
+    B: "Fare-card taps show how people ride today, not how they would rate new routes."
+    C: "Traffic counts measure vehicles, not residents' opinions."
+
+- id: pt1-dl-14
+  test: 1
+  skill: study-types
+  objective: DL5
+  tier: competitive
+  type: scenario
+  stem: |
+    A retailer buys a list of shoppers' interests that a data broker compiled by tracking people across many websites. For the retailer, what kind of data is this?
+  options:
+    - "First-party data"
+    - "Second-party data"
+    - "Third-party data"
+    - "Primary data"
+  answer: C
+  explain: |
+    Third-party data is bought from companies that gather it from many sources, with no direct relationship to the people involved. The retailer neither collected it nor received it through a partnership.
+  why:
+    A: "First-party data comes from a company's own customers, such as its purchase history."
+    B: "Second-party data is another organization's own first-party data, shared through a partnership."
+    D: "Primary data is collected firsthand for your own question; this list was bought."
+
+- id: pt1-dl-15
+  test: 1
+  skill: data-gov
+  objective: DL5
+  tier: champion
+  type: scenario
+  stem: |
+    A company copies raw data from its apps straight into a cloud warehouse every hour. Analysts later write SQL inside the warehouse to clean and reshape it for each report. Which pattern is this, and what is its main advantage?
+  options:
+    - "ELT; the raw data stays available to transform in new ways later"
+    - "ETL; the data is cleaned before it reaches the warehouse"
+    - "ELT; it removes the need to clean the data at all"
+    - "ETL; cleaning inside the warehouse saves storage space"
+  answer: A
+  explain: |
+    Loading first and transforming later inside the destination is ELT. Cheap cloud storage made it popular because the raw data is kept, so analysts can transform it in different ways for different questions.
+  why:
+    B: "In ETL the cleaning happens before loading, but here the raw data is loaded first."
+    C: "ELT still cleans the data; it does so after loading."
+    D: "This is not ETL, and keeping the raw data uses more storage, not less."
+
+- id: pt1-dl-16
+  test: 1
+  skill: wrangling
+  objective: DL6
+  tier: core
+  type: scenario
+  stem: |
+    An order_date column is stored as text, so sorting it puts "10/2/2025" before "9/30/2025". What is the right fix?
+  options:
+    - "Sort the column in descending order instead"
+    - "Add leading zeros so every month has two digits"
+    - "Remove the slashes and sort the dates as numbers"
+    - "Convert the column from text to a date type"
+  answer: D
+  explain: |
+    Text sorts character by character, and "1" comes before "9", so October lands before September. Converting the column to a real date type makes every sort and date calculation follow the calendar.
+  why:
+    A: "Reversing the order does not change the fact that the values are compared as text."
+    B: "Two-digit months fix this pair, but dates from a later year can still sort before earlier ones."
+    C: "Without slashes, 10/2/2025 becomes 1022025, which is still smaller than 9302025."
+
+- id: pt1-dl-17
+  test: 1
+  skill: scaling
+  objective: DL6
+  tier: competitive
+  type: concept
+  stem: |
+    A linear regression trained with gradient descent uses income (about 20,000 to 200,000) and age (18 to 80) as features. Why scale them first?
+  options:
+    - "Very different ranges make gradient descent slow or unstable"
+    - "Scaling removes the outliers from the income column"
+    - "Scaling makes both features normally distributed"
+    - "Every model, decision trees included, needs scaled inputs"
+  answer: A
+  explain: |
+    Models trained with gradient descent, such as linear regression, train slowly or unstably when features have very different ranges. Income here runs into the tens of thousands while age stays below 100, so scaling puts them on comparable ranges.
+  why:
+    B: "Scaling shifts and stretches the values but keeps every outlier."
+    C: "Min-max and z-score scaling change the units, not the shape of the distribution."
+    D: "Decision trees split on thresholds and do not need scaling."
+
+- id: pt1-dl-18
+  test: 1
+  skill: encoding-cats
+  objective: DL6
+  tier: champion
+  type: concept
+  stem: |
+    A linear regression includes an intercept and one-hot columns for all three values of a plan column: basic, plus, and premium. What problem does this create?
+  options:
+    - "The extra columns guarantee that the model will overfit"
+    - "The three plan values become treated as ordered numbers"
+    - "The dummy variable trap: the columns always sum to 1, like the intercept"
+    - "One-hot encoding can never be used with linear regression"
+  answer: C
+  explain: |
+    Every row has exactly one 1 among the three columns, so they always add up to 1, the same as the intercept. This perfect multicollinearity, the dummy variable trap, is avoided by dropping one category's column.
+  why:
+    A: "Three extra columns do not guarantee overfitting; the problem is that together they duplicate the intercept."
+    B: "One-hot encoding avoids imposing an order; label encoding would impose one."
+    D: "One-hot encoding is standard in linear regression, as long as one column is dropped."
+
+- id: pt1-dl-19
+  test: 1
+  skill: process-models
+  objective: DL7
+  tier: competitive
+  type: recall
+  stem: |
+    In IBM's data science methodology, which stage decides what data is needed, and in what formats, before any of it is collected?
+  options:
+    - "Analytic approach"
+    - "Data requirements"
+    - "Data understanding"
+    - "Data preparation"
+  answer: B
+  explain: |
+    IBM's methodology runs business understanding, analytic approach, data requirements, and then data collection. The data requirements stage settles which data, in which formats, the chosen approach needs.
+  why:
+    A: "The analytic approach comes just before and decides how data can answer the question, such as by classification."
+    C: "Data understanding checks whether the collected data represents the problem, after collection."
+    D: "Data preparation cleans and organizes the collected data for modeling."
+
+- id: pt1-dl-20
+  test: 1
+  skill: eda
+  objective: DL7
+  tier: competitive
+  type: scenario
+  stem: |
+    During exploratory data analysis, an analyst makes scatterplots of each pair of numeric columns and compares average spending between customer groups. Which part of EDA is this?
+  options:
+    - "Examining relationships between variables"
+    - "Examining each variable alone"
+    - "Confirmatory analysis of a hypothesis"
+    - "Cleaning and preparing the data"
+  answer: A
+  explain: |
+    EDA looks first at each variable alone (its distribution, center, and spread) and then at relationships: scatterplots and correlations between pairs of variables, and comparisons between groups.
+  why:
+    B: "Looking at each variable alone means histograms and summaries of one column at a time."
+    C: "Confirmatory analysis tests a stated hypothesis; this is open exploration."
+    D: "Cleaning fixes errors in the data; these plots only explore it."
+
+# ================================================================ Test 2
+- id: pt2-dl-01
+  test: 2
+  skill: ds-nature
+  objective: DL1
+  tier: core
+  type: scenario
+  stem: |
+    A fitness app has months of a user's daily step counts and local weather. It concludes that this user walks about 40 percent less on rainy days. Which level of the DIKW pyramid is this conclusion?
+  options:
+    - "Data"
+    - "Information"
+    - "Knowledge"
+    - "Wisdom"
+  answer: C
+  explain: |
+    Knowledge is a pattern or understanding built from information. Linking step counts to the weather across many days reveals a pattern, which is knowledge.
+  why:
+    A: "Data is a raw number, such as 6112, with no context."
+    B: "Information is a value given context, such as 6,112 steps walked on Monday."
+    D: "Wisdom is deciding what to do, such as suggesting indoor walks on rainy days."
+
+- id: pt2-dl-02
+  test: 2
+  skill: ds-roles
+  objective: DL1
+  tier: competitive
+  type: scenario
+  stem: |
+    A hospital names one person responsible for its patient-visits dataset. That person writes down what every field means, decides which teams may use the data, and tracks reported errors until they are fixed. Which role is this?
+  options:
+    - "Database administrator"
+    - "Data steward"
+    - "Data engineer"
+    - "Data analyst"
+  answer: B
+  explain: |
+    A data steward is responsible for a set of data: what each field means, who may use it, and how good its quality is. That responsibility is part of data governance.
+  why:
+    A: "A DBA keeps the database server secure, backed up, and fast, not the meaning of each field."
+    C: "A data engineer builds the pipelines that move the data."
+    D: "A data analyst uses the data to answer questions."
+
+- id: pt2-dl-03
+  test: 2
+  skill: ds-analytics
+  objective: DL1
+  tier: competitive
+  type: scenario
+  stem: |
+    A clothing retailer's project has two steps. Step 1 finds that returns rose because one supplier's sizes run small. Step 2 builds a model that estimates each new order's chance of being returned. Which kinds of analytics are steps 1 and 2?
+  options:
+    - "Descriptive, then prescriptive"
+    - "Predictive, then diagnostic"
+    - "Diagnostic, then prescriptive"
+    - "Diagnostic, then predictive"
+  answer: D
+  explain: |
+    Step 1 explains why returns rose, which is diagnostic. Step 2 estimates what will happen with each new order, which is predictive. Neither step recommends an action, so neither is prescriptive.
+  why:
+    A: "Step 1 finds a cause, which goes beyond describing what happened."
+    B: "The order is reversed: the cause comes first, then the forecast."
+    C: "A model that estimates return chances forecasts; it does not recommend an action."
+
+- id: pt2-dl-04
+  test: 2
+  skill: data-formats
+  objective: DL2
+  tier: core
+  type: recall
+  stem: |
+    Which storage design combines a data lake's low-cost, flexible storage with the organization and management of a data warehouse?
+  options:
+    - "A data lakehouse"
+    - "A data mart"
+    - "A relational database"
+    - "A data catalog"
+  answer: A
+  explain: |
+    A data lakehouse keeps raw data of many kinds in cheap storage, as a lake does, and adds warehouse-style organization and management on top.
+  why:
+    B: "A data mart is a smaller slice of a warehouse focused on one department."
+    C: "A relational database stores tables with a fixed schema, not raw data of every kind."
+    D: "A data catalog is a searchable list of datasets, not a place where data is stored."
+
+- id: pt2-dl-05
+  test: 2
+  skill: metadata
+  objective: DL2
+  tier: core
+  type: concept
+  stem: |
+    A spreadsheet of home sales comes with several pieces of information. Which one is data rather than metadata?
+  options:
+    - "The date the file was last modified"
+    - "The name of the person who compiled it"
+    - "The data type of the price column"
+    - "The sale price recorded in row 12"
+  answer: D
+  explain: |
+    Metadata is data about data: it describes the file or its columns. The sale price in row 12 is one of the values the dataset exists to record, so it is data.
+  why:
+    A: "The last-modified date describes the file, so it is metadata."
+    B: "The author describes where the file came from, so it is metadata."
+    C: "A column's data type describes the dataset's structure, so it is metadata."
+
+- id: pt2-dl-06
+  test: 2
+  skill: var-num-cat
+  objective: DL3
+  tier: core
+  type: concept
+  stem: |
+    Which summary works for a numeric variable but not for a categorical one?
+  options:
+    - "The mean"
+    - "The mode"
+    - "A count of each value"
+    - "The percentage in each group"
+  answer: A
+  explain: |
+    A mean adds the values and divides, which only makes sense when the values are quantities. Modes, counts, and percentages work for categories too.
+  why:
+    B: "The mode, the most common value, works for categories, such as the most popular color."
+    C: "Counting how often each value appears is the basic summary of a categorical variable."
+    D: "Percentages in each group are a standard summary of categorical data."
+
+- id: pt2-dl-07
+  test: 2
+  skill: var-levels
+  objective: DL3
+  tier: competitive
+  type: scenario
+  stem: |
+    A survey codes education as 1 = high school, 2 = bachelor's, 3 = master's, and 4 = doctorate. An analyst reports that the mean education code is 2.4. What is the problem?
+  options:
+    - "Nothing; the codes 1 to 4 are interval data"
+    - "The codes are ordinal, so the gaps between them are not equal"
+    - "The mean should have been rounded to 2, a bachelor's degree"
+    - "The codes are nominal, so even a median would be meaningless"
+  answer: B
+  explain: |
+    The codes are ordinal: they put the degrees in order, but the step from 1 to 2 is not the same size as the step from 3 to 4. A mean assumes equal steps, so the median or the mode is the right summary.
+  why:
+    A: "Numbering ordered categories does not make the gaps between them equal."
+    C: "Rounding a meaningless average does not make it meaningful."
+    D: "The degrees have a clear order, so the codes are ordinal and a median works."
+
+- id: pt2-dl-08
+  test: 2
+  skill: var-disc-cont
+  objective: DL3
+  tier: champion
+  type: concept
+  stem: |
+    A school records four values for each class of 24 students. Which one is continuous?
+  options:
+    - "The number of students absent on Monday"
+    - "The proportion who passed, such as 0.75"
+    - "The classroom's temperature at noon"
+    - "The number of books the class read this term"
+  answer: C
+  explain: |
+    Temperature is measured, so it can take any value in a range, such as 21.37 degrees. The proportion passing looks continuous, but with 24 students it can only be one of 25 values (0/24 up to 24/24), so it is discrete.
+  why:
+    A: "Absences are counted, so they are discrete."
+    B: "With 24 students the proportion can take only 25 separate values, so it is discrete even though it is a decimal."
+    D: "Books read are counted, so the count is discrete."
+
+- id: pt2-dl-09
+  test: 2
+  skill: base-hex
+  objective: DL4
+  tier: core
+  type: calculation
+  stem: |
+    A memory dump shows the byte 9C in hexadecimal. What value is that in decimal?
+  options:
+    - "102"
+    - "144"
+    - "156"
+    - "157"
+  ordered: true
+  answer: C
+  explain: |
+    The left digit counts 16s and the right digit counts 1s. C is 12, so 9C = 9 × 16 + 12 = 156.
+  why:
+    A: "102 uses a place value of 10 instead of 16: 9 × 10 + 12."
+    B: "144 counts the nine 16s but drops the C."
+    D: "157 treats C as 13, but C is 12."
+  verify: 'int("9C", 16)'
+
+- id: pt2-dl-10
+  test: 2
+  skill: base-other
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    Convert the binary number 1011101 to octal.
+  options:
+    - "93"
+    - "5D"
+    - "561"
+    - "135"
+  answer: D
+  explain: |
+    Each octal digit stands for exactly three bits. Group from the right: 1 011 101, which is 1, 3, 5, so the octal number is 135.
+  why:
+    A: "93 is the decimal value, not the octal one."
+    B: "5D uses groups of four bits, which gives hexadecimal."
+    C: "561 groups the bits from the left, which leaves the wrong bits in each group."
+  verify: 'format(int("1011101", 2), "o")'
+
+- id: pt2-dl-11
+  test: 2
+  skill: bin-arith
+  objective: DL4
+  tier: champion
+  type: calculation
+  stem: |
+    A computer finds 13 minus 6 by adding 13 and the two's complement of 6, in 8 bits: 00001101 + 11111010. What 8-bit result does it store?
+  options:
+    - "00000110"
+    - "00000111"
+    - "00010011"
+    - "100000111"
+  ordered: true
+  answer: B
+  explain: |
+    The full sum is 1 00000111: a 9th bit carries out. The computer keeps only 8 bits, so the carry is discarded and the result is 00000111, which is 7, the correct value of 13 minus 6.
+  why:
+    A: "00000110 is 6: it adds the one's complement 11111001, forgetting to add 1."
+    C: "00010011 is 19: it adds positive 6 instead of the two's complement of 6."
+    D: "100000111 keeps the 9th carry bit, which an 8-bit register cannot store."
+  verify: 'format((0b00001101 + 0b11111010) & 0xFF, "08b")'
+
+- id: pt2-dl-12
+  test: 2
+  skill: media-encoding
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    An uncompressed photo is resized from 1,000 × 800 pixels to 2,000 × 1,600 pixels, keeping the same color depth. How many times larger is the new file?
+  options:
+    - "1"
+    - "2"
+    - "4"
+    - "8"
+  ordered: true
+  answer: C
+  explain: |
+    Uncompressed size is width × height × bytes per pixel. Doubling both the width and the height multiplies the pixel count by 2 × 2 = 4, and the bytes per pixel stay the same.
+  why:
+    A: "An uncompressed file's size depends on its pixel count, not on what the picture shows."
+    B: "2 doubles only one dimension."
+    D: "8 also doubles the color depth, which did not change."
+  verify: "(2000 * 1600) / (1000 * 800)"
+
+- id: pt2-dl-13
+  test: 2
+  skill: data-sources
+  objective: DL5
+  tier: core
+  type: scenario
+  stem: |
+    A phone maker wants to know how customers feel about its newest model during the first week after launch. Which data source fits this question best?
+  options:
+    - "Sensor readings from the assembly line"
+    - "Point-of-sale records of units sold"
+    - "Product reviews and social media posts"
+    - "Census tables of household income"
+  answer: C
+  explain: |
+    Feelings and opinions show up in what people write. Reviews and social media posts capture those reactions directly.
+  why:
+    A: "Assembly-line sensors measure manufacturing, not customer opinions."
+    B: "Sales records show how many phones sold, not how buyers feel about them."
+    D: "Census tables describe populations, not reactions to a product."
+
+- id: pt2-dl-14
+  test: 2
+  skill: study-types
+  objective: DL5
+  tier: competitive
+  type: scenario
+  stem: |
+    To test whether a new study app raises quiz scores, researchers randomly split 80 volunteers: 40 use the app and 40 study as usual. What is the role of the 40 who study as usual?
+  options:
+    - "They are the control group, showing results without the treatment"
+    - "They are the treatment group, because they also study"
+    - "They are a confounding variable that the study must remove"
+    - "They are the population the sample was drawn from"
+  answer: A
+  explain: |
+    The 40 who study as usual do not get the treatment (the app), so they are the control group. Comparing the two randomly assigned groups shows the app's effect, because random assignment makes the groups alike in everything else.
+  why:
+    B: "The treatment is the app; the group that does not use it is not the treatment group."
+    C: "A confounding variable is a hidden factor, not a group of subjects."
+    D: "The population is everyone the study wants to learn about; both groups were drawn from it."
+
+- id: pt2-dl-15
+  test: 2
+  skill: study-types
+  objective: DL5
+  tier: champion
+  type: scenario
+  stem: |
+    Dataset 1 holds one country's monthly unemployment rate for 20 years. Dataset 2 holds the income of the same 800 households, recorded every year for 10 years. Which pair of labels is correct?
+  options:
+    - "1: cross-sectional; 2: time series"
+    - "1: time series; 2: longitudinal (panel)"
+    - "1: longitudinal (panel); 2: cross-sectional"
+    - "1: time series; 2: cross-sectional"
+  answer: B
+  explain: |
+    A time series records one quantity at regular intervals, like a monthly rate. Longitudinal (panel) data measures the same subjects repeatedly, like the same households every year.
+  why:
+    A: "Dataset 1 follows one quantity over time, not many subjects at one moment."
+    C: "Dataset 1 is a single quantity, not many subjects, and dataset 2 is measured more than once."
+    D: "Dataset 2 measures the same households repeatedly, so it is not a single snapshot."
+
+- id: pt2-dl-16
+  test: 2
+  skill: wrangling
+  objective: DL6
+  tier: competitive
+  type: scenario
+  stem: |
+    A customer table stores full addresses such as "12 Oak St, Austin, TX 78701" in one text column. To count customers by ZIP code, what must happen first?
+  options:
+    - "Group the customers by the full address"
+    - "Convert the address column to a number"
+    - "One-hot encode the address column"
+    - "Parse the ZIP code into its own column"
+  answer: D
+  explain: |
+    Parsing pulls the piece you need out of a combined text field. Once the ZIP code sits in its own column, counting customers by ZIP is a simple group-and-count.
+  why:
+    A: "Nearly every full address is unique, so grouping by it puts each customer in a group of one."
+    B: "An address is text, so converting the whole column to a number fails."
+    C: "One-hot encoding would add a column for every address and still never isolate the ZIP code."
+
+- id: pt2-dl-17
+  test: 2
+  skill: feature-eng
+  objective: DL6
+  tier: competitive
+  type: scenario
+  stem: |
+    To predict which customers will cancel, an analyst turns each customer's many rows of order history into new columns such as "orders in the last 90 days" and "average order value this year". What is this step?
+  options:
+    - "Building aggregate features from order history"
+    - "Selecting the most useful existing columns"
+    - "One-hot encoding each customer's orders"
+    - "Normalizing order values to the 0 to 1 range"
+  answer: A
+  explain: |
+    Aggregates summarize many rows into one value per customer, such as a count of recent orders or an average order value. Creating them is a common kind of feature engineering.
+  why:
+    B: "Feature selection keeps some existing columns; here new columns are created."
+    C: "One-hot encoding turns a categorical column into columns of 0s and 1s."
+    D: "Normalization rescales an existing column; it does not summarize many rows."
+
+- id: pt2-dl-18
+  test: 2
+  skill: scaling
+  objective: DL6
+  tier: champion
+  type: calculation
+  stem: |
+    A min-max scaler was fit on training data where a feature ran from 10 to 50. A new value of 60 arrives in production and is scaled with the same fitted minimum and maximum. What is its scaled value?
+  options:
+    - "0.83"
+    - "1.00"
+    - "1.20"
+    - "1.25"
+  ordered: true
+  answer: D
+  explain: |
+    Min-max scaling computes (x minus min) / (max minus min) with the minimum and maximum fit on the training data: (60 minus 10) / (50 minus 10) = 50 / 40 = 1.25. Values outside the training range land outside 0 to 1.
+  why:
+    A: "0.83 divides by the new value: 50 / 60."
+    B: "1.00 assumes scaled values are capped at 1, but the formula has no cap."
+    C: "1.20 divides 60 by 50 without subtracting the minimum."
+  verify: "(60 - 10) / (50 - 10)"
+
+- id: pt2-dl-19
+  test: 2
+  skill: process-models
+  objective: DL7
+  tier: core
+  type: scenario
+  stem: |
+    A CRISP-DM team gathers its first data, describes what each table contains, explores it, and checks its quality before cleaning anything. Which phase is the team in?
+  options:
+    - "Business Understanding"
+    - "Data Understanding"
+    - "Data Preparation"
+    - "Evaluation"
+  answer: B
+  explain: |
+    In CRISP-DM, Data Understanding means collecting initial data, describing it, exploring it, and checking its quality. Cleaning and shaping the data comes next, in Data Preparation.
+  why:
+    A: "Business Understanding sets the objectives before any data work begins."
+    C: "Data Preparation cleans and builds the final dataset, after this phase."
+    D: "Evaluation checks a finished model against the business objectives."
+
+- id: pt2-dl-20
+  test: 2
+  skill: reproducibility
+  objective: DL7
+  tier: competitive
+  type: scenario
+  stem: |
+    A notebook runs cleanly on its author's laptop but gives different results on a teammate's, because the teammate has a newer version of pandas installed. Which practice prevents this?
+  options:
+    - "Recording the exact package versions the code used"
+    - "Setting a random seed at the top of the notebook"
+    - "Keeping the notebook's code under version control"
+    - "Saving every chart the notebook makes as an image"
+  answer: A
+  explain: |
+    Recording the environment means writing down which packages, and which versions, the code ran with, so anyone can install the same ones. A newer library version can change defaults and results even when the code is identical.
+  why:
+    B: "A seed fixes random steps, but it cannot stop a different library version from behaving differently."
+    C: "Version control tracks the code's history, not which package versions are installed on each machine."
+    D: "Saved charts show the old results without making the analysis reproducible."

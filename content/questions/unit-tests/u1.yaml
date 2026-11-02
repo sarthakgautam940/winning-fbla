@@ -5,95 +5,95 @@
   tier: core
   type: scenario
   stem: |
-    A gym chain's managers ask: "How many of our members are likely to cancel next month?" Which kind of analytics answers this question?
+    A delivery company's software looks at each driver's packages, traffic, and fuel costs, then chooses the order of stops that will use the least fuel. Which kind of analytics is this?
   options:
     - "Descriptive analytics"
     - "Diagnostic analytics"
-    - "Prescriptive analytics"
     - "Predictive analytics"
+    - "Prescriptive analytics"
   answer: D
   explain: |
-    The question asks what will happen, which is predictive analytics. Descriptive analytics asks what happened, diagnostic asks why, and prescriptive asks what to do about it.
+    Prescriptive analytics recommends what to do, often by optimizing. Choosing the best order of stops is a decision the software makes, not just a forecast or a report.
   why:
-    A: "Descriptive analytics summarizes what already happened, such as last month's cancellations."
+    A: "Descriptive analytics reports what already happened, such as last week's fuel use."
     B: "Diagnostic analytics explains why something happened."
-    C: "Prescriptive analytics recommends an action, such as which members to offer a discount."
+    C: "Predictive analytics forecasts what will happen; this system goes further and picks an action."
 
 - id: ut1-02
   skill: ds-roles
   tier: competitive
   type: scenario
   stem: |
-    After a fraud model goes live, someone must deploy updates, monitor its accuracy in production, and retrain it when its performance drifts. Which role does this work belong to?
+    A hospital asks which patients are most at risk of complications after surgery. One team member turns the question into a modeling problem, builds and validates a predictive model, and explains which factors drive the risk. Which role fits best?
   options:
+    - "Data scientist"
+    - "Data engineer"
+    - "Data analyst"
     - "Machine learning engineer"
-    - "Business intelligence developer"
-    - "Data steward"
-    - "Database administrator"
   answer: A
   explain: |
-    Machine learning engineers put models into production, scale them, and monitor and maintain them. Data scientists usually build the first model; machine learning engineers keep it working.
+    Data scientists frame open questions, build predictive models, and design experiments. Turning a question into a model and explaining what drives its predictions is their core work.
   why:
-    B: "Business intelligence developers build dashboards and reports about performance; they do not run models in production."
-    C: "Data stewards own a dataset's definitions, quality, and access rules."
-    D: "Database administrators keep databases secure, backed up, and fast."
+    B: "Data engineers build the pipelines and storage that deliver the data."
+    C: "Data analysts query existing data and report what it shows."
+    D: "Machine learning engineers deploy and monitor models in production; building and validating the model comes first."
 
 - id: ut1-03
   skill: data-structure
   tier: core
   type: scenario
   stem: |
-    A company stores four kinds of data. Which one is unstructured?
+    A company stores four kinds of data. Which one is semi-structured?
   options:
-    - "A spreadsheet of daily sales by store"
-    - "A database table of employee IDs and salaries"
-    - "A CSV file of web traffic by hour"
-    - "Audio recordings of customer service calls"
+    - "A CSV file of each store's daily sales totals"
+    - "Recorded audio of customer phone calls"
+    - "Scanned images of paper store receipts"
+    - "Log lines such as time=09:14 path=/cart status=200"
   answer: D
   explain: |
-    Unstructured data has no predefined rows-and-columns model; audio must be processed, for example with speech recognition, before it can be analyzed. The other three are tables with fixed columns.
+    Each log line labels its own values with keys (time, path, status), but lines need not share one fixed table layout. Self-describing records without a fixed schema are semi-structured, like JSON.
   why:
-    A: "A spreadsheet with fixed columns is structured."
-    B: "A database table with a schema is structured."
-    C: "A CSV file is a table of rows and columns, so it is structured."
+    A: "A CSV file is a table of rows and columns, so it is structured."
+    B: "Audio recordings have no labeled fields, so they are unstructured."
+    C: "Scanned images are unstructured until software extracts their content."
 
 - id: ut1-04
   skill: metadata
   tier: competitive
   type: scenario
   stem: |
-    A photo file stores the date it was taken, the camera model, and GPS coordinates alongside its pixels. What is this extra information called?
+    Two analysts report different totals from the same revenue column, because one assumes it includes sales tax and the other assumes it does not. Which document would have prevented the confusion?
   options:
-    - "Metadata"
     - "A data dictionary"
+    - "A data lake"
+    - "A data pipeline"
     - "A primary key"
-    - "A schema"
   answer: A
   explain: |
-    Metadata is data about data. Photo files commonly carry EXIF metadata such as the time, camera settings, and location, which can reveal more than the picture itself.
+    A data dictionary records each field's meaning, type, and allowed values. With "revenue" defined in one place, both analysts would read the column the same way.
   why:
-    B: "A data dictionary documents the meaning of each field in a dataset; it is not stored inside each photo."
-    C: "A primary key uniquely identifies rows in a database table."
-    D: "A schema defines the structure of a dataset's fields, not facts about one particular file."
+    B: "A data lake stores raw data; it does not define what fields mean."
+    C: "A pipeline moves data between systems; it does not document meanings."
+    D: "A primary key identifies rows; it says nothing about what a column means."
 
 - id: ut1-05
   skill: data-structure
   tier: competitive
   type: concept
   stem: |
-    Why is JSON usually described as semi-structured data rather than structured data?
+    Which statement about unstructured data, such as photos and emails, is accurate?
   options:
-    - "It can store only text, never numbers or true/false values"
-    - "Its keys label the data, but records need not share one fixed table layout"
-    - "It has no organization at all, like free-form text or images"
-    - "It must be converted to a spreadsheet before any program can read it"
+    - "It has no organization of any kind"
+    - "It lacks a schema that labels its meaning in fields"
+    - "It can be filtered with SQL just like a table"
+    - "It is always smaller than the structured data a company holds"
   answer: B
   explain: |
-    Semi-structured data carries its own labels, such as JSON keys or XML tags, so it is organized, but records can have different fields and nesting rather than fitting one fixed table schema.
+    Unstructured does not mean disorganized: a photo is a grid of pixels and an email is a sequence of words. What is missing is a schema that labels the meaning of the content in fields you can query.
   why:
-    A: "JSON stores numbers, booleans, and nulls as well as text."
-    C: "JSON is organized by keys and nesting, unlike truly unstructured data."
-    D: "Programs read JSON directly; it is a common format for APIs."
+    A: "A photo is an organized grid of pixels; what is missing is labeled meaning, not all organization."
+    C: "SQL filters on fields, and the meaning of a photo or an email is not stored in fields."
+    D: "Unstructured data is a large and fast-growing share of what organizations collect."
 
 - id: ut1-06
   skill: var-num-cat
@@ -157,19 +157,19 @@
   tier: competitive
   type: scenario
   stem: |
-    A track meet records four variables for each runner. Which one is continuous?
+    A pediatric clinic records four variables at each visit. Which one is discrete?
   options:
-    - "Number of races entered"
-    - "Time to finish the 400-meter race"
-    - "Finishing place in the final"
-    - "Number of false starts"
+    - "The child's weight in kilograms"
+    - "The number of teeth the child has"
+    - "The child's height in centimeters"
+    - "The child's body temperature"
   answer: B
   explain: |
-    Time is measured and can take any value in a range, such as 52.37 seconds, so it is continuous. Counts take whole-number values and are discrete.
+    Teeth are counted, so the variable takes only whole-number values: it is discrete. Weight, height, and temperature are measured and can take any value in a range.
   why:
-    A: "A count of races is discrete."
-    C: "A finishing place is an ordinal rank, not a measurement."
-    D: "A count of false starts is discrete."
+    A: "Weight is measured, so it is continuous."
+    C: "Height is measured, so it is continuous."
+    D: "Temperature is measured, so it is continuous."
 
 - id: ut1-10
   skill: base-binary
@@ -260,82 +260,83 @@
   tier: competitive
   type: scenario
   stem: |
-    An online store has a column of order timestamps. Which engineered feature would most directly help a model learn weekend shopping patterns?
+    To predict which new members stay loyal, an analyst creates the feature "days from sign-up to first purchase" from the sign_up_date and first_purchase_date columns. What kind of engineered feature is this?
   options:
-    - "The day of the week of each order"
-    - "The order's row number in the file"
-    - "The timestamp converted to a long text string"
-    - "The number of characters in the timestamp"
+    - "A difference between two existing columns"
+    - "An aggregate summarizing many rows"
+    - "A one-hot encoding of a category"
+    - "A transformation that reduces skew"
   answer: A
   explain: |
-    Feature engineering creates inputs that expose patterns to a model. Extracting the day of the week turns a raw timestamp into a feature that directly captures weekday versus weekend behavior.
+    Subtracting one date from another turns two raw columns into a single, more meaningful number. Differences and ratios between existing columns are common engineered features.
   why:
-    B: "A row number reflects file order, not shopping behavior."
-    C: "Turning the time into text hides its structure from the model."
-    D: "Every timestamp has the same length, so this feature carries no pattern."
+    B: "An aggregate summarizes many rows, such as orders in the last 30 days; this uses two columns of one row."
+    C: "One-hot encoding turns categories into columns of 0s and 1s."
+    D: "A skew-reducing transformation, such as a log, reshapes one column's values."
 
 - id: ut1-15
-  skill: bits-bytes
+  skill: text-encoding
   tier: core
   type: calculation
   stem: |
-    A sensor sends each reading as a 7-bit code. How many distinct codes are possible?
+    A message of 1,000 plain English letters, digits, and spaces is saved in UTF-8. How many bytes does it take?
   options:
-    - "64"
-    - "127"
-    - "128"
-    - "256"
+    - "125"
+    - "875"
+    - "1,000"
+    - "8,000"
   ordered: true
   answer: C
   explain: |
-    Each bit doubles the number of patterns, so 7 bits give 2 to the 7th power, which is 128 codes, numbered 0 through 127.
+    UTF-8 stores every plain ASCII character, such as English letters, digits, and spaces, in exactly 1 byte. So 1,000 characters take 1,000 bytes.
   why:
-    A: "64 is 2 to the 6th power, one bit short."
-    B: "127 is the largest value, not the number of values; zero is also a code."
-    D: "256 needs 8 bits."
-  verify: "2 ** 7"
+    A: "125 divides by 8, as if each character were a single bit."
+    B: "875 packs 7-bit ASCII codes together, but each character is stored in a full byte."
+    D: "8,000 is the size in bits, not bytes."
+  verify: 'len(("a" * 1000).encode("utf-8"))'
 
 - id: ut1-16
   skill: bits-bytes
   tier: champion
   type: calculation
   stem: |
-    A video clip is exactly 3 MiB (mebibytes). How many bytes is that?
+    How many more bytes are in 5 MiB (mebibytes) than in 5 MB (megabytes)?
   options:
-    - "3,000,000"
-    - "3,072,000"
-    - "3,145,728"
-    - "3,221,225,472"
+    - "48,576"
+    - "120,000"
+    - "242,880"
+    - "5,242,880"
   ordered: true
   answer: C
   explain: |
-    One mebibyte is 1,024 × 1,024 = 1,048,576 bytes, so 3 MiB is 3 × 1,048,576 = 3,145,728 bytes. A decimal megabyte (MB) is 1,000,000 bytes.
+    One MiB is 1,024 × 1,024 = 1,048,576 bytes, and one MB is 1,000,000 bytes. 5 MiB is 5,242,880 bytes and 5 MB is 5,000,000 bytes, so the difference is 242,880 bytes.
   why:
-    A: "3,000,000 uses decimal megabytes, not mebibytes."
-    B: "3,072,000 mixes 1,024 and 1,000."
-    D: "3,221,225,472 is 3 GiB."
-  verify: "3 * 1024 ** 2"
+    A: "48,576 is the difference for one MiB; it forgets to multiply by 5."
+    B: "120,000 treats a MiB as 1,024,000 bytes, mixing binary and decimal steps."
+    D: "5,242,880 is the size of 5 MiB itself, not the difference."
+  verify: "5 * 1024 ** 2 - 5 * 10 ** 6"
 
 - id: ut1-17
   skill: bin-arith
   tier: competitive
   type: calculation
   stem: |
-    An 8-bit unsigned counter holds 200. It adds 100 and keeps only the lowest 8 bits of the result. What value does it hold now?
+    Two unsigned 4-bit values, 0111 and 0101, are added. What is the result, and does it fit in 4 bits?
   options:
-    - "44"
-    - "100"
-    - "255"
-    - "300"
-  ordered: true
-  answer: A
+    - "0010, and it fits in 4 bits"
+    - "1100, but it overflows 4 bits"
+    - "11100, so it needs 5 bits"
+    - "1100, and it fits in 4 bits"
+  answer: D
   explain: |
-    The true sum, 300, needs 9 bits. Keeping the lowest 8 bits drops 256, leaving 300 minus 256 = 44. This wraparound is called overflow.
+    Add column by column with carries: 0111 + 0101 = 1100, which is 7 + 5 = 12. An unsigned 4-bit value holds 0 to 15, so 12 fits.
   why:
-    B: "100 is just the amount that was added."
-    C: "255 is the largest 8-bit value, but the counter wraps around rather than stopping there."
-    D: "300 cannot fit in 8 bits."
-  verify: "(200 + 100) % 256"
+    A: "0010 adds each column without carrying the 1s."
+    B: "Unsigned 4 bits hold any value up to 15; a leading 1 is not a sign here."
+    C: "11100 is 28; it carries one time too many."
+  verify: |
+    total = 0b0111 + 0b0101
+    ans = f"{total:04b}, and it fits in 4 bits" if total < 16 else "overflow"
 
 - id: ut1-18
   skill: bin-arith
@@ -361,65 +362,65 @@
     ans = v - 256 if v >= 128 else v
 
 - id: ut1-19
-  skill: text-encoding
+  skill: bits-bytes
   tier: core
   type: calculation
   stem: |
-    In ASCII, the capital letter G has code 71. What is the code for the lowercase letter g?
+    What is the largest whole number a 16-bit unsigned integer can hold?
   options:
-    - "39"
-    - "72"
-    - "103"
-    - "135"
+    - "32,767"
+    - "65,535"
+    - "65,536"
+    - "4,294,967,295"
   ordered: true
-  answer: C
+  answer: B
   explain: |
-    Lowercase ASCII letters are exactly 32 more than their capitals, so g is 71 + 32 = 103.
+    16 bits give 2 to the 16th power = 65,536 different values. Counting from 0, the largest is 65,536 minus 1 = 65,535.
   why:
-    A: "39 subtracts 32; lowercase codes are higher, not lower."
-    B: "72 is the next capital letter, H."
-    D: "135 adds 64 instead of 32."
-  verify: 'ord("g")'
+    A: "32,767 is the largest 16-bit value when one bit is used for the sign."
+    C: "65,536 is how many values there are; the largest is one less, because 0 is one of them."
+    D: "4,294,967,295 is the largest 32-bit value."
+  verify: "2 ** 16 - 1"
 
 - id: ut1-20
   skill: ds-nature
   tier: competitive
-  type: recall
+  type: scenario
   stem: |
-    A team has strong programming skills and deep knowledge of the retail business, but no one on it has training in math or statistics. Where would Drew Conway's Venn diagram place this team?
+    A reader sees a viral chart and asks where its numbers came from, whether its axis starts at zero, and what data might be missing. Which ability is the reader using?
   options:
-    - "Data science"
+    - "Domain expertise"
     - "Machine learning"
-    - "Business intelligence"
-    - "The danger zone"
+    - "Prescriptive analytics"
+    - "Data literacy"
   answer: D
   explain: |
-    Hacking skills plus substantive expertise, without math and statistics, is what Conway called the danger zone: people who can produce analyses that look convincing but may not be valid. Data science needs all three circles.
+    Data literacy is the ability to read, work with, analyze, and communicate with data, including questioning it. Asking about a chart's source, its axis, and what is missing is exactly that.
   why:
-    A: "Data science sits where all three circles overlap."
-    B: "Machine learning is hacking skills plus math and statistics."
-    C: "Business intelligence is not one of the regions Conway labeled."
+    A: "Domain expertise is knowledge of a subject area, such as medicine; the reader is questioning data in general."
+    B: "Machine learning builds models that learn from data."
+    C: "Prescriptive analytics recommends actions."
 
 - id: ut1-21
   skill: media-encoding
   tier: competitive
   type: calculation
   stem: |
-    An uncompressed image is 1,920 pixels wide and 1,080 pixels tall, with 24-bit color. About how many megabytes does it take, using 1 MB = 1,000,000 bytes?
+    An uncompressed mono recording uses 8,000 samples per second at 8 bits per sample. The file is 240,000 bytes. How many seconds long is it?
   options:
-    - "2.1"
-    - "6.2"
-    - "16.6"
-    - "49.8"
+    - "3.75"
+    - "15"
+    - "30"
+    - "240"
   ordered: true
-  answer: B
+  answer: C
   explain: |
-    24-bit color uses 3 bytes per pixel. 1,920 × 1,080 = 2,073,600 pixels, and 2,073,600 × 3 = 6,220,800 bytes, about 6.2 MB.
+    At 8 bits per sample, each sample is 1 byte, so one second of mono audio takes 8,000 bytes. 240,000 bytes / 8,000 bytes per second = 30 seconds.
   why:
-    A: "2.1 counts one byte per pixel instead of three."
-    C: "16.6 uses 8 bytes per pixel."
-    D: "49.8 is the size in megabits; divide bits by 8 to get bytes."
-  verify: "1920 * 1080 * 3 / 1e6"
+    A: "3.75 divides the size in bytes by the rate in bits per second (64,000), mixing units."
+    B: "15 assumes two channels, but the recording is mono."
+    D: "240 divides the size in bits by the sample rate, forgetting the 8 bits per sample."
+  verify: "240000 / (8000 * 8 / 8)"
 
 - id: ut1-22
   skill: media-encoding
@@ -467,19 +468,19 @@
   tier: core
   type: scenario
   stem: |
-    A factory's sensor network sends thousands of readings every second, and alerts must be raised as the data arrive. Which V of big data does this describe most directly?
+    A video platform stores billions of hours of footage, far more than any single server could hold. Which V of big data does this describe most directly?
   options:
-    - "Volume"
     - "Velocity"
+    - "Volume"
     - "Variety"
     - "Veracity"
   answer: B
   explain: |
-    Velocity is the speed at which data arrive and must be processed. Streaming readings that need real-time alerts are a velocity challenge.
+    Volume is the sheer amount of data. Storage that outgrows any one machine is the classic volume challenge, which is why big data systems spread data across many computers.
   why:
-    A: "Volume is the sheer amount of data stored, not how fast it arrives."
-    C: "Variety is the range of data types and formats."
-    D: "Veracity is the accuracy and trustworthiness of the data."
+    A: "Velocity is how fast data arrives, not how much is stored."
+    C: "Variety is the mix of data types and formats."
+    D: "Veracity is how accurate and trustworthy the data is."
 
 - id: ut1-25
   skill: process-models
@@ -505,24 +506,26 @@
   tier: competitive
   type: visual
   stem: |
-    Which change would make this table tidy?
+    A teacher wants one row per student, with the math and reading scores side by side. Which reshape turns this table into that layout?
 
-    | Student | Score_2025 | Score_2026 |
+    | student | subject | score |
     |---|---|---|
-    | Ana | 81 | 88 |
-    | Ben | 74 | 79 |
+    | Ana | math | 81 |
+    | Ana | reading | 88 |
+    | Ben | math | 74 |
+    | Ben | reading | 79 |
   options:
-    - "Add a column that averages the two scores for each student"
-    - "Sort the rows alphabetically by student name"
-    - "Reshape it so each row holds one student, one year, and one score"
-    - "Rename the columns to Score_A and Score_B"
+    - "Melt it from wide to long"
+    - "Sort the rows by subject"
+    - "Pivot it from long to wide"
+    - "Drop the subject column"
   answer: C
   explain: |
-    In tidy data each variable is a column and each observation is a row. Year is a variable hiding in the column headers, so the table should be reshaped from wide to long, with the columns Student, Year, and Score.
+    The table is in long format, one row per measurement. Pivoting to wide format spreads the subject values into their own columns, giving one row per student with a math column and a reading column.
   why:
-    A: "Adding an average leaves the year still stored in the headers."
-    B: "Sorting changes the order of rows, not the structure."
-    D: "Renaming hides the year entirely instead of storing it as a variable."
+    A: "Melting goes the other way, from wide to long; this table is already long."
+    B: "Sorting changes the order of rows, not their layout."
+    D: "Dropping the subject column would leave scores that can no longer be told apart."
 
 - id: ut1-27
   skill: scaling
@@ -550,56 +553,56 @@
   tier: champion
   type: concept
   stem: |
-    A team standardizes a feature before splitting its data, computing the mean and standard deviation from all the rows. Why is this a problem?
+    A right-skewed feature is z-score standardized. Which statement about the result is true?
   options:
-    - "Statistics from the test rows leak into training, so test results look better than they should"
-    - "Standardizing before splitting makes every value negative"
-    - "The standard deviation cannot be computed on more than 1,000 rows"
-    - "Standardized features cannot be used by any machine learning model"
+    - "Its mean and spread change, but its shape and the order of its values do not"
+    - "It becomes normally distributed, because standardizing removes the skew"
+    - "Its values are re-ranked so that the smallest becomes 0"
+    - "Nothing changes except the name of its units"
   answer: A
   explain: |
-    Scaling parameters must be learned from the training set only and then applied to the test set. Computing them from all rows lets information about the test data shape training, a form of data leakage that inflates test scores.
+    Standardizing subtracts the mean and divides by the standard deviation, a shift and a stretch. The result has mean 0 and standard deviation 1, but the distribution keeps its shape, so a right-skewed feature stays right-skewed, and every value keeps its rank.
   why:
-    B: "Standardizing centers values around zero; it does not make them all negative."
-    C: "A standard deviation can be computed for any number of rows."
-    D: "Standardized features are routinely used, and many models need them."
+    B: "A shift and a stretch cannot remove skew; a log transform is the tool for that."
+    C: "Standardizing never reorders values, and the smallest value usually becomes negative, not 0."
+    D: "The values themselves change: the mean becomes 0 and the standard deviation becomes 1."
 
 - id: ut1-29
   skill: encoding-cats
   tier: core
   type: calculation
   stem: |
-    A column named region has four values: north, south, east, and west. If one-hot encoding keeps a column for every category, how many new columns does it create?
+    A dataset has a color column with 3 values and a size column with 4 values. One-hot encoding keeps a column for every value of both. How many new columns does it create?
   options:
-    - "1"
     - "2"
-    - "3"
     - "4"
+    - "7"
+    - "12"
   ordered: true
-  answer: D
+  answer: C
   explain: |
-    One-hot encoding creates one 0-or-1 column per category, so four regions become four columns. Some setups drop one column to avoid the dummy variable trap, which would leave 3.
+    One-hot encoding makes one 0-or-1 column per category, separately for each column: 3 for color plus 4 for size gives 7.
   why:
-    A: "A single column would be label encoding, which imposes a false order."
-    B: "Two columns could store 4 values in binary, but that is not one-hot encoding."
-    C: "Three columns is the drop-one version, which this question rules out."
-  verify: 'len(["north", "south", "east", "west"])'
+    A: "2 counts the original columns, not their categories."
+    B: "4 encodes only the size column."
+    D: "12 multiplies the counts, as if every color-size combination got its own column."
+  verify: "3 + 4"
 
 - id: ut1-30
   skill: process-models
   tier: champion
   type: recall
   stem: |
-    In John Rollins' IBM Foundational Methodology for Data Science, which stage comes right after business understanding?
+    Which stage appears in IBM's data science methodology but has no separate phase of its own in CRISP-DM?
   options:
-    - "Data requirements"
-    - "Data collection"
+    - "Modeling"
+    - "Evaluation"
     - "Analytic approach"
-    - "Data understanding"
+    - "Deployment"
   answer: C
   explain: |
-    The ten stages begin with business understanding, analytic approach, data requirements, data collection, and data understanding. After defining the business problem, you choose the kind of analysis that can answer it.
+    IBM's methodology splits the early work into more stages than CRISP-DM, including an explicit analytic-approach stage that decides how data can answer the question. Modeling, evaluation, and deployment appear in both.
   why:
-    A: "Data requirements follows the analytic approach."
-    B: "Data collection comes after data requirements."
-    D: "Data understanding comes after data collection."
+    A: "Modeling is a phase in both CRISP-DM and IBM's methodology."
+    B: "Evaluation is a phase in both."
+    D: "Deployment is a phase in both."

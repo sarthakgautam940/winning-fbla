@@ -413,7 +413,7 @@ export function NeuronPlayground() {
   const z = w1 * x1 + w2 * x2 + b;
   const out = ACT[act](z);
   return (
-    <WidgetFrame title="One artificial neuron" hint="output = activation(w1·x1 + w2·x2 + b)">
+    <WidgetFrame title="One artificial neuron" hint="output = activation(w1 × x1 + w2 × x2 + b)">
       <div className="grid gap-5 lg:grid-cols-[1fr_220px]">
         <div className="grid gap-3 sm:grid-cols-2">
           <Slider label="Input x1" value={x1} min={-2} max={2} step={0.1} onChange={setX1} />
