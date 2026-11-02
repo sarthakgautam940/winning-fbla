@@ -1,0 +1,413 @@
+# Lesson 2.6: Samples, the central limit theorem, and inference
+
+# ---------------------------------------------------------------- clt
+- id: clt-01
+  skill: clt
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    A school records the GPA of every one of its 1,200 students and finds an average of 3.12. What is 3.12?
+  options:
+    - "A statistic"
+    - "A parameter"
+    - "A sample"
+    - "A standard error"
+  answer: B
+  explain: |
+    The number comes from the entire population of students, so it is a parameter. A statistic would come from a sample of the students.
+  why:
+    A: "A statistic describes a sample; this value covers every student."
+    C: "A sample is a group of subjects, not a number that describes them."
+    D: "A standard error measures how much a sample statistic varies; this is a population average."
+
+- id: clt-02
+  skill: clt
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A researcher takes thousands of random samples of 50 students and records the mean height of each sample. What is the distribution of these sample means called?
+  options:
+    - "The population distribution"
+    - "The standard normal distribution"
+    - "The uniform distribution"
+    - "The sampling distribution"
+  answer: D
+  explain: |
+    The distribution of a statistic over many repeated samples is a sampling distribution. Here the statistic is the sample mean.
+  why:
+    A: "The population distribution describes individual heights, not sample means."
+    B: "The standard normal is N(0, 1), a specific distribution of z-scores."
+    C: "A uniform distribution spreads probability evenly over a range; it is not defined by repeated sampling."
+
+- id: clt-03
+  skill: clt
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which statement best expresses the central limit theorem?
+  options:
+    - "For large samples, the sample mean is approximately normal whatever the population's shape."
+    - "For large samples, the data in each sample become approximately normal."
+    - "For large samples, the sample mean always equals the population mean exactly."
+    - "For large samples, the population becomes approximately normal."
+  answer: A
+  explain: |
+    The CLT is about the sampling distribution of the mean: averages of large random samples pile up in a bell shape centered on the population mean, even when the population itself is skewed.
+  why:
+    B: "The data keep the population's shape; a large sample of skewed incomes is still skewed."
+    C: "Sample means vary around the population mean; they do not equal it exactly."
+    D: "Sampling does not change the population's shape."
+
+- id: clt-04
+  skill: clt
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A population has standard deviation 20. What is the standard error of the mean for random samples of size 100?
+  options:
+    - "0.2"
+    - "2"
+    - "4"
+    - "20"
+  ordered: true
+  answer: B
+  explain: |
+    SE = $$\sigma / \sqrt{n} = 20 / \sqrt{100} = 20 / 10 = 2$$.
+  why:
+    A: "This divides by n instead of by the square root of n."
+    C: "This divides the variance (400) by n, which gives the squared standard error."
+    D: "20 is the population standard deviation; averaging shrinks the variation."
+  verify: "20 / math.sqrt(100)"
+
+- id: clt-05
+  skill: clt
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    As a random sample grows larger, its mean tends to get closer to the population mean. What is this principle called?
+  options:
+    - "The central limit theorem"
+    - "The empirical rule"
+    - "The law of large numbers"
+    - "Bessel's correction"
+  answer: C
+  explain: |
+    The law of large numbers says larger samples give sample means closer to the population mean. The central limit theorem is a different result, about the shape of the distribution of sample means.
+  why:
+    A: "The CLT describes the normal shape of the sampling distribution, not convergence to the mean."
+    B: "The empirical rule gives the 68-95-99.7 percentages for normal curves."
+    D: "Bessel's correction is dividing by n - 1 for a sample variance."
+
+- id: clt-06
+  skill: clt
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A survey's sample size is increased from 50 to 200. What happens to the standard error of the sample mean?
+  options:
+    - "It doubles."
+    - "It stays the same."
+    - "It is cut in half."
+    - "It is cut to one-fourth."
+  answer: C
+  explain: |
+    The standard error is $$\sigma / \sqrt{n}$$. Multiplying n by 4 multiplies $$\sqrt{n}$$ by 2, so the standard error is divided by 2.
+  why:
+    A: "A larger sample makes the mean more precise, so the SE falls."
+    B: "The SE depends on n, so it must change."
+    D: "The SE shrinks with the square root of n, so 4 times the data halves it rather than quartering it."
+  verify: |
+    ratio = (1 / math.sqrt(200)) / (1 / math.sqrt(50))
+    ans = "It is cut in half." if abs(ratio - 0.5) < 1e-9 else "other"
+
+- id: clt-07
+  skill: clt
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    When might a sample size of 30 NOT be large enough for the sample mean to be approximately normal?
+  options:
+    - "When the population is already normally distributed"
+    - "When the sample is drawn at random"
+    - "When the population standard deviation is known"
+    - "When the population is extremely skewed"
+  answer: D
+  explain: |
+    The n of 30 or more guideline is only a rule of thumb. A very skewed population, such as one with rare huge values, may need a much larger sample before the sample mean's distribution looks normal.
+  why:
+    A: "A normal population gives normal sample means at any sample size."
+    B: "Random sampling is required for the CLT; it is not what makes n = 30 too small."
+    C: "Knowing sigma does not change the shape of the sampling distribution."
+
+- id: clt-08
+  skill: clt
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    What is the mean of the sampling distribution of the sample mean?
+  options:
+    - "The population mean"
+    - "Zero"
+    - "The population mean divided by the square root of n"
+    - "The largest sample mean observed"
+  answer: A
+  explain: |
+    Sample means are centered on the population mean: on average, the sample mean hits the target. That is why it is an unbiased estimate.
+  why:
+    B: "Zero is the mean of z-scores, not of sample means."
+    C: "Dividing by the square root of n applies to the spread (the SE), not the center."
+    D: "Individual sample means scatter around the population mean; the center is the population mean."
+
+- id: clt-09
+  skill: clt
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A study uses a sample of 64 and wants to cut the standard error of its mean in half. What sample size does it need?
+  options:
+    - "32"
+    - "128"
+    - "256"
+    - "4,096"
+  ordered: true
+  answer: C
+  explain: |
+    The SE is proportional to $$1 / \sqrt{n}$$, so halving it requires $$\sqrt{n}$$ to double, which means n must be multiplied by 4: 64 x 4 = 256.
+  why:
+    A: "A smaller sample makes the SE larger, not smaller."
+    B: "Doubling n only reduces the SE by a factor of about 1.41."
+    D: "This squares 64, which would cut the SE to one-eighth."
+  verify: "64 * 4"
+
+- id: clt-10
+  skill: clt
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Why do researchers select samples at random?
+  options:
+    - "To make the sample larger than the population"
+    - "To make the sample representative of the population"
+    - "To guarantee the sample mean equals the population mean"
+    - "To avoid having to calculate any statistics at all"
+  answer: B
+  explain: |
+    Random selection gives every member a fair chance of inclusion, which tends to produce a sample that resembles the population. Then sample statistics are unbiased estimates of the parameters.
+  why:
+    A: "A sample is always part of the population, so it cannot be larger."
+    C: "Random samples vary; they do not guarantee an exact match."
+    D: "Statistics still have to be calculated from a random sample."
+
+# ---------------------------------------------------------------- inference-basics
+- id: inference-basics-01
+  skill: inference-basics
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A sample has mean 72, and the standard error of the mean is 2. Using $$z^* = 1.96$$, what is the 95% confidence interval for the population mean?
+  options:
+    - "70 to 74"
+    - "68.08 to 75.92"
+    - "66.12 to 77.88"
+    - "64 to 80"
+  answer: B
+  explain: |
+    The margin of error is $$z^* \times SE = 1.96 \times 2 = 3.92$$. The interval is 72 - 3.92 to 72 + 3.92, which is 68.08 to 75.92.
+  why:
+    A: "This adds and subtracts one standard error, which gives only about 68% confidence."
+    C: "This uses a multiplier of 2.94 instead of 1.96."
+    D: "This adds and subtracts four standard errors."
+  verify: |
+    ans = f"{72 - 1.96 * 2:.2f} to {72 + 1.96 * 2:.2f}"
+
+- id: inference-basics-02
+  skill: inference-basics
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    What does a p-value measure?
+  options:
+    - "The chance of data this extreme if the null is true"
+    - "The chance that the null hypothesis is actually true"
+    - "The chance that the alternative hypothesis is true"
+    - "The size of the effect measured in the study"
+  answer: A
+  explain: |
+    A p-value is computed by assuming no effect (the null hypothesis) and asking how surprising the observed data would be. A small p-value means such data would be rare if there were no effect.
+  why:
+    B: "The p-value assumes the null is true; it cannot also give the probability that it is true."
+    C: "The p-value does not give the probability that the alternative is true."
+    D: "The p-value measures surprise under the null, not how big the effect is."
+
+- id: inference-basics-03
+  skill: inference-basics
+  tier: champion
+  type: scenario
+  use: check
+  stem: |
+    A new drug actually has no effect, but a clinical study concludes that it works. What kind of error is this?
+  options:
+    - "Type II error, a false negative"
+    - "Sampling bias"
+    - "Type I error, a false positive"
+    - "No error, because the study followed proper procedure"
+  answer: C
+  explain: |
+    The null hypothesis (no effect) is true, but the study rejected it. Rejecting a true null hypothesis is a Type I error, a false positive.
+  why:
+    A: "A Type II error would be missing a drug that really works."
+    B: "Sampling bias is a flaw in how subjects are chosen, not the name of this error."
+    D: "A correct procedure can still reach a wrong conclusion; that is what error rates measure."
+
+- id: inference-basics-04
+  skill: inference-basics
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    How does increasing the sample size affect the margin of error of a confidence interval?
+  options:
+    - "It increases the margin of error."
+    - "It has no effect on the margin of error."
+    - "It makes the margin of error negative."
+    - "It decreases the margin of error."
+  answer: D
+  explain: |
+    The margin of error is $$z^*$$ times the standard error, and the standard error shrinks as the sample grows. More data give a more precise, narrower interval.
+  why:
+    A: "More data make the estimate more precise, not less."
+    B: "The margin of error depends on n through the standard error."
+    C: "A margin of error is a distance, so it is never negative."
+
+- id: inference-basics-05
+  skill: inference-basics
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Using the same data, a researcher changes a confidence interval from 95% to 99% confidence. What happens to the interval?
+  options:
+    - "It becomes wider."
+    - "It becomes narrower."
+    - "It stays the same width but shifts."
+    - "It is centered on a different estimate."
+  answer: A
+  explain: |
+    Higher confidence needs a larger multiplier: 2.576 instead of 1.96. To be more sure of capturing the true value, the interval must be wider.
+  why:
+    B: "Narrower intervals come with lower confidence, not higher."
+    C: "The width depends on the confidence level, so it must change."
+    D: "The interval stays centered on the same sample estimate."
+
+- id: inference-basics-06
+  skill: inference-basics
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A study reports a 95% confidence interval for a population mean. What does the 95% describe?
+  options:
+    - "95% of the individual data values fall inside the interval."
+    - "The sample mean is accurate to within 95% of the true mean."
+    - "About 95% of such intervals would contain the true mean."
+    - "There is a 95% chance that the sample was drawn at random."
+  answer: C
+  explain: |
+    The confidence level describes the method: if many random samples were taken and an interval built from each, about 95% of those intervals would capture the population mean.
+  why:
+    A: "A confidence interval estimates the mean; it is not a range holding 95% of the data."
+    B: "Confidence is not a percentage accuracy of the estimate."
+    D: "Randomness is an assumption of the method, not what the confidence level measures."
+
+- id: inference-basics-07
+  skill: inference-basics
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which change increases a hypothesis test's power to detect a real effect?
+  options:
+    - "Lowering the significance level from 0.05 to 0.01"
+    - "Increasing the sample size"
+    - "Reducing the sample size to save time"
+    - "Adding more variability to the measurements"
+  answer: B
+  explain: |
+    Power is the probability of detecting an effect that really exists. Larger samples reduce the standard error, making real effects easier to distinguish from noise, so power rises.
+  why:
+    A: "A stricter significance level makes rejecting harder, which lowers power."
+    C: "Smaller samples make real effects harder to detect."
+    D: "More variability hides real effects and lowers power."
+
+- id: inference-basics-08
+  skill: inference-basics
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A poll of 1,000 people finds about 50% support for a proposal. Using $$1.96 \times \sqrt{0.25 / n}$$, what is the approximate 95% margin of error?
+  options:
+    - "1.0 percentage points"
+    - "3.1 percentage points"
+    - "5.0 percentage points"
+    - "10.0 percentage points"
+  answer: B
+  explain: |
+    $$\sqrt{0.25 / 1000} \approx 0.0158$$, and $$1.96 \times 0.0158 \approx 0.031$$, or about 3.1 percentage points.
+  why:
+    A: "This is roughly one-third of the correct margin."
+    C: "A 5-point margin would fit a poll of about 380 people."
+    D: "A 10-point margin would fit a poll of about 100 people."
+  verify: "1.96 * math.sqrt(0.25 / 1000) * 100"
+
+- id: inference-basics-09
+  skill: inference-basics
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A test uses a significance level of $$\alpha = 0.05$$. What does that mean?
+  options:
+    - "There is a 5% chance that the alternative hypothesis is true."
+    - "The effect being studied is about 5% of the population mean."
+    - "At least 95% of the data must support the null hypothesis."
+    - "Reject the null when p < 0.05, accepting a 5% Type I error risk."
+  answer: D
+  explain: |
+    The significance level is the cutoff for rejecting the null hypothesis, and it is also the probability of a Type I error (rejecting a null that is actually true) that the researcher accepts.
+  why:
+    A: "Alpha is set in advance; it is not a probability that a hypothesis is true."
+    B: "Alpha says nothing about the size of the effect."
+    C: "Alpha is a threshold for the p-value, not a share of the data."
+
+- id: inference-basics-10
+  skill: inference-basics
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A test with 2 million users finds that a redesigned button raises the click rate by 0.01 percentage points, with p < 0.001. What is the best conclusion?
+  options:
+    - "The effect is statistically significant but may be too small to matter in practice."
+    - "The effect is large, because the p-value is very small."
+    - "The result is meaningless, because the sample was too large."
+    - "The redesign must be adopted immediately, because p < 0.05."
+  answer: A
+  explain: |
+    With millions of observations, even a tiny difference produces a very small p-value. Significance shows the effect is probably real, not that it is big enough to matter; the business still has to weigh its size.
+  why:
+    B: "A small p-value shows evidence of an effect, not a large effect."
+    C: "Large samples are valuable; they just make tiny effects detectable."
+    D: "Significance alone does not justify a decision without considering the size of the effect."

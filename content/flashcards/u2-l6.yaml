@@ -1,0 +1,51 @@
+# Lesson 2.6 flashcards
+
+- id: fc-parameter-statistic
+  term: Parameter vs. statistic
+  def: A parameter describes a population (mu, sigma, p). A statistic describes a sample (x-bar, s, p-hat) and estimates the parameter.
+  skill: clt
+
+- id: fc-sampling-distribution
+  term: Sampling distribution
+  def: The distribution of a statistic, such as the sample mean, over many random samples of the same size. For the mean it is centered on the population mean.
+  skill: clt
+
+- id: fc-clt
+  term: Central limit theorem
+  def: For large samples, the sample mean is approximately normal whatever the population's shape. The rule of thumb is n of 30 or more, with more needed for very skewed populations.
+  skill: clt
+
+- id: fc-lln
+  term: Law of large numbers
+  def: As the sample size grows, the sample mean gets closer to the population mean. It is about closeness, while the CLT is about shape.
+  skill: clt
+
+- id: fc-standard-error
+  term: Standard error of the mean
+  def: sigma / sqrt(n), the typical sample-to-sample variation of the mean. Four times the sample size halves it.
+  skill: clt
+
+- id: fc-confidence-interval
+  term: Confidence interval
+  def: The estimate plus or minus z* x SE. "95% confident" means about 95% of intervals built this way would contain the true value. Higher confidence gives a wider interval, and a larger n gives a narrower one.
+  skill: inference-basics
+
+- id: fc-p-value
+  term: p-value
+  def: The probability of results at least as extreme as those observed, assuming the null hypothesis is true. Below alpha (often 0.05), the result is statistically significant.
+  skill: inference-basics
+
+- id: fc-type-errors
+  term: Type I and Type II errors
+  def: "A Type I error rejects a true null hypothesis (a false positive, with probability alpha). A Type II error fails to reject a false null (a false negative)."
+  skill: inference-basics
+
+- id: fc-power
+  term: Statistical power
+  def: The probability of detecting a real effect, which is 1 minus P(Type II error). It rises with sample size, effect size, and lower variability.
+  skill: inference-basics
+
+- id: fc-practical-significance
+  term: Statistical vs. practical significance
+  def: With huge samples, tiny effects become statistically significant. Always ask whether the effect is large enough to matter.
+  skill: inference-basics
