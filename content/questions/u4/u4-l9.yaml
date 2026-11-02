@@ -1,0 +1,508 @@
+# Lesson 4.9: The data scientist's toolkit
+
+# ---------------------------------------------------------------- python-core
+- id: python-core-01
+  skill: python-core
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A program must store the IDs of website visitors, keeping each ID only once no matter how many times the visitor returns. Which built-in Python type fits best?
+  options:
+    - "list"
+    - "tuple"
+    - "dictionary"
+    - "set"
+  answer: D
+  explain: |
+    A set holds only unique items, so adding a repeat ID changes nothing, and checking whether an ID is present is fast.
+  why:
+    A: "A list keeps every repeat, so duplicates would pile up."
+    B: "A tuple cannot change after it is created, so new visitors could not be added."
+    C: "A dictionary needs a value for each key; a set is the simpler fit for unique items alone."
+
+- id: python-core-02
+  skill: python-core
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    What does this code print?
+
+    ```python
+    nums = [4, 7, 1, 9]
+    print(nums[1:3])
+    ```
+  options:
+    - "`[7, 1]`"
+    - "`[7, 1, 9]`"
+    - "`[4, 7]`"
+    - "`[4, 7, 1]`"
+  answer: A
+  explain: |
+    Python indexes from 0, and a slice stops before its end position. nums[1:3] takes positions 1 and 2, which hold 7 and 1.
+  why:
+    B: "This includes position 3, but slices stop before the end position."
+    C: "This starts at position 0, but the slice starts at position 1."
+    D: "This counts from 1, the way R does, and includes the end."
+  verify: |
+    ans = "`" + str([4, 7, 1, 9][1:3]) + "`"
+
+- id: python-core-03
+  skill: python-core
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    What does this code print?
+
+    ```python
+    print([x for x in [5, 12, 8, 20] if x > 10])
+    ```
+  options:
+    - "`[5, 8]`"
+    - "`[True, True]`"
+    - "`[12, 20]`"
+    - "`2`"
+  answer: C
+  explain: |
+    The comprehension keeps each x for which the condition x > 10 is true, in the original order: 12 and 20.
+  why:
+    A: "These are the values that fail the condition."
+    B: "The expression before for is x, so the list holds the values, not True and False."
+    D: "This counts the matches, but a comprehension builds a list of them."
+  verify: |
+    ans = "`" + str([x for x in [5, 12, 8, 20] if x > 10]) + "`"
+
+- id: python-core-04
+  skill: python-core
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which built-in Python type cannot be changed after it is created?
+  options:
+    - "list"
+    - "tuple"
+    - "dictionary"
+    - "set"
+  answer: B
+  explain: |
+    A tuple is immutable: its elements cannot be replaced, added, or removed once it exists. Trying to assign to one of them raises a TypeError.
+  why:
+    A: "Lists are mutable; you can append to and change them."
+    C: "Dictionaries are mutable; keys can be added and values changed."
+    D: "Sets are mutable; items can be added and removed."
+
+- id: python-core-05
+  skill: python-core
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    nums = [4, 7, 1, 9]
+    print(nums[-1])
+    ```
+  options:
+    - "`1`"
+    - "`4`"
+    - "`7`"
+    - "`9`"
+  ordered: true
+  answer: D
+  explain: |
+    Negative indexes count from the end of a list, so -1 is the last element, 9.
+  why:
+    A: "1 is nums[-2], the second to last element."
+    B: "4 is nums[0], the first element."
+    C: "7 is nums[1]."
+  verify: |
+    ans = "`" + str([4, 7, 1, 9][-1]) + "`"
+
+- id: python-core-06
+  skill: python-core
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What happens when this code runs?
+
+    ```python
+    gpa = {"Ava": 3.6, "Ben": 2.9}
+    print(gpa["Zoe"])
+    ```
+  options:
+    - "It raises a KeyError."
+    - "It raises an IndexError."
+    - "It prints None."
+    - "It prints 0."
+  answer: A
+  explain: |
+    Looking up a key that is not in a dictionary raises a KeyError. To get a default value instead, use gpa.get("Zoe", 0).
+  why:
+    B: "IndexError is for positions past the end of a sequence, not missing dictionary keys."
+    C: "get() with no default would return None, but square brackets raise an error."
+    D: "0 would come only from get() with a default of 0."
+  verify: |
+    try:
+        {"Ava": 3.6, "Ben": 2.9}["Zoe"]
+        ans = "other"
+    except KeyError:
+        ans = "It raises a KeyError."
+
+- id: python-core-07
+  skill: python-core
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    a = [1, 2]
+    b = a
+    b.append(3)
+    print(a)
+    ```
+  options:
+    - "`[1, 2]`"
+    - "`[1, 2, [3]]`"
+    - "`[1, 2, 3]`"
+    - "`[3]`"
+  answer: C
+  explain: |
+    b = a does not copy the list; it makes b a second name for the same list. Appending through b changes that one list, so a shows the 3 as well. b = a.copy() would make an independent copy.
+  why:
+    A: "This assumes b = a made a copy, but both names point to one list."
+    B: "append adds the value 3 itself, not a list containing 3."
+    D: "append adds to the existing list rather than replacing it."
+  verify: |
+    a = [1, 2]
+    b = a
+    b.append(3)
+    ans = "`" + str(a) + "`"
+
+- id: python-core-08
+  skill: python-core
+  tier: core
+  type: code
+  use: bank
+  stem: |
+    What does this code print?
+
+    ```python
+    total = 0
+    for x in [3, 5, 7]:
+        total += x
+    print(total)
+    ```
+  options:
+    - "7"
+    - "10"
+    - "15"
+    - "105"
+  ordered: true
+  answer: C
+  explain: |
+    The loop adds each value to total in turn: 0 + 3 = 3, then 3 + 5 = 8, then 8 + 7 = 15.
+  why:
+    A: "This is only the last value, as if total were replaced instead of added to."
+    B: "This leaves out the first value, 3."
+    D: "This multiplies the values, but += adds."
+  verify: |
+    total = 0
+    for x in [3, 5, 7]:
+        total += x
+    ans = total
+
+- id: python-core-09
+  skill: python-core
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    What does this code print?
+
+    ```python
+    count = 0
+    for i in range(1, 10):
+        if i % 3 == 0:
+            count += 1
+    print(count)
+    ```
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "9"
+  ordered: true
+  answer: B
+  explain: |
+    range(1, 10) gives 1 through 9, stopping before 10. The numbers divisible by 3 are 3, 6, and 9, so count reaches 3.
+  why:
+    A: "This misses 9, which range(1, 10) does include."
+    C: "This includes a value past 9, but range stops before its end value."
+    D: "This counts every number in the range, not just the multiples of 3."
+  verify: |
+    count = 0
+    for i in range(1, 10):
+        if i % 3 == 0:
+            count += 1
+    ans = count
+
+- id: python-core-10
+  skill: python-core
+  tier: champion
+  type: code
+  use: bank
+  stem: |
+    What does this code print?
+
+    ```python
+    word = "data"
+    print(word[::-1])
+    ```
+  options:
+    - "`atad`"
+    - "`data`"
+    - "`ata`"
+    - "`a`"
+  answer: A
+  explain: |
+    A slice with a step of -1 walks the string backward from end to start, which reverses it.
+  why:
+    B: "A step of -1 reverses the order, so the string does not come back unchanged."
+    C: "This is word[1:], which drops the first letter."
+    D: "This is word[-1], the last letter only."
+  verify: |
+    ans = "`" + "data"[::-1] + "`"
+
+- id: python-core-11
+  skill: python-core
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What happens when Python runs `"3" + 4`?
+  options:
+    - "It prints `34`."
+    - "It prints `7`."
+    - "It raises a TypeError."
+    - "It raises a ValueError."
+  answer: C
+  explain: |
+    Python will not add a string and an integer, because the two types are incompatible, so it raises a TypeError. Converting first works: int("3") + 4 gives 7, and "3" + str(4) gives "34".
+  why:
+    A: "Joining text requires both values to be strings."
+    B: "Python does not convert the string to a number automatically."
+    D: "ValueError is for a right type with a bad value, such as int('abc')."
+  verify: |
+    try:
+        "3" + 4
+        ans = "other"
+    except TypeError:
+        ans = "It raises a TypeError."
+
+# ---------------------------------------------------------------- dev-tools
+- id: dev-tools-01
+  skill: dev-tools
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    In a Jupyter notebook, what is the kernel?
+  options:
+    - "A Markdown cell that explains the analysis"
+    - "The running process that executes code and holds the variables"
+    - "The file format used to save notebooks"
+    - "The website where notebooks are shared"
+  answer: B
+  explain: |
+    The kernel is the engine behind a notebook: it runs each code cell and remembers every variable created so far. Restarting it clears that memory.
+  why:
+    A: "Markdown cells hold text; they are not executed by the kernel."
+    C: "Notebooks are saved as .ipynb files, which the kernel does not define."
+    D: "Notebooks can be shared online, but the kernel is the process that runs the code."
+
+- id: dev-tools-02
+  skill: dev-tools
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is the difference between Git and GitHub?
+  options:
+    - "Git hosts code online; GitHub tracks changes on your own computer."
+    - "They are two names for the same program."
+    - "GitHub is a programming language, and Git is its compiler."
+    - "Git tracks versions of files; GitHub hosts Git repositories online."
+  answer: D
+  explain: |
+    Git is the version-control system itself, and it runs on your computer, even offline. GitHub is a service that stores Git repositories online and adds collaboration tools such as pull requests.
+  why:
+    A: "This reverses the two."
+    B: "One is a tool and the other is a hosting service; GitLab and Bitbucket host Git repositories too."
+    C: "Neither is a programming language or a compiler."
+
+- id: dev-tools-03
+  skill: dev-tools
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A data engineering team processes very large datasets with Apache Spark and wants to work in the language that Spark itself is written in. Which language is that?
+  options:
+    - "Scala"
+    - "R"
+    - "Julia"
+    - "SQL"
+  answer: A
+  explain: |
+    Apache Spark is written in Scala, which makes Scala a natural choice for Spark-heavy big data work, although Spark can also be used from Python, R, Java, and SQL.
+  why:
+    B: "R can call Spark, but Spark is not written in R."
+    C: "Julia is a language for high-performance scientific computing."
+    D: "Spark accepts SQL queries, but it is not written in SQL."
+
+- id: dev-tools-04
+  skill: dev-tools
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In Git, what is a commit?
+  options:
+    - "A copy of a remote repository on your computer"
+    - "An independent line of development"
+    - "A saved snapshot of changes, with a message"
+    - "A request to merge one branch into another"
+  answer: C
+  explain: |
+    A commit records the state of the tracked files at one moment, with a message describing what changed, so the project's history is a chain of commits.
+  why:
+    A: "Copying a remote repository is cloning."
+    B: "An independent line of development is a branch."
+    D: "A request to merge, with review, is a pull request."
+
+- id: dev-tools-05
+  skill: dev-tools
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A teammate has finished a new feature on a branch and wants others to review the changes on GitHub before they become part of the main branch. What should the teammate do?
+  options:
+    - "Delete the main branch and rename theirs"
+    - "Open a pull request"
+    - "Clone the repository again"
+    - "Copy the files into an email"
+  answer: B
+  explain: |
+    A pull request proposes merging a branch, shows exactly what changed, and lets teammates comment and approve before the merge happens.
+  why:
+    A: "Deleting the main branch would discard everyone else's work and skip review."
+    C: "Cloning makes another copy; it does not propose changes."
+    D: "Emailing files loses the history and the review tools Git and GitHub provide."
+
+- id: dev-tools-06
+  skill: dev-tools
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A notebook works on its author's computer, but when a colleague restarts the kernel and runs every cell from top to bottom, it fails with a NameError for a variable. What most likely happened?
+  options:
+    - "The colleague's computer cannot run Python notebooks at all."
+    - "A cell that defined the variable was deleted or run out of order."
+    - "Jupyter notebooks cannot be opened on a second computer."
+    - "The colleague's copy lost the Markdown cells that held the variable."
+  answer: B
+  explain: |
+    The author's kernel still remembered the variable from earlier work, so the notebook seemed to run. Run cleanly from the top, nothing defines it. Restarting the kernel and running every cell in order exposes this hidden state.
+  why:
+    A: "The colleague ran the other cells, so Python works fine."
+    C: "Notebooks are made to be shared; the problem is how this one was run."
+    D: "Markdown cells hold text and cannot define variables."
+
+- id: dev-tools-07
+  skill: dev-tools
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which of these is a distribution that bundles Python, the conda package manager, and hundreds of data science packages in one installation?
+  options:
+    - "pip"
+    - "PyPI"
+    - "GitHub"
+    - "Anaconda"
+  answer: D
+  explain: |
+    Anaconda packages Python together with conda and a large set of data science libraries, so a beginner can install everything at once.
+  why:
+    A: "pip installs individual packages; it is not a full distribution."
+    B: "PyPI is the online index that pip downloads packages from."
+    C: "GitHub hosts code repositories."
+
+- id: dev-tools-08
+  skill: dev-tools
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which of these tools is commercial software that requires a paid license, rather than open source?
+  options:
+    - "R"
+    - "Python"
+    - "Julia"
+    - "SAS"
+  answer: D
+  explain: |
+    SAS is a commercial statistics package licensed by its vendor. R, Python, and Julia are open source: free to use, with code anyone can inspect.
+  why:
+    A: "R is free and open source."
+    B: "Python is free and open source."
+    C: "Julia is free and open source."
+
+- id: dev-tools-09
+  skill: dev-tools
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What does `git clone` do?
+  options:
+    - "It copies a remote repository and its history to your computer."
+    - "It saves a snapshot of your current changes with a message."
+    - "It combines the commits of two branches into a single branch."
+    - "It deletes a repository from GitHub and from every computer."
+  answer: A
+  explain: |
+    Cloning downloads a full copy of a repository, including every earlier commit, so you can work on it locally.
+  why:
+    B: "Saving a snapshot is a commit."
+    C: "Combining branches is a merge."
+    D: "Cloning copies a repository; it never deletes one."
+
+- id: dev-tools-10
+  skill: dev-tools
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    Two branches each change the same line of the same file in different ways, and Git cannot combine them automatically. What is this situation called?
+  options:
+    - "A pull request"
+    - "A clone"
+    - "A merge conflict"
+    - "A detached kernel"
+  answer: C
+  explain: |
+    When both branches edit the same lines, Git cannot know which version to keep, so it reports a merge conflict and marks the spot for a person to resolve.
+  why:
+    A: "A pull request proposes a merge; the conflict is what Git finds while merging."
+    B: "A clone is a copy of a repository."
+    D: "Kernels belong to notebooks, not to Git."

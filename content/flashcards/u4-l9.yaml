@@ -1,0 +1,52 @@
+# Lesson 4.9 flashcards
+
+- id: fc-python-collections
+  term: list, tuple, dictionary, set
+  def: list, ordered and changeable. tuple, ordered and unchangeable. dictionary, values looked up by unique keys. set, unique items with no order.
+  skill: python-core
+
+- id: fc-mutable
+  term: Mutable vs. immutable
+  def: Lists, dictionaries, and sets can change after creation; tuples and strings cannot (changing one raises a TypeError). b = a gives the same list a second name; use a.copy() for a real copy.
+  skill: python-core
+
+- id: fc-python-indexing
+  term: Python indexing and slicing
+  def: Indexes start at 0; -1 is the last element; a slice [start:stop] stops before stop; [::-1] reverses. R instead counts from 1 and includes both ends.
+  example: "[4, 7, 1, 9][1:3] is [7, 1]."
+  skill: python-core
+
+- id: fc-comprehension-range
+  term: range and list comprehensions
+  def: range(start, stop) stops before stop, so range(1, 10) is 1 to 9. A comprehension builds a list in one line, [expr for x in items if condition].
+  skill: python-core
+
+- id: fc-python-errors
+  term: Common Python errors
+  def: KeyError (missing dictionary key), IndexError (position past the end), TypeError (incompatible types, such as "3" + 4), ValueError (bad value, such as int("abc")), NameError (undefined name).
+  skill: python-core
+
+- id: fc-jupyter-kernel
+  term: Jupyter notebook and kernel
+  def: A notebook (.ipynb) holds code cells with their output and Markdown text cells. The kernel runs the code and remembers variables, so rerun all cells in order to confirm a notebook is reproducible.
+  skill: dev-tools
+
+- id: fc-pip-conda
+  term: pip, conda, Anaconda
+  def: pip installs packages from PyPI; conda manages packages and environments; Anaconda bundles Python, conda, and many data science packages. Virtual environments isolate each project's packages.
+  skill: dev-tools
+
+- id: fc-git-github
+  term: Git and GitHub
+  def: Git is a version-control system that records snapshots of files over time. GitHub hosts Git repositories online and adds collaboration tools such as pull requests.
+  skill: dev-tools
+
+- id: fc-git-vocab
+  term: Git vocabulary
+  def: Clone (copy a repository), commit (saved snapshot with a message), branch (independent line of work), merge (combine branches; a merge conflict needs a person), push and pull (sync with a remote), pull request (proposal to merge, with review).
+  skill: dev-tools
+
+- id: fc-languages
+  term: Languages of data science
+  def: Python (general data science and ML), R (statistics and graphics), SQL (databases), Scala (Spark big data), Java (enterprise systems), Julia (high-performance computing), JavaScript (web charts).
+  skill: dev-tools
