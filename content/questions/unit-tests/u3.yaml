@@ -1,0 +1,590 @@
+# Unit 3 test: Data Analysis and Statistics for AI
+
+- id: ut3-01
+  skill: chart-choice
+  tier: core
+  type: scenario
+  stem: |
+    A manager wants to show how the company's monthly revenue changed over the last three years. Which chart fits best?
+  options:
+    - "Line chart"
+    - "Pie chart"
+    - "Histogram"
+    - "Boxplot"
+  answer: A
+  explain: |
+    A line chart shows how a numeric value changes over time, with time along the horizontal axis, so trends and seasonal patterns stand out.
+  why:
+    B: "Pie charts show parts of one whole at a single moment, not change over time."
+    C: "A histogram shows the distribution of one variable and loses the time order."
+    D: "A boxplot summarizes a distribution and hides the month-to-month pattern."
+
+- id: ut3-02
+  skill: chart-choice
+  tier: competitive
+  type: scenario
+  stem: |
+    An analyst wants one figure that compares the distributions of commute times, including medians, spread, and outliers, across four cities. Which chart fits best?
+  options:
+    - "A pie chart for each city"
+    - "A line chart with one line per city"
+    - "Side-by-side boxplots, one per city"
+    - "A single histogram of all commutes combined"
+  answer: C
+  explain: |
+    Side-by-side boxplots put each city's median, quartiles, and outliers on a common scale, so the four distributions can be compared at a glance.
+  why:
+    A: "Pie charts show shares of a whole, not distributions."
+    B: "Line charts suit ordered data such as time, and the cities have no natural order."
+    D: "Combining the cities hides the differences between them."
+
+- id: ut3-03
+  skill: misleading
+  tier: competitive
+  type: concept
+  stem: |
+    A bar chart compares two phone plans' average customer ratings, 4.1 and 4.3 out of 5, but its vertical axis starts at 4.0. What is the problem?
+  options:
+    - "The bars should be sorted from tallest to shortest"
+    - "The truncated axis makes a small difference look several times larger"
+    - "Ratings should be displayed as a pie chart instead"
+    - "The chart needs a third bar showing the average rating"
+  answer: B
+  explain: |
+    Starting the axis at 4.0 makes the bars 0.1 and 0.3 units tall, so a 0.2-point gap looks like one plan is rated three times higher. Bar charts should usually start at zero so that bar lengths stay proportional.
+  why:
+    A: "Sorting does not fix the distorted bar lengths."
+    C: "Pie charts show parts of a whole, and two ratings are not parts of a whole."
+    D: "Adding a bar does not fix the misleading axis."
+
+- id: ut3-04
+  skill: histograms
+  tier: competitive
+  type: visual
+  stem: |
+    The histogram shows household incomes in a town. Which statement best describes the distribution?
+  figure:
+    type: histogram
+    caption: Household incomes in one town.
+    xLabel: Income (thousands of dollars)
+    yLabel: Households
+    bins:
+      - { from: 0, to: 20, count: 8 }
+      - { from: 20, to: 40, count: 22 }
+      - { from: 40, to: 60, count: 18 }
+      - { from: 60, to: 80, count: 9 }
+      - { from: 80, to: 100, count: 5 }
+      - { from: 100, to: 120, count: 3 }
+      - { from: 120, to: 140, count: 2 }
+      - { from: 140, to: 160, count: 1 }
+  options:
+    - "Symmetric, so the mean and median are about equal"
+    - "Left-skewed, so the mean is below the median"
+    - "Uniform, so every income range is equally common"
+    - "Right-skewed, so the mean is above the median"
+  answer: D
+  explain: |
+    Most households fall in the lower bins, and a long tail stretches toward high incomes. In a right-skewed distribution, the tail pulls the mean above the median.
+  why:
+    A: "The long tail on the right makes the distribution asymmetric."
+    B: "The long tail is on the right, not the left."
+    C: "The bar heights differ a lot, so the distribution is not uniform."
+
+- id: ut3-05
+  skill: boxplots
+  tier: champion
+  type: visual
+  stem: |
+    The boxplots compare test scores in two classes. Which statement is supported by the plots?
+  figure:
+    type: boxplot
+    caption: Test scores in two classes.
+    axisLabel: Test score
+    groups:
+      - { label: Class A, min: 52, q1: 68, median: 74, q3: 80, max: 95 }
+      - { label: Class B, min: 60, q1: 70, median: 78, q3: 84, max: 90 }
+  options:
+    - "Class B has the higher median, and Class A has the larger range"
+    - "Class A has the higher median, and Class B has the larger range"
+    - "Both classes have the same interquartile range"
+    - "Class B's mean must be higher, since its median is higher"
+  answer: A
+  explain: |
+    Class B's median line is at 78, against 74 for Class A. Class A's whiskers span 52 to 95, a range of 43, while Class B's span 60 to 90, a range of 30. Boxplots show medians and quartiles, not means.
+  why:
+    B: "This swaps both facts."
+    C: "Class A's IQR is 80 minus 68 = 12, and Class B's is 84 minus 70 = 14."
+    D: "A boxplot does not show the mean, and a higher median does not guarantee a higher mean."
+
+- id: ut3-06
+  skill: scatterplots
+  tier: core
+  type: visual
+  stem: |
+    What kind of relationship does the scatterplot show?
+  figure:
+    type: scatter
+    caption: Daily TV time and exam scores for eight students.
+    xLabel: Hours of TV per day
+    yLabel: Exam score
+    series:
+      - points: [[1, 95], [2, 88], [3, 84], [4, 75], [5, 70], [6, 63], [7, 58], [8, 50]]
+  options:
+    - "A strong positive linear relationship"
+    - "No relationship"
+    - "A strong negative linear relationship"
+    - "A curved relationship that rises and then falls"
+  answer: C
+  explain: |
+    The points fall from left to right in a nearly straight band, so the relationship is negative, linear, and strong.
+  why:
+    A: "Scores fall as hours rise, so the relationship is negative."
+    B: "The points follow a clear downward pattern."
+    D: "The points follow a straight band, not a curve."
+
+- id: ut3-07
+  skill: causation
+  tier: competitive
+  type: scenario
+  stem: |
+    Across a year, a city's daily ice cream sales and its number of swimming-pool accidents rise and fall together. What is the most likely explanation?
+  options:
+    - "Eating ice cream causes swimming accidents"
+    - "Hot weather increases both ice cream sales and swimming"
+    - "Swimming accidents lead people to buy more ice cream"
+    - "The pattern is a coincidence with no common cause"
+  answer: B
+  explain: |
+    A confounding variable, hot weather, drives both: more people buy ice cream and more people swim when it is hot. The correlation does not show that either causes the other.
+  why:
+    A: "Correlation alone does not show that one variable causes the other."
+    C: "This reverses the direction and still ignores the confounder."
+    D: "A strong pattern that repeats all year is unlikely to be coincidence; a common cause explains it."
+
+- id: ut3-08
+  skill: causation
+  tier: champion
+  type: visual
+  stem: |
+    Two hospitals report how many patients survived, out of how many they treated, for mild and severe cases.
+
+    | Hospital | Mild cases | Severe cases | All cases |
+    |---|---|---|---|
+    | A | 180 of 200 | 20 of 100 | 200 of 300 |
+    | B | 95 of 100 | 60 of 200 | 155 of 300 |
+
+    Which conclusion is correct?
+  options:
+    - "Hospital A is better, because its overall survival rate is higher"
+    - "The hospitals are equally good, because each treated 300 patients"
+    - "Hospital A is better for severe cases, and B is better for mild cases"
+    - "Hospital B is better for both mild and severe cases, but treats more severe cases"
+  answer: D
+  explain: |
+    Within each group B does better: 95 percent against 90 percent for mild cases, and 30 percent against 20 percent for severe ones. B's overall rate, about 52 percent, is lower only because two thirds of its patients are severe cases. This reversal is called Simpson's paradox.
+  why:
+    A: "The overall rate mixes different case mixes; within each severity group, B does better."
+    B: "Treating the same number of patients says nothing about the quality of care."
+    C: "B's rates are higher in both groups: 95 versus 90 percent and 30 versus 20 percent."
+  verify: |
+    a_m, a_s, b_m, b_s = 180 / 200, 20 / 100, 95 / 100, 60 / 200
+    ok = b_m > a_m and b_s > a_s and 155 / 300 < 200 / 300
+    ans = "Hospital B is better for both mild and severe cases, but treats more severe cases" if ok else "other"
+
+- id: ut3-09
+  skill: data-quality
+  tier: core
+  type: scenario
+  stem: |
+    A customer table lists the same person three times, as Jon Smith, John Smith, and J. Smith, all at one address. Which data quality dimension is most directly affected?
+  options:
+    - "Uniqueness"
+    - "Timeliness"
+    - "Validity"
+    - "Completeness"
+  answer: A
+  explain: |
+    Uniqueness means each real-world entity is recorded only once. Three records for one customer are duplicates, which inflate counts and confuse mailings and analysis.
+  why:
+    B: "Timeliness concerns whether data are up to date when needed."
+    C: "Validity concerns whether values follow the required format or range."
+    D: "Completeness concerns missing values, not repeated records."
+
+- id: ut3-10
+  skill: data-quality
+  tier: competitive
+  type: scenario
+  stem: |
+    A registration form stored a student's birth date as 31/02/2009. Which data quality dimension does this value fail?
+  options:
+    - "Uniqueness"
+    - "Timeliness"
+    - "Validity"
+    - "Completeness"
+  answer: C
+  explain: |
+    February never has 31 days, so the value breaks the rules for a date. Validity means values conform to the required type, format, and range.
+  why:
+    A: "Uniqueness concerns duplicate records."
+    B: "Timeliness concerns how current the data are."
+    D: "The value is present, just impossible, so completeness is not the problem."
+
+- id: ut3-11
+  skill: sampling-bias
+  tier: competitive
+  type: scenario
+  stem: |
+    To learn what makes start-ups succeed, a researcher studies only companies that are still in business ten years after they were founded. What bias does this introduce?
+  options:
+    - "Nonresponse bias"
+    - "Voluntary response bias"
+    - "Measurement bias"
+    - "Survivorship bias"
+  answer: D
+  explain: |
+    Survivorship bias comes from studying only the cases that made it through a selection process. Failed companies, which may have shared the same traits, are missing, so the apparent success factors can mislead.
+  why:
+    A: "Nonresponse bias arises when chosen participants fail to respond."
+    B: "Voluntary response bias arises when people choose themselves into a sample."
+    C: "Measurement bias comes from how values are recorded, not from which cases are studied."
+
+- id: ut3-12
+  skill: sampling-bias
+  tier: core
+  type: scenario
+  stem: |
+    A TV station asks viewers to vote online on whether a new stadium should be built, then reports that 78 percent of residents oppose it. What is the main problem with this conclusion?
+  options:
+    - "The sample is too large to be accurate"
+    - "It is a voluntary response sample, so people with strong opinions dominate"
+    - "Online polls can only measure support, never opposition"
+    - "78 percent is too high to be a realistic result"
+  answer: B
+  explain: |
+    Viewers decide whether to vote, which makes this a voluntary response sample. People who feel strongly are far more likely to take part, so the result does not represent all residents.
+  why:
+    A: "A large sample does not fix a biased selection method."
+    C: "Online polls can record any answer; the problem is who chooses to answer."
+    D: "Any percentage can be real; the issue is how the sample was gathered."
+
+- id: ut3-13
+  skill: missing-data
+  tier: champion
+  type: scenario
+  stem: |
+    In an income survey, people with the highest incomes are the least likely to answer the income question. Which missing-data mechanism is this?
+  options:
+    - "Missing completely at random (MCAR)"
+    - "Missing at random (MAR)"
+    - "Missing not at random (MNAR)"
+    - "Not missing, because the rest of the survey is complete"
+  answer: C
+  explain: |
+    When the chance that a value is missing depends on the missing value itself, here the income, the data are missing not at random. Dropping or averaging the missing values would understate typical incomes.
+  why:
+    A: "MCAR means the chance of being missing is the same for everyone, unrelated to any value."
+    B: "MAR means missingness depends only on other observed variables, not on the missing value itself."
+    D: "Unanswered income questions are missing values even when other answers are complete."
+
+- id: ut3-14
+  skill: missing-data
+  tier: competitive
+  type: scenario
+  stem: |
+    A right-skewed income column has about 5 percent of its values missing completely at random. Which simple imputation value is least distorted by the skew?
+  options:
+    - "The median of the observed incomes"
+    - "The mean of the observed incomes"
+    - "The maximum observed income"
+    - "Zero for every missing income"
+  answer: A
+  explain: |
+    In skewed data, a few very large incomes pull the mean upward, while the median stays near the typical value. Median imputation is the more resistant simple choice.
+  why:
+    B: "The mean is pulled toward the long right tail."
+    C: "The maximum would wildly overstate a typical income."
+    D: "Filling with zero invents incomes far below the real ones."
+
+- id: ut3-15
+  skill: clean-issues
+  tier: core
+  type: scenario
+  stem: |
+    A state column contains the values CA, Calif., california, and California for the same state. What cleaning step does this call for?
+  options:
+    - "Deleting every row that mentions California"
+    - "Imputing the column with its mean"
+    - "Removing duplicate rows from the table"
+    - "Standardizing the values to one consistent code"
+  answer: D
+  explain: |
+    These are inconsistent formats for the same category. Mapping them all to one code, such as CA, lets grouping and counting treat them as one state.
+  why:
+    A: "Deleting rows throws away valid data."
+    B: "A category has no mean."
+    C: "The rows may be different customers; the problem is inconsistent labels, not duplicate rows."
+
+- id: ut3-16
+  skill: validate-clean
+  tier: champion
+  type: scenario
+  stem: |
+    An analyst fills 30 percent of missing ages with the mean age. Afterward, the standard deviation of age is noticeably smaller than before. What does this reveal?
+  options:
+    - "The imputation corrected the spread, so the new value is the true one"
+    - "Mean imputation piles values at the center, artificially shrinking the spread"
+    - "The spread of ages always shrinks after any kind of cleaning"
+    - "The standard deviation was computed incorrectly after imputation"
+  answer: B
+  explain: |
+    Every filled value sits exactly at the mean and adds no spread, so the standard deviation shrinks and relationships with other variables weaken. Validating cleaned data against the original catches distortions like this.
+  why:
+    A: "The smaller spread is an artifact of imputation, not a correction."
+    C: "Cleaning has no fixed effect on spread; this drop comes from mean imputation."
+    D: "The calculation is fine; the imputed values themselves reduce the spread."
+
+- id: ut3-17
+  skill: why-clean
+  tier: core
+  type: concept
+  stem: |
+    Why should a dataset be cleaned before a model is trained on it?
+  options:
+    - "Cleaning always makes a dataset larger and therefore more useful"
+    - "Models cannot run at all on data that contain any errors"
+    - "Errors and inconsistencies in the data carry into the model's results"
+    - "Cleaning removes the need to test the finished model"
+  answer: C
+  explain: |
+    A model learns whatever is in its data, so duplicates, invalid values, and inconsistent labels distort what it learns: garbage in, garbage out. Cleaning protects every result built on the data.
+  why:
+    A: "Cleaning often removes rows; it does not enlarge the data."
+    B: "Many models run on messy data and simply produce misleading results."
+    D: "A model trained on clean data still needs to be tested."
+
+- id: ut3-18
+  skill: multivariate
+  tier: competitive
+  type: scenario
+  stem: |
+    A retailer wants to group its customers into segments based on their purchase histories, with no predefined labels. Which kind of multivariate method is this?
+  options:
+    - "An interdependence method, such as cluster analysis"
+    - "A dependence method, such as multiple regression"
+    - "A dependence method, such as logistic regression"
+    - "A dependence method, such as MANOVA"
+  answer: A
+  explain: |
+    With no outcome variable to predict, the goal is to find structure among the customers themselves, which is what interdependence methods such as cluster analysis do.
+  why:
+    B: "Multiple regression predicts a numeric outcome, and there is none here."
+    C: "Logistic regression predicts a known category, and there are no labels."
+    D: "MANOVA compares group means on several outcomes for known groups."
+
+- id: ut3-19
+  skill: interdependence
+  tier: champion
+  type: scenario
+  stem: |
+    A 40-question survey measures students' attitudes. Researchers want to find a few underlying traits, such as motivation or anxiety, that explain the patterns in the answers. Which method fits?
+  options:
+    - "Discriminant analysis"
+    - "Factor analysis"
+    - "Logistic regression"
+    - "MANOVA"
+  answer: B
+  explain: |
+    Factor analysis finds a small number of underlying dimensions that account for the correlations among many observed variables. It is an interdependence method: no single outcome is being predicted.
+  why:
+    A: "Discriminant analysis assigns cases to known groups using predictors."
+    C: "Logistic regression predicts a categorical outcome."
+    D: "MANOVA compares group means on several outcomes."
+
+- id: ut3-20
+  skill: multiple-regression
+  tier: competitive
+  type: calculation
+  stem: |
+    A model predicts a home's price, in dollars, as 50,000 + 120 × (square feet) + 8,000 × (bedrooms). What price does it predict for a 1,500-square-foot home with 3 bedrooms?
+  options:
+    - "204,000"
+    - "230,000"
+    - "238,000"
+    - "254,000"
+  ordered: true
+  answer: D
+  explain: |
+    Substitute the values: 50,000 + 120 × 1,500 + 8,000 × 3 = 50,000 + 180,000 + 24,000 = 254,000.
+  why:
+    A: "204,000 leaves out the intercept of 50,000."
+    B: "230,000 leaves out the bedrooms term."
+    C: "238,000 adds the bedroom coefficient once instead of multiplying it by 3 bedrooms."
+  verify: "50000 + 120 * 1500 + 8000 * 3"
+
+- id: ut3-21
+  skill: multiple-regression
+  tier: champion
+  type: concept
+  stem: |
+    An analyst adds a column of random numbers as an extra predictor in a multiple regression. What typically happens to R squared and adjusted R squared?
+  options:
+    - "Both fall, because the new predictor adds only random noise to the model"
+    - "Both rise by the same amount, because the model now has more information"
+    - "R squared rises slightly or stays the same, while adjusted R squared tends to fall"
+    - "Adjusted R squared rises, while R squared falls by the same amount"
+  answer: C
+  explain: |
+    R squared can never decrease when a predictor is added, even a useless one. Adjusted R squared penalizes extra predictors, so it falls unless the new one improves the fit more than chance would.
+  why:
+    A: "R squared cannot fall when a predictor is added."
+    B: "Adjusted R squared penalizes the extra predictor, so the two do not rise together."
+    D: "This reverses the behavior of the two measures."
+
+- id: ut3-22
+  skill: logistic-regression
+  tier: competitive
+  type: calculation
+  stem: |
+    A logistic regression model estimates a 0.75 probability that a customer will renew a subscription. What are the odds of renewal?
+  options:
+    - "0.25"
+    - "0.75"
+    - "1.33"
+    - "3"
+  ordered: true
+  answer: D
+  explain: |
+    Odds compare the chance an event happens with the chance it does not: 0.75 / 0.25 = 3, or 3 to 1. Logistic regression models the logarithm of these odds.
+  why:
+    A: "0.25 is the probability of not renewing."
+    B: "0.75 is the probability, not the odds."
+    C: "1.33 divides 1 by 0.75, which is neither the odds nor a probability."
+  verify: "0.75 / 0.25"
+
+- id: ut3-23
+  skill: tree-applied
+  tier: competitive
+  type: scenario
+  stem: |
+    A clinic wants a model that triage nurses can follow as a short series of yes-or-no questions, and every decision must be easy to explain to patients. Which algorithm fits best?
+  options:
+    - "A decision tree"
+    - "k-means clustering"
+    - "A deep neural network"
+    - "Principal component analysis"
+  answer: A
+  explain: |
+    A decision tree predicts through a sequence of simple questions, such as whether a temperature is above a threshold, so every decision can be traced and explained.
+  why:
+    B: "k-means groups unlabeled data; it does not make triage predictions from labeled examples."
+    C: "A deep neural network can be accurate but is hard to explain decision by decision."
+    D: "PCA reduces the number of variables; it does not make decisions."
+
+- id: ut3-24
+  skill: kmeans-applied
+  tier: competitive
+  type: scenario
+  stem: |
+    An analyst runs k-means for k = 1 through 8 and plots the within-cluster sum of squares. The value drops steeply from k = 1 to k = 3, then decreases only slightly after that. Which k does the elbow method suggest?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "8"
+  ordered: true
+  answer: C
+  explain: |
+    The elbow method picks the k where adding clusters stops paying off, the bend in the curve. Here the big drops end at k = 3.
+  why:
+    A: "One cluster leaves all the structure unexplained."
+    B: "The curve is still dropping steeply at k = 2."
+    D: "More clusters always lower the sum of squares, so choosing the largest k overfits."
+
+- id: ut3-25
+  skill: algo-match
+  tier: core
+  type: scenario
+  stem: |
+    A news site wants to group thousands of articles by topic, but none of the articles is labeled with a topic. Which algorithm fits this task?
+  options:
+    - "Linear regression"
+    - "k-means clustering"
+    - "A decision tree classifier"
+    - "Logistic regression"
+  answer: B
+  explain: |
+    With no labels, the task is to find natural groups, which is clustering. k-means assigns each article to the nearest of k cluster centers.
+  why:
+    A: "Linear regression predicts a number from labeled data."
+    C: "A classifier needs labeled examples to learn from."
+    D: "Logistic regression predicts a labeled category."
+
+- id: ut3-26
+  skill: reg-metrics
+  tier: competitive
+  type: calculation
+  stem: |
+    A model overestimates the prices of two houses by 2 and 3 thousand dollars and underestimates two others by 1 and 2 thousand dollars. What is its mean absolute error, in thousands of dollars?
+  options:
+    - "0.5"
+    - "2"
+    - "2.12"
+    - "4.5"
+  ordered: true
+  answer: B
+  explain: |
+    MAE averages the sizes of the errors, ignoring direction: (2 + 3 + 1 + 2) / 4 = 2. The model misses by $2,000 on average.
+  why:
+    A: "0.5 averages the signed errors, letting overestimates and underestimates cancel."
+    C: "2.12 is the RMSE, which squares the errors before averaging."
+    D: "4.5 is the MSE, the mean of the squared errors."
+  verify: "statistics.mean([2, 3, 1, 2])"
+
+- id: ut3-27
+  skill: confusion-matrix
+  tier: competitive
+  type: visual
+  stem: |
+    The confusion matrix shows a fraud model's results on 200 transactions. What is its recall, to the nearest hundredth?
+  figure:
+    type: confusion
+    caption: A fraud model's results on 200 transactions.
+    tp: 40
+    fp: 10
+    fn: 20
+    tn: 130
+    positive: Fraud
+    negative: Legitimate
+  options:
+    - "0.67"
+    - "0.8"
+    - "0.85"
+    - "0.93"
+  ordered: true
+  answer: A
+  explain: |
+    Recall is the share of actual positives the model catches: TP / (TP + FN) = 40 / (40 + 20), about 0.67. The model misses one fraud in three.
+  why:
+    B: "0.8 is precision, 40 / 50, which divides by the predicted positives."
+    C: "0.85 is accuracy, 170 / 200."
+    D: "0.93 is specificity, 130 / 140, the share of legitimate transactions correctly cleared."
+  verify: "40 / (40 + 20)"
+
+- id: ut3-28
+  skill: metric-choice
+  tier: champion
+  type: scenario
+  stem: |
+    Only 1 percent of a bank's transactions are fraudulent. A model that labels every transaction legitimate scores 99 percent accuracy. Which metric would immediately expose how useless it is?
+  options:
+    - "Accuracy on a larger test set"
+    - "Specificity"
+    - "Overall error rate"
+    - "Recall for the fraud class"
+  answer: D
+  explain: |
+    The model never flags fraud, so it catches 0 percent of actual frauds: its recall is 0. With imbalanced classes, accuracy and specificity can look excellent while the model fails at its only job.
+  why:
+    A: "Any test set with 1 percent fraud would show about 99 percent accuracy again."
+    B: "Specificity, the share of legitimate transactions cleared, is a perfect 100 percent here."
+    C: "The error rate is just 1 minus accuracy, about 1 percent, which looks fine."
