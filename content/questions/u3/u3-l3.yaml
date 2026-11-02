@@ -351,7 +351,7 @@
     Cities with more police officers tend to have more crime. A council member concludes that police cause crime. What is the most likely alternative explanation?
   options:
     - "The association is a Type II error in the data."
-    - "Police officers and crime are mutually exclusive."
+    - "The pattern is a coincidence, since crime and policing are unrelated."
     - "The data must be skewed toward small cities."
     - "High crime leads cities to hire more police officers."
   answer: D
@@ -359,7 +359,7 @@
     The causal arrow probably runs the other way: cities with more crime hire more officers. This is reverse causation, one of the main reasons an association does not prove that the first variable causes the second.
   why:
     A: "A Type II error means missing a real effect, which does not describe this situation."
-    B: "Mutually exclusive describes events that cannot occur together, which is not the issue here."
+    B: "A consistent pattern across many cities is unlikely to be coincidence; the question is which way the cause runs."
     C: "Skew in the data would not explain why more police go with more crime."
 
 - id: causation-06

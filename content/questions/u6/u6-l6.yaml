@@ -72,14 +72,14 @@
     - "AI companies automatically own the copyright in every output"
     - "Any output becomes copyrighted by whoever typed the prompt"
     - "Only human creativity is protected, not expression the AI determined"
-    - "AI-generated material is protected for twice as long as usual"
+    - "AI-determined material is protected if the applicant discloses that AI made it"
   answer: C
   explain: |
     The Office's March 2023 guidance says that copyright can protect only material that is the product of human creativity, and that when an AI technology determines the expressive elements of its output, the generated material is not the product of human authorship. Applicants must disclose AI-generated content when they register a work, and only the human-authored parts can be claimed.
   why:
     A: "The guidance gives AI companies no automatic ownership; it requires human authorship."
     B: "Typing a prompt alone does not make a person the author of expression the AI determined."
-    D: "No special, longer protection exists for AI-generated material."
+    D: "Disclosure is required, but it does not make AI-determined expression protectable; that material must be excluded from the claim."
 
 - id: genai-limits-05
   skill: genai-limits
@@ -130,15 +130,15 @@
     A team's LLM answers correctly when asked "What is our refund policy?" but gives a different, wrong answer to "Can you remind me what the refund rules are?" What does this show, and what should the team do?
   options:
     - "Prompt sensitivity; test many phrasings and ground answers in the policy text"
-    - "The model is overloaded; send it fewer questions per day"
-    - "The context window is full; delete the policy document"
+    - "Overfitting; retrain the model on the exact wording of the first question"
+    - "A knowledge cutoff; wait for a newer model that knows the refund rules"
     - "The temperature is too low; raise it so answers vary more"
   answer: A
   explain: |
     Small changes in wording can change an LLM's answer, which is called prompt sensitivity. The team should test many phrasings of the same question, and grounding answers in the actual policy text, for example with retrieval-augmented generation, makes them consistent and correct.
   why:
-    B: "Load affects speed, not which answer the model gives to a reworded question."
-    C: "Deleting the policy would make wrong answers more likely, not less."
+    B: "This is not a training problem: the model gives different answers to two wordings of one question, and retraining on one phrasing would not fix that."
+    C: "The model answered correctly once, so it is not missing the information; the wording changed the answer."
     D: "More randomness would make answers less consistent, not more correct."
 
 - id: genai-limits-08
@@ -247,19 +247,19 @@
   type: scenario
   use: bank
   stem: |
-    A developer tests a new LLM feature by running one prompt once, sees a correct answer, and declares the feature ready. Why is this test not enough?
+    A developer tests a new LLM feature by running one prompt once, sees a correct answer, and declares the feature ready. What is the main flaw in this test?
   options:
-    - "The output varies between runs, so many runs and inputs must be checked"
-    - "LLMs always give the wrong answer on the second attempt"
-    - "One correct answer proves the model is correct for every input"
-    - "Testing changes the model's weights, so it must be retrained"
+    - "Outputs vary between runs and phrasings, so one run says little about reliability"
+    - "The prompt should have asked for step-by-step reasoning, which guarantees accuracy"
+    - "Running a prompt updates the model's weights, so the next answer comes from a new model"
+    - "The test should have used a high temperature, where the model's answers are most accurate"
   answer: A
   explain: |
     Because LLMs sample their outputs, one correct run says little about the next. Reliable testing runs many prompts, phrasings, and repetitions, measures how often the answers are right, and checks edge cases, ideally with a low temperature for tasks that need consistency.
   why:
-    B: "Nothing makes a second attempt always wrong; answers vary in both directions."
-    C: "This states the mistake itself: one success cannot show correctness everywhere."
-    D: "Running prompts does not change the weights; using a model leaves it unchanged."
+    B: "Asking for reasoning can help, but a model's stated reasoning does not guarantee a correct answer."
+    C: "Using a model does not change its weights; the variation comes from sampling."
+    D: "A higher temperature adds randomness; it does not make answers more accurate."
 
 # ---------------------------------------------------------------- llm-capabilities
 - id: llm-capabilities-01
@@ -411,14 +411,14 @@
     An office has hundreds of messy emails and wants a table listing each sender's name, company, and requested meeting date. How well suited is an LLM to this task?
   options:
     - "Well suited for extracting the details, with spot checks for errors"
-    - "Unsuited, because LLMs cannot read emails written by people"
+    - "Unsuited, because LLMs only generate new text and cannot pull facts out of it"
     - "Unsuited, because tables can only be made with hand-written rules"
     - "Well suited, and its output never needs to be checked"
   answer: A
   explain: |
     Pulling names, companies, and dates out of messy, varied text and arranging them in a table is a task LLMs do well. Because they still make occasional errors, spot-checking the output, especially the dates, is good practice.
   why:
-    B: "Reading human-written email is exactly the kind of text LLMs handle well."
+    B: "Extracting details from text is a core strength of LLMs, not only generating new text."
     C: "LLMs can produce tables directly from text without hand-written rules."
     D: "Even strong models make occasional mistakes, so important output should be checked."
 
@@ -473,14 +473,14 @@
     - "The sources were removed from the internet; cite them anyway"
     - "The model generated plausible but fake citations; verify every source"
     - "The library's search is broken; trust the model's list"
-    - "The model was hacked; report the chatbot to the police"
+    - "The sources are behind paywalls; cite them using the model's summaries"
   answer: B
   explain: |
     LLMs produce text that fits learned patterns, and a citation pattern (author, title, journal) is easy to fill in with plausible inventions. Fabricated references are a well-known form of hallucination, so every source an LLM suggests must be checked before it is used.
   why:
     A: "Citing sources you cannot find risks presenting invented work as real."
     C: "The likelier explanation is fabrication by the model, not a broken library."
-    D: "Fake citations are a normal failure of LLMs, not evidence of hacking."
+    D: "Paywalls do not make a source unfindable, and a source you have not read should never be cited from a model's summary."
 
 - id: llm-capabilities-12
   skill: llm-capabilities
@@ -493,14 +493,14 @@
     - "Not because of this chat; conversations do not change the model's weights"
     - "Yes, because every correction is instantly added to the model"
     - "Yes, because the model shares each user's context with others"
-    - "No, because the model will now refuse all history questions"
+    - "Only if the user also rates the reply, which updates the model overnight"
   answer: A
   explain: |
     A conversation changes only the current context, not the model's weights, so the correction disappears when the chat ends. Developers may later use feedback to improve future versions, but a single conversation does not update the model that other people use.
   why:
     B: "Corrections in a chat are not written into the model's weights."
     C: "Each user's conversation has its own context, which is not shared with others."
-    D: "Nothing about a correction makes the model refuse a whole topic."
+    D: "Ratings may help developers improve a later version, but they do not change the model other users reach tomorrow."
 
 - id: llm-capabilities-13
   skill: llm-capabilities

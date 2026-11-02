@@ -52,14 +52,14 @@
     - "A base model continues text plausibly; it was never tuned to follow instructions"
     - "The model's context window was too small to hold the whole question"
     - "The model was trained only on lists of questions, never on answers"
-    - "Base models are built to refuse all questions about geography"
+    - "The temperature was set to zero, which makes a model repeat question patterns"
   answer: A
   explain: |
     Pretraining teaches a model to predict how text continues, and a list of quiz questions often continues with more questions, so a base model may do exactly that. Chat models are fine-tuned on instructions and responses, and with human feedback, so that they answer instead.
   why:
     B: "A one-line question fits easily in any context window."
     C: "Pretraining text includes answers; the problem is that nothing taught the model to respond as an assistant."
-    D: "Base models have no rule against geography; they simply continue the text."
+    D: "Temperature changes how random the output is, not whether the model answers; a base model was never tuned to answer at all."
 
 - id: llm-definition-04
   skill: llm-definition
