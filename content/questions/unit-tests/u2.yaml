@@ -1,0 +1,631 @@
+# Unit 2 test: Probability and Statistics Foundations
+
+- id: ut2-01
+  skill: mean
+  tier: core
+  type: calculation
+  stem: |
+    A barista records tips, in dollars, over six shifts: 12, 18, 15, 9, 24, 15. What is the mean tip per shift?
+  options:
+    - "15"
+    - "15.5"
+    - "18.6"
+    - "93"
+  ordered: true
+  answer: B
+  explain: |
+    Add the tips, 12 + 18 + 15 + 9 + 24 + 15 = 93, and divide by the 6 shifts: 93 / 6 = 15.5.
+  why:
+    A: "15 is the median and the mode, not the mean."
+    C: "18.6 divides by 5 instead of 6."
+    D: "93 is the total before dividing."
+  verify: "statistics.mean([12, 18, 15, 9, 24, 15])"
+
+- id: ut2-02
+  skill: median
+  tier: core
+  type: calculation
+  stem: |
+    Seven delivery times, in minutes, were 34, 28, 41, 25, 39, 30, and 52. What is the median delivery time?
+  options:
+    - "25"
+    - "27"
+    - "34"
+    - "35.6"
+  ordered: true
+  answer: C
+  explain: |
+    Sort first: 25, 28, 30, 34, 39, 41, 52. With 7 values, the median is the 4th value, 34.
+  why:
+    A: "25 is the middle of the unsorted list; always sort before finding a median."
+    B: "27 is the range, 52 minus 25."
+    D: "35.6 is the mean, not the median."
+  verify: "statistics.median([34, 28, 41, 25, 39, 30, 52])"
+
+- id: ut2-03
+  skill: mode-range
+  tier: core
+  type: calculation
+  stem: |
+    Eight customers bought shoes in sizes 8, 9, 9, 10, 7, 9, 11, and 8. What are the mode and the range of the sizes?
+  options:
+    - "Mode 9, range 4"
+    - "Mode 8, range 4"
+    - "Mode 9, range 11"
+    - "Mode 3, range 4"
+  answer: A
+  explain: |
+    Size 9 appears three times, more than any other, so the mode is 9. The range is the largest minus the smallest, 11 minus 7 = 4.
+  why:
+    B: "Size 8 appears only twice; 9 appears three times."
+    C: "11 is the largest value, not the range; subtract the smallest."
+    D: "3 is how often the mode appears, not the mode itself."
+  verify: |
+    x = [8, 9, 9, 10, 7, 9, 11, 8]
+    ans = f"Mode {statistics.mode(x)}, range {max(x) - min(x)}"
+
+- id: ut2-04
+  skill: center-choice
+  tier: competitive
+  type: scenario
+  stem: |
+    Home prices in a town are strongly right-skewed because of a few very expensive mansions. Which statement is most likely true?
+  options:
+    - "The mean equals the median, because skew does not affect either"
+    - "The median exceeds the mean, so the mean better describes a typical home"
+    - "The mode is undefined, so neither measure can describe the town"
+    - "The mean exceeds the median, so the median better describes a typical home"
+  answer: D
+  explain: |
+    A few very high prices pull the mean up, but the median depends only on the middle value. In right-skewed data the mean exceeds the median, and the median is the better summary of a typical home.
+  why:
+    A: "Skew pulls the mean toward the long tail; the median resists it."
+    B: "This reverses the effect: right skew raises the mean above the median."
+    C: "Prices still have a typical value; the median describes it well."
+
+- id: ut2-05
+  skill: quartiles
+  tier: competitive
+  type: calculation
+  stem: |
+    Using the median-of-halves method, find the interquartile range of 3, 5, 7, 8, 12, 13, 14, 18, 21.
+  options:
+    - "6"
+    - "7"
+    - "10"
+    - "18"
+  ordered: true
+  answer: C
+  explain: |
+    The median is the 5th of 9 values, 12. The lower half, 3, 5, 7, 8, has Q1 = (5 + 7) / 2 = 6, and the upper half, 13, 14, 18, 21, has Q3 = (14 + 18) / 2 = 16. The IQR is 16 minus 6 = 10.
+  why:
+    A: "6 is Q1, not the IQR."
+    B: "7 includes the median in both halves, which this method does not do."
+    D: "18 is the range, 21 minus 3."
+  verify: |
+    x = sorted([3, 5, 7, 8, 12, 13, 14, 18, 21])
+    n = len(x)
+    ans = statistics.median(x[(n + 1) // 2:]) - statistics.median(x[:n // 2])
+
+- id: ut2-06
+  skill: outlier-rule
+  tier: competitive
+  type: calculation
+  stem: |
+    A dataset has Q1 = 40 and Q3 = 60. Using the 1.5 × IQR rule, which of these values is an outlier?
+  options:
+    - "12"
+    - "35"
+    - "88"
+    - "95"
+  ordered: true
+  answer: D
+  explain: |
+    The IQR is 60 minus 40 = 20, and 1.5 × 20 = 30. The fences are 40 minus 30 = 10 and 60 + 30 = 90. Only 95 lies outside them.
+  why:
+    A: "12 is above the lower fence of 10."
+    B: "35 is inside the fences."
+    C: "88 is just below the upper fence of 90."
+  verify: |
+    iqr = 60 - 40
+    ans = [v for v in (12, 35, 88, 95) if v < 40 - 1.5 * iqr or v > 60 + 1.5 * iqr][0]
+
+- id: ut2-07
+  skill: variance-sd
+  tier: competitive
+  type: calculation
+  stem: |
+    A sample of four plant heights, in centimeters, is 4, 8, 6, 2. What is the sample standard deviation, to the nearest hundredth?
+  options:
+    - "2.24"
+    - "2.58"
+    - "5"
+    - "6.67"
+  ordered: true
+  answer: B
+  explain: |
+    The mean is 5. The squared deviations are 1, 9, 1, 9, which sum to 20. A sample divides by n minus 1 = 3, giving a variance of 6.67, and the square root is about 2.58.
+  why:
+    A: "2.24 divides by n = 4, which gives the population standard deviation."
+    C: "5 is the population variance, before taking the square root."
+    D: "6.67 is the sample variance; take the square root to get the standard deviation."
+  verify: "statistics.stdev([4, 8, 6, 2])"
+
+- id: ut2-08
+  skill: sd-props
+  tier: competitive
+  type: concept
+  stem: |
+    Every value in a dataset is multiplied by 3, and then 10 is added to each result. What happens to the standard deviation?
+  options:
+    - "It is multiplied by 3"
+    - "It is multiplied by 3 and then increased by 10"
+    - "It stays the same"
+    - "It is multiplied by 9"
+  answer: A
+  explain: |
+    Multiplying every value by 3 stretches all the distances from the mean by 3, so the standard deviation triples. Adding 10 shifts every value equally and leaves the spread unchanged.
+  why:
+    B: "Adding a constant moves the center, not the spread."
+    C: "Multiplying by 3 does change the spread."
+    D: "The variance is multiplied by 9; the standard deviation is multiplied by 3."
+
+- id: ut2-09
+  skill: coef-var
+  tier: champion
+  type: calculation
+  stem: |
+    Machine A fills bags with a mean of 500 g and a standard deviation of 10 g. Machine B fills bags with a mean of 250 g and a standard deviation of 6 g. Using the coefficient of variation, which machine is relatively more consistent?
+  options:
+    - "Machine B, because its standard deviation is smaller"
+    - "Machine B, with a CV of 2 percent against 2.4 percent"
+    - "Neither, because the two bag sizes cannot be compared"
+    - "Machine A, with a CV of 2 percent against 2.4 percent"
+  answer: D
+  explain: |
+    The coefficient of variation divides the standard deviation by the mean: 10 / 500 = 2 percent for A and 6 / 250 = 2.4 percent for B. Relative to its mean, machine A varies less, even though its standard deviation is larger.
+  why:
+    A: "Raw standard deviations cannot be compared across different means; that is the point of the CV."
+    B: "This swaps the two CVs; B's is 2.4 percent."
+    C: "The CV exists to compare variability across different scales."
+  verify: |
+    a, b = 10 / 500, 6 / 250
+    ans = "Machine A, with a CV of 2 percent against 2.4 percent" if a < b else "Machine B"
+
+- id: ut2-10
+  skill: correlation
+  tier: competitive
+  type: concept
+  stem: |
+    In a sample of students, the correlation between daily hours of screen time and test scores is r = -0.92. Which statement is justified?
+  options:
+    - "There is a strong negative linear association between the two"
+    - "Screen time causes the lower test scores"
+    - "92 percent of the variation in scores is explained by screen time"
+    - "The association is weak, because r is negative"
+  answer: A
+  explain: |
+    An r near negative 1 means a strong negative linear association: students with more screen time tend to have lower scores. Correlation alone does not show cause, and the share of variation explained is r squared, about 85 percent.
+  why:
+    B: "Correlation does not establish causation; other factors could drive both."
+    C: "The share explained is r squared, 0.8464, not the absolute value of r."
+    D: "The sign gives the direction; the size, 0.92, shows the association is strong."
+
+- id: ut2-11
+  skill: covariance
+  tier: champion
+  type: concept
+  stem: |
+    Why is correlation usually easier to interpret than covariance?
+  options:
+    - "Covariance can only be computed for normally distributed data"
+    - "Correlation measures cause, while covariance measures only association"
+    - "Covariance is always positive, so it cannot show direction"
+    - "Correlation has no units and lies between -1 and 1, so strengths can be compared"
+  answer: D
+  explain: |
+    Covariance depends on the units of both variables, so its size is hard to judge. Correlation divides covariance by the two standard deviations, giving a unitless number from negative 1 to 1 whose strength can be compared across datasets.
+  why:
+    A: "Covariance can be computed for any paired numeric data."
+    B: "Neither measures causation."
+    C: "Covariance can be negative; its sign does show direction."
+
+- id: ut2-12
+  skill: empirical-rule
+  tier: core
+  type: calculation
+  stem: |
+    Adult heights in a population are approximately normal with mean 170 cm and standard deviation 8 cm. About what percent of adults are between 154 cm and 186 cm tall?
+  options:
+    - "47.5%"
+    - "68%"
+    - "95%"
+    - "99.7%"
+  ordered: true
+  answer: C
+  explain: |
+    154 and 186 are each 16 cm, or 2 standard deviations, from the mean. By the empirical rule, about 95 percent of values lie within 2 standard deviations.
+  why:
+    A: "47.5% covers only one side, from the mean to 2 standard deviations."
+    B: "68% is within 1 standard deviation, which would be 162 to 178."
+    D: "99.7% is within 3 standard deviations."
+  verify: |
+    k = (186 - 170) / 8
+    ans = {1: 68, 2: 95, 3: 99.7}[round(k)]
+
+- id: ut2-13
+  skill: z-scores
+  tier: competitive
+  type: calculation
+  stem: |
+    A test has mean 72 and standard deviation 6. One student scores 87. What is the student's z-score?
+  options:
+    - "0.4"
+    - "2.5"
+    - "6"
+    - "15"
+  ordered: true
+  answer: B
+  explain: |
+    z = (value minus mean) / standard deviation = (87 minus 72) / 6 = 15 / 6 = 2.5. The score is 2.5 standard deviations above the mean.
+  why:
+    A: "0.4 divides the standard deviation by the difference, flipping the fraction."
+    C: "6 is the standard deviation itself."
+    D: "15 is the difference from the mean before dividing by the standard deviation."
+  verify: "(87 - 72) / 6"
+
+- id: ut2-14
+  skill: normal-props
+  tier: core
+  type: concept
+  stem: |
+    A scientist finds that thousands of repeated measurement errors follow a normal distribution. Which property can the scientist count on?
+  options:
+    - "It is symmetric, so its mean, median, and mode are equal"
+    - "Its values can never fall more than 3 standard deviations from the mean"
+    - "Its standard deviation always equals 1"
+    - "It is skewed slightly to the right"
+  answer: A
+  explain: |
+    A normal curve is bell-shaped and symmetric about its center, so the mean, median, and mode coincide. Values beyond 3 standard deviations are rare, about 0.3 percent, but possible.
+  why:
+    B: "About 0.3 percent of values lie beyond 3 standard deviations."
+    C: "Only the standard normal distribution has standard deviation 1."
+    D: "A normal distribution is symmetric, not skewed."
+
+- id: ut2-15
+  skill: empirical-rule
+  tier: champion
+  type: calculation
+  stem: |
+    Scores on an exam are approximately normal with mean 500 and standard deviation 100. About what percent of scores are above 700?
+  options:
+    - "2.5%"
+    - "5%"
+    - "16%"
+    - "47.5%"
+  ordered: true
+  answer: A
+  explain: |
+    700 is 2 standard deviations above the mean. About 95 percent of scores lie within 2 standard deviations, leaving 5 percent in the two tails together, or 2.5 percent in the upper tail alone.
+  why:
+    B: "5% counts both tails; the question asks only about scores above 700."
+    C: "16% is the share above 1 standard deviation, which would be 600."
+    D: "47.5% is the share between 500 and 700."
+  verify: "(100 - 95) / 2"
+
+- id: ut2-16
+  skill: clt
+  tier: competitive
+  type: calculation
+  stem: |
+    Samples of size 64 are drawn from a skewed population with standard deviation 16. What is the standard error of the sample mean, and what is the approximate shape of the sampling distribution?
+  options:
+    - "16; skewed like the population"
+    - "0.25; approximately normal"
+    - "2; skewed like the population"
+    - "2; approximately normal"
+  answer: D
+  explain: |
+    The standard error is the population standard deviation divided by the square root of n: 16 / 8 = 2. By the central limit theorem, with n = 64 the sampling distribution of the mean is approximately normal even though the population is skewed.
+  why:
+    A: "16 is the population standard deviation; averaging reduces the spread."
+    B: "0.25 divides by n instead of the square root of n."
+    C: "The central limit theorem makes the sampling distribution approximately normal for a sample this large."
+  verify: |
+    se = 16 / math.sqrt(64)
+    ans = f"{se:g}; approximately normal"
+
+- id: ut2-17
+  skill: inference-basics
+  tier: competitive
+  type: concept
+  stem: |
+    A poll reports that 52 percent of voters support a measure, with a margin of error of plus or minus 3 points at 95 percent confidence. Which interpretation is correct?
+  options:
+    - "Exactly 52 percent of all voters support the measure, with no uncertainty"
+    - "The method captures the true value in about 95 percent of samples; here 49 to 55 percent"
+    - "There is a 3 percent chance that the poll's result is wrong in either direction"
+    - "95 percent of all eligible voters in the area were included in the poll"
+  answer: B
+  explain: |
+    A 95 percent confidence interval comes from a method that captures the true population value in about 95 percent of samples. Here the interval is 52 plus or minus 3, so 49 to 55 percent; the true value could be anywhere in it.
+  why:
+    A: "52 percent is the sample estimate; the true value is uncertain."
+    C: "The margin of error is a range in percentage points, not a chance of error."
+    D: "Confidence level describes the method, not the share of voters polled."
+
+- id: ut2-18
+  skill: prob-basics
+  tier: core
+  type: calculation
+  stem: |
+    A bag holds 5 red, 3 blue, and 2 green marbles. One marble is drawn at random. What is the probability that it is not blue?
+  options:
+    - "0.3"
+    - "0.5"
+    - "0.67"
+    - "0.7"
+  ordered: true
+  answer: D
+  explain: |
+    7 of the 10 marbles are not blue, so the probability is 7 / 10 = 0.7. Equivalently, use the complement: 1 minus P(blue) = 1 minus 0.3 = 0.7.
+  why:
+    A: "0.3 is the probability of drawing blue, not of avoiding it."
+    B: "0.5 is the probability of red."
+    C: "0.67 treats the three colors as equally likely, but there are more red marbles than blue or green."
+  verify: "7 / 10"
+
+- id: ut2-19
+  skill: prob-rules
+  tier: competitive
+  type: calculation
+  stem: |
+    For two events, P(A) = 0.5, P(B) = 0.4, and P(A and B) = 0.2. What is P(A or B)?
+  options:
+    - "0.2"
+    - "0.7"
+    - "0.8"
+    - "0.9"
+  ordered: true
+  answer: B
+  explain: |
+    The addition rule subtracts the overlap so it is not counted twice: P(A or B) = 0.5 + 0.4 minus 0.2 = 0.7.
+  why:
+    A: "0.2 is P(A and B), the overlap only."
+    C: "0.8 is 1 minus the overlap, which has no meaning here."
+    D: "0.9 adds the two probabilities without subtracting the overlap."
+  verify: "0.5 + 0.4 - 0.2"
+
+- id: ut2-20
+  skill: prob-rules
+  tier: champion
+  type: concept
+  stem: |
+    For two events, P(A) = 0.3, P(B) = 0.5, and P(A and B) = 0.15. Which statement is true?
+  options:
+    - "A and B are mutually exclusive, because they rarely occur together"
+    - "A and B are dependent, because P(A and B) is not 0"
+    - "A and B are independent, because 0.3 × 0.5 = 0.15"
+    - "A and B are mutually exclusive and independent at the same time"
+  answer: C
+  explain: |
+    Events are independent when P(A and B) = P(A) × P(B). Here 0.3 × 0.5 = 0.15, which matches. They are not mutually exclusive, because mutually exclusive events have P(A and B) = 0.
+  why:
+    A: "Mutually exclusive events never occur together, so P(A and B) would be 0, not 0.15."
+    B: "A nonzero overlap does not make events dependent; the test is whether it equals the product."
+    D: "Events with positive probabilities cannot be both mutually exclusive and independent."
+
+- id: ut2-21
+  skill: conditional
+  tier: competitive
+  type: visual
+  stem: |
+    A survey of 200 students gives these counts.
+
+    | | Plays an instrument | Does not | Total |
+    |---|---|---|---|
+    | Plays a sport | 45 | 75 | 120 |
+    | No sport | 35 | 45 | 80 |
+    | Total | 80 | 120 | 200 |
+
+    What is the probability that a student plays an instrument, given that the student plays a sport?
+  options:
+    - "0.225"
+    - "0.375"
+    - "0.4"
+    - "0.5625"
+  ordered: true
+  answer: B
+  explain: |
+    Given a sport, restrict attention to the 120 students who play one. Of them, 45 play an instrument, so the probability is 45 / 120 = 0.375.
+  why:
+    A: "0.225 divides by all 200 students, which gives P(sport and instrument)."
+    C: "0.4 is the overall share who play an instrument, 80 / 200."
+    D: "0.5625 divides by the 80 instrument players, which gives P(sport given instrument)."
+  verify: "45 / 120"
+
+- id: ut2-22
+  skill: bayes
+  tier: champion
+  type: calculation
+  stem: |
+    A disease affects 2 percent of a population. A test detects 90 percent of people who have it and wrongly flags 5 percent of people who do not. A randomly chosen person tests positive. To the nearest percent, what is the probability that the person has the disease?
+  options:
+    - "2%"
+    - "5%"
+    - "27%"
+    - "90%"
+  ordered: true
+  answer: C
+  explain: |
+    Picture 1,000 people: 20 have the disease and 18 of them test positive; 980 do not, and 49 of them test positive anyway. Of the 67 positives, 18 have the disease, and 18 / 67 is about 27 percent.
+  why:
+    A: "2% is the base rate before the test result is known."
+    B: "5% is the false positive rate, not the chance of disease after a positive test."
+    D: "90% is P(positive given disease); Bayes' theorem reverses the condition."
+  verify: "0.02 * 0.9 / (0.02 * 0.9 + 0.98 * 0.05)"
+
+- id: ut2-23
+  skill: expected-value
+  tier: core
+  type: calculation
+  stem: |
+    A spinner pays $0 with probability 0.5, $4 with probability 0.3, and $10 with probability 0.2. What is the expected payout, in dollars?
+  options:
+    - "3.2"
+    - "4.67"
+    - "10"
+    - "14"
+  ordered: true
+  answer: A
+  explain: |
+    Multiply each payout by its probability and add: 0 × 0.5 + 4 × 0.3 + 10 × 0.2 = 0 + 1.2 + 2 = 3.2.
+  why:
+    B: "4.67 averages the three payouts without weighting them by probability."
+    C: "10 is the largest payout, not the average."
+    D: "14 adds the payouts without weighting them."
+  verify: "0 * 0.5 + 4 * 0.3 + 10 * 0.2"
+
+- id: ut2-24
+  skill: ev-decisions
+  tier: competitive
+  type: calculation
+  stem: |
+    A raffle ticket costs $5. Each ticket has a 1 in 500 chance of winning $1,000 and otherwise wins nothing. What is the expected net result of buying one ticket?
+  options:
+    - "A loss of $5"
+    - "A gain of $2"
+    - "A gain of $995"
+    - "A loss of $3"
+  answer: D
+  explain: |
+    The expected winnings are 1,000 × 1/500 = $2. Subtracting the $5 cost gives an expected result of 2 minus 5, an expected loss of $3 per ticket.
+  why:
+    A: "A loss of $5 ignores the expected winnings."
+    B: "$2 is the expected winnings before subtracting the ticket's cost."
+    C: "$995 is the net result only if you win, which happens 1 time in 500."
+  verify: |
+    ev = 1000 / 500 - 5
+    ans = f"A loss of ${-ev:.0f}" if ev < 0 else f"A gain of ${ev:.0f}"
+
+- id: ut2-25
+  skill: ev-rules
+  tier: champion
+  type: calculation
+  stem: |
+    Random variable X has mean 10, and random variable Y has mean 4. What is $$E(3X - 2Y + 5)$$?
+  options:
+    - "17"
+    - "22"
+    - "27"
+    - "43"
+  ordered: true
+  answer: C
+  explain: |
+    Expected value is linear: E(3X minus 2Y + 5) = 3 × 10 minus 2 × 4 + 5 = 30 minus 8 + 5 = 27. Linearity holds whether or not X and Y are independent.
+  why:
+    A: "17 subtracts the 5 instead of adding it."
+    B: "22 drops the constant 5."
+    D: "43 adds 2 × 4 instead of subtracting it."
+  verify: "3 * 10 - 2 * 4 + 5"
+
+- id: ut2-26
+  skill: distributions
+  tier: competitive
+  type: scenario
+  stem: |
+    A help desk receives an average of 6 calls per minute, and calls arrive independently of one another. Which distribution best models the number of calls in a given minute?
+  options:
+    - "Poisson"
+    - "Binomial"
+    - "Normal"
+    - "Uniform"
+  answer: A
+  explain: |
+    The Poisson distribution models counts of independent events in a fixed interval of time or space, given an average rate. Calls per minute at an average of 6 is the classic case.
+  why:
+    B: "A binomial needs a fixed number of trials, each a success or failure; calls have no fixed number of trials."
+    C: "A count of events is discrete, and a normal distribution is continuous."
+    D: "A uniform distribution makes every outcome equally likely, which call counts are not."
+
+- id: ut2-27
+  skill: distributions
+  tier: champion
+  type: calculation
+  stem: |
+    A basketball player makes 80 percent of free throws, independently. What is the probability that the player makes exactly 2 of the next 3 free throws?
+  options:
+    - "0.096"
+    - "0.128"
+    - "0.16"
+    - "0.384"
+  ordered: true
+  answer: D
+  explain: |
+    This is binomial with n = 3 and p = 0.8. There are 3 ways to choose which 2 shots go in, so P = 3 × 0.8² × 0.2 = 3 × 0.64 × 0.2 = 0.384.
+  why:
+    A: "0.096 is the probability of making exactly 1 of the 3 shots."
+    B: "0.128 is the probability of one particular order, missing the factor of 3 arrangements."
+    C: "0.16 multiplies one make by one miss and leaves out the third shot."
+  verify: "comb(3, 2) * 0.8 ** 2 * 0.2"
+
+- id: ut2-28
+  skill: var-types
+  tier: core
+  type: scenario
+  stem: |
+    Which of these random variables is discrete?
+  options:
+    - "The time it takes to download a file"
+    - "The number of emails received in an hour"
+    - "The weight of a randomly chosen apple"
+    - "The temperature at noon tomorrow"
+  answer: B
+  explain: |
+    A count of emails can take only whole-number values such as 0, 1, 2, so it is discrete. Time, weight, and temperature are measurements that can take any value in a range, so they are continuous.
+  why:
+    A: "Time is measured on a continuous scale."
+    C: "Weight is measured on a continuous scale."
+    D: "Temperature is measured on a continuous scale."
+
+- id: ut2-29
+  skill: rv-dist
+  tier: competitive
+  type: concept
+  stem: |
+    A random variable takes the values 1, 2, and 3. Which list of probabilities, in that order, forms a valid probability distribution?
+  options:
+    - "0.4, 0.4, 0.3"
+    - "0.25, 0.25, 0.25"
+    - "0.2, 0.5, 0.3"
+    - "0.6, 0.5, -0.1"
+  answer: C
+  explain: |
+    A valid probability distribution needs every probability between 0 and 1 and a total of exactly 1. Only 0.2 + 0.5 + 0.3 = 1 meets both conditions.
+  why:
+    A: "These sum to 1.1, more than 1."
+    B: "These sum to 0.75, less than 1."
+    D: "A probability cannot be negative, even though these sum to 1."
+
+- id: ut2-30
+  skill: clt
+  tier: champion
+  type: concept
+  stem: |
+    A researcher increases a random sample from 100 people to 400 people. What happens to the standard error of the sample mean?
+  options:
+    - "It is cut in half"
+    - "It is cut to one quarter"
+    - "It doubles"
+    - "It stays the same"
+  answer: A
+  explain: |
+    The standard error is the standard deviation divided by the square root of n. Multiplying n by 4 multiplies the square root by 2, so the standard error is cut in half.
+  why:
+    B: "One quarter would need the standard error to shrink with n itself, not its square root."
+    C: "Larger samples reduce the standard error; they never increase it."
+    D: "The standard error depends on the sample size, so it changes."
+  verify: |
+    ratio = (1 / math.sqrt(400)) / (1 / math.sqrt(100))
+    ans = "It is cut in half" if abs(ratio - 0.5) < 1e-9 else "other"

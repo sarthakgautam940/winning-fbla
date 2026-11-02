@@ -1,0 +1,605 @@
+# Unit 1 test: Data Literacy and Foundations
+
+- id: ut1-01
+  skill: ds-analytics
+  tier: core
+  type: scenario
+  stem: |
+    A gym chain's managers ask: "How many of our members are likely to cancel next month?" Which kind of analytics answers this question?
+  options:
+    - "Descriptive analytics"
+    - "Diagnostic analytics"
+    - "Prescriptive analytics"
+    - "Predictive analytics"
+  answer: D
+  explain: |
+    The question asks what will happen, which is predictive analytics. Descriptive analytics asks what happened, diagnostic asks why, and prescriptive asks what to do about it.
+  why:
+    A: "Descriptive analytics summarizes what already happened, such as last month's cancellations."
+    B: "Diagnostic analytics explains why something happened."
+    C: "Prescriptive analytics recommends an action, such as which members to offer a discount."
+
+- id: ut1-02
+  skill: ds-roles
+  tier: competitive
+  type: scenario
+  stem: |
+    After a fraud model goes live, someone must deploy updates, monitor its accuracy in production, and retrain it when its performance drifts. Which role does this work belong to?
+  options:
+    - "Machine learning engineer"
+    - "Business intelligence developer"
+    - "Data steward"
+    - "Database administrator"
+  answer: A
+  explain: |
+    Machine learning engineers put models into production, scale them, and monitor and maintain them. Data scientists usually build the first model; machine learning engineers keep it working.
+  why:
+    B: "Business intelligence developers build dashboards and reports about performance; they do not run models in production."
+    C: "Data stewards own a dataset's definitions, quality, and access rules."
+    D: "Database administrators keep databases secure, backed up, and fast."
+
+- id: ut1-03
+  skill: data-structure
+  tier: core
+  type: scenario
+  stem: |
+    A company stores four kinds of data. Which one is unstructured?
+  options:
+    - "A spreadsheet of daily sales by store"
+    - "A database table of employee IDs and salaries"
+    - "A CSV file of web traffic by hour"
+    - "Audio recordings of customer service calls"
+  answer: D
+  explain: |
+    Unstructured data has no predefined rows-and-columns model; audio must be processed, for example with speech recognition, before it can be analyzed. The other three are tables with fixed columns.
+  why:
+    A: "A spreadsheet with fixed columns is structured."
+    B: "A database table with a schema is structured."
+    C: "A CSV file is a table of rows and columns, so it is structured."
+
+- id: ut1-04
+  skill: metadata
+  tier: competitive
+  type: scenario
+  stem: |
+    A photo file stores the date it was taken, the camera model, and GPS coordinates alongside its pixels. What is this extra information called?
+  options:
+    - "Metadata"
+    - "A data dictionary"
+    - "A primary key"
+    - "A schema"
+  answer: A
+  explain: |
+    Metadata is data about data. Photo files commonly carry EXIF metadata such as the time, camera settings, and location, which can reveal more than the picture itself.
+  why:
+    B: "A data dictionary documents the meaning of each field in a dataset; it is not stored inside each photo."
+    C: "A primary key uniquely identifies rows in a database table."
+    D: "A schema defines the structure of a dataset's fields, not facts about one particular file."
+
+- id: ut1-05
+  skill: data-structure
+  tier: competitive
+  type: concept
+  stem: |
+    Why is JSON usually described as semi-structured data rather than structured data?
+  options:
+    - "It can store only text, never numbers or true/false values"
+    - "Its keys label the data, but records need not share one fixed table layout"
+    - "It has no organization at all, like free-form text or images"
+    - "It must be converted to a spreadsheet before any program can read it"
+  answer: B
+  explain: |
+    Semi-structured data carries its own labels, such as JSON keys or XML tags, so it is organized, but records can have different fields and nesting rather than fitting one fixed table schema.
+  why:
+    A: "JSON stores numbers, booleans, and nulls as well as text."
+    C: "JSON is organized by keys and nesting, unlike truly unstructured data."
+    D: "Programs read JSON directly; it is a common format for APIs."
+
+- id: ut1-06
+  skill: var-num-cat
+  tier: core
+  type: scenario
+  stem: |
+    Which of these variables is categorical even though its values are written with digits?
+  options:
+    - "Hours of sleep per night"
+    - "Number of siblings"
+    - "Ticket price in dollars"
+    - "Airline flight number"
+  answer: D
+  explain: |
+    A flight number such as 1729 is a label: adding or averaging flight numbers means nothing. Digits do not make a variable numeric; what matters is whether arithmetic on the values makes sense.
+  why:
+    A: "Hours of sleep is a measured quantity, so it is numeric."
+    B: "Number of siblings is a count, so it is numeric."
+    C: "A price is a numeric amount that can be averaged."
+
+- id: ut1-07
+  skill: var-levels
+  tier: core
+  type: recall
+  stem: |
+    A store records T-shirt sizes as small, medium, large, and extra large. Which level of measurement is this?
+  options:
+    - "Ordinal"
+    - "Nominal"
+    - "Interval"
+    - "Ratio"
+  answer: A
+  explain: |
+    The sizes have a natural order, but the gaps between them are not equal measured amounts, so the level is ordinal.
+  why:
+    B: "Nominal categories have no order, but sizes do."
+    C: "Interval data have equal, meaningful differences, which size labels lack."
+    D: "Ratio data need equal differences and a true zero."
+
+- id: ut1-08
+  skill: var-levels
+  tier: champion
+  type: concept
+  stem: |
+    Temperatures in degrees Fahrenheit are interval data. Which statement about them is meaningful?
+  options:
+    - "80 degrees is twice as hot as 40 degrees"
+    - "0 degrees means the complete absence of heat"
+    - "The ratio of 90 degrees to 30 degrees is 3"
+    - "A 10-degree rise is the same change at 40 degrees as at 70"
+  answer: D
+  explain: |
+    Interval data have equal, meaningful differences but no true zero. Differences can be compared, so a 10-degree rise is the same change anywhere on the scale, but ratios such as "twice as hot" are meaningless because 0 degrees Fahrenheit is not the absence of heat.
+  why:
+    A: "Ratios need a true zero, which the Fahrenheit scale lacks."
+    B: "0 degrees Fahrenheit is an arbitrary point on the scale, not zero heat."
+    C: "Ratios of interval values are not meaningful."
+
+- id: ut1-09
+  skill: var-disc-cont
+  tier: competitive
+  type: scenario
+  stem: |
+    A track meet records four variables for each runner. Which one is continuous?
+  options:
+    - "Number of races entered"
+    - "Time to finish the 400-meter race"
+    - "Finishing place in the final"
+    - "Number of false starts"
+  answer: B
+  explain: |
+    Time is measured and can take any value in a range, such as 52.37 seconds, so it is continuous. Counts take whole-number values and are discrete.
+  why:
+    A: "A count of races is discrete."
+    C: "A finishing place is an ordinal rank, not a measurement."
+    D: "A count of false starts is discrete."
+
+- id: ut1-10
+  skill: base-binary
+  tier: core
+  type: calculation
+  stem: |
+    A device's status register shows the bit pattern 1011001. What number is that in base 10?
+  options:
+    - "77"
+    - "89"
+    - "91"
+    - "178"
+  ordered: true
+  answer: B
+  explain: |
+    Write the place values under the seven bits: 64, 32, 16, 8, 4, 2, 1. The 1 bits sit under 64, 16, 8, and 1, and 64 + 16 + 8 + 1 = 89.
+  why:
+    A: "77 reads the bits in reverse order."
+    C: "91 adds a 2 that is not in the pattern."
+    D: "178 shifts every bit one place left, doubling the value."
+  verify: 'int("1011001", 2)'
+
+- id: ut1-11
+  skill: base-binary
+  tier: competitive
+  type: calculation
+  stem: |
+    A student converts 150 to binary by repeatedly dividing by 2 and recording the remainders. Which 8-bit result is correct?
+  options:
+    - "01101001"
+    - "10010100"
+    - "10010110"
+    - "10100110"
+  ordered: true
+  answer: C
+  explain: |
+    The remainders, from first to last, are 0, 1, 1, 0, 1, 0, 0, 1. Reading them from last to first gives 10010110, and 128 + 16 + 4 + 2 = 150 confirms it.
+  why:
+    A: "01101001 lists the remainders in the order they were found, which reverses the bits."
+    B: "10010100 is 148; it is missing the 2's place."
+    D: "10100110 is 166; it puts a 1 in the 32's place instead of the 16's."
+  verify: |
+    ans = format(150, "08b")
+
+- id: ut1-12
+  skill: base-hex
+  tier: core
+  type: calculation
+  stem: |
+    A web color code contains the hexadecimal pair 3C. What is 3C in decimal?
+  options:
+    - "42"
+    - "60"
+    - "61"
+    - "195"
+  ordered: true
+  answer: B
+  explain: |
+    The left digit is in the 16s place and C means 12, so 3 × 16 + 12 = 60.
+  why:
+    A: "42 treats the 3 as tens, as if the number were decimal."
+    C: "61 treats C as 13; C is 12."
+    D: "195 is C3, the digits reversed."
+  verify: 'int("3C", 16)'
+
+- id: ut1-13
+  skill: base-hex
+  tier: competitive
+  type: calculation
+  stem: |
+    Convert the 8-bit pattern 11010110 to hexadecimal.
+  options:
+    - "6D"
+    - "B6"
+    - "E6"
+    - "D6"
+  answer: D
+  explain: |
+    Split the bits into nibbles: 1101 and 0110. 1101 is 13, which is D, and 0110 is 6, so the result is D6.
+  why:
+    A: "6D swaps the two nibbles."
+    B: "B is 1011; the first nibble, 1101, is 13, which is D."
+    C: "E is 1110; the first nibble is 1101."
+  verify: 'format(int("11010110", 2), "X")'
+
+- id: ut1-14
+  skill: feature-eng
+  tier: competitive
+  type: scenario
+  stem: |
+    An online store has a column of order timestamps. Which engineered feature would most directly help a model learn weekend shopping patterns?
+  options:
+    - "The day of the week of each order"
+    - "The order's row number in the file"
+    - "The timestamp converted to a long text string"
+    - "The number of characters in the timestamp"
+  answer: A
+  explain: |
+    Feature engineering creates inputs that expose patterns to a model. Extracting the day of the week turns a raw timestamp into a feature that directly captures weekday versus weekend behavior.
+  why:
+    B: "A row number reflects file order, not shopping behavior."
+    C: "Turning the time into text hides its structure from the model."
+    D: "Every timestamp has the same length, so this feature carries no pattern."
+
+- id: ut1-15
+  skill: bits-bytes
+  tier: core
+  type: calculation
+  stem: |
+    A sensor sends each reading as a 7-bit code. How many distinct codes are possible?
+  options:
+    - "64"
+    - "127"
+    - "128"
+    - "256"
+  ordered: true
+  answer: C
+  explain: |
+    Each bit doubles the number of patterns, so 7 bits give 2 to the 7th power, which is 128 codes, numbered 0 through 127.
+  why:
+    A: "64 is 2 to the 6th power, one bit short."
+    B: "127 is the largest value, not the number of values; zero is also a code."
+    D: "256 needs 8 bits."
+  verify: "2 ** 7"
+
+- id: ut1-16
+  skill: bits-bytes
+  tier: champion
+  type: calculation
+  stem: |
+    A video clip is exactly 3 MiB (mebibytes). How many bytes is that?
+  options:
+    - "3,000,000"
+    - "3,072,000"
+    - "3,145,728"
+    - "3,221,225,472"
+  ordered: true
+  answer: C
+  explain: |
+    One mebibyte is 1,024 × 1,024 = 1,048,576 bytes, so 3 MiB is 3 × 1,048,576 = 3,145,728 bytes. A decimal megabyte (MB) is 1,000,000 bytes.
+  why:
+    A: "3,000,000 uses decimal megabytes, not mebibytes."
+    B: "3,072,000 mixes 1,024 and 1,000."
+    D: "3,221,225,472 is 3 GiB."
+  verify: "3 * 1024 ** 2"
+
+- id: ut1-17
+  skill: bin-arith
+  tier: competitive
+  type: calculation
+  stem: |
+    An 8-bit unsigned counter holds 200. It adds 100 and keeps only the lowest 8 bits of the result. What value does it hold now?
+  options:
+    - "44"
+    - "100"
+    - "255"
+    - "300"
+  ordered: true
+  answer: A
+  explain: |
+    The true sum, 300, needs 9 bits. Keeping the lowest 8 bits drops 256, leaving 300 minus 256 = 44. This wraparound is called overflow.
+  why:
+    B: "100 is just the amount that was added."
+    C: "255 is the largest 8-bit value, but the counter wraps around rather than stopping there."
+    D: "300 cannot fit in 8 bits."
+  verify: "(200 + 100) % 256"
+
+- id: ut1-18
+  skill: bin-arith
+  tier: champion
+  type: calculation
+  stem: |
+    A thermometer stores readings as 8-bit two's complement integers. One reading is stored as 11110110. What temperature does it record, in degrees?
+  options:
+    - "-118"
+    - "-10"
+    - "10"
+    - "246"
+  ordered: true
+  answer: B
+  explain: |
+    The leftmost bit is worth negative 128, and the remaining 1 bits add 64 + 32 + 16 + 4 + 2 = 118. So the value is negative 128 + 118, which is negative 10.
+  why:
+    A: "-118 treats the leading 1 as a minus sign on the other bits, which is sign-magnitude, not two's complement."
+    C: "10 is the size of the number without its sign."
+    D: "246 reads the pattern as an unsigned number."
+  verify: |
+    v = int("11110110", 2)
+    ans = v - 256 if v >= 128 else v
+
+- id: ut1-19
+  skill: text-encoding
+  tier: core
+  type: calculation
+  stem: |
+    In ASCII, the capital letter G has code 71. What is the code for the lowercase letter g?
+  options:
+    - "39"
+    - "72"
+    - "103"
+    - "135"
+  ordered: true
+  answer: C
+  explain: |
+    Lowercase ASCII letters are exactly 32 more than their capitals, so g is 71 + 32 = 103.
+  why:
+    A: "39 subtracts 32; lowercase codes are higher, not lower."
+    B: "72 is the next capital letter, H."
+    D: "135 adds 64 instead of 32."
+  verify: 'ord("g")'
+
+- id: ut1-20
+  skill: ds-nature
+  tier: competitive
+  type: recall
+  stem: |
+    A team has strong programming skills and deep knowledge of the retail business, but no one on it has training in math or statistics. Where would Drew Conway's Venn diagram place this team?
+  options:
+    - "Data science"
+    - "Machine learning"
+    - "Business intelligence"
+    - "The danger zone"
+  answer: D
+  explain: |
+    Hacking skills plus substantive expertise, without math and statistics, is what Conway called the danger zone: people who can produce analyses that look convincing but may not be valid. Data science needs all three circles.
+  why:
+    A: "Data science sits where all three circles overlap."
+    B: "Machine learning is hacking skills plus math and statistics."
+    C: "Business intelligence is not one of the regions Conway labeled."
+
+- id: ut1-21
+  skill: media-encoding
+  tier: competitive
+  type: calculation
+  stem: |
+    An uncompressed image is 1,920 pixels wide and 1,080 pixels tall, with 24-bit color. About how many megabytes does it take, using 1 MB = 1,000,000 bytes?
+  options:
+    - "2.1"
+    - "6.2"
+    - "16.6"
+    - "49.8"
+  ordered: true
+  answer: B
+  explain: |
+    24-bit color uses 3 bytes per pixel. 1,920 × 1,080 = 2,073,600 pixels, and 2,073,600 × 3 = 6,220,800 bytes, about 6.2 MB.
+  why:
+    A: "2.1 counts one byte per pixel instead of three."
+    C: "16.6 uses 8 bytes per pixel."
+    D: "49.8 is the size in megabits; divide bits by 8 to get bytes."
+  verify: "1920 * 1080 * 3 / 1e6"
+
+- id: ut1-22
+  skill: media-encoding
+  tier: champion
+  type: calculation
+  stem: |
+    Which RGB triple matches the hex color code #1E90C8?
+  options:
+    - "(30, 144, 200)"
+    - "(30, 90, 200)"
+    - "(225, 9, 140)"
+    - "(30, 144, 184)"
+  answer: A
+  explain: |
+    Split the code into pairs and convert each from hex: 1E = 16 + 14 = 30, 90 = 9 × 16 = 144, and C8 = 12 × 16 + 8 = 200.
+  why:
+    B: "90 was read as a decimal number; in hex it is 144."
+    C: "This reverses the digits within each pair (E1, 09, 8C)."
+    D: "184 is B8; C is 12, so C8 is 200."
+  verify: |
+    r, g, b = (int("1E90C8"[i:i + 2], 16) for i in (0, 2, 4))
+    ans = f"({r}, {g}, {b})"
+
+- id: ut1-23
+  skill: study-types
+  tier: competitive
+  type: scenario
+  stem: |
+    A researcher randomly assigns 200 volunteers to drink either coffee or water before a memory test, then compares their scores. What kind of study is this, and what can it support?
+  options:
+    - "An observational study; it can show correlation but not cause"
+    - "A census; it describes every member of a population"
+    - "A secondary-data study; it reuses data someone else collected"
+    - "An experiment; random assignment lets it support a causal claim"
+  answer: D
+  explain: |
+    The researcher assigns the treatment at random, which makes this an experiment. Random assignment balances other factors between the groups, so a difference in scores can be attributed to the drink.
+  why:
+    A: "In an observational study researchers only observe; here they assigned the drinks."
+    B: "A census measures an entire population; this study uses 200 volunteers."
+    C: "The researcher collected new data, so this is primary data."
+
+- id: ut1-24
+  skill: big-data
+  tier: core
+  type: scenario
+  stem: |
+    A factory's sensor network sends thousands of readings every second, and alerts must be raised as the data arrive. Which V of big data does this describe most directly?
+  options:
+    - "Volume"
+    - "Velocity"
+    - "Variety"
+    - "Veracity"
+  answer: B
+  explain: |
+    Velocity is the speed at which data arrive and must be processed. Streaming readings that need real-time alerts are a velocity challenge.
+  why:
+    A: "Volume is the sheer amount of data stored, not how fast it arrives."
+    C: "Variety is the range of data types and formats."
+    D: "Veracity is the accuracy and trustworthiness of the data."
+
+- id: ut1-25
+  skill: process-models
+  tier: competitive
+  type: recall
+  stem: |
+    In CRISP-DM, which phase comes immediately after Data Preparation?
+  options:
+    - "Modeling"
+    - "Evaluation"
+    - "Data Understanding"
+    - "Deployment"
+  answer: A
+  explain: |
+    CRISP-DM's six phases run Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, and Deployment, and projects often loop back and forth between Data Preparation and Modeling.
+  why:
+    B: "Evaluation follows Modeling."
+    C: "Data Understanding comes before Data Preparation."
+    D: "Deployment is the final phase."
+
+- id: ut1-26
+  skill: wrangling
+  tier: competitive
+  type: visual
+  stem: |
+    Which change would make this table tidy?
+
+    | Student | Score_2025 | Score_2026 |
+    |---|---|---|
+    | Ana | 81 | 88 |
+    | Ben | 74 | 79 |
+  options:
+    - "Add a column that averages the two scores for each student"
+    - "Sort the rows alphabetically by student name"
+    - "Reshape it so each row holds one student, one year, and one score"
+    - "Rename the columns to Score_A and Score_B"
+  answer: C
+  explain: |
+    In tidy data each variable is a column and each observation is a row. Year is a variable hiding in the column headers, so the table should be reshaped from wide to long, with the columns Student, Year, and Score.
+  why:
+    A: "Adding an average leaves the year still stored in the headers."
+    B: "Sorting changes the order of rows, not the structure."
+    D: "Renaming hides the year entirely instead of storing it as a variable."
+
+- id: ut1-27
+  skill: scaling
+  tier: competitive
+  type: calculation
+  stem: |
+    A feature ranges from a minimum of 12 to a maximum of 60. What is the min-max normalized value of 48?
+  options:
+    - "0.25"
+    - "0.6"
+    - "0.75"
+    - "0.8"
+  ordered: true
+  answer: C
+  explain: |
+    Min-max normalization computes (x minus min) / (max minus min) = (48 minus 12) / (60 minus 12) = 36 / 48 = 0.75.
+  why:
+    A: "0.25 is 1 minus the correct value, measuring from the maximum instead of the minimum."
+    B: "0.6 divides by the maximum, 60, instead of the range, 48."
+    D: "0.8 divides 48 by the maximum without subtracting the minimum."
+  verify: "(48 - 12) / (60 - 12)"
+
+- id: ut1-28
+  skill: scaling
+  tier: champion
+  type: concept
+  stem: |
+    A team standardizes a feature before splitting its data, computing the mean and standard deviation from all the rows. Why is this a problem?
+  options:
+    - "Statistics from the test rows leak into training, so test results look better than they should"
+    - "Standardizing before splitting makes every value negative"
+    - "The standard deviation cannot be computed on more than 1,000 rows"
+    - "Standardized features cannot be used by any machine learning model"
+  answer: A
+  explain: |
+    Scaling parameters must be learned from the training set only and then applied to the test set. Computing them from all rows lets information about the test data shape training, a form of data leakage that inflates test scores.
+  why:
+    B: "Standardizing centers values around zero; it does not make them all negative."
+    C: "A standard deviation can be computed for any number of rows."
+    D: "Standardized features are routinely used, and many models need them."
+
+- id: ut1-29
+  skill: encoding-cats
+  tier: core
+  type: calculation
+  stem: |
+    A column named region has four values: north, south, east, and west. If one-hot encoding keeps a column for every category, how many new columns does it create?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: D
+  explain: |
+    One-hot encoding creates one 0-or-1 column per category, so four regions become four columns. Some setups drop one column to avoid the dummy variable trap, which would leave 3.
+  why:
+    A: "A single column would be label encoding, which imposes a false order."
+    B: "Two columns could store 4 values in binary, but that is not one-hot encoding."
+    C: "Three columns is the drop-one version, which this question rules out."
+  verify: 'len(["north", "south", "east", "west"])'
+
+- id: ut1-30
+  skill: process-models
+  tier: champion
+  type: recall
+  stem: |
+    In John Rollins' IBM Foundational Methodology for Data Science, which stage comes right after business understanding?
+  options:
+    - "Data requirements"
+    - "Data collection"
+    - "Analytic approach"
+    - "Data understanding"
+  answer: C
+  explain: |
+    The ten stages begin with business understanding, analytic approach, data requirements, data collection, and data understanding. After defining the business problem, you choose the kind of analysis that can answer it.
+  why:
+    A: "Data requirements follows the analytic approach."
+    B: "Data collection comes after data requirements."
+    D: "Data understanding comes after data collection."

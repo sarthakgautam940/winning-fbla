@@ -1,4 +1,4 @@
-﻿# STATE
+# STATE
 
 Read this first after any compaction or "continue". Then reread `docs/style-guide.md`, `docs/question-standard.md`, and the lesson's entry in `content/curriculum.yaml` before writing. `docs/PROMPT.md` is the full original request.
 
@@ -45,6 +45,15 @@ Distractor audit (2026-11-02): found joke or invented distractors in u6-l6 (gena
 Conventions settled while writing (keep them): options length-matched as you draft (the validator warns when the correct option is over 1.6x the others); numeric options ascending with `ordered: true`; prose avoids negative signs ("an expected loss of $2"); multiplication sign Ã— in prose; real-world cases only from research/facts.md, otherwise clearly hypothetical examples.
 
 Order of work: u1-l2 ... u1-l8, u2 (l1, l2, l4-l8), u3, u4 (incl. l9), u5, u6, u7 (incl. l8), u8. Then unit tests (`content/questions/unit-tests/u1..u8.yaml`, 25 each) and practice-test items (`content/questions/tests/<AREA>.yaml`, `test: 1..5`; per test DL 20, PS 15, DA 15, TL 10, AI 10, ML 10, PR 10, PE 10; tests 1-4 about 35/45/20 tiers, test 5 about 20/45/35; every objective in every test). Then strict check (`--strict`), cold solve, visual QA, push.
+
+## Test authoring plan (unit tests, then practice tests)
+
+Unit tests: `content/questions/unit-tests/u1.yaml` ... `u8.yaml` (u0 has no skills, so no test). 20 to 30 questions each (targets: u1 30, u2 30, u3 28, u4 28, u5 28, u6 26, u7 26, u8 26). IDs `ut<unit>-<nn>` (ut1-01). No `use`, no `test`. Only that unit's skills. Tier mix about 30/45/25. Letters 20 to 30 percent each, no run of 4 (strict). A stem 0.85 or more similar to any bank stem is an error, so write fresh scenarios and numbers. Progress: u1 (30) and u2 (30) done, 0 errors, all computed keys verified.
+
+Practice tests: `content/questions/tests/<AREA>.yaml` (DL, PS, DA, TL, AI, ML, PR, PE). Each item has `test: n` and an explicit `objective`. IDs `pt<n>-<area>-<nn>` (pt1-dl-01). Per test: DL 20, PS 15, DA 15, TL 10, AI 10, ML 10, PR 10, PE 10, and every one of the 44 objectives at least once. The builder shuffles each test (no run of 4 letters or areas) and checks letter balance over the assembled 100.
+- Objective quotas per test: DL1 3, DL2 2, DL3 3, DL4 4, DL5 3, DL6 3, DL7 2; PS1 4, PS2 3, PS3 3, PS4 3, PS5 2; DA1 2, DA2 3, DA3 3, DA4 2, DA5 2, DA6 3; TL1 4, TL2 2, TL3 2, TL4 1, TL5 1; AI1 2, AI2 2, AI3 1, AI4 2, AI5 1, AI6 2; ML1 1, ML2 2, ML3 3, ML4 2, ML5 1, ML6 1; PR1 to PR5 2 each; PE1 3, PE2 3, PE3 2, PE4 2.
+- Tier quotas (core/competitive/champion) per area, tests 1 to 4: DL 7/9/4, PS 5/7/3, DA 5/7/3, TL 4/4/2, AI 4/4/2, ML 3/5/2, PR 3/5/2, PE 4/4/2 (= 35/45/20). Test 5: DL 4/9/7, PS 3/7/5, DA 3/7/5, TL 2/5/3, AI 2/4/4, ML 2/4/4, PR 2/4/4, PE 2/5/3 (= 20/45/35). Builder targets: tests 1 to 4 core 30 to 40, competitive 40 to 50, champion 15 to 25; test 5 core 15 to 25, competitive 40 to 50, champion 30 to 40.
+- Progress: none yet.
 
 ## Open issues
 
