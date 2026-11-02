@@ -1,0 +1,60 @@
+# Lesson 8.7 flashcards
+
+- id: fc-transparency
+  term: Transparency
+  def: "The extent to which information about an AI system and its outputs is available to the people interacting with it (NIST): that AI is used, what data it uses, what it is for, and its limits. Model cards and datasheets are transparency tools."
+  skill: responsible-ai
+  virginia: true
+
+- id: fc-explainability
+  term: Explainability
+  def: "A representation of the mechanisms underlying an AI system's operation (NIST): how and why it produced an output. Interpretability is the meaning of the output for the system's purpose. LIME and SHAP explain individual predictions."
+  skill: responsible-ai
+  virginia: true
+
+- id: fc-ethics-guidelines
+  term: Ethics Guidelines
+  def: "Principles that organizations developing AI agree to follow, usually without legal force. Example: the EU's Ethics Guidelines for Trustworthy AI (2019): lawful, ethical, and technically and socially sound, with seven key requirements, including human agency and oversight, transparency, and accountability."
+  skill: responsible-ai
+  virginia: true
+
+- id: fc-gdpr-essentials
+  term: GDPR essentials
+  def: "EU law applying since 25 May 2018. Seven principles (including data minimisation and accountability); rights of access, rectification, erasure, portability, and objection; Article 22 limits solely automated decisions; breaches reported within 72 hours where feasible; fines up to 20 million euros or 4 percent of turnover, whichever is higher."
+  skill: ai-laws
+
+- id: fc-us-privacy-laws
+  term: U.S. privacy laws by sector
+  def: "CCPA as amended by the CPRA: California consumers' data rights. HIPAA (1996): health information at covered entities. COPPA (1998): online data from children under 13 needs parental consent. FERPA (1974): education records. GLBA: financial institutions must explain data sharing and safeguard data."
+  skill: ai-laws
+
+- id: fc-eu-ai-act
+  term: EU AI Act risk tiers
+  def: "In force 1 August 2024, applying in stages. Unacceptable risk is banned (social scoring); high risk has strict duties (CV sorting, credit scoring); transparency risk needs disclosure (chatbots, deepfakes); minimal risk has no new rules (spam filters). Top fines: 35 million euros or 7 percent."
+  skill: ai-laws
+
+- id: fc-nist-ai-rmf
+  term: NIST AI Risk Management Framework
+  def: "AI RMF 1.0 (January 2023), voluntary guidance. Core functions: GOVERN (risk culture, across everything), MAP (frame the context), MEASURE (analyze and monitor risk), MANAGE (act on mapped and measured risks). Unlike ISO/IEC 42001, it is not certifiable."
+  skill: ai-laws
+
+- id: fc-lime-shap
+  term: LIME and SHAP
+  def: "LIME (2016) explains one prediction of any black-box model by fitting a simple model that approximates it nearby. SHAP (2017) gives each feature a Shapley value for a prediction; base value plus contributions equals the prediction."
+  example: "Base 0.40, savings lower it by 0.10, missed payments raise it by 0.25, debt raises it by 0.05: prediction 0.60."
+  skill: responsible-ai
+
+- id: fc-model-cards-datasheets
+  term: Model cards and datasheets
+  def: "A model card accompanies a trained model and reports its intended use and its performance across groups and conditions (Mitchell and colleagues, 2019). A datasheet for a dataset documents its motivation, composition, collection, preprocessing, uses, distribution, and maintenance (Gebru and colleagues)."
+  skill: responsible-ai
+
+- id: fc-bias-audit-law
+  term: NYC Local Law 144
+  def: "Enforced since 5 July 2023: employers may use an automated employment decision tool only if it had a bias audit within the past year, the audit information is public, and candidates are notified in advance."
+  skill: responsible-ai
+
+- id: fc-acm-ieee-codes
+  term: ACM and IEEE codes
+  def: "ACM Code of Ethics (2018): seven General Ethical Principles, including avoid harm, be honest, be fair and do not discriminate, respect privacy, and honor confidentiality. IEEE Ethically Aligned Design (2019): eight General Principles, including data agency, transparency, accountability, and awareness of misuse."
+  skill: responsible-ai

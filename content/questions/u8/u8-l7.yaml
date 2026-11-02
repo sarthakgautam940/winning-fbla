@@ -1,0 +1,587 @@
+# Lesson 8.7: Laws, frameworks, and responsible AI
+
+# ---------------------------------------------------------------- ai-laws
+- id: ai-laws-01
+  skill: ai-laws
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A popular game app collects names and locations from 11-year-old players without asking their parents. Which U.S. law most directly applies?
+  options:
+    - "COPPA"
+    - "FERPA"
+    - "HIPAA"
+    - "GLBA"
+  answer: A
+  explain: |
+    COPPA requires websites and online services directed to children under 13, or that knowingly collect their personal information, to get verifiable parental consent first. Collecting 11-year-olds' data without asking parents is exactly what it targets.
+  why:
+    B: "FERPA covers education records held by schools that receive federal education funds."
+    C: "HIPAA covers health information held by health plans, providers, and their business associates."
+    D: "GLBA covers financial institutions' handling of customer data."
+
+- id: ai-laws-02
+  skill: ai-laws
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A company in the EU uses an AI system to sort job applicants' CVs and rank candidates for interviews. Under the EU AI Act, which risk level is this?
+  options:
+    - "Unacceptable risk"
+    - "High risk"
+    - "Transparency (limited) risk"
+    - "Minimal risk"
+  answer: B
+  explain: |
+    CV-sorting software for recruitment is a listed high-risk use, so it faces strict obligations rather than a ban. After the 2026 amendments, the high-risk requirements for uses such as employment apply from 2 December 2027.
+  why:
+    A: "Unacceptable risk covers banned practices such as social scoring; recruitment tools are regulated, not banned."
+    C: "Transparency risk covers systems like chatbots that must disclose they are AI; decisions about jobs carry heavier duties."
+    D: "Minimal risk covers systems like spam filters; decisions about people's jobs are high risk."
+
+- id: ai-laws-03
+  skill: ai-laws
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    Which list gives the four functions of the NIST AI Risk Management Framework's core?
+  options:
+    - "Plan, Build, Test, Deploy"
+    - "Obtain, Scrub, Explore, Model"
+    - "Identify, Protect, Detect, Respond"
+    - "Govern, Map, Measure, Manage"
+  answer: D
+  explain: |
+    The AI RMF core has four functions: GOVERN, which builds a culture of risk management across everything, and MAP, MEASURE, and MANAGE, which frame, assess, and act on the risks of a particular AI system.
+  why:
+    A: "These are generic software project stages, not the AI RMF's functions."
+    B: "These are the first four steps of the OSEMN data science process."
+    C: "These describe cybersecurity activities, not the AI RMF's four functions."
+
+- id: ai-laws-04
+  skill: ai-laws
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which GDPR right lets a person ask an organization to delete the personal data it holds about them?
+  options:
+    - "Right of access"
+    - "Right to data portability"
+    - "Right to erasure"
+    - "Right to object"
+  answer: C
+  explain: |
+    The right to erasure, often called the right to be forgotten (GDPR Article 17), lets people request that their personal data be deleted.
+  why:
+    A: "Access lets you see the data held about you, not delete it."
+    B: "Portability lets you take your data to another service."
+    D: "Objecting stops certain processing; deletion is the right to erasure."
+
+- id: ai-laws-05
+  skill: ai-laws
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An online lender's algorithm rejects a loan application automatically, with no human involvement, under a contract the applicant agreed to. Under GDPR Article 22, what must the applicant at least be able to do?
+  options:
+    - "Obtain human intervention, give their view, and contest the decision"
+    - "Receive a copy of the model's source code and training data"
+    - "Demand that the lender approve the loan without conditions"
+    - "Nothing, because agreeing to a contract waives every right"
+  answer: A
+  explain: |
+    Article 22 limits decisions based solely on automated processing that have legal or similarly significant effects. When such a decision is allowed because of a contract or explicit consent, the controller must offer at least human intervention, the chance to express one's view, and the right to contest the decision.
+  why:
+    B: "Article 22's safeguards are human intervention, expressing a view, and contesting the decision; source code is not among them."
+    C: "The law guarantees a fair process, not a particular outcome."
+    D: "A contract can make the automated decision allowed, but the safeguards still apply."
+
+- id: ai-laws-06
+  skill: ai-laws
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Under the EU AI Act, what is a customer-service chatbot generally required to do?
+  options:
+    - "Obtain a government license before it can be launched in the EU"
+    - "Pass an independent bias audit every year it remains in use"
+    - "Be withdrawn from the EU market because chatbots are banned"
+    - "Make clear to people that they are interacting with a machine"
+  answer: D
+  explain: |
+    Chatbots fall under the Act's transparency risk level, often called limited risk, whose main duty is disclosure: people must be told they are talking to a machine. Deepfakes likewise must be labeled.
+  why:
+    A: "Licensing is not the duty for this tier; chatbots carry a disclosure duty."
+    B: "Annual audits are not the duty for transparency-risk systems; disclosure is."
+    C: "Chatbots are not banned; banned practices include social scoring."
+
+- id: ai-laws-07
+  skill: ai-laws
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    The EU AI Act entered into force on 1 August 2024. Which statement about when its rules apply is accurate?
+  options:
+    - "Every rule applied in full on 1 August 2024, the day it entered into force"
+    - "In stages: bans from 2025, most rules from 2026, high-risk rules from late 2027 and 2028"
+    - "No rule applies until each member state passes its own version of the law"
+    - "All rules apply at once in 2030, after a five-year review period"
+  answer: B
+  explain: |
+    Entering into force is not the same as applying. The bans have applied since 2 February 2025, duties for general-purpose AI models since 2 August 2025, and most of the Act from 2 August 2026, while the 2026 Digital Omnibus moved the high-risk rules to 2 December 2027 and 2 August 2028.
+  why:
+    A: "Entry into force started the clock; the rules apply in stages."
+    C: "The Act sets its own application dates; it does not wait for separate national laws."
+    D: "No single 2030 date exists; the rules apply in stages from 2025 to 2028."
+
+- id: ai-laws-08
+  skill: ai-laws
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    What is the maximum GDPR fine for breaking the regulation's core principles?
+  options:
+    - "10 million euros or 2% of worldwide annual turnover, whichever is higher"
+    - "20 million euros or 4% of worldwide annual turnover, whichever is higher"
+    - "20 million euros or 4% of worldwide annual turnover, whichever is lower"
+    - "35 million euros or 7% of worldwide annual turnover, whichever is higher"
+  answer: B
+  explain: |
+    Breaches of the core principles, data subjects' rights, or international-transfer rules can bring fines of up to 20 million euros or 4 percent of worldwide annual turnover, whichever is higher. These are maximums; regulators set actual fines case by case.
+  why:
+    A: "This is the GDPR's lower tier, for other violations."
+    C: "The rule is whichever is higher, which is what makes it bite for large companies."
+    D: "35 million euros or 7 percent is the EU AI Act's top tier, for prohibited AI practices."
+
+- id: ai-laws-09
+  skill: ai-laws
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A parent asks a public high school to see their 15-year-old's grades and disciplinary records. Which U.S. law gives the parent that right?
+  options:
+    - "COPPA"
+    - "HIPAA"
+    - "FERPA"
+    - "GLBA"
+  answer: C
+  explain: |
+    FERPA protects education records at schools that receive U.S. Department of Education funds and gives parents the right to inspect them. The rights pass to the student at 18 or when the student enters a postsecondary institution.
+  why:
+    A: "COPPA governs online collection of data from children under 13."
+    B: "HIPAA governs health information at health plans and providers."
+    D: "GLBA governs financial institutions."
+
+- id: ai-laws-10
+  skill: ai-laws
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which organization is a covered entity under the HIPAA Privacy Rule?
+  options:
+    - "A hospital that bills health insurers electronically"
+    - "An online store that sells vitamins and supplements"
+    - "A bank that issues credit cards to its customers"
+    - "A public school that keeps students' attendance records"
+  answer: A
+  explain: |
+    HIPAA's covered entities are health plans, health care clearinghouses, and health care providers that conduct certain transactions electronically, along with their business associates. A hospital that bills insurers electronically fits that definition.
+  why:
+    B: "Selling health products does not make a retailer a covered entity."
+    C: "Banks fall under financial privacy rules such as GLBA."
+    D: "School records fall under FERPA."
+
+- id: ai-laws-11
+  skill: ai-laws
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which law requires financial institutions, such as lenders and insurers, to explain their information-sharing practices to customers and safeguard sensitive data?
+  options:
+    - "FERPA"
+    - "COPPA"
+    - "HIPAA"
+    - "GLBA"
+  answer: D
+  explain: |
+    The Gramm-Leach-Bliley Act requires financial institutions to explain their information-sharing practices, let customers opt out of certain sharing with third parties, and keep a written information security program under the FTC's Safeguards Rule.
+  why:
+    A: "FERPA covers education records."
+    B: "COPPA covers online data from children under 13."
+    C: "HIPAA covers health information."
+
+- id: ai-laws-12
+  skill: ai-laws
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which statement about California's privacy law is accurate?
+  options:
+    - "The CPRA replaced and repealed the CCPA when voters approved it in 2020"
+    - "The CCPA applies only to companies based outside California"
+    - "The CPRA amended the CCPA and created the California Privacy Protection Agency"
+    - "The CCPA took effect in 2018, the same day the GDPR began to apply"
+  answer: C
+  explain: |
+    California voters approved the CPRA (Proposition 24) in November 2020. It amended the CCPA, adding rights such as correcting data and limiting the use of sensitive personal information, and created the California Privacy Protection Agency, now publicly called CalPrivacy.
+  why:
+    A: "The CPRA amended the CCPA; the combined law is usually called the CCPA as amended by the CPRA."
+    B: "The law protects California consumers; it is not limited to out-of-state companies."
+    D: "The CCPA was signed in 2018 but became operative on 1 January 2020."
+
+- id: ai-laws-13
+  skill: ai-laws
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which of these uses is banned outright under the EU AI Act?
+  options:
+    - "A system that scores citizens' trustworthiness from their social behavior"
+    - "Software that ranks job applicants' CVs before a recruiter reviews them"
+    - "A customer-service chatbot that answers shoppers' questions online"
+    - "A filter that moves spam messages out of users' email inboxes"
+  answer: A
+  explain: |
+    Social scoring is one of the Act's prohibited practices, the unacceptable-risk tier. CV ranking is high risk, a chatbot carries a transparency duty, and a spam filter is minimal risk.
+  why:
+    B: "CV ranking is a high-risk use: regulated, not banned."
+    C: "Chatbots must disclose that they are AI, but they are allowed."
+    D: "Spam filters are minimal risk and face no new rules."
+
+- id: ai-laws-14
+  skill: ai-laws
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    How does the NIST AI Risk Management Framework differ from ISO/IEC 42001:2023?
+  options:
+    - "The NIST framework is a federal law with fines; ISO/IEC 42001 is voluntary advice"
+    - "ISO/IEC 42001 is an EU regulation that bans high-risk AI; the NIST framework is advice"
+    - "Both are laws that apply only to government agencies, not to companies"
+    - "The NIST framework is voluntary guidance; ISO/IEC 42001 can be certified against"
+  answer: D
+  explain: |
+    NIST released the AI RMF in 2023 for voluntary use; it is guidance, not a law or a certification scheme. ISO/IEC 42001:2023 specifies requirements for an AI management system, and organizations can be independently audited and certified against it.
+  why:
+    A: "The NIST framework is voluntary, not a law with fines."
+    B: "ISO/IEC 42001 is an international standard, not an EU regulation, and it bans nothing."
+    C: "Neither is a law; both are frameworks that organizations can choose to adopt."
+
+- id: ai-laws-15
+  skill: ai-laws
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Under the GDPR, where feasible, how soon must an organization notify the regulator after becoming aware of a personal data breach?
+  options:
+    - "Within 24 hours"
+    - "Within 72 hours"
+    - "Within 30 days"
+    - "Within 90 days"
+  ordered: true
+  answer: B
+  explain: |
+    Article 33 requires notifying the supervisory authority without undue delay and, where feasible, not later than 72 hours after becoming aware of the breach, unless the breach is unlikely to put people's rights and freedoms at risk.
+  why:
+    A: "24 hours is stricter than the GDPR's 72-hour rule."
+    C: "30 days is far longer than the GDPR allows."
+    D: "90 days is far longer than the GDPR allows."
+
+- id: ai-laws-16
+  skill: ai-laws
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A bank's model scores loan applications, but a trained officer reviews every score, weighs other evidence, and makes the final decision, sometimes overruling the model. Why does GDPR Article 22's restriction likely not apply?
+  options:
+    - "Article 22 applies only to decisions made by government agencies"
+    - "Loan decisions never have legal or similarly significant effects"
+    - "The decision is not based solely on automated processing"
+    - "Banks are exempt from the GDPR when they use statistical models"
+  answer: C
+  explain: |
+    Article 22 covers decisions based solely on automated processing. When a person meaningfully reviews each case, weighs other evidence, and can and does decide differently, the decision is no longer solely automated. A rubber-stamp review would not count.
+  why:
+    A: "Article 22 is not limited to government; it covers organizations such as banks."
+    B: "Credit decisions can significantly affect people, which is why Article 22 matters for lending."
+    D: "Using a statistical model does not exempt a bank from the GDPR."
+
+# ---------------------------------------------------------------- responsible-ai
+- id: responsible-ai-01
+  skill: responsible-ai
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A credit app tells applicants that an AI model screens every application and publishes what data the model uses and what it is for. Which property does this mainly provide?
+  options:
+    - "Transparency"
+    - "Explainability"
+    - "Fairness"
+    - "Data minimization"
+  answer: A
+  explain: |
+    Transparency is the extent to which information about an AI system and its outputs is available to the people affected: that AI is used, what data it uses, and what it is for. It does not yet explain why any one application was rejected.
+  why:
+    B: "Explainability would show why the model decided a particular case."
+    C: "Fairness concerns whether groups are treated equitably, which disclosure alone does not establish."
+    D: "Data minimization limits how much data is collected; this practice discloses it."
+
+- id: responsible-ai-02
+  skill: responsible-ai
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What does LIME do?
+  options:
+    - "Assigns each feature a Shapley value from cooperative game theory"
+    - "Retrains a model on fairer data before it is deployed"
+    - "Documents a dataset's motivation, composition, and collection"
+    - "Explains one prediction by fitting a simple model that mimics the black box nearby"
+  answer: D
+  explain: |
+    LIME (Local Interpretable Model-agnostic Explanations) explains a single prediction of any classifier by fitting a simple, interpretable model that approximates the black box in the neighborhood of that prediction. Its explanations are local, one prediction at a time.
+  why:
+    A: "Shapley values are SHAP's method."
+    B: "Retraining on fairer data is bias mitigation, not explanation."
+    C: "That describes a datasheet for a dataset."
+
+- id: responsible-ai-03
+  skill: responsible-ai
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A SHAP explanation for one loan applicant has a base value of 0.30. Income lowers the prediction by 0.08, debt raises it by 0.15, and late payments raise it by 0.13. What is the model's prediction for this applicant?
+  options:
+    - "0.20"
+    - "0.36"
+    - "0.50"
+    - "0.66"
+  ordered: true
+  answer: C
+  explain: |
+    SHAP contributions add to the base value: 0.30 minus 0.08 plus 0.15 plus 0.13 = 0.50. The contributions alone net to 0.20; the base value is the model's average prediction.
+  why:
+    A: "0.20 is the net of the contributions without the base value."
+    B: "0.36 adds all three contributions as increases and leaves out the base value."
+    D: "0.66 adds the base value to all three contributions, counting the decrease as an increase."
+  verify: "0.30 - 0.08 + 0.15 + 0.13"
+
+- id: responsible-ai-04
+  skill: responsible-ai
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    Under New York City's Local Law 144, what must be true before an employer uses an automated employment decision tool?
+  options:
+    - "A state agency must approve the tool's algorithm and source code"
+    - "The tool has had a bias audit within a year, results are public, and candidates are notified"
+    - "Every candidate must sign a form waiving the right to challenge its decisions"
+    - "The tool must be trained only on data from the employer's own past hires"
+  answer: B
+  explain: |
+    Local Law 144, enforced since 5 July 2023, bars employers from using such a tool unless it has had a bias audit within one year, information about the audit is publicly available, and candidates have been notified in advance. Audits like these check for disparate impact.
+  why:
+    A: "The law requires a bias audit and public results, not government approval of the code."
+    C: "The law requires notice to candidates, not waivers."
+    D: "Training only on past hires could build in historical bias; the law requires an audit, not a data source."
+
+- id: responsible-ai-05
+  skill: responsible-ai
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What are AI ethics guidelines?
+  options:
+    - "Principles that organizations developing AI agree to follow, usually without legal force"
+    - "Laws that impose fines on any company whose AI makes a mistake"
+    - "Technical specifications for designing the layers of a neural network"
+    - "Rules that apply only to AI systems run by government agencies"
+  answer: A
+  explain: |
+    Ethics guidelines set out principles, such as transparency, fairness, and accountability, that AI developers commit to. The EU's 2019 Ethics Guidelines for Trustworthy AI are an example, with seven key requirements.
+  why:
+    B: "Guidelines are usually voluntary; laws such as the GDPR or the EU AI Act carry fines."
+    C: "They address values and conduct, not network architecture."
+    D: "They apply to anyone who adopts them, not only governments."
+
+- id: responsible-ai-06
+  skill: responsible-ai
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A hospital's model flags a patient as high risk, and the doctor wants to know which factors drove the score for this particular patient. Which tool is designed for that?
+  options:
+    - "A datasheet describing the model's training dataset"
+    - "A demographic parity check across patient groups"
+    - "SHAP, which gives each feature's contribution to this one prediction"
+    - "Differential privacy applied to the patient records"
+  answer: C
+  explain: |
+    SHAP assigns each feature an importance value for a particular prediction, so the doctor can see which factors pushed this patient's score up or down. That is explainability for an individual decision.
+  why:
+    A: "A datasheet documents the dataset in general, not one patient's score."
+    B: "Demographic parity compares group rates; it does not explain an individual prediction."
+    D: "Differential privacy protects data; it explains nothing about a prediction."
+
+- id: responsible-ai-07
+  skill: responsible-ai
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What is the difference between a model card and a datasheet for a dataset?
+  options:
+    - "A model card describes a dataset's collection; a datasheet reports a model's accuracy by group"
+    - "A model card is required by law; a datasheet is an optional summary for engineers"
+    - "Both describe only a model's code, so the two names mean the same thing"
+    - "A model card reports a model's intended use and performance by group; a datasheet documents a dataset"
+  answer: D
+  explain: |
+    Model cards accompany trained models and report intended use and performance across groups and conditions. Datasheets for datasets describe a dataset's motivation, composition, collection process, preprocessing, uses, distribution, and maintenance. Both are transparency tools.
+  why:
+    A: "This swaps the two documents."
+    B: "Both are documentation practices proposed by researchers, not legal requirements."
+    C: "They document different things: a trained model and a dataset."
+
+- id: responsible-ai-08
+  skill: responsible-ai
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    NIST's AI Risk Management Framework states that accountability presupposes transparency. What does this mean?
+  options:
+    - "A transparent system needs no one to be accountable for it"
+    - "No one can be held answerable for a system if information about it is unavailable"
+    - "Any system that publishes a model card is automatically accountable"
+    - "Accountability matters only for systems that are not transparent"
+  answer: B
+  explain: |
+    To hold people answerable for an AI system, others must be able to see what the system is, how it is used, and what it produced. Transparency is a precondition for accountability, though not a guarantee of it.
+  why:
+    A: "Transparency supports accountability; it does not replace it."
+    C: "Documentation helps, but accountability also needs identifiable people who answer for outcomes."
+    D: "This reverses the relationship: accountability depends on transparency."
+
+- id: responsible-ai-09
+  skill: responsible-ai
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which pair are both among the eight General Principles of IEEE's Ethically Aligned Design (2019)?
+  options:
+    - "Data agency and awareness of misuse"
+    - "Profitability and market share"
+    - "Speed of deployment and scale"
+    - "Secrecy and loyalty to the employer"
+  answer: A
+  explain: |
+    Ethically Aligned Design lists eight General Principles: human rights, well-being, data agency, effectiveness, transparency, accountability, awareness of misuse, and competence.
+  why:
+    B: "Profit and market share are business goals, not ethical principles."
+    C: "Speed and scale are not among the principles."
+    D: "Secrecy runs against the principle of transparency."
+
+- id: responsible-ai-10
+  skill: responsible-ai
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In NIST's terms, how does explainability differ from interpretability?
+  options:
+    - "Explainability concerns data privacy, while interpretability concerns fairness"
+    - "They are two names for exactly the same property of an AI system"
+    - "Explainability is the output's meaning; interpretability is how the system works inside"
+    - "Explainability describes how the system works; interpretability, what its output means for its purpose"
+  answer: D
+  explain: |
+    NIST defines explainability as a representation of the mechanisms underlying an AI system's operation, and interpretability as the meaning of the system's output in the context of its designed purpose. Explainability answers how; interpretability answers what the output means.
+  why:
+    A: "Privacy and fairness are separate trustworthiness characteristics."
+    B: "NIST names them as a pair because they are related but distinct."
+    C: "This swaps the two definitions."
+
+- id: responsible-ai-11
+  skill: responsible-ai
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which group presented the EU's Ethics Guidelines for Trustworthy AI in April 2019?
+  options:
+    - "The U.S. National Institute of Standards and Technology"
+    - "The High-Level Expert Group on AI"
+    - "The Association for Computing Machinery"
+    - "The OWASP Gen AI Security Project"
+  answer: B
+  explain: |
+    The High-Level Expert Group on AI presented the Ethics Guidelines for Trustworthy AI on 8 April 2019. They list seven key requirements, from human agency and oversight to accountability.
+  why:
+    A: "NIST published a separate U.S. framework, the AI Risk Management Framework, in 2023."
+    C: "The ACM publishes a code of ethics for computing professionals."
+    D: "OWASP publishes security lists such as the Top 10 for LLM Applications."
+
+- id: responsible-ai-12
+  skill: responsible-ai
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which list contains only key requirements from the EU's Ethics Guidelines for Trustworthy AI (2019)?
+  options:
+    - "Human agency and oversight; transparency; accountability"
+    - "Transparency; accuracy above 99 percent; accountability"
+    - "Privacy and data governance; profitability; human agency and oversight"
+    - "Diversity, non-discrimination and fairness; open-source code; transparency"
+  answer: A
+  explain: |
+    The seven key requirements are human agency and oversight; technical reliability and safety; privacy and data governance; transparency; diversity, non-discrimination and fairness; societal and environmental well-being; and accountability.
+  why:
+    B: "No accuracy threshold is among the requirements."
+    C: "Profitability is not a requirement."
+    D: "Open-source code is not a requirement."
+
+- id: responsible-ai-13
+  skill: responsible-ai
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    In which year did the ACM Council adopt the current ACM Code of Ethics and Professional Conduct, replacing the 1992 code?
+  options:
+    - "1992"
+    - "2008"
+    - "2018"
+    - "2023"
+  ordered: true
+  answer: C
+  explain: |
+    The ACM Council adopted the current code on 22 June 2018. Its seven General Ethical Principles include avoiding harm, being fair and taking action not to discriminate, respecting privacy, and honoring confidentiality.
+  why:
+    A: "1992 is the year of the code that the 2018 version replaced."
+    B: "The 1992 code stood until the 2018 revision; there was no 2008 replacement."
+    D: "2023 is too late; the current code dates from 2018."

@@ -36,9 +36,11 @@ Gate + proxy auth, design tokens (Figtree, JetBrains Mono), app shell, lesson re
 | u5 (ML) | l1-l10 | 221 | 83 | done, all lessons 0 errors 0 warnings, verified |
 | u6 (AI) | l1-l6 | 177 | 77 | done, all lessons 0 errors 0 warnings, verified (3 AI3 questions added to u6-l3) |
 | u7 (PR) | l1-l8 | 200 | 71 | done, all lessons 0 errors 0 warnings, verified (truth tables, chaining, Bayes, BN joints, search orders by execution) |
-| u8 | | | | to do, next is u8-l1 (ethical dilemmas), then u8-l2 ... u8-l7 |
+| u8 (PE) | l1-l7 | 200 | 98 | done, all lessons 0 errors 0 warnings, verified (fairness rates, k, epsilon budget, SHAP sums by execution) |
 
-Full `--check` (no filter) at fb5427c: 0 errors, 1 warning (Virginia cards for terms in later units, expected until those units exist).
+All 67 lessons written. Full `--check` (no filter) after u8-l7: 0 errors, 0 warnings (1,636 bank questions, 669 flashcards; every Virginia term has a card). Full `verify.py`: 419 items, 0 problems.
+
+Distractor audit (2026-11-02): found joke or invented distractors in u6-l6 (genai-limits-04/06/07/13, llm-capabilities-08/11/12), u6-l4 (llm-definition-03) and u3-l3 (causation-05); all replaced with real misconceptions. A keyword scan of every bank option found no others; the final QA pass still skims options during the cold solve.
 
 Conventions settled while writing (keep them): options length-matched as you draft (the validator warns when the correct option is over 1.6x the others); numeric options ascending with `ordered: true`; prose avoids negative signs ("an expected loss of $2"); multiplication sign Ã— in prose; real-world cases only from research/facts.md, otherwise clearly hypothetical examples.
 
@@ -48,7 +50,6 @@ Order of work: u1-l2 ... u1-l8, u2 (l1, l2, l4-l8), u3, u4 (incl. l9), u5, u6, u
 
 - R cannot be executed locally; R snippets are checked by reasoning only.
 - Visual QA to-do: the neuron-playground widget hint (src/components/widgets/ml-widgets.tsx) writes "w1·x1" with a middot; change to the × sign during the QA pass and scan src for any other middots.
-- Facts not yet verified, so not used: Minsky and Papert's 1969 book Perceptrons (verify before citing it in u6-l1 history).
-- Pronoun rule (done for u0-u6, keep for u7-u8): no he/his/him/she/her for real or example people; use names, "the student," or they/them. Rescan with a regex before release.
-- Add the new research/facts-extra.md sources (PubMed AlphaGo, Cornell Chronicle 2019, arXiv 2108.07258, copyright.gov/ai, govinfo FR 2023-05321) to content/reference/sources.md.
-- Flashcard ids already taken that later units must not reuse: fc-gan, fc-autoencoder, fc-cnn, fc-rnn, fc-lstm (u5-l10), fc-training-loop (u4-l7).
+- Pronoun rule (done and scanned for u0-u8): no he/his/him/she/her for real or example people; use names, "the student," or they/them. Rescan with a regex before release.
+- House-style ban on "robust" also catches "robustness": the EU HLEG wording ("lawful, ethical and robust", "technical robustness and safety") is paraphrased as "technically and socially sound" and "technical reliability and safety".
+- Add every research/facts-extra.md source to content/reference/sources.md (rows added since the last sources update: PubMed AlphaGo, Cornell Chronicle 2019, arXiv 2108.07258, copyright.gov/ai, govinfo FR 2023-05321, W3C RDF/SPARQL/OWL, schema.org, Google KG blog, Scientific American 2001, AAAI R1, MYCIN ch. 5, Crossref Zadeh and Pearl, Wikipedia Pearl, AI4People (PMC6404626), USPTO trademark-patent-copyright, USPTO patent essentials, USPTO trade secret policy, copyright.gov FAQ, AlphaFold DB, NIST AI 600-1 PDF, Suresh and Guttag (arXiv 1901.10002), Ensign et al. (PMLR 81), 29 CFR 1607.4 (LII), AIF360 (arXiv 1810.01943), Hardt et al. (arXiv 1610.02413), OWASP LLM01/LLM04/LLM05/LLM06/LLM09 pages, Greshake et al. (arXiv 2302.12173), Goodfellow et al. (arXiv 1412.6572), Carlini et al. (arXiv 2302.10149), NIST CSRC glossary, Shokri et al. (arXiv 1610.05820), Fredrikson et al. (CMU PDF), gdpr-info.eu Art. 4, Recital 26, Chapter 3, Art. 33, Kalai et al. (arXiv 2509.04664), EU AI Act Art. 14, cor.inquirygroup.org lateral reading, Wikipedia Disinformation, FTC GLBA, EC HLEG guidelines, NYC DCWP Local Law 144, NIST AIRC RMF sections 3 and 5).
