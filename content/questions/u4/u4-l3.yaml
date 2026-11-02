@@ -1,0 +1,426 @@
+# Lesson 4.3: SQL aggregating and grouping
+
+# ---------------------------------------------------------------- sql-aggregate
+- id: sql-aggregate-01
+  skill: sql-aggregate
+  tier: core
+  type: sql
+  use: check
+  stem: |
+    The shop database's products cost $4.50, $3.00, $18.00, $9.00, and $35.00. What does this query return?
+
+    ```sql
+    SELECT MAX(price) FROM products;
+    ```
+  options:
+    - "3.00"
+    - "13.90"
+    - "35.00"
+    - "69.50"
+  ordered: true
+  answer: C
+  explain: |
+    MAX returns the largest value in the column, which is the $35.00 backpack.
+  why:
+    A: "This is MIN(price), the smallest value."
+    B: "This is AVG(price), the mean of the five prices."
+    D: "This is SUM(price), the total of the five prices."
+  verify: 'scalar("shop", "SELECT MAX(price) FROM products")'
+
+- id: sql-aggregate-02
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    A table t has one column, x, holding the five values 5, NULL, 8, NULL, and 2. What does this query return?
+
+    ```sql
+    SELECT COUNT(x), AVG(x) FROM t;
+    ```
+  options:
+    - "5 and 3"
+    - "5 and 5"
+    - "3 and 5"
+    - "3 and 3"
+  answer: C
+  explain: |
+    COUNT(x) counts only the non-NULL values, which are 5, 8, and 2, so it returns 3. AVG also skips NULLs, so it averages those three values: 15 / 3 = 5.
+  why:
+    A: "This counts every row and treats the NULLs as zeros in the average."
+    B: "COUNT(x) skips NULLs, so it cannot count all 5 rows."
+    D: "This counts correctly but divides the sum by all 5 rows, as if the NULLs were zeros."
+  verify: |
+    db = make_db("CREATE TABLE t(x INT); INSERT INTO t VALUES (5),(NULL),(8),(NULL),(2);")
+    r = sql(db, "SELECT COUNT(x), AVG(x) FROM t")[0]
+    ans = f"{r[0]} and {r[1]:g}"
+
+- id: sql-aggregate-03
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    The shop database has five customers: two in Austin, two in Denver, and one in Boston. How many rows does this query return?
+
+    ```sql
+    SELECT city, COUNT(*) FROM customers GROUP BY city;
+    ```
+  options:
+    - "1"
+    - "3"
+    - "5"
+    - "6"
+  ordered: true
+  answer: B
+  explain: |
+    GROUP BY returns one row per group, and there are three different cities, so the result has three rows: Austin 2, Boston 1, and Denver 2.
+  why:
+    A: "An aggregate returns one row only when there is no GROUP BY."
+    C: "This counts the customers, not the groups."
+    D: "This counts the orders table's rows, which this query does not read."
+  verify: 'rows("shop", "SELECT city, COUNT(*) FROM customers GROUP BY city")'
+
+- id: sql-aggregate-04
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    Which query lists each product category that contains more than one product?
+  options:
+    - "`SELECT category FROM products WHERE COUNT(*) > 1 GROUP BY category;`"
+    - "`SELECT category FROM products HAVING COUNT(*) > 1 GROUP BY category;`"
+    - "`SELECT category, COUNT(*) > 1 FROM products GROUP BY category;`"
+    - "`SELECT category FROM products GROUP BY category HAVING COUNT(*) > 1;`"
+  answer: D
+  explain: |
+    The condition is about groups, so it belongs in HAVING, which comes after GROUP BY. In the shop database this returns Electronics and Paper, which have two products each.
+  why:
+    A: "An aggregate cannot appear in WHERE, because WHERE runs before groups exist."
+    B: "HAVING must be written after GROUP BY."
+    C: "This shows a true or false value for every category instead of filtering the groups."
+  verify: |
+    ans = "`SELECT category FROM products GROUP BY category HAVING COUNT(*) > 1;`" if rows("shop", "SELECT category FROM products GROUP BY category HAVING COUNT(*) > 1") == 2 else "other"
+
+- id: sql-aggregate-05
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    Which query lists the two customers who placed the most orders in the shop database?
+  options:
+    - "`SELECT customer_id, COUNT(*) AS n FROM orders GROUP BY customer_id ORDER BY n DESC LIMIT 2;`"
+    - "`SELECT customer_id, COUNT(*) AS n FROM orders ORDER BY n DESC LIMIT 2;`"
+    - "`SELECT customer_id, COUNT(*) AS n FROM orders GROUP BY customer_id ORDER BY n LIMIT 2;`"
+    - "`SELECT customer_id, COUNT(*) AS n FROM orders GROUP BY customer_id LIMIT 2 ORDER BY n DESC;`"
+  answer: A
+  explain: |
+    The recipe for a top-N query is to group by the item, count, sort by the count from highest to lowest, and then limit. This returns customers 1 and 3, who placed two orders each.
+  why:
+    B: "Without GROUP BY, COUNT(*) counts all orders as a single group."
+    C: "Sorting ascending puts the customers with the fewest orders first."
+    D: "LIMIT must be written after ORDER BY."
+
+- id: sql-aggregate-06
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    In the school database, the grade 11 students are Ben (gpa 2.9), Elena (3.8), and Hiro (3.9). In the result of this query, what count appears for grade 11?
+
+    ```sql
+    SELECT grade, COUNT(*) FROM students
+    WHERE gpa >= 3.4
+    GROUP BY grade;
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: B
+  explain: |
+    WHERE filters rows before grouping, so Ben (2.9) is removed first. The grade 11 group then holds only Elena and Hiro, so its count is 2.
+  why:
+    A: "Both Elena and Hiro meet the condition, not just one of them."
+    C: "This counts all grade 11 students, as if WHERE ran after grouping."
+    D: "Only three students are in grade 11 at all."
+  verify: 'scalar("school", "SELECT COUNT(*) FROM students WHERE gpa >= 3.4 AND grade = 11")'
+
+- id: sql-aggregate-07
+  skill: sql-aggregate
+  tier: champion
+  type: sql
+  use: quiz
+  stem: |
+    Why is this query invalid in standard SQL?
+
+    ```sql
+    SELECT grade, name, COUNT(*)
+    FROM students
+    GROUP BY grade;
+    ```
+  options:
+    - "COUNT(*) cannot be used together with GROUP BY."
+    - "GROUP BY must list every column in the table."
+    - "The column grade cannot appear in both SELECT and GROUP BY."
+    - "The column name is neither grouped nor inside an aggregate."
+  answer: D
+  explain: |
+    Each grade group contains several students, so there is no single name to show for the group. Every SELECT column must be listed in GROUP BY or wrapped in an aggregate such as COUNT or MAX.
+  why:
+    A: "Aggregates are exactly what GROUP BY is for."
+    B: "GROUP BY lists only the grouping columns, not every column."
+    C: "A grouping column usually appears in SELECT so each group is labeled."
+
+- id: sql-aggregate-08
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    A table scores has one column, points, holding the values 90, NULL, and 70. What does `SELECT AVG(points) FROM scores;` return?
+  options:
+    - "53.33"
+    - "70.00"
+    - "80.00"
+    - "160.00"
+  ordered: true
+  answer: C
+  explain: |
+    AVG skips the NULL, so it averages only the two known values: (90 + 70) / 2 = 80.
+  why:
+    A: "This divides by all 3 rows, treating the NULL as 0."
+    B: "This is the smallest value, MIN(points)."
+    D: "This is the sum of the values, before dividing."
+  verify: |
+    db = make_db("CREATE TABLE scores(points INT); INSERT INTO scores VALUES (90),(NULL),(70);")
+    ans = scalar(db, "SELECT AVG(points) FROM scores")
+
+- id: sql-aggregate-09
+  skill: sql-aggregate
+  tier: champion
+  type: sql
+  use: bank
+  stem: |
+    In the school database, the average known GPA is 3.4 in grade 9, 3.4 in grade 10, about 3.53 in grade 11, and about 3.17 in grade 12. How many rows does this query return?
+
+    ```sql
+    SELECT grade FROM students
+    GROUP BY grade
+    HAVING AVG(gpa) > 3.3;
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    HAVING keeps only the groups whose average exceeds 3.3: grades 9, 10, and 11. Grade 12's average of about 3.17 fails the test.
+  why:
+    A: "This keeps only the highest group, grade 11."
+    B: "Grades 9 and 10 both average 3.4, which is above 3.3."
+    D: "This ignores the HAVING filter and returns every grade."
+  verify: 'rows("school", "SELECT grade FROM students GROUP BY grade HAVING AVG(gpa) > 3.3")'
+
+- id: sql-aggregate-10
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    The shop database's order_items table has one row per product in each order, with a quantity. Which query returns the total number of units in each order?
+  options:
+    - "`SELECT order_id, SUM(quantity) FROM order_items GROUP BY order_id;`"
+    - "`SELECT order_id, COUNT(quantity) FROM order_items GROUP BY order_id;`"
+    - "`SELECT order_id, SUM(quantity) FROM order_items;`"
+    - "`SELECT SUM(order_id) FROM order_items GROUP BY quantity;`"
+  answer: A
+  explain: |
+    Grouping by order_id makes one group per order, and SUM(quantity) adds the units in each one. Order 1001, for example, has 3 notebooks and 2 pen packs, for 5 units.
+  why:
+    B: "COUNT counts the product lines in each order, not the units."
+    C: "Without GROUP BY, the query returns one total for the whole table."
+    D: "This groups by quantity and adds up order numbers, which is meaningless."
+  verify: |
+    r = dict(sql("shop", "SELECT order_id, SUM(quantity) FROM order_items GROUP BY order_id"))
+    ans = "`SELECT order_id, SUM(quantity) FROM order_items GROUP BY order_id;`" if r[1001] == 5 else "other"
+
+- id: sql-aggregate-11
+  skill: sql-aggregate
+  tier: core
+  type: sql
+  use: bank
+  stem: |
+    In the shop database, customers 1, 2, 3, and 4 have placed orders (customers 1 and 3 placed two each), and customer 5 has placed none. What does this query return?
+
+    ```sql
+    SELECT COUNT(DISTINCT customer_id) FROM orders;
+    ```
+  options:
+    - "2"
+    - "4"
+    - "5"
+    - "6"
+  ordered: true
+  answer: B
+  explain: |
+    COUNT(DISTINCT customer_id) counts the different customer IDs that appear in orders: 1, 2, 3, and 4. Customer 5 has no orders, so they do not appear.
+  why:
+    A: "This counts only the customers who placed more than one order."
+    C: "This counts all customers, but customer 5 never appears in orders."
+    D: "This counts every order, ignoring DISTINCT."
+  verify: 'scalar("shop", "SELECT COUNT(DISTINCT customer_id) FROM orders")'
+
+- id: sql-aggregate-12
+  skill: sql-aggregate
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which aggregate function adds up the values in a numeric column?
+  options:
+    - "SUM"
+    - "COUNT"
+    - "AVG"
+    - "MAX"
+  answer: A
+  explain: |
+    SUM returns the total of a column's values, skipping NULLs. COUNT counts rows or values, AVG returns the mean, and MAX returns the largest value.
+  why:
+    B: "COUNT counts how many values there are, not their total."
+    C: "AVG divides the total by the number of values."
+    D: "MAX returns only the largest value."
+
+# ---------------------------------------------------------------- sql-order
+- id: sql-order-01
+  skill: sql-order
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In what order does a database logically process these clauses of a query?
+  options:
+    - "FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY"
+    - "SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY"
+    - "FROM, GROUP BY, WHERE, SELECT, HAVING, ORDER BY"
+    - "WHERE, FROM, SELECT, GROUP BY, ORDER BY, HAVING"
+  answer: A
+  explain: |
+    The database gathers rows (FROM), filters rows (WHERE), forms groups (GROUP BY), filters groups (HAVING), computes the output columns (SELECT), and then sorts (ORDER BY). LIMIT, if present, comes last.
+  why:
+    B: "This is the written order, not the processing order."
+    C: "WHERE filters rows before they are grouped, and HAVING runs before SELECT."
+    D: "Rows must come from FROM before WHERE can filter them."
+
+- id: sql-order-02
+  skill: sql-order
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which list shows the clauses in the order they must be written?
+  options:
+    - "FROM, SELECT, WHERE, GROUP BY, ORDER BY, HAVING"
+    - "SELECT, FROM, GROUP BY, WHERE, HAVING, ORDER BY"
+    - "SELECT, WHERE, FROM, GROUP BY, HAVING, ORDER BY"
+    - "SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY"
+  answer: D
+  explain: |
+    A query is written SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, and then LIMIT. The database processes them in a different order, but it requires them to be written in this one.
+  why:
+    A: "FROM cannot be written before SELECT, and HAVING comes before ORDER BY."
+    B: "WHERE is written before GROUP BY."
+    C: "FROM is written before WHERE."
+
+- id: sql-order-03
+  skill: sql-order
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    PostgreSQL rejects this query with an error that the column pct does not exist. Why?
+
+    ```sql
+    SELECT name, gpa * 25 AS pct
+    FROM students
+    WHERE pct > 90;
+    ```
+  options:
+    - "The expression gpa * 25 is not valid SQL."
+    - "Aliases can be used only with aggregate functions."
+    - "WHERE is processed before SELECT creates the alias."
+    - "A WHERE condition cannot compare a column with a number."
+  answer: C
+  explain: |
+    WHERE runs before SELECT in the logical order, so the alias pct has not been created when WHERE needs it. Writing WHERE gpa * 25 > 90 fixes the query.
+  why:
+    A: "Arithmetic on columns is valid SQL."
+    B: "Aliases work on any expression, not only on aggregates."
+    D: "Comparing a column with a number is the most basic kind of WHERE condition."
+
+- id: sql-order-04
+  skill: sql-order
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In standard SQL, which clause can refer to a column alias defined in the SELECT list?
+  options:
+    - "WHERE"
+    - "ORDER BY"
+    - "HAVING"
+    - "FROM"
+  answer: B
+  explain: |
+    ORDER BY is processed after SELECT, so the aliases already exist when the sort happens. WHERE, HAVING, and FROM all run before SELECT.
+  why:
+    A: "WHERE runs before SELECT creates the alias."
+    C: "HAVING also runs before SELECT, so it must repeat the expression."
+    D: "FROM runs first of all, long before any alias exists."
+
+- id: sql-order-05
+  skill: sql-order
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why can a WHERE clause not contain an aggregate condition such as COUNT(*) > 2?
+  options:
+    - "WHERE runs before rows are grouped, so there are no group counts yet."
+    - "COUNT can only appear inside an ORDER BY clause."
+    - "WHERE conditions can compare only text values."
+    - "Aggregate functions are allowed only without GROUP BY."
+  answer: A
+  explain: |
+    WHERE filters individual rows before GROUP BY forms the groups, so no group's count exists at that point. Conditions on aggregates go in HAVING, which runs after grouping.
+  why:
+    B: "Aggregates are commonly used in SELECT and HAVING."
+    C: "WHERE compares numbers, dates, and text alike."
+    D: "Aggregates work with or without GROUP BY."
+
+- id: sql-order-06
+  skill: sql-order
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    In the logical processing order of a query, which of these clauses is applied last?
+  options:
+    - "SELECT"
+    - "ORDER BY"
+    - "HAVING"
+    - "LIMIT"
+  answer: D
+  explain: |
+    LIMIT trims the final result, after the rows have been filtered, grouped, selected, and sorted. That is why LIMIT keeps the top rows of a sorted result.
+  why:
+    A: "SELECT runs before ORDER BY and LIMIT."
+    B: "ORDER BY sorts first, and then LIMIT keeps the first rows."
+    C: "HAVING runs right after grouping, before SELECT."

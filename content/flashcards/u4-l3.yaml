@@ -1,0 +1,32 @@
+# Lesson 4.3 flashcards
+
+- id: fc-aggregates
+  term: Aggregate functions
+  def: COUNT, SUM, AVG, MIN, and MAX turn many rows into one value. Without GROUP BY they return a single row; all except COUNT(*) skip NULLs.
+  skill: sql-aggregate
+
+- id: fc-count-forms
+  term: Three forms of COUNT
+  def: COUNT(*) counts rows, COUNT(column) counts non-NULL values, and COUNT(DISTINCT column) counts different non-NULL values.
+  skill: sql-aggregate
+
+- id: fc-group-by
+  term: GROUP BY
+  def: Splits rows into groups that share a value and computes aggregates per group, returning one row per group. NULL forms its own group. Every SELECT column must be grouped or aggregated.
+  skill: sql-aggregate
+
+- id: fc-having-where
+  term: HAVING vs. WHERE
+  def: WHERE filters rows before grouping; HAVING filters groups after aggregation. Aggregate conditions such as COUNT(*) > 2 belong in HAVING.
+  skill: sql-aggregate
+
+- id: fc-logical-order
+  term: Logical processing order
+  def: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY, LIMIT. So a SELECT alias cannot be used in WHERE in standard SQL, but it can be used in ORDER BY.
+  skill: sql-order
+
+- id: fc-top-n-grouped
+  term: Grouped top-N query
+  def: Group by the item, aggregate the measure, ORDER BY the aggregate DESC with a tiebreaker, then LIMIT.
+  example: "SELECT product_id, SUM(quantity) AS units FROM order_items GROUP BY product_id ORDER BY units DESC LIMIT 2;"
+  skill: sql-aggregate
