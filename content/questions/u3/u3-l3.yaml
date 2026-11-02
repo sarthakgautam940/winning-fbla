@@ -1,0 +1,445 @@
+# Lesson 3.3: Scatterplots, correlation, and causation
+
+# ---------------------------------------------------------------- scatterplots
+- id: scatterplots-01
+  skill: scatterplots
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    The scatterplot shows the age and resale value of 10 used cars of one model. How would you describe the relationship?
+  figure:
+    type: scatter
+    caption: Car age and resale value
+    xLabel: Age (years)
+    yLabel: Resale value (thousands of dollars)
+    series:
+      - points: [[1, 24], [2, 21], [3, 19], [4, 16], [5, 15], [6, 12], [7, 11], [8, 9], [9, 8], [10, 6]]
+  options:
+    - "Weak, negative, and linear"
+    - "Strong, positive, and linear"
+    - "Strong, negative, and linear"
+    - "Weak, positive, and curved"
+  answer: C
+  explain: |
+    As age increases, value decreases, so the direction is negative. The points follow a straight line closely, so the form is linear and the relationship is strong (r is about -0.99).
+  why:
+    A: "The points hug a line tightly, so the relationship is strong, not weak."
+    B: "Value falls as age rises, so the direction is negative."
+    D: "The points fall steadily along a nearly straight line, so the relationship is strong, negative, and linear."
+
+- id: scatterplots-02
+  skill: scatterplots
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A regression line is $$\hat{y} = 12 + 3x$$. For one observation, x = 5 and the actual y = 30. What is the residual?
+  options:
+    - "-3"
+    - "3"
+    - "27"
+    - "30"
+  ordered: true
+  answer: B
+  explain: |
+    The predicted value is 12 + 3 × 5 = 27. The residual is actual minus predicted: 30 - 27 = 3. It is positive, so the point lies above the line.
+  why:
+    A: "This subtracts in the wrong order, predicted minus actual."
+    C: "This is the predicted value, not the residual."
+    D: "This is the actual value, not the residual."
+  verify: "30 - (12 + 3 * 5)"
+
+- id: scatterplots-03
+  skill: scatterplots
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A researcher studies whether the amount of fertilizer applied to a field affects its crop yield. Which variable belongs on the horizontal axis of the scatterplot?
+  options:
+    - "Crop yield, because it is the larger number"
+    - "Either one, because the choice of axis does not matter"
+    - "The number of fields, because it is the sample size"
+    - "Fertilizer amount, because it is the explanatory variable"
+  answer: D
+  explain: |
+    The explanatory variable, the suspected influence, goes on the x-axis, and the response goes on the y-axis. Here fertilizer may influence yield, so fertilizer goes on the x-axis.
+  why:
+    A: "Axis placement depends on the roles of the variables, not on the sizes of their values."
+    B: "By convention the explanatory variable goes on x; swapping the axes changes the regression line."
+    C: "The number of fields is the sample size, not a variable plotted for each field."
+
+- id: scatterplots-04
+  skill: scatterplots
+  tier: champion
+  type: visual
+  use: quiz
+  stem: |
+    The scatterplot shows daily temperature and household electricity use. Which statement is true?
+  figure:
+    type: scatter
+    caption: Temperature and electricity use on 18 days
+    xLabel: Daily high temperature (degrees F)
+    yLabel: Electricity use (kWh)
+    series:
+      - points: [[56, 38], [84, 43], [39, 41], [46, 36], [84, 40], [61, 30], [61, 34], [39, 38], [21, 61], [95, 54], [27, 54], [88, 45], [49, 32], [96, 57], [52, 32], [95, 52], [64, 33], [39, 35]]
+  options:
+    - "r is close to 0, but the variables are strongly related."
+    - "r is close to 0, so the variables are not related."
+    - "r is close to 1, because the pattern is so clear."
+    - "r is strongly negative, because the left side slopes down."
+  answer: A
+  explain: |
+    The points form a clear U shape: high use on cold and hot days, low use in between. Because r measures only linear association, the falling and rising halves cancel and r is only about 0.18, even though the relationship is strong.
+  why:
+    B: "A correlation near 0 means no linear relationship, not no relationship; the U shape is strong."
+    C: "r near 1 requires a straight upward line, and this pattern is curved."
+    D: "The right side rises just as the left side falls, so the overall r is near 0, not strongly negative."
+
+- id: scatterplots-05
+  skill: scatterplots
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    In the scatterplot, one point lies far to the right of the others. With that point included, r is about 0.87. What would most likely happen to r if that point were removed?
+  figure:
+    type: scatter
+    caption: Eleven observations, one far to the right
+    xLabel: x
+    yLabel: y
+    series:
+      - points: [[2, 15], [3, 15], [3.5, 24], [4, 19], [4.5, 16], [5, 15], [5.5, 22], [6, 16], [6.5, 15], [7, 22], [16, 45]]
+    highlight: [[16, 45]]
+  options:
+    - "r would rise closer to 1."
+    - "r would stay about the same."
+    - "r would turn strongly negative."
+    - "r would drop sharply, toward 0."
+  answer: D
+  explain: |
+    The other ten points form a shapeless cloud with r of about 0.18. The far point alone creates the appearance of a strong upward trend, so it is an influential point, and removing it drops r sharply toward 0.
+  why:
+    A: "The remaining points show almost no trend, so r cannot rise toward 1."
+    B: "A point far out in the x-direction can control r, and this one does."
+    C: "The remaining cloud has no downward trend, so r would not turn strongly negative."
+
+- id: scatterplots-06
+  skill: scatterplots
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A data point lies above the least-squares regression line. What does this tell you?
+  options:
+    - "The model overpredicted y, and the residual is negative."
+    - "The point must be an outlier that should be removed."
+    - "The point is the one with the largest x-value."
+    - "The model underpredicted y, and the residual is positive."
+  answer: D
+  explain: |
+    Above the line means the actual y is larger than the predicted y, so actual minus predicted is positive and the model's prediction was too low.
+  why:
+    A: "That describes a point below the line."
+    B: "About half the points of a good fit lie above the line; that alone does not make a point an outlier."
+    C: "A point's height relative to the line says nothing about where its x-value falls."
+
+- id: scatterplots-07
+  skill: scatterplots
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    How is a residual calculated in regression?
+  options:
+    - "Predicted value minus actual value"
+    - "Actual value minus predicted value"
+    - "Actual value minus the mean of y"
+    - "Predicted value divided by actual value"
+  answer: B
+  explain: |
+    A residual is the actual y minus the predicted y. Positive residuals mark points above the line and negative residuals mark points below it.
+  why:
+    A: "This reverses the order and flips every sign."
+    C: "That is a deviation from the mean, not from the regression line."
+    D: "Residuals are differences, not ratios."
+
+- id: scatterplots-08
+  skill: scatterplots
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    After fitting a straight line, an analyst plots the residuals against x and sees a clear U-shaped pattern. What should the analyst conclude?
+  options:
+    - "A straight line is the wrong form; the relationship is curved."
+    - "The line fits well, because some residuals are near 0."
+    - "The data must contain an error that should be deleted."
+    - "The correlation between x and y must be exactly 0."
+  answer: A
+  explain: |
+    If a straight line fits, the residuals scatter randomly around 0. A systematic pattern such as a U shape means the line misses the data in a predictable way, so a curved model would fit better.
+  why:
+    B: "A few small residuals do not help when the residuals follow a pattern."
+    C: "A pattern points to the wrong model form, not to bad data."
+    D: "A curved pattern can occur with many values of r, so r need not be 0."
+
+- id: scatterplots-09
+  skill: scatterplots
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which point in a scatterplot is most likely to be influential, meaning its removal would change the regression line a lot?
+  options:
+    - "A point in the middle of the cloud of points"
+    - "A point that lies exactly on the regression line"
+    - "A point far to the right of all the other x-values"
+    - "A point that repeats the coordinates of another"
+  answer: C
+  explain: |
+    A point far from the others in the x-direction acts like a lever: the line tilts to pass near it, so removing it can change the slope and r substantially.
+  why:
+    A: "A point in the middle of the data has little pull on the slope."
+    B: "Removing a point that already sits on the line barely moves the line."
+    D: "A duplicate inside the cloud has about the same effect as any typical point."
+
+- id: scatterplots-10
+  skill: scatterplots
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    A model predicts home prices with $$\hat{y} = 50 + 0.1x$$, where x is the size in square feet and $$\hat{y}$$ is the price in thousands of dollars. A 1,500 square foot home sold for $190,000. What is its residual?
+  options:
+    - "-$10,000"
+    - "$10,000"
+    - "$140,000"
+    - "$200,000"
+  ordered: true
+  answer: A
+  explain: |
+    The predicted price is 50 + 0.1 × 1,500 = 200 thousand dollars. The residual is actual minus predicted: 190 - 200 = -10 thousand, or -$10,000. The model overpredicted this home's price.
+  why:
+    B: "This subtracts in the wrong order, predicted minus actual."
+    C: "This subtracts the intercept from the sale price, which is not a residual."
+    D: "This is the predicted price, not the residual."
+  verify: "(190 - (50 + 0.1 * 1500)) * 1000"
+
+- id: scatterplots-11
+  skill: scatterplots
+  tier: core
+  type: visual
+  use: bank
+  stem: |
+    The scatterplot shows weekly practice hours and points scored for 18 players. Which value is the best estimate of r?
+  figure:
+    type: scatter
+    caption: Practice hours and points scored
+    xLabel: Practice hours per week
+    yLabel: Points scored in a game
+    series:
+      - points: [[7.2, 39], [8.3, 47], [4.1, 33], [1.4, 22], [6.1, 25], [2.3, 16], [7.5, 38], [4.1, 33], [5.1, 39], [9.8, 38], [8.0, 38], [8.6, 34], [6.0, 31], [9.5, 28], [1.2, 27], [9.0, 36], [4.5, 30], [3.1, 29]]
+  options:
+    - "-0.6"
+    - "0"
+    - "0.6"
+    - "0.95"
+  ordered: true
+  answer: C
+  explain: |
+    The points drift upward, so r is positive, but they scatter widely around any line, so the relationship is only moderate. An r of about 0.6 fits; the actual value is 0.64.
+  why:
+    A: "The trend is upward, so r is positive."
+    B: "There is a visible upward trend, so r is clearly above 0."
+    D: "An r of 0.95 would need the points to hug a straight line tightly."
+
+# ---------------------------------------------------------------- causation
+- id: causation-01
+  skill: causation
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    An observational study finds that students who eat breakfast earn higher grades than students who skip it. Which conclusion is justified?
+  options:
+    - "Eating breakfast causes students to earn higher grades."
+    - "Eating breakfast is associated with earning higher grades."
+    - "Skipping breakfast causes students to earn lower grades."
+    - "Grades and breakfast are unrelated, since it is observational."
+  answer: B
+  explain: |
+    An observational study can show that two variables move together, but without random assignment, confounders such as family routines or sleep could explain both. The justified conclusion is association, not causation.
+  why:
+    A: "Causation needs a randomized experiment; other factors could explain the link."
+    C: "This is the same causal claim stated in reverse, and it is unjustified for the same reason."
+    D: "An observational study can still show a real association."
+
+- id: causation-02
+  skill: causation
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    In a study of elementary school children, those with larger shoe sizes scored higher on reading tests. Which variable most likely explains this association?
+  options:
+    - "The children's age"
+    - "The children's shoe brand"
+    - "The color of the test paper"
+    - "The children's foot width"
+  answer: A
+  explain: |
+    Older children have larger feet and also read better, so age drives both variables. It is a confounding (lurking) variable, and bigger feet do not improve reading.
+  why:
+    B: "Shoe brand is not linked to reading ability."
+    C: "The test paper is the same for every child, so it cannot explain differences."
+    D: "Foot width is just another measure of foot size, not a third variable that drives reading."
+
+- id: causation-03
+  skill: causation
+  tier: champion
+  type: visual
+  use: check
+  stem: |
+    Two sales reps work in two regions. The table shows how many of their sales calls closed. Which statement is correct?
+
+    | Region | Rep P | Rep Q |
+    |---|---|---|
+    | East | 45 of 50 (90%) | 160 of 200 (80%) |
+    | West | 60 of 150 (40%) | 10 of 50 (20%) |
+    | Total | 105 of 200 (52.5%) | 170 of 250 (68%) |
+  options:
+    - "Rep Q is better, because Q's overall close rate is higher."
+    - "Rep P has the higher rate in each region but the lower overall rate."
+    - "The two reps perform about equally well in both regions."
+    - "The table contains an error, because totals cannot reverse a trend."
+  answer: B
+  explain: |
+    Rep P beats Rep Q in the East (90% versus 80%) and in the West (40% versus 20%), yet trails overall (52.5% versus 68%). This is Simpson's paradox: Rep P made most of their calls in the harder West region, which drags down their combined rate.
+  why:
+    A: "The overall rate hides that P outperforms Q in both regions."
+    C: "P's rates are 10 and 20 points higher, so the reps are not equal."
+    D: "Combined rates can reverse when the groups have very different sizes; this is a real effect."
+
+- id: causation-04
+  skill: causation
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which study design is the standard way to establish that one variable causes changes in another?
+  options:
+    - "A survey of a large random sample"
+    - "A randomized controlled experiment"
+    - "An observational study over many years"
+    - "A strong correlation in a big dataset"
+  answer: B
+  explain: |
+    In a randomized controlled experiment, subjects are randomly assigned to treatment and control groups, which balances confounders on average. A difference in outcomes can then be credited to the treatment.
+  why:
+    A: "A random sample makes results representative, but without assigning treatments it shows only association."
+    C: "Observational studies, however long, record what happens without controlling for confounders."
+    D: "Correlation alone, even in big data, cannot rule out confounding or reverse causation."
+
+- id: causation-05
+  skill: causation
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Cities with more police officers tend to have more crime. A council member concludes that police cause crime. What is the most likely alternative explanation?
+  options:
+    - "The association is a Type II error in the data."
+    - "Police officers and crime are mutually exclusive."
+    - "The data must be skewed toward small cities."
+    - "High crime leads cities to hire more police officers."
+  answer: D
+  explain: |
+    The causal arrow probably runs the other way: cities with more crime hire more officers. This is reverse causation, one of the main reasons an association does not prove that the first variable causes the second.
+  why:
+    A: "A Type II error means missing a real effect, which does not describe this situation."
+    B: "Mutually exclusive describes events that cannot occur together, which is not the issue here."
+    C: "Skew in the data would not explain why more police go with more crime."
+
+- id: causation-06
+  skill: causation
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why does random assignment of subjects to treatment groups allow causal conclusions?
+  options:
+    - "It guarantees that the sample represents the whole population."
+    - "It removes the need for a control group in the experiment."
+    - "It balances confounding variables between the groups, on average."
+    - "It ensures that every subject benefits from the treatment."
+  answer: C
+  explain: |
+    When chance alone decides who gets the treatment, other factors such as age or motivation end up spread about evenly across the groups. Then a difference in outcomes is best explained by the treatment itself.
+  why:
+    A: "Representing the population comes from random sampling, which is a different step."
+    B: "A comparison group is still needed; random assignment decides who is in it."
+    D: "Random assignment says nothing about whether the treatment works."
+
+- id: causation-07
+  skill: causation
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A treatment has a higher success rate than its alternative within every age group, yet a lower success rate when all ages are combined. What explains this?
+  options:
+    - "A lurking variable is spread unevenly, and the group sizes differ."
+    - "The calculation must be wrong, because the trend cannot reverse."
+    - "The treatment works only when the age groups are combined."
+    - "The overall rate is a weighted mean, so it always favors the treatment."
+  answer: A
+  explain: |
+    This is Simpson's paradox. If the treatment was given mostly to the age groups with low success rates overall, its combined rate is dragged down even though it wins inside every group. The group-by-group comparison is the fairer one.
+  why:
+    B: "Reversals like this are real and arise whenever the group mix differs between treatments."
+    C: "The treatment wins within every group, so combining groups cannot reveal where it works."
+    D: "The overall rate is a weighted mean, but the weights differ between treatments, which is why it can reverse."
+
+- id: causation-08
+  skill: causation
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    An analyst tests 1,000 pairs of variables that are actually unrelated, using a 0.05 significance level for each test. About 50 pairs show a significant correlation. What is the best explanation?
+  options:
+    - "About 50 of the pairs must have a causal link."
+    - "The analyst made a calculation error in each of those 50 tests."
+    - "About 5% of tests of unrelated pairs come out significant by chance."
+    - "A larger sample would make all 1,000 pairs significant."
+  answer: C
+  explain: |
+    At a 0.05 significance level, about 5% of tests on truly unrelated variables give a false positive (a Type I error, lesson 2.6). With 1,000 tests, about 50 such coincidences are expected.
+  why:
+    A: "Significance alone, especially across many tests, does not show causation."
+    B: "No error is needed; chance alone produces about 50 false positives."
+    D: "Unrelated variables have no true correlation for a larger sample to detect."
+  verify: |
+    ans = "About 5% of tests of unrelated pairs come out significant by chance." if 0.05 * 1000 == 50 else "other"
+
+- id: causation-09
+  skill: causation
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is a lurking variable?
+  options:
+    - "The explanatory variable chosen by the researcher"
+    - "The response variable measured at the end of a study"
+    - "A variable that changes randomly with no effect at all"
+    - "A variable not included in the analysis that affects the relationship"
+  answer: D
+  explain: |
+    A lurking variable sits outside the analysis but influences the variables being studied, which can create or hide an association. The term overlaps with confounding variable.
+  why:
+    A: "The explanatory variable is part of the analysis, not hidden from it."
+    B: "The response variable is the outcome being studied."
+    C: "A variable with no effect could not distort the relationship."

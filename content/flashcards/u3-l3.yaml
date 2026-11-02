@@ -1,0 +1,43 @@
+# Lesson 3.3 flashcards
+
+- id: fc-scatterplot
+  term: Scatterplot
+  def: A plot of two numeric variables measured on the same individuals, one dot each, with the explanatory variable on the x-axis and the response on the y-axis. Describe its direction, form, strength, and unusual points.
+  skill: scatterplots
+  virginia: true
+
+- id: fc-r-linear-only
+  term: r measures only linear association
+  def: A strong curved relationship can have r near 0, so always look at the plot before trusting r.
+  skill: scatterplots
+
+- id: fc-influential-point
+  term: Influential point
+  def: A point whose removal changes the regression line or r a lot, usually one far out in the x-direction. An outlier is any point far from the overall pattern.
+  skill: scatterplots
+
+- id: fc-residual
+  term: Residual
+  def: Actual y minus predicted y. Above the line is positive (underpredicted); below the line is negative (overpredicted). A pattern in a residual plot means a straight line is the wrong form.
+  example: "Line 45.6 + 5.5x, x = 5.6, actual 80: residual = 80 - 76.4 = 3.6."
+  skill: scatterplots
+
+- id: fc-correlation-causation
+  term: Correlation is not causation
+  def: An association can come from confounding, reverse causation, or coincidence. A randomized experiment is the standard way to establish cause and effect.
+  skill: causation
+
+- id: fc-confounding
+  term: Confounding (lurking) variable
+  def: A variable linked to both the explanatory and response variables, so its effect is tangled with theirs. Age explains why shoe size and reading scores rise together in children.
+  skill: causation
+
+- id: fc-random-assignment
+  term: Random assignment
+  def: Letting chance decide who gets a treatment, which balances confounders between groups on average and allows causal conclusions. Random sampling, by contrast, makes a sample representative.
+  skill: causation
+
+- id: fc-simpsons-paradox
+  term: "Simpson's paradox"
+  def: A trend that holds within every group reverses when the groups are combined, because a lurking variable is spread unevenly across groups of different sizes.
+  skill: causation
