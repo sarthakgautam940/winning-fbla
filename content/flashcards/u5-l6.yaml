@@ -1,0 +1,44 @@
+# Lesson 5.6 flashcards
+
+- id: fc-overfitting
+  term: Overfitting
+  def: A model that fits its training data too closely, noise included. Training error is low but validation error is much higher, a large gap. Caused by high variance.
+  skill: fit-tradeoff
+  virginia: true
+
+- id: fc-underfitting
+  term: Underfitting
+  def: A model too simple to capture the real pattern, such as a straight line through curved data. Both training and validation errors are high. Caused by high bias.
+  skill: fit-tradeoff
+  virginia: true
+
+- id: fc-diagnose-errors
+  term: Diagnosing from errors
+  def: Both errors high means underfitting; low training error with much higher validation error means overfitting; both low and close means a good fit.
+  skill: fit-tradeoff
+
+- id: fc-bias-variance
+  term: Bias-variance tradeoff
+  def: Bias is error from oversimplified assumptions; variance is error from sensitivity to the training sample. Simple models have high bias and low variance; complex models the reverse. Aim for the lowest total error.
+  skill: fit-tradeoff
+
+- id: fc-fixes
+  term: Fixes for underfitting and overfitting
+  def: Underfitting, use a more flexible model, better features, or less regularization. Overfitting, add data, simplify the model, regularize, use dropout or early stopping, ensembles, or data augmentation.
+  skill: fit-tradeoff
+
+- id: fc-l1-l2
+  term: L1 vs. L2 regularization
+  def: Both add lambda times a penalty to the loss. L2 (ridge) uses squared weights and shrinks them smoothly. L1 (lasso) uses absolute weights and can set some to exactly zero, selecting features.
+  example: "Weights 3, -1, 2 and lambda 0.1: L1 term 0.6, L2 term 1.4."
+  skill: regularization
+
+- id: fc-lambda
+  term: Regularization strength (lambda)
+  def: A hyperparameter. Lambda 0 means no regularization; larger lambda gives a simpler model with more bias and less variance; too large underfits.
+  skill: regularization
+
+- id: fc-dropout-early-stopping
+  term: Dropout and early stopping
+  def: Dropout randomly switches off neurons during training (all are used at prediction time). Early stopping halts training when validation error stops improving.
+  skill: regularization

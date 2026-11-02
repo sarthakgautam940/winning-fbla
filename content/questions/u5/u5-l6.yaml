@@ -1,0 +1,416 @@
+# Lesson 5.6: Overfitting, underfitting, and regularization
+
+# ---------------------------------------------------------------- fit-tradeoff
+- id: fit-tradeoff-01
+  skill: fit-tradeoff
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A model scores 99% accuracy on its training data but only 62% on new data. What is the most likely problem?
+  options:
+    - "Underfitting"
+    - "Data that is too clean"
+    - "Overfitting"
+    - "A learning rate of zero"
+  answer: C
+  explain: |
+    Near-perfect training performance with much worse performance on new data means the model memorized its training examples, noise included, instead of learning a general pattern. That is overfitting.
+  why:
+    A: "An underfit model does poorly on the training data too."
+    B: "Clean data does not cause a gap between training and new data."
+    D: "With a learning rate of zero the model would never learn, so training accuracy would not reach 99%."
+
+- id: fit-tradeoff-02
+  skill: fit-tradeoff
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A model has 18% error on its training data and 19% on its validation data. Well-built models for this problem reach about 5%. What is the diagnosis?
+  options:
+    - "Underfitting, because both errors are high"
+    - "Overfitting, because the validation error is higher"
+    - "A good fit, because the two errors are close"
+    - "Data leakage, because the errors are similar"
+  answer: A
+  explain: |
+    Both errors are far above the 5% that is achievable, so the model is too simple to capture the pattern. The small gap shows it is not memorizing; it is underfitting (high bias).
+  why:
+    B: "A 1-point gap is small; overfitting shows a large gap with low training error."
+    C: "Close errors are good only when both are low."
+    D: "Leakage makes scores look too good, not uniformly poor."
+
+- id: fit-tradeoff-03
+  skill: fit-tradeoff
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A model's predictions change dramatically whenever it is trained on a different sample of the same kind of data. Which problem does this describe?
+  options:
+    - "High bias"
+    - "Low variance"
+    - "Underfitting"
+    - "High variance"
+  answer: D
+  explain: |
+    Variance measures how much a model changes with its training sample. A model that swings with every new sample has fit each sample's noise, which is high variance, the cause of overfitting.
+  why:
+    A: "High bias means consistently missing the pattern, not swinging between samples."
+    B: "Low variance would mean the model stays stable across samples."
+    C: "Underfitting comes from high bias, not from instability."
+
+- id: fit-tradeoff-04
+  skill: fit-tradeoff
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A decision tree overfits its training data. Which change is most likely to reduce the overfitting?
+  options:
+    - "Allowing the tree to grow much deeper"
+    - "Removing all of its regularization"
+    - "Collecting more training data"
+    - "Training on fewer examples"
+  answer: C
+  explain: |
+    More training data makes it harder for a model to memorize noise, so it generalizes better. Limiting the tree's depth or pruning it would also help.
+  why:
+    A: "A deeper tree is more complex and overfits more."
+    B: "Removing regularization gives the model even more freedom to overfit."
+    D: "Fewer examples make memorizing easier, which worsens overfitting."
+
+- id: fit-tradeoff-05
+  skill: fit-tradeoff
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A straight line is fitted to data that clearly follows a curve, and its error is high on both the training and the test sets. What is this?
+  options:
+    - "Underfitting"
+    - "Overfitting"
+    - "A good fit"
+    - "High variance"
+  answer: A
+  explain: |
+    The model is too simple to follow the curve, so it misses the pattern everywhere: high error on the training data and on new data. That is underfitting.
+  why:
+    B: "An overfit model would do well on the training data."
+    C: "High error on both sets is not a good fit."
+    D: "A straight line is stable across samples; its problem is high bias."
+
+- id: fit-tradeoff-06
+  skill: fit-tradeoff
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    The chart shows training and validation error for models of increasing complexity. Which complexity level should be chosen?
+  figure:
+    type: line
+    caption: Error by model complexity
+    xLabel: Model complexity
+    yLabel: Error
+    series:
+      - name: Training error
+        points: [[1, 12], [2, 8], [3, 5], [4, 3.5], [5, 2.5], [6, 1.8], [7, 1.2], [8, 0.8]]
+      - name: Validation error
+        points: [[1, 12.5], [2, 9], [3, 6.5], [4, 6.0], [5, 6.8], [6, 8.2], [7, 10], [8, 12]]
+  options:
+    - "1"
+    - "4"
+    - "6"
+    - "8"
+  ordered: true
+  answer: B
+  explain: |
+    The best model minimizes validation error, which bottoms out at complexity 4 (6.0). Beyond that, training error keeps falling but validation error rises, the signature of overfitting.
+  why:
+    A: "Complexity 1 underfits: both errors are at their highest."
+    C: "At complexity 6, validation error has already risen to 8.2."
+    D: "Complexity 8 has the lowest training error but the worst validation error, a clear case of overfitting."
+
+- id: fit-tradeoff-07
+  skill: fit-tradeoff
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A model underfits: its training and validation errors are both high. Which change is most likely to help?
+  options:
+    - "Increasing the regularization strength"
+    - "Removing features from the model"
+    - "Stopping training even earlier"
+    - "Using a more flexible model or better features"
+  answer: D
+  explain: |
+    An underfit model lacks the capacity to capture the pattern. Giving it more flexibility, such as a higher degree, a deeper tree, or more informative features, lets it learn more.
+  why:
+    A: "More regularization makes the model simpler, which worsens underfitting."
+    B: "Fewer features give the model even less to work with."
+    C: "Stopping earlier leaves the model with less learning, not more."
+
+- id: fit-tradeoff-08
+  skill: fit-tradeoff
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    As a model is made more and more complex, what typically happens to its training error and its validation error?
+  options:
+    - "Both errors keep falling steadily as complexity grows."
+    - "Training error keeps falling; validation error falls, then rises."
+    - "Training error rises while validation error keeps falling."
+    - "Both errors stay about the same at every complexity level."
+  answer: B
+  explain: |
+    A more flexible model can always fit its training data more closely, so training error keeps dropping. Validation error drops while the model learns real patterns, then rises once it starts fitting noise, giving the U-shaped curve.
+  why:
+    A: "Validation error eventually rises as the model begins to overfit."
+    C: "More complexity lowers training error rather than raising it."
+    D: "Changing complexity changes both errors."
+
+- id: fit-tradeoff-09
+  skill: fit-tradeoff
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A linear model underfits a strongly curved relationship. The team triples the amount of training data. What is the most likely result?
+  options:
+    - "The model will now overfit the larger training set."
+    - "The underfitting will be fully cured by the extra data."
+    - "Errors stay high, because the model is still too simple."
+    - "Training error will drop all the way down to zero."
+  answer: C
+  explain: |
+    A straight line cannot bend to fit a curve, however many points it sees. More data mainly reduces variance (overfitting); underfitting needs a more flexible model or better features.
+  why:
+    A: "More data makes overfitting less likely, not more."
+    B: "Data cannot give a straight line the shape it lacks."
+    D: "A line through curved data keeps a sizable error."
+
+- id: fit-tradeoff-10
+  skill: fit-tradeoff
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A model has 4% error on its training data and 5% on its validation data, and both are close to the best achievable for the problem. What is the diagnosis?
+  options:
+    - "Underfitting"
+    - "Overfitting"
+    - "A good fit"
+    - "Data leakage"
+  answer: C
+  explain: |
+    Both errors are low and close together, so the model has learned the real pattern and generalizes to new data.
+  why:
+    A: "Underfitting would show high error on both sets."
+    B: "Overfitting would show a large gap between the two errors."
+    D: "Nothing here suggests results that are too good to be true."
+
+- id: fit-tradeoff-11
+  skill: fit-tradeoff
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which model is most likely to have high bias?
+  options:
+    - "A very deep decision tree with no limits"
+    - "A 1-nearest-neighbor classifier"
+    - "A huge neural network trained on a small dataset"
+    - "A straight line fitted to a complex curved pattern"
+  answer: D
+  explain: |
+    A straight line makes an assumption too simple for a curved pattern, so it misses consistently: high bias. The other three are very flexible models prone to high variance.
+  why:
+    A: "An unlimited deep tree can fit almost anything, which gives high variance."
+    B: "1-nearest-neighbor follows every training point, which gives high variance."
+    C: "A huge network on little data tends to memorize, which is high variance."
+
+# ---------------------------------------------------------------- regularization
+- id: regularization-01
+  skill: regularization
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which type of regularization can shrink some weights to exactly zero, effectively removing those features from the model?
+  options:
+    - "L2 regularization (ridge)"
+    - "L1 regularization (lasso)"
+    - "Data augmentation"
+    - "Early stopping"
+  answer: B
+  explain: |
+    L1 regularization penalizes the absolute values of the weights, and that penalty can drive some weights all the way to zero, a built-in form of feature selection. L2 shrinks weights smoothly but rarely makes them exactly zero.
+  why:
+    A: "L2 shrinks weights toward zero without usually reaching it."
+    C: "Data augmentation creates more training variety; it does not change weights directly."
+    D: "Early stopping limits training time, not the size of individual weights."
+
+- id: regularization-02
+  skill: regularization
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What is the main purpose of regularization?
+  options:
+    - "To discourage overly complex models and reduce overfitting"
+    - "To make the model train on more data than it was given"
+    - "To increase the model's training accuracy as high as possible"
+    - "To convert categorical features into numbers"
+  answer: A
+  explain: |
+    Regularization adds a cost for complexity, such as a penalty for large weights, so the model favors simpler patterns that generalize better.
+  why:
+    B: "Regularization changes how the model learns, not how much data it has."
+    C: "Regularization usually lowers training accuracy slightly in exchange for better generalization."
+    D: "Converting categories into numbers is encoding, a preprocessing step."
+
+- id: regularization-03
+  skill: regularization
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A data scientist increases the regularization strength, lambda, from 0.01 to 10. What is the most likely effect on the model?
+  options:
+    - "It becomes more complex and more likely to overfit."
+    - "Its weights grow larger."
+    - "It becomes simpler, and too large a lambda can cause underfitting."
+    - "Nothing changes, because lambda is not a hyperparameter."
+  answer: C
+  explain: |
+    A larger lambda makes large weights more costly, pushing them toward zero and simplifying the model: more bias, less variance. Push it too far and the model can no longer fit the real pattern.
+  why:
+    A: "Stronger regularization reduces complexity."
+    B: "The penalty shrinks weights rather than growing them."
+    D: "Lambda is a hyperparameter, and changing it has a large effect."
+
+- id: regularization-04
+  skill: regularization
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A model has weights 3, -1, and 2, and the regularization strength is lambda = 0.1. What is the L2 penalty term, lambda times the sum of the squared weights?
+  options:
+    - "0.6"
+    - "1.4"
+    - "6"
+    - "14"
+  ordered: true
+  answer: B
+  explain: |
+    Square each weight: 9 + 1 + 4 = 14. Multiply by lambda: 0.1 × 14 = 1.4.
+  why:
+    A: "This is the L1 penalty term: 0.1 × (3 + 1 + 2)."
+    C: "This is the sum of absolute weights, without lambda."
+    D: "This is the sum of squared weights, without multiplying by lambda."
+  verify: "0.1 * sum(w ** 2 for w in [3, -1, 2])"
+
+- id: regularization-05
+  skill: regularization
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does dropout help a neural network avoid overfitting?
+  options:
+    - "It removes the worst training examples from the dataset."
+    - "It permanently deletes half of the network's neurons."
+    - "It lowers the learning rate after every epoch."
+    - "It randomly switches off neurons during each training step."
+  answer: D
+  explain: |
+    Because a different random set of neurons is dropped in each step, the network cannot depend on any single neuron and must spread what it learns across many of them. All neurons are used again at prediction time.
+  why:
+    A: "Dropout acts on neurons, not on training examples."
+    B: "Dropped neurons return in the next step; nothing is deleted permanently."
+    C: "Lowering the learning rate is a separate technique, not dropout."
+
+- id: regularization-06
+  skill: regularization
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What does early stopping do?
+  options:
+    - "Stops training when validation error stops improving"
+    - "Stops training after exactly one epoch"
+    - "Stops the model from making predictions on new data"
+    - "Stops training whenever training error rises"
+  answer: A
+  explain: |
+    Early stopping watches the validation error during training and halts when it stops getting better, before the model starts memorizing the training data.
+  why:
+    B: "One epoch is usually far too little training."
+    C: "Early stopping affects training, not later predictions."
+    D: "Early stopping watches validation error, not training error."
+
+- id: regularization-07
+  skill: regularization
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A model has 500 features, but the team suspects only a few of them matter. Which regularization best produces a simpler model that relies on only some of the features?
+  options:
+    - "L2 regularization"
+    - "No regularization"
+    - "L1 regularization"
+    - "Removing the validation set"
+  answer: C
+  explain: |
+    L1 regularization can set the weights of unhelpful features to exactly zero, leaving a sparse model that uses only the features that matter.
+  why:
+    A: "L2 shrinks weights but keeps nearly all features in the model."
+    B: "Without regularization, all 500 features stay in and the model may overfit."
+    D: "Removing the validation set makes tuning harder and does nothing to select features."
+
+- id: regularization-08
+  skill: regularization
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In the regularized loss, error + lambda × penalty, what happens when lambda = 0?
+  options:
+    - "The model is left with no weights at all to fit."
+    - "The penalty term becomes infinitely large."
+    - "Every weight is forced all the way to zero."
+    - "No regularization: the model minimizes its error alone."
+  answer: D
+  explain: |
+    With lambda = 0, the penalty term vanishes, so the model minimizes only its error, exactly as an unregularized model would.
+  why:
+    A: "The weights still exist and are fitted to the data."
+    B: "Multiplying by zero removes the penalty rather than enlarging it."
+    C: "Forcing weights toward zero happens with a very large lambda, not zero."
+
+- id: regularization-09
+  skill: regularization
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A network was trained with dropout that switches off half of its neurons in each step. What happens when the trained network makes predictions?
+  options:
+    - "Half of the neurons are still switched off at random."
+    - "Dropout is turned off, and every neuron is used."
+    - "Only the neurons that were dropped most often are used."
+    - "The network must be retrained before each prediction."
+  answer: B
+  explain: |
+    Dropout is a training-time technique. At prediction time all neurons are active, with their outputs scaled so the overall signal matches what the network saw during training.
+  why:
+    A: "Random dropping at prediction time would make predictions inconsistent."
+    C: "No neurons are singled out at prediction time; all of them are used."
+    D: "A trained network predicts directly; dropout does not require retraining."
