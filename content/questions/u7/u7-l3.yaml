@@ -1,0 +1,563 @@
+# Lesson 7.3: Propositional and predicate logic
+
+# ---------------------------------------------------------------- prop-logic
+- id: prop-logic-01
+  skill: prop-logic
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    Let P be true and Q be false. Which of these compound statements is true?
+  options:
+    - "$$P \\land \\neg Q$$"
+    - "$$P \\land Q$$"
+    - "$$\\neg P \\lor Q$$"
+    - "$$P \\rightarrow Q$$"
+  answer: A
+  explain: |
+    With Q false, $$\neg Q$$ is true, so $$P \land \neg Q$$ is true and true, which is true. The others are false: $$P \land Q$$ has a false part, $$\neg P \lor Q$$ is false or false, and $$P \rightarrow Q$$ has a true condition with a false result.
+  why:
+    B: "Q is false, so the conjunction of P and Q is false."
+    C: "Both not-P and Q are false, so their disjunction is false."
+    D: "An implication with a true condition and a false result is false."
+  verify: |
+    P, Q = True, False
+    cands = {r"P \land \neg Q": P and not Q, r"P \land Q": P and Q, r"\neg P \lor Q": (not P) or Q, r"P \rightarrow Q": (not P) or Q}
+    ans = [k for k, v in cands.items() if v][0]
+
+- id: prop-logic-02
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    When is the implication $$P \rightarrow Q$$ false?
+  options:
+    - "When P is false and Q is true"
+    - "When both P and Q are false"
+    - "When both P and Q are true"
+    - "When P is true and Q is false"
+  answer: D
+  explain: |
+    An implication promises that whenever P is true, Q is true too. The only way to break that promise is for P to be true while Q is false. In every other row of the truth table, including both rows where P is false, the implication is true.
+  why:
+    A: "A false condition never breaks the promise, so the implication is true."
+    B: "With a false condition the implication is true, even though Q is also false."
+    C: "A true condition leading to a true result keeps the promise."
+
+- id: prop-logic-03
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is the contrapositive of "If it rains, then the game is canceled"?
+  options:
+    - "If the game is canceled, then it rained"
+    - "If the game is not canceled, then it did not rain"
+    - "If it does not rain, then the game is not canceled"
+    - "It rains, and the game is not canceled"
+  answer: B
+  explain: |
+    The contrapositive of $$P \rightarrow Q$$ is $$\neg Q \rightarrow \neg P$$: swap the two parts and negate both. It is logically equivalent to the original: if rain always cancels the game, then a game that went ahead means it did not rain.
+  why:
+    A: "This is the converse, Q implies P, which is not equivalent to the original."
+    C: "This is the inverse, not-P implies not-Q, which is not equivalent to the original."
+    D: "This is the negation of the implication, P and not Q, which says the rule was broken."
+
+- id: prop-logic-04
+  skill: prop-logic
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A truth table lists every combination of truth values for its variables. How many rows does a truth table for three variables, P, Q, and R, have?
+  options:
+    - "3"
+    - "6"
+    - "8"
+    - "9"
+  ordered: true
+  answer: C
+  explain: |
+    Each variable can be true or false, so three variables give 2 × 2 × 2 = $$2^3$$ = 8 combinations. In general, n variables give $$2^n$$ rows.
+  why:
+    A: "This counts the variables, not the combinations of their values."
+    B: "This multiplies 3 by 2 instead of raising 2 to the third power."
+    D: "This squares the number of variables instead of computing 2 to the third power."
+  verify: "2 ** 3"
+
+- id: prop-logic-05
+  skill: prop-logic
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Let P be false, Q be true, and R be false. What is the truth value of $$(P \lor Q) \rightarrow R$$?
+  options:
+    - "True, since the condition P is false"
+    - "False, since a true condition gives a false result"
+    - "True, since a false result makes it true"
+    - "Unknown, since some values are missing"
+  answer: B
+  explain: |
+    First evaluate the condition: $$P \lor Q$$ is false or true, which is true. The implication then has a true condition and a false result, R, which is the only case that makes an implication false.
+  why:
+    A: "A false P does not settle it; the condition P or Q is true because Q is true."
+    C: "A false result makes the implication false when the condition is true."
+    D: "All three values are given, so the expression has a definite value."
+  verify: |
+    P, Q, R = False, True, False
+    val = (not (P or Q)) or R
+    ans = "True, since the condition P is false" if val else "False, since a true condition gives a false result"
+
+- id: prop-logic-06
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    By De Morgan's laws, which expression is equivalent to $$\neg(P \land Q)$$?
+  options:
+    - "$$\\neg P \\lor \\neg Q$$"
+    - "$$\\neg P \\land \\neg Q$$"
+    - "$$P \\lor Q$$"
+    - "$$\\neg P \\land Q$$"
+  answer: A
+  explain: |
+    De Morgan's laws move a negation inside parentheses by negating each part and flipping AND to OR (or OR to AND): $$\neg(P \land Q) \equiv \neg P \lor \neg Q$$. "It is not both raining and windy" means "it is not raining, or it is not windy."
+  why:
+    B: "This keeps AND instead of flipping it to OR; it is the expansion of not (P or Q)."
+    C: "This drops the negation entirely."
+    D: "This negates only P and keeps AND."
+  verify: |
+    import itertools
+    rows = list(itertools.product([True, False], repeat=2))
+    target = [not (p and q) for p, q in rows]
+    cands = {r"\neg P \lor \neg Q": [(not p) or (not q) for p, q in rows], r"\neg P \land \neg Q": [(not p) and (not q) for p, q in rows], r"P \lor Q": [p or q for p, q in rows], r"\neg P \land Q": [(not p) and q for p, q in rows]}
+    ans = [k for k, v in cands.items() if v == target][0]
+
+- id: prop-logic-07
+  skill: prop-logic
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    For the implication $$P \rightarrow Q$$, which statement is logically equivalent to its converse, $$Q \rightarrow P$$?
+  options:
+    - "The original, $$P \\rightarrow Q$$"
+    - "The contrapositive, $$\\neg Q \\rightarrow \\neg P$$"
+    - "The negation, $$P \\land \\neg Q$$"
+    - "The inverse, $$\\neg P \\rightarrow \\neg Q$$"
+  answer: D
+  explain: |
+    The inverse, $$\neg P \rightarrow \neg Q$$, is the contrapositive of the converse, so the two are equivalent. The original and its contrapositive form the other equivalent pair, and neither matches the converse.
+  why:
+    A: "The converse is not equivalent to the original; a rule does not run backward."
+    B: "The contrapositive is equivalent to the original, not to the converse."
+    C: "The negation says the original rule fails; it is not equivalent to the converse."
+  verify: |
+    import itertools
+    rows = list(itertools.product([True, False], repeat=2))
+    imp = lambda a, b: (not a) or b
+    conv = [imp(q, p) for p, q in rows]
+    cands = {r"The original, P \rightarrow Q": [imp(p, q) for p, q in rows], r"The contrapositive, \neg Q \rightarrow \neg P": [imp(not q, not p) for p, q in rows], r"The negation, P \land \neg Q": [p and not q for p, q in rows], r"The inverse, \neg P \rightarrow \neg Q": [imp(not p, not q) for p, q in rows]}
+    ans = [k for k, v in cands.items() if v == conv][0]
+
+- id: prop-logic-08
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In logic, what is the truth value of "If 2 + 2 = 5, then the moon is made of cheese"?
+  options:
+    - "False, because the moon is not made of cheese"
+    - "False, because 2 + 2 does not equal 5"
+    - "True, because the condition is false"
+    - "Neither, because the two parts are unrelated"
+  answer: C
+  explain: |
+    An implication is false only when its condition is true and its result is false. Here the condition, 2 + 2 = 5, is false, so the implication is true no matter what follows; it is called vacuously true. Logic does not require the two parts to be related.
+  why:
+    A: "A false result makes an implication false only when the condition is true."
+    B: "A false condition makes the implication true, not false."
+    D: "Logical implication depends only on truth values, not on whether the parts are related."
+
+- id: prop-logic-09
+  skill: prop-logic
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In propositional logic, what does the symbol $$\land$$ mean?
+  options:
+    - "AND (conjunction)"
+    - "OR (disjunction)"
+    - "NOT (negation)"
+    - "IF...THEN (implication)"
+  answer: A
+  explain: |
+    The symbol $$\land$$ is conjunction, AND: $$P \land Q$$ is true only when both P and Q are true. The other connectives are $$\lor$$ for OR, $$\neg$$ for NOT, $$\rightarrow$$ for IF...THEN, and $$\leftrightarrow$$ for IF AND ONLY IF.
+  why:
+    B: "OR is written with the downward-pointing wedge."
+    C: "NOT is written with the negation sign."
+    D: "IF...THEN is written with an arrow."
+
+- id: prop-logic-10
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is the negation of "The store is open and it has milk"?
+  options:
+    - "The store is closed and it has no milk"
+    - "The store is open or it has milk"
+    - "The store is closed and it has milk"
+    - "The store is closed or it has no milk"
+  answer: D
+  explain: |
+    By De Morgan's law, $$\neg(P \land Q) \equiv \neg P \lor \neg Q$$: the statement fails if the store is closed, or if it has no milk, or both. Saying both parts fail is too strong, because the original is already false when just one part fails.
+  why:
+    A: "This says both parts fail, but one failing part is enough to make the original false."
+    B: "This drops the negation and changes AND to OR."
+    C: "This negates only the first part and keeps AND."
+
+- id: prop-logic-11
+  skill: prop-logic
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why does propositional logic struggle to represent "Every student in the school takes math"?
+  options:
+    - "It has no way to join two statements with AND"
+    - "It has no variables or quantifiers to state a general rule"
+    - "It can represent only statements that are false"
+    - "It requires every statement to be about numbers"
+  answer: B
+  explain: |
+    In propositional logic each proposition is an indivisible true-or-false unit, so "Ava takes math," "Ben takes math," and so on would each need its own proposition, and the general rule cannot be stated at all. Predicate logic adds variables and quantifiers: $$\forall x\, (\text{Student}(x) \rightarrow \text{TakesMath}(x))$$.
+  why:
+    A: "Propositional logic does have AND."
+    C: "Propositions can be true or false."
+    D: "Propositions can be about anything, not only numbers."
+
+- id: prop-logic-12
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which expression is logically equivalent to $$P \rightarrow Q$$?
+  options:
+    - "$$Q \\rightarrow P$$"
+    - "$$P \\land \\neg Q$$"
+    - "$$\\neg P \\lor Q$$"
+    - "$$\\neg P \\rightarrow \\neg Q$$"
+  answer: C
+  explain: |
+    An implication is false only when P is true and Q is false, and $$\neg P \lor Q$$ is false in exactly that same case, so the two are equivalent. Automated reasoners often rewrite implications this way.
+  why:
+    A: "This is the converse, which is not equivalent."
+    B: "This is the negation of the implication."
+    D: "This is the inverse, which is not equivalent."
+  verify: |
+    import itertools
+    rows = list(itertools.product([True, False], repeat=2))
+    imp = lambda a, b: (not a) or b
+    target = [imp(p, q) for p, q in rows]
+    cands = {r"Q \rightarrow P": [imp(q, p) for p, q in rows], r"P \land \neg Q": [p and not q for p, q in rows], r"\neg P \lor Q": [(not p) or q for p, q in rows], r"\neg P \rightarrow \neg Q": [imp(not p, not q) for p, q in rows]}
+    ans = [k for k, v in cands.items() if v == target][0]
+
+- id: prop-logic-13
+  skill: prop-logic
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    In the 8-row truth table for $$(P \land Q) \rightarrow R$$, in how many rows is the expression false?
+  options:
+    - "0"
+    - "1"
+    - "2"
+    - "4"
+  ordered: true
+  answer: B
+  explain: |
+    An implication is false only when its condition is true and its result is false. The condition $$P \land Q$$ is true only when P and Q are both true, and then R must be false, so exactly one row (P true, Q true, R false) makes the expression false.
+  why:
+    A: "The row with P and Q true and R false does make it false."
+    C: "Only one row has both P and Q true together with R false."
+    D: "Rows where P and Q are not both true make the implication true, not false."
+  verify: |
+    import itertools
+    ans = sum(1 for p, q, r in itertools.product([True, False], repeat=3) if not ((not (p and q)) or r))
+
+- id: prop-logic-14
+  skill: prop-logic
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    When is the biconditional $$P \leftrightarrow Q$$ true?
+  options:
+    - "Only when both P and Q are true"
+    - "Only when P is true and Q is false"
+    - "Whenever at least one of them is true"
+    - "When P and Q have the same truth value"
+  answer: D
+  explain: |
+    The biconditional, "P if and only if Q," is true when P and Q match: both true or both false. It is false when they differ.
+  why:
+    A: "Both false also makes the biconditional true."
+    B: "Different values make the biconditional false."
+    C: "This describes OR, which is true even when the values differ."
+
+# ---------------------------------------------------------------- fol-syntax
+- id: fol-syntax-01
+  skill: fol-syntax
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    In the predicate logic sentence MemberOf(Ava, Robotics), what is MemberOf?
+  options:
+    - "A constant"
+    - "A variable"
+    - "A predicate"
+    - "A quantifier"
+  answer: C
+  explain: |
+    MemberOf is a predicate: a relation that is true or false of its arguments. Ava and Robotics are constants naming specific objects, and the whole sentence is true if Ava is a member of the Robotics club.
+  why:
+    A: "Constants name specific objects, such as Ava and Robotics."
+    B: "Variables, such as x, stand for any object."
+    D: "The quantifiers are 'for all' and 'there exists.'"
+
+- id: fol-syntax-02
+  skill: fol-syntax
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In predicate logic, AdvisorOf(Robotics) refers to Ms. Park, the club's advisor. What kind of element is AdvisorOf?
+  options:
+    - "A function, because it returns an object rather than true or false"
+    - "A predicate, because it is written with parentheses"
+    - "A constant, because it always means the same thing"
+    - "A quantifier, because it ranges over every club"
+  answer: A
+  explain: |
+    A function maps objects to an object: AdvisorOf(Robotics) is a person, Ms. Park, not a truth value. A predicate, by contrast, produces true or false, as in Advises(MsPark, Robotics). Both are written with parentheses, so the test is what they produce.
+  why:
+    B: "Parentheses appear on both predicates and functions; a predicate would produce true or false."
+    C: "A constant names one object directly; AdvisorOf takes an argument."
+    D: "Quantifiers are 'for all' and 'there exists,' which bind variables."
+
+- id: fol-syntax-03
+  skill: fol-syntax
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    What is the arity of the predicate in Teaches(MsPark, Math, Monday)?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    Arity is the number of arguments a predicate or function takes. Teaches here has three, a teacher, a subject, and a day, so its arity is 3. Student(x) has arity 1, and MemberOf(x, y) has arity 2.
+  why:
+    A: "Arity 1 would mean a single argument, as in Student(Ava)."
+    B: "This misses one of the three arguments."
+    D: "This counts the predicate's name as an argument."
+  verify: 'len("MsPark, Math, Monday".split(","))'
+
+- id: fol-syntax-04
+  skill: fol-syntax
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is predicate logic?
+  options:
+    - "Logic that works only with whole statements labeled P, Q, and R"
+    - "Logic that uses predicates, variables, and quantifiers to describe objects"
+    - "A programming language used only for building websites"
+    - "A method for predicting future events from data"
+  answer: B
+  explain: |
+    Predicate logic, also called first-order logic, extends propositional logic with constants, variables, predicates, functions, and the quantifiers "for all" and "there exists." It can state facts about specific objects, such as MemberOf(Ava, Robotics), and general rules, such as $$\forall x\, (\text{Student}(x) \rightarrow \text{TakesMath}(x))$$.
+  why:
+    A: "Working only with whole statements is propositional logic."
+    C: "Predicate logic is a formal logic, not a web programming language."
+    D: "Predicting from data is statistics and machine learning, despite the similar word."
+
+- id: fol-syntax-05
+  skill: fol-syntax
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In predicate logic, what does the symbol $$\forall$$ mean?
+  options:
+    - "There exists"
+    - "Not"
+    - "If and only if"
+    - "For all"
+  answer: D
+  explain: |
+    $$\forall$$, the universal quantifier, means "for all" or "every": $$\forall x\, \text{Mammal}(x)$$ says that everything is a mammal. The existential quantifier $$\exists$$ means "there exists" or "some."
+  why:
+    A: "'There exists' is the existential quantifier, written as a backward E."
+    B: "'Not' is the negation connective."
+    C: "'If and only if' is the biconditional, written as a two-headed arrow."
+
+- id: fol-syntax-06
+  skill: fol-syntax
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which English sentence does $$\forall x\, (\text{Student}(x) \rightarrow \text{TakesMath}(x))$$ express?
+  options:
+    - "Every student takes math"
+    - "Some student takes math"
+    - "Everyone is a student who takes math"
+    - "Only students take math"
+  answer: A
+  explain: |
+    The universal quantifier with an implication reads "for every x, if x is a student, then x takes math," which is "Every student takes math." It says nothing about anyone who is not a student.
+  why:
+    B: "'Some' would need the existential quantifier with AND."
+    C: "That would use AND instead of the implication, claiming that everything is a student."
+    D: "'Only students take math' reverses the direction: TakesMath(x) implies Student(x)."
+
+- id: fol-syntax-07
+  skill: fol-syntax
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which English sentence does $$\exists x\, (\text{Student}(x) \land \text{InClub}(x, \text{Chess}))$$ express?
+  options:
+    - "Every student is in the chess club"
+    - "At least one student is in the chess club"
+    - "No student is in the chess club"
+    - "Everyone in the chess club is a student"
+  answer: B
+  explain: |
+    The existential quantifier with AND reads "there exists an x that is a student and is in the chess club," so at least one student belongs. Existential statements pair with AND, while universal statements pair with implication (lesson 7.4).
+  why:
+    A: "'Every' would need the universal quantifier with an implication."
+    C: "'No student' would be the negation of this sentence."
+    D: "That would be a universal statement: InClub(x, Chess) implies Student(x) for every x."
+
+- id: fol-syntax-08
+  skill: fol-syntax
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How is predicate logic used in AI systems?
+  options:
+    - "To train neural networks by adjusting their weights"
+    - "To compress images before they are stored"
+    - "To sample the next token in a language model"
+    - "To store facts and rules that reasoners use to derive conclusions"
+  answer: D
+  explain: |
+    Predicate logic gives AI a precise language for knowledge: facts such as MemberOf(Ava, Robotics) and rules such as "every student takes math." Expert systems, logic programming languages such as Prolog, automated theorem provers, and planners use such knowledge bases to derive new facts with certainty.
+  why:
+    A: "Adjusting weights is gradient descent, a numerical method."
+    B: "Image compression is unrelated to logical reasoning."
+    C: "Sampling tokens is a probabilistic process in language models."
+
+- id: fol-syntax-09
+  skill: fol-syntax
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In the sentence Likes(x, Pizza), which element is a variable?
+  options:
+    - "x"
+    - "Pizza"
+    - "Likes"
+    - "The parentheses"
+  answer: A
+  explain: |
+    A variable, such as x, stands for any object and is usually bound by a quantifier. Pizza is a constant naming one specific thing, and Likes is a predicate.
+  why:
+    B: "Pizza names one specific object, so it is a constant."
+    C: "Likes is a predicate that is true or false of its arguments."
+    D: "Parentheses are punctuation that holds the arguments."
+
+- id: fol-syntax-10
+  skill: fol-syntax
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Using the functions ClubOf (a student's club) and AdvisorOf (a club's advisor), which sentence says "The advisor of Ava's club teaches math"?
+  options:
+    - "Teaches(Ava, Math) ∧ AdvisorOf(Ava)"
+    - "AdvisorOf(Teaches(ClubOf(Ava), Math))"
+    - "Teaches(AdvisorOf(ClubOf(Ava)), Math)"
+    - "ClubOf(AdvisorOf(Ava)) ∧ Teaches(Math)"
+  answer: C
+  explain: |
+    Work from the inside out: ClubOf(Ava) is Ava's club, AdvisorOf of that club is its advisor, and Teaches(advisor, Math) states that the advisor teaches math. Functions can be nested to name objects, and the predicate on the outside makes the true-or-false claim.
+  why:
+    A: "This says Ava teaches math and treats a function as if it were a claim."
+    B: "A predicate cannot sit inside a function, because a function needs an object, not a truth value."
+    D: "This applies the functions in the wrong order and gives Teaches only one argument."
+
+- id: fol-syntax-11
+  skill: fol-syntax
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    In the logic programming language Prolog, ":-" means "if" and a comma means "and." What does this rule state?
+
+    ```text
+    grandparent(X, Z) :- parent(X, Y), parent(Y, Z).
+    ```
+  options:
+    - "X is a parent of Z whenever Y is a grandparent of both"
+    - "X is Z's grandparent if X is a parent of a parent of Z"
+    - "Every person has exactly two grandparents in the database"
+    - "Y is a grandparent of X and also a grandparent of Z"
+  answer: B
+  explain: |
+    The rule says X is a grandparent of Z if X is a parent of some Y and Y is a parent of Z. In predicate logic it is $$\forall x\, \forall y\, \forall z\, ((\text{Parent}(x, y) \land \text{Parent}(y, z)) \rightarrow \text{Grandparent}(x, z))$$, written in Prolog's compact style.
+  why:
+    A: "This reverses the roles; the rule concludes grandparent, not parent."
+    C: "The rule defines a relationship; it does not count grandparents."
+    D: "Y is the middle generation, a child of X and a parent of Z."
+
+- id: fol-syntax-12
+  skill: fol-syntax
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In predicate logic, which of these is a constant?
+  options:
+    - "Robotics"
+    - "x"
+    - "MemberOf"
+    - "∃"
+  answer: A
+  explain: |
+    A constant names one specific object, such as Robotics, Ava, or the number 3. Here x is a variable, MemberOf is a predicate, and ∃ is a quantifier.
+  why:
+    B: "x is a variable that can stand for any object."
+    C: "MemberOf is a predicate, a relation that is true or false."
+    D: "This symbol is the existential quantifier, meaning 'there exists.'"

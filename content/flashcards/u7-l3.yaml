@@ -1,0 +1,48 @@
+# Lesson 7.3 flashcards
+
+- id: fc-predicate-logic
+  term: Predicate Logic
+  def: Logic (also called first-order logic) that extends propositional logic with constants, variables, predicates, functions, and the quantifiers "for all" and "there exists," so it can state facts about objects and general rules.
+  example: "Every student takes math: for all x, Student(x) implies TakesMath(x)."
+  skill: fol-syntax
+  virginia: true
+
+- id: fc-proposition-connectives
+  term: Propositions and connectives
+  def: A proposition is a statement that is true or false. Connectives are not (¬), and (∧), inclusive or (∨), if-then (→), and if and only if (a two-headed arrow). Truth tables have 2ⁿ rows for n variables.
+  skill: prop-logic
+
+- id: fc-implication
+  term: When an implication is false
+  def: P → Q is false only when P is true and Q is false. A false condition makes it vacuously true. The biconditional, P if and only if Q, is true when P and Q have the same value.
+  skill: prop-logic
+
+- id: fc-contrapositive
+  term: Converse, inverse, contrapositive
+  def: For P → Q, the converse is Q → P, the inverse is ¬P → ¬Q, and the contrapositive is ¬Q → ¬P. Only the contrapositive is equivalent to the original; the converse and inverse match each other.
+  skill: prop-logic
+
+- id: fc-de-morgan
+  term: De Morgan's laws
+  def: ¬(P ∧ Q) ≡ ¬P ∨ ¬Q and ¬(P ∨ Q) ≡ ¬P ∧ ¬Q. Negate each part and flip AND and OR. Also P → Q ≡ ¬P ∨ Q, and ¬(P → Q) ≡ P ∧ ¬Q.
+  skill: prop-logic
+
+- id: fc-prop-logic-limits
+  term: Limits of propositional logic
+  def: Each proposition is an indivisible unit with no variables or quantifiers, so general rules about many objects need a separate proposition for every case. Predicate logic fixes this.
+  skill: prop-logic
+
+- id: fc-fol-parts
+  term: Constants, variables, predicates, functions
+  def: Constants name objects (Ava); variables stand for any object (x); predicates are true or false (MemberOf(Ava, Robotics)); functions return objects (AdvisorOf(Robotics) is Ms. Park). Arity is the number of arguments.
+  skill: fol-syntax
+
+- id: fc-quantifiers
+  term: Quantifiers
+  def: ∀ (for all) pairs with an implication, as in every student takes math. ∃ (there exists, at least one) pairs with AND, as in some student is in the chess club.
+  skill: fol-syntax
+
+- id: fc-logic-in-ai
+  term: How predicate logic is used in AI
+  def: Knowledge bases and expert systems, logic programming (Prolog), automated theorem provers, planning, and ontologies. Logic is precise and explainable but brittle, and it cannot express uncertainty.
+  skill: fol-syntax
