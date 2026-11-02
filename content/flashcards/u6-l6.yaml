@@ -1,0 +1,47 @@
+# Lesson 6.6 flashcards
+
+- id: fc-hallucination
+  term: Hallucination
+  def: Output from an AI model that sounds confident and plausible but is false, made up, or unsupported by its sources, such as an invented statistic or a fake citation. NIST calls it confabulation.
+  skill: genai-limits
+  virginia: true
+
+- id: fc-llm-strengths
+  term: What LLMs do well
+  def: Writing and rewriting, summarizing, translating, explaining, coding, extracting details into tables, brainstorming, and conversation. Fluency is not accuracy, so important output needs checking.
+  skill: llm-capabilities
+
+- id: fc-knowledge-cutoff
+  term: Knowledge cutoff
+  def: The date after which a model's training data contains no information. The model knows nothing later unless retrieval or a search tool supplies it, and it may answer with outdated facts.
+  skill: llm-capabilities
+
+- id: fc-session-memory
+  term: Memory across sessions
+  def: By default each new conversation starts with an empty context window, so an LLM remembers nothing from earlier chats. Memory features save notes and insert them into new prompts; chats never change the weights.
+  skill: llm-capabilities
+
+- id: fc-nondeterminism
+  term: Non-determinism and prompt sensitivity
+  def: Sampling makes the same prompt give different answers, so one test run proves little. Small rewordings can also change answers. Test many phrasings and ground answers in trusted sources.
+  skill: genai-limits
+
+- id: fc-genai-costs
+  term: Bias, cost, and energy
+  def: LLMs can reproduce stereotypes from their training text. Training and running large models are costly and use large amounts of electricity; NIST lists environmental impacts as a generative AI risk.
+  skill: genai-limits
+
+- id: fc-ai-copyright
+  term: AI and copyright (U.S.)
+  def: The U.S. Copyright Office's 2023 guidance protects only material that is the product of human creativity, not expression an AI determined, and requires disclosing AI-generated content. Whether training on copyrighted works is lawful is unsettled.
+  skill: genai-limits
+
+- id: fc-air-canada
+  term: Moffatt v. Air Canada (2024)
+  def: A Canadian tribunal held Air Canada liable after its chatbot gave wrong bereavement-fare information, rejecting the claim that the chatbot was a separate legal entity. Companies answer for their AI tools.
+  skill: genai-limits
+
+- id: fc-tasks-need-tools
+  term: Tasks that need tools
+  def: Exact arithmetic, exact letter or word counts, recent facts, and exact citations are unreliable for an LLM alone. Use calculators or code, search or retrieval, source checks, and human review for high-stakes decisions.
+  skill: llm-capabilities

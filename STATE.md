@@ -34,7 +34,8 @@ Gate + proxy auth, design tokens (Figtree, JetBrains Mono), app shell, lesson re
 | u3 (DA) | l1-l8 | 194 | 69 | done, all lessons 0 errors 0 warnings, verified |
 | u4 (TL) | l1-l9 | 213 | 81 | done, all lessons 0 errors 0 warnings, verified (SQL against the sample DBs, Python by execution, R by reasoning) |
 | u5 (ML) | l1-l10 | 221 | 83 | done, all lessons 0 errors 0 warnings, verified |
-| u6-u8 | | | | to do, in order u6-l1 onward |
+| u6 (AI) | l1-l6 | 174 | 77 | done, all lessons 0 errors 0 warnings, verified |
+| u7-u8 | | | | to do, next is u7-l1 (perception and big ideas), then u7-l2 ... u7-l8, u8-l1 ... u8-l7 |
 
 Full `--check` (no filter) at fb5427c: 0 errors, 1 warning (Virginia cards for terms in later units, expected until those units exist).
 
@@ -47,4 +48,6 @@ Order of work: u1-l2 ... u1-l8, u2 (l1, l2, l4-l8), u3, u4 (incl. l9), u5, u6, u
 - R cannot be executed locally; R snippets are checked by reasoning only.
 - Visual QA to-do: the neuron-playground widget hint (src/components/widgets/ml-widgets.tsx) writes "w1·x1" with a middot; change to the × sign during the QA pass and scan src for any other middots.
 - Facts not yet verified, so not used: Minsky and Papert's 1969 book Perceptrons (verify before citing it in u6-l1 history).
+- Pronoun pass to do before release: scan content/ for he/his/him/she/her used for real or example people (e.g., Turing in u6-l1 lesson and ai-definitions-13 options) and rewrite with names or they/them.
+- Add the new research/facts-extra.md sources (PubMed AlphaGo, Cornell Chronicle 2019, arXiv 2108.07258, copyright.gov/ai, govinfo FR 2023-05321) to content/reference/sources.md.
 - Flashcard ids already taken that later units must not reuse: fc-gan, fc-autoencoder, fc-cnn, fc-rnn, fc-lstm (u5-l10), fc-training-loop (u4-l7).
