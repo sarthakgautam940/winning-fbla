@@ -1,0 +1,67 @@
+# Lesson 6.1 flashcards
+
+- id: fc-artificial-intelligence
+  term: Artificial Intelligence
+  def: The field of computer science that builds systems able to perform tasks that normally require human intelligence, such as understanding language, recognizing images, reasoning, learning, and making decisions.
+  skill: ai-definitions
+  virginia: true
+
+- id: fc-aima-approaches
+  term: Four approaches to AI (Russell and Norvig)
+  def: Thinking humanly (cognitive modeling), thinking rationally (laws of thought), acting humanly (the Turing test), and acting rationally (the rational agent, the textbook's focus).
+  skill: ai-definitions
+
+- id: fc-rational-agent
+  term: Rational agent
+  def: An agent that chooses the action expected to maximize its performance measure, given what it has perceived and its built-in knowledge. Rational is not all-knowing.
+  skill: ai-definitions
+
+- id: fc-ai-nesting
+  term: AI, machine learning, deep learning
+  def: Nested fields. AI is any technique for tasks that need intelligence; machine learning is AI that learns from data; deep learning is machine learning with many-layered neural networks; today's generative AI is built on deep learning.
+  skill: ai-definitions
+
+- id: fc-symbolic-connectionist
+  term: Symbolic vs. connectionist AI
+  def: Symbolic AI stores knowledge as readable rules and reasons with logic (expert systems). Connectionist AI learns from data with networks of simple connected units (neural networks).
+  skill: ai-definitions
+
+- id: fc-ani-agi-asi
+  term: Narrow, general, and super AI
+  def: ANI performs specific tasks and is the only kind that exists, generative models included. AGI would match humans across any intellectual task (hypothetical). ASI would surpass humans in every area (theoretical).
+  skill: ai-definitions
+
+- id: fc-ai-functional-types
+  term: Reactive machine, limited memory, theory of mind, self-aware
+  def: Reactive machines have no memory (Deep Blue). Limited-memory AI uses recent data and is most of today's AI. Theory of mind would understand emotions and intentions (not built). Self-aware AI would be conscious (hypothetical).
+  skill: ai-definitions
+
+- id: fc-turing-test
+  term: Turing test (imitation game)
+  def: Proposed by Alan Turing in 1950 as the imitation game, in which an interrogator communicating in writing tries to tell a machine from a person. It judges behavior, not understanding; Turing never called it the Turing test.
+  skill: ai-definitions
+
+- id: fc-dartmouth
+  term: Dartmouth workshop (1956)
+  def: The summer 1956 workshop often called the birth of AI as a field. The term "artificial intelligence" first appeared in its 1955 funding proposal by McCarthy, Minsky, Rochester, and Shannon; McCarthy chose the name.
+  skill: ai-history
+
+- id: fc-eliza
+  term: ELIZA (1966)
+  def: Joseph Weizenbaum's early MIT program that held typed conversations by matching keywords and filling in scripted replies. People credited it with understanding it did not have.
+  skill: ai-history
+
+- id: fc-deep-blue
+  term: Deep Blue (1997)
+  def: IBM's chess computer. It lost to Garry Kasparov 4 to 2 in 1996, then won the 1997 rematch 3.5 to 2.5, the first match win by a computer over a reigning world champion. The classic reactive machine.
+  skill: ai-history
+
+- id: fc-alphago
+  term: AlphaGo (2016)
+  def: DeepMind's Go program, which beat champion Lee Sedol 4 to 1 in Seoul in March 2016. Its networks learned from human expert games and from reinforcement learning through self-play.
+  skill: ai-history
+
+- id: fc-ai-winters
+  term: AI winters
+  def: Periods of reduced funding and interest after hype outran results. First, about 1974 to 1980 (Lighthill report, funding cuts); second, from about 1987 into the 1990s (Lisp machine collapse, brittle expert systems). The term dates from 1984.
+  skill: ai-history

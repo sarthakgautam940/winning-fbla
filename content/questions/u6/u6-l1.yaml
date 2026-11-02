@@ -1,0 +1,587 @@
+# Lesson 6.1: What AI is, and how it got here
+
+# ---------------------------------------------------------------- ai-definitions
+- id: ai-definitions-01
+  skill: ai-definitions
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Which statement best defines artificial intelligence?
+  options:
+    - "Any computer program that stores and retrieves large amounts of data"
+    - "Robots built to look and move like human beings"
+    - "Computer systems that perform tasks that normally need human intelligence"
+    - "Software that follows every instruction exactly as it was written"
+  answer: C
+  explain: |
+    AI is the field of building computer systems that can do things that normally require human intelligence, such as understanding language, recognizing images, reasoning, learning, and making decisions. It is defined by those abilities, not by data size or by looking human.
+  why:
+    A: "Storing and retrieving data is what a database does; it needs no intelligence."
+    B: "Robots are one application of AI, and most AI has no body at all."
+    D: "Following instructions exactly describes every ordinary program, intelligent or not."
+
+- id: ai-definitions-02
+  skill: ai-definitions
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which of these systems counts as artificial intelligence without being machine learning?
+  options:
+    - "A chess program that chooses moves using rules written by experts"
+    - "A spam filter trained on thousands of labeled emails"
+    - "An image classifier built from a convolutional neural network"
+    - "A chatbot built on a large language model trained on text"
+  answer: A
+  explain: |
+    A program that follows hand-written rules can act intelligently, so it is AI, but it does not learn from data, so it is not machine learning. The spam filter learns from examples (machine learning), the image classifier is deep learning, and the chatbot is generative AI built on deep learning.
+  why:
+    B: "Learning from labeled emails is machine learning."
+    C: "A convolutional neural network is deep learning, which is part of machine learning."
+    D: "A large language model learns from data, so it is machine learning, and deep learning too."
+
+- id: ai-definitions-03
+  skill: ai-definitions
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A chatbot can write essays, code, and poems, but it cannot learn to drive a car or carry out tasks outside what it was trained for. By capability, which type of AI is it?
+  options:
+    - "Artificial general intelligence (AGI)"
+    - "Artificial superintelligence (ASI)"
+    - "Self-aware AI"
+    - "Artificial narrow intelligence (ANI)"
+  answer: D
+  explain: |
+    Every AI system that exists today, including generative models that handle many kinds of writing, is artificial narrow intelligence: it performs the tasks it was built and trained for and cannot learn and reason across any task the way a person can. General AI would handle any intellectual task a human can; it remains hypothetical.
+  why:
+    A: "General intelligence would learn and reason across any task, like a person; no current system does."
+    B: "Superintelligence would surpass humans in every area; it is purely theoretical."
+    C: "Self-aware AI is a hypothetical functional type, not a capability level, and no system has consciousness."
+
+- id: ai-definitions-04
+  skill: ai-definitions
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A self-driving car keeps track of where nearby cars were over the last few seconds to predict where they will go next. Which functional type of AI does this describe?
+  options:
+    - "Reactive machine"
+    - "Limited memory"
+    - "Theory of mind"
+    - "Self-aware"
+  answer: B
+  explain: |
+    Limited-memory AI uses recent observations, held for a short time, along with what it learned from data, to make decisions. Most AI in use today, including self-driving systems and chatbots that track a conversation, is of this type. A reactive machine would respond only to the present moment, with no memory at all.
+  why:
+    A: "A reactive machine has no memory of the past; it reacts only to the current input."
+    C: "Theory-of-mind AI would understand people's beliefs and emotions; it has not been built."
+    D: "Self-aware AI would have consciousness; it is hypothetical."
+
+- id: ai-definitions-05
+  skill: ai-definitions
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What does the Turing test check?
+  options:
+    - "Whether a judge can tell a machine from a person by their conversation"
+    - "Whether a machine can solve math problems faster than a person"
+    - "Whether a machine is conscious and aware of its own thoughts"
+    - "Whether a program contains any errors before it is released"
+  answer: A
+  explain: |
+    In the test, a judge holds text conversations with a hidden person and a hidden machine. If the judge cannot reliably tell which is which, the machine passes. The test judges behavior, how human the conversation seems, not whether the machine truly understands or is conscious.
+  why:
+    B: "Speed at math is not what the test measures."
+    C: "The test looks only at behavior; it cannot detect consciousness."
+    D: "Checking a program for errors is software testing, not the Turing test."
+
+- id: ai-definitions-06
+  skill: ai-definitions
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Russell and Norvig's textbook Artificial Intelligence: A Modern Approach groups definitions of AI into four approaches. Which approach does the Turing test represent?
+  options:
+    - "Thinking humanly"
+    - "Thinking rationally"
+    - "Acting humanly"
+    - "Acting rationally"
+  answer: C
+  explain: |
+    The Turing test asks whether a machine's behavior, its conversation, cannot be told apart from a person's, so it belongs to acting humanly. Thinking humanly models how people actually think, thinking rationally follows the laws of logic, and acting rationally means choosing the best expected action, the rational-agent approach the book adopts.
+  why:
+    A: "Thinking humanly is cognitive modeling of how the human mind works; the test checks behavior only."
+    B: "Thinking rationally is the laws-of-thought approach based on logic."
+    D: "Acting rationally is the rational-agent approach, which aims for the best expected outcome, not human-like behavior."
+
+- id: ai-definitions-07
+  skill: ai-definitions
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In the rational-agent approach to AI, what makes an agent rational?
+  options:
+    - "It always achieves the best possible outcome in every situation"
+    - "It chooses the action expected to maximize its performance measure"
+    - "It reasons through problems the same way a human expert would"
+    - "It follows only rules that were proven correct with formal logic"
+  answer: B
+  explain: |
+    Given everything it has perceived so far and the knowledge it was built with, a rational agent selects the action expected to maximize its performance measure. Rational is not the same as all-knowing: with incomplete information, a rational choice can still turn out badly.
+  why:
+    A: "Always getting the best outcome would require knowing everything in advance; rationality is about the best expected outcome."
+    C: "Copying how human experts reason is the thinking-humanly approach."
+    D: "Relying only on proven logical rules is the laws-of-thought approach."
+
+- id: ai-definitions-08
+  skill: ai-definitions
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does connectionist AI differ from symbolic AI?
+  options:
+    - "It encodes knowledge as rules that people write and can read"
+    - "It reasons only with formal logic and never with probability"
+    - "It can be used only for playing board games such as chess"
+    - "It learns patterns from data using networks of simple connected units"
+  answer: D
+  explain: |
+    Symbolic AI represents knowledge as human-readable symbols and rules and reasons with logic, as expert systems do. Connectionist AI, the tradition behind neural networks, learns its knowledge from examples and stores it as connection weights spread across many simple units.
+  why:
+    A: "Hand-written, readable rules describe symbolic AI."
+    B: "Formal logic is the symbolic tradition's tool, and connectionist systems are not limited to it."
+    C: "Neither tradition is limited to games; connectionist AI powers vision, speech, and language systems."
+
+- id: ai-definitions-09
+  skill: ai-definitions
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is artificial general intelligence (AGI)?
+  options:
+    - "Hypothetical AI that could match human ability across any intellectual task"
+    - "AI built to perform one specific task, such as recommending songs"
+    - "AI that already powers today's voice assistants and chatbots"
+    - "Software that has been certified safe by a government agency"
+  answer: A
+  explain: |
+    AGI would understand, learn, and reason across any intellectual task at a human level, adapting to new problems the way people do. It does not exist yet; every current system, voice assistants and chatbots included, is narrow AI.
+  why:
+    B: "Performing one specific task describes narrow AI."
+    C: "Today's assistants and chatbots are narrow AI."
+    D: "AGI is about capability, not certification."
+
+- id: ai-definitions-10
+  skill: ai-definitions
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    IBM's Deep Blue, the chess computer that beat Garry Kasparov, is the standard example of which functional type of AI?
+  options:
+    - "Limited memory"
+    - "Reactive machine"
+    - "Theory of mind"
+    - "Self-aware"
+  answer: B
+  explain: |
+    A reactive machine responds only to the situation in front of it, using fixed programming, and keeps no memories of past experience to learn from. Deep Blue evaluated the board in front of it and searched possible moves, which is why guides use it as the classic reactive machine.
+  why:
+    A: "Limited-memory AI draws on recent experience; Deep Blue responded only to the current board."
+    C: "Theory-of-mind AI would model people's beliefs and emotions; it has not been built."
+    D: "Self-aware AI is hypothetical."
+
+- id: ai-definitions-11
+  skill: ai-definitions
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Modern AI systems depend on which three ingredients?
+  options:
+    - "Robots, sensors, and the internet"
+    - "Rules, experts, and logic"
+    - "Data, algorithms, and computing power"
+    - "Programmers, laptops, and software licenses"
+  answer: C
+  explain: |
+    AI systems learn patterns from data, follow algorithms that define how they learn and decide, and need computing power to train and run. The quality and quantity of the training data strongly shape the results.
+  why:
+    A: "Robots and sensors are uses of AI, not what all AI depends on."
+    B: "Rules and experts describe one older style of AI, expert systems."
+    D: "These are general computing resources, not the core ingredients of AI."
+
+- id: ai-definitions-12
+  skill: ai-definitions
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which statement about today's AI is accurate?
+  options:
+    - "It is conscious and has feelings, like a person"
+    - "It is objective, because it runs on mathematics"
+    - "It can repeat biases found in its training data"
+    - "It is expected to replace every human job"
+  answer: C
+  explain: |
+    AI systems learn patterns from data, so if the data reflects unfair patterns, the model can reproduce them. Today's AI matches patterns without consciousness or feelings, and it is more likely to change and assist jobs than to replace all of them.
+  why:
+    A: "Current AI matches patterns; it has no consciousness or feelings."
+    B: "Running on math does not make a model fair; it learns whatever patterns its data contains."
+    D: "AI is more likely to change jobs and assist workers than to replace all of them."
+
+- id: ai-definitions-13
+  skill: ai-definitions
+  tier: champion
+  type: recall
+  use: quiz
+  stem: |
+    Which statement about Alan Turing's 1950 proposal is accurate?
+  options:
+    - "He named it the Turing test and said machines would think by 2000"
+    - "He required the machine to prove to the judge that it was conscious"
+    - "He replaced 'Can machines think?' with a test of solving equations"
+    - "He called it the imitation game; the name Turing test came later"
+  answer: D
+  explain: |
+    Turing's paper "Computing Machinery and Intelligence" opens with "Can machines think?" and replaces it with the imitation game, in which an interrogator communicating only in writing tries to tell two hidden players apart before a machine takes one player's place. He never used the phrase "Turing test," and his prediction was that in about fifty years an average interrogator would have no more than a 70 percent chance of a correct identification after five minutes.
+  why:
+    A: "Turing never used the name, and his prediction was about interrogators' accuracy, not about machines thinking."
+    B: "The game judges only the written answers; it does not ask for proof of consciousness."
+    C: "The replacement was a conversational game, not a test of solving equations."
+
+- id: ai-definitions-14
+  skill: ai-definitions
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What would "theory of mind" AI be able to do?
+  options:
+    - "Understand people's emotions, beliefs, and intentions"
+    - "Respond to the current input with no memory at all"
+    - "Use recent observations to make short-term decisions"
+    - "Store every fact in the world in a single database"
+  answer: A
+  explain: |
+    Theory-of-mind AI would model what other minds believe, want, and feel, and adjust its behavior to them. It has not been developed. Reactive machines have no memory, and limited-memory systems, most of today's AI, use recent data.
+  why:
+    B: "No memory at all describes a reactive machine."
+    C: "Using recent observations describes limited-memory AI, the kind in use today."
+    D: "A huge database is not understanding; theory of mind is about modeling other minds."
+
+- id: ai-definitions-15
+  skill: ai-definitions
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A warehouse robot uses the last few seconds of sensor readings to steer around moving workers, and it does nothing except move boxes. Which pair of labels describes it?
+  options:
+    - "General AI by capability, limited memory by function"
+    - "Narrow AI by capability, limited memory by function"
+    - "Narrow AI by capability, reactive machine by function"
+    - "Superintelligence by capability, theory of mind by function"
+  answer: B
+  explain: |
+    The robot does one job, so by capability it is narrow AI, like every AI system that exists today. It uses recent sensor history to decide what to do, so by function it is limited memory, not a purely reactive machine. The two schemes classify different things, so every system gets one label from each.
+  why:
+    A: "Doing one job is narrow intelligence, not general."
+    C: "A reactive machine keeps no memory, but this robot uses the last few seconds of readings."
+    D: "Neither superintelligence nor theory-of-mind AI exists."
+
+- id: ai-definitions-16
+  skill: ai-definitions
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is artificial superintelligence (ASI)?
+  options:
+    - "AI that can perform exactly one task very well"
+    - "Any AI system that runs on a supercomputer"
+    - "AI that has won a Turing test competition"
+    - "Theoretical AI that would surpass humans in every area"
+  answer: D
+  explain: |
+    ASI is a theoretical level of AI that would exceed human ability in essentially every field, including reasoning and creativity. It does not exist, and researchers debate both whether it is possible and how it could be kept safe.
+  why:
+    A: "Excelling at one task describes narrow AI."
+    B: "The hardware a system runs on does not define a capability level."
+    C: "Winning a conversation contest would show human-like behavior, not intelligence beyond humans."
+
+# ---------------------------------------------------------------- ai-history
+- id: ai-history-01
+  skill: ai-history
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Who proposed the "imitation game" in a 1950 paper that asked "Can machines think?"
+  options:
+    - "Alan Turing"
+    - "John McCarthy"
+    - "Frank Rosenblatt"
+    - "Joseph Weizenbaum"
+  answer: A
+  explain: |
+    Alan Turing's 1950 paper "Computing Machinery and Intelligence" proposed the imitation game, now known as the Turing test.
+  why:
+    B: "John McCarthy named the field in the 1955 Dartmouth proposal."
+    C: "Frank Rosenblatt introduced the perceptron in 1958."
+    D: "Joseph Weizenbaum built the ELIZA program in the 1960s."
+
+- id: ai-history-02
+  skill: ai-history
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which list puts these milestones in chronological order?
+  options:
+    - "Deep Blue beats Kasparov; Dartmouth workshop; ChatGPT released; AlexNet wins ImageNet"
+    - "Dartmouth workshop; AlexNet wins ImageNet; Deep Blue beats Kasparov; ChatGPT released"
+    - "Dartmouth workshop; Deep Blue beats Kasparov; AlexNet wins ImageNet; ChatGPT released"
+    - "Dartmouth workshop; Deep Blue beats Kasparov; ChatGPT released; AlexNet wins ImageNet"
+  answer: C
+  explain: |
+    The Dartmouth workshop met in 1956, Deep Blue beat Kasparov in 1997, AlexNet won the ImageNet challenge in 2012, and ChatGPT was released in November 2022.
+  why:
+    A: "Deep Blue (1997) came four decades after the Dartmouth workshop (1956)."
+    B: "AlexNet (2012) came after Deep Blue (1997), not before."
+    D: "ChatGPT (2022) came a decade after AlexNet (2012)."
+  verify: |
+    events = {"Dartmouth workshop": 1956, "Deep Blue beats Kasparov": 1997, "AlexNet wins ImageNet": 2012, "ChatGPT released": 2022}
+    ans = "; ".join(sorted(events, key=events.get))
+
+- id: ai-history-03
+  skill: ai-history
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    What pattern lies behind both AI winters?
+  options:
+    - "Computers became too expensive for universities to buy"
+    - "Governments banned AI research for safety reasons"
+    - "Researchers proved that machines can never learn"
+    - "Promises outran results, and funding and interest collapsed"
+  answer: D
+  explain: |
+    Each winter followed a burst of excitement in which predictions ran far ahead of what systems could do. When results disappointed, funders and companies pulled back: after the Lighthill report and U.S. funding cuts in the 1970s, and after the collapse of the Lisp machine market and the limits of expert systems in the late 1980s.
+  why:
+    A: "Cost was not the cause; in the second winter, cheaper general-purpose computers actually replaced specialized AI machines."
+    B: "No government banned AI research; funding was cut, not outlawed."
+    C: "No one proved that machines cannot learn; one book showed the limits of single-layer perceptrons, which multilayer networks later overcame."
+
+- id: ai-history-04
+  skill: ai-history
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Why is the 1956 Dartmouth summer workshop important in AI history?
+  options:
+    - "It produced the first computer to beat a chess champion"
+    - "It is often called the birth of AI as a research field"
+    - "It introduced the first neural network trained by backpropagation"
+    - "It released the first chatbot to the general public"
+  answer: B
+  explain: |
+    The Dartmouth Summer Research Project on Artificial Intelligence, held in the summer of 1956, brought together the researchers who launched the field, and it is often called the birth of AI. The name "artificial intelligence" first appeared in the 1955 proposal for the workshop.
+  why:
+    A: "Beating a world chess champion was Deep Blue, in 1997."
+    C: "Backpropagation was popularized in 1986."
+    D: "Programs such as ELIZA came in the 1960s, and ChatGPT's public release was in 2022."
+
+- id: ai-history-05
+  skill: ai-history
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Where did the term "artificial intelligence" first appear?
+  options:
+    - "In Alan Turing's 1950 paper on the imitation game"
+    - "In the closing report of the 1956 Dartmouth workshop"
+    - "In a 1955 proposal to fund a summer workshop at Dartmouth"
+    - "In IBM's 1997 announcement of Deep Blue's victory"
+  answer: C
+  explain: |
+    John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon wrote "A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence," dated August 31, 1955, and McCarthy chose the name. The workshop itself met the next summer.
+  why:
+    A: "Turing's paper asked whether machines can think, but it did not use the term."
+    B: "This is the common error: the term came from the 1955 funding proposal, before the workshop met."
+    D: "The term was decades old by 1997."
+
+- id: ai-history-06
+  skill: ai-history
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    What happened in the 1997 chess match between IBM's Deep Blue and Garry Kasparov?
+  options:
+    - "Deep Blue won the six-game match, 3.5 to 2.5"
+    - "Kasparov won the match, 4 games to 2"
+    - "Deep Blue won all six games without a draw"
+    - "The match ended in a 3 to 3 tie"
+  answer: A
+  explain: |
+    In the May 1997 rematch in New York, Deep Blue won 3.5 to 2.5, with two wins, one loss, and three draws: the first match victory by a computer over a reigning world chess champion under standard tournament conditions. In their first match, in 1996, Kasparov had won 4 to 2.
+  why:
+    B: "Kasparov's 4 to 2 win was the 1996 match."
+    C: "In 1997 Deep Blue also lost one game and drew three."
+    D: "The 1997 match had a winner, Deep Blue."
+
+- id: ai-history-07
+  skill: ai-history
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which development helped bring on the second AI winter, beginning around 1987?
+  options:
+    - "The Lighthill report's criticism of UK research"
+    - "The collapse of the market for specialized Lisp machines"
+    - "The first defeat of a world chess champion by a computer"
+    - "The release of a chatbot that reached 100 million users"
+  answer: B
+  explain: |
+    In the late 1980s, cheaper general-purpose workstations caught up with expensive specialized Lisp machines, whose market collapsed, and expert systems proved costly to maintain and brittle outside narrow tasks. Disappointment led to cuts in funding and interest that lasted into the 1990s.
+  why:
+    A: "The Lighthill report (1973) is tied to the first AI winter, in the 1970s."
+    C: "Deep Blue's 1997 victory was a success story that came after the second winter began."
+    D: "ChatGPT's rapid growth came in early 2023, during a boom in AI interest."
+
+- id: ai-history-08
+  skill: ai-history
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In March 2016, DeepMind's AlphaGo made headlines by doing what?
+  options:
+    - "Winning a televised Jeopardy! match against two champions"
+    - "Beating world chess champion Garry Kasparov in a rematch"
+    - "Passing the Turing test in an official competition"
+    - "Defeating Go champion Lee Sedol four games to one"
+  answer: D
+  explain: |
+    AlphaGo beat Lee Sedol, one of the world's top Go players, 4 to 1 in a five-game match in Seoul in March 2016. Its neural networks were trained with a combination of learning from human expert games and reinforcement learning from games of self-play.
+  why:
+    A: "Winning at Jeopardy! was IBM's Watson, in 2011."
+    B: "Beating Kasparov was IBM's Deep Blue, in 1997."
+    C: "AlphaGo played Go; it was not a conversational program."
+
+- id: ai-history-09
+  skill: ai-history
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What did Joseph Weizenbaum build at MIT in the 1960s?
+  options:
+    - "The first convolutional neural network"
+    - "A rule-based system for configuring computers"
+    - "ELIZA, an early program that held typed conversations"
+    - "The first chess program to beat a world champion"
+  answer: C
+  explain: |
+    Weizenbaum's ELIZA, described in 1966, matched keywords in a user's typed input and reassembled scripted replies; its best-known script imitated a psychotherapist. People often credited it with far more understanding than it had.
+  why:
+    A: "Convolutional networks for reading handwritten digits came from Yann LeCun's group in 1989."
+    B: "A rule-based system for configuring computers was XCON, at Digital Equipment Corporation."
+    D: "Beating a world chess champion was IBM's Deep Blue, in 1997."
+
+- id: ai-history-10
+  skill: ai-history
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which contribution is Arthur Samuel known for?
+  options:
+    - "A checkers program that learned to play better than he did"
+    - "The 1950 paper that proposed the imitation game"
+    - "The first expert system for recommending antibiotics"
+    - "The 1997 chess computer that defeated Kasparov"
+  answer: A
+  explain: |
+    In 1959, Arthur Samuel of IBM reported a checkers program that learned from experience to play better than its own programmer, and he is widely credited with coining or popularizing the term "machine learning."
+  why:
+    B: "The imitation game was Alan Turing's proposal."
+    C: "The expert system that advised on antibiotics was MYCIN, at Stanford."
+    D: "The chess computer was IBM's Deep Blue, built by a later team."
+
+- id: ai-history-11
+  skill: ai-history
+  tier: champion
+  type: recall
+  use: bank
+  stem: |
+    Which event is most closely tied to the start of the first AI winter, in the 1970s?
+  options:
+    - "The collapse of the Lisp machine market"
+    - "The Lighthill report on AI research in the UK"
+    - "IBM Watson's victory on Jeopardy!"
+    - "The publication of the transformer architecture"
+  answer: B
+  explain: |
+    Sir James Lighthill's report, published in 1973, criticized the progress of AI research and led to funding cuts and a loss of confidence in the UK. Together with reduced support for open-ended AI research from DARPA in the United States, it ushered in the first AI winter, roughly 1974 to 1980.
+  why:
+    A: "The Lisp machine collapse came around 1987 and is tied to the second AI winter."
+    C: "Watson won Jeopardy! in 2011, during a boom."
+    D: "The transformer appeared in 2017, during the deep learning boom."
+
+- id: ai-history-12
+  skill: ai-history
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    In what year did OpenAI release ChatGPT to the public?
+  options:
+    - "2012"
+    - "2017"
+    - "2020"
+    - "2022"
+  ordered: true
+  answer: D
+  explain: |
+    OpenAI released ChatGPT on November 30, 2022, as a chatbot fine-tuned from a GPT-3.5-series model using reinforcement learning from human feedback.
+  why:
+    A: "2012 is the year AlexNet won the ImageNet challenge."
+    B: "2017 is the year the transformer architecture was introduced."
+    C: "2020 is the year GPT-3 was described, two years before ChatGPT."
+
+- id: ai-history-13
+  skill: ai-history
+  tier: champion
+  type: recall
+  use: bank
+  stem: |
+    Which 1969 book laid out the limits of single-layer perceptrons and is linked to a long decline in neural network research?
+  options:
+    - "Computing Machinery and Intelligence, by Alan Turing"
+    - "Artificial Intelligence: A Modern Approach, by Russell and Norvig"
+    - "Perceptrons, by Marvin Minsky and Seymour Papert"
+    - "Machine Learning, by Tom Mitchell"
+  answer: C
+  explain: |
+    In 1969, Marvin Minsky and Seymour Papert published Perceptrons, which laid out what single-layer perceptrons cannot do. Enthusiasm for neural networks faded for years afterward, until multilayer networks trained with backpropagation, popularized in 1986, revived the field.
+  why:
+    A: "Turing's work is a 1950 paper that proposed the imitation game."
+    B: "Russell and Norvig's textbook is a modern survey published decades later."
+    D: "Mitchell's Machine Learning (1997) gave the standard definition of learning from experience."
