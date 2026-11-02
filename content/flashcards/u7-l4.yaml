@@ -1,0 +1,52 @@
+# Lesson 7.4 flashcards
+
+- id: fc-four-patterns
+  term: All, no, some, some-not
+  def: All A are B is ∀x (A(x) → B(x)); no A are B is ∀x (A(x) → ¬B(x)); some A are B is ∃x (A(x) ∧ B(x)); some A are not B is ∃x (A(x) ∧ ¬B(x)). "Only A are B" means B implies A.
+  skill: fol-translate
+
+- id: fc-forall-and-trap
+  term: The for-all-with-and trap
+  def: For all pairs with an implication and there exists pairs with AND. For all with AND claims everything has both properties; there exists with an implication is true as soon as anything fails the condition.
+  skill: fol-translate
+
+- id: fc-quantifier-order
+  term: Nested quantifier order
+  def: Same-kind quantifiers can be swapped. Mixed ones cannot. ∀x ∃y Knows(x, y) means everyone knows someone; ∃y ∀x Knows(x, y) means one person is known by everyone.
+  skill: fol-translate
+
+- id: fc-negating-quantifiers
+  term: Negating quantified statements
+  def: Switch the quantifier and negate the inside. ¬∀x P(x) ≡ ∃x ¬P(x); ¬∃x P(x) ≡ ∀x ¬P(x). The negation of "all passed" is "some did not pass"; of "some failed," "none failed."
+  skill: fol-negation
+
+- id: fc-inference
+  term: Inference
+  def: Deriving new conclusions from known facts and rules by applying valid rules of reasoning, such as modus ponens.
+  skill: inference-rules
+  virginia: true
+
+- id: fc-modus-ponens-tollens
+  term: Modus ponens and modus tollens
+  def: Modus ponens takes P → Q and P to the conclusion Q. Modus tollens takes P → Q and ¬Q to the conclusion ¬P. Both are valid.
+  skill: inference-rules
+
+- id: fc-syllogism
+  term: Syllogism
+  def: A major premise (a general rule), a minor premise (a narrower or specific case), and a conclusion that follows from both. All humans are mortal; Socrates is a human; so Socrates is mortal.
+  skill: inference-rules
+
+- id: fc-fallacies
+  term: Affirming the consequent, denying the antecedent
+  def: Invalid forms. Affirming the consequent goes from P → Q and Q to P. Denying the antecedent goes from P → Q and ¬P to ¬Q. Other causes can make Q true.
+  skill: inference-rules
+
+- id: fc-valid-sound
+  term: Valid vs. sound
+  def: Valid means the conclusion must be true if the premises are true. Sound means valid and with premises that are actually true.
+  skill: inference-rules
+
+- id: fc-unification-resolution
+  term: Unification and resolution
+  def: Unification finds a substitution, such as {x/Ava}, that makes expressions identical. Resolution cancels a complementary pair, so P ∨ Q and ¬Q ∨ R give P ∨ R; refutation adds the negated goal until it reaches the empty clause.
+  skill: inference-rules

@@ -1,0 +1,604 @@
+# Lesson 7.4: Translating and reasoning with logic
+
+# ---------------------------------------------------------------- fol-translate
+- id: fol-translate-01
+  skill: fol-translate
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which predicate logic sentence correctly translates "All teachers are employees"?
+  options:
+    - "$$\\forall x\\, (\\text{Teacher}(x) \\land \\text{Employee}(x))$$"
+    - "$$\\exists x\\, (\\text{Teacher}(x) \\land \\text{Employee}(x))$$"
+    - "$$\\forall x\\, (\\text{Teacher}(x) \\rightarrow \\text{Employee}(x))$$"
+    - "$$\\forall x\\, (\\text{Employee}(x) \\rightarrow \\text{Teacher}(x))$$"
+  answer: C
+  explain: |
+    "All A are B" becomes "for every x, if x is an A, then x is a B": the universal quantifier with an implication. It makes a claim only about teachers and says nothing about anyone else.
+  why:
+    A: "With AND, this says everything in the universe is both a teacher and an employee."
+    B: "This says only that at least one teacher is an employee."
+    D: "This reverses the direction: it says every employee is a teacher."
+
+- id: fol-translate-02
+  skill: fol-translate
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A student translates "All dogs bark" as $$\forall x\, (\text{Dog}(x) \land \text{Barks}(x))$$. What does this sentence actually claim?
+  options:
+    - "Everything is a dog, and everything barks"
+    - "Every dog barks, which is what was intended"
+    - "At least one dog somewhere barks"
+    - "No dog barks, and nothing else does either"
+  answer: A
+  explain: |
+    A universal quantifier makes its formula true of every object in the domain. With AND inside, it says every object is a dog and barks, so a single cat makes it false. The correct translation pairs the universal quantifier with an implication: $$\forall x\, (\text{Dog}(x) \rightarrow \text{Barks}(x))$$.
+  why:
+    B: "The intended meaning needs an implication, not AND."
+    C: "'At least one' would need the existential quantifier."
+    D: "Nothing in the sentence is negated."
+
+- id: fol-translate-03
+  skill: fol-translate
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which sentence translates "Some members of the Debate club are seniors"?
+  options:
+    - "$$\\forall x\\, (\\text{MemberOf}(x, \\text{Debate}) \\rightarrow \\text{Senior}(x))$$"
+    - "$$\\exists x\\, (\\text{MemberOf}(x, \\text{Debate}) \\rightarrow \\text{Senior}(x))$$"
+    - "$$\\forall x\\, (\\text{MemberOf}(x, \\text{Debate}) \\land \\text{Senior}(x))$$"
+    - "$$\\exists x\\, (\\text{MemberOf}(x, \\text{Debate}) \\land \\text{Senior}(x))$$"
+  answer: D
+  explain: |
+    "Some A are B" means at least one thing is both an A and a B: the existential quantifier with AND. Here, at least one person is both a Debate member and a senior.
+  why:
+    A: "This says every Debate member is a senior, which is too strong."
+    B: "With an implication, the sentence is true as soon as anything is not a Debate member, so it says almost nothing."
+    C: "This says everything is a Debate member and a senior."
+
+- id: fol-translate-04
+  skill: fol-translate
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which sentence translates "No student is a teacher"?
+  options:
+    - "$$\\forall x\\, (\\text{Student}(x) \\rightarrow \\neg \\text{Teacher}(x))$$"
+    - "$$\\forall x\\, (\\neg \\text{Student}(x) \\rightarrow \\text{Teacher}(x))$$"
+    - "$$\\exists x\\, (\\text{Student}(x) \\land \\neg \\text{Teacher}(x))$$"
+    - "$$\\neg \\forall x\\, (\\text{Student}(x) \\rightarrow \\text{Teacher}(x))$$"
+  answer: A
+  explain: |
+    "No A are B" means every A is not a B: $$\forall x\, (A(x) \rightarrow \neg B(x))$$. An equivalent form says there is no x that is both: $$\neg \exists x\, (A(x) \land B(x))$$.
+  why:
+    B: "This says everyone who is not a student is a teacher, a different claim."
+    C: "This says only that some student is not a teacher, which is much weaker."
+    D: "This says not every student is a teacher, which allows some students to be teachers."
+
+- id: fol-translate-05
+  skill: fol-translate
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    Let Knows(x, y) mean "x knows y," with the variables ranging over people. Which sentence says "There is someone whom everybody knows"?
+  options:
+    - "$$\\forall x\\, \\exists y\\, \\text{Knows}(x, y)$$"
+    - "$$\\exists y\\, \\forall x\\, \\text{Knows}(x, y)$$"
+    - "$$\\forall x\\, \\forall y\\, \\text{Knows}(x, y)$$"
+    - "$$\\exists x\\, \\exists y\\, \\text{Knows}(x, y)$$"
+  answer: B
+  explain: |
+    Reading left to right, $$\exists y\, \forall x$$ says there is a y such that every x knows y: one person known by all. Swapping the order, $$\forall x\, \exists y$$, says only that each person knows somebody, possibly a different somebody for each. With mixed quantifiers, order changes the meaning.
+  why:
+    A: "This says everyone knows someone, but each person may know a different someone."
+    C: "This says everyone knows everyone."
+    D: "This says only that at least one person knows at least one person."
+
+- id: fol-translate-06
+  skill: fol-translate
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which sentence translates "Some birds cannot fly"?
+  options:
+    - "$$\\forall x\\, (\\text{Bird}(x) \\rightarrow \\neg \\text{Flies}(x))$$"
+    - "$$\\exists x\\, (\\text{Bird}(x) \\rightarrow \\neg \\text{Flies}(x))$$"
+    - "$$\\exists x\\, (\\text{Bird}(x) \\land \\neg \\text{Flies}(x))$$"
+    - "$$\\neg \\exists x\\, (\\text{Bird}(x) \\land \\text{Flies}(x))$$"
+  answer: C
+  explain: |
+    "Some A are not B" means at least one thing is an A and is not a B: the existential quantifier with AND, with the B part negated. Penguins make it true.
+  why:
+    A: "This says no bird can fly, which is far too strong."
+    B: "With an implication, this is true as soon as anything is not a bird."
+    D: "This says no bird flies, the same strong claim as option A."
+
+- id: fol-translate-07
+  skill: fol-translate
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Why is $$\exists x\, (\text{Student}(x) \rightarrow \text{TakesMath}(x))$$ a poor translation of "Some student takes math"?
+  options:
+    - "It claims that every student in the school takes math"
+    - "It uses the wrong variable name for the students"
+    - "It can never be true in any possible situation"
+    - "It is true if anything is not a student, whatever students do"
+  answer: D
+  explain: |
+    An implication with a false condition is true, so for any x that is not a student, "if x is a student, then x takes math" is true, and that x satisfies the existential sentence. The sentence is true even if no student takes math. The correct form uses AND: $$\exists x\, (\text{Student}(x) \land \text{TakesMath}(x))$$.
+  why:
+    A: "It makes no claim about every student; it is far too weak, not too strong."
+    B: "Variable names do not matter in logic; any letter works."
+    C: "It is true in almost every situation, which is the problem."
+
+- id: fol-translate-08
+  skill: fol-translate
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which sentence translates "Only seniors may vote in the class election"?
+  options:
+    - "$$\\forall x\\, (\\text{Senior}(x) \\rightarrow \\text{Votes}(x))$$"
+    - "$$\\forall x\\, (\\text{Votes}(x) \\rightarrow \\text{Senior}(x))$$"
+    - "$$\\exists x\\, (\\text{Senior}(x) \\land \\text{Votes}(x))$$"
+    - "$$\\forall x\\, (\\text{Senior}(x) \\land \\text{Votes}(x))$$"
+  answer: B
+  explain: |
+    "Only seniors vote" means anyone who votes is a senior, so the condition is voting: $$\forall x\, (\text{Votes}(x) \rightarrow \text{Senior}(x))$$. It does not require every senior to vote. "Only" reverses the direction that "all" would suggest.
+  why:
+    A: "This says every senior votes, which is 'all seniors vote,' a different claim."
+    C: "This says only that at least one senior votes."
+    D: "This says everything is a senior who votes."
+
+- id: fol-translate-09
+  skill: fol-translate
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    When translating English into predicate logic, which pairing of quantifier and connective is usually correct?
+  options:
+    - "For all with an implication; there exists with AND"
+    - "For all with AND; there exists with an implication"
+    - "Both quantifiers always use AND"
+    - "Both quantifiers always use an implication"
+  answer: A
+  explain: |
+    "All A are B" is $$\forall x\, (A(x) \rightarrow B(x))$$, and "Some A are B" is $$\exists x\, (A(x) \land B(x))$$. Swapping the connectives produces the two classic errors: for all with AND claims everything is an A, and there exists with an implication is true almost automatically.
+  why:
+    B: "This is exactly the swapped pairing that causes the classic errors."
+    C: "AND under the universal quantifier claims that everything has both properties."
+    D: "An implication under the existential quantifier is true as soon as anything fails the condition."
+
+- id: fol-translate-10
+  skill: fol-translate
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Which pair of sentences does NOT always mean the same thing?
+  options:
+    - "$$\\forall x\\, \\forall y\\, P(x, y)$$ and $$\\forall y\\, \\forall x\\, P(x, y)$$"
+    - "$$\\exists x\\, \\exists y\\, P(x, y)$$ and $$\\exists y\\, \\exists x\\, P(x, y)$$"
+    - "$$\\forall x\\, \\exists y\\, P(x, y)$$ and $$\\exists y\\, \\forall x\\, P(x, y)$$"
+    - "$$\\forall x\\, P(x)$$ and $$\\forall y\\, P(y)$$"
+  answer: C
+  explain: |
+    Quantifiers of the same kind can be reordered freely, and renaming a bound variable changes nothing. Mixed quantifiers cannot be swapped: $$\forall x\, \exists y\, P(x, y)$$ lets y depend on x ("everyone knows someone"), while $$\exists y\, \forall x\, P(x, y)$$ needs a single y for every x ("someone is known by everyone").
+  why:
+    A: "Two universal quantifiers can be swapped without changing the meaning."
+    B: "Two existential quantifiers can be swapped without changing the meaning."
+    D: "Renaming a bound variable does not change the meaning."
+
+# ---------------------------------------------------------------- fol-negation
+- id: fol-negation-01
+  skill: fol-negation
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What is the negation of "All students passed the exam"?
+  options:
+    - "Every single student failed the exam"
+    - "At least one student did not pass the exam"
+    - "No student took the exam at all"
+    - "Some of the students passed the exam"
+  answer: B
+  explain: |
+    A negation must be true exactly when the original is false. "All passed" is false as soon as one student did not pass, so the negation is "at least one student did not pass." In logic, $$\neg \forall x\, P(x) \equiv \exists x\, \neg P(x)$$.
+  why:
+    A: "All failing is far stronger; the original is already false if just one student fails."
+    C: "The statement is about passing, not about who took the exam."
+    D: "Some passing is consistent with all passing, so it cannot be the negation."
+
+- id: fol-negation-02
+  skill: fol-negation
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which equivalence is correct?
+  options:
+    - "$$\\neg \\forall x\\, P(x) \\equiv \\forall x\\, \\neg P(x)$$"
+    - "$$\\neg \\exists x\\, P(x) \\equiv \\exists x\\, \\neg P(x)$$"
+    - "$$\\neg \\forall x\\, P(x) \\equiv \\neg \\exists x\\, P(x)$$"
+    - "$$\\neg \\forall x\\, P(x) \\equiv \\exists x\\, \\neg P(x)$$"
+  answer: D
+  explain: |
+    To push a negation past a quantifier, switch the quantifier and negate what follows. "Not everything has P" means "something lacks P," and "nothing has P" means "everything lacks P," that is, $$\neg \exists x\, P(x) \equiv \forall x\, \neg P(x)$$.
+  why:
+    A: "Not all is different from none; switching the quantifier is required."
+    B: "Nothing having P means everything lacks P, a universal statement."
+    C: "Not everything having P allows some things to have it, while nothing having P does not."
+
+- id: fol-negation-03
+  skill: fol-negation
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What is the negation of "Some student failed the quiz"?
+  options:
+    - "No student failed the quiz"
+    - "Some student passed the quiz"
+    - "All students failed the quiz"
+    - "Not every student failed the quiz"
+  answer: A
+  explain: |
+    "Some student failed" is false only when no student failed, so that is the negation. In logic, $$\neg \exists x\, (\text{Student}(x) \land \text{Failed}(x)) \equiv \forall x\, (\text{Student}(x) \rightarrow \neg \text{Failed}(x))$$.
+  why:
+    B: "Some passing and some failing can both be true, so this is not the negation."
+    C: "All failing would make the original true, not false."
+    D: "Not every student failing is consistent with some student failing."
+
+- id: fol-negation-04
+  skill: fol-negation
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    What is the negation of $$\forall x\, (\text{Bird}(x) \rightarrow \text{Flies}(x))$$?
+  options:
+    - "$$\\forall x\\, (\\text{Bird}(x) \\rightarrow \\neg \\text{Flies}(x))$$"
+    - "$$\\exists x\\, (\\text{Bird}(x) \\rightarrow \\neg \\text{Flies}(x))$$"
+    - "$$\\exists x\\, (\\text{Bird}(x) \\land \\neg \\text{Flies}(x))$$"
+    - "$$\\exists x\\, (\\neg \\text{Bird}(x) \\land \\text{Flies}(x))$$"
+  answer: C
+  explain: |
+    Switch the quantifier and negate the inside: the negation of the implication Bird(x) → Flies(x) is its condition with the result negated, Bird(x) ∧ ¬Flies(x). So the negation is $$\exists x\, (\text{Bird}(x) \land \neg \text{Flies}(x))$$: some bird does not fly.
+  why:
+    A: "This says no bird flies, which is far stronger than the negation."
+    B: "With an implication inside, this is true as soon as anything is not a bird, so it is not the negation."
+    D: "This describes something that flies but is not a bird, which does not contradict the original."
+
+- id: fol-negation-05
+  skill: fol-negation
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What is the negation of "If it rains, then the game is canceled"?
+  options:
+    - "If it does not rain, then the game is not canceled"
+    - "It rains, and the game is not canceled"
+    - "If the game is canceled, then it rained"
+    - "It does not rain, and the game is canceled"
+  answer: B
+  explain: |
+    An implication is false only when its condition is true and its result is false, so its negation is exactly that case: $$\neg(P \rightarrow Q) \equiv P \land \neg Q$$. The rule is broken if it rains and the game still goes ahead.
+  why:
+    A: "This is the inverse, another implication, not a negation."
+    C: "This is the converse, another implication."
+    D: "A day without rain cannot break the rule."
+
+- id: fol-negation-06
+  skill: fol-negation
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which sentence is equivalent to $$\neg \exists x\, (\text{Student}(x) \land \text{Cheated}(x))$$?
+  options:
+    - "$$\\exists x\\, (\\text{Student}(x) \\land \\neg \\text{Cheated}(x))$$"
+    - "$$\\forall x\\, (\\text{Student}(x) \\land \\neg \\text{Cheated}(x))$$"
+    - "$$\\neg \\forall x\\, (\\text{Student}(x) \\rightarrow \\text{Cheated}(x))$$"
+    - "$$\\forall x\\, (\\text{Student}(x) \\rightarrow \\neg \\text{Cheated}(x))$$"
+  answer: D
+  explain: |
+    "No student cheated" becomes "for every x, if x is a student, then x did not cheat." Switching the quantifier gives ¬(Student(x) ∧ Cheated(x)), which by De Morgan's law is ¬Student(x) ∨ ¬Cheated(x), the same as Student(x) → ¬Cheated(x).
+  why:
+    A: "This says only that some student did not cheat."
+    B: "With AND, this claims that everything is a student."
+    C: "This says not every student cheated, which allows some to have cheated."
+
+- id: fol-negation-07
+  skill: fol-negation
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is the negation of "Every club has an advisor"?
+  options:
+    - "Some club has no advisor"
+    - "No club has an advisor"
+    - "Every club lacks an advisor"
+    - "Some club has an advisor"
+  answer: A
+  explain: |
+    "Every club has an advisor" fails as soon as one club has no advisor, so the negation is "some club has no advisor." "No club has an advisor" is much stronger than a negation.
+  why:
+    B: "This says every club lacks an advisor, which is stronger than the negation."
+    C: "This is the same strong claim as no club having an advisor."
+    D: "Some club having an advisor fits with every club having one."
+
+- id: fol-negation-08
+  skill: fol-negation
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Let Knows(x, y) mean "x knows y." What is the negation of $$\forall x\, \exists y\, \text{Knows}(x, y)$$, "everyone knows someone"?
+  options:
+    - "$$\\forall x\\, \\exists y\\, \\neg \\text{Knows}(x, y)$$"
+    - "$$\\exists x\\, \\exists y\\, \\neg \\text{Knows}(x, y)$$"
+    - "$$\\exists x\\, \\forall y\\, \\neg \\text{Knows}(x, y)$$"
+    - "$$\\forall x\\, \\forall y\\, \\neg \\text{Knows}(x, y)$$"
+  answer: C
+  explain: |
+    Push the negation inward one quantifier at a time, switching each: not (for every x there is a y) becomes there is an x for which no y works, $$\exists x\, \forall y\, \neg \text{Knows}(x, y)$$. In words: someone knows nobody.
+  why:
+    A: "This keeps the original quantifiers; it says everyone fails to know someone."
+    B: "This says only that someone does not know someone."
+    D: "This says nobody knows anybody, which is far stronger than the negation."
+
+# ---------------------------------------------------------------- inference-rules
+- id: inference-rules-01
+  skill: inference-rules
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    In AI reasoning, what is inference?
+  options:
+    - "Collecting new data from sensors and the web"
+    - "Storing facts in a database for later lookup"
+    - "Training a model's weights with gradient descent"
+    - "Deriving new conclusions from known facts and rules"
+  answer: D
+  explain: |
+    Inference is the process of reaching new conclusions from what is already known, by applying valid rules of reasoning, such as modus ponens, to facts and rules. (In machine learning, "inference" also names using a trained model to make predictions; in logic it means deriving conclusions.)
+  why:
+    A: "Collecting data gathers input; it does not reason from it."
+    B: "Storing facts is representation; inference uses them to derive new ones."
+    C: "Adjusting weights is training."
+
+- id: inference-rules-02
+  skill: inference-rules
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A knowledge base holds the rule "If a student passes the final exam, the student earns the certificate" and the fact "Ava passed the final exam." Which rule of inference lets a system conclude that Ava earns the certificate?
+  options:
+    - "Modus tollens"
+    - "Modus ponens"
+    - "Affirming the consequent"
+    - "Denying the antecedent"
+  answer: B
+  explain: |
+    Modus ponens says that from P → Q and P, you may conclude Q. The rule's condition, passing the final exam, is true for Ava, so its result, earning the certificate, follows.
+  why:
+    A: "Modus tollens works backward from a false result: from P → Q and not Q, conclude not P."
+    C: "Affirming the consequent is a fallacy that reasons from Q back to P."
+    D: "Denying the antecedent is a fallacy that reasons from not P to not Q."
+
+- id: inference-rules-03
+  skill: inference-rules
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Rule: "If the alarm is armed, the light is red." Observation: "The light is not red." What follows by modus tollens?
+  options:
+    - "The alarm is armed"
+    - "The light is broken"
+    - "The alarm is not armed"
+    - "Nothing can be concluded"
+  answer: C
+  explain: |
+    Modus tollens says that from P → Q and not Q, you may conclude not P. If an armed alarm always makes the light red, a light that is not red means the alarm is not armed.
+  why:
+    A: "An armed alarm would have made the light red, which it is not."
+    B: "The premises say nothing about a broken light; the rule is assumed to hold."
+    D: "Modus tollens is a valid rule, so a definite conclusion follows."
+
+- id: inference-rules-04
+  skill: inference-rules
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    "If it rained, the street is wet. The street is wet. Therefore, it rained." Why is this argument invalid?
+  options:
+    - "It affirms the consequent; something else could wet the street"
+    - "It uses modus ponens, which is always invalid"
+    - "It denies the antecedent by assuming no rain"
+    - "It has too many premises to reach any conclusion"
+  answer: A
+  explain: |
+    From P → Q and Q, you cannot conclude P, because Q may have other causes; a sprinkler also wets the street. This fallacy, affirming the consequent, looks like modus ponens run backward.
+  why:
+    B: "Modus ponens is valid, and this argument is not modus ponens."
+    C: "Denying the antecedent reasons from not P; this argument reasons from Q."
+    D: "Two premises are plenty; the problem is the form of the reasoning."
+
+- id: inference-rules-05
+  skill: inference-rules
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Complete the syllogism. Major premise: "All mammals are warm-blooded." Minor premise: "Every whale is a mammal." Conclusion: ?
+  options:
+    - "Every warm-blooded animal is a whale"
+    - "Some mammals are whales"
+    - "Every warm-blooded animal is a mammal"
+    - "Every whale is warm-blooded"
+  answer: D
+  explain: |
+    The minor premise puts whales inside mammals, and the major premise puts mammals inside warm-blooded animals, so whales are inside warm-blooded animals. In logic: from ∀x (Whale(x) → Mammal(x)) and ∀x (Mammal(x) → WarmBlooded(x)), conclude ∀x (Whale(x) → WarmBlooded(x)).
+  why:
+    A: "This reverses the conclusion; many warm-blooded animals are not whales."
+    B: "This restates part of the minor premise and never uses the major premise."
+    C: "This reverses the major premise; not every warm-blooded animal is a mammal."
+
+- id: inference-rules-06
+  skill: inference-rules
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    Unification finds a substitution that makes two expressions identical. Which substitution unifies MemberOf(x, Robotics) with MemberOf(Ava, y)?
+  options:
+    - "{x/Robotics, y/Ava}"
+    - "{x/Ava, y/Robotics}"
+    - "{x/y}"
+    - "No substitution exists"
+  answer: B
+  explain: |
+    Match the arguments position by position. The first arguments, x and Ava, unify by replacing x with Ava; the second, Robotics and y, unify by replacing y with Robotics. Both expressions become MemberOf(Ava, Robotics). Reasoners use unification to apply general rules to specific facts.
+  why:
+    A: "This swaps the positions; x sits in the first position, where Ava is."
+    C: "Binding x to y would leave two different constants, Ava and Robotics, unmatched."
+    D: "A substitution exists because each variable lines up with a constant."
+
+- id: inference-rules-07
+  skill: inference-rules
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    "If a student is in the Robotics club, the student builds robots. Jonah is not in the Robotics club. Therefore, Jonah does not build robots." What is wrong with this argument?
+  options:
+    - "Nothing; it is a valid use of modus tollens"
+    - "It affirms the consequent of the rule"
+    - "It denies the antecedent; Jonah could build robots elsewhere"
+    - "It is valid only if Jonah is in another club"
+  answer: C
+  explain: |
+    From P → Q and not P, you cannot conclude not Q: the rule says what happens to club members and nothing about anyone else. This fallacy is denying the antecedent. Jonah could build robots at home.
+  why:
+    A: "Modus tollens starts from the negated result, not the negated condition."
+    B: "Affirming the consequent reasons from Q to P; this argument reasons from not P to not Q."
+    D: "No extra fact rescues the form; the reasoning itself is invalid."
+
+- id: inference-rules-08
+  skill: inference-rules
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Resolution combines two clauses that contain a complementary pair. What does resolving $$P \lor Q$$ with $$\neg Q \lor R$$ produce?
+  options:
+    - "$$P \\lor R$$"
+    - "$$P \\land R$$"
+    - "$$Q \\lor \\neg Q$$"
+    - "$$\\neg P \\lor \\neg R$$"
+  answer: A
+  explain: |
+    Q appears in one clause and its negation in the other, so resolution cancels the pair and joins what remains: $$P \lor R$$. Either Q is false, in which case P must hold, or Q is true, in which case R must hold. Automated theorem provers prove whole theorems with this single rule.
+  why:
+    B: "Resolution keeps the leftover parts joined by OR, not AND."
+    C: "The complementary pair is what gets removed, not what remains."
+    D: "Nothing negates P or R; they carry over unchanged."
+
+- id: inference-rules-09
+  skill: inference-rules
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In the syllogism "All humans are mortal. Socrates is a human. Therefore, Socrates is mortal," which statement is the minor premise?
+  options:
+    - "All humans are mortal"
+    - "Therefore, Socrates is mortal"
+    - "Socrates is mortal and human"
+    - "Socrates is a human"
+  answer: D
+  explain: |
+    A syllogism has a major premise (a general rule: all humans are mortal), a minor premise (a specific case: Socrates is a human), and a conclusion that follows from both (Socrates is mortal).
+  why:
+    A: "The general rule is the major premise."
+    B: "This is the conclusion."
+    C: "This combines the conclusion with the minor premise; it is not one of the three parts."
+
+- id: inference-rules-10
+  skill: inference-rules
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    An automated prover wants to show that a goal G follows from its knowledge base. In proof by resolution (refutation), what does it do?
+  options:
+    - "It adds G itself and resolves until G appears again"
+    - "It adds the negation of G and resolves until it derives a contradiction"
+    - "It removes every clause that mentions G from the knowledge base"
+    - "It asks the user to confirm G before any reasoning starts"
+  answer: B
+  explain: |
+    Resolution proves by contradiction: assume the goal is false by adding its negation, then resolve clauses until reaching the empty clause, a contradiction. If assuming the goal is false leads to a contradiction, the goal must follow from the knowledge base.
+  why:
+    A: "Adding G and deriving G proves nothing; it assumes what was to be shown."
+    C: "Removing clauses would throw away the knowledge needed for the proof."
+    D: "Resolution is automatic and needs no confirmation from a user."
+
+- id: inference-rules-11
+  skill: inference-rules
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    "All fish can fly. A salmon is a fish. Therefore, a salmon can fly." How should this argument be described?
+  options:
+    - "Sound, because the conclusion follows from the premises"
+    - "Invalid, because the conclusion is false"
+    - "Valid but not sound, because a premise is false"
+    - "Neither valid nor sound, because it is a fallacy"
+  answer: C
+  explain: |
+    An argument is valid when its conclusion must be true if its premises are true, and this one has the valid form of a syllogism. It is sound only if it is valid and all its premises are actually true, and "all fish can fly" is false, so the argument is valid but unsound.
+  why:
+    A: "Soundness also requires true premises."
+    B: "Validity depends on the form, not on whether the conclusion happens to be true."
+    D: "The form is a correct syllogism, not a fallacy."
+
+- id: inference-rules-12
+  skill: inference-rules
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A knowledge base holds two rules: "If a student is on the honor roll, the student gets a parking permit" and "If a student gets a parking permit, the student may drive to school." What can a reasoner conclude by chaining them?
+  options:
+    - "If a student is on the honor roll, the student may drive to school"
+    - "If a student may drive to school, the student is on the honor roll"
+    - "Every student who drives is on the honor roll"
+    - "No student may drive without a permit"
+  answer: A
+  explain: |
+    From P → Q and Q → R, a reasoner may conclude P → R. Linking rules like this is how expert systems chain from facts to conclusions (lesson 7.5).
+  why:
+    B: "This reverses the chained rule, which is not valid."
+    C: "This also runs the chain backward."
+    D: "The rules say what a permit allows, not that a permit is the only way to drive."
