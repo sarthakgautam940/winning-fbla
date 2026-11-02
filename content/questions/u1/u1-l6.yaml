@@ -510,7 +510,7 @@
   type: scenario
   use: quiz
   stem: |
-    A dashboard shows a wrong sales total. An analyst needs to trace which source system and which processing step introduced the error. What does she need?
+    A dashboard shows a wrong sales total. An analyst needs to trace which source system and which processing step introduced the error. What does the analyst need?
   options:
     - "Data lineage"
     - "A larger data warehouse"

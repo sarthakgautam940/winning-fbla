@@ -419,7 +419,7 @@
   ordered: true
   answer: A
   explain: |
-    Any comparison with NULL is unknown rather than true, and WHERE keeps only rows where the condition is true. So gpa = NULL matches no rows at all, not even Isla's. Finding her requires gpa IS NULL.
+    Any comparison with NULL is unknown rather than true, and WHERE keeps only rows where the condition is true. So gpa = NULL matches no rows at all, not even Isla's. Finding Isla requires gpa IS NULL.
   why:
     B: "This is what gpa IS NULL would return; = NULL never matches."
     C: "This counts the students whose GPA is known."
@@ -493,7 +493,7 @@
   ordered: true
   answer: B
   explain: |
-    For every student with a known GPA, exactly one of the two comparisons is true. For Isla, both comparisons are unknown, so the OR is unknown and WHERE drops her row. The count is 9.
+    For every student with a known GPA, exactly one of the two comparisons is true. For Isla, both comparisons are unknown, so the OR is unknown and WHERE drops Isla's row. The count is 9.
   why:
     A: "Every known GPA satisfies one of the two comparisons, so many rows pass."
     C: "This assumes the conditions cover every row, but a NULL GPA satisfies neither."
@@ -506,7 +506,7 @@
   type: concept
   use: bank
   stem: |
-    Isla's gpa is NULL. What does the expression `gpa * 10` produce for her row?
+    Isla's gpa is NULL. What does the expression `gpa * 10` produce for Isla's row?
   options:
     - "0"
     - "10"

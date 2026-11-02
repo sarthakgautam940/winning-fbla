@@ -31,7 +31,7 @@
   type: code
   use: check
   stem: |
-    A DataFrame has 4 rows. Ben is missing both his gpa and his club, and Dev is missing only his gpa. How many rows does `df.dropna(subset=["club"])` keep?
+    A DataFrame has 4 rows. Ben is missing both gpa and club, and Dev is missing only gpa. How many rows does `df.dropna(subset=["club"])` keep?
   options:
     - "1"
     - "2"
@@ -40,11 +40,11 @@
   ordered: true
   answer: C
   explain: |
-    With subset=["club"], only the club column is checked, so only Ben's row is removed. Dev stays, because his club is present, leaving 3 rows.
+    With subset=["club"], only the club column is checked, so only Ben's row is removed. Dev stays, because Dev's club is present, leaving 3 rows.
   why:
     A: "Only one row has a missing club, so only one row is removed."
     B: "This is what dropna() with no subset gives, removing any row with any missing value."
-    D: "Ben's missing club does remove his row."
+    D: "Ben's missing club does remove that row."
   verify: |
     import pandas as pd
     df = pd.DataFrame({"name": ["Ava", "Ben", "Chloe", "Dev"], "gpa": [3.6, None, 3.9, None], "club": ["Robotics", None, "Debate", "Robotics"]})
@@ -337,7 +337,7 @@
   explain: |
     A left merge keeps every student. Ava matches two scores and so appears twice, Chloe appears once, and Ben appears once with NaN for score: 2 + 1 + 1 = 4 rows.
   why:
-    A: "Ava appears once for each of her two scores, so the count exceeds the 3 students."
+    A: "Ava appears once for each of Ava's two scores, so the count exceeds the 3 students."
     C: "This adds an unmatched score, which only an outer merge keeps."
     D: "Ben, with no scores, appears only once."
   verify: |

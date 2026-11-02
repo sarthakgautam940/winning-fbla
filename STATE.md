@@ -48,6 +48,6 @@ Order of work: u1-l2 ... u1-l8, u2 (l1, l2, l4-l8), u3, u4 (incl. l9), u5, u6, u
 - R cannot be executed locally; R snippets are checked by reasoning only.
 - Visual QA to-do: the neuron-playground widget hint (src/components/widgets/ml-widgets.tsx) writes "w1·x1" with a middot; change to the × sign during the QA pass and scan src for any other middots.
 - Facts not yet verified, so not used: Minsky and Papert's 1969 book Perceptrons (verify before citing it in u6-l1 history).
-- Pronoun pass to do before release: scan content/ for he/his/him/she/her used for real or example people (e.g., Turing in u6-l1 lesson and ai-definitions-13 options) and rewrite with names or they/them.
+- Pronoun rule (done for u0-u6, keep for u7-u8): no he/his/him/she/her for real or example people; use names, "the student," or they/them. Rescan with a regex before release.
 - Add the new research/facts-extra.md sources (PubMed AlphaGo, Cornell Chronicle 2019, arXiv 2108.07258, copyright.gov/ai, govinfo FR 2023-05321) to content/reference/sources.md.
 - Flashcard ids already taken that later units must not reuse: fc-gan, fc-autoencoder, fc-cnn, fc-rnn, fc-lstm (u5-l10), fc-training-loop (u4-l7).

@@ -562,3 +562,63 @@
     B: "Image generation creates pictures, not code."
     C: "Synthetic data mimics real datasets; it does not complete code."
     D: "Speech synthesis turns text into spoken audio."
+
+- id: genai-uses-09
+  skill: genai-uses
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A teacher uses an AI tool to create practice quiz questions at three difficulty levels for the same lesson. Which sector use of generative AI is this?
+  options:
+    - "Healthcare"
+    - "Education"
+    - "Manufacturing"
+    - "Law enforcement"
+  answer: B
+  explain: |
+    Creating practice questions, explanations, and tutoring at different levels is an education use of generative AI. The teacher should still check the questions, because generated content can contain errors.
+  why:
+    A: "Healthcare uses involve clinical notes, medical images, or molecules."
+    C: "Manufacturing uses involve products and factories."
+    D: "Nothing here involves police work."
+
+- id: genai-uses-10
+  skill: genai-uses
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A marketing team uses generative AI to draft ten versions of an online ad, then tests which version customers click most. Which use of generative AI is this?
+  options:
+    - "Synthetic data generation for privacy"
+    - "Molecule design for drug discovery"
+    - "Path planning for warehouse robots"
+    - "Marketing copy for a business"
+  answer: D
+  explain: |
+    Drafting marketing copy, product descriptions, and ad variations is a common business use of generative AI. Testing the versions with real customers then shows which one works, an example of pairing generated content with measurement.
+  why:
+    A: "Synthetic data imitates real datasets for training models; these are ads for people to read."
+    B: "Drug discovery designs molecules, not advertisements."
+    C: "Path planning moves robots; it does not write text."
+
+- id: genai-uses-11
+  skill: genai-uses
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Scientists use a generative model to propose 1,000 new protein designs intended to bind to a virus. What is the appropriate next step?
+  options:
+    - "Make and test the most promising designs in the laboratory"
+    - "Publish all 1,000 designs as proven medical discoveries"
+    - "Discard every design, because AI designs never work"
+    - "Give the designs directly to patients as a treatment"
+  answer: A
+  explain: |
+    Generative models in research propose candidates; they do not prove that any of them work. Scientists screen the designs, make the most promising ones, and test them in the lab, and anything headed for medical use must still pass clinical trials.
+  why:
+    B: "A generated design is a hypothesis until experiments confirm it."
+    C: "AI-designed proteins can work, as computational protein design shows; they simply must be tested."
+    D: "Untested designs could be ineffective or harmful; treatments require laboratory work and clinical trials."

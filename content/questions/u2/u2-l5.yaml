@@ -367,8 +367,8 @@
   stem: |
     Ana scored 85 on a chemistry test (mean 75, standard deviation 5). Ben scored 90 on a history test (mean 80, standard deviation 8). Who did better relative to their class, and why?
   options:
-    - "Ana, because her z-score of 2.0 is higher than Ben's z-score of 1.25"
-    - "Ben, because his raw score of 90 is higher than Ana's score of 85"
+    - "Ana, because Ana's z-score of 2.0 is higher than Ben's z-score of 1.25"
+    - "Ben, because Ben's raw score of 90 is higher than Ana's score of 85"
     - "Ben, because the history test had a larger standard deviation"
     - "Neither, because scores from different tests cannot be compared"
   answer: A

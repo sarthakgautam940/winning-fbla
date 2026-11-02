@@ -199,12 +199,12 @@
     ```
   options:
     - "0, because COUNT(o.order_id) skips the NULL"
-    - "1, because her row appears once in the join"
-    - "NULL, because she has no orders"
-    - "None, because she does not appear in the result"
+    - "1, because Zoe's row appears once in the join"
+    - "NULL, because Zoe has no orders"
+    - "None, because Zoe does not appear in the result"
   answer: A
   explain: |
-    The LEFT JOIN keeps Zoe with NULL in every order column. COUNT(o.order_id) counts non-NULL values, so her count is 0. COUNT(*) would have counted her one row and wrongly reported 1.
+    The LEFT JOIN keeps Zoe with NULL in every order column. COUNT(o.order_id) counts non-NULL values, so Zoe's count is 0. COUNT(*) would have counted Zoe's one row and wrongly reported 1.
   why:
     B: "That is what COUNT(*) would return, because it counts rows, not order IDs."
     C: "COUNT never returns NULL; for no values it returns 0."
@@ -672,7 +672,7 @@
     PARTITION BY grade restarts the ranking within each grade, so Ben is ranked only against the grade 11 students: Hiro 1, Elena 2, Ben 3.
   why:
     A: "Rank 1 in grade 11 belongs to Hiro, the highest GPA there."
-    C: "This is roughly his rank among all students, which ignores the partition."
+    C: "This is roughly Ben's rank among all students, which ignores the partition."
     D: "This would be the last place among all ten students."
   verify: 'scalar("school", "SELECT r FROM (SELECT name, RANK() OVER (PARTITION BY grade ORDER BY gpa DESC) AS r FROM students) WHERE name = ''Ben''")'
 

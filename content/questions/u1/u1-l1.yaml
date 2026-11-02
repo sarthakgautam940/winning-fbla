@@ -228,7 +228,7 @@
   type: scenario
   use: bank
   stem: |
-    A team member is asked whether a new checkout design increases purchases. She designs an A/B test, analyzes the results, and builds a model predicting which customers will respond to the new design. What is her role?
+    A team member is asked whether a new checkout design increases purchases. The team member designs an A/B test, analyzes the results, and builds a model predicting which customers will respond to the new design. What is this person's role?
   options:
     - "Data analyst"
     - "Database administrator"

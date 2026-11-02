@@ -249,15 +249,15 @@
   stem: |
     Which statement about Alan Turing's 1950 proposal is accurate?
   options:
-    - "He named it the Turing test and said machines would think by 2000"
-    - "He required the machine to prove to the judge that it was conscious"
-    - "He replaced 'Can machines think?' with a test of solving equations"
-    - "He called it the imitation game; the name Turing test came later"
+    - "Turing named it the Turing test and said machines would think by 2000"
+    - "Turing required the machine to prove to the judge that it was conscious"
+    - "Turing replaced 'Can machines think?' with a test of solving equations"
+    - "Turing called it the imitation game; the name Turing test came later"
   answer: D
   explain: |
-    Turing's paper "Computing Machinery and Intelligence" opens with "Can machines think?" and replaces it with the imitation game, in which an interrogator communicating only in writing tries to tell two hidden players apart before a machine takes one player's place. He never used the phrase "Turing test," and his prediction was that in about fifty years an average interrogator would have no more than a 70 percent chance of a correct identification after five minutes.
+    Turing's paper "Computing Machinery and Intelligence" opens with "Can machines think?" and replaces it with the imitation game, in which an interrogator communicating only in writing tries to tell two hidden players apart before a machine takes one player's place. The phrase "Turing test" never appears in the paper, and its prediction was that in about fifty years an average interrogator would have no more than a 70 percent chance of a correct identification after five minutes.
   why:
-    A: "Turing never used the name, and his prediction was about interrogators' accuracy, not about machines thinking."
+    A: "Turing never used the name, and the prediction was about interrogators' accuracy, not about machines thinking."
     B: "The game judges only the written answers; it does not ask for proof of consciousness."
     C: "The replacement was a conversational game, not a test of solving equations."
 
@@ -513,13 +513,13 @@
   stem: |
     Which contribution is Arthur Samuel known for?
   options:
-    - "A checkers program that learned to play better than he did"
+    - "A checkers program that learned to play better than its creator"
     - "The 1950 paper that proposed the imitation game"
     - "The first expert system for recommending antibiotics"
     - "The 1997 chess computer that defeated Kasparov"
   answer: A
   explain: |
-    In 1959, Arthur Samuel of IBM reported a checkers program that learned from experience to play better than its own programmer, and he is widely credited with coining or popularizing the term "machine learning."
+    In 1959, Arthur Samuel of IBM reported a checkers program that learned from experience to play better than its own programmer, and Samuel is widely credited with coining or popularizing the term "machine learning."
   why:
     B: "The imitation game was Alan Turing's proposal."
     C: "The expert system that advised on antibiotics was MYCIN, at Stanford."

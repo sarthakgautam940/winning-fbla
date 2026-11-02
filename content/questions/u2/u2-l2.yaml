@@ -127,7 +127,7 @@
   explain: |
     Percentile rank is the percent of the group scoring below: 30 / 40 = 75%, so Maya is at the 75th percentile.
   why:
-    A: "25% is the share who did not score below her, not her percentile."
+    A: "25% is the share who did not score below Maya, not Maya's percentile."
     B: "30 is a count of students, not a percentage of the class."
     D: "This has no basis in the numbers given."
   verify: |

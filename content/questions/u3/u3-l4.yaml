@@ -7,7 +7,7 @@
   type: scenario
   use: check
   stem: |
-    A company's customer database lists the same customer three times, under slightly different spellings of her name. Which data quality dimension does this problem affect most directly?
+    A company's customer database lists the same customer three times, under slightly different spellings of the customer's name. Which data quality dimension does this problem affect most directly?
   options:
     - "Accuracy"
     - "Timeliness"
@@ -15,9 +15,9 @@
     - "Validity"
   answer: C
   explain: |
-    Uniqueness asks whether each real-world item is recorded only once. Three records for one customer are duplicates, which inflate customer counts and overweight her in any analysis.
+    Uniqueness asks whether each real-world item is recorded only once. Three records for one customer are duplicates, which inflate customer counts and overweight that customer in any analysis.
   why:
-    A: "The name may be spelled correctly in at least one record; the core problem is that she appears three times."
+    A: "The name may be spelled correctly in at least one record; the core problem is that the customer appears three times."
     B: "Timeliness is about how current the data is, not about repeated records."
     D: "Each record can be in a valid format; the problem is the repetition."
 

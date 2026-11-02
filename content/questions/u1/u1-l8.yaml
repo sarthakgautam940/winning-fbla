@@ -490,7 +490,7 @@
     - "Hadley Wickham"
   answer: B
   explain: |
-    John Tukey championed looking at data before testing ideas about it, most famously in his 1977 book Exploratory Data Analysis. He also gave us the boxplot and the 1.5 x IQR outlier rule.
+    John Tukey championed looking at data before testing ideas about it, most famously in the 1977 book Exploratory Data Analysis. Tukey also gave us the boxplot and the 1.5 x IQR outlier rule.
   why:
     A: "Codd created the relational model of databases."
     C: "Laney described the three Vs of big data."

@@ -135,7 +135,7 @@
     - "Arthur Samuel"
   answer: D
   explain: |
-    Arthur Samuel of IBM described his learning checkers program in a 1959 paper and is widely credited with the term "machine learning."
+    Arthur Samuel of IBM described a learning checkers program in a 1959 paper and is widely credited with the term "machine learning."
   why:
     A: "Alan Turing proposed the Turing test in 1950."
     B: "John McCarthy coined the term artificial intelligence."

@@ -115,7 +115,7 @@
     - "Grace Hopper"
   answer: A
   explain: |
-    E. F. Codd defined the relational model in "A Relational Model of Data for Large Shared Data Banks," published in 1970 while he worked at IBM's San Jose research lab.
+    E. F. Codd defined the relational model in "A Relational Model of Data for Large Shared Data Banks," published in 1970 while Codd worked at IBM's San Jose research lab.
   why:
     B: "Alan Turing is known for computation theory and the Turing test."
     C: "John Tukey is known for exploratory data analysis and the boxplot."
