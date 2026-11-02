@@ -1,0 +1,369 @@
+# Lesson 5.3: Reinforcement learning
+
+# ---------------------------------------------------------------- rl-basics
+- id: rl-basics-01
+  skill: rl-basics
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    In a video game, an AI-controlled character earns points for collecting coins and loses points for falling off ledges. In reinforcement learning terms, what is the reward?
+  options:
+    - "The program that controls the character"
+    - "The game world the character moves through"
+    - "The character's current position on the screen"
+    - "The points gained or lost after each move"
+  answer: D
+  explain: |
+    The reward is the number the environment sends back after an action. Points gained for coins and lost for falls tell the agent how good each move was.
+  why:
+    A: "The program controlling the character is the agent."
+    B: "The game world is the environment."
+    C: "The character's position is part of the state."
+
+- id: rl-basics-02
+  skill: rl-basics
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How does reinforcement learning differ from supervised learning?
+  options:
+    - "It learns from rewards for its own actions instead of labeled answers."
+    - "It needs every training example to be labeled by a person."
+    - "It groups unlabeled data into clusters of similar examples."
+    - "It can only be used for regression problems."
+  answer: A
+  explain: |
+    A supervised model is told the correct answer for each example. An RL agent gets only a reward signal, often delayed, for the actions it chooses, and must search for better actions itself.
+  why:
+    B: "Needing a labeled answer for every example describes supervised learning."
+    C: "Grouping unlabeled data describes unsupervised clustering."
+    D: "RL is about sequences of decisions, not specifically regression."
+
+- id: rl-basics-03
+  skill: rl-basics
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    An agent always picks whichever action has earned the most reward so far and never tries anything else. What is the main risk?
+  options:
+    - "It will explore too much and waste reward."
+    - "Its rewards will become negative over time."
+    - "It may never discover actions that are better."
+    - "It will forget the actions it has already tried."
+  answer: C
+  explain: |
+    Pure exploitation sticks with the best action found so far. If a better action was never tried, the agent will never learn about it, so some exploration is needed.
+  why:
+    A: "Wasting reward on random tries is the risk of too much exploration, the opposite case."
+    B: "Exploiting a known action keeps earning its reward; nothing makes rewards turn negative."
+    D: "Exploitation relies on what the agent remembers; the problem is what it never tried."
+
+- id: rl-basics-04
+  skill: rl-basics
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which problem is best suited to reinforcement learning?
+  options:
+    - "Classifying emails as spam using labeled examples"
+    - "Teaching a robot to walk by trial and error in a simulator"
+    - "Grouping customers by their purchase histories"
+    - "Predicting house prices from past sales"
+  answer: B
+  explain: |
+    Walking is a sequence of decisions, the robot can practice in a simulator, and staying upright or moving forward can be rewarded. That combination of actions, rewards, and trial and error is what RL is built for.
+  why:
+    A: "Labeled emails make this supervised classification."
+    C: "Grouping without labels is unsupervised clustering."
+    D: "Predicting a number from labeled sales is supervised regression."
+
+- id: rl-basics-05
+  skill: rl-basics
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In reinforcement learning, what is a policy?
+  options:
+    - "The reward the agent receives after an action"
+    - "The set of all possible states"
+    - "The agent's strategy for choosing an action in each state"
+    - "The rules that decide when training stops"
+  answer: C
+  explain: |
+    A policy maps each state to an action, or to probabilities over actions. Learning in RL means improving the policy until it earns as much reward as possible.
+  why:
+    A: "The feedback after an action is the reward."
+    B: "The set of situations the agent can be in is the state space."
+    D: "Stopping rules are training settings, not the agent's strategy."
+
+- id: rl-basics-06
+  skill: rl-basics
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    An agent uses an epsilon-greedy strategy with epsilon = 0.2. In about what percent of its steps does it choose a random action?
+  options:
+    - "2%"
+    - "20%"
+    - "80%"
+    - "100%"
+  ordered: true
+  answer: B
+  explain: |
+    With probability epsilon, 0.2, the agent explores with a random action. The other 80% of the time it exploits the best-known action.
+  why:
+    A: "This misreads 0.2 as 2%."
+    C: "80% is how often the agent exploits, not explores."
+    D: "The agent explores only part of the time."
+  verify: "0.2 * 100"
+
+- id: rl-basics-07
+  skill: rl-basics
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A smart thermostat learns when to turn on the heat. It observes the room temperature and the time of day, then decides whether to heat. In RL terms, what is the room temperature and time of day?
+  options:
+    - "The reward"
+    - "The action"
+    - "The policy"
+    - "The state"
+  answer: D
+  explain: |
+    The state is the situation the agent observes before acting. The temperature and the time of day describe that situation; turning the heat on or off is the action.
+  why:
+    A: "The reward would be a score for comfort or energy saved, given after acting."
+    B: "The action is the choice to heat or not."
+    C: "The policy is the strategy that turns observed states into actions."
+
+- id: rl-basics-08
+  skill: rl-basics
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A chess agent receives a reward only at the end of each game: +1 for a win and -1 for a loss. What makes learning especially hard in this setup?
+  options:
+    - "The agent must work out which earlier moves deserve credit for the result."
+    - "Chess has too few possible states for learning to matter."
+    - "Rewards of +1 and -1 are too large for the agent to use."
+    - "The agent receives a new label for every single move."
+  answer: A
+  explain: |
+    With one reward at the end, the agent must figure out which of dozens of earlier moves led to the win or the loss. This is the credit assignment problem, a central challenge of delayed rewards.
+  why:
+    B: "Chess has an enormous number of possible positions."
+    C: "The size of the rewards is not the difficulty; their timing is."
+    D: "There is no label for each move; that is exactly the problem."
+
+- id: rl-basics-09
+  skill: rl-basics
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Chatbots such as ChatGPT were fine-tuned with reinforcement learning from human feedback (RLHF). What serves as the reward signal in RLHF?
+  options:
+    - "The number of words in each answer"
+    - "Human judgments of how good the model's answers are"
+    - "The model's accuracy on a labeled test set"
+    - "The time the model takes to respond"
+  answer: B
+  explain: |
+    In RLHF, people rate or rank the model's responses, and those judgments, usually through a reward model trained on them, become the reward the chatbot learns to maximize.
+  why:
+    A: "Answer length is not the goal; quality as judged by people is."
+    C: "A labeled test set measures accuracy afterward; it is not RLHF's reward."
+    D: "Speed is not what RLHF rewards."
+
+- id: rl-basics-10
+  skill: rl-basics
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    In reinforcement learning, what is the environment?
+  options:
+    - "The strategy the agent follows when it picks actions"
+    - "The number that rates how good each action turned out"
+    - "Everything the agent acts in, which responds to its actions"
+    - "The computer hardware that runs the agent's program"
+  answer: C
+  explain: |
+    The environment is the world the agent acts in, such as a game, a room, or a market. After each action, it returns a new state and a reward.
+  why:
+    A: "The agent's strategy is its policy."
+    B: "The number that rates an action is the reward."
+    D: "Hardware runs the program but is not the environment in the RL sense."
+
+# ---------------------------------------------------------------- rl-details
+- id: rl-details-01
+  skill: rl-details
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    An agent uses a discount factor of 0.1. How does this shape its behavior?
+  options:
+    - "It values distant rewards almost as much as immediate ones."
+    - "It cares mostly about immediate rewards."
+    - "It explores 10% of the time."
+    - "It ignores rewards altogether."
+  answer: B
+  explain: |
+    Each step of delay multiplies a reward by 0.1, so rewards two steps away count only 1% as much. The agent becomes short-sighted and grabs immediate rewards.
+  why:
+    A: "That describes a discount factor near 1."
+    C: "Exploration rate is epsilon, a different setting."
+    D: "Immediate rewards still count fully; only future ones shrink."
+
+- id: rl-details-02
+  skill: rl-details
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    The current Q-value is Q(s, a) = 4. The agent takes action a, receives reward r = 2, and lands in a state whose best Q-value is 10. With learning rate 0.5 and discount factor 0.9, what is the updated Q(s, a)?
+  options:
+    - "3.0"
+    - "7.5"
+    - "8.0"
+    - "11.0"
+  ordered: true
+  answer: B
+  explain: |
+    The new estimate is r + γ × (best next value) = 2 + 0.9 × 10 = 11. The error is 11 - 4 = 7, and the update moves halfway toward the estimate: 4 + 0.5 × 7 = 7.5.
+  why:
+    A: "This leaves out the future value, using only the reward: 4 + 0.5 × (2 - 4)."
+    C: "This forgets to discount the future value, using 2 + 10 = 12 as the estimate."
+    D: "This jumps all the way to the new estimate, ignoring the learning rate."
+  verify: "4 + 0.5 * (2 + 0.9 * 10 - 4)"
+
+- id: rl-details-03
+  skill: rl-details
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    In Q-learning, what does the value Q(s, a) represent?
+  options:
+    - "The probability of reaching state s"
+    - "The reward for action a, with nothing afterward counted"
+    - "The number of times action a was tried in state s"
+    - "The expected discounted return from taking a in s, then acting well"
+  answer: D
+  explain: |
+    Q(s, a) estimates the total discounted reward the agent can expect if it takes action a in state s and then follows a good policy. The agent's policy picks the action with the highest Q-value.
+  why:
+    A: "Q-values measure future reward, not the chance of visiting a state."
+    B: "Q-values include the discounted rewards that follow, not just the immediate one."
+    C: "Visit counts are bookkeeping, not the Q-value."
+
+- id: rl-details-04
+  skill: rl-details
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    An agent will receive rewards of 0, 0, and 100 over the next three steps, and its discount factor is 0.9. What is its discounted return?
+  options:
+    - "72.9"
+    - "81"
+    - "90"
+    - "100"
+  ordered: true
+  answer: B
+  explain: |
+    G = r1 + γ r2 + γ² r3 = 0 + 0.9 × 0 + 0.81 × 100 = 81. The reward of 100 arrives two steps later, so it is discounted twice.
+  why:
+    A: "This discounts the reward three times, but it arrives at the third step, only two steps after the first."
+    C: "This discounts it only once."
+    D: "This ignores discounting altogether."
+  verify: "0 + 0.9 * 0 + 0.9 ** 2 * 100"
+
+- id: rl-details-05
+  skill: rl-details
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    What does the Markov property in a Markov decision process state?
+  options:
+    - "Every action in a state earns exactly the same reward."
+    - "The next state depends only on the current state and action."
+    - "The agent always knows the transition probabilities."
+    - "Rewards always arrive immediately after each action."
+  answer: B
+  explain: |
+    The Markov property says the current state holds all the information that matters for what happens next, so the history of how the agent got there adds nothing.
+  why:
+    A: "Rewards differ by state and action; that is what the agent learns from."
+    C: "Model-free methods such as Q-learning learn without knowing the transition probabilities."
+    D: "Delayed rewards are common in MDPs."
+
+- id: rl-details-06
+  skill: rl-details
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which of these is NOT one of the parts of a Markov decision process?
+  options:
+    - "A set of possible states"
+    - "A set of possible actions"
+    - "A function giving rewards"
+    - "A labeled training dataset"
+  answer: D
+  explain: |
+    An MDP is defined by states, actions, transition probabilities, a reward function, and a discount factor. A labeled training dataset belongs to supervised learning.
+  why:
+    A: "States are a core part of every MDP."
+    B: "Actions are a core part of every MDP."
+    C: "The reward function is a core part of every MDP."
+
+- id: rl-details-07
+  skill: rl-details
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A designer raises an agent's discount factor from 0.5 to 0.99. How does the agent's behavior change?
+  options:
+    - "It values long-term rewards much more."
+    - "It explores more random actions."
+    - "It learns each update twice as fast."
+    - "It ignores rewards that arrive immediately."
+  answer: A
+  explain: |
+    With a discount factor near 1, rewards far in the future keep almost their full value, so the agent becomes far-sighted and will accept small costs now for bigger payoffs later.
+  why:
+    B: "Exploration is controlled by epsilon, not the discount factor."
+    C: "The speed of each update is controlled by the learning rate."
+    D: "Immediate rewards always count fully."
+
+- id: rl-details-08
+  skill: rl-details
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why might a reinforcement learning system replace its Q-table with a neural network?
+  options:
+    - "Neural networks always learn faster than tables do, in every problem."
+    - "Too many states exist to list, and a network generalizes between them."
+    - "Q-tables cannot store negative values, which some rewards require."
+    - "Neural networks remove the need for any rewards during training."
+  answer: B
+  explain: |
+    In problems such as video games played from screen images, the number of possible states is astronomically large. A neural network, as in a deep Q-network, estimates Q-values for states it has never seen by generalizing from similar ones.
+  why:
+    A: "Networks are not always faster; their advantage is handling huge state spaces."
+    C: "Tables can hold any numbers, including negative values."
+    D: "The network still learns from rewards."

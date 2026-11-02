@@ -1,0 +1,38 @@
+# Lesson 5.3 flashcards
+
+- id: fc-reinforcement-learning
+  term: Reinforcement Learning
+  def: Learning a sequence of decisions by acting in an environment and receiving rewards or penalties, with the goal of maximizing total reward over time. It learns by trial and error, not from labeled answers.
+  skill: rl-basics
+  virginia: true
+
+- id: fc-rl-parts
+  term: Agent, environment, state, action, reward
+  def: The agent decides; the environment is what it acts in; the state is the current situation; an action is a choice; a reward is the number returned after an action. A policy maps states to actions.
+  skill: rl-basics
+
+- id: fc-explore-exploit
+  term: Exploration vs. exploitation
+  def: Exploitation takes the best-known action; exploration tries others to find something better. Epsilon-greedy explores with probability epsilon, often shrinking over time.
+  skill: rl-basics
+
+- id: fc-credit-assignment
+  term: Credit assignment problem
+  def: When a reward comes only after many actions, as at the end of a game, the agent must work out which earlier actions deserve the credit or blame.
+  skill: rl-basics
+
+- id: fc-mdp
+  term: Markov decision process
+  def: The formal RL setup of states, actions, transition probabilities, a reward function, and a discount factor. Markov property, the next state depends only on the current state and action.
+  skill: rl-details
+
+- id: fc-discount
+  term: Discount factor and return
+  def: Return G = r1 + gamma r2 + gamma^2 r3 + ... A gamma near 0 makes the agent short-sighted; a gamma near 1 makes it far-sighted.
+  example: "Rewards 0, 0, 100 with gamma 0.9 give G = 81."
+  skill: rl-details
+
+- id: fc-q-learning
+  term: Q-learning
+  def: Learns Q(s, a), the expected discounted return of taking action a in state s. Update, Q = Q + alpha (r + gamma max Q(s', a') - Q). Model-free; deep Q-networks replace the table with a neural network.
+  skill: rl-details
