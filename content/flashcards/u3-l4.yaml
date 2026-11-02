@@ -1,0 +1,47 @@
+# Lesson 3.4 flashcards
+
+- id: fc-data-quality
+  term: Data Quality
+  def: How fit data is for its intended use, measured along dimensions. DAMA UK's six core dimensions are accuracy, completeness, consistency, timeliness, validity, and uniqueness.
+  skill: data-quality
+  virginia: true
+
+- id: fc-quality-dimensions
+  term: The six quality dimensions
+  def: Accuracy, matches reality. Completeness, everything expected is present. Consistency, values agree across records and systems. Timeliness, current when needed. Validity, right format and range. Uniqueness, each item recorded once.
+  skill: data-quality
+
+- id: fc-valid-vs-accurate
+  term: Validity vs. accuracy
+  def: Valid data has the expected format and range; accurate data matches reality. A real ZIP code entered for the wrong customer is valid but inaccurate, and validation rules cannot catch it.
+  skill: data-quality
+
+- id: fc-quality-factors
+  term: Factors that hurt data quality
+  def: Duplicates inflate counts and overweight records; low-quality sources have unknown provenance; incomplete datasets shrink samples and can leave out whole groups. Also entry errors, mixed units, and stale data.
+  skill: data-quality
+
+- id: fc-sampling-methods
+  term: Probability sampling methods
+  def: Simple random, every group of n equally likely. Stratified, a random sample from every group. Cluster, every member of some randomly chosen groups. Systematic, every kth item after a random start.
+  skill: sampling-bias
+
+- id: fc-nonprobability
+  term: Convenience and voluntary response samples
+  def: Convenience samples take whoever is easiest to reach; voluntary response samples let people choose to respond. Both are prone to bias.
+  skill: sampling-bias
+
+- id: fc-collection-biases
+  term: Collection biases
+  def: Selection (including undercoverage), survivorship, nonresponse, voluntary response, response (such as leading questions), and measurement bias.
+  skill: sampling-bias
+
+- id: fc-survivorship
+  term: Survivorship bias
+  def: Studying only the cases that survived a selection process, such as successful companies, while ignoring the failures that shared the same traits.
+  skill: sampling-bias
+
+- id: fc-bias-vs-size
+  term: Bias vs. sample size
+  def: A larger sample reduces random variability, not bias. A huge biased sample is precisely wrong; fix bias by improving the sampling method.
+  skill: sampling-bias

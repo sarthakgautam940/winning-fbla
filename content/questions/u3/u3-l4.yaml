@@ -1,0 +1,423 @@
+# Lesson 3.4: Data quality and where bad data comes from
+
+# ---------------------------------------------------------------- data-quality
+- id: data-quality-01
+  skill: data-quality
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A company's customer database lists the same customer three times, under slightly different spellings of her name. Which data quality dimension does this problem affect most directly?
+  options:
+    - "Accuracy"
+    - "Timeliness"
+    - "Uniqueness"
+    - "Validity"
+  answer: C
+  explain: |
+    Uniqueness asks whether each real-world item is recorded only once. Three records for one customer are duplicates, which inflate customer counts and overweight her in any analysis.
+  why:
+    A: "The name may be spelled correctly in at least one record; the core problem is that she appears three times."
+    B: "Timeliness is about how current the data is, not about repeated records."
+    D: "Each record can be in a valid format; the problem is the repetition."
+
+- id: data-quality-02
+  skill: data-quality
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A health department builds a model from patient records, but the dataset contains no records from the region's rural clinics. What is the main risk?
+  options:
+    - "The model's conclusions may not apply to rural patients."
+    - "The model will be slower to train on the smaller dataset."
+    - "The records will fail validity checks during cleaning."
+    - "The dataset will contain more duplicate patient records."
+  answer: A
+  explain: |
+    An incomplete dataset that leaves out a whole group cannot represent that group. Rural patients may differ in age, access to care, or conditions, so conclusions drawn without them can be biased and may not apply to them.
+  why:
+    B: "Speed is a minor issue; the serious risk is biased conclusions."
+    C: "The records that are present can be perfectly valid; the problem is the records that are absent."
+    D: "Missing records do not create duplicates among the records that remain."
+
+- id: data-quality-03
+  skill: data-quality
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A form saves an age of -4 for one respondent. Which data quality dimension does this value violate?
+  options:
+    - "Uniqueness"
+    - "Timeliness"
+    - "Consistency"
+    - "Validity"
+  answer: D
+  explain: |
+    Validity asks whether data is in the expected format and range. No one can be -4 years old, so the value falls outside the valid range and a simple rule could catch it.
+  why:
+    A: "Uniqueness concerns duplicate records, not impossible values."
+    B: "Timeliness concerns how current the data is."
+    C: "Consistency concerns agreement between records or systems, and there is only one value here."
+
+- id: data-quality-04
+  skill: data-quality
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A customer's phone number is stored with the correct number of digits and a real area code, but it actually belongs to a different person. Which dimension is affected?
+  options:
+    - "Validity"
+    - "Accuracy"
+    - "Completeness"
+    - "Uniqueness"
+  answer: B
+  explain: |
+    The number passes every format and range check, so it is valid, but it does not match reality for this customer. That is an accuracy problem, the kind that validation rules cannot catch.
+  why:
+    A: "The number is in the expected format, so it is valid; it is simply wrong."
+    C: "The field is filled in, so nothing is missing."
+    D: "The problem is a wrong value, not a duplicated record."
+
+- id: data-quality-05
+  skill: data-quality
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A delivery app plans routes using traffic data that is refreshed only once a week. Which data quality dimension is the main concern?
+  options:
+    - "Uniqueness"
+    - "Validity"
+    - "Timeliness"
+    - "Consistency"
+  answer: C
+  explain: |
+    Traffic changes by the minute, so week-old data is not current enough for routing decisions. Timeliness asks whether data is up to date and available when it is needed.
+  why:
+    A: "Nothing suggests duplicate records."
+    B: "Old values can still be in a valid format and range."
+    D: "The data can agree perfectly with itself and still be out of date."
+
+- id: data-quality-06
+  skill: data-quality
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A data team adds validation rules that check every field's format and allowed range. Which problem can these rules NOT catch?
+  options:
+    - "A plausible but wrong value, such as a mistyped valid ZIP code"
+    - "An impossible value, such as a birth date in the future"
+    - "A value in the wrong format, such as letters in a phone field"
+    - "A value outside its range, such as a test score of 140 out of 100"
+  answer: A
+  explain: |
+    Validation rules test validity: format and range. A ZIP code that is real but wrong for this customer passes both checks, so it is an accuracy problem that only comparison with reality can reveal.
+  why:
+    B: "A future birth date is out of range, which a range rule catches."
+    C: "Letters in a phone field break the format rule."
+    D: "A score above the maximum breaks the range rule."
+
+- id: data-quality-07
+  skill: data-quality
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which data quality dimension asks whether all the expected records and values are present?
+  options:
+    - "Accuracy"
+    - "Consistency"
+    - "Validity"
+    - "Completeness"
+  answer: D
+  explain: |
+    Completeness measures how much of the expected data is actually there, such as whether every survey form has an answer for every required question.
+  why:
+    A: "Accuracy asks whether the values present match reality."
+    B: "Consistency asks whether values agree across records and systems."
+    C: "Validity asks whether values have the expected format and range."
+
+- id: data-quality-08
+  skill: data-quality
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    An analyst builds a pricing model using numbers copied from an anonymous post on an online forum. What is the main concern?
+  options:
+    - "The numbers will take too long to load into the model."
+    - "The source's reliability is unknown, so the data may be wrong."
+    - "Forum data is unstructured, so it cannot be analyzed."
+    - "The model will automatically detect and remove any errors."
+  answer: B
+  explain: |
+    An anonymous post has no known provenance: no one can say who collected the numbers, how, or when. Data from a low-quality source may be inaccurate or outdated, and every result built on it inherits that doubt.
+  why:
+    A: "Loading time is not the issue; trust in the data is."
+    C: "Numbers copied into a table are structured, and unstructured data can be analyzed too."
+    D: "Models learn from whatever they are given; they do not know which inputs are false."
+
+- id: data-quality-09
+  skill: data-quality
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Two customer lists are merged, and many customers now appear twice. How does this affect a report of the number of customers and their average spending?
+  options:
+    - "The count is overstated, and duplicated customers get extra weight in the average."
+    - "Neither the count nor the average changes, because the records are identical."
+    - "The count is understated, while the average stays exactly the same."
+    - "Only the average changes; the count of records stays accurate."
+  answer: A
+  explain: |
+    Every duplicate adds a phantom customer, so the count is too high. Duplicated customers also count twice in the average, which pulls it toward their spending, whether high or low.
+  why:
+    B: "Identical extra records still add to the count and shift the average toward the duplicated customers."
+    C: "Duplicates add records, so the count goes up, not down."
+    D: "The count of records is exactly what duplicates inflate."
+
+- id: data-quality-10
+  skill: data-quality
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    One store reports sales in dollars and another reports them in thousands of dollars. The two files are combined without converting the units. Which dimension is damaged first?
+  options:
+    - "Uniqueness"
+    - "Timeliness"
+    - "Consistency"
+    - "Completeness"
+  answer: C
+  explain: |
+    The same field now means two different things in different records, so the values do not agree in a common standard. That is a consistency problem, and it will also make any total or average inaccurate until the units are converted.
+  why:
+    A: "No record is duplicated by combining the files."
+    B: "The data can be fully current and still use mixed units."
+    D: "Every record still has a sales value, so nothing is missing."
+
+# ---------------------------------------------------------------- sampling-bias
+- id: sampling-bias-01
+  skill: sampling-bias
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A school lists all 1,200 students alphabetically, picks a random starting point among the first 20 names, and then selects every 20th student. What kind of sample is this?
+  options:
+    - "A stratified random sample"
+    - "A cluster sample"
+    - "A convenience sample"
+    - "A systematic sample"
+  answer: D
+  explain: |
+    Choosing every kth individual from a list after a random start is systematic sampling. Here k = 20, which yields 60 students.
+  why:
+    A: "A stratified sample would divide the students into groups first and sample within each one."
+    B: "A cluster sample would select whole groups, such as entire homerooms."
+    C: "The selection follows a random rule, not whoever is easiest to reach."
+
+- id: sampling-bias-02
+  skill: sampling-bias
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A business magazine studies 50 highly successful startups and finds that most of their founders left college early. It concludes that leaving college early helps founders succeed. Which bias most weakens this conclusion?
+  options:
+    - "Response bias"
+    - "Survivorship bias"
+    - "Measurement bias"
+    - "Nonresponse bias"
+  answer: B
+  explain: |
+    The study looks only at companies that survived and succeeded. It ignores the many failed startups whose founders also left college early, so it cannot tell whether leaving early helps at all.
+  why:
+    A: "Response bias means inaccurate answers, and nothing suggests the founders misreported."
+    C: "Measurement bias means a faulty instrument; the problem is which cases were studied."
+    D: "Nonresponse bias needs people who were selected but did not answer."
+
+- id: sampling-bias-03
+  skill: sampling-bias
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    An online poll receives 200,000 responses from volunteers. Separately, a pollster surveys a random sample of 1,000 adults. Which is likely to describe the adult population more accurately?
+  options:
+    - "The random sample, because the poll's bias does not shrink as it grows"
+    - "The online poll, because a larger sample always removes bias"
+    - "The online poll, because volunteers care more about the topic"
+    - "Both equally, because each has more than 30 responses"
+  answer: A
+  explain: |
+    A large sample reduces random variability, but the poll's respondents chose themselves, and that voluntary response bias stays no matter how many responses arrive. The random sample is smaller but representative.
+  why:
+    B: "Size reduces variability, not bias; a huge biased sample is precisely wrong."
+    C: "Caring more about the topic is exactly why volunteers are unrepresentative."
+    D: "The n of 30 guideline is about the shape of sampling distributions, not about bias."
+
+- id: sampling-bias-04
+  skill: sampling-bias
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A TV show asks viewers to text their vote on a controversial issue, and 80% of the texts favor one side. Why are the results unreliable?
+  options:
+    - "The texts cannot be counted accurately."
+    - "The sample of texts is far too small."
+    - "Viewers chose whether to respond."
+    - "The show misused stratified sampling."
+  answer: C
+  explain: |
+    People who feel strongly are much more likely to text in, so the votes overrepresent strong opinions and do not reflect all viewers, let alone the public.
+  why:
+    A: "Counting the texts is easy; the problem is who sent them."
+    B: "Even millions of texts would carry the same bias."
+    D: "No stratification took place; respondents selected themselves."
+
+- id: sampling-bias-05
+  skill: sampling-bias
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A district randomly selects 5 of its 40 schools and surveys every teacher in those 5 schools. What kind of sample is this?
+  options:
+    - "A simple random sample of teachers"
+    - "A stratified random sample"
+    - "A systematic sample"
+    - "A cluster sample"
+  answer: D
+  explain: |
+    Whole groups (schools) are chosen at random, and everyone in each chosen group is included. That is cluster sampling: all individuals from some groups.
+  why:
+    A: "In a simple random sample, every set of teachers would be equally likely, but here teachers come in whole-school blocks."
+    B: "A stratified sample would take some teachers from every school."
+    C: "A systematic sample would take every kth teacher from a list."
+
+- id: sampling-bias-06
+  skill: sampling-bias
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A survey is mailed to 2,000 randomly chosen residents of a town. Only 300 are returned, mostly by retirees. Which bias is the main concern?
+  options:
+    - "Voluntary response bias"
+    - "Nonresponse bias"
+    - "Survivorship bias"
+    - "Measurement bias"
+  answer: B
+  explain: |
+    The researchers chose the residents at random, but most did not respond, and those who did differ from the town as a whole. The results describe retirees rather than all residents.
+  why:
+    A: "In voluntary response, people select themselves; here the researchers chose the sample."
+    C: "Survivorship bias concerns studying only cases that survived a selection process."
+    D: "Nothing suggests the survey measured answers incorrectly."
+
+- id: sampling-bias-07
+  skill: sampling-bias
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    An online survey of a city's residents draws mostly young respondents. Which step would best reduce the bias?
+  options:
+    - "Collect ten times as many online responses"
+    - "Sample at random from a full list, then follow up"
+    - "Drop all of the responses from young people"
+    - "Shorten the survey so more young people finish"
+  answer: B
+  explain: |
+    The bias comes from the method, so the fix is a better method: random selection from a sampling frame that covers every age group, plus follow-up to raise response among those who did not answer.
+  why:
+    A: "More responses from the same skewed method reduce variability but keep the bias."
+    C: "Dropping a group creates a new bias instead of fixing the old one."
+    D: "Helping more young people finish would skew the sample even further toward them."
+
+- id: sampling-bias-08
+  skill: sampling-bias
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is it called when a population is divided into groups that share a trait and a random sample is taken from each group?
+  options:
+    - "Stratified random sampling"
+    - "Cluster sampling"
+    - "Convenience sampling"
+    - "Systematic sampling"
+  answer: A
+  explain: |
+    Stratified sampling divides the population into strata, such as grade levels, and samples randomly within each one, which guarantees that every group is represented.
+  why:
+    B: "Cluster sampling selects some whole groups and includes everyone in them."
+    C: "Convenience sampling takes whoever is easiest to reach."
+    D: "Systematic sampling takes every kth individual from a list."
+
+- id: sampling-bias-09
+  skill: sampling-bias
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A survey asks, "Don't you agree that the new park is a waste of taxpayer money?" What problem does this question introduce?
+  options:
+    - "Undercoverage of residents who do not use parks"
+    - "Survivorship bias toward people who visit parks"
+    - "Response bias from a leading question"
+    - "Nonresponse bias from residents who skip the question"
+  answer: C
+  explain: |
+    The wording pushes respondents toward agreeing, so answers reflect the question's slant rather than people's real views. A neutral version would ask whether the park is a good or poor use of money.
+  why:
+    A: "Undercoverage concerns who can be sampled, not how a question is worded."
+    B: "Survivorship bias concerns studying only cases that survived a selection process."
+    D: "The main problem is the slanted wording, which affects everyone who answers."
+
+- id: sampling-bias-10
+  skill: sampling-bias
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A pollster draws a random sample from a list of landline phone numbers, and every person called agrees to answer. Why might the results still be biased?
+  options:
+    - "A perfect response rate always signals a measurement error."
+    - "Random selection from a list always produces survivorship bias."
+    - "Phone surveys cannot produce numeric data for analysis."
+    - "The list misses people without landlines, so the frame undercovers them."
+  answer: D
+  explain: |
+    The sampling frame itself is incomplete. People who use only cell phones, often younger adults, have no chance of being chosen, so even a random sample with full response undercovers them.
+  why:
+    A: "A high response rate is good; it does not suggest faulty measurement."
+    B: "Random selection from a complete frame is the cure for bias; the problem is the frame."
+    C: "Phone surveys can collect any kind of answer, including numbers."
+
+- id: sampling-bias-11
+  skill: sampling-bias
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Increasing the size of a random sample mainly reduces which of the following?
+  options:
+    - "Random variability in the estimates"
+    - "Bias from a poorly chosen sampling frame"
+    - "Response bias from leading questions"
+    - "Voluntary response bias in the sample"
+  answer: A
+  explain: |
+    Larger random samples produce estimates that vary less from sample to sample, because the standard error shrinks with the square root of n. Biases built into the method stay the same at any size.
+  why:
+    B: "A flawed frame misses the same people however many are drawn from it."
+    C: "Leading questions slant every answer, so more answers repeat the slant."
+    D: "Self-selection bias does not shrink as more volunteers respond."
