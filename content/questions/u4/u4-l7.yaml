@@ -1,0 +1,450 @@
+# Lesson 4.7: The library map and deep learning frameworks
+
+# ---------------------------------------------------------------- py-libraries
+- id: py-libraries-01
+  skill: py-libraries
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    An analyst needs to load a CSV file, remove duplicate rows, and compute average sales for each region. Which Python library is built for this?
+  options:
+    - "pandas"
+    - "Matplotlib"
+    - "PyTorch"
+    - "Keras"
+  answer: A
+  explain: |
+    pandas provides the DataFrame and the tools for reading files, cleaning rows, and grouping and summarizing tables.
+  why:
+    B: "Matplotlib draws charts; it does not load or summarize tables."
+    C: "PyTorch builds and trains neural networks."
+    D: "Keras is a high-level interface for neural networks."
+
+- id: py-libraries-02
+  skill: py-libraries
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A researcher wants a regression summary table that lists each coefficient with its standard error, p-value, and confidence interval. Which library is designed for this kind of statistical inference?
+  options:
+    - "Matplotlib"
+    - "seaborn"
+    - "statsmodels"
+    - "Hugging Face Transformers"
+  answer: C
+  explain: |
+    statsmodels focuses on statistical modeling and inference, and its regression summaries report coefficients with standard errors, p-values, and confidence intervals.
+  why:
+    A: "Matplotlib draws charts and does no modeling."
+    B: "seaborn draws statistical charts but does not produce inference tables."
+    D: "Transformers loads pretrained deep learning models, not regression summaries."
+
+- id: py-libraries-03
+  skill: py-libraries
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A company's dataset is far too large for one computer, and it needs to process the data by spreading the work across a cluster of machines. Which tool is designed for this?
+  options:
+    - "Matplotlib"
+    - "Microsoft Excel"
+    - "seaborn"
+    - "Apache Spark"
+  answer: D
+  explain: |
+    Apache Spark distributes data processing across many machines, which lets it handle datasets that do not fit on a single computer.
+  why:
+    A: "Matplotlib draws charts on one machine."
+    B: "Excel suits small datasets on one computer."
+    C: "seaborn draws statistical charts; it does not distribute processing."
+
+- id: py-libraries-04
+  skill: py-libraries
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which library is Python's foundational plotting library, on which seaborn is built?
+  options:
+    - "SciPy"
+    - "Matplotlib"
+    - "scikit-learn"
+    - "NumPy"
+  answer: B
+  explain: |
+    Matplotlib is the base plotting library in Python, giving control over every part of a chart. seaborn sits on top of it and adds concise commands for statistical charts.
+  why:
+    A: "SciPy provides scientific computing tools, not the base plotting system."
+    C: "scikit-learn provides machine learning models."
+    D: "NumPy provides arrays, which charts often plot, but it does not draw them."
+
+- id: py-libraries-05
+  skill: py-libraries
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An analyst wants to run a t-test and work with the normal and binomial distributions in Python. Which library provides these tools?
+  options:
+    - "SciPy"
+    - "seaborn"
+    - "Keras"
+    - "Plotly"
+  answer: A
+  explain: |
+    SciPy's scipy.stats module provides probability distributions and statistical tests such as the t-test, along with SciPy's tools for optimization and integration.
+  why:
+    B: "seaborn draws statistical charts but does not run tests."
+    C: "Keras builds neural networks."
+    D: "Plotly makes interactive charts."
+
+- id: py-libraries-06
+  skill: py-libraries
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A team must clean a messy sales table, train a random forest to predict which customers will cancel, and then chart the importance of each feature. Which set of libraries covers the three jobs, in order?
+  options:
+    - "NumPy, PyTorch, and SciPy"
+    - "Matplotlib, pandas, and scikit-learn"
+    - "seaborn, statsmodels, and Hugging Face"
+    - "pandas, scikit-learn, and Matplotlib"
+  answer: D
+  explain: |
+    pandas cleans tables, scikit-learn provides the random forest (a classical model), and Matplotlib draws the chart.
+  why:
+    A: "PyTorch is for deep learning, and SciPy does not draw charts."
+    B: "These are the right libraries but in the wrong order for the three jobs."
+    C: "seaborn charts, statsmodels models, and Hugging Face loads pretrained models, so none of them cleans the table."
+
+- id: py-libraries-07
+  skill: py-libraries
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which library is designed for building and training deep neural networks?
+  options:
+    - "pandas"
+    - "seaborn"
+    - "PyTorch"
+    - "SciPy"
+  answer: C
+  explain: |
+    PyTorch is a deep learning framework: it builds neural networks from layers, computes gradients automatically, and trains models on GPUs.
+  why:
+    A: "pandas works with tables of data."
+    B: "seaborn draws statistical charts."
+    D: "SciPy provides scientific computing tools, not neural network training."
+
+- id: py-libraries-08
+  skill: py-libraries
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What does seaborn add on top of Matplotlib?
+  options:
+    - "Neural network layers for image data"
+    - "Concise commands for statistical charts"
+    - "A database engine for storing tables"
+    - "Faster array math on graphics processors"
+  answer: B
+  explain: |
+    seaborn turns common statistical charts, such as histograms, boxplots, heatmaps, and pair plots, into single commands with good-looking defaults, while Matplotlib draws them underneath.
+  why:
+    A: "Neural network layers come from frameworks such as PyTorch."
+    C: "Storing tables is the job of a database."
+    D: "GPU array math is what tensor libraries such as PyTorch provide."
+
+# ---------------------------------------------------------------- pytorch
+- id: pytorch-01
+  skill: pytorch
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    Which statement about the origins of PyTorch and TensorFlow is accurate?
+  options:
+    - "PyTorch came from Facebook's AI lab; TensorFlow came from Google Brain."
+    - "PyTorch came from Google Brain; TensorFlow came from Facebook's AI lab."
+    - "Both frameworks were created by Microsoft Research."
+    - "Both frameworks were created by the Linux Foundation."
+  answer: A
+  explain: |
+    PyTorch was created by researchers at Facebook's AI lab (now Meta AI) and released publicly in 2017. TensorFlow was developed by Google Brain and open-sourced in 2015. PyTorch is now governed by the PyTorch Foundation, part of the Linux Foundation, which took it over in 2022 rather than creating it.
+  why:
+    B: "This swaps the two companies."
+    C: "Neither framework came from Microsoft Research."
+    D: "The Linux Foundation took over PyTorch's governance in 2022; it did not create either framework."
+
+- id: pytorch-02
+  skill: pytorch
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    In what order do the steps of a standard PyTorch training loop run for each batch?
+  options:
+    - "Forward pass, step, compute loss, zero_grad, backward"
+    - "backward, zero_grad, forward pass, step, compute loss"
+    - "zero_grad, backward, forward pass, compute loss, step"
+    - "zero_grad, forward pass, compute loss, backward, step"
+  answer: D
+  explain: |
+    Clear the old gradients, make predictions, measure the loss, compute fresh gradients with backward(), and only then update the weights with step().
+  why:
+    A: "The weights cannot be updated before the loss and its gradients exist."
+    B: "backward needs a loss, which comes from a forward pass that has not happened yet."
+    C: "backward must come after the forward pass and the loss, not before them."
+
+- id: pytorch-03
+  skill: pytorch
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In PyTorch, what is a tensor?
+  options:
+    - "A table of data with labeled rows and named columns"
+    - "A multi-dimensional array that can run on a GPU and track gradients"
+    - "A chart that shows how training loss changes over time"
+    - "A file format for saving trained models to disk"
+  answer: B
+  explain: |
+    A tensor is PyTorch's core data structure. It works like a NumPy array of any number of dimensions, but it can live on a GPU and record operations so that gradients can be computed.
+  why:
+    A: "Labeled rows and named columns describe a pandas DataFrame."
+    C: "A loss curve is a chart, not a data structure."
+    D: "Saved model files hold tensors, but a tensor is the array itself."
+
+- id: pytorch-04
+  skill: pytorch
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    In a PyTorch training loop, what does `loss.backward()` do?
+  options:
+    - "It undoes the last update to the weights."
+    - "It sends the training data back to the CPU."
+    - "It computes the gradient of the loss for every weight."
+    - "It moves the model one layer back toward the input."
+  answer: C
+  explain: |
+    backward() runs autograd, PyTorch's automatic differentiation: it works back through the recorded operations and stores the gradient of the loss with respect to each weight. optimizer.step() then uses those gradients.
+  why:
+    A: "Nothing undoes updates; backward only computes gradients."
+    B: "Moving data between devices uses .to(), not backward()."
+    D: "The name refers to calculating gradients backward through the network, not to moving the model."
+
+- id: pytorch-05
+  skill: pytorch
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    A student's PyTorch training loop calls `loss.backward()` and `optimizer.step()` on every batch but never calls `optimizer.zero_grad()`. What goes wrong?
+  options:
+    - "Nothing, because PyTorch clears gradients automatically."
+    - "Training stops with an error on the second batch."
+    - "The model's weights are never updated at all."
+    - "Gradients accumulate across batches, so updates use summed old gradients."
+  answer: D
+  explain: |
+    By default PyTorch adds each new gradient to whatever is already stored. Without zero_grad(), every update uses the running total of all earlier gradients instead of the current batch's gradient, which throws training off.
+  why:
+    A: "Accumulating gradients is PyTorch's default, which is why zero_grad() exists."
+    B: "No error is raised; the loop runs, just incorrectly."
+    C: "step() still updates the weights, but with the wrong gradients."
+
+- id: pytorch-06
+  skill: pytorch
+  tier: competitive
+  type: code
+  use: bank
+  stem: |
+    What does `model.to("cuda")` do in PyTorch?
+  options:
+    - "It moves the model's weights onto an NVIDIA GPU."
+    - "It converts the model into a different framework."
+    - "It saves the model to a file named cuda."
+    - "It splits the model across several computers."
+  answer: A
+  explain: |
+    .to("cuda") moves a model's parameters to a GPU, where training runs much faster. The input tensors must be moved to the same device before they are passed to the model.
+  why:
+    B: "Moving a model between devices does not change its framework."
+    C: "Saving uses torch.save, not .to()."
+    D: "Splitting work across computers needs distributed training tools."
+
+- id: pytorch-07
+  skill: pytorch
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why are GPUs used to train deep learning models?
+  options:
+    - "They store more data than hard drives can."
+    - "They run many arithmetic operations at the same time."
+    - "They remove the need for training data."
+    - "They make models more interpretable to people."
+  answer: B
+  explain: |
+    Training a network means huge numbers of multiplications and additions that can run in parallel, and a GPU has thousands of cores built to do exactly that, so training runs far faster than on a CPU.
+  why:
+    A: "GPUs compute; storage capacity is not their advantage."
+    C: "Every model still learns from data."
+    D: "GPUs speed up training but do nothing to explain a model."
+
+- id: pytorch-08
+  skill: pytorch
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What is Keras?
+  options:
+    - "A database for storing training data"
+    - "A library for drawing statistical charts"
+    - "A high-level interface for building neural networks"
+    - "A tool for splitting data into training and test sets"
+  answer: C
+  explain: |
+    Keras, created by François Chollet, lets you define and train neural networks with very little code. Keras 3 can run the same code on a JAX, TensorFlow, or PyTorch backend.
+  why:
+    A: "Keras builds models; it does not store data."
+    B: "Statistical charts come from libraries such as seaborn."
+    D: "Splitting data is a job for scikit-learn's train_test_split."
+
+# ---------------------------------------------------------------- sklearn
+- id: sklearn-01
+  skill: sklearn
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In scikit-learn, what does a model's `fit` method do?
+  options:
+    - "It makes predictions for new data."
+    - "It splits the data into training and test sets."
+    - "It draws a chart of the model's accuracy."
+    - "It learns the model's parameters from training data."
+  answer: D
+  explain: |
+    fit(X, y) trains the model: it learns parameters such as regression coefficients or tree splits from the training data. predict then applies what was learned to new data.
+  why:
+    A: "Making predictions is the job of predict."
+    B: "Splitting data is done by train_test_split."
+    C: "Charts come from plotting libraries, not from fit."
+
+- id: sklearn-02
+  skill: sklearn
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    A dataset has 200 rows. How many rows end up in the test set after this line?
+
+    ```python
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+    ```
+  options:
+    - "25"
+    - "50"
+    - "150"
+    - "200"
+  ordered: true
+  answer: B
+  explain: |
+    test_size=0.25 sends 25% of the rows to the test set: 0.25 × 200 = 50. The other 150 rows form the training set.
+  why:
+    A: "This reads 0.25 as 25 rows instead of 25% of the rows."
+    C: "150 is the size of the training set."
+    D: "The test set is only part of the data."
+  verify: "0.25 * 200"
+
+- id: sklearn-03
+  skill: sklearn
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    Which code scales the features without leaking information from the test set into training?
+  options:
+    - "`scaler.fit(X)` on all the data, then transform both sets"
+    - "`scaler.fit_transform(X_test)`, then `scaler.transform(X_train)`"
+    - "`scaler.fit_transform(X_train)`, then `scaler.transform(X_test)`"
+    - "`scaler.fit_transform(X_train)`, then `scaler.fit_transform(X_test)`"
+  answer: C
+  explain: |
+    The scaler must learn its mean and standard deviation from the training data only, then apply those same values to the test data. Any fitting that looks at the test set leaks information and inflates test scores.
+  why:
+    A: "Fitting on all the data lets the test set shape the scaling, which is data leakage."
+    B: "This learns the scaling from the test set, the opposite of what is wanted."
+    D: "Refitting on the test set scales it with different numbers and also uses test information."
+
+- id: sklearn-04
+  skill: sklearn
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A bank wants to predict whether each loan will default (yes or no). Which scikit-learn class fits this task?
+  options:
+    - "LinearRegression"
+    - "LogisticRegression"
+    - "KMeans"
+    - "StandardScaler"
+  answer: B
+  explain: |
+    Default or not is a yes-or-no category, so this is classification, and LogisticRegression is a classification model despite its name.
+  why:
+    A: "LinearRegression predicts a numeric target, not a category."
+    C: "KMeans finds unlabeled clusters; here the labels are known."
+    D: "StandardScaler prepares features but makes no predictions."
+
+- id: sklearn-05
+  skill: sklearn
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What does `fit_transform` do on a scikit-learn preprocessing object such as StandardScaler?
+  options:
+    - "It learns the scaling from the data and applies it, in one step."
+    - "It applies a scaling learned earlier from different data."
+    - "It trains a prediction model on the data."
+    - "It removes rows that cannot be scaled."
+  answer: A
+  explain: |
+    fit_transform calls fit and then transform on the same data: it learns each feature's mean and standard deviation and immediately rescales the data with them. It belongs on the training set.
+  why:
+    B: "Applying an earlier fit is what transform alone does."
+    C: "Preprocessing objects prepare data; models are trained with fit."
+    D: "Scaling changes values; it does not drop rows."
+
+- id: sklearn-06
+  skill: sklearn
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A store wants to group its customers into segments based on their purchase behavior, with no labels given. Which scikit-learn class fits?
+  options:
+    - "LogisticRegression"
+    - "LinearRegression"
+    - "DecisionTreeClassifier"
+    - "KMeans"
+  answer: D
+  explain: |
+    Grouping cases without labels is clustering, and KMeans is scikit-learn's k-means clustering algorithm.
+  why:
+    A: "LogisticRegression needs known labels to learn from."
+    B: "LinearRegression predicts a number from labeled examples."
+    C: "A decision tree classifier also needs labeled examples."

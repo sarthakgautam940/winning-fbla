@@ -1,0 +1,47 @@
+# Lesson 4.7 flashcards
+
+- id: fc-data-stack
+  term: The Python data stack
+  def: NumPy (arrays), pandas (DataFrames), Matplotlib (foundational plotting), seaborn (statistical charts built on Matplotlib), and SciPy (statistics, optimization, scientific computing).
+  skill: py-libraries
+
+- id: fc-sklearn-statsmodels
+  term: scikit-learn vs. statsmodels
+  def: scikit-learn is the standard library for classical machine learning and its tools. statsmodels focuses on statistical inference, with p-values and confidence intervals in its summaries.
+  skill: py-libraries
+
+- id: fc-pytorch
+  term: PyTorch
+  def: An open-source deep learning framework created at Facebook's AI lab (public release 2017), now governed by the PyTorch Foundation. Its core pieces are tensors, autograd, and modules.
+  skill: pytorch
+  virginia: true
+
+- id: fc-dl-frameworks
+  term: TensorFlow, Keras, Hugging Face
+  def: TensorFlow came from Google Brain (open-sourced 2015). Keras is a high-level neural network interface; Keras 3 runs on JAX, TensorFlow, or PyTorch. Hugging Face hosts pretrained models, used through its Transformers library.
+  skill: pytorch
+
+- id: fc-tensor-autograd
+  term: Tensor and autograd
+  def: A tensor is a multi-dimensional array that can live on a GPU and track gradients. Autograd records operations so that loss.backward() computes the gradient for every weight.
+  skill: pytorch
+
+- id: fc-training-loop
+  term: PyTorch training loop
+  def: For each batch, zero_grad, forward pass, compute the loss, backward, step. Leaving out zero_grad lets gradients accumulate.
+  skill: pytorch
+
+- id: fc-fit-predict-transform
+  term: fit, predict, transform
+  def: In scikit-learn, fit learns from training data, predict applies a fitted model, transform applies a fitted preprocessing step, and fit_transform does both on the same data.
+  skill: sklearn
+
+- id: fc-leakage-scaling
+  term: Scaling without leakage
+  def: Fit a scaler on the training set only (fit_transform), then apply it to the test set (transform). Fitting on all the data leaks test information.
+  skill: sklearn
+
+- id: fc-jupyter-tools
+  term: Jupyter and other tools
+  def: Jupyter notebooks mix code, output, and text; Project Jupyter grew out of IPython in 2014 (Julia, Python, R). Spark processes data across clusters; Tableau and Power BI build dashboards.
+  skill: py-libraries
