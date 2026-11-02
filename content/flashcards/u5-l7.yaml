@@ -1,0 +1,38 @@
+# Lesson 5.7 flashcards
+
+- id: fc-loss-function
+  term: Loss function
+  def: A number that measures how wrong a model's predictions are; training minimizes it. MSE suits regression; cross-entropy (log loss) suits classification.
+  skill: loss-gd
+
+- id: fc-cross-entropy
+  term: Cross-entropy (log loss)
+  def: Charges -ln(p), where p is the probability the model gave the true class. Confident correct predictions cost little; confident wrong ones cost a lot.
+  example: "True class spam: p = 0.9 costs about 0.11; p = 0.1 costs about 2.30."
+  skill: loss-gd
+
+- id: fc-gradient-descent
+  term: Gradient Descent
+  def: An optimization algorithm that repeatedly moves each parameter against its gradient to lower the loss, w_new = w - learning rate x gradient.
+  skill: loss-gd
+  virginia: true
+
+- id: fc-learning-rate
+  term: Learning rate
+  def: The step size of gradient descent, a hyperparameter. Too small trains slowly; too large overshoots and can diverge. Schedules often shrink it over time.
+  skill: loss-gd
+
+- id: fc-gd-variants
+  term: Batch, stochastic, mini-batch
+  def: Batch uses all training data per step; stochastic (SGD) uses one example; mini-batch uses small groups such as 32, the deep learning standard. An epoch is one full pass through the data.
+  skill: loss-gd
+
+- id: fc-local-minima
+  term: Local minima
+  def: Low points of a loss surface that are not the lowest overall. Convex losses, like linear regression's MSE, have one minimum; neural network losses are bumpy.
+  skill: loss-gd
+
+- id: fc-linear-learners
+  term: Linear and logistic regression as learners
+  def: Both compute w x + b and adjust the weights and bias during training. Linear regression minimizes MSE; logistic regression applies the sigmoid and minimizes cross-entropy, with its decision boundary where z = 0.
+  skill: linear-models

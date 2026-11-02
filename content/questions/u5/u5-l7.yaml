@@ -1,0 +1,424 @@
+# Lesson 5.7: Loss functions and gradient descent
+
+# ---------------------------------------------------------------- loss-gd
+- id: loss-gd-01
+  skill: loss-gd
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A model predicts the sale price of houses. Which loss function is the standard choice for training it?
+  options:
+    - "Mean squared error"
+    - "Cross-entropy"
+    - "Accuracy"
+    - "Silhouette score"
+  answer: A
+  explain: |
+    Predicting a number is regression, and mean squared error, the average squared gap between predicted and true prices, is the standard regression loss.
+  why:
+    B: "Cross-entropy is the standard loss for classification, not for predicting numbers."
+    C: "Accuracy reports how many classifications are right; it is not a regression loss."
+    D: "The silhouette score evaluates clusters, not predictions."
+
+- id: loss-gd-02
+  skill: loss-gd
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    At the current value of a weight w, the gradient of the loss with respect to w is positive. What will a gradient descent step do to w?
+  options:
+    - "Increase w"
+    - "Leave w unchanged"
+    - "Decrease w"
+    - "Set w to zero"
+  answer: C
+  explain: |
+    A positive gradient means increasing w would raise the loss. Gradient descent moves against the gradient, w_new = w - learning rate × gradient, so it decreases w.
+  why:
+    A: "Increasing w would move uphill, raising the loss."
+    B: "A nonzero gradient always produces a step."
+    D: "The step size depends on the gradient and learning rate; it does not reset w."
+
+- id: loss-gd-03
+  skill: loss-gd
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    During training, the loss jumps up and down from one step to the next and grows larger over time instead of shrinking. What is the most likely cause?
+  options:
+    - "The learning rate is too low."
+    - "The training set is too large."
+    - "The loss function is mean squared error."
+    - "The learning rate is too high."
+  answer: D
+  explain: |
+    A learning rate that is too large makes each step overshoot the minimum, so the parameters bounce back and forth and can climb ever higher, which is divergence.
+  why:
+    A: "A learning rate that is too low makes the loss fall slowly, not bounce and grow."
+    B: "A large training set does not cause the loss to grow."
+    C: "MSE is a sensible loss; the problem is the step size."
+
+- id: loss-gd-04
+  skill: loss-gd
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A model is trained with mini-batch gradient descent on 1,000 examples, with a batch size of 100. How many weight updates happen in one epoch?
+  options:
+    - "1"
+    - "10"
+    - "100"
+    - "1,000"
+  ordered: true
+  answer: B
+  explain: |
+    An epoch is one full pass through the data, and each mini-batch produces one update: 1,000 / 100 = 10 updates per epoch.
+  why:
+    A: "One update per epoch describes batch gradient descent on the whole dataset."
+    C: "100 is the batch size, not the number of batches."
+    D: "1,000 updates per epoch would mean one example per step, which is stochastic gradient descent."
+  verify: "1000 / 100"
+
+- id: loss-gd-05
+  skill: loss-gd
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    A model predicts $$\hat{y} = wx$$ and is trained with squared-error loss, whose gradient for one example is $$2(\hat{y} - y)x$$. The current weight is w = 2, the example is x = 3 with y = 12, and the learning rate is 0.1. What is w after one gradient descent step?
+  options:
+    - "-1.6"
+    - "3.2"
+    - "3.8"
+    - "5.6"
+  ordered: true
+  answer: D
+  explain: |
+    The prediction is 2 × 3 = 6, so the error is 6 - 12 = -6. The gradient is 2 × (-6) × 3 = -36, and the update is 2 - 0.1 × (-36) = 2 + 3.6 = 5.6.
+  why:
+    A: "This adds the gradient term instead of subtracting it, moving the wrong way."
+    B: "This leaves x out of the gradient, using 2 × (-6) = -12."
+    C: "This drops the factor of 2, using (-6) × 3 = -18."
+  verify: "2 - 0.1 * (2 * (2 * 3 - 12) * 3)"
+
+- id: loss-gd-06
+  skill: loss-gd
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does gradient descent do?
+  options:
+    - "It repeatedly adjusts parameters in the direction that reduces the loss."
+    - "It sorts the training data from lowest to highest error."
+    - "It removes features that have small weights."
+    - "It splits the data into training and test sets."
+  answer: A
+  explain: |
+    Gradient descent is an optimization algorithm: at each step it computes the slope of the loss and moves the parameters downhill, a little at a time, toward lower loss.
+  why:
+    B: "Sorting data is not part of gradient descent."
+    C: "Removing features is feature selection, which L1 regularization can encourage."
+    D: "Splitting data happens before training, not during optimization."
+
+- id: loss-gd-07
+  skill: loss-gd
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A model's loss falls steadily but extremely slowly, needing millions of steps to approach its minimum. Which change is most likely to help?
+  options:
+    - "Lowering the learning rate further"
+    - "Switching the loss function to accuracy"
+    - "Raising the learning rate moderately"
+    - "Removing the training data"
+  answer: C
+  explain: |
+    Slow but steady progress is the sign of a learning rate that is too small. A moderately larger learning rate takes bigger steps toward the minimum, as long as it does not become so large that steps overshoot.
+  why:
+    A: "A smaller learning rate would make progress even slower."
+    B: "Accuracy does not change smoothly, so gradient descent cannot minimize it."
+    D: "A model cannot learn without training data."
+
+- id: loss-gd-08
+  skill: loss-gd
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    The true class of an email is spam. Which predicted probability of spam gives the highest cross-entropy loss?
+  options:
+    - "0.1"
+    - "0.5"
+    - "0.7"
+    - "0.9"
+  ordered: true
+  answer: A
+  explain: |
+    Cross-entropy charges -ln(p) for the probability given to the true class. The smaller that probability, the larger the loss, so the confident wrong prediction of 0.1 is punished most, about 2.30.
+  why:
+    B: "0.5 gives a loss of about 0.69, smaller than the loss for 0.1."
+    C: "0.7 is a fairly good prediction with a small loss."
+    D: "0.9 is a confident correct prediction with the smallest loss of the four."
+
+- id: loss-gd-09
+  skill: loss-gd
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Why can gradient descent on a neural network settle on a solution that is not the best possible one?
+  options:
+    - "Neural networks have no loss function to minimize."
+    - "The loss surface can have local minima and flat regions."
+    - "Gradient descent always moves uphill on neural networks."
+    - "Neural networks can only be trained by batch gradient descent."
+  answer: B
+  explain: |
+    Unlike the single bowl of linear regression's MSE, a network's loss surface is bumpy. Gradient descent follows the local slope, so it can stop in a dip that is not the lowest point, or stall where the surface is nearly flat.
+  why:
+    A: "Networks are trained by minimizing a loss such as cross-entropy."
+    C: "Gradient descent always steps downhill; the issue is where downhill leads."
+    D: "Networks are usually trained with mini-batch gradient descent."
+
+- id: loss-gd-10
+  skill: loss-gd
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which version of gradient descent updates the weights after every single training example, giving fast but noisy steps?
+  options:
+    - "Batch gradient descent"
+    - "Mini-batch gradient descent"
+    - "Early stopping"
+    - "Stochastic gradient descent"
+  answer: D
+  explain: |
+    Stochastic gradient descent computes each step from one randomly chosen example. The steps are cheap but noisy, and that noise can help the search escape shallow local minima.
+  why:
+    A: "Batch gradient descent uses the entire training set for every step."
+    B: "Mini-batch gradient descent uses small groups of examples."
+    C: "Early stopping decides when to end training; it is not a way of computing steps."
+
+- id: loss-gd-11
+  skill: loss-gd
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    In machine learning, what is a loss function?
+  options:
+    - "A list of the features a model ignores"
+    - "The amount of training data that gets deleted"
+    - "A number that measures how wrong a model's predictions are"
+    - "The step size used by gradient descent"
+  answer: C
+  explain: |
+    A loss function turns a model's prediction errors into one number. Training searches for the parameters that make this number as small as possible.
+  why:
+    A: "Ignored features are not what a loss function measures."
+    B: "A loss function does not delete data."
+    D: "The step size is the learning rate."
+
+- id: loss-gd-12
+  skill: loss-gd
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Gradient descent minimizes the loss $$(w - 3)^2$$, whose gradient is $$2(w - 3)$$. Starting from w = 0 with a learning rate of 0.1, what is w after two steps?
+  options:
+    - "0.6"
+    - "1.08"
+    - "1.2"
+    - "3.0"
+  ordered: true
+  answer: B
+  explain: |
+    Step 1: the gradient is 2(0 - 3) = -6, so w = 0 - 0.1 × (-6) = 0.6. Step 2: the gradient is 2(0.6 - 3) = -4.8, so w = 0.6 + 0.48 = 1.08. The second step is smaller because the slope has flattened.
+  why:
+    A: "This is the value after only one step."
+    C: "This repeats the first step's size, but the gradient shrinks as w approaches 3."
+    D: "This jumps straight to the minimum, which gradient descent approaches gradually."
+  verify: |
+    w = 0.0
+    for _ in range(2):
+        w = w - 0.1 * 2 * (w - 3)
+    ans = w
+
+# ---------------------------------------------------------------- linear-models
+- id: linear-models-01
+  skill: linear-models
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A linear model predicts $$\hat{y} = 2x_1 - x_2 + 5$$. What does it predict for the input $$x_1 = 3$$ and $$x_2 = 4$$?
+  options:
+    - "2"
+    - "7"
+    - "11"
+    - "15"
+  ordered: true
+  answer: B
+  explain: |
+    Multiply each feature by its weight and add the bias: 2 × 3 - 1 × 4 + 5 = 6 - 4 + 5 = 7.
+  why:
+    A: "This leaves out the bias of 5."
+    C: "This leaves out the second feature's term."
+    D: "This adds the second feature's term instead of subtracting it."
+  verify: "2 * 3 - 4 + 5"
+
+- id: linear-models-02
+  skill: linear-models
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    When a linear regression model is trained, what does training adjust?
+  options:
+    - "The weights and the bias"
+    - "The values of the input features"
+    - "The true values of the target"
+    - "The number of training examples"
+  answer: A
+  explain: |
+    Training searches for the parameter values, the weights and the bias, that minimize the loss. The data, both features and targets, stays fixed.
+  why:
+    B: "The inputs are data; changing them would be cheating, not learning."
+    C: "The targets are the known answers the model learns from."
+    D: "The dataset's size is chosen before training, not adjusted by it."
+
+- id: linear-models-03
+  skill: linear-models
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A logistic regression model with one feature computes the score z = 2x - 6 and predicts class 1 when the sigmoid of z is at least 0.5. At what value of x is its decision boundary?
+  options:
+    - "-3"
+    - "0"
+    - "3"
+    - "6"
+  ordered: true
+  answer: C
+  explain: |
+    The sigmoid equals 0.5 exactly when z = 0. Solving 2x - 6 = 0 gives x = 3, so inputs above 3 are predicted as class 1 and inputs below 3 as class 0.
+  why:
+    A: "This flips the sign when solving 2x - 6 = 0."
+    B: "x = 0 gives z = -6, a probability far below 0.5."
+    D: "This uses the intercept's size without dividing by the weight of 2."
+  verify: "6 / 2"
+
+- id: linear-models-04
+  skill: linear-models
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A logistic regression model computes z = 1.5x - 4.5 and predicts class 1 when its probability is at least 0.5. Which class does it predict for x = 2?
+  options:
+    - "Class 1, because z is positive"
+    - "Class 0, because z is negative, so p is below 0.5"
+    - "Class 1, because p is above 0.5"
+    - "Neither, because the training data is needed"
+  answer: B
+  explain: |
+    For x = 2, z = 1.5 × 2 - 4.5 = 3 - 4.5 = -1.5. A negative score gives a sigmoid probability below 0.5, so the model predicts class 0.
+  why:
+    A: "z = 3 - 4.5 is -1.5, which is negative."
+    C: "A negative z always gives a probability below 0.5."
+    D: "The trained model needs only the input to make a prediction."
+  verify: |
+    z = 1.5 * 2 - 4.5
+    p = 1 / (1 + math.exp(-z))
+    ans = "Class 0, because z is negative, so p is below 0.5" if p < 0.5 else "other"
+
+- id: linear-models-05
+  skill: linear-models
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which loss function is a logistic regression model usually trained to minimize?
+  options:
+    - "Mean absolute error"
+    - "Mean squared error"
+    - "The silhouette score"
+    - "Cross-entropy (log loss)"
+  answer: D
+  explain: |
+    Logistic regression outputs probabilities for classes, and cross-entropy measures how much probability it gave to the true class, which makes it the natural loss.
+  why:
+    A: "MAE is a regression loss for numeric predictions."
+    B: "MSE is the standard loss for linear regression, not logistic regression."
+    C: "The silhouette score evaluates clusters."
+
+- id: linear-models-06
+  skill: linear-models
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A logistic regression model's linear score for an input is z = 0. What probability does the model output?
+  options:
+    - "0"
+    - "0.25"
+    - "0.5"
+    - "1"
+  ordered: true
+  answer: C
+  explain: |
+    The sigmoid is 1 / (1 + e^(-z)). At z = 0, e^0 = 1, so the probability is 1 / (1 + 1) = 0.5: the model is exactly undecided, which is why z = 0 marks the decision boundary.
+  why:
+    A: "The score is 0, but the sigmoid of 0 is 0.5, not 0."
+    B: "A probability of 0.25 would need a negative score."
+    D: "The sigmoid approaches 1 only for large positive scores."
+  verify: "1 / (1 + math.exp(-0))"
+
+- id: linear-models-07
+  skill: linear-models
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A logistic regression model uses two features. What shape is its decision boundary in the plane of those features?
+  options:
+    - "A straight line"
+    - "A circle"
+    - "A spiral"
+    - "A set of separate points"
+  answer: A
+  explain: |
+    The boundary is where w1 x1 + w2 x2 + b = 0, which is the equation of a straight line. That is why logistic regression is called a linear classifier; curved boundaries need added features or a different model.
+  why:
+    B: "A circular boundary would require squared features, which plain logistic regression does not use."
+    C: "A linear equation cannot produce a spiral."
+    D: "The boundary is a continuous line dividing the plane, not isolated points."
+
+- id: linear-models-08
+  skill: linear-models
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why does gradient descent on linear regression's mean squared error reliably find the best weights, given a sensible learning rate?
+  options:
+    - "Because the loss is bowl-shaped, with a single minimum"
+    - "Because linear regression has no weights to learn"
+    - "Because MSE is always exactly zero"
+    - "Because gradient descent tries every possible weight"
+  answer: A
+  explain: |
+    For linear regression, MSE forms a single bowl (it is convex), so there are no misleading local dips: walking downhill always leads to the one lowest point.
+  why:
+    B: "Linear regression learns a weight for each feature and a bias."
+    C: "MSE is zero only if every prediction is perfect."
+    D: "Gradient descent follows the slope; it does not try every value."
