@@ -1,0 +1,646 @@
+# Unit 4 test: Tools for Data and AI
+
+- id: ut4-01
+  skill: keys
+  tier: core
+  type: concept
+  stem: |
+    In the shop database, every value in orders.customer_id must match a value in customers.customer_id. What is orders.customer_id?
+  options:
+    - "A foreign key"
+    - "The primary key of orders"
+    - "A composite key"
+    - "An index on customers"
+  answer: A
+  explain: |
+    A foreign key is a column whose values must match the primary key of another table. Here it links each order to the customer who placed it.
+  why:
+    B: "The primary key of orders is order_id, which identifies each order."
+    C: "A composite key combines two or more columns; this is a single column."
+    D: "An index speeds up lookups; it does not link tables."
+
+- id: ut4-02
+  skill: keys
+  tier: competitive
+  type: concept
+  stem: |
+    The order_items table has the primary key (order_id, product_id). What does this composite key prevent?
+  options:
+    - "An order containing more than one product"
+    - "A product appearing in more than one order"
+    - "A quantity greater than 1 for any product"
+    - "The same product being listed twice in one order"
+  answer: D
+  explain: |
+    A primary key must be unique, so each pair of order_id and product_id can appear only once. One order can hold many products and one product can appear in many orders, but a product cannot be listed twice in the same order; the quantity column records how many.
+  why:
+    A: "Different product_id values make different pairs, so an order can hold many products."
+    B: "Different order_id values make different pairs, so a product can appear in many orders."
+    C: "The quantity column is not part of the key and can hold any number."
+
+- id: ut4-03
+  skill: normalization
+  tier: champion
+  type: concept
+  stem: |
+    A table has the columns order_id (the primary key), customer_id, customer_city, and order_date. Each customer's city is repeated on every one of that customer's orders. Which normal form does this table violate?
+  options:
+    - "First normal form"
+    - "Second normal form"
+    - "Third normal form"
+    - "None; the table is fully normalized"
+  answer: C
+  explain: |
+    customer_city depends on customer_id, which in turn depends on order_id: a transitive dependency of one non-key column on another. Third normal form forbids that, so the city belongs in the customers table.
+  why:
+    A: "Every value is atomic, so first normal form holds."
+    B: "The key is a single column, so no partial dependency is possible, and second normal form holds."
+    D: "Repeating the city on every order is exactly the redundancy normalization removes."
+
+- id: ut4-04
+  skill: db-integrity
+  tier: competitive
+  type: scenario
+  stem: |
+    A bank transfer subtracts $500 from one account, but the system crashes before adding the money to the other account. Which ACID property ensures that the subtraction is undone?
+  options:
+    - "Atomicity"
+    - "Consistency"
+    - "Isolation"
+    - "Durability"
+  answer: A
+  explain: |
+    Atomicity means a transaction happens completely or not at all. Because the transfer did not finish, the database rolls back the partial change.
+  why:
+    B: "Consistency keeps data valid under the database's rules; all-or-nothing behavior is atomicity."
+    C: "Isolation keeps concurrent transactions from interfering with one another."
+    D: "Durability preserves committed changes after a crash; this transaction never committed."
+
+- id: ut4-05
+  skill: sql-nosql
+  tier: competitive
+  type: scenario
+  stem: |
+    Which workload is the best fit for a NoSQL document database rather than a relational database?
+  options:
+    - "Bank account balances that need strict transactions"
+    - "Payroll records with a fixed set of columns"
+    - "Student grades that are joined to course tables"
+    - "A product catalog where each item type has different attributes"
+  answer: D
+  explain: |
+    Document databases store flexible, JSON-like records, so items with different attributes, such as shoe sizes for one product and screen sizes for another, fit without a rigid schema.
+  why:
+    A: "Strict multi-table transactions are a strength of relational databases."
+    B: "A fixed set of columns fits a relational table well."
+    C: "Joins between related tables are a relational strength."
+
+- id: ut4-06
+  skill: sql-select
+  tier: core
+  type: sql
+  stem: |
+    How many rows does this query return on the shop database?
+
+    ```sql
+    SELECT DISTINCT city FROM customers;
+    ```
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+  ordered: true
+  answer: B
+  explain: |
+    The five customers live in Austin, Denver, Austin, Boston, and Denver. DISTINCT removes repeated values, leaving Austin, Denver, and Boston: 3 rows.
+  why:
+    A: "2 leaves out one of the three distinct cities."
+    C: "4 counts one repeated city twice."
+    D: "5 is the number of customers, without removing duplicates."
+  verify: 'rows("shop", "SELECT DISTINCT city FROM customers")'
+
+- id: ut4-07
+  skill: sql-where
+  tier: competitive
+  type: sql
+  stem: |
+    What does this query return on the shop database?
+
+    ```sql
+    SELECT COUNT(*) FROM products WHERE price BETWEEN 4.5 AND 18;
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    BETWEEN includes both ends of the range. The prices 4.50, 18.00, and 9.00 fall from 4.5 to 18 inclusive, so the count is 3.
+  why:
+    A: "1 treats BETWEEN as excluding both endpoints, keeping only 9.00."
+    B: "2 drops one endpoint; BETWEEN is inclusive."
+    D: "4 would include 3.00 or 35.00, which lie outside the range."
+  verify: 'scalar("shop", "SELECT COUNT(*) FROM products WHERE price BETWEEN 4.5 AND 18")'
+
+- id: ut4-08
+  skill: sql-null
+  tier: champion
+  type: sql
+  stem: |
+    In the school database, the CS1 course has four enrollments, with scores 92, NULL, 68, and 97. What does this query return?
+
+    ```sql
+    SELECT ROUND(AVG(score), 2) FROM enrollments WHERE course_id = 'CS1';
+    ```
+  options:
+    - "64.25"
+    - "85.67"
+    - "92"
+    - "257"
+  ordered: true
+  answer: B
+  explain: |
+    AVG skips NULL values, so it averages only the three real scores: (92 + 68 + 97) / 3 = 257 / 3, which rounds to 85.67.
+  why:
+    A: "64.25 divides by 4, treating the NULL as 0."
+    C: "92 is the median of the three scores, not their average."
+    D: "257 is the sum of the three scores."
+  verify: |
+    ans = scalar("school", "SELECT ROUND(AVG(score), 2) FROM enrollments WHERE course_id = 'CS1'")
+
+- id: ut4-09
+  skill: sql-aggregate
+  tier: competitive
+  type: sql
+  stem: |
+    Which customer_id values does this query return on the shop database?
+
+    ```sql
+    SELECT customer_id FROM orders
+    GROUP BY customer_id
+    HAVING COUNT(*) >= 2;
+    ```
+  options:
+    - "1 only"
+    - "3 only"
+    - "1, 2, 3, and 4"
+    - "1 and 3"
+  answer: D
+  explain: |
+    Grouping orders by customer gives counts of 2 for customer 1, 1 for customer 2, 2 for customer 3, and 1 for customer 4. HAVING keeps the groups with at least 2 orders: customers 1 and 3.
+  why:
+    A: "Customer 3 also placed 2 orders."
+    B: "Customer 1 also placed 2 orders."
+    C: "HAVING removes customers 2 and 4, who placed only 1 order each."
+  verify: |
+    r = sql("shop", "SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) >= 2 ORDER BY customer_id")
+    ans = " and ".join(str(x[0]) for x in r)
+
+- id: ut4-10
+  skill: sql-order
+  tier: core
+  type: sql
+  stem: |
+    What does this query return on the shop database?
+
+    ```sql
+    SELECT name FROM products ORDER BY price DESC LIMIT 1;
+    ```
+  options:
+    - "Backpack"
+    - "Pen pack"
+    - "Calculator"
+    - "Notebook"
+  answer: A
+  explain: |
+    ORDER BY price DESC sorts from the most expensive product down, and LIMIT 1 keeps only the first row: the Backpack, at $35.00.
+  why:
+    B: "The Pen pack is the cheapest product, so DESC puts it last."
+    C: "The Calculator, at $18.00, is the second most expensive."
+    D: "The Notebook is first in the table, but ORDER BY changes the order."
+  verify: 'scalar("shop", "SELECT name FROM products ORDER BY price DESC LIMIT 1")'
+
+- id: ut4-11
+  skill: sql-aggregate
+  tier: champion
+  type: sql
+  stem: |
+    Which query lists the product categories whose average price is above 10?
+  options:
+    - "`SELECT category FROM products WHERE AVG(price) > 10 GROUP BY category;`"
+    - "`SELECT category FROM products WHERE price > 10 GROUP BY category;`"
+    - "`SELECT category, AVG(price) FROM products ORDER BY AVG(price) > 10;`"
+    - "`SELECT category FROM products GROUP BY category HAVING AVG(price) > 10;`"
+  answer: D
+  explain: |
+    Conditions on aggregates such as AVG belong in HAVING, which filters groups after GROUP BY. WHERE runs before grouping, so it cannot use AVG.
+  why:
+    A: "WHERE cannot contain an aggregate function, so this query is an error."
+    B: "This keeps categories with any single product over 10, not categories whose average is over 10."
+    C: "Without GROUP BY there are no categories to average, and ORDER BY sorts rather than filters."
+
+- id: ut4-12
+  skill: sql-joins
+  tier: competitive
+  type: sql
+  stem: |
+    How many rows does this query return on the shop database?
+
+    ```sql
+    SELECT c.name, o.order_id
+    FROM customers c
+    LEFT JOIN orders o ON c.customer_id = o.customer_id;
+    ```
+  options:
+    - "5"
+    - "6"
+    - "7"
+    - "11"
+  ordered: true
+  answer: C
+  explain: |
+    Each order matches its customer, giving 6 rows: Maya 2, Noah 1, Priya 2, and Liam 1. A LEFT JOIN also keeps Zoe, who has no orders, with a NULL order_id, for 7 rows in all.
+  why:
+    A: "5 is the number of customers, but customers with two orders appear twice."
+    B: "6 is what an INNER JOIN returns; a LEFT JOIN keeps the customer with no orders."
+    D: "11 adds the numbers of customers and orders instead of matching rows."
+  verify: 'rows("shop", "SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id")'
+
+- id: ut4-13
+  skill: sql-joins
+  tier: champion
+  type: sql
+  stem: |
+    Which customer does this query return on the shop database?
+
+    ```sql
+    SELECT c.name
+    FROM customers c
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+    WHERE o.order_id IS NULL;
+    ```
+  options:
+    - "Zoe"
+    - "Liam"
+    - "Noah"
+    - "No one, because every customer has an order"
+  answer: A
+  explain: |
+    The LEFT JOIN keeps every customer, filling the order columns with NULL when there is no match. Filtering on o.order_id IS NULL keeps only the customers with no orders: Zoe.
+  why:
+    B: "Liam has order 1005, even though it was cancelled."
+    C: "Noah has order 1002."
+    D: "Zoe has no orders, so the query returns her."
+  verify: 'scalar("shop", "SELECT c.name FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id WHERE o.order_id IS NULL")'
+
+- id: ut4-14
+  skill: sql-subqueries
+  tier: competitive
+  type: sql
+  stem: |
+    What does this query return on the shop database?
+
+    ```sql
+    SELECT name FROM products
+    WHERE price > (SELECT AVG(price) FROM products);
+    ```
+  options:
+    - "Backpack only"
+    - "Calculator and Backpack"
+    - "USB drive, Calculator, and Backpack"
+    - "All five products"
+  answer: B
+  explain: |
+    The subquery computes the average price: (4.50 + 3.00 + 18.00 + 9.00 + 35.00) / 5 = 13.90. Only the Calculator, at $18.00, and the Backpack, at $35.00, cost more.
+  why:
+    A: "The Calculator, at $18.00, is also above the $13.90 average."
+    C: "The USB drive, at $9.00, is below the average."
+    D: "The comparison filters out the three cheaper products."
+  verify: |
+    r = sql("shop", "SELECT name FROM products WHERE price > (SELECT AVG(price) FROM products) ORDER BY price")
+    ans = " and ".join(x[0] for x in r)
+
+- id: ut4-15
+  skill: sql-dml-ddl
+  tier: core
+  type: sql
+  stem: |
+    Which statement changes the price of product 102 to 3.50 and changes nothing else?
+  options:
+    - "`INSERT INTO products (product_id, price) VALUES (102, 3.50);`"
+    - "`UPDATE products SET price = 3.50;`"
+    - "`ALTER TABLE products SET price = 3.50 WHERE product_id = 102;`"
+    - "`UPDATE products SET price = 3.50 WHERE product_id = 102;`"
+  answer: D
+  explain: |
+    UPDATE changes existing rows, and the WHERE clause limits the change to product 102. Without WHERE, UPDATE changes every row in the table.
+  why:
+    A: "INSERT adds a new row, and this one would clash with the existing primary key 102."
+    B: "Without WHERE, every product's price would become 3.50."
+    C: "ALTER TABLE changes a table's structure, not its data."
+
+- id: ut4-16
+  skill: sql-window
+  tier: champion
+  type: sql
+  stem: |
+    In the school database, Chloe and Hiro share the highest GPA, 3.9, and Elena has the next highest, 3.8. In the result of this query, what value of r does Elena get?
+
+    ```sql
+    SELECT name, RANK() OVER (ORDER BY gpa DESC) AS r FROM students;
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    RANK gives tied rows the same rank and then skips ahead: Chloe and Hiro are both 1, so the next rank is 3. DENSE_RANK would give Elena 2.
+  why:
+    A: "Rank 1 belongs to the two students tied at 3.9."
+    B: "2 is what DENSE_RANK gives; RANK skips a number after a tie."
+    D: "4 would skip two places after a tie of only two students."
+  verify: |
+    r = dict(sql("school", "SELECT name, RANK() OVER (ORDER BY gpa DESC) AS r FROM students"))
+    ans = r["Elena"]
+
+- id: ut4-17
+  skill: numpy
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    a = np.array([1, 2, 3])
+    print(a * 2 + 1)
+    ```
+  options:
+    - "[3 5 7]"
+    - "[2 4 6]"
+    - "[1 2 3 1 2 3]"
+    - "An error, because an array cannot be added to a number"
+  answer: A
+  explain: |
+    NumPy operations are vectorized, and the scalars are broadcast to every element: each element is doubled and then increased by 1, giving [3 5 7].
+  why:
+    B: "This doubles the elements but forgets to add 1."
+    C: "Repeating the elements is what * does to a Python list; NumPy multiplies element by element."
+    D: "Broadcasting lets NumPy add a single number to every element."
+  verify: "str(np.array([1, 2, 3]) * 2 + 1)"
+
+- id: ut4-18
+  skill: pandas-basics
+  tier: competitive
+  type: code
+  stem: |
+    A DataFrame `df` has the index labels 10, 20, and 30, in that order. What does `df.iloc[0]` return?
+  options:
+    - "The row labeled 0, which does not exist, so it raises an error"
+    - "The first row, which has the label 10"
+    - "The first column of the DataFrame"
+    - "The row labeled 20"
+  answer: B
+  explain: |
+    iloc selects by integer position starting at 0, so df.iloc[0] is the first row, the one labeled 10. Selecting by label uses loc, as in df.loc[10].
+  why:
+    A: "That describes df.loc[0]; iloc ignores the labels."
+    C: "A single integer in iloc selects a row, not a column."
+    D: "The row labeled 20 is at position 1."
+  verify: |
+    df = pd.DataFrame({"x": [1, 2, 3]}, index=[10, 20, 30])
+    ans = "The first row, which has the label 10" if df.iloc[0].name == 10 else "other"
+
+- id: ut4-19
+  skill: pandas-cleaning
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    df = pd.DataFrame({"name": ["Ana", "Ben", "Cy", "Dee"],
+                       "score": [88, None, 92, None]})
+    print(len(df.dropna()), df["score"].isna().sum())
+    ```
+  options:
+    - "4 2"
+    - "2 0"
+    - "4 0"
+    - "2 2"
+  answer: D
+  explain: |
+    dropna removes every row that has a missing value, leaving the 2 rows for Ana and Cy, and isna().sum() counts the 2 missing scores. dropna returns a new DataFrame, so df itself still has 4 rows.
+  why:
+    A: "dropna does remove the 2 rows with missing scores from its result."
+    B: "isna().sum() counts the missing scores in df, which dropna did not change."
+    C: "Both numbers ignore the missing values."
+  verify: |
+    df = pd.DataFrame({"name": ["Ana", "Ben", "Cy", "Dee"], "score": [88, None, 92, None]})
+    ans = f"{len(df.dropna())} {df['score'].isna().sum()}"
+
+- id: ut4-20
+  skill: pandas-reshape
+  tier: competitive
+  type: code
+  stem: |
+    In the output of this code, what is the value for team A?
+
+    ```python
+    df = pd.DataFrame({"team": ["A", "B", "A", "B", "A"],
+                       "pts": [10, 4, 7, 8, 4]})
+    print(df.groupby("team")["pts"].mean())
+    ```
+  options:
+    - "6"
+    - "7"
+    - "10.5"
+    - "21"
+  ordered: true
+  answer: B
+  explain: |
+    groupby splits the rows by team, and mean averages each group. Team A's points are 10, 7, and 4, which sum to 21, and 21 / 3 = 7.
+  why:
+    A: "6 is team B's mean, (4 + 8) / 2."
+    C: "10.5 divides team A's total by 2 instead of 3."
+    D: "21 is team A's total, the result of sum, not mean."
+  verify: |
+    df = pd.DataFrame({"team": ["A", "B", "A", "B", "A"], "pts": [10, 4, 7, 8, 4]})
+    ans = df.groupby("team")["pts"].mean()["A"]
+
+- id: ut4-21
+  skill: py-libraries
+  tier: core
+  type: recall
+  stem: |
+    Which Python library is the standard toolkit for classical machine learning algorithms such as decision trees, k-means, and logistic regression?
+  options:
+    - "scikit-learn"
+    - "Matplotlib"
+    - "pandas"
+    - "Jupyter"
+  answer: A
+  explain: |
+    scikit-learn provides classical machine learning algorithms with a consistent fit and predict interface, along with tools for splitting data and measuring performance.
+  why:
+    B: "Matplotlib draws charts."
+    C: "pandas loads, cleans, and reshapes tabular data."
+    D: "Jupyter is a notebook environment for running code, not a library of algorithms."
+
+- id: ut4-22
+  skill: pytorch
+  tier: competitive
+  type: concept
+  stem: |
+    In PyTorch, what does autograd do?
+  options:
+    - "Automatically chooses the best model architecture for a dataset"
+    - "Grades a model's predictions against the test set"
+    - "Records operations on tensors and computes gradients automatically"
+    - "Converts a pandas DataFrame into a SQL table"
+  answer: C
+  explain: |
+    Autograd tracks the operations performed on tensors and, when backward is called, computes the gradient of the loss with respect to every parameter. Training then uses those gradients to update the weights.
+  why:
+    A: "Choosing an architecture is a design decision; autograd only computes gradients."
+    B: "Evaluation is a separate step that compares predictions with labels."
+    D: "Autograd has nothing to do with converting data formats."
+
+- id: ut4-23
+  skill: sklearn
+  tier: champion
+  type: code
+  stem: |
+    What is wrong with this code?
+
+    ```python
+    scaler = StandardScaler()
+    X_train_s = scaler.fit_transform(X_train)
+    X_test_s = scaler.fit_transform(X_test)
+    ```
+  options:
+    - "StandardScaler cannot be fitted on training data at all"
+    - "fit_transform should be called on the test data first"
+    - "The training data should be scaled with transform only"
+    - "Line 3 refits the scaler on the test data; it should only transform"
+  answer: D
+  explain: |
+    The scaler should learn its mean and standard deviation from the training data only, then apply that same transformation to the test data with scaler.transform(X_test). Refitting on the test set scales the two sets differently and lets test statistics leak in.
+  why:
+    A: "Fitting on the training data is exactly what a scaler is for."
+    B: "The test data should never be used to fit the scaler."
+    C: "The training data must be fitted first; only the test data should use transform alone."
+
+- id: ut4-24
+  skill: r-basics
+  tier: competitive
+  type: code
+  stem: |
+    In R, what does the last line return?
+
+    ```r
+    x <- c(10, 20, 30, 40)
+    x[2]
+    ```
+  options:
+    - "10"
+    - "20"
+    - "30"
+    - "An error"
+  answer: B
+  explain: |
+    R indexes from 1, so x[2] is the second element, 20. In Python, which indexes from 0, the same element would be x[1].
+  why:
+    A: "10 is x[1] in R."
+    C: "30 is what Python's x[2] would return, counting from 0."
+    D: "x[2] is a valid index in R."
+  verify: "[10, 20, 30, 40][2 - 1]"
+
+- id: ut4-25
+  skill: tidyverse
+  tier: core
+  type: recall
+  stem: |
+    Which dplyr verb keeps only the rows of a data frame that meet a condition, such as gpa > 3.5?
+  options:
+    - "`filter()`"
+    - "`select()`"
+    - "`mutate()`"
+    - "`arrange()`"
+  answer: A
+  explain: |
+    filter() keeps the rows that satisfy a condition. select() picks columns, mutate() adds or changes columns, and arrange() sorts rows.
+  why:
+    B: "select() chooses columns, not rows."
+    C: "mutate() creates or changes columns."
+    D: "arrange() reorders rows without removing any."
+
+- id: ut4-26
+  skill: r-vs-python
+  tier: core
+  type: recall
+  stem: |
+    Which language was designed for statistical computing and distributes most of its add-on packages through CRAN?
+  options:
+    - "Python"
+    - "SQL"
+    - "R"
+    - "JavaScript"
+  answer: C
+  explain: |
+    R was created as a language for statistical computing and graphics, and CRAN, the Comprehensive R Archive Network, hosts most of its packages.
+  why:
+    A: "Python is a general-purpose language whose packages come mainly from PyPI."
+    B: "SQL is a query language for relational databases."
+    D: "JavaScript is mainly a language for web pages."
+
+- id: ut4-27
+  skill: python-core
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    nums = [5, 10, 15, 20, 25]
+    print(nums[1:4])
+    ```
+  options:
+    - "[5, 10, 15, 20]"
+    - "[10, 15, 20, 25]"
+    - "[10, 15, 20]"
+    - "[15, 20, 25]"
+  answer: C
+  explain: |
+    A slice starts at its first index and stops before its second, so nums[1:4] returns the elements at positions 1, 2, and 3: [10, 15, 20].
+  why:
+    A: "This starts at index 0, but Python counts from 0, so index 1 is 10."
+    B: "The stop index, 4, is excluded, so 25 is not included."
+    D: "This starts at index 2 instead of 1."
+  verify: "str([5, 10, 15, 20, 25][1:4])"
+
+- id: ut4-28
+  skill: dev-tools
+  tier: core
+  type: scenario
+  stem: |
+    A data team wants to track every change to its analysis code, see who changed what, and roll back a mistake. Which tool is built for this?
+  options:
+    - "A spreadsheet"
+    - "Git"
+    - "A virtual environment"
+    - "A Jupyter notebook"
+  answer: B
+  explain: |
+    Git is a version control system: it records each commit with its author and message, so a team can review the history and return to an earlier version.
+  why:
+    A: "A spreadsheet does not track the history of code."
+    C: "A virtual environment isolates a project's package versions, not its history of changes."
+    D: "A notebook runs code interactively but is not a version control system."
