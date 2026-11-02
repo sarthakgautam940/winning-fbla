@@ -1,0 +1,493 @@
+# Lesson 4.5: Python for data with NumPy and pandas
+
+# ---------------------------------------------------------------- numpy
+- id: numpy-01
+  skill: numpy
+  tier: core
+  type: code
+  use: check
+  stem: |
+    What does this Python code print?
+
+    ```python
+    print([1, 2] + [3, 4])
+    ```
+  options:
+    - "`[4, 6]`"
+    - "`[1, 2, 3, 4]`"
+    - "`[3, 8]`"
+    - "An error, because lists cannot be added"
+  answer: B
+  explain: |
+    For Python lists, + joins them end to end. Element-wise addition, which would give [4, 6], requires NumPy arrays.
+  why:
+    A: "This is what adding two NumPy arrays would give, not two lists."
+    C: "This multiplies the pairs, which neither lists nor arrays do with +."
+    D: "Adding two lists is allowed; it concatenates them."
+  verify: |
+    ans = "`" + str([1, 2] + [3, 4]) + "`"
+
+- id: numpy-02
+  skill: numpy
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    print(np.array([1, 2, 3]) * 10)
+    ```
+  options:
+    - "`60`"
+    - "The list 1, 2, 3 repeated 10 times"
+    - "An error, because the shapes differ"
+    - "`[10 20 30]`"
+  answer: D
+  explain: |
+    NumPy broadcasts the scalar 10 to every element, so each value is multiplied by 10. Arrays print without commas.
+  why:
+    A: "This would be the sum after multiplying; the code multiplies but does not add."
+    B: "Repetition is what * does to a Python list, not to a NumPy array."
+    C: "A scalar is compatible with any shape, so broadcasting works."
+  verify: |
+    import numpy as np
+    ans = "`" + str(np.array([1, 2, 3]) * 10) + "`"
+
+- id: numpy-03
+  skill: numpy
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    scores = np.array([[88, 92, 75],
+                       [95, 81, 89]])
+    print(scores.sum(axis=0))
+    ```
+  options:
+    - "`[183 173 164]`"
+    - "`[255 265]`"
+    - "`520`"
+    - "`[88 95]`"
+  answer: A
+  explain: |
+    axis=0 works down the rows, so each column is summed: 88 + 95 = 183, 92 + 81 = 173, and 75 + 89 = 164.
+  why:
+    B: "These are the row sums, which axis=1 would give."
+    C: "This is the total of every value, which a sum with no axis gives."
+    D: "These are the first column's values, not sums."
+  verify: |
+    import numpy as np
+    ans = "`" + str(np.array([[88, 92, 75], [95, 81, 89]]).sum(axis=0)) + "`"
+
+- id: numpy-04
+  skill: numpy
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In NumPy and pandas, what does vectorization mean?
+  options:
+    - "Converting every value in a table into text"
+    - "Storing each row of a table in a separate file"
+    - "Applying an operation to a whole array at once instead of looping"
+    - "Drawing the data as arrows on a chart"
+  answer: C
+  explain: |
+    Vectorized code such as prices * 2 operates on every element in one step. The looping happens inside NumPy's compiled code, which makes it much faster than a Python for loop.
+  why:
+    A: "Vectorization works on numbers directly; it does not convert them."
+    B: "Vectorization is about how operations run, not how data is stored."
+    D: "Vector here means an array of values, not an arrow on a chart."
+
+- id: numpy-05
+  skill: numpy
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    x = np.array([3, 8, 1, 9, 4])
+    print(x[x > 3])
+    ```
+  options:
+    - "`[False  True False  True  True]`"
+    - "`[8 9 4]`"
+    - "`[3 8 1 9 4]`"
+    - "`3`"
+  answer: B
+  explain: |
+    x > 3 builds a boolean mask, and indexing with it keeps only the elements where the mask is True: 8, 9, and 4, in their original order.
+  why:
+    A: "This is the mask itself, x > 3, before it is used for indexing."
+    C: "This is the whole array; the mask removes the values that are 3 or less."
+    D: "This counts the matching values; indexing returns the values themselves."
+  verify: |
+    import numpy as np
+    x = np.array([3, 8, 1, 9, 4])
+    ans = "`" + str(x[x > 3]) + "`"
+
+- id: numpy-06
+  skill: numpy
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    print(np.std(np.array([2, 4, 4, 4, 5, 5, 7, 9])))
+    ```
+  options:
+    - "2.0"
+    - "2.14"
+    - "4.0"
+    - "4.57"
+  ordered: true
+  answer: A
+  explain: |
+    np.std divides by n by default (ddof=0), giving the population standard deviation. The squared deviations from the mean of 5 sum to 32, so the variance is 32 / 8 = 4 and the standard deviation is 2.0.
+  why:
+    B: "This is the sample standard deviation, which needs ddof=1 in NumPy (it is pandas' default)."
+    C: "This is the population variance, before taking the square root."
+    D: "This is the sample variance, 32 / 7."
+  verify: |
+    import numpy as np
+    ans = np.std(np.array([2, 4, 4, 4, 5, 5, 7, 9]))
+
+- id: numpy-07
+  skill: numpy
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What is the shape of `np.array([[1, 2, 3], [4, 5, 6]])`?
+  options:
+    - "`(3, 2)`"
+    - "`6`"
+    - "`(2,)`"
+    - "`(2, 3)`"
+  answer: D
+  explain: |
+    The array has 2 rows, each holding 3 values, and shape lists the dimensions in that order: (rows, columns).
+  why:
+    A: "This reverses rows and columns."
+    B: "6 is the number of elements, given by .size."
+    C: "This is the shape of a one-dimensional array of 2 values."
+  verify: |
+    import numpy as np
+    ans = "`" + str(np.array([[1, 2, 3], [4, 5, 6]]).shape) + "`"
+
+- id: numpy-08
+  skill: numpy
+  tier: champion
+  type: code
+  use: bank
+  stem: |
+    What happens when this code runs?
+
+    ```python
+    import numpy as np
+    print(np.ones((2, 3)) + np.array([1, 2]))
+    ```
+  options:
+    - "It adds 1 and 2 to the first two values of each row, leaving the third."
+    - "It returns a 2-by-2 array after trimming the extra column away."
+    - "It raises an error, since shapes (2, 3) and (2,) cannot broadcast."
+    - "It adds 3, the sum of 1 and 2, to every value in the array."
+  answer: C
+  explain: |
+    Broadcasting compares shapes from the right. The last dimensions are 3 and 2, which are neither equal nor 1, so NumPy raises a ValueError. A length-3 row would broadcast fine.
+  why:
+    A: "NumPy never pads or partly applies an array; incompatible shapes are an error."
+    B: "Broadcasting never shrinks an array to a new shape."
+    D: "NumPy does not collapse an array into its sum before adding."
+  verify: |
+    import numpy as np
+    try:
+        np.ones((2, 3)) + np.array([1, 2])
+        ans = "other"
+    except ValueError:
+        ans = "It raises an error, since shapes (2, 3) and (2,) cannot broadcast."
+
+- id: numpy-09
+  skill: numpy
+  tier: core
+  type: code
+  use: bank
+  stem: |
+    What is the dtype of `np.array([1, 2.5, 3])`?
+  options:
+    - "`int64`"
+    - "`float64`"
+    - "`object`"
+    - "A mix of int64 and float64"
+  answer: B
+  explain: |
+    A NumPy array has a single data type. Mixing whole numbers with a decimal produces a float array, so every element is stored as float64.
+  why:
+    A: "The value 2.5 cannot be stored as an integer, so NumPy uses floats."
+    C: "object is used for mixed Python objects, not for plain numbers."
+    D: "Every element of an array shares one dtype."
+  verify: |
+    import numpy as np
+    ans = "`" + str(np.array([1, 2.5, 3]).dtype) + "`"
+
+- id: numpy-10
+  skill: numpy
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why are NumPy arrays much faster than Python lists for numerical work?
+  options:
+    - "Arrays can hold any mix of value types in a single structure."
+    - "Arrays are automatically moved onto a GPU for every calculation."
+    - "Arrays let Python skip all of its usual checks for errors."
+    - "Arrays store one type compactly, and their math runs in compiled code."
+  answer: D
+  explain: |
+    An array's values share one type and sit side by side in memory, so NumPy can loop over them in fast compiled code. A list holds separate Python objects of any type, which Python must handle one at a time.
+  why:
+    A: "Holding mixed types is what lists do; it is part of why they are slower."
+    B: "NumPy arrays live in ordinary memory; GPU arrays come from libraries such as PyTorch."
+    C: "NumPy still checks for errors, such as incompatible shapes."
+
+# ---------------------------------------------------------------- pandas-basics
+- id: pandas-basics-01
+  skill: pandas-basics
+  tier: core
+  type: code
+  use: check
+  stem: |
+    `df` is a pandas DataFrame with a column named "gpa". What type of object does `df["gpa"]` return?
+  options:
+    - "A Series"
+    - "A DataFrame"
+    - "A Python list"
+    - "A NumPy array"
+  answer: A
+  explain: |
+    Selecting a single column with single brackets returns a Series: the column's values with their index labels. Double brackets, df[["gpa"]], would return a one-column DataFrame.
+  why:
+    B: "A DataFrame comes back from double brackets, such as df[['gpa']]."
+    C: "pandas returns its own labeled Series, not a plain list."
+    D: "A Series wraps an array of values but adds an index, so it is not a bare NumPy array."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"gpa": [3.6, 2.9]})
+    ans = "A " + type(df["gpa"]).__name__
+
+- id: pandas-basics-02
+  skill: pandas-basics
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    By default, what does `df.describe()` report for each numeric column?
+  options:
+    - "Each column's data type and number of missing values"
+    - "The first five rows and the last five rows"
+    - "Count, mean, standard deviation, minimum, quartiles, and maximum"
+    - "The correlation between every pair of columns"
+  answer: C
+  explain: |
+    describe() gives a statistical summary of each numeric column: how many non-null values it has, its mean, its sample standard deviation, its minimum and maximum, and its quartiles (25%, 50%, 75%).
+  why:
+    A: "Data types and non-null counts come from info()."
+    B: "Rows from the top and bottom come from head() and tail()."
+    D: "Pairwise correlations come from corr()."
+
+- id: pandas-basics-03
+  skill: pandas-basics
+  tier: competitive
+  type: code
+  use: check
+  stem: |
+    A DataFrame `df` has 10 rows and the default index 0, 1, 2, and so on. How many rows does `df.loc[1:3]` return?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    loc selects by label, and its slices include the end label, so it returns the rows labeled 1, 2, and 3. The position-based df.iloc[1:3] would stop before position 3 and return 2 rows.
+  why:
+    A: "A slice from 1 to 3 covers more than one label."
+    B: "This is the iloc result, which excludes the end position."
+    D: "The slice starts at label 1, so label 0 is not included."
+  verify: |
+    import pandas as pd
+    ans = len(pd.DataFrame({"x": range(10)}).loc[1:3])
+
+- id: pandas-basics-04
+  skill: pandas-basics
+  tier: core
+  type: code
+  use: quiz
+  stem: |
+    What does `df.head()` return when it is called with no argument?
+  options:
+    - "The column names only"
+    - "The first 5 rows of the DataFrame"
+    - "The first row of the DataFrame"
+    - "A summary of every column"
+  answer: B
+  explain: |
+    head() shows the first n rows, with n = 5 by default, which is the usual first look at a new dataset.
+  why:
+    A: "Column names alone come from df.columns."
+    C: "head(1) would show only one row; the default is 5."
+    D: "Summaries come from describe() and info()."
+  verify: |
+    import pandas as pd
+    n = len(pd.DataFrame({"x": range(20)}).head())
+    ans = "The first 5 rows of the DataFrame" if n == 5 else "other"
+
+- id: pandas-basics-05
+  skill: pandas-basics
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    Which expression keeps the rows where grade is 10 and gpa is above 3.5?
+  options:
+    - "`df[(df['grade'] == 10) and (df['gpa'] > 3.5)]`"
+    - "`df[df['grade'] == 10 & df['gpa'] > 3.5]`"
+    - "`df[(df['grade'] == 10) | (df['gpa'] > 3.5)]`"
+    - "`df[(df['grade'] == 10) & (df['gpa'] > 3.5)]`"
+  answer: D
+  explain: |
+    pandas combines conditions element by element with &, and each condition needs its own parentheses because & binds more tightly than the comparison operators.
+  why:
+    A: "Python's and cannot combine whole columns; it raises a ValueError."
+    B: "Without parentheses, & is applied to 10 and df['gpa'] before the comparisons, which fails."
+    C: "The | operator means or, so it keeps rows that meet either condition."
+
+- id: pandas-basics-06
+  skill: pandas-basics
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    A DataFrame `df` has 200 rows and 8 columns. What does `df.shape` return?
+  options:
+    - "`(200, 8)`"
+    - "`(8, 200)`"
+    - "`1600`"
+    - "`200`"
+  answer: A
+  explain: |
+    shape is a tuple of (rows, columns). It is an attribute, so it is written without parentheses.
+  why:
+    B: "This reverses rows and columns."
+    C: "1,600 is the number of cells, given by df.size."
+    D: "200 is just the number of rows, given by len(df)."
+  verify: |
+    import pandas as pd
+    ans = "`" + str(pd.DataFrame([[0] * 8] * 200).shape) + "`"
+
+- id: pandas-basics-07
+  skill: pandas-basics
+  tier: champion
+  type: code
+  use: quiz
+  stem: |
+    `df` has columns named "name" and "gpa". What happens with `df[["name", "gpa"]]` and with `df["name", "gpa"]`?
+  options:
+    - "Both return a DataFrame with the two columns."
+    - "The first returns a DataFrame; the second raises a KeyError."
+    - "The first raises a KeyError; the second returns a DataFrame."
+    - "Both return a Series that joins the two columns."
+  answer: B
+  explain: |
+    Double brackets pass a list of column names, so pandas returns those columns as a DataFrame. With single brackets, "name", "gpa" is read as one key, the tuple ("name", "gpa"), and no column has that name, so pandas raises a KeyError.
+  why:
+    A: "Only the list inside double brackets selects several columns."
+    C: "This reverses the two expressions."
+    D: "Selecting several columns gives a DataFrame, never one joined Series."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"name": ["Ava"], "gpa": [3.6]})
+    first = type(df[["name", "gpa"]]).__name__
+    try:
+        df["name", "gpa"]
+        second = "ok"
+    except KeyError:
+        second = "KeyError"
+    ans = "The first returns a DataFrame; the second raises a KeyError." if (first, second) == ("DataFrame", "KeyError") else "other"
+
+- id: pandas-basics-08
+  skill: pandas-basics
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which Python library provides the DataFrame for working with tables of data?
+  options:
+    - "Matplotlib"
+    - "PyTorch"
+    - "pandas"
+    - "NumPy"
+  answer: C
+  explain: |
+    pandas provides the Series and the DataFrame, the standard tools for loading, cleaning, and summarizing tabular data in Python. It is built on NumPy arrays.
+  why:
+    A: "Matplotlib draws charts."
+    B: "PyTorch builds and trains neural networks."
+    D: "NumPy provides arrays; the labeled DataFrame comes from pandas."
+
+- id: pandas-basics-09
+  skill: pandas-basics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What does `df.info()` show?
+  options:
+    - "The mean and standard deviation of each column"
+    - "Every column's name, non-null count, and data type"
+    - "A random sample of rows from the DataFrame"
+    - "The correlation between each pair of columns"
+  answer: B
+  explain: |
+    info() describes the DataFrame's structure: the number of rows, and for each column its name, how many values are not missing, and its dtype. It is the quickest way to spot missing values and wrongly typed columns.
+  why:
+    A: "Means and standard deviations come from describe()."
+    C: "A random sample comes from sample()."
+    D: "Correlations come from corr()."
+
+- id: pandas-basics-10
+  skill: pandas-basics
+  tier: champion
+  type: code
+  use: bank
+  stem: |
+    A DataFrame `df` has the default index. What does `df.iloc[-1]` return?
+  options:
+    - "The last row of the DataFrame"
+    - "The first row of the DataFrame"
+    - "The row whose index label is -1"
+    - "An error, because positions cannot be negative"
+  answer: A
+  explain: |
+    iloc selects by position, and like a Python list, a negative position counts from the end: -1 is the last row.
+  why:
+    B: "The first row is position 0."
+    C: "Label-based selection uses loc; iloc reads -1 as a position."
+    D: "Negative positions are allowed and count from the end."
+  verify: |
+    import pandas as pd
+    df = pd.DataFrame({"x": [10, 20, 30]})
+    ans = "The last row of the DataFrame" if df.iloc[-1]["x"] == 30 else "other"

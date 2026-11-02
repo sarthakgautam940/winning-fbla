@@ -1,0 +1,63 @@
+# Lesson 4.5 flashcards
+
+- id: fc-python
+  term: Python
+  def: A general-purpose programming language known for readable code, and the most widely used language in data science thanks to libraries such as NumPy, pandas, scikit-learn, and PyTorch.
+  skill: numpy
+  virginia: true
+
+- id: fc-numpy
+  term: NumPy
+  def: Numerical Python, the core library for fast arrays. An ndarray holds values of one dtype, and arithmetic on arrays is element-wise. Created by Travis Oliphant in 2005.
+  skill: numpy
+  virginia: true
+
+- id: fc-vectorization
+  term: Vectorization
+  def: Applying an operation to a whole array or column at once instead of looping over elements, so the work runs in fast compiled code.
+  example: "prices * 2 doubles every price in one step."
+  skill: numpy
+  virginia: true
+
+- id: fc-list-vs-array
+  term: List vs. array behavior
+  def: For Python lists, + joins and * repeats ([1, 2] + [3, 4] is [1, 2, 3, 4]). For NumPy arrays, + and * work element by element.
+  skill: numpy
+
+- id: fc-broadcasting-axis
+  term: Broadcasting, shape, and axis
+  def: Broadcasting stretches a scalar or compatible row to fit a larger array. shape gives (rows, columns). axis=0 gives one result per column; axis=1, one per row.
+  skill: numpy
+
+- id: fc-std-defaults
+  term: np.std vs. pandas .std()
+  def: NumPy's np.std divides by n (population) unless ddof=1. pandas' .std() divides by n - 1 (sample) by default.
+  skill: numpy
+
+- id: fc-pandas
+  term: Pandas
+  def: Python's main library for tabular data, built on NumPy and providing the Series and DataFrame. Started by Wes McKinney in 2008; the name comes from "panel data."
+  skill: pandas-basics
+  virginia: true
+
+- id: fc-series
+  term: Series
+  def: A pandas one-dimensional labeled array, a column of values with an index. Selecting one column of a DataFrame, df["gpa"], returns a Series.
+  skill: pandas-basics
+  virginia: true
+
+- id: fc-dataframe
+  term: DataFrame
+  def: A pandas two-dimensional labeled table with an index for rows and named columns, each of which is a Series. df[["a", "b"]] selects several columns as a DataFrame.
+  skill: pandas-basics
+  virginia: true
+
+- id: fc-inspect-methods
+  term: head, shape, info, describe
+  def: head(n) shows the first rows (5 by default); shape is (rows, columns); info() lists dtypes and non-null counts; describe() gives count, mean, std, min, quartiles, and max.
+  skill: pandas-basics
+
+- id: fc-loc-iloc
+  term: loc vs. iloc
+  def: loc selects by label and its slices include the end; iloc selects by position and its slices exclude the end. With the default index, loc[1:3] gives 3 rows and iloc[1:3] gives 2.
+  skill: pandas-basics
