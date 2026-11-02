@@ -1,0 +1,80 @@
+# Lesson 1.7 flashcards
+
+- id: fc-data-wrangling
+  term: Data Wrangling
+  def: Turning raw data into a clean, structured, usable form by finding problems, restructuring, cleaning, combining sources, and checking the result. Also called munging.
+  skill: wrangling
+  virginia: true
+
+- id: fc-data-transformation
+  term: Data Transformation
+  def: Converting data from one format, structure, or scale to another, such as reshaping a table, changing units, scaling numbers, or encoding categories.
+  skill: wrangling
+  virginia: true
+
+- id: fc-tidy-data
+  term: Tidy data
+  def: "Wickham (2014): each variable forms a column, each observation forms a row, and each type of observational unit forms a table. R for Data Science adds that each value is a cell."
+  skill: wrangling
+
+- id: fc-wide-long
+  term: Wide vs. long format
+  def: Wide format has one row per subject with many measurement columns. Long (tidy) format has one row per measurement. pandas melt turns wide into long.
+  skill: wrangling
+
+- id: fc-parsing
+  term: Parsing and type conversion
+  def: Reading raw text into structured values and converting types, such as turning "$1,200" into 1200 or "2026-03-14" into a date. Placeholders like "N/A" become missing values.
+  skill: wrangling
+
+- id: fc-normalization-scaling
+  term: Normalization
+  def: In data preparation, min-max scaling of values to a standard range, usually 0 to 1, using (x - min) / (max - min). It is sensitive to outliers.
+  skill: scaling
+  virginia: true
+
+- id: fc-standardization
+  term: Standardization (z-score scaling)
+  def: Rescaling a feature to mean 0 and standard deviation 1 using (x - mean) / SD. It is less distorted by outliers than min-max.
+  skill: scaling
+
+- id: fc-when-to-scale
+  term: When scaling matters
+  def: Scale features for distance-based methods (k-NN, k-means), SVMs, and gradient descent. Tree-based models do not need scaling. Fit scaling statistics on training data only.
+  skill: scaling
+
+- id: fc-label-encoding
+  term: Label (ordinal) encoding
+  def: Replacing categories with integers such as S = 0, M = 1, L = 2. It suits ordinal data but invents a false order for nominal data.
+  skill: encoding-cats
+
+- id: fc-one-hot
+  term: One-hot encoding
+  def: One 0-or-1 column per category, with a single 1 in each row. k categories give k columns, or k - 1 if one is dropped.
+  skill: encoding-cats
+
+- id: fc-dummy-trap
+  term: Dummy variable trap
+  def: Keeping all k one-hot columns in a linear regression with an intercept makes them perfectly redundant, so one column is dropped.
+  skill: encoding-cats
+
+- id: fc-feature-engineering
+  term: Feature Engineering
+  def: Creating new features from existing data to improve model performance, such as ratios, date parts, aggregates, and combinations of columns.
+  skill: feature-eng
+  virginia: true
+
+- id: fc-binning
+  term: Binning (discretization)
+  def: "Turning a continuous variable into ranges. Equal-width bins share a range size, while equal-frequency (quantile) bins share a count."
+  skill: feature-eng
+
+- id: fc-log-transform
+  term: Log transform
+  def: Replacing values with their logarithms to reduce right skew. With base 10, 1,000 becomes 3 and 1,000,000 becomes 6.
+  skill: feature-eng
+
+- id: fc-selection-extraction
+  term: Feature selection vs. extraction
+  def: "Feature selection keeps a subset of the existing features. Feature extraction builds new, fewer features from many, as PCA does."
+  skill: feature-eng

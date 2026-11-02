@@ -1,0 +1,655 @@
+# Lesson 1.7: Data wrangling and transformation
+
+# ---------------------------------------------------------------- wrangling
+- id: wrangling-01
+  skill: wrangling
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is data wrangling?
+  options:
+    - "Turning raw data into a clean, structured form that is ready for analysis"
+    - "Storing data in a cloud warehouse so many teams can access it at once"
+    - "Drawing charts that summarize the main patterns in a finished dataset"
+    - "Training a machine learning model on data that has already been labeled"
+  answer: A
+  explain: |
+    Wrangling (also called munging) covers finding problems in raw data, restructuring it, cleaning it, combining sources, and checking the result, so the data is ready to analyze.
+  why:
+    B: "Storage is where data lives; wrangling is what makes it usable."
+    C: "Charting comes after the data has been wrangled."
+    D: "Training a model is a later step that depends on wrangled data."
+
+- id: wrangling-02
+  skill: wrangling
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    A table of quiz scores looks like this:
+
+    | student | quiz1 | quiz2 | quiz3 |
+    |---|---|---|---|
+    | Ava | 9 | 7 | 10 |
+    | Ben | 6 | 8 | 7 |
+
+    Which change makes it tidy?
+  options:
+    - "Add a fourth column holding each student's average quiz score"
+    - "Sort the rows alphabetically by each student's first name"
+    - "Reshape it into columns student, quiz, and score, one row per quiz"
+    - "Combine the three quiz columns into one text column such as 9-7-10"
+  answer: C
+  explain: |
+    The quiz names are values of a variable (which quiz), but they are spread across the headers. Tidy data puts each variable in its own column, so the table becomes student, quiz, score, with one row for each observation.
+  why:
+    A: "Adding a summary column leaves the quiz names in the headers, so the table is still untidy."
+    B: "Sorting changes the order of rows but not the table's structure."
+    D: "Packing three values into one cell breaks the rule that each cell holds one value."
+
+- id: wrangling-03
+  skill: wrangling
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A price column holds values such as "$1,200" and is stored as text. What must happen before the average price can be computed?
+  options:
+    - "Sort the column from largest to smallest price"
+    - "Remove the symbols and convert the column to a numeric type"
+    - "Delete every row that contains a dollar sign"
+    - "One-hot encode the price column"
+  answer: B
+  explain: |
+    A program cannot average text. Stripping the dollar signs and commas and then converting the values to numbers lets the column be used in calculations.
+  why:
+    A: "Sorting text does not make it numeric, and text sorts in the wrong order (\"1,200\" before \"35\")."
+    C: "Deleting the rows would throw away the very data you need."
+    D: "One-hot encoding is for categories; price is a number that needs converting."
+
+- id: wrangling-04
+  skill: wrangling
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Why is data wrangling an important step in a data science project?
+  options:
+    - "Because it is the step that builds the final predictive model"
+    - "Because it reduces the amount of data that must be stored"
+    - "Because it is required by law before any data can be analyzed"
+    - "Because analyses run on messy data give wrong or misleading results"
+  answer: D
+  explain: |
+    Raw data from different sources has inconsistent formats, errors, and gaps. If they are not fixed, averages, charts, and models built on the data inherit the problems.
+  why:
+    A: "Modeling is a separate, later step that depends on wrangled data."
+    B: "Wrangling may add or reshape columns; saving storage is not its purpose."
+    C: "Wrangling is good practice, not a legal requirement."
+
+- id: wrangling-05
+  skill: wrangling
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which set of rules describes tidy data, as defined by Hadley Wickham?
+  options:
+    - "Each variable is a row, each observation is a column, and each table holds one dataset."
+    - "Each table is sorted, each column is numeric, and each row is unique."
+    - "Each variable is a column, each observation is a row, and each type of observational unit is a table."
+    - "Each value is rounded, each column is labeled, and each table fits on one screen."
+  answer: C
+  explain: |
+    Tidy data puts variables in columns, observations in rows, and each type of observational unit in its own table. R for Data Science phrases the third rule as "each value is a cell."
+  why:
+    A: "This swaps rows and columns; variables belong in columns."
+    B: "Sorting and all-numeric columns are not part of the tidy data rules."
+    D: "Rounding and screen size have nothing to do with tidiness."
+
+- id: wrangling-06
+  skill: wrangling
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A dataset combines records from offices in the United States and in Europe. One date is written 03/04/2026. Why is this risky?
+  options:
+    - "It is March 4 written month-first but April 3 written day-first."
+    - "Dates cannot be stored in a dataset until they are converted to plain text."
+    - "The year 2026 is too far in the future for most software to parse correctly."
+    - "Slashes in a date cause most programs to read the value as a fraction."
+  answer: A
+  explain: |
+    The United States usually writes the month first while much of the world writes the day first. Parsing every record with one format silently swaps months and days for one source, so each source must be parsed with its own format.
+  why:
+    B: "Dates should be stored as date types, not text; the risk is ambiguous parsing."
+    C: "Software parses future years without trouble."
+    D: "Date parsers handle slashes; the problem is which number is the month."
+
+- id: wrangling-07
+  skill: wrangling
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A state column contains "NY", "New York", and "new york". A count of customers by state shows three separate groups for one state. Which wrangling step fixes this?
+  options:
+    - "Deleting the rows with lowercase values"
+    - "Converting the column to a numeric type"
+    - "Sorting the column alphabetically"
+    - "Standardizing the values to one consistent label"
+  answer: D
+  explain: |
+    The three spellings mean the same thing, so they should be mapped to a single label such as "NY". Then the count groups all of those customers together.
+  why:
+    A: "Deleting rows throws away real customers instead of fixing the labels."
+    B: "State names are categories; converting them to numbers does not merge the spellings."
+    C: "Sorting puts the spellings next to each other but still counts them separately."
+
+# ---------------------------------------------------------------- scaling
+- id: scaling-01
+  skill: scaling
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    Ages in a dataset range from 20 to 70. What is the min-max normalized value of age 45?
+  options:
+    - "0.36"
+    - "0.5"
+    - "0.64"
+    - "0.9"
+  ordered: true
+  answer: B
+  explain: |
+    Min-max normalization computes (x - min) / (max - min) = (45 - 20) / (70 - 20) = 25 / 50 = 0.5. Age 45 sits exactly halfway through the range.
+  why:
+    A: "This divides by the maximum, 70, instead of by the range, 50."
+    C: "This divides 45 by 70 without subtracting the minimum."
+    D: "This divides 45 by the range without subtracting the minimum from 45."
+  verify: "(45 - 20) / (70 - 20)"
+
+- id: scaling-02
+  skill: scaling
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A feature has mean 50 and standard deviation 8. What is the z-score standardized value of 62?
+  options:
+    - "0.19"
+    - "0.24"
+    - "1.5"
+    - "12"
+  ordered: true
+  answer: C
+  explain: |
+    Standardization computes (x - mean) / SD = (62 - 50) / 8 = 12 / 8 = 1.5. The value is 1.5 standard deviations above the mean.
+  why:
+    A: "This divides by the variance, 64, instead of the standard deviation, 8."
+    B: "This divides by the mean, 50, instead of the standard deviation."
+    D: "This subtracts the mean but forgets to divide by the standard deviation."
+  verify: "(62 - 50) / 8"
+
+- id: scaling-03
+  skill: scaling
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which model is generally NOT affected by feature scaling?
+  options:
+    - "Decision tree"
+    - "k-nearest neighbors"
+    - "k-means clustering"
+    - "Neural network trained with gradient descent"
+  answer: A
+  explain: |
+    A decision tree splits on one feature at a time against a threshold. Rescaling a feature moves the threshold but never changes which values fall on each side, so the tree's decisions stay the same.
+  why:
+    B: "k-NN measures distances, so a feature with a large scale dominates the distance."
+    C: "k-means also uses distances, so it is sensitive to scale."
+    D: "Gradient descent trains slowly or unstably when features have very different ranges."
+
+- id: scaling-04
+  skill: scaling
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    After z-score standardization, what are the mean and standard deviation of a feature?
+  options:
+    - "Minimum 0 and maximum 1"
+    - "Mean 1 and standard deviation 0"
+    - "Mean 0 and range 1"
+    - "Mean 0 and standard deviation 1"
+  answer: D
+  explain: |
+    Subtracting the mean centers the values at 0, and dividing by the standard deviation makes the new standard deviation 1.
+  why:
+    A: "A range of 0 to 1 is the result of min-max normalization."
+    B: "A standard deviation of 0 would mean every value is the same."
+    C: "Standardization fixes the standard deviation, not the range, at 1."
+
+- id: scaling-05
+  skill: scaling
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Incomes in a dataset mostly fall between $30,000 and $90,000, but one value is $5,000,000. Why is min-max normalization a poor choice for this feature?
+  options:
+    - "Min-max normalization cannot be applied to dollar amounts."
+    - "Min-max normalization removes the outlier automatically."
+    - "The outlier becomes the maximum, so almost every other value is squashed close to 0."
+    - "Min-max normalization changes the order of the values."
+  answer: C
+  explain: |
+    The range becomes about $5,000,000, so an income of $90,000 normalizes to under 0.02. Nearly all the real variation is crushed into a sliver near 0. Standardization, or a scaler based on the median and interquartile range, handles this better.
+  why:
+    A: "Min-max works on any numeric feature; the problem is the outlier."
+    B: "Min-max keeps every value, including the outlier."
+    D: "Min-max preserves the order of values; it only rescales them."
+
+- id: scaling-06
+  skill: scaling
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A team standardizes a feature using the mean and standard deviation of the entire dataset, then splits the data into training and test sets. What is wrong with this?
+  options:
+    - "Information from the test set leaked into training, so the test score will look better than it should."
+    - "Standardization must happen after the model is trained, not before."
+    - "The test set should be standardized with its own mean and standard deviation instead."
+    - "Nothing is wrong, because standardization does not change the order of values."
+  answer: A
+  explain: |
+    The test set must stay unseen. Computing the mean and standard deviation from all the data lets test-set information shape the training data, which is data leakage. Fit the scaler on the training data, then apply those same numbers to the test set.
+  why:
+    B: "Scaling is a preprocessing step, so it happens before training."
+    C: "The test set must be scaled with the training set's statistics, not its own."
+    D: "Leakage is a problem even when the order of values is unchanged, because it biases evaluation."
+
+- id: scaling-07
+  skill: scaling
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What range of values does min-max normalization produce?
+  options:
+    - "Negative 1 to 1"
+    - "0 to 1"
+    - "0 to 100"
+    - "Any range, centered on 0"
+  answer: B
+  explain: |
+    Min-max normalization maps the minimum to 0 and the maximum to 1, so every value falls from 0 to 1.
+  why:
+    A: "Some scalers use negative 1 to 1, but standard min-max normalization uses 0 to 1."
+    C: "0 to 100 is a percentage scale, not the min-max result."
+    D: "Centering on 0 describes standardization, which has no fixed range."
+
+- id: scaling-08
+  skill: scaling
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Product prices range from $10 to $50. One product's min-max normalized price is 0.25. What is its actual price?
+  options:
+    - "$10.25"
+    - "$12.50"
+    - "$20.00"
+    - "$40.00"
+  ordered: true
+  answer: C
+  explain: |
+    Reverse the formula: x = min + x' times (max - min) = 10 + 0.25 times 40 = 10 + 10 = $20.
+  why:
+    A: "This adds 0.25 dollars to the minimum instead of 0.25 of the range."
+    B: "This takes 0.25 of the maximum, ignoring the minimum."
+    D: "This is the size of the range, not the price."
+  verify: "10 + 0.25 * (50 - 10)"
+
+- id: scaling-09
+  skill: scaling
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Test scores have mean 80 and standard deviation 5. What is the z-score standardized value of a score of 72?
+  options:
+    - "-1.6"
+    - "1.6"
+    - "8"
+    - "14.4"
+  ordered: true
+  answer: A
+  explain: |
+    (72 - 80) / 5 = -8 / 5 = -1.6. The negative sign shows the score is below the mean.
+  why:
+    B: "The score is below the mean, so its standardized value is negative."
+    C: "This is the distance from the mean before dividing by the standard deviation."
+    D: "This divides the score by the standard deviation without subtracting the mean."
+  verify: "(72 - 80) / 5"
+
+# ---------------------------------------------------------------- encoding-cats
+- id: encoding-cats-01
+  skill: encoding-cats
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A color column has the values red, green, blue, and yellow. How many columns does one-hot encoding create if no column is dropped?
+  options:
+    - "1"
+    - "2"
+    - "4"
+    - "16"
+  ordered: true
+  answer: C
+  explain: |
+    One-hot encoding creates one 0-or-1 column per category. Four colors make four columns.
+  why:
+    A: "One column of integers is label encoding, not one-hot encoding."
+    B: "Two columns is the number of bits needed to number four categories, which is a different encoding."
+    D: "This squares the number of categories."
+  verify: "len(['red', 'green', 'blue', 'yellow'])"
+
+- id: encoding-cats-02
+  skill: encoding-cats
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why is label encoding (red = 0, green = 1, blue = 2) risky for a nominal feature such as color?
+  options:
+    - "It creates too many columns for the model to handle."
+    - "It cannot be reversed to recover the original colors."
+    - "It works only when there are exactly two categories."
+    - "It invents an order and spacing that a model may treat as meaningful."
+  answer: D
+  explain: |
+    The integers imply that blue is greater than green and that green is halfway between red and blue. A model may learn patterns from that false order. One-hot encoding avoids it.
+  why:
+    A: "Label encoding uses a single column; one-hot encoding is the one that adds columns."
+    B: "Each integer maps back to exactly one color, so it is reversible."
+    C: "Label encoding works with any number of categories; the problem is the false order."
+
+- id: encoding-cats-03
+  skill: encoding-cats
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    For which feature is label encoding (assigning increasing integers) the most appropriate choice?
+  options:
+    - "Country of residence: Canada, Mexico, Peru, Chile"
+    - "T-shirt size: small, medium, large, extra large"
+    - "Favorite sport: soccer, tennis, swimming, golf"
+    - "Type of pet: dog, cat, fish, rabbit"
+  answer: B
+  explain: |
+    T-shirt sizes have a real order, so mapping them to 0, 1, 2, 3 keeps that order. The other features are nominal, where integers would invent an order.
+  why:
+    A: "Countries have no natural order, so integers would create a false one."
+    C: "Sports are unordered categories; one-hot encoding suits them."
+    D: "Pet types have no order; label encoding would imply one."
+
+- id: encoding-cats-04
+  skill: encoding-cats
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A region column has 5 categories. One-hot encoding is applied with one category dropped to avoid the dummy variable trap. How many columns are created?
+  options:
+    - "1"
+    - "4"
+    - "5"
+    - "10"
+  ordered: true
+  answer: B
+  explain: |
+    k categories normally make k columns. Dropping one leaves k - 1 = 4; a row of all zeros then means the dropped region.
+  why:
+    A: "One column would be label encoding."
+    C: "Five columns is one-hot encoding without dropping a category."
+    D: "This doubles the number of categories, which has no basis."
+  verify: "5 - 1"
+
+- id: encoding-cats-05
+  skill: encoding-cats
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A product_id column has 40,000 distinct values. Why is plain one-hot encoding a poor choice for it?
+  options:
+    - "One-hot encoding cannot be applied to columns stored as text."
+    - "It would sort the products into the wrong order."
+    - "It would merge different products into the same category."
+    - "It would create 40,000 mostly-zero columns, making the data huge and sparse."
+  answer: D
+  explain: |
+    One column per category means 40,000 new columns, each almost entirely 0s. Grouping rare values into "Other" or using a single-number encoding such as frequency avoids that explosion.
+  why:
+    A: "One-hot encoding is usually applied to text categories."
+    B: "One-hot encoding creates no order at all."
+    C: "Each product keeps its own column; the problem is how many columns there are."
+
+- id: encoding-cats-06
+  skill: encoding-cats
+  tier: core
+  type: visual
+  use: quiz
+  stem: |
+    A color feature was one-hot encoded into these columns. Which row represents green?
+
+    | row | color_blue | color_green | color_red |
+    |---|---|---|---|
+    | 1 | 1 | 0 | 0 |
+    | 2 | 0 | 1 | 0 |
+    | 3 | 0 | 0 | 1 |
+    | 4 | 0 | 0 | 0 |
+  options:
+    - "Row 2"
+    - "Row 1"
+    - "Row 3"
+    - "Row 4"
+  answer: A
+  explain: |
+    In one-hot encoding, a row has a 1 in the column of its category and 0s elsewhere. Row 2 has its 1 under color_green.
+  why:
+    B: "Row 1 has its 1 under color_blue."
+    C: "Row 3 has its 1 under color_red."
+    D: "A row of all zeros would mean a category with no column, such as a dropped one."
+
+- id: encoding-cats-07
+  skill: encoding-cats
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is the dummy variable trap?
+  options:
+    - "Using label encoding on a nominal feature such as color or country"
+    - "Forgetting to encode a categorical feature before training a model"
+    - "Keeping all k one-hot columns in a regression, making them redundant"
+    - "Encoding a numeric feature such as age as if it were a category"
+  answer: C
+  explain: |
+    With all k columns and an intercept, the columns always add up to 1, so any one is fully determined by the rest. That perfect redundancy breaks linear regression, so one column is dropped.
+  why:
+    A: "That creates a false order, a different problem."
+    B: "Leaving a category unencoded is an error, but not the dummy variable trap."
+    D: "Treating numbers as categories is a different mistake."
+
+# ---------------------------------------------------------------- feature-eng
+- id: feature-eng-01
+  skill: feature-eng
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    Which of these is an example of feature engineering?
+  options:
+    - "Deleting duplicate customer records from the loan table"
+    - "Plotting a histogram of customer ages to check their spread"
+    - "Splitting the loan data into separate training and test sets"
+    - "Creating a debt-to-income ratio from the debt and income columns"
+  answer: D
+  explain: |
+    Feature engineering builds new input variables from existing data. The ratio combines two columns into a new one that may predict loan repayment better than either alone.
+  why:
+    A: "Removing duplicates is data cleaning, not creating a new feature."
+    B: "A histogram explores the data; it does not add a feature."
+    C: "Splitting the data prepares for evaluation, not new features."
+
+- id: feature-eng-02
+  skill: feature-eng
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is feature engineering?
+  options:
+    - "Choosing which machine learning algorithm to use"
+    - "Creating new input variables from existing data to help a model learn"
+    - "Removing every column that has missing values"
+    - "Designing the hardware that runs a model"
+  answer: B
+  explain: |
+    Feature engineering uses existing columns and domain knowledge to build more useful inputs, such as ratios, date parts, and aggregates.
+  why:
+    A: "Choosing an algorithm is model selection."
+    C: "Dropping columns is a cleaning or selection choice, not creating features."
+    D: "Hardware design has nothing to do with features."
+
+- id: feature-eng-03
+  skill: feature-eng
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why might an analyst apply a log transform to household incomes?
+  options:
+    - "To convert the incomes into categories"
+    - "To make every income a whole number"
+    - "To reduce right skew by compressing the very large incomes"
+    - "To remove households with missing income"
+  answer: C
+  explain: |
+    Incomes are right-skewed: a few very large values stretch the scale. A log compresses large values much more than small ones, so the distribution becomes more symmetric.
+  why:
+    A: "Turning numbers into categories is binning, not a log transform."
+    B: "Logs usually produce decimals, not whole numbers."
+    D: "A log transform changes values; it does not handle missing ones."
+
+- id: feature-eng-04
+  skill: feature-eng
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Ages from 20 to 80 are split into 4 equal-width bins. How wide is each bin?
+  options:
+    - "4 years"
+    - "15 years"
+    - "20 years"
+    - "60 years"
+  answer: B
+  explain: |
+    Equal-width bins divide the range evenly: (80 - 20) / 4 = 60 / 4 = 15 years per bin.
+  why:
+    A: "4 is the number of bins, not their width."
+    C: "This divides the maximum age by 4 without subtracting the minimum."
+    D: "60 years is the whole range, not one bin."
+  verify: |
+    ans = f"{(80 - 20) / 4:g} years"
+
+- id: feature-eng-05
+  skill: feature-eng
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    1,000 household incomes are split into 4 bins so that each bin holds exactly 250 households. What kind of binning is this?
+  options:
+    - "Equal-width (fixed-range) binning"
+    - "One-hot (dummy) encoding"
+    - "Min-max (0 to 1) normalization"
+    - "Equal-frequency (quantile) binning"
+  answer: D
+  explain: |
+    Equal-frequency bins are drawn so each holds the same number of observations. With skewed incomes, the bins will have very different widths.
+  why:
+    A: "Equal-width bins share the same range of values, not the same count."
+    B: "One-hot encoding turns categories into 0-or-1 columns; it does not bin numbers."
+    C: "Min-max normalization rescales values to 0 to 1 without grouping them."
+
+- id: feature-eng-06
+  skill: feature-eng
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    City populations of 1,000, 100,000, and 10,000,000 are transformed with a base-10 logarithm. What are the new values?
+  options:
+    - "3, 5, 7"
+    - "1, 3, 5"
+    - "10, 1,000, 100,000"
+    - "1, 100, 10,000"
+  answer: A
+  explain: |
+    The base-10 log counts the zeros: $$\log_{10} 1000 = 3$$, $$\log_{10} 100{,}000 = 5$$, and $$\log_{10} 10{,}000{,}000 = 7$$. Gaps of millions shrink to steps of 2.
+  why:
+    B: "Each value is off by 2; for example, 1,000 has three zeros, so its log is 3."
+    C: "This takes square roots, not logarithms."
+    D: "This divides each value by 1,000 instead of taking a logarithm."
+  verify: |
+    ans = ", ".join(str(round(math.log10(x))) for x in [1000, 100000, 10000000])
+
+- id: feature-eng-07
+  skill: feature-eng
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    From each order's timestamp, which engineered feature would most likely help a model predict weekend shopping behavior?
+  options:
+    - "A flag set to 1 when the order was placed on a weekend"
+    - "The order's ID number assigned by the checkout system"
+    - "The number of characters in the timestamp's text"
+    - "The order's row position in the exported data file"
+  answer: A
+  explain: |
+    A weekend flag pulls exactly the relevant fact out of the timestamp. Date parts such as day of week, month, and hour are classic engineered features.
+  why:
+    B: "An ID is an arbitrary label with no link to weekends."
+    C: "Every timestamp has the same length, so this carries no information."
+    D: "File position depends on how the data was saved, not on shopping behavior."
+
+- id: feature-eng-08
+  skill: feature-eng
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Keeping the 10 most useful of 50 existing columns is feature ____, while combining the 50 columns into 5 new components, as PCA does, is feature ____.
+  options:
+    - "extraction; selection"
+    - "selection; extraction"
+    - "encoding; scaling"
+    - "scaling; encoding"
+  answer: B
+  explain: |
+    Feature selection keeps a subset of the original features. Feature extraction builds a smaller set of new features from the old ones, as principal component analysis does.
+  why:
+    A: "This swaps the two terms."
+    C: "Encoding converts categories to numbers; scaling changes ranges. Neither describes these steps."
+    D: "Scaling and encoding do not choose or combine features."
