@@ -1,0 +1,743 @@
+# Lesson 4.4: SQL joins, subqueries, and changing data
+
+# ---------------------------------------------------------------- sql-joins
+- id: sql-joins-01
+  skill: sql-joins
+  tier: core
+  type: sql
+  use: check
+  stem: |
+    A report must list every student who is in a club, with the club's name. Students who are not in any club should be left out. Which join fits?
+  options:
+    - "`students INNER JOIN clubs`"
+    - "`students LEFT JOIN clubs`"
+    - "`students FULL OUTER JOIN clubs`"
+    - "`students CROSS JOIN clubs`"
+  answer: A
+  explain: |
+    An INNER JOIN keeps only rows that match on both sides, so students with no club (a NULL club_id) drop out automatically.
+  why:
+    B: "A LEFT JOIN keeps every student, including those with no club."
+    C: "A FULL OUTER JOIN keeps every student and also clubs with no members."
+    D: "A CROSS JOIN pairs every student with every club, matched or not."
+
+- id: sql-joins-02
+  skill: sql-joins
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    In the school database, 8 of the 10 students belong to a club and 2 do not. How many rows does this query return?
+
+    ```sql
+    SELECT s.name, c.club_name
+    FROM students s
+    LEFT JOIN clubs c ON s.club_id = c.club_id;
+    ```
+  options:
+    - "8"
+    - "9"
+    - "10"
+    - "11"
+  ordered: true
+  answer: C
+  explain: |
+    A LEFT JOIN keeps every row of the left table, students. The 8 matched students appear with their clubs and the 2 unmatched students appear with NULL, for 10 rows.
+  why:
+    A: "This is the INNER JOIN count, which drops the two students with no club."
+    B: "This is the count with clubs as the left table: 8 matches plus Chess."
+    D: "This is the FULL OUTER JOIN count, which also adds Chess."
+  verify: 'rows("school", "SELECT s.name, c.club_name FROM students s LEFT JOIN clubs c ON s.club_id = c.club_id")'
+
+- id: sql-joins-03
+  skill: sql-joins
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    Which query lists the clubs that have no students?
+  options:
+    - "`SELECT c.club_name FROM clubs c INNER JOIN students s ON s.club_id = c.club_id WHERE s.student_id IS NULL;`"
+    - "`SELECT c.club_name FROM clubs c LEFT JOIN students s ON s.club_id = c.club_id WHERE c.club_id IS NULL;`"
+    - "`SELECT c.club_name FROM students s LEFT JOIN clubs c ON s.club_id = c.club_id WHERE c.club_id IS NULL;`"
+    - "`SELECT c.club_name FROM clubs c LEFT JOIN students s ON s.club_id = c.club_id WHERE s.student_id IS NULL;`"
+  answer: D
+  explain: |
+    The LEFT JOIN keeps every club, and a club with no members gets NULL in all the student columns. Keeping only those rows leaves Chess.
+  why:
+    A: "An INNER JOIN has already dropped the clubs with no students, so nothing is left to find."
+    B: "Every club has a club_id, so testing c.club_id for NULL removes every row."
+    C: "With students on the left, this finds students without a club, and their club_name is NULL."
+  verify: |
+    ans = "`SELECT c.club_name FROM clubs c LEFT JOIN students s ON s.club_id = c.club_id WHERE s.student_id IS NULL;`" if sql("school", "SELECT c.club_name FROM clubs c LEFT JOIN students s ON s.club_id = c.club_id WHERE s.student_id IS NULL") == [("Chess",)] else "other"
+
+- id: sql-joins-04
+  skill: sql-joins
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In a LEFT JOIN, a row from the left table has no matching row in the right table. What appears in that row's right-table columns?
+  options:
+    - "NULL"
+    - "0"
+    - "The values from the closest match"
+    - "Nothing, because the row is removed"
+  answer: A
+  explain: |
+    A LEFT JOIN keeps every left row, and where there is no match, it fills the right table's columns with NULL.
+  why:
+    B: "Missing values are NULL, not zero."
+    C: "SQL never invents an approximate match."
+    D: "Removing unmatched rows is what an INNER JOIN does."
+
+- id: sql-joins-05
+  skill: sql-joins
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    The shop database has 5 products and 5 customers. How many rows does `SELECT * FROM products CROSS JOIN customers;` return?
+  options:
+    - "5"
+    - "10"
+    - "25"
+    - "125"
+  ordered: true
+  answer: C
+  explain: |
+    A CROSS JOIN pairs every row of the first table with every row of the second, so it returns 5 × 5 = 25 rows.
+  why:
+    A: "This is the size of one table, not the number of pairs."
+    B: "This adds the two table sizes instead of multiplying them."
+    D: "This cubes 5; a cross join of two tables multiplies just two sizes."
+  verify: 'scalar("shop", "SELECT COUNT(*) FROM products CROSS JOIN customers")'
+
+- id: sql-joins-06
+  skill: sql-joins
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    The school database has 10 students and 13 enrollment rows, and every enrollment belongs to a student. How many rows does this query return?
+
+    ```sql
+    SELECT COUNT(*)
+    FROM students s
+    JOIN enrollments e ON s.student_id = e.student_id;
+    ```
+  options:
+    - "10"
+    - "13"
+    - "14"
+    - "130"
+  ordered: true
+  answer: B
+  explain: |
+    Each enrollment matches exactly one student, so the join produces one row per enrollment, 13 in all. Students taking two courses appear twice, and Isla, who takes none, does not appear.
+  why:
+    A: "Students who take two courses appear once per course, so the count is not one per student."
+    C: "This is the LEFT JOIN count, which adds Isla with NULL enrollment columns."
+    D: "This multiplies the table sizes, which is a CROSS JOIN."
+  verify: 'scalar("school", "SELECT COUNT(*) FROM students s JOIN enrollments e ON s.student_id = e.student_id")'
+
+- id: sql-joins-07
+  skill: sql-joins
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Joining students (10 rows) with clubs (4 rows) on club_id gives 8 matched pairs. Two students have no club, and one club has no students. How many rows does a FULL OUTER JOIN return?
+  options:
+    - "10"
+    - "11"
+    - "12"
+    - "14"
+  ordered: true
+  answer: B
+  explain: |
+    A FULL OUTER JOIN returns the matched pairs plus every unmatched row from each side: 8 + 2 + 1 = 11.
+  why:
+    A: "This is the LEFT JOIN count, which leaves out the club with no students."
+    C: "This adds all 4 clubs to the 8 matches, but three clubs are already in matched rows."
+    D: "This adds the two table sizes, which counts the matched rows twice."
+  verify: 'rows("school", "SELECT s.name, c.club_name FROM students s FULL OUTER JOIN clubs c ON s.club_id = c.club_id")'
+
+- id: sql-joins-08
+  skill: sql-joins
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    Which join gives the same rows as `clubs c RIGHT JOIN students s ON s.club_id = c.club_id`?
+  options:
+    - "`clubs c LEFT JOIN students s ON s.club_id = c.club_id`"
+    - "`clubs c INNER JOIN students s ON s.club_id = c.club_id`"
+    - "`students s CROSS JOIN clubs c`"
+    - "`students s LEFT JOIN clubs c ON s.club_id = c.club_id`"
+  answer: D
+  explain: |
+    A RIGHT JOIN keeps every row of the table written second. Swapping the tables and using LEFT JOIN keeps every row of the same table, students, with the same matches.
+  why:
+    A: "This keeps every club rather than every student."
+    B: "An INNER JOIN drops the students with no club."
+    C: "A CROSS JOIN pairs every student with every club, ignoring the match."
+
+- id: sql-joins-09
+  skill: sql-joins
+  tier: champion
+  type: sql
+  use: bank
+  stem: |
+    In the shop database, customer Zoe has placed no orders. In the result of this query, what count appears for Zoe?
+
+    ```sql
+    SELECT c.name, COUNT(o.order_id)
+    FROM customers c
+    LEFT JOIN orders o ON o.customer_id = c.customer_id
+    GROUP BY c.customer_id, c.name;
+    ```
+  options:
+    - "0, because COUNT(o.order_id) skips the NULL"
+    - "1, because her row appears once in the join"
+    - "NULL, because she has no orders"
+    - "None, because she does not appear in the result"
+  answer: A
+  explain: |
+    The LEFT JOIN keeps Zoe with NULL in every order column. COUNT(o.order_id) counts non-NULL values, so her count is 0. COUNT(*) would have counted her one row and wrongly reported 1.
+  why:
+    B: "That is what COUNT(*) would return, because it counts rows, not order IDs."
+    C: "COUNT never returns NULL; for no values it returns 0."
+    D: "The LEFT JOIN keeps every customer, including Zoe."
+  verify: |
+    r = dict(sql("shop", "SELECT c.name, COUNT(o.order_id) FROM customers c LEFT JOIN orders o ON o.customer_id = c.customer_id GROUP BY c.customer_id, c.name"))
+    ans = "0, because COUNT(o.order_id) skips the NULL" if r["Zoe"] == 0 else "other"
+
+# ---------------------------------------------------------------- sql-subqueries
+- id: sql-subqueries-01
+  skill: sql-subqueries
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    The average of the school database's known GPAs is about 3.37. How many rows does this query return?
+
+    ```sql
+    SELECT name FROM students
+    WHERE gpa > (SELECT AVG(gpa) FROM students);
+    ```
+  options:
+    - "4"
+    - "5"
+    - "6"
+    - "9"
+  ordered: true
+  answer: B
+  explain: |
+    The subquery returns the average, about 3.37, and the outer query keeps the GPAs above it: Chloe and Hiro (3.9), Elena (3.8), Ava (3.6), and Grace (3.4).
+  why:
+    A: "This leaves out Grace, whose 3.4 is above 3.37; rounding the average to 3.4 first causes this slip."
+    C: "This adds Dev, whose 3.2 is below the average."
+    D: "This counts every student with a known GPA, as if there were no filter."
+  verify: 'rows("school", "SELECT name FROM students WHERE gpa > (SELECT AVG(gpa) FROM students)")'
+
+- id: sql-subqueries-02
+  skill: sql-subqueries
+  tier: competitive
+  type: sql
+  use: check
+  stem: |
+    The students taking STAT1 have IDs 1, 2, 4, 5, and 8. The students taking CS1 have IDs 1, 3, 6, and 8. How many rows does this query return?
+
+    ```sql
+    SELECT student_id FROM enrollments WHERE course_id = 'STAT1'
+    UNION
+    SELECT student_id FROM enrollments WHERE course_id = 'CS1';
+    ```
+  options:
+    - "2"
+    - "7"
+    - "9"
+    - "11"
+  ordered: true
+  answer: B
+  explain: |
+    UNION combines both lists and removes duplicates. Students 1 and 8 appear in both, so the result holds the 7 distinct IDs 1, 2, 3, 4, 5, 6, and 8.
+  why:
+    A: "This is the INTERSECT count, the students in both courses."
+    C: "This is the UNION ALL count, which keeps the duplicates."
+    D: "This adds extra rows that neither list contains."
+  verify: 'rows("school", "SELECT student_id FROM enrollments WHERE course_id = ''STAT1'' UNION SELECT student_id FROM enrollments WHERE course_id = ''CS1''")'
+
+- id: sql-subqueries-03
+  skill: sql-subqueries
+  tier: core
+  type: sql
+  use: quiz
+  stem: |
+    Which query lists the students in clubs advised by Ms. Park?
+  options:
+    - "`SELECT name FROM students WHERE club_id = (SELECT advisor FROM clubs WHERE advisor = 'Ms. Park');`"
+    - "`SELECT name FROM clubs WHERE club_id IN (SELECT club_id FROM students WHERE advisor = 'Ms. Park');`"
+    - "`SELECT name FROM students WHERE advisor IN (SELECT advisor FROM clubs WHERE club_name = 'Ms. Park');`"
+    - "`SELECT name FROM students WHERE club_id IN (SELECT club_id FROM clubs WHERE advisor = 'Ms. Park');`"
+  answer: D
+  explain: |
+    The advisor lives in the clubs table, so a subquery first finds the IDs of Ms. Park's clubs, and the outer query keeps the students with those IDs: Ava, Dev, and Hiro.
+  why:
+    A: "This compares each club ID with an advisor's name, and those never match."
+    B: "The clubs table has no student names, and the students table has no advisor column."
+    C: "The students table has no advisor column, and Ms. Park is an advisor, not a club name."
+  verify: |
+    names = [r[0] for r in sql("school", "SELECT name FROM students WHERE club_id IN (SELECT club_id FROM clubs WHERE advisor = 'Ms. Park') ORDER BY name")]
+    ans = "`SELECT name FROM students WHERE club_id IN (SELECT club_id FROM clubs WHERE advisor = 'Ms. Park');`" if names == ["Ava", "Dev", "Hiro"] else "other"
+
+- id: sql-subqueries-04
+  skill: sql-subqueries
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    The students taking STAT1 have IDs 1, 2, 4, 5, and 8, and the students taking CS1 have IDs 1, 3, 6, and 8. Which IDs does this query return?
+
+    ```sql
+    SELECT student_id FROM enrollments WHERE course_id = 'STAT1'
+    INTERSECT
+    SELECT student_id FROM enrollments WHERE course_id = 'CS1';
+    ```
+  options:
+    - "1 and 8"
+    - "2, 4, and 5"
+    - "3 and 6"
+    - "1, 2, 3, 4, 5, 6, and 8"
+  answer: A
+  explain: |
+    INTERSECT keeps only the rows that appear in both results: the students taking both courses, 1 and 8.
+  why:
+    B: "These are in STAT1 but not CS1, which is the EXCEPT result."
+    C: "These are in CS1 but not STAT1, the reverse EXCEPT."
+    D: "This is the UNION, every student in either course."
+  verify: |
+    ids = [r[0] for r in sql("school", "SELECT student_id FROM enrollments WHERE course_id = 'STAT1' INTERSECT SELECT student_id FROM enrollments WHERE course_id = 'CS1' ORDER BY 1")]
+    ans = " and ".join(str(i) for i in ids)
+
+- id: sql-subqueries-05
+  skill: sql-subqueries
+  tier: champion
+  type: sql
+  use: quiz
+  stem: |
+    In the school database, two students have a NULL club_id, and the Chess club has no members. What does this query return?
+
+    ```sql
+    SELECT club_name FROM clubs
+    WHERE club_id NOT IN (SELECT club_id FROM students);
+    ```
+  options:
+    - "Chess"
+    - "All four clubs"
+    - "No rows"
+    - "Robotics, Debate, and Data Science"
+  answer: C
+  explain: |
+    The subquery's list contains NULL. For a club to pass NOT IN, its ID must be unequal to every item, and comparing with NULL is never true, so no club passes. Adding WHERE club_id IS NOT NULL inside the subquery, or using NOT EXISTS, returns Chess.
+  why:
+    A: "Chess is the intended answer, but the NULLs in the list make NOT IN reject every row."
+    B: "NOT IN filters the clubs; it cannot keep all of them."
+    D: "These clubs do have members, so NOT IN would exclude them in any case."
+  verify: |
+    ans = "No rows" if rows("school", "SELECT club_name FROM clubs WHERE club_id NOT IN (SELECT club_id FROM students)") == 0 else "other"
+
+- id: sql-subqueries-06
+  skill: sql-subqueries
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    The students taking STAT1 have IDs 1, 2, 4, 5, and 8, and the students taking CS1 have IDs 1, 3, 6, and 8. Which IDs does STAT1 EXCEPT CS1 return?
+  options:
+    - "1 and 8"
+    - "3 and 6"
+    - "1, 2, 3, 4, 5, 6, and 8"
+    - "2, 4, and 5"
+  answer: D
+  explain: |
+    EXCEPT keeps the rows of the first result that do not appear in the second: the STAT1 students who are not in CS1, 2, 4, and 5. Oracle calls this operation MINUS.
+  why:
+    A: "These are in both courses, the INTERSECT result."
+    B: "These are in CS1 but not STAT1, which reverses the order of the queries."
+    C: "This is the UNION of both lists."
+  verify: |
+    ids = [r[0] for r in sql("school", "SELECT student_id FROM enrollments WHERE course_id = 'STAT1' EXCEPT SELECT student_id FROM enrollments WHERE course_id = 'CS1' ORDER BY 1")]
+    ans = ", ".join(str(i) for i in ids[:-1]) + ", and " + str(ids[-1])
+
+- id: sql-subqueries-07
+  skill: sql-subqueries
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What does a condition written as `EXISTS (subquery)` test?
+  options:
+    - "Whether the subquery returns more than one column"
+    - "Whether the subquery's first value is not NULL"
+    - "Whether the subquery returns at least one row"
+    - "Whether the subquery's table exists in the database"
+  answer: C
+  explain: |
+    EXISTS is true as soon as its subquery produces any row and false when it produces none. The columns the subquery returns do not matter, which is why it is often written SELECT 1.
+  why:
+    A: "The number of columns is irrelevant to EXISTS."
+    B: "EXISTS is true even if the returned row holds NULLs."
+    D: "A missing table causes an error; EXISTS tests for rows, not tables."
+
+- id: sql-subqueries-08
+  skill: sql-subqueries
+  tier: champion
+  type: sql
+  use: bank
+  stem: |
+    Why does the inner query in this statement refer to `c.club_id`?
+
+    ```sql
+    SELECT club_name FROM clubs c
+    WHERE EXISTS (SELECT 1 FROM students s WHERE s.club_id = c.club_id);
+    ```
+  options:
+    - "Because subqueries must repeat the outer table's primary key"
+    - "Because c.club_id makes the inner query run only once"
+    - "Because it is correlated: it checks for students of each club in turn"
+    - "Because EXISTS can test only columns from the outer table"
+  answer: C
+  explain: |
+    A correlated subquery refers to a column of the outer query's current row, so it is evaluated for each club separately. Here it asks, for each club, whether any student has that club's ID.
+  why:
+    A: "Many subqueries never mention the outer table; this one does so on purpose."
+    B: "Referring to the outer row makes the subquery depend on each club, not run once."
+    D: "EXISTS tests whether any row comes back, from whatever tables the subquery reads."
+
+# ---------------------------------------------------------------- sql-dml-ddl
+- id: sql-dml-ddl-01
+  skill: sql-dml-ddl
+  tier: core
+  type: sql
+  use: check
+  stem: |
+    Which statement adds a new club called Film, with ID 5 and the advisor Mr. Diaz?
+  options:
+    - "`UPDATE clubs SET club_id = 5, club_name = 'Film', advisor = 'Mr. Diaz';`"
+    - "`ADD INTO clubs VALUES (5, 'Film', 'Mr. Diaz');`"
+    - "`CREATE clubs (5, 'Film', 'Mr. Diaz');`"
+    - "`INSERT INTO clubs (club_id, club_name, advisor) VALUES (5, 'Film', 'Mr. Diaz');`"
+  answer: D
+  explain: |
+    INSERT INTO adds a new row, naming the columns and then giving the values in the same order.
+  why:
+    A: "UPDATE changes existing rows, and without WHERE this would overwrite every club."
+    B: "SQL has no ADD INTO statement."
+    C: "CREATE defines new tables and other objects, not new rows."
+
+- id: sql-dml-ddl-02
+  skill: sql-dml-ddl
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What does `DELETE FROM enrollments;` do?
+  options:
+    - "It removes every row, and the empty table remains."
+    - "It removes the enrollments table entirely."
+    - "It fails, because DELETE requires a WHERE clause."
+    - "It removes only the rows whose score is NULL."
+  answer: A
+  explain: |
+    Without a WHERE clause, DELETE applies to every row, so the table is emptied. The table and its structure remain; removing the table itself takes DROP TABLE.
+  why:
+    B: "Removing the table itself is what DROP TABLE does."
+    C: "WHERE is optional, which is exactly what makes this statement dangerous."
+    D: "Deleting only rows with a NULL score would need WHERE score IS NULL."
+
+- id: sql-dml-ddl-03
+  skill: sql-dml-ddl
+  tier: competitive
+  type: sql
+  use: quiz
+  stem: |
+    The school database has 1 student in grade 9 and 3 in each of grades 10, 11, and 12. How many rows does this statement change?
+
+    ```sql
+    UPDATE students SET grade = grade + 1 WHERE grade < 12;
+    ```
+  options:
+    - "3"
+    - "7"
+    - "9"
+    - "10"
+  ordered: true
+  answer: B
+  explain: |
+    UPDATE changes every row its WHERE clause matches. Grades 9, 10, and 11 hold 1 + 3 + 3 = 7 students, so 7 rows change.
+  why:
+    A: "This counts only one grade."
+    C: "This counts grades 10 to 12, but grade 12 fails the condition and grade 9 passes it."
+    D: "This counts every student, as if there were no WHERE clause."
+  verify: 'rows("school", "SELECT * FROM students WHERE grade < 12")'
+
+- id: sql-dml-ddl-04
+  skill: sql-dml-ddl
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which category of SQL statements does CREATE TABLE belong to?
+  options:
+    - "DML, data manipulation language"
+    - "DCL, data control language"
+    - "TCL, transaction control language"
+    - "DDL, data definition language"
+  answer: D
+  explain: |
+    DDL statements define and change structure: CREATE, ALTER, DROP, and TRUNCATE. CREATE TABLE defines a new table.
+  why:
+    A: "DML statements work with rows: SELECT, INSERT, UPDATE, and DELETE."
+    B: "DCL statements manage permissions, such as GRANT and REVOKE."
+    C: "TCL statements manage transactions, such as COMMIT and ROLLBACK."
+
+- id: sql-dml-ddl-05
+  skill: sql-dml-ddl
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A developer wants to remove every row from a large log table as quickly as possible while keeping the table and its columns for new data. No condition is needed. Which statement fits best?
+  options:
+    - "`DROP TABLE logs;`"
+    - "`ALTER TABLE logs DROP COLUMN entry;`"
+    - "`TRUNCATE TABLE logs;`"
+    - "`DELETE FROM logs WHERE 1 = 0;`"
+  answer: C
+  explain: |
+    TRUNCATE removes every row quickly and leaves the table in place. DELETE without a WHERE clause would also empty the table, but more slowly, because it removes rows one at a time.
+  why:
+    A: "DROP TABLE removes the table itself, including its columns."
+    B: "Dropping a column changes the structure and keeps the rows."
+    D: "WHERE 1 = 0 is never true, so this deletes nothing."
+
+- id: sql-dml-ddl-06
+  skill: sql-dml-ddl
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    In a new attendance table, every record must include the date. Which column definition enforces this?
+  options:
+    - "`attended_on TEXT NOT NULL`"
+    - "`attended_on TEXT UNIQUE`"
+    - "`attended_on TEXT DEFAULT NULL`"
+    - "`attended_on TEXT`"
+  answer: A
+  explain: |
+    NOT NULL makes the database reject any row that leaves the column empty, so every record must have a date.
+  why:
+    B: "UNIQUE forbids two rows with the same date but still allows a missing one."
+    C: "DEFAULT NULL fills in a missing value instead of rejecting the row."
+    D: "With no constraint, the date can be left empty."
+
+- id: sql-dml-ddl-07
+  skill: sql-dml-ddl
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which of these statements belongs to data control language (DCL)?
+  options:
+    - "`SELECT`"
+    - "`CREATE`"
+    - "`COMMIT`"
+    - "`GRANT`"
+  answer: D
+  explain: |
+    DCL manages who may do what in a database. GRANT gives a user a permission, and REVOKE takes it away.
+  why:
+    A: "SELECT reads data, which is DML (or DQL in some sources)."
+    B: "CREATE defines structure, which is DDL."
+    C: "COMMIT ends a transaction, which is TCL."
+
+- id: sql-dml-ddl-08
+  skill: sql-dml-ddl
+  tier: champion
+  type: sql
+  use: bank
+  stem: |
+    An analyst meant to move one student into Chess but ran this statement. What happens?
+
+    ```sql
+    UPDATE students SET club_id = 4;
+    ```
+  options:
+    - "Only students with a NULL club_id are updated."
+    - "Every student's club_id is set to 4."
+    - "The statement fails because it has no WHERE clause."
+    - "Only the first row of the table is updated."
+  answer: B
+  explain: |
+    Without WHERE, UPDATE applies to every row, so all ten students are now in Chess. If the statement ran inside an open transaction, ROLLBACK could undo it.
+  why:
+    A: "Nothing limits the update to NULL values; that would need WHERE club_id IS NULL."
+    C: "WHERE is optional for UPDATE, which is why this mistake is so easy to make."
+    D: "SQL has no notion of updating only the first row without a condition."
+
+# ---------------------------------------------------------------- sql-window
+- id: sql-window-01
+  skill: sql-window
+  tier: champion
+  type: sql
+  use: check
+  stem: |
+    Four students have GPAs of 3.9, 3.9, 3.8, and 3.6. They are ranked from highest to lowest with `DENSE_RANK() OVER (ORDER BY gpa DESC)`. What rank does the student with 3.6 receive?
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+  ordered: true
+  answer: B
+  explain: |
+    DENSE_RANK gives tied rows the same rank and leaves no gaps: 3.9 and 3.9 are both 1, 3.8 is 2, and 3.6 is 3. RANK would skip ahead after the tie and give 3.6 a rank of 4.
+  why:
+    A: "Rank 2 belongs to 3.8, the second distinct GPA."
+    C: "This is what RANK gives, because RANK leaves a gap after a tie."
+    D: "There are only four students, and ties never push a rank past the row count."
+  verify: 'scalar("school", "SELECT dr FROM (SELECT name, DENSE_RANK() OVER (ORDER BY gpa DESC) AS dr FROM students WHERE gpa >= 3.6) WHERE name = ''Ava''")'
+
+- id: sql-window-02
+  skill: sql-window
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    How does `SUM(quantity) OVER (PARTITION BY order_id)` differ from `SUM(quantity)` with `GROUP BY order_id`?
+  options:
+    - "The window version keeps every row and shows the group total on each one."
+    - "The window version returns one row per order, just like GROUP BY."
+    - "The window version ignores the partition and sums the whole table."
+    - "The two are identical in every way."
+  answer: A
+  explain: |
+    GROUP BY collapses each group into a single row. A window function computes the same total but attaches it to every row of the group, so the detail rows remain.
+  why:
+    B: "Collapsing to one row per group is what GROUP BY does; window functions keep the rows."
+    C: "PARTITION BY restarts the sum for each order."
+    D: "They compute the same totals but return very different numbers of rows."
+
+- id: sql-window-03
+  skill: sql-window
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Which ranking function numbers rows 1, 2, 3, 4 even when the first two values are tied?
+  options:
+    - "RANK"
+    - "DENSE_RANK"
+    - "NTILE"
+    - "ROW_NUMBER"
+  answer: D
+  explain: |
+    ROW_NUMBER gives every row a different number, breaking ties by the sort order (or arbitrarily if the sort leaves them tied). RANK and DENSE_RANK both give tied rows the same number.
+  why:
+    A: "RANK gives tied rows the same rank: 1, 1, 3, 4."
+    B: "DENSE_RANK gives tied rows the same rank: 1, 1, 2, 3."
+    C: "NTILE splits rows into a chosen number of buckets rather than numbering them one by one."
+
+- id: sql-window-04
+  skill: sql-window
+  tier: competitive
+  type: sql
+  use: bank
+  stem: |
+    The grade 11 students are Hiro (gpa 3.9), Elena (3.8), and Ben (2.9). What rank does Ben receive from this expression?
+
+    ```sql
+    RANK() OVER (PARTITION BY grade ORDER BY gpa DESC)
+    ```
+  options:
+    - "1"
+    - "3"
+    - "8"
+    - "10"
+  ordered: true
+  answer: B
+  explain: |
+    PARTITION BY grade restarts the ranking within each grade, so Ben is ranked only against the grade 11 students: Hiro 1, Elena 2, Ben 3.
+  why:
+    A: "Rank 1 in grade 11 belongs to Hiro, the highest GPA there."
+    C: "This is roughly his rank among all students, which ignores the partition."
+    D: "This would be the last place among all ten students."
+  verify: 'scalar("school", "SELECT r FROM (SELECT name, RANK() OVER (PARTITION BY grade ORDER BY gpa DESC) AS r FROM students) WHERE name = ''Ben''")'
+
+- id: sql-window-05
+  skill: sql-window
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Six orders, listed by order_id, contain 5, 1, 3, 5, 1, and 3 units. A query computes `SUM(units) OVER (ORDER BY order_id)`. What value appears on the fourth order's row?
+  options:
+    - "5"
+    - "9"
+    - "14"
+    - "18"
+  ordered: true
+  answer: C
+  explain: |
+    With ORDER BY, the window sum is a running total: each row adds its units to everything before it. Through the fourth order, 5 + 1 + 3 + 5 = 14.
+  why:
+    A: "This is the fourth order's own units, not the running total."
+    B: "This is the running total through the third order."
+    D: "This is the grand total of all six orders."
+  verify: "sum([5, 1, 3, 5])"
+
+- id: sql-window-06
+  skill: sql-window
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What does a WITH clause, a common table expression (CTE), do in a query?
+  options:
+    - "It defines a named temporary result that the main query can use."
+    - "It creates a permanent new table in the database."
+    - "It adds an index to make the query run faster."
+    - "It locks the tables so that no one else can change them."
+  answer: A
+  explain: |
+    A CTE names a subquery so the main query can refer to it like a table, which makes long queries easier to read. It lasts only for that one query.
+  why:
+    B: "A CTE disappears after the query; permanent tables come from CREATE TABLE."
+    C: "Indexes are created with CREATE INDEX, not WITH."
+    D: "Locking is handled by transactions, not by CTEs."
+
+- id: sql-window-07
+  skill: sql-window
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Five test scores are 95, 90, 90, 90, and 85. They are ranked from highest to lowest with RANK. What rank does the 85 receive?
+  options:
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+  ordered: true
+  answer: C
+  explain: |
+    RANK gives the three 90s the same rank, 2, and then skips ahead by the number of tied rows, so the next score, 85, is ranked 5. DENSE_RANK would give it 3.
+  why:
+    A: "This is the DENSE_RANK result, which leaves no gaps after ties."
+    B: "This skips only one place after the tie, but three rows tied."
+    D: "Ranks never exceed the number of rows, which is 5."
+  verify: |
+    db = make_db("CREATE TABLE t(score INT); INSERT INTO t VALUES (95),(90),(90),(90),(85);")
+    ans = scalar(db, "SELECT r FROM (SELECT score, RANK() OVER (ORDER BY score DESC) AS r FROM t) WHERE score = 85")

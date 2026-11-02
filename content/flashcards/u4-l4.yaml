@@ -1,0 +1,53 @@
+# Lesson 4.4 flashcards
+
+- id: fc-join
+  term: JOIN
+  def: Combines rows from two tables by matching related columns in an ON clause. INNER JOIN keeps only matches, and NULL keys never match.
+  example: "students s JOIN clubs c ON s.club_id = c.club_id"
+  skill: sql-joins
+  virginia: true
+
+- id: fc-outer-joins
+  term: LEFT, RIGHT, and FULL OUTER JOIN
+  def: LEFT keeps every left row, RIGHT keeps every right row, and FULL OUTER keeps every row from both, with NULLs where there is no match. LEFT JOIN plus WHERE right.key IS NULL finds unmatched rows.
+  skill: sql-joins
+
+- id: fc-join-counts
+  term: Counting join rows
+  def: INNER = matches; LEFT = matches + unmatched left; RIGHT = matches + unmatched right; FULL = matches + both unmatched sets; CROSS = left rows x right rows. Duplicate keys multiply rows.
+  skill: sql-joins
+
+- id: fc-subquery
+  term: Subquery and EXISTS
+  def: A query nested in parentheses, used to compare with an aggregate, to build an IN list, or inside EXISTS, which is true when the subquery returns at least one row. A correlated subquery refers to the outer row.
+  skill: sql-subqueries
+
+- id: fc-not-in-null
+  term: NOT IN with NULL
+  def: If the subquery's list contains a NULL, NOT IN returns no rows, because no value is known to differ from NULL. Filter out NULLs or use NOT EXISTS.
+  skill: sql-subqueries
+
+- id: fc-set-operations
+  term: UNION, INTERSECT, EXCEPT
+  def: UNION keeps rows in either result without duplicates (UNION ALL keeps duplicates), INTERSECT keeps rows in both, and EXCEPT keeps rows in the first but not the second (MINUS in Oracle).
+  skill: sql-subqueries
+
+- id: fc-sql-families
+  term: DDL, DML, DCL, TCL
+  def: DDL defines structure (CREATE, ALTER, DROP, TRUNCATE). DML handles rows (SELECT, INSERT, UPDATE, DELETE). DCL manages permissions (GRANT, REVOKE). TCL controls transactions (COMMIT, ROLLBACK).
+  skill: sql-dml-ddl
+
+- id: fc-delete-truncate-drop
+  term: DELETE vs. TRUNCATE vs. DROP
+  def: DELETE removes the rows its WHERE matches (every row without WHERE). TRUNCATE removes all rows quickly but keeps the table. DROP removes the table itself.
+  skill: sql-dml-ddl
+
+- id: fc-window-ranks
+  term: ROW_NUMBER, RANK, DENSE_RANK
+  def: Window functions that number rows without collapsing them. For values 3.9, 3.9, 3.8, 3.6, ROW_NUMBER gives 1, 2, 3, 4; RANK gives 1, 1, 3, 4; DENSE_RANK gives 1, 1, 2, 3.
+  skill: sql-window
+
+- id: fc-partition-cte
+  term: PARTITION BY and CTEs
+  def: PARTITION BY restarts a window function for each group, such as ranking within each grade. A WITH clause (CTE) names a temporary result for the main query to use.
+  skill: sql-window
