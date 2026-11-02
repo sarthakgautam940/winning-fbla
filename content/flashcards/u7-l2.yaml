@@ -1,0 +1,60 @@
+# Lesson 7.2 flashcards
+
+- id: fc-knowledge-representation
+  term: Knowledge Representation
+  def: The part of AI that stores information about the world, as rules, graphs, frames, or vectors, in a form a computer can use to reason, answer questions, and draw new conclusions.
+  skill: kr-forms
+  virginia: true
+
+- id: fc-symbolic-numerical
+  term: Symbolic vs. numerical representations
+  def: Symbolic representations use readable symbols (logic, IF-THEN rules, labeled graphs) and logical inference. Numerical ones use vectors of numbers (embeddings, network weights) and mathematical functions.
+  skill: kr-forms
+
+- id: fc-semantic-network
+  term: Semantic network and inheritance
+  def: A graph of concepts linked by labeled relationships such as is-a and has. Properties pass down is-a links as defaults (robins inherit feathers from birds); specific facts can override them (penguins cannot fly).
+  skill: kr-forms
+
+- id: fc-frame
+  term: Frame (schema), slots, and fillers
+  def: A structured record for a concept or situation. Slots are attributes (cuisine) and fillers are values (Italian); frames can have defaults and inherit slots from more general frames.
+  skill: kr-forms
+
+- id: fc-production-rule
+  term: Production rule
+  def: Knowledge stored as IF a condition holds THEN act or conclude. A production system combines rules, a working memory of facts, and an inference engine, as in expert systems.
+  skill: kr-forms
+
+- id: fc-ontology
+  term: Ontology
+  def: A formal specification of a domain's concepts (classes), properties, individuals, and relationships, often with rules, so people and programs share meanings and can infer new facts.
+  skill: kg-ontology
+  virginia: true
+
+- id: fc-ontology-vs-taxonomy
+  term: Ontology vs. taxonomy
+  def: A taxonomy is a hierarchy with only is-a (parent-child) links. An ontology adds many relationship types, properties, and rules that support checking and inference.
+  skill: kg-ontology
+
+- id: fc-knowledge-graph
+  term: Knowledge Graph
+  def: A network of real-world entities connected by labeled relationships, stored as subject-predicate-object triples and usually organized by an ontology. Google's Knowledge Graph (2012) meant "things, not strings."
+  skill: kg-ontology
+  virginia: true
+
+- id: fc-triple
+  term: Triple
+  def: One fact in a knowledge graph or RDF, with a subject (Ava), a predicate (memberOf), and an object (Robotics). Chaining triples answers multi-hop questions.
+  skill: kg-ontology
+
+- id: fc-semantic-web
+  term: Semantic Web
+  def: An extension of the web in which data has machine-readable meaning, so software can find, combine, and reason over it. Described by Berners-Lee, Hendler, and Lassila in 2001.
+  skill: kg-ontology
+  virginia: true
+
+- id: fc-rdf-owl-sparql
+  term: RDF, OWL, SPARQL
+  def: W3C standards. RDF models data as triples (an RDF graph is a set of triples), OWL defines ontologies with classes, properties, and individuals, and SPARQL queries RDF data.
+  skill: kg-ontology

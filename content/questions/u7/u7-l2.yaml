@@ -1,0 +1,487 @@
+# Lesson 7.2: Representing knowledge
+
+# ---------------------------------------------------------------- kr-forms
+- id: kr-forms-01
+  skill: kr-forms
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is knowledge representation in AI?
+  options:
+    - "Storing information about the world in a form a computer can reason with"
+    - "Displaying data as charts so that people can understand it quickly"
+    - "Compressing files so that knowledge takes up less storage space"
+    - "Translating knowledge from one human language into another"
+  answer: A
+  explain: |
+    Knowledge representation is the part of AI that stores facts and relationships about the world, as rules, graphs, or vectors, in a form a program can use. Reasoning is the set of algorithms that use those representations to answer questions and draw new conclusions; the two depend on each other.
+  why:
+    B: "Charts communicate data to people; knowledge representation serves the program's reasoning."
+    C: "Compression saves space but does not make knowledge usable for reasoning."
+    D: "Translating between languages is a natural language processing task."
+
+- id: kr-forms-02
+  skill: kr-forms
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which of these is a numerical representation of knowledge rather than a symbolic one?
+  options:
+    - "The rule IF it is raining THEN carry an umbrella"
+    - "A network link stating that a robin is a bird"
+    - "A word embedding that stores 'robin' as a list of numbers"
+    - "The logic statement Bird(Robin), meaning a robin is a bird"
+  answer: C
+  explain: |
+    AI4K12 divides knowledge representations into symbolic ones, built from human-readable symbols and reasoned with logical inference, and numerical ones, such as vectors of numbers reasoned with mathematical functions like neural networks. A word embedding is numerical; rules, semantic network links, and logic statements are symbolic.
+  why:
+    A: "An IF-THEN rule is a symbolic representation."
+    B: "A labeled link in a semantic network is symbolic."
+    D: "A predicate logic statement is symbolic."
+
+- id: kr-forms-03
+  skill: kr-forms
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A semantic network contains the links "Robin is-a Bird" and "Bird has Feathers." What can a system conclude through inheritance?
+  options:
+    - "Every bird is a robin"
+    - "Robins have feathers"
+    - "Feathers are a kind of bird"
+    - "Nothing, unless a separate link says so"
+  answer: B
+  explain: |
+    In a semantic network, the properties of a general concept are inherited by the concepts linked to it by is-a. Because a robin is a bird and birds have feathers, the system concludes that robins have feathers without storing that fact separately.
+  why:
+    A: "Is-a points from the specific to the general; not every bird is a robin."
+    C: "Feathers are a property birds have, not a kind of bird."
+    D: "Inheritance is exactly what lets the network conclude this without a separate link."
+
+- id: kr-forms-04
+  skill: kr-forms
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A frame describes a restaurant with entries such as cuisine: Italian and price range: moderate. In frame terms, what are "cuisine" and "Italian"?
+  options:
+    - "A node and an edge"
+    - "A rule and its condition"
+    - "A class and its subclass"
+    - "A slot and its filler"
+  answer: D
+  explain: |
+    A frame is a structured record for a concept or situation. Its slots are the attributes, such as cuisine or price range, and the fillers are the values placed in them, such as Italian. Frames can also hold default values and inherit slots from more general frames.
+  why:
+    A: "Nodes and edges belong to graphs such as semantic networks."
+    B: "Rules and conditions belong to production systems."
+    C: "Italian is a value, not a subclass of cuisine."
+
+- id: kr-forms-05
+  skill: kr-forms
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A semantic network says that birds can fly and that a penguin is a bird. How should a well-designed system handle penguins?
+  options:
+    - "Conclude that penguins can fly, since rules have no exceptions"
+    - "Delete the link between penguins and birds entirely"
+    - "Let a specific fact, penguins cannot fly, override the inherited default"
+    - "Stop using inheritance anywhere in the network"
+  answer: C
+  explain: |
+    Inherited properties act as defaults that more specific facts can override. Storing "penguins cannot fly" at the penguin node keeps the useful default for most birds while handling the exception correctly.
+  why:
+    A: "Ignoring the exception produces a false conclusion."
+    B: "Penguins really are birds, so removing the link loses true knowledge."
+    D: "Inheritance saves enormous effort; exceptions need only local overrides."
+
+- id: kr-forms-06
+  skill: kr-forms
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which form does a production rule take?
+  options:
+    - "IF a condition holds, THEN act or conclude"
+    - "A subject, a predicate, and an object"
+    - "A list of slots, each holding a value"
+    - "A vector of numbers learned from data"
+  answer: A
+  explain: |
+    A production rule pairs a condition with an action or conclusion: IF the condition holds, THEN do or conclude something. Expert systems store knowledge as many such rules and use an inference engine to apply them (lesson 7.5).
+  why:
+    B: "A subject, a predicate, and an object form a triple in a knowledge graph."
+    C: "Slots holding values describe a frame."
+    D: "A learned vector of numbers is an embedding, a numerical representation."
+
+- id: kr-forms-07
+  skill: kr-forms
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A tax-preparation program must apply hundreds of exact, published regulations, and auditors must be able to see which regulation produced each result. Which representation fits best?
+  options:
+    - "Word embeddings learned from tax documents"
+    - "A neural network trained on past tax returns"
+    - "Clusters of similar taxpayers found by k-means"
+    - "Explicit IF-THEN production rules for each regulation"
+  answer: D
+  explain: |
+    Regulations are precise and must be traceable, which suits symbolic production rules: each rule encodes one regulation, and the system can show exactly which rules fired. A learned numerical model could approximate past patterns but could not guarantee the exact rules or explain them clearly.
+  why:
+    A: "Embeddings capture similarity, not exact rules, and they are hard to audit."
+    B: "A trained network may approximate past returns but cannot show which regulation it applied."
+    C: "Clustering groups similar taxpayers; it does not apply regulations."
+
+- id: kr-forms-08
+  skill: kr-forms
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    According to AI4K12, how are knowledge representation and reasoning related?
+  options:
+    - "They are unrelated; a system can reason without representing anything"
+    - "Representations are data structures, and reasoning methods are algorithms that use them"
+    - "Reasoning always comes first, and representation is added only at the end"
+    - "Representation is a hardware feature, while reasoning is a software feature"
+  answer: B
+  explain: |
+    AI4K12 describes representations as data structures and reasoning methods as algorithms that operate on them. The two depend on each other: a representation is useful only if some reasoning method can use it, and "knowing" something means being able to both represent it and reason with it.
+  why:
+    A: "Reasoning always works on some representation of the world."
+    C: "Neither comes after the other; they are designed together."
+    D: "Both are software ideas: data structures and algorithms."
+
+- id: kr-forms-09
+  skill: kr-forms
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which is a strength of symbolic knowledge representations, such as rules and semantic networks, compared with numerical ones?
+  options:
+    - "People can read, check, and explain the stored knowledge"
+    - "They learn automatically from millions of raw images"
+    - "They handle fuzzy similarity between items effortlessly"
+    - "They never need any person to design or update them"
+  answer: A
+  explain: |
+    Symbolic knowledge is written in human-readable form, so experts can inspect it, correct it, and explain why the system reached a conclusion. Its weaknesses are the mirror image: people must build it by hand, and it can break on situations its rules never anticipated.
+  why:
+    B: "Learning from raw images is a strength of numerical, connectionist models."
+    C: "Fuzzy similarity is where numerical representations such as embeddings shine."
+    D: "Symbolic knowledge usually needs people to design and maintain it."
+
+- id: kr-forms-10
+  skill: kr-forms
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A music app wants to suggest songs that "feel similar" to ones a user loves, even when they share no genre label or artist. Which representation fits best?
+  options:
+    - "Hand-written IF-THEN rules for every pair of songs"
+    - "A taxonomy that sorts songs into fixed genres"
+    - "Embeddings that place similar songs close together"
+    - "A frame with one slot for each song's title"
+  answer: C
+  explain: |
+    Similarity that is hard to put into words is exactly what numerical representations capture well. Embeddings learned from listening patterns or audio place songs with a similar feel near each other, so the app can recommend the nearest ones (lesson 6.5).
+  why:
+    A: "Rules for every pair would be impossible to write for millions of songs, and the feel of a song resists exact rules."
+    B: "Fixed genres miss similarities that cross genre labels."
+    D: "A title slot records a fact but says nothing about how songs feel."
+
+- id: kr-forms-11
+  skill: kr-forms
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is a semantic network?
+  options:
+    - "A computer network used only for sending messages"
+    - "A neural network trained to translate languages"
+    - "A list of words sorted in alphabetical order"
+    - "A graph of concepts linked by labeled relationships"
+  answer: D
+  explain: |
+    A semantic network represents knowledge as a graph: nodes stand for concepts, such as Bird or Robin, and labeled edges stand for relationships, such as is-a or has. Following the links lets a system reason, for example through inheritance.
+  why:
+    A: "A computer network connects machines; a semantic network connects concepts."
+    B: "Despite the word 'network,' it is a symbolic graph, not a neural network."
+    C: "An alphabetical list has no relationships between its entries."
+
+- id: kr-forms-12
+  skill: kr-forms
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In an is-a hierarchy drawn as a tree, with Animal at the top, what are the leaves?
+  options:
+    - "The most general categories, at the very top"
+    - "The most specific categories, which have no children"
+    - "The links that connect a parent to its children"
+    - "The properties stored inside each category"
+  answer: B
+  explain: |
+    A tree has a root at the top (here, Animal), parent and child nodes in between, and leaves at the bottom: nodes with no children. In an is-a hierarchy, the leaves are the most specific categories, such as Robin or Penguin.
+  why:
+    A: "The most general category is the root, not a leaf."
+    C: "Links between parents and children are the tree's edges."
+    D: "Properties are attached to nodes; they are not the leaves."
+
+# ---------------------------------------------------------------- kg-ontology
+- id: kg-ontology-01
+  skill: kg-ontology
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is an ontology in AI?
+  options:
+    - "A list of every web page that mentions a topic"
+    - "A neural network trained to classify documents"
+    - "A formal model of a domain's concepts and their relationships"
+    - "A spreadsheet of numbers collected from sensors"
+  answer: C
+  explain: |
+    An ontology formally defines the concepts in a domain, their properties, and the relationships and rules connecting them, so that people and programs share the same meanings. A medical ontology, for example, defines diseases, symptoms, and treatments and how they relate.
+  why:
+    A: "A list of pages is an index, not a model of concepts."
+    B: "A classifier learns patterns; an ontology states definitions and relationships explicitly."
+    D: "Sensor readings are raw data, not a model of concepts."
+
+- id: kg-ontology-02
+  skill: kg-ontology
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How does an ontology differ from a simple taxonomy?
+  options:
+    - "It adds many relationship types, properties, and rules beyond is-a links"
+    - "It contains only parent-child (is-a) relationships between categories"
+    - "It is stored as a spreadsheet instead of as a graph"
+    - "It is learned automatically and cannot be read by people"
+  answer: A
+  explain: |
+    A taxonomy is a hierarchy of categories connected only by is-a (parent-child) links. An ontology goes further, with many kinds of relationships (such as treats, part of, or located in), properties for each concept, and rules or constraints that let programs check data and infer new facts.
+  why:
+    B: "Only is-a links describes a taxonomy, the simpler structure."
+    C: "Ontologies are usually graph-like, and storage format is not the difference."
+    D: "Ontologies are explicit and readable by design."
+
+- id: kg-ontology-03
+  skill: kg-ontology
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A knowledge graph stores the triple (Ava, memberOf, Robotics). Which part is the predicate?
+  options:
+    - "Ava"
+    - "Robotics"
+    - "The whole triple"
+    - "memberOf"
+  answer: D
+  explain: |
+    A triple has a subject, a predicate, and an object. Here Ava is the subject, memberOf is the predicate (the relationship), and Robotics is the object. In the graph, Ava and Robotics are nodes, and memberOf is the labeled edge between them.
+  why:
+    A: "Ava is the subject, the thing the statement is about."
+    B: "Robotics is the object, the entity the relationship points to."
+    C: "The whole triple is a statement, not one of its parts."
+
+- id: kg-ontology-04
+  skill: kg-ontology
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    What is SPARQL?
+  options:
+    - "A programming language for training neural networks"
+    - "A query language for data stored as RDF triples"
+    - "A file format for compressing images on the web"
+    - "A rule that converts graphs into relational tables"
+  answer: B
+  explain: |
+    SPARQL, a W3C standard since 2008 (version 1.1 followed in 2013), is the query language for RDF. Where SQL queries tables, SPARQL matches patterns of triples in a graph.
+  why:
+    A: "Neural networks are trained with libraries such as PyTorch, not SPARQL."
+    C: "Image compression uses formats such as JPEG."
+    D: "SPARQL queries graphs directly; it does not convert them to tables."
+
+- id: kg-ontology-05
+  skill: kg-ontology
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is a knowledge graph?
+  options:
+    - "A network of real-world entities connected by labeled relationships"
+    - "A bar chart that shows how much a person knows"
+    - "A diagram of the layers inside a neural network"
+    - "A spreadsheet that lists facts in alphabetical order"
+  answer: A
+  explain: |
+    A knowledge graph stores entities, such as people, places, products, and concepts, as nodes and the relationships between them as labeled edges, usually organized by an ontology. Programs can then follow the links to answer questions, as search engines do for their knowledge panels.
+  why:
+    B: "A bar chart displays numbers; it does not store relationships."
+    C: "A diagram of network layers describes a model's architecture, not knowledge about the world."
+    D: "An alphabetical list has no links between its facts."
+
+- id: kg-ontology-06
+  skill: kg-ontology
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A knowledge graph holds these triples: (Elena, memberOf, Data Science), (Grace, memberOf, Debate), (Data Science, advisedBy, Dr. Osei), and (Debate, advisedBy, Mr. Reyes). Who advises the club that Elena belongs to?
+  options:
+    - "Mr. Reyes"
+    - "Grace"
+    - "Dr. Osei"
+    - "Data Science"
+  answer: C
+  explain: |
+    Follow two links: Elena is a member of Data Science, and Data Science is advised by Dr. Osei. Answering by chaining relationships like this, called a multi-hop query, is a core strength of knowledge graphs.
+  why:
+    A: "Mr. Reyes advises Debate, Grace's club."
+    B: "Grace is another student, not an advisor."
+    D: "Data Science is Elena's club, the middle step, not its advisor."
+  verify: |
+    triples = [("Elena", "memberOf", "Data Science"), ("Grace", "memberOf", "Debate"), ("Data Science", "advisedBy", "Dr. Osei"), ("Debate", "advisedBy", "Mr. Reyes")]
+    club = [o for s, p, o in triples if s == "Elena" and p == "memberOf"][0]
+    ans = [o for s, p, o in triples if s == club and p == "advisedBy"][0]
+
+- id: kg-ontology-07
+  skill: kg-ontology
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which pairing of Semantic Web standards with their jobs is correct?
+  options:
+    - "RDF queries graphs, OWL stores triples, SPARQL defines classes"
+    - "RDF models data as triples, OWL defines ontologies, SPARQL queries them"
+    - "RDF defines ontologies, OWL queries graphs, SPARQL stores triples"
+    - "RDF, OWL, and SPARQL are three names for the same language"
+  answer: B
+  explain: |
+    RDF (Resource Description Framework) is the data model: statements as subject-predicate-object triples, where an RDF graph is a set of triples. OWL (Web Ontology Language) defines ontologies with classes, properties, and individuals. SPARQL is the language for querying RDF data.
+  why:
+    A: "This scrambles all three roles."
+    C: "This also scrambles the roles; querying is SPARQL's job."
+    D: "They are three separate standards that work together."
+
+- id: kg-ontology-08
+  skill: kg-ontology
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    In May 2012, Google introduced its Knowledge Graph with the phrase "things, not strings." What did that mean for search?
+  options:
+    - "Search would ignore the words people type"
+    - "Search results would be sorted only by date"
+    - "Search would stop showing web pages entirely"
+    - "Search would recognize real-world entities, not just text"
+  answer: D
+  explain: |
+    Instead of matching search words as strings of characters, the Knowledge Graph models real-world entities, such as people, places, and things, and the relationships between them. At launch it held more than 500 million objects and more than 3.5 billion facts, which fed the knowledge panels shown beside search results.
+  why:
+    A: "Typed words still matter; they are linked to the entities they name."
+    B: "The change was about understanding entities, not sorting by date."
+    C: "Web results remained; the graph added structured knowledge beside them."
+
+- id: kg-ontology-09
+  skill: kg-ontology
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What is the Semantic Web?
+  options:
+    - "A private network that only search companies can use"
+    - "An extension of the web in which data has machine-readable meaning"
+    - "A web browser that translates every page into English"
+    - "A collection of websites about the meanings of words"
+  answer: B
+  explain: |
+    The Semantic Web, described in a May 2001 Scientific American article by Tim Berners-Lee, James Hendler, and Ora Lassila, publishes data in standard formats with defined meaning (RDF, OWL, SPARQL) so that software can find, combine, and reason over information across websites.
+  why:
+    A: "The Semantic Web is built on open standards for everyone, not a private network."
+    C: "Translation is not its purpose; machine-readable meaning is."
+    D: "It concerns the meaning of data, not websites about vocabulary."
+
+- id: kg-ontology-10
+  skill: kg-ontology
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A bank wants to uncover fraud rings: groups of accounts that share phone numbers, addresses, or devices in ways that are hard to see in separate tables. Which approach fits best?
+  options:
+    - "A knowledge graph linking accounts through shared details"
+    - "A taxonomy of account types sorted by balance"
+    - "A single IF-THEN rule for large withdrawals"
+    - "A pie chart of accounts by state"
+  answer: A
+  explain: |
+    A knowledge graph makes relationships the center of the data: accounts, phones, addresses, and devices become nodes, and shared details become edges. Following those links reveals tightly connected groups that a table-by-table view hides, which is why graphs suit fraud detection.
+  why:
+    B: "Sorting account types says nothing about hidden connections between accounts."
+    C: "One rule about withdrawals cannot reveal groups connected through shared details."
+    D: "A pie chart summarizes counts; it shows no links."
+
+- id: kg-ontology-11
+  skill: kg-ontology
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Millions of websites mark up their pages with shared vocabularies from Schema.org, such as a Restaurant type with properties for cuisine and opening hours. What is the main purpose?
+  options:
+    - "To make web pages load faster on phones"
+    - "To hide restaurant data from search engines"
+    - "To give search engines structured data they understand"
+    - "To translate restaurant menus into many languages"
+  answer: C
+  explain: |
+    Schema.org, founded by Google, Microsoft, Yahoo, and Yandex, provides shared schemas for structured data on the web. Marking up a page this way tells search engines and their knowledge graphs exactly what the page describes, for example that a restaurant serves Italian food and opens at 11.
+  why:
+    A: "Markup describes content; it is not a speed optimization."
+    B: "The point is to share data with search engines, not hide it."
+    D: "Schemas label meaning; they do not translate text."
+
+- id: kg-ontology-12
+  skill: kg-ontology
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    An ontology states that every Teacher is an Employee and that every Employee has an employer. The knowledge graph records that Ms. Park is a Teacher. What can an ontology reasoner infer?
+  options:
+    - "Ms. Park is not an Employee, since the graph never says so"
+    - "Every Employee is a Teacher"
+    - "Nothing new, because reasoners only repeat stored facts"
+    - "Ms. Park is an Employee and has an employer"
+  answer: D
+  explain: |
+    Ontologies let programs infer facts that are never stored directly. Ms. Park is a Teacher, and every Teacher is an Employee, so Ms. Park is an Employee; every Employee has an employer, so Ms. Park has one too, even though neither fact was entered.
+  why:
+    A: "A missing fact is not a false fact; the ontology's rules imply that Ms. Park is an Employee."
+    B: "This reverses the rule; not every employee is a teacher."
+    C: "Inferring new facts from rules is exactly what ontology reasoners do."
