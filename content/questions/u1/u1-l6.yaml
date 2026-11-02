@@ -1,0 +1,585 @@
+# Lesson 1.6: Where data comes from
+
+# ---------------------------------------------------------------- data-sources
+- id: data-sources-01
+  skill: data-sources
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which data source most typically produces a continuous stream of time-stamped readings?
+  options:
+    - "An annual survey of employees"
+    - "A national census taken every ten years"
+    - "Internet of Things sensors on factory machines"
+    - "A published report from a research group"
+  answer: C
+  explain: |
+    IoT sensors report measurements on their own, again and again, each tagged with a time. That makes their data a fast, continuous stream rather than a one-time collection.
+  why:
+    A: "An annual survey is collected once a year, not continuously."
+    B: "A census is a one-time count repeated only every ten years."
+    D: "A published report is a finished, static document."
+
+- id: data-sources-02
+  skill: data-sources
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    What is the main advantage of collecting a website's data through its official API instead of scraping its pages?
+  options:
+    - "The API returns documented, permitted data that does not break when the page design changes."
+    - "Scraping is impossible on modern websites, so an API is the only option."
+    - "An API returns more data than the website itself contains."
+    - "Data from an API never needs any cleaning or checking."
+  answer: A
+  explain: |
+    An API is the site's intended way to share data. It returns structured, documented data with permission, and it keeps working when the visual design of the pages changes, which often breaks a scraper.
+  why:
+    B: "Scraping is often possible; it is just more fragile and needs care with terms of service."
+    C: "An API usually exposes some of a site's data, not more than exists."
+    D: "API data can still have errors, gaps, or outdated values, so it still needs checking."
+
+- id: data-sources-03
+  skill: data-sources
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A retailer wants to learn which products customers tend to buy together. Which data source fits this goal best?
+  options:
+    - "Social media posts that mention the store by name"
+    - "A national census of household incomes by county"
+    - "Hourly readings from a weather service's API"
+    - "Point-of-sale records of the items in each purchase"
+  answer: D
+  explain: |
+    "Bought together" is answered directly by each purchase's list of items, which transaction records hold. Analyzing those baskets shows which items appear together.
+  why:
+    A: "Posts show opinions about the store, not the contents of purchases."
+    B: "Census income data says nothing about which products are bought together."
+    C: "Weather readings are unrelated to which items share a basket."
+
+- id: data-sources-04
+  skill: data-sources
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Before writing a program to scrape data from a website, which step matters most?
+  options:
+    - "Making the program request pages as quickly as the server allows"
+    - "Checking the site's terms of service and robots.txt, and avoiding personal data"
+    - "Copying the site's design so the scraper can recreate the pages"
+    - "Converting the data to CSV before deciding whether scraping is allowed"
+  answer: B
+  explain: |
+    Scraping can violate a site's terms or collect personal information without consent. Responsible scrapers check the terms and robots.txt first, avoid personal data, and keep their request rate low.
+  why:
+    A: "Hammering a server with requests can overload it; responsible scrapers slow down."
+    C: "The goal is to extract data, not to rebuild the site's design."
+    D: "Whether scraping is permitted must be settled before any data is collected."
+
+- id: data-sources-05
+  skill: data-sources
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Which data source records each page a website visitor views, in order, along with the time of each view?
+  options:
+    - "Web server and application logs"
+    - "A customer satisfaction survey"
+    - "An open government data portal"
+    - "A focus group interview"
+  answer: A
+  explain: |
+    Servers and apps log every request as it happens. The sequence of pages a visitor views, called clickstream data, comes from these logs.
+  why:
+    B: "A survey records what visitors say, not every page they actually viewed."
+    C: "Government portals publish public datasets, not a company's visitor activity."
+    D: "A focus group gathers opinions in conversation, not a record of page views."
+
+- id: data-sources-06
+  skill: data-sources
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is an API?
+  options:
+    - "A type of database that stores only images"
+    - "A program that copies web pages by reading their HTML"
+    - "A rule that limits how much data a company may collect"
+    - "A defined way for one program to request data or services from another"
+  answer: D
+  explain: |
+    An application programming interface sets out exactly how a program can ask another system for data or actions and what it will get back, often in JSON.
+  why:
+    A: "An API is an interface for requests, not a kind of database."
+    B: "Reading HTML from pages is web scraping, not an API."
+    C: "Rules limiting data collection are policies or laws, not APIs."
+
+- id: data-sources-07
+  skill: data-sources
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A researcher combines a dataset downloaded from an open government portal with prices scraped from a retailer's web pages. Which concern applies to the scraped prices but generally not to the portal data?
+  options:
+    - "A site redesign may break the scraper, and scraping may break the site's terms."
+    - "The data may need cleaning and reformatting before it can be analyzed."
+    - "The data may contain missing values that must be handled before modeling."
+    - "The data must be stored somewhere safe before any analysis can begin."
+  answer: A
+  explain: |
+    Fragility and permission are specific to scraping: a page redesign can silently break the scraper, and the retailer's terms may forbid automated collection. An open portal publishes its data for reuse in a stable form.
+  why:
+    B: "Data from any source may need cleaning, including open portals."
+    C: "Missing values can occur in any dataset."
+    D: "All data must be stored before analysis; this is not specific to scraping."
+
+# ---------------------------------------------------------------- study-types
+- id: study-types-01
+  skill: study-types
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A student downloads census data from a government website for a project on housing costs. For the student, what kind of data is this?
+  options:
+    - "Primary data"
+    - "Secondary data"
+    - "Experimental data"
+    - "First-party data"
+  answer: B
+  explain: |
+    The census was collected by the government for its own purposes, and the student is reusing it. Data collected by someone else and reused is secondary data.
+  why:
+    A: "Primary data would be collected by the student firsthand, for example with their own survey."
+    C: "No treatment was applied, so this is not experimental data."
+    D: "First-party data comes from an organization's own customers, which does not describe a census."
+
+- id: study-types-02
+  skill: study-types
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A school wants to know whether its new tutoring program causes higher test scores. Which study design can establish this?
+  options:
+    - "Compare the scores of students who chose to join tutoring with those who did not."
+    - "Survey students about whether they think tutoring helped them."
+    - "Track the scores of tutored students for four years without a comparison group."
+    - "Randomly assign students to tutoring or no tutoring and compare their scores."
+  answer: D
+  explain: |
+    Random assignment makes the two groups alike in every way except tutoring, so a difference in scores can be credited to the program. That is a randomized experiment, the standard for cause and effect.
+  why:
+    A: "Students who choose tutoring may differ in motivation, which could explain their higher scores."
+    B: "Opinions about tutoring do not measure its actual effect on scores."
+    C: "Without a comparison group, any change could come from something other than tutoring."
+
+- id: study-types-03
+  skill: study-types
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    Researchers record the grades of the same 500 students every year from ninth grade through twelfth grade. What kind of data is this?
+  options:
+    - "Longitudinal data"
+    - "Cross-sectional data"
+    - "Third-party data"
+    - "Census data"
+  answer: A
+  explain: |
+    The same subjects are measured repeatedly over time, which is the definition of longitudinal (panel) data. It shows how each student changes.
+  why:
+    B: "Cross-sectional data measures many subjects at a single point in time."
+    C: "Third-party data is bought from outside companies, which is not described here."
+    D: "A census covers every member of a population; this follows a group over time."
+
+- id: study-types-04
+  skill: study-types
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A store records which customers happened to use a coupon and how much each of them spent, without handing out any coupons itself. What kind of study is this?
+  options:
+    - "A randomized experiment"
+    - "A controlled experiment"
+    - "An observational study"
+    - "An A/B test"
+  answer: C
+  explain: |
+    The store only records what customers do and does not decide who gets a coupon. Recording without intervening is an observational study.
+  why:
+    A: "A randomized experiment would assign coupons to customers at random."
+    B: "A controlled experiment applies a treatment to one group and compares it with a control group."
+    D: "An A/B test randomly shows different versions to different people, which the store did not do."
+
+- id: study-types-05
+  skill: study-types
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A polling firm surveys 2,000 adults during one week in October about their voting plans. What kind of data does this produce?
+  options:
+    - "Longitudinal data"
+    - "Cross-sectional data"
+    - "Time series data"
+    - "Panel data"
+  answer: B
+  explain: |
+    Many subjects measured at a single point in time make a snapshot, which is cross-sectional data.
+  why:
+    A: "Longitudinal data would survey the same adults repeatedly over time."
+    C: "A time series records one quantity at regular intervals over time."
+    D: "Panel data is another name for longitudinal data."
+
+- id: study-types-06
+  skill: study-types
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    An observational study finds that people who drink green tea have fewer heart attacks. Why can it not conclude that green tea prevents heart attacks?
+  options:
+    - "A confounding variable, such as overall diet or exercise, could explain both habits."
+    - "Observational studies cannot measure how often heart attacks happen."
+    - "The study would need more than one variable to find any association."
+    - "Green tea drinkers are always a larger group than non-drinkers."
+  answer: A
+  explain: |
+    Without random assignment, green tea drinkers may differ in other ways, such as eating better or exercising more, that lower heart attack risk. Such a confounding variable can create the association without any effect from the tea.
+  why:
+    B: "Observational studies record outcomes like heart attacks just fine; they cannot establish cause."
+    C: "The study already relates two variables; the problem is other variables it did not control."
+    D: "Group sizes do not explain why the association might not be causal."
+
+- id: study-types-07
+  skill: study-types
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What distinguishes a census from a sample?
+  options:
+    - "A census is always more accurate, while a sample is always biased."
+    - "A census is taken by a government, while a sample is taken by a company."
+    - "A census asks more questions, while a sample asks fewer."
+    - "A census collects data from every member of the population, while a sample uses a subset."
+  answer: D
+  explain: |
+    A census tries to measure every member of the population. A sample measures part of the population and uses it to draw conclusions about the whole.
+  why:
+    A: "A census can have errors and a well-drawn sample can be very accurate; neither is guaranteed."
+    B: "Anyone can take a census of a population; the difference is coverage, not who collects it."
+    C: "The number of questions does not define either one."
+
+- id: study-types-08
+  skill: study-types
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    An airline shares its own customers' travel data with a partner hotel chain under a formal agreement. From the hotel chain's point of view, what kind of data is this?
+  options:
+    - "First-party data"
+    - "Primary data"
+    - "Second-party data"
+    - "Third-party data"
+  answer: C
+  explain: |
+    The airline collected the data from its own customers, so it is the airline's first-party data. When a partner receives it directly through an agreement, it is second-party data for that partner.
+  why:
+    A: "First-party data would be collected by the hotel chain from its own guests."
+    B: "Primary data is collected firsthand by the user, which the hotel chain did not do."
+    D: "Third-party data is bought from aggregators with no direct relationship to the customers."
+
+# ---------------------------------------------------------------- big-data
+- id: big-data-01
+  skill: big-data
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A payment network must analyze thousands of card transactions every second, as they happen. Which V of big data does this mainly reflect?
+  options:
+    - "Volume"
+    - "Velocity"
+    - "Variety"
+    - "Veracity"
+  answer: B
+  explain: |
+    The challenge is speed: data arrives continuously and must be processed immediately. Speed of arrival and processing is velocity.
+  why:
+    A: "Volume is the total amount of data, while this scenario stresses how fast it arrives."
+    C: "Variety is the mix of data types; these are all transactions."
+    D: "Veracity is about trustworthiness, which this scenario does not raise."
+
+- id: big-data-02
+  skill: big-data
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which three Vs did Doug Laney originally use to describe the challenges of rapidly growing data?
+  options:
+    - "Volume, value, and veracity"
+    - "Variety, veracity, and value"
+    - "Velocity, visualization, and volume"
+    - "Volume, velocity, and variety"
+  answer: D
+  explain: |
+    Laney's 2001 note described volume, velocity, and variety. Veracity and value were added later by other writers.
+  why:
+    A: "Value and veracity were later additions, not part of the original three."
+    B: "Veracity and value came later; velocity and volume were original."
+    C: "Visualization is not one of the Vs of big data."
+
+- id: big-data-03
+  skill: big-data
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A hospital system combines lab-result tables, doctors' typed notes, X-ray images, and audio recordings of patient interviews. Which V of big data is the main challenge?
+  options:
+    - "Variety"
+    - "Volume"
+    - "Velocity"
+    - "Value"
+  answer: A
+  explain: |
+    The data comes in very different types and formats: structured tables, free text, images, and audio. Handling many kinds of data together is the variety challenge.
+  why:
+    B: "Nothing here says the amount of data is unusually large."
+    C: "Nothing here says the data arrives at high speed."
+    D: "Value is whether the data is useful, not the difficulty of combining formats."
+
+- id: big-data-04
+  skill: big-data
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A company analyzing social media posts about its products finds bot accounts, sarcastic posts, and fake reviews mixed into the data. Which V of big data is this a problem of?
+  options:
+    - "Volume"
+    - "Velocity"
+    - "Veracity"
+    - "Variety"
+  answer: C
+  explain: |
+    Bots, sarcasm, and fake reviews make the data less accurate and trustworthy. Trustworthiness is veracity.
+  why:
+    A: "The problem is how reliable the data is, not how much there is."
+    B: "The problem is not the speed at which posts arrive."
+    D: "The posts may be all one type; the issue is whether they can be believed."
+
+- id: big-data-05
+  skill: big-data
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which task requires stream processing rather than batch processing?
+  options:
+    - "Producing a monthly sales report"
+    - "Blocking a fraudulent card payment before it is approved"
+    - "Running an annual audit of last year's accounts"
+    - "Backing up the company database every night"
+  answer: B
+  explain: |
+    The fraud decision must be made within moments, as each payment arrives, so the data has to be processed as a stream. The other tasks can wait for stored data to be processed in scheduled batches.
+  why:
+    A: "A monthly report can be built from stored data on a schedule, which is batch processing."
+    C: "An annual audit works on past records, a classic batch job."
+    D: "A nightly backup runs on a schedule over stored data."
+
+- id: big-data-06
+  skill: big-data
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why are big data tools such as Hadoop and Apache Spark designed to spread work across many computers?
+  options:
+    - "Because laws require data to be stored in more than one country"
+    - "Because a single computer would be fast enough but would cost more"
+    - "Because the data is too big or too fast for one machine to handle alone"
+    - "Because spreading data across machines makes the data more accurate"
+  answer: C
+  explain: |
+    Big data can exceed the storage and processing power of any single machine. Distributing the data across a cluster and computing on the parts in parallel makes the work possible and faster.
+  why:
+    A: "Distributed processing is a technical design, not a legal requirement."
+    B: "The point is that one computer is not powerful enough, not that it costs more."
+    D: "Splitting data across machines does not change how accurate it is."
+
+- id: big-data-07
+  skill: big-data
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A company stores years of detailed sensor logs but has never connected them to any decision, product, or saving. Which V of big data is it failing to achieve?
+  options:
+    - "Value"
+    - "Volume"
+    - "Velocity"
+    - "Variety"
+  answer: A
+  explain: |
+    The company has plenty of data, but the data has produced nothing useful. Turning data into benefit is the value V.
+  why:
+    B: "Years of detailed logs show the company has plenty of volume."
+    C: "Sensor logs arrive quickly; speed is not what is missing."
+    D: "The problem is not a mix of data types but a lack of use."
+
+# ---------------------------------------------------------------- data-gov
+- id: data-gov-01
+  skill: data-gov
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    In an ETL pipeline, what happens, in order?
+  options:
+    - "Data is entered by hand, then tested, then logged in an audit file."
+    - "Data is encrypted, then transferred, then locked in secure storage."
+    - "Data is extracted from sources, transformed, then loaded somewhere."
+    - "Data is exported, then translated, then labeled for a model to use."
+  answer: C
+  explain: |
+    ETL stands for extract, transform, load: pull data from the sources, clean and reshape it, then load it into the destination, usually a data warehouse.
+  why:
+    A: "ETL is automated extraction from sources, not manual entry."
+    B: "Encryption may protect data in transit, but it is not what ETL stands for."
+    D: "Labeling is not a step in ETL, and 'translated' is not the T."
+
+- id: data-gov-02
+  skill: data-gov
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is a data pipeline?
+  options:
+    - "A physical cable that connects two of a company's data centers"
+    - "An automated series of steps that moves data from sources to a destination"
+    - "A chart that shows how a value in the data changes over time"
+    - "A list of the people who are allowed to use a given dataset"
+  answer: B
+  explain: |
+    A data pipeline automates the flow of data: collecting it from sources, processing it, and delivering it to where it is needed, such as a warehouse, dashboard, or model.
+  why:
+    A: "A pipeline is a software process, not a physical cable."
+    C: "A chart of change over time is a line chart, not a pipeline."
+    D: "An access list is part of governance, not a pipeline."
+
+- id: data-gov-03
+  skill: data-gov
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which description best fits data governance?
+  options:
+    - "The software an organization uses to draw charts and dashboards"
+    - "The process of training and tuning a machine learning model"
+    - "The servers and drives that store an organization's data"
+    - "The policies and roles that keep data accurate, secure, and properly used"
+  answer: D
+  explain: |
+    Data governance sets the rules for an organization's data: who owns and may access it, the quality standards it must meet, how long it is kept, and how laws and ethics are followed.
+  why:
+    A: "Charting software is a visualization tool, not governance."
+    B: "Training models is analysis work, not the management of data."
+    C: "Storage hardware holds data but does not set rules for it."
+
+- id: data-gov-04
+  skill: data-gov
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A dashboard shows a wrong sales total. An analyst needs to trace which source system and which processing step introduced the error. What does she need?
+  options:
+    - "Data lineage"
+    - "A larger data warehouse"
+    - "A new visualization"
+    - "Third-party data"
+  answer: A
+  explain: |
+    Data lineage records where data came from and every transformation it went through. Following it backward from the dashboard leads to the step or source that caused the error.
+  why:
+    B: "More storage does not reveal where a wrong number came from."
+    C: "A different chart would display the same wrong total."
+    D: "Buying outside data does not explain an error in the existing pipeline."
+
+- id: data-gov-05
+  skill: data-gov
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    How does ELT differ from ETL?
+  options:
+    - "ELT never transforms data at all."
+    - "ELT transforms data before extracting it from the sources."
+    - "ELT loads raw data into the destination first and transforms it there later."
+    - "ELT is used only for unstructured data, while ETL is used only for structured data."
+  answer: C
+  explain: |
+    ELT swaps the last two steps: data is loaded raw, often into a cloud warehouse or lake, and transformed inside it when needed. Keeping the raw data lets analysts transform it in different ways later.
+  why:
+    A: "ELT still transforms data; it just does so after loading."
+    B: "Data cannot be transformed before it has been extracted."
+    D: "Both patterns can handle many kinds of data; the difference is the order of steps."
+
+- id: data-gov-06
+  skill: data-gov
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A company rule says only human resources staff may view salary data, and salary records must be deleted seven years after an employee leaves. What is this rule part of?
+  options:
+    - "Exploratory data analysis"
+    - "Data governance"
+    - "Feature engineering"
+    - "Data visualization"
+  answer: B
+  explain: |
+    Rules about who may access data and how long it is kept are data governance: the policies that control how an organization manages its data.
+  why:
+    A: "Exploratory analysis investigates data's patterns; it does not set access rules."
+    C: "Feature engineering creates model inputs, not policies."
+    D: "Visualization presents data; it does not govern access or retention."
+
+- id: data-gov-07
+  skill: data-gov
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What is a data catalog?
+  options:
+    - "A printed list of the products and prices a store sells"
+    - "A backup copy of every database the company runs"
+    - "A program that finds and removes duplicate records"
+    - "A searchable list of an organization's datasets and metadata"
+  answer: D
+  explain: |
+    A data catalog helps people find and understand data. It lists the organization's datasets with metadata such as descriptions, owners, and update dates.
+  why:
+    A: "A product list is business content, not an inventory of datasets."
+    B: "Backups protect data from loss; they do not help people find it."
+    C: "Removing duplicates is a cleaning step, not a catalog."

@@ -1,0 +1,111 @@
+# Lesson 1.6 flashcards
+
+- id: fc-data-source
+  term: Data Source
+  def: Any origin of data, such as a device, system, organization, or process. Examples include surveys, sensors, transactions, logs, APIs, social media, and public records.
+  skill: data-sources
+  virginia: true
+
+- id: fc-api
+  term: API
+  def: Application Programming Interface, a defined way for one program to request data or services from another, often returning JSON. It is the preferred, permitted way to collect web data.
+  skill: data-sources
+  virginia: true
+
+- id: fc-iot
+  term: Internet of Things (IoT)
+  def: Everyday physical objects fitted with sensors and network connections that report data on their own, producing fast streams of time-stamped readings.
+  skill: data-sources
+
+- id: fc-web-scraping
+  term: Web scraping
+  def: Extracting data from web pages by parsing their HTML. It is fragile when sites change, and you must check the terms of service and robots.txt and avoid personal data.
+  skill: data-sources
+
+- id: fc-open-data
+  term: Open data
+  def: Data published for anyone to use, such as government portals and public research datasets. Check its license, documentation, and how current it is.
+  skill: data-sources
+
+- id: fc-primary-secondary
+  term: Primary vs. secondary data
+  def: "Primary data is collected firsthand for your own question, such as your own survey. Secondary data was collected by others for another purpose and reused, such as census data."
+  skill: study-types
+
+- id: fc-party-data
+  term: First-, second-, third-party data
+  def: "First-party data comes from your own customers. Second-party data is a partner's first-party data shared directly with you. Third-party data is bought from aggregators."
+  skill: study-types
+
+- id: fc-experiment-observational
+  term: Experiment vs. observational study
+  def: An observational study only records what happens and shows association. An experiment applies a treatment and, with random assignment, can show cause and effect.
+  skill: study-types
+
+- id: fc-confounding-variable
+  term: Confounding variable
+  def: A third variable that affects both variables in a study, which can create an association with no cause-and-effect link between them.
+  skill: study-types
+
+- id: fc-census-sample
+  term: Census vs. sample
+  def: A census collects data from every member of a population. A sample collects data from a subset and draws conclusions about the whole.
+  skill: study-types
+
+- id: fc-cross-longitudinal
+  term: Cross-sectional vs. longitudinal
+  def: "Cross-sectional data measures many subjects at one point in time. Longitudinal (panel) data measures the same subjects repeatedly over time."
+  skill: study-types
+
+- id: fc-time-series
+  term: Time series
+  def: One quantity recorded at regular intervals over time, such as a daily stock price or hourly temperature.
+  skill: study-types
+
+- id: fc-big-data
+  term: Big Data
+  def: Data too large, fast, or varied for ordinary tools to store or process. It is described by the Vs of volume, velocity, variety, and later veracity and value.
+  skill: big-data
+  virginia: true
+
+- id: fc-the-vs
+  term: The Vs of big data
+  def: "Laney (2001) named volume (amount), velocity (speed), and variety (types). Writers later added veracity (trustworthiness) and value (usefulness)."
+  skill: big-data
+
+- id: fc-batch-stream
+  term: Batch vs. stream processing
+  def: "Batch processing handles stored data in scheduled chunks, such as a nightly report. Stream processing handles each record as it arrives, such as real-time fraud checks."
+  skill: big-data
+
+- id: fc-hadoop-spark
+  term: Hadoop and Spark
+  def: Big data tools that spread storage and computation across many computers working in parallel.
+  skill: big-data
+
+- id: fc-data-pipeline
+  term: Data Pipeline
+  def: An automated series of steps that moves data from sources through processing to a destination such as a warehouse, dashboard, or model.
+  skill: data-gov
+  virginia: true
+
+- id: fc-etl-elt
+  term: ETL vs. ELT
+  def: "ETL (extract, transform, load) transforms data before loading it. ELT loads raw data first and transforms it inside the destination later."
+  skill: data-gov
+
+- id: fc-data-governance
+  term: Data Governance
+  def: The policies, roles, and processes that keep data accurate, secure, available to the right people, and used legally and ethically.
+  skill: data-gov
+  virginia: true
+
+- id: fc-data-lineage
+  term: Data lineage
+  def: The record of where data came from and every transformation it went through. It is used to trace errors and support audits.
+  skill: data-gov
+
+- id: fc-data-catalog
+  term: Data catalog
+  def: A searchable inventory of an organization's datasets and their metadata.
+  skill: data-gov
