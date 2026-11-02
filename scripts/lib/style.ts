@@ -22,7 +22,9 @@ const BANNED: [RegExp, string][] = [
   [/\btapestry\b/i, "banned word: tapestry"],
 ];
 
-const EMOJI = /\p{Extended_Pictographic}/u;
+// ©, ®, and ™ are typographic symbols, not emoji, even though Unicode lists
+// them as pictographic.
+const EMOJI = /(?![©®™])\p{Extended_Pictographic}/u;
 
 export function scanStyle(text: string): string[] {
   const problems: string[] = [];

@@ -1,0 +1,87 @@
+# Lesson 1.5 flashcards
+
+- id: fc-bit-byte
+  term: Bit, nibble, byte
+  def: A bit is a single 0 or 1. A nibble is 4 bits (one hex digit). A byte is 8 bits, which holds 256 values.
+  skill: bits-bytes
+
+- id: fc-n-bits-values
+  term: Values in n bits
+  def: n bits form $$2^n$$ patterns; as unsigned whole numbers they run from 0 to $$2^n - 1$$. One byte holds 0 to 255.
+  skill: bits-bytes
+
+- id: fc-bits-needed
+  term: Bits needed for N items
+  def: The smallest n with $$2^n \ge N$$. 50 states need 6 bits (64 codes); 1,000 students need 10 bits (1,024 codes).
+  skill: bits-bytes
+
+- id: fc-kb-kib
+  term: KB vs. KiB
+  def: "A kilobyte (KB) is 1,000 bytes and a kibibyte (KiB) is 1,024 bytes. Likewise MB is $$10^6$$ bytes and MiB is $$2^{20}$$; GB is $$10^9$$ and GiB is $$2^{30}$$."
+  skill: bits-bytes
+
+- id: fc-bits-vs-bytes-speed
+  term: Mbps vs. MB/s
+  def: Network speeds are given in bits per second and file sizes in bytes. Divide bits by 8, so 100 Mbps is at most 12.5 MB per second.
+  skill: bits-bytes
+
+- id: fc-overflow
+  term: Overflow
+  def: A result too large for the fixed number of bits loses its extra carry and wraps around. In 8 bits, 200 + 100 stores 300 minus 256, which is 44.
+  skill: bin-arith
+
+- id: fc-twos-complement
+  term: "Two's complement"
+  def: The standard way to store signed integers. To negate, flip every bit and add 1. The leftmost bit is worth $$-2^{n-1}$$, so 8 bits hold negative 128 to 127.
+  example: "-5 = 11111011 in 8 bits."
+  skill: bin-arith
+
+- id: fc-binary-addition
+  term: Binary addition
+  def: 0 + 0 = 0, 0 + 1 = 1, 1 + 1 = 10 (write 0, carry 1), and 1 + 1 + 1 = 11 (write 1, carry 1).
+  skill: bin-arith
+
+- id: fc-floating-point
+  term: Floating-point rounding
+  def: Many decimals, such as 0.1, have no exact binary form, so 0.1 + 0.2 gives 0.30000000000000004. Compare floats within a tolerance, never with exact equality.
+  skill: bin-arith
+
+- id: fc-ascii
+  term: ASCII
+  def: A 7-bit character code with 128 characters. A = 65, a = 97, 0 = 48, and space = 32. Each lowercase letter is its uppercase code plus 32.
+  skill: text-encoding
+
+- id: fc-unicode
+  term: Unicode
+  def: A universal standard that gives every character in nearly every writing system a unique number called a code point, such as U+0041 for A.
+  skill: text-encoding
+
+- id: fc-utf8
+  term: UTF-8
+  def: The most common encoding of Unicode. It uses 1 to 4 bytes per character, and the first 128 characters match ASCII exactly, so ASCII text is valid UTF-8. é takes 2 bytes.
+  skill: text-encoding
+
+- id: fc-mojibake
+  term: Garbled text (encoding mismatch)
+  def: Text such as "cafÃ©" appears when bytes are decoded with a different encoding than the one they were saved in.
+  skill: text-encoding
+
+- id: fc-rgb-hex
+  term: RGB and hex colors
+  def: Each pixel stores red, green, and blue as one byte each (0 to 255), which gives 16,777,216 colors. The code #RRGGBB writes the three bytes as hex, so #FF8000 is (255, 128, 0).
+  skill: media-encoding
+
+- id: fc-image-size
+  term: Uncompressed image size
+  def: Width x height x bytes per pixel. A 1920 x 1080 color image (3 bytes per pixel) takes 6,220,800 bytes.
+  skill: media-encoding
+
+- id: fc-audio-size
+  term: Uncompressed audio size
+  def: Sample rate x bit depth x channels x seconds gives bits; divide by 8 for bytes. CD audio is 44,100 x 16 x 2 bits per second.
+  skill: media-encoding
+
+- id: fc-lossless-lossy
+  term: Lossless vs. lossy compression
+  def: "Lossless compression rebuilds the original exactly (PNG, FLAC, ZIP). Lossy compression discards detail to shrink files further (JPEG, MP3), and the discarded detail cannot be recovered."
+  skill: media-encoding

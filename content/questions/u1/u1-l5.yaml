@@ -1,0 +1,693 @@
+# Lesson 1.5: How computers store data
+
+# ---------------------------------------------------------------- bits-bytes
+- id: bits-bytes-01
+  skill: bits-bytes
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    How many different values can be represented with 6 bits?
+  options:
+    - "6"
+    - "12"
+    - "36"
+    - "64"
+  ordered: true
+  answer: D
+  explain: |
+    Each bit doubles the number of patterns, so 6 bits give $$2^6 = 64$$ different values (0 to 63 if they are whole numbers).
+  why:
+    A: "This counts the bits rather than the patterns they can form."
+    B: "This multiplies 6 by 2 instead of raising 2 to the 6th power."
+    C: "This squares 6 instead of computing $$2^6$$."
+  verify: "2**6"
+
+- id: bits-bytes-02
+  skill: bits-bytes
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A file is exactly 3 MiB (mebibytes). How many bytes is that?
+  options:
+    - "3,000,000"
+    - "3,072,000"
+    - "3,145,728"
+    - "3,221,225,472"
+  ordered: true
+  answer: C
+  explain: |
+    One mebibyte is $$2^{20} = 1{,}048{,}576$$ bytes, so 3 MiB is $$3 \times 1{,}048{,}576 = 3{,}145{,}728$$ bytes.
+  why:
+    A: "This uses decimal megabytes (1,000,000 bytes each), which is MB, not MiB."
+    B: "This mixes the systems, multiplying by 1,024 once and by 1,000 once."
+    D: "This is 3 GiB, using $$2^{30}$$ instead of $$2^{20}$$."
+  verify: "3 * 2**20"
+
+- id: bits-bytes-03
+  skill: bits-bytes
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    What is the largest whole number that can be stored in 8 bits without a sign?
+  options:
+    - "255"
+    - "256"
+    - "511"
+    - "65,535"
+  ordered: true
+  answer: A
+  explain: |
+    8 bits give $$2^8 = 256$$ patterns, and counting starts at 0, so the values run from 0 to 255.
+  why:
+    B: "256 is the number of values, but the largest value is one less because 0 is the first."
+    C: "This is the largest 9-bit value, $$2^9 - 1$$."
+    D: "This is the largest 16-bit value, $$2^{16} - 1$$."
+  verify: "2**8 - 1"
+
+- id: bits-bytes-04
+  skill: bits-bytes
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A database must give each of the 50 U.S. states its own binary code. What is the minimum number of bits per code?
+  options:
+    - "5"
+    - "6"
+    - "7"
+    - "50"
+  ordered: true
+  answer: B
+  explain: |
+    5 bits give only $$2^5 = 32$$ codes, too few for 50 states. 6 bits give $$2^6 = 64$$ codes, which is enough.
+  why:
+    A: "Five bits give only 32 different codes, fewer than 50."
+    C: "Seven bits work but are not the minimum; 6 bits already give 64 codes."
+    D: "Each state needs a pattern, not a bit of its own; bits combine into $$2^n$$ patterns."
+  verify: "math.ceil(math.log2(50))"
+
+- id: bits-bytes-05
+  skill: bits-bytes
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A 600 MB file downloads over a connection running steadily at 120 Mbps (megabits per second). How many seconds does the download take?
+  options:
+    - "0.625"
+    - "5"
+    - "40"
+    - "4,800"
+  ordered: true
+  answer: C
+  explain: |
+    Convert the file to bits first: 600 MB times 8 is 4,800 megabits. At 120 megabits per second, that takes 4,800 / 120 = 40 seconds.
+  why:
+    A: "This divides by 8 instead of multiplying when converting bytes to bits."
+    B: "This forgets that the speed is in bits and the file size is in bytes."
+    D: "This is the file size in megabits; it still has to be divided by the speed."
+  verify: "600 * 8 / 120"
+
+- id: bits-bytes-06
+  skill: bits-bytes
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A drive is sold as 2 TB, meaning $$2 \times 10^{12}$$ bytes. An operating system reports sizes in binary units ($$1 \text{ GiB} = 2^{30}$$ bytes). About how many GiB will it show?
+  options:
+    - "1,863"
+    - "2,000"
+    - "2,048"
+    - "2,199"
+  ordered: true
+  answer: A
+  explain: |
+    Divide the bytes by the size of a GiB: $$2 \times 10^{12} / 2^{30} \approx 1863$$. The drive is not missing space; binary units are just larger than decimal ones.
+  why:
+    B: "This treats a GiB as $$10^9$$ bytes, which is a decimal GB."
+    C: "This multiplies 2 by 1,024, mixing up which unit is larger."
+    D: "This converts in the wrong direction, giving how many decimal GB are in 2 TiB."
+  verify: "2e12 / 2**30"
+
+- id: bits-bytes-07
+  skill: bits-bytes
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    How many bytes are in one kibibyte (KiB)?
+  options:
+    - "8"
+    - "512"
+    - "1,000"
+    - "1,024"
+  ordered: true
+  answer: D
+  explain: |
+    The binary prefix kibi means $$2^{10} = 1024$$. The decimal kilobyte (KB) is 1,000 bytes.
+  why:
+    A: "8 is the number of bits in one byte."
+    B: "512 is $$2^9$$, one power of two too small."
+    C: "1,000 bytes is a decimal kilobyte (KB), not a kibibyte."
+  verify: "2**10"
+
+- id: bits-bytes-08
+  skill: bits-bytes
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A camera stores each pixel's brightness in 10 bits instead of the usual 8. How many more brightness levels does each pixel have?
+  options:
+    - "2"
+    - "4"
+    - "512"
+    - "768"
+  ordered: true
+  answer: D
+  explain: |
+    10 bits give $$2^{10} = 1024$$ levels and 8 bits give $$2^8 = 256$$, so the difference is 1,024 minus 256, which is 768.
+  why:
+    A: "Two more bits multiply the levels by four; they do not add two levels."
+    B: "Four is how many times as many levels there are, not how many more."
+    C: "512 is $$2^9$$; the comparison is $$2^{10}$$ minus $$2^8$$."
+  verify: "2**10 - 2**8"
+
+# ---------------------------------------------------------------- bin-arith
+- id: bin-arith-01
+  skill: bin-arith
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is $$1011_2 + 0110_2$$?
+  options:
+    - "1101"
+    - "10001"
+    - "10101"
+    - "11001"
+  ordered: true
+  answer: B
+  explain: |
+    Adding column by column from the right and carrying at 2 gives 10001. As a check, 11 + 6 = 17, and $$10001_2 = 16 + 1 = 17$$.
+  why:
+    A: "This adds each column without carrying, so 1 + 1 is written as 0 and the carry is lost."
+    C: "This is 21; a carry was added to the wrong column."
+    D: "This is 25; the carries were placed one column too far to the left."
+  verify: "format(0b1011 + 0b0110, 'b')"
+
+- id: bin-arith-02
+  skill: bin-arith
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    What is negative 6 written as an 8-bit two's complement number?
+  options:
+    - "00000110"
+    - "10000110"
+    - "11111001"
+    - "11111010"
+  ordered: true
+  answer: D
+  explain: |
+    Positive 6 is 00000110. Flip every bit to get 11111001, then add 1 to get 11111010. Check: negative 128 + 64 + 32 + 16 + 8 + 2 = negative 6.
+  why:
+    A: "This is positive 6."
+    B: "This just sets the leftmost bit as a sign, which is sign-magnitude form, not two's complement."
+    C: "This flips the bits but forgets to add 1, giving the one's complement."
+  verify: "format((-6) & 0xFF, '08b')"
+
+- id: bin-arith-03
+  skill: bin-arith
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    An 8-bit unsigned counter holds 250. Ten is added, and any carry past 8 bits is lost. What value does the counter hold?
+  options:
+    - "4"
+    - "6"
+    - "255"
+    - "260"
+  ordered: true
+  answer: A
+  explain: |
+    The true sum, 260, does not fit in 8 bits, whose largest value is 255. The lost carry is worth 256, so the counter wraps around to 260 minus 256, which is 4.
+  why:
+    B: "This subtracts 254 instead of the 256 that the lost carry is worth."
+    C: "Overflow wraps around; it does not stop at the largest value."
+    D: "260 needs 9 bits, which the counter does not have."
+  verify: "(250 + 10) % 256"
+
+- id: bin-arith-04
+  skill: bin-arith
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What range of whole numbers can an 8-bit two's complement integer hold?
+  options:
+    - "0 to 255"
+    - "-127 to 127"
+    - "-128 to 127"
+    - "-128 to 128"
+  answer: C
+  explain: |
+    In n bits, two's complement runs from $$-2^{n-1}$$ to $$2^{n-1} - 1$$. For 8 bits that is negative 128 to 127, which is 256 values, with zero counted among the non-negative ones.
+  why:
+    A: "This is the range for 8 unsigned bits."
+    B: "A symmetric range belongs to sign-magnitude form, which wastes a pattern on negative zero; two's complement has one zero and one extra negative value."
+    D: "This would be 257 values, more than 8 bits can hold."
+
+- id: bin-arith-05
+  skill: bin-arith
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    What decimal value does the 8-bit two's complement number 11110000 represent?
+  options:
+    - "-112"
+    - "-16"
+    - "16"
+    - "240"
+  ordered: true
+  answer: B
+  explain: |
+    The leftmost bit is worth negative 128, and the others add 64 + 32 + 16 = 112. So the value is negative 128 + 112, which is negative 16.
+  why:
+    A: "This treats the first bit as only a minus sign, reading the rest as 112 (sign-magnitude form)."
+    C: "This is the magnitude without the sign; a leading 1 means the number is negative."
+    D: "This reads the bits as an unsigned number."
+  verify: |
+    v = int("11110000", 2)
+    ans = v - 256 if v >= 128 else v
+
+- id: bin-arith-06
+  skill: bin-arith
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In Python, `0.1 + 0.2 == 0.3` evaluates to `False`. What is the reason?
+  options:
+    - "0.1 and 0.2 have no exact binary form, so their stored sum carries a tiny rounding error."
+    - "Python rounds every decimal number to one decimal place before adding the values together."
+    - "The == operator can never be used to compare numbers that have digits after the decimal point."
+    - "Python stores the literal 0.3 as a text string, so it can never equal the numeric sum."
+  answer: A
+  explain: |
+    Many simple decimals, including 0.1 and 0.2, have no exact binary form, just as 1/3 has no exact decimal form. Their stored sum is 0.30000000000000004, so it differs from the stored 0.3. Compare such values within a tolerance instead.
+  why:
+    B: "Python does not round to one decimal place; the problem is the tiny binary rounding error."
+    C: "== works on decimal numbers; it only fails when the stored values differ, as they do here."
+    D: "0.3 is stored as a floating-point number, not as text."
+
+- id: bin-arith-07
+  skill: bin-arith
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In binary addition, what is the result of adding 1 and 1 in a single column?
+  options:
+    - "0, with nothing carried"
+    - "1, with nothing carried"
+    - "0, with a 1 carried to the next column"
+    - "1, with a 1 carried to the next column"
+  answer: C
+  explain: |
+    1 + 1 = 2, which is $$10_2$$: write 0 in this column and carry 1 to the next, exactly as 5 + 5 = 10 carries in decimal.
+  why:
+    A: "The sum is 2, so the carry cannot simply disappear."
+    B: "1 is the result of 0 + 1; two 1s make 2."
+    D: "Writing 1 and carrying 1 is the result of 1 + 1 + 1, which is 3."
+
+- id: bin-arith-08
+  skill: bin-arith
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Why do most computers store signed integers in two's complement rather than with a separate sign bit?
+  options:
+    - "Two's complement can store larger positive numbers than any other method."
+    - "Two's complement makes negative numbers take fewer bits than positive ones."
+    - "Two's complement needs no addition circuits at all."
+    - "Two's complement lets the same addition circuit handle negative numbers and has only one zero."
+  answer: D
+  explain: |
+    With two's complement, adding a negative number works exactly like adding a positive one, so no special circuits are needed. A separate sign bit would need extra rules and would have two zeros, +0 and -0.
+  why:
+    A: "Its largest positive value, $$2^{n-1} - 1$$, is no larger than with a sign bit."
+    B: "Positive and negative numbers use the same number of bits."
+    C: "Computers still add; two's complement just lets one adder serve both signs."
+
+# ---------------------------------------------------------------- text-encoding
+- id: text-encoding-01
+  skill: text-encoding
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is the decimal ASCII code for the capital letter A?
+  options:
+    - "1"
+    - "41"
+    - "65"
+    - "97"
+  ordered: true
+  answer: C
+  explain: |
+    In ASCII, the capital letters start at 65 for A and run in order to 90 for Z. The hexadecimal form of 65 is 41.
+  why:
+    A: "1 is A's position in the alphabet, not its ASCII code."
+    B: "41 is A's code written in hexadecimal; the decimal code is 65."
+    D: "97 is the code for lowercase a, which is 32 more than A."
+  verify: "ord('A')"
+
+- id: text-encoding-02
+  skill: text-encoding
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which statement about UTF-8 is true?
+  options:
+    - "It uses 1 to 4 bytes per character, and plain ASCII text is valid UTF-8."
+    - "It stores every character, from letters to symbols, in exactly 2 bytes."
+    - "It can encode only English letters, digits, and punctuation marks."
+    - "It is an older encoding that was later replaced by the simpler ASCII code."
+  answer: A
+  explain: |
+    UTF-8 is a variable-length encoding of Unicode. The first 128 characters (the ASCII set) use 1 byte with the same values as ASCII, and other characters use 2, 3, or 4 bytes.
+  why:
+    B: "UTF-8 varies from 1 to 4 bytes; fixed 2-byte units describe the basic form of UTF-16."
+    C: "UTF-8 can encode every Unicode character, covering nearly all writing systems."
+    D: "ASCII is the older, smaller code; UTF-8 extends it to all of Unicode."
+
+- id: text-encoding-03
+  skill: text-encoding
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    The ASCII code for lowercase a is 97. What is the code for lowercase d?
+  options:
+    - "68"
+    - "99"
+    - "100"
+    - "101"
+  ordered: true
+  answer: C
+  explain: |
+    Letters are coded in alphabetical order, and d is three letters after a, so its code is 97 + 3 = 100.
+  why:
+    A: "68 is the code for capital D, which is 32 less than lowercase d."
+    B: "99 is c; d is one more."
+    D: "101 is e; this counts one letter too far."
+  verify: "ord('d')"
+
+- id: text-encoding-04
+  skill: text-encoding
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    In ASCII, the capital letter G has code 71. What is the code for lowercase g?
+  options:
+    - "39"
+    - "72"
+    - "103"
+    - "135"
+  ordered: true
+  answer: C
+  explain: |
+    Each lowercase letter is exactly 32 more than its capital, so lowercase g is 71 + 32 = 103.
+  why:
+    A: "This subtracts 32; lowercase letters have the larger codes."
+    B: "72 is the next capital letter, H."
+    D: "This adds 64 instead of 32."
+  verify: "ord('g')"
+
+- id: text-encoding-05
+  skill: text-encoding
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    How many bytes does the word "Café" take when stored in UTF-8?
+  options:
+    - "4"
+    - "5"
+    - "8"
+    - "16"
+  ordered: true
+  answer: B
+  explain: |
+    C, a, and f are ASCII characters, so each takes 1 byte. The accented é takes 2 bytes in UTF-8. The total is 3 + 2 = 5 bytes.
+  why:
+    A: "This counts one byte per character, but é needs two bytes in UTF-8."
+    C: "This assumes 2 bytes for every character, a fixed-width encoding."
+    D: "This assumes 4 bytes for every character."
+  verify: "len('Café'.encode('utf-8'))"
+
+- id: text-encoding-06
+  skill: text-encoding
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A file saved in UTF-8 shows "cafÃ©" instead of "café" when opened in another program. What is the most likely cause?
+  options:
+    - "The file was compressed with a lossy method."
+    - "The letter é does not exist in Unicode."
+    - "The file lost its last few bytes when it was copied."
+    - "The program decoded the UTF-8 bytes with a different character encoding."
+  answer: D
+  explain: |
+    In UTF-8, é is two bytes. A program that assumes a one-byte-per-character encoding turns those two bytes into two separate wrong characters. Garbled text almost always means a decoding mismatch.
+  why:
+    A: "Text files are not compressed with lossy methods, and compression would not produce this pattern."
+    B: "é is a standard Unicode character, U+00E9."
+    C: "Every character is still present; only é was misread as two characters."
+
+- id: text-encoding-07
+  skill: text-encoding
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What does the Unicode standard provide?
+  options:
+    - "A unique number, called a code point, for characters in nearly every script"
+    - "A method for compressing text files so they take half the storage space"
+    - "A list of the 128 characters used in English text, numbered 0 to 127"
+    - "A single font that displays every language in the same visual style"
+  answer: A
+  explain: |
+    Unicode assigns each character its own code point, such as U+0041 for A, across virtually all the world's scripts and many symbols. Encodings such as UTF-8 then store those numbers as bytes.
+  why:
+    B: "Unicode is a character standard, not a compression method."
+    C: "The 128-character English set is ASCII; Unicode is far larger."
+    D: "Unicode defines characters, not how they look; fonts handle appearance."
+
+- id: text-encoding-08
+  skill: text-encoding
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Standard ASCII is a 7-bit code. How many different characters can it represent?
+  options:
+    - "64"
+    - "128"
+    - "256"
+    - "65,536"
+  ordered: true
+  answer: B
+  explain: |
+    7 bits give $$2^7 = 128$$ patterns, so ASCII defines 128 characters, numbered 0 to 127.
+  why:
+    A: "64 is $$2^6$$, one bit too few."
+    C: "256 is $$2^8$$, the size of 8-bit extended character sets."
+    D: "65,536 is $$2^{16}$$, far more than ASCII's 7 bits allow."
+  verify: "2**7"
+
+# ---------------------------------------------------------------- media-encoding
+- id: media-encoding-01
+  skill: media-encoding
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    What RGB values does the hex color code #FF8000 represent?
+  options:
+    - "(255, 80, 0)"
+    - "(255, 128, 0)"
+    - "(0, 128, 255)"
+    - "(128, 255, 0)"
+  answer: B
+  explain: |
+    The code splits into the pairs FF, 80, and 00 for red, green, and blue. FF is 255, hex 80 is 8 times 16 = 128, and 00 is 0, which makes orange.
+  why:
+    A: "This copies the hex digits 80 as if they were decimal; hex 80 is 128."
+    C: "This reverses the order; the pairs go red, green, blue."
+    D: "This swaps the red and green channels."
+  verify: |
+    ans = f"({int('FF', 16)}, {int('80', 16)}, {int('00', 16)})"
+
+- id: media-encoding-02
+  skill: media-encoding
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    An uncompressed color image is 1920 by 1080 pixels, and each pixel uses 3 bytes (one each for red, green, and blue). How many bytes does the image take?
+  options:
+    - "2,073,600"
+    - "4,147,200"
+    - "6,220,800"
+    - "49,766,400"
+  ordered: true
+  answer: C
+  explain: |
+    Multiply the pixel count by the bytes per pixel: $$1920 \times 1080 = 2{,}073{,}600$$ pixels, and times 3 bytes that is 6,220,800 bytes, about 6.2 MB.
+  why:
+    A: "This counts pixels but forgets each pixel takes 3 bytes."
+    B: "This uses 2 bytes per pixel instead of 3."
+    D: "This is the size in bits; the question asks for bytes."
+  verify: "1920 * 1080 * 3"
+
+- id: media-encoding-03
+  skill: media-encoding
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    In 24-bit color, each of red, green, and blue uses 8 bits. How many different colors are possible?
+  options:
+    - "24"
+    - "768"
+    - "65,536"
+    - "16,777,216"
+  ordered: true
+  answer: D
+  explain: |
+    Each channel has 256 levels, and the three channels combine freely: $$256^3 = 2^{24} = 16{,}777{,}216$$ colors.
+  why:
+    A: "This counts bits, not the patterns 24 bits can form."
+    B: "This adds the three channels' 256 levels instead of multiplying them."
+    C: "65,536 is $$2^{16}$$, the number of colors in 16-bit color."
+  verify: "2**24"
+
+- id: media-encoding-04
+  skill: media-encoding
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    What hex color code represents RGB (34, 139, 34)?
+  options:
+    - "#228B22"
+    - "#22B822"
+    - "#348B34"
+    - "#8B2222"
+  answer: A
+  explain: |
+    Convert each channel to two hex digits: 34 = 2 x 16 + 2 is 22, and 139 = 8 x 16 + 11 is 8B. In red, green, blue order that is #228B22, a forest green.
+  why:
+    B: "This writes 139's hex digits backward; 139 is 8B, not B8."
+    C: "This copies the decimal value 34 as if it were already hex."
+    D: "This puts the green channel first; the order is red, green, blue."
+  verify: |
+    ans = "#" + "".join(f"{v:02X}" for v in (34, 139, 34))
+
+- id: media-encoding-05
+  skill: media-encoding
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Uncompressed stereo audio is recorded at 44,100 samples per second with 16 bits per sample. How many bytes do 30 seconds take?
+  options:
+    - "2,646,000"
+    - "5,292,000"
+    - "10,584,000"
+    - "42,336,000"
+  ordered: true
+  answer: B
+  explain: |
+    Bits = rate x depth x channels x seconds = $$44{,}100 \times 16 \times 2 \times 30 = 42{,}336{,}000$$. Dividing by 8 gives 5,292,000 bytes.
+  why:
+    A: "This leaves out the second channel; stereo doubles the size."
+    C: "This is the size of one minute, not 30 seconds."
+    D: "This is the answer in bits; divide by 8 for bytes."
+  verify: "44100 * 16 * 2 * 30 / 8"
+
+- id: media-encoding-06
+  skill: media-encoding
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which statement about lossy compression, as used in JPEG images and MP3 audio, is true?
+  options:
+    - "It keeps every bit, so the original file can be rebuilt exactly."
+    - "It can be used only for text files."
+    - "It always makes files larger in exchange for better quality."
+    - "It discards detail people barely notice, so the original cannot be rebuilt exactly."
+  answer: D
+  explain: |
+    Lossy compression saves space by throwing away information that matters little to human eyes or ears. Files become much smaller, but the discarded detail is gone for good.
+  why:
+    A: "That describes lossless compression, such as PNG, FLAC, or ZIP."
+    B: "Lossy methods are used for images, audio, and video; text needs lossless compression."
+    C: "Compression makes files smaller, not larger."
+
+- id: media-encoding-07
+  skill: media-encoding
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which color does the hex code #FFFFFF represent?
+  options:
+    - "Black"
+    - "White"
+    - "Gray"
+    - "Red"
+  answer: B
+  explain: |
+    FF is 255, the maximum for each channel. Full red, green, and blue light together make white.
+  why:
+    A: "Black is #000000, with every channel at 0."
+    C: "Gray has equal channels at a middle value, such as #808080."
+    D: "Pure red is #FF0000, with green and blue at 0."
+
+- id: media-encoding-08
+  skill: media-encoding
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    An uncompressed 8-bit grayscale image is 800 by 600 pixels. Using 1 KB = 1,000 bytes, how many kilobytes does it take?
+  options:
+    - "480"
+    - "1,440"
+    - "3,840"
+    - "480,000"
+  ordered: true
+  answer: A
+  explain: |
+    Each 8-bit grayscale pixel is 1 byte, so the image is $$800 \times 600 = 480{,}000$$ bytes, which is 480 KB.
+  why:
+    B: "This uses 3 bytes per pixel, as for color, but grayscale uses 1."
+    C: "This multiplies by 8 bits, giving kilobits instead of kilobytes."
+    D: "This is the answer in bytes, not kilobytes."
+  verify: "800 * 600 / 1000"
