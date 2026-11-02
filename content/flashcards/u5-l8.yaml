@@ -1,0 +1,52 @@
+# Lesson 5.8 flashcards
+
+- id: fc-tree-splits
+  term: How a decision tree splits
+  def: At each node, the tree greedily chooses the feature and threshold that make the child nodes purest, then repeats in each child until a stopping rule.
+  skill: decision-trees
+
+- id: fc-gini-entropy
+  term: Gini impurity and entropy
+  def: Gini = 1 - sum of squared class proportions; entropy = -sum of p log2 p. Both are 0 for a pure node. For two classes at 50/50, Gini is 0.5 and entropy is 1.
+  example: "8 yes and 2 no: Gini 0.32, entropy about 0.72."
+  skill: decision-trees
+
+- id: fc-information-gain
+  term: Information gain
+  def: Parent impurity minus the weighted average impurity of the children. The tree chooses the split with the largest gain.
+  skill: decision-trees
+
+- id: fc-pruning
+  term: Pre-pruning and post-pruning
+  def: Pre-pruning stops growth early with limits such as max depth or minimum leaf size. Post-pruning grows a full tree, then removes branches that do not help on validation data.
+  skill: decision-trees
+
+- id: fc-bagging-boosting
+  term: Bagging vs. boosting
+  def: Bagging trains models in parallel on bootstrap samples (drawn with replacement) and votes, mainly reducing variance. Boosting trains models in sequence on earlier errors, mainly reducing bias.
+  skill: ensembles
+
+- id: fc-random-forest
+  term: Random forest
+  def: Bagged decision trees that also consider a random subset of features at each split, which makes the trees differ. Classification is by majority vote.
+  skill: ensembles
+
+- id: fc-knn
+  term: k-nearest neighbors
+  def: Classifies a point by majority vote of its k closest training points (averages them for regression). Small k overfits, large k underfits; scale features first.
+  skill: knn-svm-nb
+
+- id: fc-svm
+  term: Support vector machine
+  def: Separates classes with the boundary that has the widest margin. The support vectors are the nearest points, which fix the boundary; the kernel trick allows curved boundaries.
+  skill: knn-svm-nb
+
+- id: fc-naive-bayes
+  term: Naive Bayes
+  def: Applies Bayes' theorem to choose the most probable class, assuming features are independent given the class. Fast and effective for text such as spam filtering.
+  skill: knn-svm-nb
+
+- id: fc-clustering-algorithms
+  term: Hierarchical clustering and DBSCAN
+  def: Hierarchical clustering merges the closest clusters step by step, drawn as a dendrogram, with no k needed in advance. DBSCAN finds dense regions of any shape and labels sparse points as noise.
+  skill: clustering-dimred

@@ -1,0 +1,645 @@
+# Lesson 5.8: Trees, ensembles, neighbors, and clusters
+
+# ---------------------------------------------------------------- decision-trees
+- id: decision-trees-01
+  skill: decision-trees
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    When a decision tree is being built, how does it choose the question to ask at a node?
+  options:
+    - "It picks a feature at random."
+    - "It always splits on the first column of the data."
+    - "It asks the question a human expert entered in advance."
+    - "It picks the split that makes the child nodes as pure as possible."
+  answer: D
+  explain: |
+    The algorithm scores every candidate split, a feature and a threshold, by how well it separates the classes, using a measure such as Gini impurity or entropy, and keeps the split that leaves the purest children.
+  why:
+    A: "Random features are a trait of random forests, and even there the best split among them is chosen."
+    B: "Column order has nothing to do with which split is best."
+    C: "A learned tree finds its own splits from the data."
+
+- id: decision-trees-02
+  skill: decision-trees
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A tree node holds 8 examples: 6 "yes" and 2 "no." Using Gini = 1 minus the sum of the squared class proportions, what is the node's Gini impurity?
+  options:
+    - "0.25"
+    - "0.375"
+    - "0.5"
+    - "0.625"
+  ordered: true
+  answer: B
+  explain: |
+    The proportions are 6/8 = 0.75 and 2/8 = 0.25. Gini = 1 - 0.75² - 0.25² = 1 - 0.5625 - 0.0625 = 0.375.
+  why:
+    A: "This is the proportion of 'no' examples, not the impurity."
+    C: "0.5 is the Gini impurity of a 50/50 node, the two-class maximum."
+    D: "This is the sum of the squared proportions, before subtracting it from 1."
+  verify: "1 - (6/8) ** 2 - (2/8) ** 2"
+
+- id: decision-trees-03
+  skill: decision-trees
+  tier: champion
+  type: calculation
+  use: check
+  stem: |
+    A parent node has 10 "yes" and 10 "no" examples. A split sends 9 yes and 1 no to the left child and 1 yes and 9 no to the right child. What is the weighted Gini impurity of the two children?
+  options:
+    - "0.18"
+    - "0.32"
+    - "0.36"
+    - "0.5"
+  ordered: true
+  answer: A
+  explain: |
+    Each child has proportions 0.9 and 0.1, so each has Gini = 1 - 0.81 - 0.01 = 0.18. Each child holds half of the 20 examples, so the weighted average is 0.5 × 0.18 + 0.5 × 0.18 = 0.18, down from the parent's 0.5.
+  why:
+    B: "This is the decrease in Gini, 0.5 - 0.18, not the weighted impurity."
+    C: "This adds the two children's impurities instead of averaging them by size."
+    D: "This is the parent's impurity before the split."
+  verify: "0.5 * (1 - 0.9 ** 2 - 0.1 ** 2) + 0.5 * (1 - 0.1 ** 2 - 0.9 ** 2)"
+
+- id: decision-trees-04
+  skill: decision-trees
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A decision tree with no depth limit scores 100% on its training data and 70% on validation data. Which change is the best fix?
+  options:
+    - "Remove the validation set"
+    - "Allow the tree to grow even deeper"
+    - "Limit the depth or prune the tree"
+    - "Train on fewer examples"
+  answer: C
+  explain: |
+    A perfect training score with much lower validation accuracy means the tree has memorized its data. Capping the depth, requiring larger leaves, or pruning branches that do not help on validation data makes it generalize better.
+  why:
+    A: "Removing the validation set hides the problem rather than fixing it."
+    B: "A deeper tree memorizes even more."
+    D: "Less data makes memorizing easier."
+
+- id: decision-trees-05
+  skill: decision-trees
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A tree node contains only examples of one class. What is its Gini impurity?
+  options:
+    - "0"
+    - "0.5"
+    - "1"
+    - "It depends on the number of examples."
+  answer: A
+  explain: |
+    A pure node has one class with proportion 1, so Gini = 1 - 1² = 0. Impurity is zero whenever there is no mixing at all.
+  why:
+    B: "0.5 is the Gini impurity of a 50/50 mix of two classes."
+    C: "1 is the entropy of a 50/50 node, not the Gini of a pure node."
+    D: "Impurity depends on proportions, not on how many examples there are."
+
+- id: decision-trees-06
+  skill: decision-trees
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A node holds 50% "yes" and 50% "no" examples. What is its entropy, using base-2 logarithms?
+  options:
+    - "0"
+    - "0.5"
+    - "1"
+    - "2"
+  ordered: true
+  answer: C
+  explain: |
+    Entropy = -(0.5 × log₂ 0.5 + 0.5 × log₂ 0.5) = -(0.5 × -1 + 0.5 × -1) = 1. A 50/50 split of two classes is the most mixed a node can be, 1 bit.
+  why:
+    A: "Entropy is 0 only for a pure node."
+    B: "0.5 is the Gini impurity of a 50/50 node, not its entropy."
+    D: "With two classes, entropy never exceeds 1 bit."
+  verify: "-(0.5 * math.log2(0.5) + 0.5 * math.log2(0.5))"
+
+- id: decision-trees-07
+  skill: decision-trees
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A parent node has 10 "yes" and 10 "no" examples. Split A gives children of (5 yes, 0 no) and (5 yes, 10 no). Split B gives children of (7 yes, 3 no) and (3 yes, 7 no). Using weighted Gini impurity, which split should the tree choose?
+  options:
+    - "Split A, because its weighted Gini is lower (about 0.33)"
+    - "Split B, because its weighted Gini is lower (about 0.42)"
+    - "Split B, because both of its children are the same size"
+    - "Neither, because both splits leave an impure child"
+  answer: A
+  explain: |
+    Split A: the pure child has Gini 0, and the (5, 10) child has Gini 1 - (1/3)² - (2/3)² = 4/9, about 0.444; weighted by 5/20 and 15/20, that is about 0.333. Split B: each child has Gini 1 - 0.49 - 0.09 = 0.42, so the weighted Gini is 0.42. Split A leaves less impurity, so it reduces impurity more.
+  why:
+    B: "0.42 is higher than 0.33, so Split B leaves more impurity, not less."
+    C: "Equal child sizes do not matter; the impurity left behind does."
+    D: "Splits are compared by how much impurity they remove, and impure children are normal."
+  verify: |
+    def g(a, b):
+        n = a + b
+        return 1 - (a / n) ** 2 - (b / n) ** 2
+    wa = 5 / 20 * g(5, 0) + 15 / 20 * g(5, 10)
+    wb = 10 / 20 * g(7, 3) + 10 / 20 * g(3, 7)
+    ans = "Split A, because its weighted Gini is lower (about 0.33)" if wa < wb else "other"
+
+- id: decision-trees-08
+  skill: decision-trees
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What is post-pruning a decision tree?
+  options:
+    - "Growing a full tree, then cutting branches that do not help on validation data"
+    - "Stopping growth as soon as the tree reaches a fixed depth"
+    - "Removing training examples that the tree misclassifies"
+    - "Splitting every node on two features at once"
+  answer: A
+  explain: |
+    Post-pruning lets the tree grow fully, then removes branches whose extra splits do not improve performance on held-out data, leaving a simpler tree that generalizes better.
+  why:
+    B: "Stopping at a fixed depth is pre-pruning, which acts while the tree grows."
+    C: "Pruning removes branches, not training examples."
+    D: "Standard trees split on one feature at a time."
+
+# ---------------------------------------------------------------- ensembles
+- id: ensembles-01
+  skill: ensembles
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    How does boosting differ from bagging?
+  options:
+    - "Boosting trains every model on exactly the same data."
+    - "Boosting trains models one after another, each focusing on earlier errors."
+    - "Boosting uses only a single model instead of many."
+    - "Boosting works only with neural networks."
+  answer: B
+  explain: |
+    Bagging trains its models independently on bootstrap samples. Boosting trains them in sequence, and each new model concentrates on the examples the earlier models got wrong.
+  why:
+    A: "Boosting reweights or refits the data to focus on errors, rather than reusing it unchanged."
+    C: "Boosting is an ensemble of many models."
+    D: "Boosting is most often used with decision trees."
+
+- id: ensembles-02
+  skill: ensembles
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A random forest has 7 trees. Five of them classify an email as spam and two classify it as not spam. What does the forest predict?
+  options:
+    - "Not spam, because the minority is more careful"
+    - "No prediction, because the trees disagree"
+    - "Spam, by majority vote"
+    - "Spam, but only if all 7 trees agree"
+  answer: C
+  explain: |
+    For classification, a random forest takes a majority vote of its trees. Five of the seven trees say spam, so the forest predicts spam.
+  why:
+    A: "The forest follows the majority, not the minority."
+    B: "Disagreement is normal; voting resolves it."
+    D: "A forest does not require every tree to agree."
+
+- id: ensembles-03
+  skill: ensembles
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What makes a random forest "random"?
+  options:
+    - "Its trees are given random labels."
+    - "Its predictions are chosen at random from the trees."
+    - "Its final model is picked at random from many forests."
+    - "Each tree sees a bootstrap sample and random feature subsets at splits."
+  answer: D
+  explain: |
+    Two sources of randomness make the trees different from one another: each tree trains on a random sample of rows drawn with replacement, and each split considers only a random subset of the features. Diverse trees make better votes.
+  why:
+    A: "The labels stay correct; only the rows and features are sampled."
+    B: "Predictions come from a vote, not a random pick."
+    C: "There is one forest whose trees vote."
+
+- id: ensembles-04
+  skill: ensembles
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Which statement about ensembles is most accurate?
+  options:
+    - "Bagging mainly reduces bias, and boosting mainly reduces variance."
+    - "Both bagging and boosting only make models more complex."
+    - "Bagging mainly reduces variance, and boosting mainly reduces bias."
+    - "Neither changes bias or variance; they only speed up training."
+  answer: C
+  explain: |
+    Averaging many independently trained models cancels much of their individual noise, so bagging mainly reduces variance. Fitting each new model to earlier errors steadily corrects systematic mistakes, so boosting mainly reduces bias.
+  why:
+    A: "This reverses the two."
+    B: "Their purpose is better generalization, not complexity for its own sake."
+    D: "Ensembles change bias and variance, and they often take longer to train."
+
+- id: ensembles-05
+  skill: ensembles
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In machine learning, what is an ensemble?
+  options:
+    - "A single very deep decision tree"
+    - "A way of splitting data into folds"
+    - "A list of the features a model uses"
+    - "Many models whose predictions are combined"
+  answer: D
+  explain: |
+    An ensemble combines the predictions of many models, by voting or averaging, and usually performs better than any one of them. Random forests and boosted trees are ensembles.
+  why:
+    A: "One tree, however deep, is a single model."
+    B: "Splitting data into folds is cross-validation."
+    C: "A list of features is not a model at all."
+
+- id: ensembles-06
+  skill: ensembles
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In bagging, what is a bootstrap sample?
+  options:
+    - "A same-size sample drawn at random with replacement"
+    - "The first tenth of the training data, kept in order"
+    - "A sample made only of the misclassified examples"
+    - "A copy of the test set reused as training data"
+  answer: A
+  explain: |
+    Drawing with replacement means some examples appear more than once and others not at all, so each model in the ensemble sees a slightly different version of the data.
+  why:
+    B: "A bootstrap sample is drawn at random, not taken from the start of the data."
+    C: "Focusing on misclassified examples is what boosting does."
+    D: "The test set must never be used for training."
+
+- id: ensembles-07
+  skill: ensembles
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A gradient boosting model keeps improving on its training data with every round, but after 300 rounds its validation error begins to rise. What should the team do?
+  options:
+    - "Add many more rounds, since training error is still falling"
+    - "Switch to a single decision tree with no depth limit"
+    - "Stop at the round where validation error was lowest"
+    - "Remove the validation set so the rise disappears"
+  answer: C
+  explain: |
+    Boosting can overfit if it runs too long, because later rounds start fitting noise. Stopping at the best validation round (early stopping), or using a smaller learning rate, keeps the model general.
+  why:
+    A: "More rounds would deepen the overfitting."
+    B: "An unlimited single tree overfits badly too."
+    D: "Hiding the evidence does not fix the overfitting."
+
+# ---------------------------------------------------------------- knn-svm-nb
+- id: knn-svm-nb-01
+  skill: knn-svm-nb
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    A new point is compared with five training points. Using k = 3, what class does k-nearest neighbors assign?
+
+    | Training point | Distance to new point | Class |
+    |---|---|---|
+    | P1 | 1.0 | A |
+    | P2 | 1.4 | A |
+    | P3 | 2.0 | B |
+    | P4 | 3.0 | B |
+    | P5 | 5.0 | B |
+  options:
+    - "Class A"
+    - "Class B"
+    - "A tie between A and B"
+    - "No class until the model is retrained"
+  answer: A
+  explain: |
+    The three nearest points are P1, P2, and P3, with classes A, A, and B. The majority vote among them is A.
+  why:
+    B: "Class B wins only when all five points vote, as with k = 5."
+    C: "Three neighbors cannot split evenly between two classes."
+    D: "k-NN needs no retraining; it classifies by consulting the stored points."
+  verify: |
+    pts = [(1.0, "A"), (1.4, "A"), (2.0, "B"), (3.0, "B"), (5.0, "B")]
+    top = [c for _, c in sorted(pts)[:3]]
+    ans = "Class " + max(set(top), key=top.count)
+
+- id: knn-svm-nb-02
+  skill: knn-svm-nb
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In a support vector machine, what are the support vectors?
+  options:
+    - "Every point in the training set, all weighted equally"
+    - "The points farthest from the boundary on each side"
+    - "The training points nearest the boundary, which fix it"
+    - "The features that receive the largest weights"
+  answer: C
+  explain: |
+    An SVM places its boundary to leave the widest margin, and that boundary is fixed by the training points nearest to it from each class, the support vectors. Moving any other point would not change it.
+  why:
+    A: "Most points have no effect on where the boundary lies."
+    B: "The farthest points are irrelevant to the margin."
+    D: "Support vectors are data points, not features."
+
+- id: knn-svm-nb-03
+  skill: knn-svm-nb
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What is the likely effect of using k = 1 in k-nearest neighbors?
+  options:
+    - "The model becomes very smooth and ignores local patterns."
+    - "The model can no longer make predictions."
+    - "The model needs scaled features less."
+    - "The model follows noise in the data and tends to overfit."
+  answer: D
+  explain: |
+    With k = 1, each prediction copies the label of the single nearest point, so one mislabeled or unusual training point can sway predictions around it. That is high variance, or overfitting.
+  why:
+    A: "Smoothing over local patterns is the effect of a very large k."
+    B: "k = 1 still makes predictions; it just trusts one neighbor."
+    C: "Scaling matters for any k, because distances drive the method."
+
+- id: knn-svm-nb-04
+  skill: knn-svm-nb
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why should features be scaled before using k-nearest neighbors?
+  options:
+    - "Scaling removes the need to choose k."
+    - "Features with large ranges would dominate the distances."
+    - "k-NN can only read values between 0 and 1."
+    - "Scaling turns k-NN into a supervised method."
+  answer: B
+  explain: |
+    k-NN measures distance across all features at once. Unscaled, a feature like income in dollars would swamp one like age in years, so the neighbors would depend almost entirely on income.
+  why:
+    A: "k must still be chosen after scaling."
+    C: "k-NN can use any numbers; scaling is about fairness between features."
+    D: "k-NN is already supervised; it uses labeled neighbors."
+
+- id: knn-svm-nb-05
+  skill: knn-svm-nb
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    What does the kernel trick let a support vector machine do?
+  options:
+    - "Train without needing any labeled examples"
+    - "Use only the support vectors as features"
+    - "Make predictions without computing any distances"
+    - "Find curved boundaries as if in higher dimensions"
+  answer: D
+  explain: |
+    A kernel computes similarities as if the data had been mapped into a higher-dimensional space, where a straight boundary can separate the classes, without ever computing that mapping. In the original space, the boundary comes out curved.
+  why:
+    A: "SVMs are supervised and still need labeled examples."
+    B: "Support vectors are data points that fix the boundary, not features."
+    C: "Kernels are similarity calculations, closely related to distances."
+
+- id: knn-svm-nb-06
+  skill: knn-svm-nb
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What assumption makes naive Bayes "naive"?
+  options:
+    - "That every class is equally likely to occur"
+    - "That features are independent given the class"
+    - "That the training data contains no errors at all"
+    - "That only one feature matters for each class"
+  answer: B
+  explain: |
+    Naive Bayes assumes each feature contributes independently once the class is known, so it can multiply the features' likelihoods. The assumption is rarely exactly true, but the method still works well, especially on text.
+  why:
+    A: "Naive Bayes uses each class's actual prior probability."
+    C: "No method assumes perfect training data; that is not the naive part."
+    D: "Naive Bayes combines many features, multiplying their likelihoods."
+
+- id: knn-svm-nb-07
+  skill: knn-svm-nb
+  tier: champion
+  type: visual
+  use: bank
+  stem: |
+    Using the same five training points, with k = 5 instead of k = 3, what class does k-nearest neighbors assign?
+
+    | Training point | Distance to new point | Class |
+    |---|---|---|
+    | P1 | 1.0 | A |
+    | P2 | 1.4 | A |
+    | P3 | 2.0 | B |
+    | P4 | 3.0 | B |
+    | P5 | 5.0 | B |
+  options:
+    - "Class A"
+    - "Class B"
+    - "A tie between A and B"
+    - "No class, because k is too large"
+  answer: B
+  explain: |
+    With k = 5, all five points vote: two A and three B, so the majority is B. Changing k flipped the prediction, which shows how strongly k shapes the model.
+  why:
+    A: "Class A wins with k = 3, but with k = 5 the B points outvote it."
+    C: "Five votes between two classes cannot tie."
+    D: "k can equal the number of training points, though that is rarely wise."
+  verify: |
+    pts = [(1.0, "A"), (1.4, "A"), (2.0, "B"), (3.0, "B"), (5.0, "B")]
+    top = [c for _, c in sorted(pts)[:5]]
+    ans = "Class " + max(set(top), key=top.count)
+
+- id: knn-svm-nb-08
+  skill: knn-svm-nb
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    Which task is a classic use of naive Bayes?
+  options:
+    - "Grouping customers into segments without labels"
+    - "Predicting a house's price in dollars"
+    - "Filtering spam using the words in each email"
+    - "Teaching a robot to walk through rewards"
+  answer: C
+  explain: |
+    Naive Bayes multiplies the probabilities of each word given spam or not spam, which is fast and works well for text classification such as spam filtering.
+  why:
+    A: "Grouping without labels is clustering."
+    B: "Predicting a price is regression."
+    D: "Learning from rewards is reinforcement learning."
+
+# ---------------------------------------------------------------- clustering-dimred
+- id: clustering-dimred-01
+  skill: clustering-dimred
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which clustering algorithm finds clusters of any shape as dense regions of points and labels points in sparse regions as noise?
+  options:
+    - "k-means"
+    - "Principal component analysis"
+    - "Linear regression"
+    - "DBSCAN"
+  answer: D
+  explain: |
+    DBSCAN is density-based: a cluster is a region where points are packed closely together, and isolated points in sparse areas are marked as noise. It needs no k and handles irregular shapes.
+  why:
+    A: "k-means assigns every point to a cluster and favors round clusters."
+    B: "PCA reduces dimensions; it does not cluster."
+    C: "Linear regression predicts numbers from labeled data."
+
+- id: clustering-dimred-02
+  skill: clustering-dimred
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    In hierarchical clustering, what does a dendrogram show?
+  options:
+    - "The order in which clusters are merged"
+    - "The centroid of each cluster"
+    - "The accuracy of the clustering"
+    - "The variance explained by each component"
+  answer: A
+  explain: |
+    A dendrogram is a tree diagram of the merges: the closest points join first, then larger groups. Cutting it at a chosen level gives a set of clusters.
+  why:
+    B: "Centroids are part of k-means."
+    C: "Clusterings have no accuracy without labels."
+    D: "Variance explained per component describes PCA."
+
+- id: clustering-dimred-03
+  skill: clustering-dimred
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    In one k-means iteration, the points (1, 1), (2, 1), and (1.5, 1) are assigned to centroid A. Where does centroid A move in the update step?
+  options:
+    - "(1, 1)"
+    - "(1.5, 1)"
+    - "(3, 2)"
+    - "(4.5, 3)"
+  answer: B
+  explain: |
+    The new centroid is the mean of its assigned points: x = (1 + 2 + 1.5) / 3 = 1.5 and y = (1 + 1 + 1) / 3 = 1, so it moves to (1.5, 1).
+  why:
+    A: "This keeps the first point instead of averaging all three."
+    C: "This adds the first two points instead of averaging all three."
+    D: "This adds all three points without dividing by 3."
+  verify: |
+    pts = [(1, 1), (2, 1), (1.5, 1)]
+    ans = f"({sum(p[0] for p in pts) / 3:g}, {sum(p[1] for p in pts) / 3:g})"
+
+- id: clustering-dimred-04
+  skill: clustering-dimred
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    What advantage does hierarchical clustering have over k-means?
+  options:
+    - "It always runs faster on very large datasets."
+    - "It needs labeled data, which makes it more accurate."
+    - "The number of clusters need not be chosen in advance."
+    - "It can only produce exactly two clusters."
+  answer: C
+  explain: |
+    Hierarchical clustering records every merge in a dendrogram, so you can choose the number of clusters afterward by cutting the tree at different levels. k-means needs k before it starts.
+  why:
+    A: "Hierarchical clustering is usually slower on large datasets, since it compares many pairs."
+    B: "It is unsupervised and uses no labels."
+    D: "Cutting the dendrogram can give any number of clusters."
+
+- id: clustering-dimred-05
+  skill: clustering-dimred
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In principal component analysis, what is the first principal component?
+  options:
+    - "The direction along which the data varies the most"
+    - "The feature with the largest values"
+    - "The direction along which the data varies the least"
+    - "The cluster that contains the most points"
+  answer: A
+  explain: |
+    PCA's first component points along the direction of greatest variance in the data. Each later component captures the most remaining variance and is uncorrelated with the earlier ones.
+  why:
+    B: "Components are new directions built from all the features, not one original feature."
+    C: "The direction of least variance is the last component."
+    D: "PCA does not form clusters."
+
+- id: clustering-dimred-06
+  skill: clustering-dimred
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What are t-SNE and UMAP mainly used for?
+  options:
+    - "Training deep neural networks much faster"
+    - "Drawing 2D maps of high-dimensional data"
+    - "Filling in missing values in a dataset"
+    - "Choosing the learning rate for training"
+  answer: B
+  explain: |
+    t-SNE and UMAP are nonlinear dimensionality reduction methods that lay out high-dimensional data in two (or three) dimensions, keeping similar points close together, so people can see its structure.
+  why:
+    A: "They are for visualizing data, not for training networks."
+    C: "Filling in missing values is imputation."
+    D: "Choosing a learning rate is hyperparameter tuning."
+
+- id: clustering-dimred-07
+  skill: clustering-dimred
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A dataset contains two interlocking crescent-shaped clusters plus a few scattered outliers. Which algorithm is most likely to separate the crescents and flag the outliers?
+  options:
+    - "k-means with k = 2"
+    - "Linear regression"
+    - "DBSCAN"
+    - "Naive Bayes"
+  answer: C
+  explain: |
+    DBSCAN follows dense regions wherever they lead, so it can trace curved shapes, and it labels isolated points as noise. k-means draws boundaries around round blobs and would cut the crescents incorrectly.
+  why:
+    A: "k-means favors round clusters and assigns every outlier to some cluster."
+    B: "Linear regression predicts numbers; it does not cluster."
+    D: "Naive Bayes is a supervised classifier and needs labels."
