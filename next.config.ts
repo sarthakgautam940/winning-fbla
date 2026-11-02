@@ -4,8 +4,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   turbopack: {
+    root: process.cwd(),
     rules: {
-      "*.css": {
+      // Tailwind only processes the global stylesheet; CSS modules stay native.
+      "globals.css": {
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },

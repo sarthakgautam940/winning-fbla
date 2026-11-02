@@ -17,7 +17,7 @@ Every source was opened on 2026-11-01. The numbered source list (S1, S2, ...) is
 |---|---|---|---|
 | Current national guideline | "2026-2027 Competitive Events Guidelines: Data Science & AI", 5 pages, footer "Updated August 2026" | CONFIRMED | S1 |
 | Any revision newer than August 2026? | None. The file served on 2026-11-01 still carries the August 2026 footer | CONFIRMED (as of 2026-11-01) | S1, S2 |
-| Is it a new event? | Yes. Added as a new high school objective test for the 2025-2026 season; first contested at the 2026 NLC (San Antonio) | CONFIRMED | S5, S6, S7 |
+| Is it a new event? | Yes. Added as a new high school objective test for the 2025-2026 season, so the 2026 NLC (San Antonio) was the first NLC to include it | CONFIRMED | S5, S6, S7 |
 | What did it replace? | Nothing. Listed as a brand-new event, not a rename or merger | CONFIRMED | S5 |
 | Did the objectives change for 2026-2027? | No. The study guide is identical to the 2025-2026 edition | CONFIRMED | S4, S8, S1 |
 | Official sample questions | FBLA keeps official sample test items in FBLA CONNECT (member login). Whether a Data Science & AI set exists could not be checked | Location CONFIRMED; DS&AI set UNVERIFIED | S10, S7, S2 |
@@ -103,7 +103,7 @@ What FBLA has said about the style of its objective tests:
 
 ## 4. Testing platform, calculator, navigation, flagging (task 1.3)
 
-**Name.** Blue Panda E-Testing. The login page title is "Blue Panda | eTesting", its banner image is labeled "Blue Panda E-Testing", and its address is bpet.gobluepanda.com. The abbreviation "BPET" appears only in the web address; no page spells it out. [S15] FBLA's support article "Online Testing - Devices" (last updated April 8, 2025) points NLC competitors to bpet.gobluepanda.com to try the sample test and tells schools to allow the BPET site through firewalls. [S13] Blue Panda says E-Testing was built for CTSO conferences and that results flow into Blue Panda Register, its competition-management system. [S16] FBLA also uses Blue Panda for NLC registration and releases NLC scores to advisers there. [S2, S24] All CONFIRMED.
+**Name.** Blue Panda E-Testing. The login page title is "Blue Panda | eTesting", its banner image is labeled "Blue Panda E-Testing", and its address is bpet.gobluepanda.com. The abbreviation "BPET" appears only in the web address; no page spells it out. [S15] FBLA's support article "Online Testing - Devices" (last updated April 8, 2025) points NLC competitors to bpet.gobluepanda.com to try the sample test and says firewalls and server settings must allow access to the testing site. [S13] Blue Panda says E-Testing was built for CTSO conferences and that results flow into Blue Panda Register, its competition-management system. [S16] FBLA also uses Blue Panda for NLC registration and releases NLC scores to advisers there. [S2, S24] All CONFIRMED.
 
 State conferences may use other arrangements; Virginia and Pennsylvania both register through Blue Panda [S28, S9], but neither names its objective-testing platform in the documents opened. UNVERIFIED for state level.
 
@@ -112,7 +112,7 @@ Historical note: a 2016-2017 Pennsylvania handout on taking a sample online test
 | Feature | What is known | Status | Source |
 |---|---|---|---|
 | Login | Fields: Event Code, Username, Passcode. FBLA hands out the test link and password at test check-in | CONFIRMED | S15, S1 |
-| Device and browser | Bring your own laptop or tablet; smartphones not allowed; Chrome most recommended; Safari and Edge supported but not preferred; firewalls must allow the BPET site | CONFIRMED | S13 |
+| Device and browser | Bring your own laptop or tablet; smartphones not allowed; Chrome most recommended; Safari and Edge supported but not preferred; firewalls must allow the testing site | CONFIRMED | S13 |
 | Timer | Practice checklist includes seeing the remaining time at the top of the screen | CONFIRMED | S13 |
 | Auto-submit and own clock | The test submits automatically at the time limit unless already submitted; each competitor's test runs on its own clock; once you begin you must finish | CONFIRMED in FBLA's 2025-2026 proctor template (used for state-level proctoring); assumed the same at NLC (INFERRED) | S17 |
 | Moving through questions | Practice checklist: select answers, move to the next question, answer all questions, submit | CONFIRMED | S13 |
@@ -190,7 +190,7 @@ App implications (INFERRED):
 
 - **No public typical, average, or cut scores** were found for any FBLA objective test, including Data Science & AI. CONFIRMED absence in the sources checked (guidelines, support articles, Operations Manual, state guides).
 - FBLA's explanation: objective tests are competitive by design and are not intended for everyone to score perfectly. [S14]
-- Scores exist but are private: 2026 NLC scores and rating sheets were released to chapter advisers in Blue Panda (by August 1). [S2]
+- Scores exist but are private: FBLA said 2026 NLC scores and rating sheets would be available to chapter advisers in Blue Panda by August 1, 2026. [S2]
 - If a flagged question is removed, all scores are recalculated. [S18]
 - With only one NLC held so far for this event (2026), there is no multi-year history to estimate a winning score. INFERRED.
 - Ties at NLC: 10 preselected tiebreaker questions, then 20 preselected questions, then completion time. [S1] Speed only matters after two question-based tiebreaks.

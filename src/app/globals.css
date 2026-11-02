@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ tokens */
+
+:root {
+  color-scheme: light;
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f3f2ef;
+  --surface-3: #eae8e4;
+  --line: #e5e3de;
+  --line-strong: #d4d1ca;
+  --ink: #17171a;
+  --ink-2: #4e4d49;
+  --ink-3: #6f6d67;
+  --accent: #2a6fdb;
+  --accent-ink: #1d5bbf;
+  --accent-soft: #eaf1fd;
+  --accent-line: #b9d0f6;
+  --good: #157f3b;
+  --good-fill: #1fa352;
+  --good-soft: #eaf6ee;
+  --good-line: #a6d9b7;
+  --bad: #c2392e;
+  --bad-fill: #dd4b3f;
+  --bad-soft: #fcedeb;
+  --bad-line: #f0b8b2;
+  --warn: #8f5c05;
+  --warn-fill: #e8a21a;
+  --warn-soft: #fdf4e3;
+  --warn-line: #f1d49a;
+  --shadow-pop: 0 12px 32px rgba(23, 23, 26, 0.09), 0 2px 6px rgba(23, 23, 26, 0.05);
+  --shadow-card: 0 1px 2px rgba(23, 23, 26, 0.04);
+  /* charts (validated reference palette) */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
+  --grid: #ecebe6;
+  --axis: #c3c2b7;
+  --code-bg: #f6f6f4;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f0f11;
+  --surface: #17171a;
+  --surface-2: #1e1e22;
+  --surface-3: #27272c;
+  --line: #2a2a2f;
+  --line-strong: #3a3a41;
+  --ink: #ededef;
+  --ink-2: #b3b3b9;
+  --ink-3: #8c8c94;
+  --accent: #4d8df0;
+  --accent-ink: #84b0f7;
+  --accent-soft: rgba(77, 141, 240, 0.14);
+  --accent-line: rgba(77, 141, 240, 0.42);
+  --good: #5ccb86;
+  --good-fill: #36b368;
+  --good-soft: rgba(76, 195, 122, 0.12);
+  --good-line: rgba(76, 195, 122, 0.4);
+  --bad: #f2867c;
+  --bad-fill: #e0574b;
+  --bad-soft: rgba(240, 123, 112, 0.12);
+  --bad-line: rgba(240, 123, 112, 0.42);
+  --warn: #ebb655;
+  --warn-fill: #e0a230;
+  --warn-soft: rgba(233, 176, 74, 0.12);
+  --warn-line: rgba(233, 176, 74, 0.4);
+  --shadow-pop: 0 16px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-card: none;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #2f9a2f;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+  --grid: #26262b;
+  --axis: #3f3f45;
+  --code-bg: #1b1b1f;
+}
+
+@theme inline {
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "Cascadia Mono", monospace;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-good: var(--good);
+  --color-good-fill: var(--good-fill);
+  --color-good-soft: var(--good-soft);
+  --color-good-line: var(--good-line);
+  --color-bad: var(--bad);
+  --color-bad-fill: var(--bad-fill);
+  --color-bad-soft: var(--bad-soft);
+  --color-bad-line: var(--bad-line);
+  --color-warn: var(--warn);
+  --color-warn-fill: var(--warn-fill);
+  --color-warn-soft: var(--warn-soft);
+  --color-warn-line: var(--warn-line);
+  --shadow-pop: var(--shadow-pop);
+  --shadow-card: var(--shadow-card);
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+}
+
+/* -------------------------------------------------------------------- base */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11";
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 320ms ease-out both;
+}
+
+/* ------------------------------------------------------- rendered content */
+/* Shared by lessons, questions, explanations, flashcards. */
+
+.rich {
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+.rich > * + * {
+  margin-top: 0.85em;
+}
+
+.rich p {
+  line-height: 1.7;
+}
+
+.rich strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.rich em {
+  font-style: italic;
+}
+
+.rich a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.rich ul,
+.rich ol {
+  padding-left: 1.35em;
+}
+
+.rich ul {
+  list-style: disc;
+}
+
+.rich ol {
+  list-style: decimal;
+}
+
+.rich li + li {
+  margin-top: 0.35em;
+}
+
+.rich li::marker {
+  color: var(--ink-3);
+}
+
+.rich code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.08em 0.36em;
+  white-space: break-spaces;
+}
+
+.rich table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.94em;
+}
+
+.rich .table-wrap {
+  overflow-x: auto;
+}
+
+.rich thead th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding: 0.5em 0.9em 0.45em 0;
+}
+
+.rich tbody td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.5em 0.9em 0.5em 0;
+  vertical-align: top;
+}
+
+.rich tbody tr:last-child td {
+  border-bottom: 1.5px solid var(--line-strong);
+}
+
+.rich hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2em 0;
+}
+
+/* code blocks (shiki dual theme) */
+.rich pre,
+.code-block pre {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  background: var(--code-bg) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  overflow-x: auto;
+  tab-size: 4;
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+
+[data-theme="dark"] .shiki,
+[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark);
+}
+
+pre.output {
+  color: var(--ink-2);
+  background: transparent !important;
+  border-style: dashed;
+  border-color: var(--line-strong);
+}
+
+/* math */
+.katex {
+  font-size: 1.06em;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35em 0;
+  margin: 0.6em 0 !important;
+}
+
+/* lesson prose: slightly larger, generous rhythm */
+.lesson-prose {
+  font-size: 17px;
+}
+
+.lesson-prose > p,
+.lesson-prose > ul,
+.lesson-prose > ol {
+  max-width: 68ch;
+}
+
+.lesson-prose h2 {
+  font-size: 1.42em;
+  line-height: 1.3;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin-top: 2.6em;
+  scroll-margin-top: 88px;
+}
+
+.lesson-prose h3 {
+  font-size: 1.12em;
+  font-weight: 650;
+  margin-top: 1.8em;
+}
+
+.lesson-prose > * + * {
+  margin-top: 1em;
+}
+
+/* question text */
+.q-stem {
+  font-size: 16.5px;
+}
+
+.q-stem p {
+  line-height: 1.65;
+}
+
+.q-option {
+  line-height: 1.5;
+}
+
+.q-option .katex {
+  font-size: 1em;
+}

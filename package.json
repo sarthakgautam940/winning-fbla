@@ -6,7 +6,7 @@
   "scripts": {
     "content": "tsx scripts/build-content.ts",
     "content:check": "tsx scripts/build-content.ts --check",
-    "predev": "npm run content",
+    "predev": "tsx scripts/build-content.ts --lenient",
     "dev": "next dev",
     "prebuild": "npm run content",
     "build": "next build",

@@ -1,0 +1,305 @@
+.root {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #060607;
+  color: #f4f4f5;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The light-up: the room slowly brightens from black to a deep charcoal,
+   lit from above, with a faint seam of light along the top edge. */
+.light {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #17171b 0%, #0e0e11 46%, #09090b 100%);
+  opacity: 0;
+  transition: opacity 1700ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+}
+
+.lit .light {
+  opacity: 1;
+}
+
+.stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.headline {
+  margin: 0;
+  min-height: 1.25em;
+  font-size: clamp(34px, 6.4vw, 54px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.028em;
+  color: #f5f5f6;
+  transition:
+    opacity 420ms ease,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.headlineOut {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.92em;
+  margin-left: 5px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.85);
+  vertical-align: -0.1em;
+  animation: blink 1.05s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.boxes {
+  display: flex;
+  gap: 10px;
+  margin-top: 44px;
+  cursor: text;
+}
+
+.box {
+  --i: 0;
+  position: relative;
+  width: 52px;
+  height: 64px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.025);
+  display: grid;
+  place-items: center;
+  font-size: 27px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: #f5f5f6;
+  opacity: 0;
+  transform: translateY(12px) scale(0.93);
+  transition:
+    opacity 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms ease,
+    background-color 260ms ease;
+  transition-delay: calc(var(--i) * 75ms);
+}
+
+.boxesIn .box {
+  opacity: 1;
+  transform: none;
+}
+
+.settled .box {
+  transition-delay: 0ms;
+}
+
+/* Waiting: a slow wave of light moves across the boxes. */
+.breathing .box {
+  animation: breathe 3.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 150ms);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.27);
+    background-color: rgba(255, 255, 255, 0.045);
+  }
+}
+
+.box.active {
+  animation: none;
+  border-color: rgba(255, 255, 255, 0.46);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.box.active::after {
+  content: "";
+  width: 2px;
+  height: 26px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.75);
+  animation: blink 1.05s ease-in-out infinite;
+}
+
+.box.filled {
+  animation: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+.digit {
+  animation: pop 220ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.wrong {
+  animation: shake 440ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.wrong .box {
+  border-color: rgba(248, 113, 113, 0.7) !important;
+  background-color: rgba(248, 113, 113, 0.07) !important;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(5px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-8px);
+  }
+  40%,
+  60% {
+    transform: translateX(8px);
+  }
+}
+
+.checking .box {
+  border-color: rgba(255, 255, 255, 0.38);
+}
+
+.right .box {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.collapse .box {
+  --d: 0;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.86);
+  transition-delay: calc(var(--d) * 55ms);
+  transition-duration: 480ms;
+}
+
+.prompt {
+  margin-top: 26px;
+  min-height: 1.5em;
+  font-size: 15px;
+  letter-spacing: 0.005em;
+  color: rgba(255, 255, 255, 0.56);
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 520ms ease,
+    transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 200ms ease;
+}
+
+.promptIn {
+  opacity: 1;
+  transform: none;
+}
+
+.promptError {
+  color: rgba(252, 165, 165, 0.92);
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  border: 0;
+  padding: 0;
+  font-size: 16px; /* prevents iOS zoom on focus */
+  caret-color: transparent;
+}
+
+.leave {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms ease;
+}
+
+.leaving .leave {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .boxes {
+    gap: 7px;
+    margin-top: 36px;
+  }
+  .box {
+    width: 40px;
+    height: 54px;
+    border-radius: 12px;
+    font-size: 23px;
+  }
+  .box.active::after {
+    height: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box,
+  .prompt,
+  .headline,
+  .light {
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+  .breathing .box,
+  .wrong {
+    animation: none;
+  }
+}

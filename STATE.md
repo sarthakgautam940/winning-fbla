@@ -26,16 +26,26 @@ A production web app (Next.js 16, deploy on Vercel) that takes Ashwath from begi
 - Content pipeline + validators + verifier, tested.
 - Pilot lesson u2-l3 (variance and standard deviation) with 23 questions and 9 flashcards: 0 errors, verifier 14/14 OK.
 
+## User instruction (2026-11-01, mid-build)
+
+"Please no more using subagents." Do not launch any new agents. Agents already running when this arrived (8 wave-1 writers for u1-u4, 1 fact checker) are allowed to finish; do not send them extra scope. Everything else is written directly: u0, u4-l9, u5, u6, u7 (incl. new u7-l8), u8, unit tests, practice tests, cold solve, fixes to wave-1 output.
+
+## Research results (done)
+
+- research/event.md: NLC 2027 Columbus, Ohio, June 23-26 (confirmed). Virginia SLC 2027 unpublished, likely early-mid April (2026: Apr 10-11, Reston). Virginia regionals ~mid-Feb to mid-Mar, test at school, top 3 per region advance. Platform: Blue Panda E-Testing (bpet.gobluepanda.com; sample test login "sample"/"sample"/"sample"). Calculator: practice with a basic four-function one. FBLA "flag" = challenge sent to a review team with an optional comment, not a bookmark; no confirmed review screen. MBA Research writes FBLA objective tests; FBLA says tests are rigorous and reward application over memorization.
+- research/scope.md: reference-by-reference scope. Curriculum expanded from it: IBM (Rollins) 10-stage methodology, floating point, u4-l9 toolkit lesson (python-core, dev-tools), AI types by functionality, NLP ambiguity/text features, agentic AI, perception/sensors/agents, syllogisms, u7-l8 search lesson (search-basics, reasoning-types), ethics criteria, IP, GLBA, adversarial examples.
+- research/facts.md: still being written by the fact checker.
+
 ## In progress
 
-- Research agents: event + reference scope (research/event.md, research/scope.md) and fact verification (research/facts.md, research/sources.md).
-- Wave 1 lesson writers: u1 (2 agents), u2 (2), u3 (2), u4 (2).
+- Wave 1 lesson writers (u1-u4), already running.
+- App build (me).
 
 ## Next
 
-1. Build the app: design tokens, gate, shell, lesson reader, question component, figures, widgets.
-2. Wave 2 writers (u5, u6, u7, u8) once research/facts.md exists.
-3. Write u0 strategy lessons myself; unit tests and practice tests (agents per area); cold-solve agents; analytics, planner, flashcards, review; QA; push.
+1. Build the app: design tokens, gate, shell, lesson reader, question component, figures, widgets, quizzes, tests, review, analytics, planner, flashcards, reference.
+2. Write u5, u6, u7, u8, u4-l9, u0 directly. Add IBM methodology and floating point to u1 files if wave 1 missed them.
+3. Unit tests (8 x 25) and practice tests (5 x 100) directly; cold-solve and verify; QA; push.
 
 ## Open issues
 

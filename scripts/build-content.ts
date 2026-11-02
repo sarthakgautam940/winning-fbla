@@ -40,6 +40,9 @@ const TMP = path.join(ROOT, "tmp");
 const args = process.argv.slice(2);
 const CHECK_ONLY = args.includes("--check");
 const STRICT = args.includes("--strict");
+// --lenient (used by `npm run dev`) writes output even when some content has
+// errors; invalid questions are already excluded. Production builds stay strict.
+const LENIENT = args.includes("--lenient");
 const argValue = (flag: string) => {
   const i = args.indexOf(flag);
   return i >= 0 ? args[i + 1] : null;
@@ -706,7 +709,7 @@ async function main() {
   if (CHECK_ONLY) {
     process.exit(errs.length ? 1 : 0);
   }
-  if (issues.errors.length) {
+  if (issues.errors.length && !LENIENT) {
     console.error("\nContent has errors; fix them before building.");
     process.exit(1);
   }

@@ -264,7 +264,7 @@ units:
           - "The lifecycle from question to deployment"
           - "OSEMN"
           - "CRISP-DM's six phases [Competitive]"
-          - "Other models you may see named [Champion]"
+          - "IBM's data science methodology (Rollins' 10 stages) [Competitive]"
           - "Exploratory data analysis"
           - "Reproducibility, documentation, and communicating results"
         figures: ["CRISP-DM cycle diagram with six phases and feedback arrows"]
@@ -686,6 +686,21 @@ units:
           - "ggplot2 and the grammar of graphics [Competitive]"
           - "RStudio, R Markdown, Quarto, and choosing R or Python"
         notes: "R is not available to run in this build; keep R snippets simple and double-check semantics by reasoning. x[1] is the first element. sd() uses n - 1."
+      - id: u4-l9
+        n: 9
+        title: "The data scientist's toolkit"
+        summary: Python's core data types, notebooks and environments, Git and GitHub, and the languages data scientists use.
+        minutes: 24
+        skills: [python-core, dev-tools]
+        objectives: [TL2, TL3]
+        outline:
+          - "Python's core data types: list, tuple, dictionary, set"
+          - "Mutability, indexing, and slicing [Competitive]"
+          - "Reading short Python: loops, conditions, comprehensions [Competitive]"
+          - "Notebooks and environments: Jupyter, JupyterLab, Anaconda, pip"
+          - "Git and GitHub: repository, commit, branch, merge, pull request"
+          - "The languages of data science and where each fits"
+        notes: "Python indexing starts at 0 and slices exclude the end (contrast with R). Tuples are immutable; dictionaries map keys to values; sets hold unique items. Git is the version-control tool; GitHub hosts Git repositories online. SQL injection belongs to security (Unit 8) but can be mentioned when discussing building queries from user input."
 
   # ------------------------------------------------------------------ UNIT 5
   - id: u5
@@ -865,6 +880,7 @@ units:
           - "Defining artificial intelligence"
           - "AI, machine learning, and deep learning"
           - "Narrow, general, and super AI"
+          - "Types of AI by functionality: reactive machines to self-aware [Competitive]"
           - "The Turing test"
           - "A timeline of milestones [Competitive]"
           - "AI winters and why they happened [Champion]"
@@ -880,6 +896,7 @@ units:
         outline:
           - "Computer vision and its tasks"
           - "Natural language processing and its tasks"
+          - "How machines process language: ambiguity, parsing, and text features [Competitive]"
           - "Speech recognition and synthesis"
           - "Robotics"
           - "Human-AI interaction"
@@ -962,8 +979,10 @@ units:
         objectives: [PR5]
         outline:
           - "The five big ideas in AI"
-          - "Perception: from signals to meaning"
-          - "The computer vision and speech pipelines"
+          - "Intelligent agents and the sense-deliberate-act cycle"
+          - "Sensors and how they encode the world"
+          - "Sensing versus perception"
+          - "Feature extraction and the abstraction pipeline [Competitive]"
           - "Where perception fails [Competitive]"
       - id: u7-l2
         n: 2
@@ -1057,6 +1076,21 @@ units:
           - "Conditional independence and explaining away [Competitive]"
           - "Inference: predictive and diagnostic reasoning"
         widgets: [bayesnet-calculator]
+      - id: u7-l8
+        n: 8
+        title: Search and the kinds of reasoning problems
+        summary: How AI searches state spaces, plays games with minimax, and which algorithm fits which kind of reasoning problem.
+        minutes: 24
+        skills: [search-basics, reasoning-types]
+        objectives: [PR5, PR3]
+        outline:
+          - "Problems as state spaces: states, operators, start, goal"
+          - "Breadth-first and depth-first search"
+          - "Best-first search, heuristics, and A* [Competitive]"
+          - "Adversarial search: minimax and alpha-beta pruning [Champion]"
+          - "The kinds of reasoning problems and an algorithm for each"
+        figures: ["A small search tree with start, goal, and the order BFS and DFS visit nodes"]
+        notes: "AI4K12 (Big Idea 2) lists the reasoning problem types: classification, prediction, sequential decision, combinatorial search, heuristic search, adversarial search, logical deduction, statistical inference, and pairs them with algorithms (decision trees or neural networks, regression, reinforcement learning, search, A*, alpha-beta, resolution or IF-THEN rules, Bayesian networks). See research/scope.md section 2."
 
   # ------------------------------------------------------------------ UNIT 8
   - id: u8
@@ -1078,6 +1112,7 @@ units:
           - "Self-driving vehicles"
           - "Surveillance and facial recognition"
           - "Generative AI: deepfakes, copyright, jobs, and energy"
+          - "AI and society: work, intellectual property, and AI for good [Competitive]"
           - "Ethical frameworks and principles [Competitive]"
       - id: u8-l2
         n: 2
@@ -1230,7 +1265,7 @@ skills:
   - id: bin-arith
     name: Binary arithmetic and signed numbers
     objectives: [DL4]
-    patterns: ["Add two binary numbers", "Detect overflow in a fixed width", "Two's complement of a number", "Range of an n-bit signed integer", "Read a negative two's complement value"]
+    patterns: ["Add two binary numbers", "Detect overflow in a fixed width", "Two's complement of a number", "Range of an n-bit signed integer", "Read a negative two's complement value", "Floating-point rounding (why 0.1 + 0.2 is not exactly 0.3)"]
   - id: text-encoding
     name: Text encoding
     objectives: [DL4]
@@ -1278,7 +1313,7 @@ skills:
   - id: process-models
     name: OSEMN, CRISP-DM, and other models
     objectives: [DL7]
-    patterns: ["Expand OSEMN", "CRISP-DM phases in order", "The CRISP-DM phase that usually takes longest", "Match a task to a CRISP-DM phase"]
+    patterns: ["Expand OSEMN", "CRISP-DM phases in order", "The CRISP-DM phase that usually takes longest", "Match a task to a CRISP-DM phase", "IBM (Rollins) methodology stages in order", "Map IBM stages to CRISP-DM phases"]
   - id: eda
     name: Exploratory data analysis
     objectives: [DL7]
@@ -1586,11 +1621,18 @@ skills:
     name: R, Python, and the wider toolkit
     objectives: [TL4, TL2]
     patterns: ["When to choose R", "When to choose Python", "RStudio, R Markdown, Quarto, Shiny", "Other tools: Excel, Tableau, Power BI, Spark"]
-  # Unit 5 ---------------------------------------------------------------
+  - id: python-core
+    name: Python core data types
+    objectives: [TL3, TL2]
+    patterns: ["Pick list, tuple, dict, or set for a use", "Mutable versus immutable", "Zero-based indexing and slicing", "Predict the output of a short loop or comprehension", "Common errors: KeyError, IndexError, TypeError"]
+  - id: dev-tools
+    name: Notebooks, environments, and version control
+    objectives: [TL2]
+    patterns: ["What a Jupyter notebook is (cells, kernel, Markdown)", "Package and environment managers (pip, conda, Anaconda)", "Git versus GitHub", "Commit, branch, merge, clone, pull request", "Match a language to its typical use (Python, R, SQL, Scala, Julia, Java)", "Open-source versus commercial tools"]  # Unit 5 ---------------------------------------------------------------
   - id: ml-nature
     name: What machine learning is
     objectives: [ML1]
-    patterns: ["Identify T, P, and E", "ML versus traditional programming", "When ML is a good fit", "Training versus inference"]
+    patterns: ["Identify T, P, and E", "ML versus traditional programming", "When ML is a good fit", "Learning phase versus application (inference) phase", "Using a trained model does not change it"]
   - id: ml-vocab
     name: Features, labels, parameters, hyperparameters
     objectives: [ML1]
@@ -1622,7 +1664,7 @@ skills:
   - id: data-splits
     name: Training, validation, and test sets
     objectives: [ML2]
-    patterns: ["Purpose of each split", "Which split tunes hyperparameters", "Why not reuse the test set", "Typical proportions", "Stratified splits"]
+    patterns: ["Purpose of each split", "Which split tunes hyperparameters", "Validation error decides when to stop training", "Why not reuse the test set", "Typical proportions", "Stratified splits"]
   - id: cross-validation
     name: Cross-validation
     objectives: [ML2]
@@ -1666,7 +1708,7 @@ skills:
   - id: neurons
     name: Neurons, weights, and layers
     objectives: [ML3, ML6]
-    patterns: ["Compute a neuron's output", "Role of the bias", "Perceptron limits (XOR)", "Count weights and biases", "Input, hidden, output layers"]
+    patterns: ["Compute a neuron's output", "Role of the bias", "Threshold neurons computing AND and OR", "Perceptron limits (XOR)", "Count weights and biases", "Input, hidden, output layers"]
   - id: activations
     name: Activation functions
     objectives: [ML3, ML6]
@@ -1682,12 +1724,12 @@ skills:
   - id: deep-architectures
     name: CNNs, RNNs, transformers, and more
     objectives: [ML6]
-    patterns: ["Match architecture to data", "Convolution and pooling", "Why LSTMs exist", "Transformers versus RNNs", "Autoencoders and GANs"]
+    patterns: ["Match architecture to data", "Kernels, convolution, and max pooling", "Why LSTMs exist", "Transformers versus RNNs", "Autoencoders and GANs", "Feed-forward versus recurrent connections"]
   # Unit 6 ---------------------------------------------------------------
   - id: ai-definitions
     name: Defining AI
     objectives: [AI4]
-    patterns: ["Best definition of AI", "AI, ML, DL nesting", "Narrow versus general AI", "The Turing test", "Symbolic versus connectionist"]
+    patterns: ["Best definition of AI", "AI, ML, DL nesting", "Narrow versus general versus super AI", "Reactive machines, limited memory, theory of mind, self-aware", "The Turing test", "Symbolic versus connectionist", "AI rests on data, algorithms, and computing power", "Myths and realities of AI"]
   - id: ai-history
     name: Milestones in AI history
     objectives: [AI4]
@@ -1699,15 +1741,15 @@ skills:
   - id: nlp-speech
     name: Natural language processing and speech
     objectives: [AI4]
-    patterns: ["Name the NLP task", "Speech recognition versus synthesis", "NLU versus NLG", "Why language is hard"]
+    patterns: ["Name the NLP task", "Speech recognition versus synthesis", "NLU versus NLG", "Ambiguity: polysemy, reference, attachment", "Part-of-speech tagging and parse trees", "Text features: stop words, stemming, bag-of-words, TF-IDF, n-grams", "Sentiment analysis", "Commonsense reasoning and Winograd sentences"]
   - id: ai-subfields
     name: Robotics, human-AI interaction, other subfields
     objectives: [AI4]
-    patterns: ["Match an application to a subfield", "Sense, plan, act", "Human-AI interaction goals", "Expert systems and recommenders"]
+    patterns: ["Match an application to a subfield", "Sense, plan, act", "Human-AI interaction goals", "Emotion recognition and affective computing", "Expert systems and recommenders"]
   - id: genai-nature
     name: What generative AI is
     objectives: [AI1]
-    patterns: ["Generative versus discriminative", "What generative AI produces", "Foundation models", "How it learns patterns"]
+    patterns: ["Generative versus discriminative (predictive) AI", "What generative AI produces", "Foundation models", "How it learns patterns"]
   - id: genai-models
     name: GANs, VAEs, diffusion, transformers
     objectives: [AI1]
@@ -1751,7 +1793,7 @@ skills:
   - id: rag-agents
     name: Retrieval, tools, agents, multimodal
     objectives: [AI6]
-    patterns: ["How RAG works", "Why RAG reduces hallucination", "Tool use", "What an agent does", "Multimodal models"]
+    patterns: ["How RAG works", "Why RAG reduces hallucination", "Tool use", "Agentic AI: perceive, plan, act, observe, repeat", "Multimodal models"]
   - id: llm-capabilities
     name: What LLMs can and cannot do
     objectives: [AI6, AI2]
@@ -1760,11 +1802,11 @@ skills:
   - id: big-ideas
     name: The five big ideas and perception
     objectives: [PR5]
-    patterns: ["Name the five big ideas", "Classify an example by big idea", "Perception pipeline", "Sensors", "Perception failures"]
+    patterns: ["Name the five big ideas", "Classify an example by big idea", "Intelligent agent and the sense-deliberate-act cycle", "Sensing versus perception", "How cameras, microphones, lidar, radar, GPS, and accelerometers encode data", "Feature extraction and abstraction pipelines", "Perception failures and inclusivity"]
   - id: kr-forms
     name: Ways to represent knowledge
     objectives: [PR5]
-    patterns: ["Define KR and reasoning", "Semantic network and inheritance", "Frames, slots, fillers", "Production rules", "Match a representation to a use"]
+    patterns: ["Define KR and reasoning", "Symbolic versus numerical representations", "Semantic network and inheritance", "Schemas, frames, slots, fillers", "Production rules", "Match a representation to a use"]
   - id: kg-ontology
     name: Ontologies, knowledge graphs, semantic web
     objectives: [PR5]
@@ -1788,7 +1830,7 @@ skills:
   - id: inference-rules
     name: Inference rules
     objectives: [PR1]
-    patterns: ["Apply modus ponens", "Apply modus tollens", "Spot a fallacy", "Unification substitution", "Resolution idea"]
+    patterns: ["Apply modus ponens", "Apply modus tollens", "Complete a syllogism (major premise, minor premise, conclusion)", "Spot a fallacy", "Unification substitution", "Resolution idea"]
   - id: chaining
     name: Forward chaining, backward chaining, expert systems
     objectives: [PR1, PR5]
@@ -1821,7 +1863,14 @@ skills:
     name: Inference in Bayesian networks
     objectives: [PR4]
     patterns: ["Predictive versus diagnostic reasoning", "A small posterior computation", "Exact versus approximate inference", "Applications"]
-  # Unit 8 ---------------------------------------------------------------
+  - id: search-basics
+    name: Search and game playing
+    objectives: [PR5]
+    patterns: ["States, operators, start state, goal state", "Order in which BFS and DFS visit nodes", "Which search finds the shallowest goal or uses less memory", "Heuristics, best-first, and A*", "Minimax value of a small game tree", "What alpha-beta pruning saves"]
+  - id: reasoning-types
+    name: Kinds of reasoning problems
+    objectives: [PR5, PR3]
+    patterns: ["Classify a problem: classification, prediction, sequential decision, combinatorial, heuristic, adversarial, deduction, statistical inference", "Match a problem type to an algorithm", "Symbolic versus statistical approaches for a task"]  # Unit 8 ---------------------------------------------------------------
   - id: av-dilemmas
     name: Self-driving vehicles
     objectives: [PE1]
@@ -1833,11 +1882,11 @@ skills:
   - id: genai-dilemmas
     name: Generative AI dilemmas
     objectives: [PE1]
-    patterns: ["Deepfake harms", "Copyright and training data", "Academic integrity", "Jobs and environmental cost", "Identify the dilemma in a scenario"]
+    patterns: ["Deepfake harms", "Copyright and training data", "Intellectual property: copyright, patent, trademark, trade secret", "Academic integrity", "Automation, jobs, and Amara's Law", "Environmental cost", "AI for social good", "Identify the dilemma in a scenario"]
   - id: ethics-principles
     name: Ethical frameworks and principles
     objectives: [PE1]
-    patterns: ["Utilitarian versus deontological reasoning", "Match a principle to a practice", "Human in the loop", "Beneficence and non-maleficence"]
+    patterns: ["Utilitarian versus deontological reasoning", "Match a principle to a practice", "Ethical design criteria: fairness, transparency, explainability, accountability, privacy, societal values", "Stakeholders and the ethical matrix", "Human in the loop", "Beneficence and non-maleficence"]
   - id: bias-sources
     name: Where AI bias comes from
     objectives: [PE2]
@@ -1853,7 +1902,7 @@ skills:
   - id: llm-security
     name: Security risks of LLMs
     objectives: [PE3]
-    patterns: ["Direct versus indirect prompt injection", "Jailbreak", "Data poisoning", "Improper output handling", "Excessive agency", "Defenses"]
+    patterns: ["Direct versus indirect prompt injection", "Injection hidden in documents, web pages, or images", "Jailbreak", "Data poisoning", "Adversarial examples", "Improper output handling (including SQL injection from model output)", "Excessive agency", "Defenses"]
   - id: llm-privacy
     name: Privacy risks of LLMs
     objectives: [PE3]
@@ -1873,8 +1922,8 @@ skills:
   - id: ai-laws
     name: Privacy laws and AI regulation
     objectives: [PE1, PE3]
-    patterns: ["Match a law to a scenario", "GDPR rights", "COPPA and HIPAA scope", "EU AI Act risk tier for a system", "NIST AI RMF functions"]
+    patterns: ["Match a law to a scenario", "GDPR rights", "COPPA, HIPAA, FERPA, and GLBA scope", "EU AI Act risk tier for a system", "NIST AI RMF functions"]
   - id: responsible-ai
     name: Responsible AI in practice
     objectives: [PE1, PE2, PE4]
-    patterns: ["Transparency versus explainability", "LIME and SHAP", "Model cards and datasheets", "Accountability and oversight", "ACM and IEEE codes"]
+    patterns: ["Transparency versus explainability", "LIME and SHAP", "Model cards and datasheets", "Disparate impact and audits", "Accountability and oversight", "ACM and IEEE codes"]
