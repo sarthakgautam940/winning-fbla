@@ -1,0 +1,51 @@
+# Lesson 3.8 flashcards
+
+- id: fc-mae-mse-rmse
+  term: MAE, MSE, RMSE
+  def: MAE averages absolute errors (units of y). MSE averages squared errors (squared units). RMSE is the square root of MSE (units of y). RMSE is at least MAE and punishes large errors more.
+  skill: reg-metrics
+
+- id: fc-confusion-matrix
+  term: Confusion matrix
+  def: Counts of true positives, false positives (false alarms, Type I), false negatives (misses, Type II), and true negatives. Layouts vary, so read the labels.
+  skill: confusion-matrix
+
+- id: fc-accuracy
+  term: Accuracy
+  def: The share of all predictions that are correct, (TP + TN) / total. Misleading when one class is rare.
+  skill: confusion-matrix
+  virginia: true
+
+- id: fc-precision
+  term: Precision
+  def: Of the cases predicted positive, the share that really are positive, TP / (TP + FP). Prioritize it when false alarms are costly.
+  skill: confusion-matrix
+  virginia: true
+
+- id: fc-recall
+  term: Recall
+  def: Of the actual positives, the share the model catches, TP / (TP + FN). Also called sensitivity or the true positive rate. Prioritize it when misses are costly.
+  skill: confusion-matrix
+  virginia: true
+
+- id: fc-f1-score
+  term: F1 Score
+  def: The harmonic mean of precision and recall, 2PR / (P + R). It stays low if either one is low.
+  example: "Precision 0.60, recall 0.90: F1 = 1.08 / 1.50 = 0.72."
+  skill: confusion-matrix
+  virginia: true
+
+- id: fc-specificity
+  term: Specificity and false positive rate
+  def: Specificity is TN / (TN + FP), the share of actual negatives cleared. The false positive rate is FP / (FP + TN) = 1 - specificity.
+  skill: confusion-matrix
+
+- id: fc-accuracy-paradox
+  term: Accuracy paradox
+  def: With imbalanced classes, a model that always predicts the common class can score high accuracy while catching none of the rare class. Use recall, precision, F1, or balanced accuracy.
+  skill: metric-choice
+
+- id: fc-threshold-roc
+  term: Thresholds, ROC, and AUC
+  def: Lowering the threshold raises recall and usually lowers precision. An ROC curve plots the true positive rate against the false positive rate across thresholds; AUC is 0.5 for random guessing and 1.0 for a perfect model.
+  skill: metric-choice

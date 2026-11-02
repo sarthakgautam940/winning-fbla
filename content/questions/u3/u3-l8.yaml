@@ -1,0 +1,591 @@
+# Lesson 3.8: Measuring model performance
+
+# ---------------------------------------------------------------- reg-metrics
+- id: reg-metrics-01
+  skill: reg-metrics
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    A model predicts 22, 24, and 34 for three cases whose actual values are 20, 25, and 30. What is the mean absolute error (MAE), to the nearest hundredth?
+  options:
+    - "-1.67"
+    - "2.33"
+    - "2.65"
+    - "7.00"
+  ordered: true
+  answer: B
+  explain: |
+    The errors (actual minus predicted) are -2, 1, and -4, so the absolute errors are 2, 1, and 4. Their mean is 7 / 3, about 2.33.
+  why:
+    A: "This averages the signed errors, which lets positive and negative misses cancel."
+    C: "This is the RMSE, the square root of the mean squared error."
+    D: "This is the MSE, the mean of the squared errors."
+  verify: "statistics.mean([abs(20 - 22), abs(25 - 24), abs(30 - 34)])"
+
+- id: reg-metrics-02
+  skill: reg-metrics
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A model's errors on four cases are 3, -1, 2, and -4. What is its root mean squared error (RMSE), to the nearest hundredth?
+  options:
+    - "0"
+    - "2.50"
+    - "2.74"
+    - "7.50"
+  ordered: true
+  answer: C
+  explain: |
+    Square the errors: 9, 1, 4, and 16, which sum to 30. The MSE is 30 / 4 = 7.5, and the RMSE is $$\sqrt{7.5} \approx 2.74$$.
+  why:
+    A: "This is the mean of the signed errors, which cancel to 0."
+    B: "This is the MAE, the mean of the absolute errors."
+    D: "This is the MSE, before taking the square root."
+  verify: "math.sqrt(statistics.mean([e ** 2 for e in [3, -1, 2, -4]]))"
+
+- id: reg-metrics-03
+  skill: reg-metrics
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A delivery company cares most about avoiding a few very late deliveries. Which error metric gives extra weight to large errors?
+  options:
+    - "Mean absolute error"
+    - "Accuracy"
+    - "Precision"
+    - "Root mean squared error"
+  answer: D
+  explain: |
+    RMSE squares each error before averaging, so a large error counts far more than several small ones. MAE weighs every unit of error equally.
+  why:
+    A: "MAE treats every unit of error the same, so it does not single out large misses."
+    B: "Accuracy is a classification metric, not a measure of numeric error."
+    C: "Precision is a classification metric for predicted positives."
+
+- id: reg-metrics-04
+  skill: reg-metrics
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A model predicts house prices in dollars. Which error metric is measured in squared dollars?
+  options:
+    - "Mean squared error (MSE)"
+    - "Mean absolute error (MAE)"
+    - "Root mean squared error (RMSE)"
+    - "R squared"
+  answer: A
+  explain: |
+    MSE averages squared errors, so its units are dollars squared, which makes it hard to interpret directly. Taking the square root gives RMSE, back in dollars.
+  why:
+    B: "MAE averages absolute errors, so it stays in dollars."
+    C: "RMSE takes the square root of MSE, returning to dollars."
+    D: "R squared is a share of variation explained and has no units."
+
+- id: reg-metrics-05
+  skill: reg-metrics
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    A home-price model has a mean absolute error of $12,000. What does this mean?
+  options:
+    - "The model explains 12% of the variation in prices."
+    - "Every prediction is exactly $12,000 too high."
+    - "The model's largest error is $12,000."
+    - "Predictions miss the actual price by $12,000 on average."
+  answer: D
+  explain: |
+    MAE is the average size of the errors, ignoring their direction, in the units of the response. On average, a prediction is $12,000 above or below the true price.
+  why:
+    A: "Variation explained is measured by R squared, not MAE."
+    B: "MAE ignores direction and averages; it does not say every error is the same."
+    C: "MAE is an average, so the largest error can be much bigger."
+
+- id: reg-metrics-06
+  skill: reg-metrics
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A model has MAE = 5 and RMSE = 12. What does the large gap between them suggest?
+  options:
+    - "The model is biased toward overpredicting."
+    - "The model's errors are all about the same size."
+    - "A few errors are much larger than the rest."
+    - "The RMSE must have been miscalculated."
+  answer: C
+  explain: |
+    RMSE squares errors before averaging, so it rises well above MAE when a few errors are very large. If every error had the same size, the two metrics would be equal.
+  why:
+    A: "Both metrics ignore the direction of errors, so the gap says nothing about bias."
+    B: "Errors of equal size would make RMSE equal MAE."
+    D: "RMSE can always exceed MAE, so a gap is no sign of a mistake."
+
+- id: reg-metrics-07
+  skill: reg-metrics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which statement about R squared as a model metric is true?
+  options:
+    - "It has no units and gives the share of variation explained."
+    - "It is measured in the same units as the response variable."
+    - "It counts the share of predictions that are exactly right."
+    - "It can only be used for classification models."
+  answer: A
+  explain: |
+    R squared is a proportion from 0 to 1 with no units. It says how much of the variability in the response the model accounts for, which complements error metrics such as MAE and RMSE.
+  why:
+    B: "MAE and RMSE are in the response's units; R squared is unitless."
+    C: "Exact matches are rare for numeric predictions; R squared measures explained variation."
+    D: "R squared is a regression metric."
+
+- id: reg-metrics-08
+  skill: reg-metrics
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    A model's errors on four cases are 1, 1, 1, and 9. What are its MAE and RMSE, to the nearest hundredth?
+  options:
+    - "MAE 3.00 and RMSE 3.00"
+    - "MAE 4.58 and RMSE 3.00"
+    - "MAE 3.00 and RMSE 21.00"
+    - "MAE 3.00 and RMSE 4.58"
+  answer: D
+  explain: |
+    MAE = (1 + 1 + 1 + 9) / 4 = 3. The squared errors are 1, 1, 1, and 81, so MSE = 84 / 4 = 21 and RMSE = $$\sqrt{21} \approx 4.58$$. The one large error lifts RMSE well above MAE.
+  why:
+    A: "RMSE equals MAE only when all errors are the same size."
+    B: "This swaps the two metrics; RMSE is never below MAE."
+    C: "21 is the MSE; the RMSE is its square root."
+  verify: |
+    errs = [1, 1, 1, 9]
+    mae = sum(abs(e) for e in errs) / len(errs)
+    rmse = math.sqrt(sum(e ** 2 for e in errs) / len(errs))
+    ans = f"MAE {mae:.2f} and RMSE {rmse:.2f}"
+
+# ---------------------------------------------------------------- confusion-matrix
+- id: confusion-matrix-01
+  skill: confusion-matrix
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    The confusion matrix shows a fraud detector's results on 200 transactions. How many fraudulent transactions did the model miss?
+  figure:
+    type: confusion
+    caption: Fraud detector results
+    tp: 50
+    fp: 15
+    fn: 10
+    tn: 125
+    positive: Fraud
+    negative: Legitimate
+  options:
+    - "10"
+    - "15"
+    - "50"
+    - "125"
+  ordered: true
+  answer: A
+  explain: |
+    A missed fraud is a fraudulent transaction predicted as legitimate, a false negative. The matrix shows 10 of them.
+  why:
+    B: "15 is the number of false positives, legitimate transactions flagged as fraud."
+    C: "50 is the number of true positives, frauds the model caught."
+    D: "125 is the number of true negatives, legitimate transactions correctly passed."
+
+- id: confusion-matrix-02
+  skill: confusion-matrix
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A model's results on 200 cases are TP = 30, FP = 10, FN = 20, and TN = 140. What is its precision?
+  options:
+    - "0.60"
+    - "0.75"
+    - "0.85"
+    - "0.93"
+  ordered: true
+  answer: B
+  explain: |
+    Precision is the share of predicted positives that are real: TP / (TP + FP) = 30 / 40 = 0.75.
+  why:
+    A: "This is recall, TP / (TP + FN) = 30 / 50."
+    C: "This is accuracy, (30 + 140) / 200."
+    D: "This is specificity, TN / (TN + FP) = 140 / 150."
+  verify: "30 / (30 + 10)"
+
+- id: confusion-matrix-03
+  skill: confusion-matrix
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A classifier's results on 200 cases are TP = 80, FP = 20, FN = 10, and TN = 90. What is its accuracy?
+  options:
+    - "0.80"
+    - "0.82"
+    - "0.85"
+    - "0.89"
+  ordered: true
+  answer: C
+  explain: |
+    Accuracy is the share of all predictions that are correct: (TP + TN) / total = (80 + 90) / 200 = 170 / 200 = 0.85.
+  why:
+    A: "This is precision, 80 / (80 + 20)."
+    B: "This is specificity, 90 / (90 + 20), about 0.82."
+    D: "This is recall, 80 / (80 + 10), about 0.89."
+  verify: "(80 + 90) / 200"
+
+- id: confusion-matrix-04
+  skill: confusion-matrix
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A disease test's results on 200 people are TP = 18, FP = 12, FN = 6, and TN = 164. What is its recall?
+  options:
+    - "0.60"
+    - "0.75"
+    - "0.91"
+    - "0.93"
+  ordered: true
+  answer: B
+  explain: |
+    Recall is the share of actual positives that the test caught: TP / (TP + FN) = 18 / 24 = 0.75.
+  why:
+    A: "This is precision, 18 / (18 + 12)."
+    C: "This is accuracy, (18 + 164) / 200."
+    D: "This is specificity, 164 / (164 + 12), about 0.93."
+  verify: "18 / (18 + 6)"
+
+- id: confusion-matrix-05
+  skill: confusion-matrix
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A model has precision 0.60 and recall 0.90. What is its F1 score?
+  options:
+    - "0.54"
+    - "0.72"
+    - "0.75"
+    - "0.90"
+  ordered: true
+  answer: B
+  explain: |
+    F1 = 2 × precision × recall / (precision + recall) = 2 × 0.60 × 0.90 / 1.50 = 1.08 / 1.50 = 0.72. It sits below the simple average because the harmonic mean leans toward the lower score.
+  why:
+    A: "This multiplies precision and recall without doubling or dividing."
+    C: "This is the simple average of 0.60 and 0.90, not the harmonic mean."
+    D: "This is the larger of the two scores."
+  verify: "2 * 0.60 * 0.90 / (0.60 + 0.90)"
+
+- id: confusion-matrix-06
+  skill: confusion-matrix
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What does a classifier's specificity measure?
+  options:
+    - "The share of predicted positives that are real"
+    - "The share of actual positives the model catches"
+    - "The share of all predictions that are correct"
+    - "The share of actual negatives the model clears"
+  answer: D
+  explain: |
+    Specificity is TN / (TN + FP), the true negative rate: of the cases that really are negative, the fraction the model labels negative. One minus specificity is the false positive rate.
+  why:
+    A: "That is precision."
+    B: "That is recall, also called sensitivity."
+    C: "That is accuracy."
+
+- id: confusion-matrix-07
+  skill: confusion-matrix
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In a spam filter's confusion matrix, what is a false positive?
+  options:
+    - "A spam email that the filter lets through"
+    - "A spam email that the filter catches"
+    - "A legitimate email that the filter marks as spam"
+    - "A legitimate email that the filter lets through"
+  answer: C
+  explain: |
+    A false positive is a negative case (a legitimate email) that the model labels positive (spam). It is a false alarm, the Type I error.
+  why:
+    A: "A spam email let through is a false negative, a miss."
+    B: "A caught spam email is a true positive."
+    D: "A legitimate email let through is a true negative."
+
+- id: confusion-matrix-08
+  skill: confusion-matrix
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Among 200 cases that are actually negative, a model correctly labels 180 as negative and wrongly labels 20 as positive. What is its false positive rate?
+  options:
+    - "0.10"
+    - "0.11"
+    - "0.20"
+    - "0.90"
+  ordered: true
+  answer: A
+  explain: |
+    The false positive rate is FP / (FP + TN) = 20 / 200 = 0.10, the share of actual negatives that set off a false alarm. It equals 1 minus the specificity of 0.90.
+  why:
+    B: "This divides by the true negatives alone, 20 / 180, instead of by all actual negatives."
+    C: "This treats 20 as a percent of 100 instead of 200."
+    D: "This is the specificity, 180 / 200."
+  verify: "20 / (20 + 180)"
+
+- id: confusion-matrix-09
+  skill: confusion-matrix
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    Model A has precision 0.9 and recall 0.1. Model B has precision 0.5 and recall 0.5. Which has the higher F1 score?
+  options:
+    - "Model A, because its precision is 0.9"
+    - "Neither, because both average to 0.5"
+    - "Model A, because F1 takes the larger of the two"
+    - "Model B, because F1 punishes a very low recall"
+  answer: D
+  explain: |
+    Model A's F1 is 2 × 0.9 × 0.1 / 1.0 = 0.18, while Model B's is 2 × 0.5 × 0.5 / 1.0 = 0.5. The harmonic mean drags Model A's score toward its poor recall.
+  why:
+    A: "High precision cannot make up for catching only 10% of the positives."
+    B: "Their simple averages are equal, but F1 is a harmonic mean, not a simple average."
+    C: "F1 leans toward the smaller value, not the larger one."
+  verify: |
+    fa = 2 * 0.9 * 0.1 / (0.9 + 0.1)
+    fb = 2 * 0.5 * 0.5 / (0.5 + 0.5)
+    ans = "Model B, because F1 punishes a very low recall" if fb > fa else "other"
+
+- id: confusion-matrix-10
+  skill: confusion-matrix
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A disease test says a sick patient is healthy. What kind of error is this?
+  options:
+    - "A Type I error, a false positive"
+    - "A sampling error"
+    - "A Type II error, a false negative"
+    - "A measurement bias"
+  answer: C
+  explain: |
+    The patient is actually positive (sick), but the test predicted negative. A missed positive is a false negative, which corresponds to a Type II error.
+  why:
+    A: "A false positive would label a healthy patient as sick."
+    B: "Sampling error is variation between samples, not a wrong prediction for one case."
+    D: "Measurement bias is a systematic flaw in an instrument, not the name of this error."
+
+# ---------------------------------------------------------------- metric-choice
+- id: metric-choice-01
+  skill: metric-choice
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    One in 100 transactions is fraud. A model that labels every transaction "not fraud" is 99% accurate. Why is it useless?
+  options:
+    - "Its recall is 0, since it catches no fraud at all."
+    - "Its accuracy is too low to be trusted."
+    - "Its precision is 1, which signals overfitting."
+    - "Its specificity is 0, since it flags every transaction."
+  answer: A
+  explain: |
+    The model never predicts fraud, so it catches none of the frauds: recall is 0. Accuracy looks excellent only because the negative class is so common, which is the accuracy paradox.
+  why:
+    B: "99% accuracy is high; the problem is that accuracy hides the failure on the rare class."
+    C: "With no positive predictions, precision is undefined, not 1."
+    D: "It labels every transaction negative, so its specificity is actually 1."
+
+- id: metric-choice-02
+  skill: metric-choice
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A screening test looks for a serious disease, and positive results are confirmed by a second test. Which metric should the screening test prioritize?
+  options:
+    - "Precision, so that few healthy people are flagged"
+    - "Accuracy, because it summarizes all the predictions"
+    - "Specificity, so that healthy people are cleared"
+    - "Recall, so that few sick patients are missed"
+  answer: D
+  explain: |
+    A missed case (false negative) could be deadly, while a false alarm only leads to a confirming test. High recall keeps misses rare.
+  why:
+    A: "False alarms here cost a second test; missing the disease costs far more."
+    B: "Accuracy can stay high even when many sick patients are missed, especially if the disease is rare."
+    C: "Clearing healthy people matters less than catching every sick patient at this stage."
+
+- id: metric-choice-03
+  skill: metric-choice
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    A classifier has an AUC of 0.5. What does this mean?
+  options:
+    - "It is right on half of its predictions."
+    - "It ranks cases no better than random guessing."
+    - "Its precision and recall are both 0.5."
+    - "It works perfectly at a threshold of 0.5."
+  answer: B
+  explain: |
+    AUC is the probability that the model scores a random positive case above a random negative one. At 0.5 that is a coin flip, so its ROC curve follows the diagonal of random guessing.
+  why:
+    A: "AUC measures ranking across all thresholds, not accuracy at one threshold."
+    C: "AUC is not built from precision; it comes from the ROC curve of recall against false positive rate."
+    D: "A perfect model has an AUC of 1.0."
+
+- id: metric-choice-04
+  skill: metric-choice
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    When false positives are very costly, which metric should be prioritized?
+  options:
+    - "Recall"
+    - "Precision"
+    - "Sensitivity"
+    - "True positive rate"
+  answer: B
+  explain: |
+    Precision is TP / (TP + FP), so it drops as false positives pile up. Prioritizing precision keeps false alarms rare.
+  why:
+    A: "Recall depends on false negatives, not false positives."
+    C: "Sensitivity is another name for recall."
+    D: "The true positive rate is also recall."
+
+- id: metric-choice-05
+  skill: metric-choice
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A company's spam filter sometimes sends important customer emails to the junk folder, where they go unread. Which metric should the filter's designers focus on improving?
+  options:
+    - "Recall, to catch more of the spam"
+    - "Accuracy, since most emails are legitimate"
+    - "Precision, so flagged emails are truly spam"
+    - "False negative rate, to let less spam through"
+  answer: C
+  explain: |
+    The costly mistake is a false positive: a real email marked as spam. Raising precision means that when the filter flags an email, it is almost always spam.
+  why:
+    A: "Catching more spam usually means flagging more emails, which can make the problem worse."
+    B: "Accuracy can be high while important emails are still lost."
+    D: "Letting less spam through is about false negatives, not the costly false positives."
+
+- id: metric-choice-06
+  skill: metric-choice
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A classifier's threshold is lowered from 0.5 to 0.3. What typically happens?
+  options:
+    - "Precision and recall both rise."
+    - "Precision rises and recall falls."
+    - "Neither metric changes, since the model is the same."
+    - "Recall rises and precision usually falls."
+  answer: D
+  explain: |
+    A lower threshold labels more cases positive. More real positives are caught, so recall rises, but more negatives are flagged too, so precision usually falls. This is the precision-recall trade-off.
+  why:
+    A: "Changing only the threshold trades one metric against the other; it rarely improves both."
+    B: "That is the effect of raising the threshold."
+    C: "The model is the same, but its predictions change when the threshold moves."
+
+- id: metric-choice-07
+  skill: metric-choice
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A model trained on data with very few fraud cases rarely predicts fraud. Which step most directly helps it learn the rare class?
+  options:
+    - "Oversampling the fraud cases during training"
+    - "Removing some fraud cases to simplify the data"
+    - "Reporting only the model's overall accuracy"
+    - "Raising the decision threshold to 0.99"
+  answer: A
+  explain: |
+    Oversampling the minority class (or giving its mistakes more weight) lets the model see enough fraud examples to learn their pattern. It is a standard fix for imbalanced classes.
+  why:
+    B: "Removing rare cases makes the imbalance worse."
+    C: "Accuracy hides the problem rather than fixing it."
+    D: "A higher threshold makes fraud predictions even rarer."
+
+- id: metric-choice-08
+  skill: metric-choice
+  tier: champion
+  type: visual
+  use: bank
+  stem: |
+    The ROC curves of two models are shown, along with the diagonal for random guessing. Which model performs better overall?
+  figure:
+    type: line
+    caption: ROC curves for two models
+    xLabel: False positive rate
+    yLabel: True positive rate
+    yMin: 0
+    yMax: 1
+    series:
+      - name: Model A
+        points: [[0, 0], [0.05, 0.55], [0.15, 0.8], [0.3, 0.92], [0.6, 0.98], [1, 1]]
+      - name: Model B
+        points: [[0, 0], [0.1, 0.25], [0.3, 0.5], [0.5, 0.68], [0.75, 0.86], [1, 1]]
+      - name: Random guessing
+        points: [[0, 0], [1, 1]]
+  options:
+    - "Model A, since its curve is closer to the top-left corner"
+    - "Model B, since its curve stays closer to the diagonal"
+    - "Neither, since both curves end at the same point"
+    - "Model B, since its curve rises more steadily"
+  answer: A
+  explain: |
+    At every false positive rate, Model A catches a larger share of positives, so its curve bows toward the top-left corner and its area under the curve is larger. Model B is only modestly better than random guessing.
+  why:
+    B: "Closeness to the diagonal means closeness to random guessing, which is worse."
+    C: "Every ROC curve ends at (1, 1); the area under the curve tells them apart."
+    D: "A steady rise near the diagonal is weak performance, not strong."
+
+- id: metric-choice-09
+  skill: metric-choice
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    What does an ROC curve plot?
+  options:
+    - "Precision against recall for each class"
+    - "Accuracy against the number of training examples"
+    - "True positive rate against false positive rate, across thresholds"
+    - "Error against the number of training epochs"
+  answer: C
+  explain: |
+    Each point on an ROC curve is one threshold, plotted by its true positive rate (recall) and its false positive rate. The curve shows the full trade-off as the threshold moves.
+  why:
+    A: "That describes a precision-recall curve, a different plot."
+    B: "That describes a learning curve."
+    D: "That describes a training loss curve."
