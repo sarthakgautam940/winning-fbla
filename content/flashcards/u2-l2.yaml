@@ -1,0 +1,50 @@
+# Lesson 2.2 flashcards
+
+- id: fc-quartile
+  term: Quartile
+  def: One of three values that split sorted data into four parts with about 25% each. Q1 is the 25th percentile, Q2 is the median, and Q3 is the 75th percentile.
+  skill: quartiles
+  virginia: true
+
+- id: fc-median-of-halves
+  term: Median-of-halves method
+  def: Find the median, split the data into lower and upper halves (leaving the median out when n is odd), and take each half's median as Q1 and Q3.
+  example: "For 6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, Q1 = 15 and Q3 = 43."
+  skill: quartiles
+
+- id: fc-five-number
+  term: Five-number summary
+  def: Minimum, Q1, median, Q3, maximum. It is exactly what a boxplot draws.
+  skill: quartiles
+
+- id: fc-percentile
+  term: Percentile
+  def: A value below which a given percentage of the data falls. The 90th percentile means you scored higher than about 90% of the group; it is not a percent correct.
+  skill: quartiles
+  virginia: true
+
+- id: fc-iqr
+  term: Interquartile range (IQR)
+  def: Q3 - Q1, the spread of the middle 50% of the data. It is resistant to outliers.
+  skill: quartiles
+
+- id: fc-quartile-methods
+  term: Quartile methods differ
+  def: Software such as pandas, NumPy, R, and Excel's QUARTILE.INC interpolates by default, so its quartiles can differ slightly from the hand method. Medians always agree.
+  skill: quartiles
+
+- id: fc-outlier
+  term: Outlier
+  def: A data point that differs markedly from the other observations. Flag it by the 1.5 x IQR rule or a z-score rule, then investigate before removing it.
+  skill: outlier-rule
+  virginia: true
+
+- id: fc-fences
+  term: 1.5 x IQR fences
+  def: Lower fence Q1 - 1.5 x IQR, upper fence Q3 + 1.5 x IQR. Values outside are potential outliers, and beyond 3 x IQR they are extreme outliers (Tukey).
+  skill: outlier-rule
+
+- id: fc-z-outlier-rule
+  term: z-score outlier rule
+  def: Flag values with |z| > 2 as unusual or |z| > 3 as outliers. It is weaker for skewed or small data because outliers distort the mean and SD.
+  skill: outlier-rule

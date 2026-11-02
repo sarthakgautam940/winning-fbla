@@ -1,0 +1,435 @@
+# Lesson 2.2: Quartiles, percentiles, and outliers
+# Quartiles use the median-of-halves method (median excluded from both halves when n is odd).
+
+# ---------------------------------------------------------------- quartiles
+- id: quartiles-01
+  skill: quartiles
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    Using the median-of-halves method, what is the first quartile (Q1) of 3, 5, 7, 8, 10, 12, 14, 15, 18?
+  options:
+    - "5"
+    - "6"
+    - "7"
+    - "10"
+  ordered: true
+  answer: B
+  explain: |
+    The 9 sorted values have median 10 (the 5th value). Leaving it out, the lower half is 3, 5, 7, 8, whose median is (5 + 7) / 2 = 6.
+  why:
+    A: "This is one of the two middle values of the lower half; with four values, average the two."
+    C: "This is the other middle value of the lower half, not their average."
+    D: "10 is the median of the whole dataset (Q2), not Q1."
+  verify: "statistics.median([3, 5, 7, 8])"
+
+- id: quartiles-02
+  skill: quartiles
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A student scores at the 90th percentile on a national exam. What does this mean?
+  options:
+    - "The student scored higher than about 90% of the test takers."
+    - "The student answered 90% of the questions correctly."
+    - "The student was in the top 90 test takers nationally."
+    - "The student's score was 90 points above the mean."
+  answer: A
+  explain: |
+    A percentile describes position relative to other people: about 90% of test takers scored below this student. It says nothing directly about the percent of questions answered correctly.
+  why:
+    B: "Percent correct and percentile are different; on a hard test, 60% correct could be the 90th percentile."
+    C: "A percentile is a percentage of the group, not a count of people."
+    D: "Distance from the mean in points is not what a percentile measures."
+
+- id: quartiles-03
+  skill: quartiles
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is the interquartile range of 2, 4, 5, 7, 9, 11, 13, 15?
+  options:
+    - "7.5"
+    - "8"
+    - "12"
+    - "13"
+  ordered: true
+  answer: A
+  explain: |
+    The lower half 2, 4, 5, 7 gives Q1 = (4 + 5) / 2 = 4.5, and the upper half 9, 11, 13, 15 gives Q3 = (11 + 13) / 2 = 12. IQR = 12 - 4.5 = 7.5.
+  why:
+    B: "8 is the median, (7 + 9) / 2, not the IQR."
+    C: "12 is Q3; subtract Q1 to get the IQR."
+    D: "13 is the range, 15 - 2, which uses the extremes instead of the quartiles."
+  verify: |
+    q1 = statistics.median([2, 4, 5, 7])
+    q3 = statistics.median([9, 11, 13, 15])
+    ans = q3 - q1
+
+- id: quartiles-04
+  skill: quartiles
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which five values make up the five-number summary?
+  options:
+    - "Mean, median, mode, range, and standard deviation"
+    - "Q1, Q2, Q3, the IQR, and the mean"
+    - "Minimum, mean, median, mode, and maximum"
+    - "Minimum, Q1, median, Q3, and maximum"
+  answer: D
+  explain: |
+    The five-number summary is the minimum, the first quartile, the median, the third quartile, and the maximum. It is exactly what a boxplot draws.
+  why:
+    A: "These mix measures of center and spread; none of the quartiles appear."
+    B: "The IQR and mean are not part of the five-number summary, and the extremes are missing."
+    C: "The mean and mode are not part of it; the quartiles are."
+
+- id: quartiles-05
+  skill: quartiles
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Using the median-of-halves method, what is the third quartile (Q3) of 6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49?
+  options:
+    - "41"
+    - "42.5"
+    - "43"
+    - "47"
+  ordered: true
+  answer: C
+  explain: |
+    The median is the 6th of 11 values, 40. Leaving it out, the upper half is 41, 42, 43, 47, 49, whose middle value is 43.
+  why:
+    A: "41 is the smallest value of the upper half, not its median."
+    B: "This includes the median 40 in the upper half (Tukey's hinge), which the median-of-halves method leaves out."
+    D: "47 is one position above the middle of the upper half."
+  verify: "statistics.median([41, 42, 43, 47, 49])"
+
+- id: quartiles-06
+  skill: quartiles
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    In a class of 40 students, exactly 30 scored below Maya on a test. What is Maya's percentile rank?
+  options:
+    - "25th percentile"
+    - "30th percentile"
+    - "75th percentile"
+    - "90th percentile"
+  answer: C
+  explain: |
+    Percentile rank is the percent of the group scoring below: 30 / 40 = 75%, so Maya is at the 75th percentile.
+  why:
+    A: "25% is the share who did not score below her, not her percentile."
+    B: "30 is a count of students, not a percentage of the class."
+    D: "This has no basis in the numbers given."
+  verify: |
+    ans = f"{30 / 40 * 100:g}th percentile"
+
+- id: quartiles-07
+  skill: quartiles
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    Using the median-of-halves method, what is the interquartile range of 14, 3, 9, 21, 6, 17, 11, 25, 8, 19?
+  options:
+    - "8"
+    - "11"
+    - "12.5"
+    - "22"
+  ordered: true
+  answer: B
+  explain: |
+    Sorted: 3, 6, 8, 9, 11, 14, 17, 19, 21, 25. The lower half 3, 6, 8, 9, 11 gives Q1 = 8, and the upper half 14, 17, 19, 21, 25 gives Q3 = 19. IQR = 19 - 8 = 11.
+  why:
+    A: "8 is Q1, not the IQR."
+    C: "12.5 is the median, (11 + 14) / 2."
+    D: "22 is the range, 25 - 3."
+  verify: |
+    data = sorted([14, 3, 9, 21, 6, 17, 11, 25, 8, 19])
+    ans = statistics.median(data[5:]) - statistics.median(data[:5])
+
+- id: quartiles-08
+  skill: quartiles
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    About what percent of a dataset lies between the first quartile and the third quartile?
+  options:
+    - "25%"
+    - "50%"
+    - "75%"
+    - "100%"
+  ordered: true
+  answer: B
+  explain: |
+    Q1 has about 25% of the data below it and Q3 about 75%, so about 75% - 25% = 50% lies between them. That middle half is what the IQR measures.
+  why:
+    A: "25% lies between each pair of neighboring quartiles, such as Q1 and the median."
+    C: "75% lies below Q3, not between Q1 and Q3."
+    D: "100% lies between the minimum and maximum."
+
+- id: quartiles-09
+  skill: quartiles
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    For 1, 2, 4, 7, 8, 9, 10, 12, a student finds Q1 = 3 by hand, but pandas reports Q1 = 3.5. Why do they differ?
+  options:
+    - "pandas rounds every quartile up to the nearest half."
+    - "The student made an arithmetic error."
+    - "pandas sorts the data in descending order."
+    - "pandas uses linear interpolation, a different quartile method."
+  answer: D
+  explain: |
+    There are many valid quartile definitions. The hand method takes the median of the lower half, (2 + 4) / 2 = 3, while pandas interpolates between data points by default and gets 3.5. Both are correct under their own definitions.
+  why:
+    A: "pandas does not round quartiles; it interpolates."
+    B: "The hand result of 3 is correct for the median-of-halves method."
+    C: "Sort order does not change the quartiles."
+
+- id: quartiles-10
+  skill: quartiles
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which of these is always equal to the median?
+  options:
+    - "Q1"
+    - "Q3"
+    - "Q2"
+    - "The interquartile range"
+  answer: C
+  explain: |
+    The second quartile, Q2, is the 50th percentile, which is the median.
+  why:
+    A: "Q1 is the 25th percentile."
+    B: "Q3 is the 75th percentile."
+    D: "The IQR is a measure of spread, Q3 - Q1."
+
+- id: quartiles-11
+  skill: quartiles
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A testing company reports that 80% of students scored below 640 on an exam. What is 640?
+  options:
+    - "The 80th percentile"
+    - "The 20th percentile"
+    - "The mean score"
+    - "The third quartile"
+  answer: A
+  explain: |
+    A value with 80% of the data below it is, by definition, the 80th percentile.
+  why:
+    B: "20% scored above 640; the percentile counts the share below."
+    C: "Nothing says 640 is the average."
+    D: "The third quartile is the 75th percentile, not the 80th."
+
+# ---------------------------------------------------------------- outlier-rule
+- id: outlier-rule-01
+  skill: outlier-rule
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A dataset has Q1 = 20 and Q3 = 30. Using the 1.5 x IQR rule, what is the upper fence?
+  options:
+    - "40"
+    - "45"
+    - "50"
+    - "60"
+  ordered: true
+  answer: B
+  explain: |
+    IQR = 30 - 20 = 10. The upper fence is Q3 + 1.5 x IQR = 30 + 15 = 45. Values above 45 are potential outliers.
+  why:
+    A: "This adds only 1 x IQR to Q3."
+    C: "This adds 2 x IQR to Q3."
+    D: "This adds 3 x IQR, which gives the outer fence for extreme outliers."
+  verify: "30 + 1.5 * (30 - 20)"
+
+- id: outlier-rule-02
+  skill: outlier-rule
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A dataset has mean 70 and standard deviation 5. Which value is flagged as an outlier by the rule that a value more than 3 standard deviations from the mean is an outlier?
+  options:
+    - "56"
+    - "62"
+    - "84"
+    - "88"
+  ordered: true
+  answer: D
+  explain: |
+    The z-scores are -2.8, -1.6, 2.8, and 3.6. Only 88, with z = (88 - 70) / 5 = 3.6, is more than 3 standard deviations from the mean.
+  why:
+    A: "56 has z = -2.8, which is within 3 standard deviations."
+    B: "62 has z = -1.6, well within 3 standard deviations."
+    C: "84 has z = 2.8, just inside 3 standard deviations."
+  verify: |
+    ans = [x for x in [56, 62, 84, 88] if abs((x - 70) / 5) > 3][0]
+
+- id: outlier-rule-03
+  skill: outlier-rule
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Under the 1.5 x IQR rule, how is a value below Q1 - 1.5 x IQR or above Q3 + 1.5 x IQR classified?
+  options:
+    - "As an error that must be deleted"
+    - "As the new median"
+    - "As a potential outlier"
+    - "As part of the middle 50% of the data"
+  answer: C
+  explain: |
+    Values beyond the fences are flagged as potential outliers. The rule only flags them; whether to keep, correct, or remove them is a separate decision.
+  why:
+    A: "Flagging is not deleting; the value must be investigated first."
+    B: "The median is the middle value, unrelated to the fences."
+    D: "The middle 50% lies between Q1 and Q3, well inside the fences."
+
+- id: outlier-rule-04
+  skill: outlier-rule
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    For the data 12, 14, 15, 15, 16, 18, 19, 21, 45, what is the upper fence under the 1.5 x IQR rule? (Use the median-of-halves method for quartiles.)
+  options:
+    - "25.5"
+    - "28.25"
+    - "36.5"
+    - "45"
+  ordered: true
+  answer: B
+  explain: |
+    The median is 16, so Q1 is the median of 12, 14, 15, 15, which is 14.5, and Q3 is the median of 18, 19, 21, 45, which is 20. IQR = 5.5, and the upper fence is 20 + 1.5 x 5.5 = 28.25. The value 45 lies beyond it.
+  why:
+    A: "This adds only 1 x IQR to Q3."
+    C: "This adds 3 x IQR, the outer fence."
+    D: "45 is the maximum, which lies beyond the fence."
+  verify: |
+    q1 = statistics.median([12, 14, 15, 15])
+    q3 = statistics.median([18, 19, 21, 45])
+    ans = q3 + 1.5 * (q3 - q1)
+
+- id: outlier-rule-05
+  skill: outlier-rule
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    Why is the 1.5 x IQR rule often more reliable than a z-score rule for spotting outliers in a small, skewed dataset?
+  options:
+    - "Quartiles resist outliers, while the mean and SD are pulled toward them."
+    - "The IQR rule always flags more values as outliers."
+    - "z-scores cannot be computed for skewed data."
+    - "The IQR rule does not require sorting the data."
+  answer: A
+  explain: |
+    An outlier inflates the mean and standard deviation, which can shrink its own z-score and hide it. Quartiles barely move when an extreme value changes, so fences built from them stay where they should.
+  why:
+    B: "The rules can flag different values, but neither always flags more."
+    C: "z-scores can be computed for any data; the problem is that they become unreliable."
+    D: "Finding quartiles does require sorting the data."
+
+- id: outlier-rule-06
+  skill: outlier-rule
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    A dataset has Q1 = 40 and Q3 = 52. Which of these values is a low outlier under the 1.5 x IQR rule?
+  options:
+    - "20"
+    - "25"
+    - "28"
+    - "34"
+  ordered: true
+  answer: A
+  explain: |
+    IQR = 52 - 40 = 12, so the lower fence is 40 - 1.5 x 12 = 22. Only 20 falls below 22.
+  why:
+    B: "25 is above the lower fence of 22."
+    C: "28 is above the lower fence of 22."
+    D: "34 is below Q1 but well above the fence."
+  verify: |
+    fence = 40 - 1.5 * (52 - 40)
+    ans = [x for x in [20, 25, 28, 34] if x < fence][0]
+
+- id: outlier-rule-07
+  skill: outlier-rule
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    In Tukey's rule for potential outliers, how many interquartile ranges beyond the quartiles are the fences placed?
+  options:
+    - "1"
+    - "1.5"
+    - "2"
+    - "3"
+  ordered: true
+  answer: B
+  explain: |
+    The inner fences sit 1.5 IQRs below Q1 and above Q3. Values beyond them are potential outliers.
+  why:
+    A: "One IQR is too close; Tukey's rule uses 1.5."
+    C: "Two is used by a different rule, the z-score rule, which counts standard deviations, not IQRs."
+    D: "3 IQRs marks the outer fences, used for extreme outliers."
+
+- id: outlier-rule-08
+  skill: outlier-rule
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Under Tukey's rules, what is a value called when it lies more than 3 x IQR above Q3?
+  options:
+    - "A mild outlier"
+    - "A quartile"
+    - "A whisker"
+    - "An extreme outlier"
+  answer: D
+  explain: |
+    Beyond 1.5 x IQR is a potential (mild) outlier; beyond 3 x IQR, the outer fence, is an extreme outlier.
+  why:
+    A: "A mild outlier lies between 1.5 and 3 IQRs beyond the quartiles."
+    B: "Quartiles are Q1, Q2, and Q3, the points that split the data into quarters."
+    C: "Whiskers are the lines in a boxplot that stop at the last value inside the fences."
+
+- id: outlier-rule-09
+  skill: outlier-rule
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A data scientist finds one value far beyond the upper fence. What should happen first?
+  options:
+    - "Delete it, because outliers always distort the analysis"
+    - "Replace it with the mean so the data look normal"
+    - "Investigate whether it is an error or a real extreme value"
+    - "Report it as the dataset's new maximum without checking"
+  answer: C
+  explain: |
+    An outlier might be a typo or a measurement glitch, or it might be the most important point in the data. Investigating first decides whether to correct it, keep it, or remove it.
+  why:
+    A: "Real extreme values carry information; deleting them without checking can hide the truth."
+    B: "Overwriting the value with the mean invents data."
+    D: "An unchecked value might be an error, so reporting it blindly is risky."
