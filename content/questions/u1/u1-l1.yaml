@@ -1,0 +1,464 @@
+# Lesson 1.1: What data science is
+
+# ---------------------------------------------------------------- ds-nature
+- id: ds-nature-01
+  skill: ds-nature
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Which statement best describes data science?
+  options:
+    - "The design and upkeep of the databases that store an organization's records"
+    - "A field that combines statistics, computing, and domain knowledge to turn data into decisions"
+    - "The use of spreadsheets and charts to summarize a company's sales from past years"
+    - "A branch of computer science that builds faster hardware for storing large amounts of data"
+  answer: B
+  explain: |
+    Data science is interdisciplinary. Statistics supplies the reasoning about patterns and uncertainty, computing supplies the tools to work at scale, and domain knowledge supplies the right questions and the judgment to interpret answers.
+  why:
+    A: "Database design is one supporting task (often a data engineer's or DBA's), not the field as a whole."
+    C: "Summarizing past sales in spreadsheets is descriptive reporting, a small part of what data science does."
+    D: "Data science analyzes data; it is not about building storage hardware."
+
+- id: ds-nature-02
+  skill: ds-nature
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    In Drew Conway's data science Venn diagram, what does the overlap of hacking skills and substantive expertise, without math and statistics knowledge, represent?
+  options:
+    - "Data science"
+    - "Machine learning"
+    - "Business intelligence"
+    - "The danger zone"
+  answer: D
+  explain: |
+    Conway called this overlap the danger zone: someone who can write code and knows the subject can produce analyses that look convincing, but without statistical training cannot tell whether the results are valid.
+  why:
+    A: "Data science is the center, where all three circles overlap."
+    B: "Conway labels hacking skills plus math and statistics (without domain expertise) as machine learning."
+    C: "Business intelligence is not one of the regions in Conway's diagram."
+
+- id: ds-nature-03
+  skill: ds-nature
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A team building a model to predict crop yields asks agronomists which soil and weather factors actually affect plant growth. Which part of data science are the agronomists supplying?
+  options:
+    - "Domain expertise"
+    - "Statistical modeling"
+    - "Data engineering"
+    - "Computing at scale"
+  answer: A
+  explain: |
+    Agronomists know the subject the data describes. That domain expertise tells the team which factors matter and whether the model's answers make sense, which no amount of code or math can replace.
+  why:
+    B: "The agronomists are not building or testing the model; they are explaining how crops grow."
+    C: "Data engineering means building pipelines and storage, which the agronomists are not doing."
+    D: "Computing at scale is the programming and infrastructure side of the work."
+
+- id: ds-nature-04
+  skill: ds-nature
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which item is an example of information rather than raw data?
+  options:
+    - "The number 101.8 written alone on a sticky note"
+    - "A column of numbers copied without its heading"
+    - "Patient 4417's temperature at 9 a.m.: 101.8°F"
+    - "Thermometer readings saved with no labels or units"
+  answer: C
+  explain: |
+    Information is data given context: what the value measures, in what units, for whom, and when. The labeled temperature has all of that, so it means something; the other options are still raw data.
+  why:
+    A: "A bare number with no context is raw data."
+    B: "Without a heading, the numbers have no meaning attached, so they are still data."
+    D: "Readings without labels or units are raw data until context is added."
+
+- id: ds-nature-05
+  skill: ds-nature
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which ordering lists the levels of the DIKW pyramid from the bottom to the top?
+  options:
+    - "Information, data, knowledge, wisdom"
+    - "Data, information, knowledge, wisdom"
+    - "Data, knowledge, information, wisdom"
+    - "Wisdom, knowledge, information, data"
+  answer: B
+  explain: |
+    The pyramid starts with raw data at the base. Data with context becomes information, patterns in information become knowledge, and judgment about what to do becomes wisdom at the top.
+  why:
+    A: "Information is built from data, so data must sit below it."
+    C: "Knowledge is built from information, so information comes before knowledge."
+    D: "This lists the levels from top to bottom."
+
+- id: ds-nature-06
+  skill: ds-nature
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does data literacy mean?
+  options:
+    - "The ability to read, analyze, question, and communicate with data"
+    - "The ability to write programs in at least one language such as Python"
+    - "Memorizing the definitions of the statistical terms used in reports"
+    - "Knowing how to design, secure, and administer a relational database"
+  answer: A
+  explain: |
+    Data literacy is a broad, practical skill: reading charts and numbers correctly, working with data, drawing sound conclusions, explaining them, and asking where the data came from and what might be missing.
+  why:
+    B: "Programming can help, but someone who cannot code can still be data literate."
+    C: "Memorized definitions without the ability to use and question data are not data literacy."
+    D: "Database administration is a specialized technical job, not the general skill of data literacy."
+
+- id: ds-nature-07
+  skill: ds-nature
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    According to Drew Conway's Venn diagram, a person with strong hacking skills and strong math and statistics knowledge, but no substantive expertise in the problem area, is working in which region?
+  options:
+    - "Data science"
+    - "The danger zone"
+    - "Machine learning"
+    - "Traditional research"
+  answer: C
+  explain: |
+    Conway labeled the overlap of hacking skills with math and statistics, without domain expertise, as machine learning: the ability to build models from data without deep knowledge of the subject. Data science requires all three circles.
+  why:
+    A: "Data science needs substantive expertise as well, which this person lacks."
+    B: "The danger zone is hacking skills plus substantive expertise without math and statistics."
+    D: "Research is commonly shown as math and statistics plus substantive expertise, without hacking skills."
+
+- id: ds-nature-08
+  skill: ds-nature
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In the DIKW pyramid, which level involves judgment about what action to take?
+  options:
+    - "Data"
+    - "Information"
+    - "Knowledge"
+    - "Wisdom"
+  answer: D
+  explain: |
+    Wisdom, at the top of the pyramid, applies knowledge to decide what to do. Knowing that a patient has had a fever for three days is knowledge; deciding to order tests and begin treatment is wisdom.
+  why:
+    A: "Data is the raw facts at the base, with no meaning or judgment attached."
+    B: "Information is data with context, such as a labeled measurement."
+    C: "Knowledge recognizes patterns and their meaning but stops short of deciding what to do."
+
+# ---------------------------------------------------------------- ds-roles
+- id: ds-roles-01
+  skill: ds-roles
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A team member builds and maintains the pipelines that move data from the company's apps into its data warehouse every night. What is this person's most likely role?
+  options:
+    - "Data engineer"
+    - "Data analyst"
+    - "Data scientist"
+    - "Machine learning engineer"
+  answer: A
+  explain: |
+    Building and maintaining pipelines, warehouses, and data infrastructure is the core of data engineering. Data engineers make sure reliable data is available for everyone else.
+  why:
+    B: "Data analysts use the data in the warehouse to answer questions and build reports."
+    C: "Data scientists build models and design experiments with the data the engineers provide."
+    D: "Machine learning engineers deploy and monitor models, not nightly data pipelines."
+
+- id: ds-roles-02
+  skill: ds-roles
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    After a recommendation model is trained, someone packages it into the company's mobile app, scales it to millions of requests, and watches for drops in its accuracy. What is this person's role?
+  options:
+    - "Business intelligence analyst"
+    - "Data steward"
+    - "Machine learning engineer"
+    - "Database administrator"
+  answer: C
+  explain: |
+    Taking a trained model into production, scaling it, and monitoring how it performs over time is the work of a machine learning engineer.
+  why:
+    A: "BI analysts build reports and dashboards about past performance; they do not deploy models."
+    B: "A data steward is responsible for a dataset's definitions, access rules, and quality."
+    D: "A database administrator keeps databases secure, backed up, and fast."
+
+- id: ds-roles-03
+  skill: ds-roles
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Each Monday, an employee queries last week's sales data, updates a dashboard, and explains the main trends to store managers. Which role does this describe?
+  options:
+    - "Data engineer"
+    - "Data analyst"
+    - "Machine learning engineer"
+    - "Data steward"
+  answer: B
+  explain: |
+    Querying existing data, building reports and dashboards, and explaining what the numbers show is the classic work of a data analyst.
+  why:
+    A: "A data engineer builds the pipelines that deliver the sales data, not the weekly report."
+    C: "Nothing here involves deploying or monitoring a model."
+    D: "A data steward governs a dataset's definitions and access rather than reporting on it."
+
+- id: ds-roles-04
+  skill: ds-roles
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A team member is asked whether a new checkout design increases purchases. She designs an A/B test, analyzes the results, and builds a model predicting which customers will respond to the new design. What is her role?
+  options:
+    - "Data analyst"
+    - "Database administrator"
+    - "Data engineer"
+    - "Data scientist"
+  answer: D
+  explain: |
+    Framing an open question, designing an experiment, and building a predictive model are the defining tasks of a data scientist, who works on what will happen and why rather than only reporting what happened.
+  why:
+    A: "Analysts mainly report on existing data; designing experiments and predictive models goes further."
+    B: "A DBA keeps databases running and secure; this task does not involve database administration."
+    C: "Data engineers build data infrastructure, not experiments or predictive models."
+
+- id: ds-roles-05
+  skill: ds-roles
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which responsibility belongs to a data steward?
+  options:
+    - "Setting what each field means, who may use the data, and how its quality is tracked"
+    - "Writing and debugging the code that trains the company's neural networks"
+    - "Installing database software and applying security patches on company servers"
+    - "Presenting the quarterly financial results to the company's investors"
+  answer: A
+  explain: |
+    A data steward is accountable for a set of data: its definitions, its access rules, and its quality. Stewardship is part of data governance.
+  why:
+    B: "Training models is the work of a data scientist or machine learning engineer."
+    C: "Installing and running database software is a database administrator's or engineer's job."
+    D: "Presenting financial results is a business or finance role, not data stewardship."
+
+- id: ds-roles-06
+  skill: ds-roles
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What is the main job of a database administrator (DBA)?
+  options:
+    - "Choosing which machine learning algorithm to use"
+    - "Keeping databases secure, backed up, and performing well"
+    - "Writing the narrative for a data-driven news story"
+    - "Labeling images for a computer vision dataset"
+  answer: B
+  explain: |
+    A DBA manages the database systems themselves: security and permissions, backups and recovery, and tuning so queries run fast.
+  why:
+    A: "Choosing algorithms is modeling work done by data scientists."
+    C: "Writing data stories is communication work, not database administration."
+    D: "Labeling training data is annotation work, unrelated to running databases."
+
+- id: ds-roles-07
+  skill: ds-roles
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    Which task is NOT typically part of a data engineer's job?
+  options:
+    - "Building an ETL process that loads data into a warehouse"
+    - "Designing how tables in the warehouse are organized"
+    - "Choosing features and tuning a model's hyperparameters"
+    - "Making sure data arrives on schedule and without corruption"
+  answer: C
+  explain: |
+    Feature selection and hyperparameter tuning are modeling tasks done by data scientists or machine learning engineers. The other three tasks are the heart of data engineering: moving, organizing, and safeguarding data.
+  why:
+    A: "Building ETL processes is a core data engineering task."
+    B: "Designing warehouse structure is data engineering work."
+    D: "Reliable, on-time data delivery is exactly what data engineers are responsible for."
+
+# ---------------------------------------------------------------- ds-analytics
+- id: ds-analytics-01
+  skill: ds-analytics
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A subscription company asks, "Which of our customers are likely to cancel next month?" What kind of analytics answers this question?
+  options:
+    - "Descriptive"
+    - "Diagnostic"
+    - "Prescriptive"
+    - "Predictive"
+  answer: D
+  explain: |
+    The question asks what will happen, which is predictive analytics. A model would estimate each customer's chance of canceling from patterns in past data.
+  why:
+    A: "Descriptive analytics reports what already happened, such as last month's cancellations."
+    B: "Diagnostic analytics explains why something happened."
+    C: "Prescriptive analytics recommends an action, such as which offer to send to keep a customer."
+
+- id: ds-analytics-02
+  skill: ds-analytics
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    An online store's returns doubled in March, and a manager asks the data team to find out why. What kind of analytics is this?
+  options:
+    - "Diagnostic"
+    - "Descriptive"
+    - "Predictive"
+    - "Prescriptive"
+  answer: A
+  explain: |
+    Asking why something happened is diagnostic analytics. The team would drill into the data, for example by product, warehouse, or shipping carrier, to find the cause of the spike.
+  why:
+    B: "Reporting that returns doubled is descriptive; explaining the cause goes a step further."
+    C: "Predictive analytics forecasts future returns rather than explaining past ones."
+    D: "Prescriptive analytics recommends what to do, which comes after understanding the cause."
+
+- id: ds-analytics-03
+  skill: ds-analytics
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    An airline wants a system that sets the price of each remaining seat to maximize total revenue on a flight. Which kind of analytics is this?
+  options:
+    - "Descriptive"
+    - "Diagnostic"
+    - "Prescriptive"
+    - "Predictive"
+  answer: C
+  explain: |
+    The system decides what action to take, setting each price, by optimizing an outcome. Recommending or choosing actions is prescriptive analytics, even though it relies on predictions of demand along the way.
+  why:
+    A: "Descriptive analytics would only summarize past sales and prices."
+    B: "Diagnostic analytics would explain why revenue changed in the past."
+    D: "Predicting demand is one input, but the system's job is to choose prices, which is prescriptive."
+
+- id: ds-analytics-04
+  skill: ds-analytics
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which ordering lists the four kinds of analytics from least to most complex?
+  options:
+    - "Diagnostic, descriptive, predictive, prescriptive"
+    - "Descriptive, diagnostic, predictive, prescriptive"
+    - "Descriptive, predictive, diagnostic, prescriptive"
+    - "Predictive, prescriptive, descriptive, diagnostic"
+  answer: B
+  explain: |
+    Each kind builds on the one before: describe what happened, diagnose why, predict what will happen, then prescribe what to do. Complexity and potential value rise along the way.
+  why:
+    A: "You must describe what happened before you can diagnose why."
+    C: "Diagnosing the past comes before predicting the future."
+    D: "Prediction and prescription build on description and diagnosis, so they come last."
+
+- id: ds-analytics-05
+  skill: ds-analytics
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A dashboard shows last month's sales for each region, compared with the month before. What kind of analytics does it provide?
+  options:
+    - "Prescriptive"
+    - "Predictive"
+    - "Diagnostic"
+    - "Descriptive"
+  answer: D
+  explain: |
+    The dashboard summarizes what already happened, which is descriptive analytics. It makes no claim about causes, the future, or what to do.
+  why:
+    A: "Nothing on the dashboard recommends an action."
+    B: "The dashboard reports past sales rather than forecasting future ones."
+    C: "Comparing months shows that sales changed, but it does not explain why."
+
+- id: ds-analytics-06
+  skill: ds-analytics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which statement best distinguishes data science from traditional business intelligence (BI)?
+  options:
+    - "Data science adds prediction, experiments, and unstructured data to BI's reporting on the past."
+    - "BI depends on collecting data, while data science works mainly from theory and needs little data."
+    - "BI focuses on predicting the future, while data science only summarizes what happened in the past."
+    - "Data science and BI are two names for the same work of building reports and dashboards."
+  answer: A
+  explain: |
+    BI centers on reports and dashboards about what happened, mostly from structured data. Data science goes further: predictive models, experiments, and data such as text and images.
+  why:
+    B: "Both fields are built on data."
+    C: "This reverses the two; BI is mainly descriptive and diagnostic."
+    D: "The fields overlap, but data science reaches into prediction and experimentation that BI typically does not."
+
+- id: ds-analytics-07
+  skill: ds-analytics
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A hospital's model gives each patient a risk score for readmission. A separate rule then automatically schedules a follow-up call for the 10 percent of patients with the highest scores. What kind of analytics is the scheduling rule?
+  options:
+    - "Descriptive"
+    - "Diagnostic"
+    - "Prescriptive"
+    - "Predictive"
+  answer: C
+  explain: |
+    The risk score is predictive, but the question asks about the rule, which decides what action to take for each patient. Choosing actions is prescriptive analytics.
+  why:
+    A: "The rule does more than summarize past events; it acts."
+    B: "The rule does not explain why patients were readmitted."
+    D: "The risk score is the predictive part; the rule that acts on it is prescriptive."
+
+- id: ds-analytics-08
+  skill: ds-analytics
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which statement best describes the relationship between statistics and data science?
+  options:
+    - "They are the same field; data science is simply the newer name for statistics."
+    - "Data science has replaced statistics, which modern companies no longer use."
+    - "Statistics is the part of data science that deals only with making charts and graphs."
+    - "Data science builds on statistics and adds large-scale computing and domain knowledge."
+  answer: D
+  explain: |
+    Statistics is one of data science's three foundations. Data science combines it with programming and large-scale computing, and applies both to questions in a particular field.
+  why:
+    A: "Statistics is older and narrower; data science adds computing and domain application."
+    B: "Statistics remains central to data science, for example in testing whether a pattern is real."
+    C: "Statistics is about reasoning from data under uncertainty, far more than charts."

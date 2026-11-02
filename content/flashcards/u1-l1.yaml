@@ -1,0 +1,77 @@
+# Lesson 1.1 flashcards
+
+- id: fc-data-science
+  term: Data Science
+  def: An interdisciplinary field that uses statistics, computing, and domain knowledge to turn data into insight and decisions.
+  skill: ds-nature
+  virginia: true
+
+- id: fc-conway-venn
+  term: "Conway's data science Venn diagram"
+  def: "Three circles: hacking skills, math and statistics knowledge, and substantive expertise. Data science is where all three overlap."
+  skill: ds-nature
+
+- id: fc-danger-zone
+  term: Danger zone (Conway)
+  def: Hacking skills plus substantive expertise without math and statistics. Produces analyses that look convincing but may not be valid.
+  skill: ds-nature
+
+- id: fc-dikw
+  term: DIKW pyramid
+  def: "From bottom to top: data, information, knowledge, wisdom. Information is data with context; wisdom is judgment about what to do."
+  skill: ds-nature
+
+- id: fc-data-literacy
+  term: Data literacy
+  def: The ability to read, work with, analyze, and communicate with data, including questioning where it came from and what it leaves out.
+  skill: ds-nature
+
+- id: fc-data-analyst
+  term: Data analyst
+  def: Answers questions with existing data; builds reports and dashboards and explains what the numbers show.
+  skill: ds-roles
+
+- id: fc-data-scientist
+  term: Data scientist
+  def: Frames open questions, designs experiments, and builds predictive models.
+  skill: ds-roles
+
+- id: fc-data-engineer
+  term: Data engineer
+  def: Builds and maintains the pipelines, warehouses, and infrastructure that make reliable data available.
+  skill: ds-roles
+
+- id: fc-ml-engineer
+  term: Machine learning engineer
+  def: Deploys trained models into products, scales them, and monitors their performance over time.
+  skill: ds-roles
+
+- id: fc-data-steward
+  term: Data steward
+  def: Responsible for a dataset's definitions, access rules, and quality; part of data governance.
+  skill: ds-roles
+
+- id: fc-descriptive-analytics
+  term: Descriptive analytics
+  def: "Answers what happened: summaries, reports, and dashboards of past data."
+  skill: ds-analytics
+
+- id: fc-diagnostic-analytics
+  term: Diagnostic analytics
+  def: Answers why something happened by drilling into the data to find causes.
+  skill: ds-analytics
+
+- id: fc-predictive-analytics
+  term: Predictive analytics
+  def: Answers what will happen, using models built from past data.
+  skill: ds-analytics
+
+- id: fc-prescriptive-analytics
+  term: Prescriptive analytics
+  def: Answers what to do, recommending or choosing actions, often by optimization. The most complex of the four kinds.
+  skill: ds-analytics
+
+- id: fc-business-intelligence
+  term: Business intelligence (BI)
+  def: Reporting and dashboards about past performance, mostly from structured data. Data science adds prediction, experiments, and unstructured data.
+  skill: ds-analytics
