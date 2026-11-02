@@ -1,0 +1,45 @@
+# Lesson 5.1 flashcards
+
+- id: fc-machine-learning
+  term: Machine learning
+  def: Building systems that learn patterns from data and improve at a task with experience, instead of following hand-written rules. Arthur Samuel's 1959 checkers program is a classic early example.
+  skill: ml-nature
+
+- id: fc-mitchell
+  term: "Mitchell's definition (T, P, E)"
+  def: A program learns from experience E with respect to tasks T and performance measure P if its performance at T, measured by P, improves with E.
+  example: "Spam filter: T is sorting emails, P is the percent sorted correctly, E is the labeled emails."
+  skill: ml-nature
+
+- id: fc-ml-vs-traditional
+  term: ML vs. traditional programming
+  def: Traditional programming turns data and hand-written rules into answers. Machine learning turns data and example answers into a model. ML suits complex or changing patterns; exact rules suit fixed formulas.
+  skill: ml-nature
+
+- id: fc-feature
+  term: Feature
+  def: An input variable a model uses to make predictions, also called an attribute or predictor, such as a house's size or age.
+  skill: ml-vocab
+  virginia: true
+
+- id: fc-target-variable
+  term: Target Variable
+  def: The output a model learns to predict, also called the label or response, such as a house's sale price. Labeled data includes its known values.
+  skill: ml-vocab
+  virginia: true
+
+- id: fc-hyperparameter
+  term: Hyperparameter
+  def: A setting chosen before training that controls how learning happens, such as the learning rate, k in k-NN or k-means, tree depth, or number of trees. Tuned on a validation set.
+  skill: ml-vocab
+  virginia: true
+
+- id: fc-parameter
+  term: Parameter
+  def: A value learned from the data during training, such as regression coefficients, neural network weights and biases, or a tree's split thresholds.
+  skill: ml-vocab
+
+- id: fc-model-algorithm
+  term: Algorithm, model, training, inference
+  def: An algorithm is the learning procedure; a model is its learned result. Training fits the model's parameters; inference uses the model to predict on new data without changing it.
+  skill: ml-nature

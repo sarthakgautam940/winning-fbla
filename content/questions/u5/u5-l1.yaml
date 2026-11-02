@@ -1,0 +1,363 @@
+# Lesson 5.1: What machine learning is
+
+# ---------------------------------------------------------------- ml-nature
+- id: ml-nature-01
+  skill: ml-nature
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A program learns to play chess by playing thousands of games against itself, and its win rate rises as it plays. In Mitchell's definition of learning, what is the experience E?
+  options:
+    - "Winning games of chess"
+    - "The percentage of games it wins"
+    - "The games it plays against itself"
+    - "The official rules of chess"
+  answer: C
+  explain: |
+    Experience is what the program learns from, here the games it plays. Winning games is the task T, and the win rate is the performance measure P.
+  why:
+    A: "Winning games of chess describes the task T."
+    B: "The win percentage is the performance measure P."
+    D: "The rules define the game; the program improves by playing, not by reading rules."
+
+- id: ml-nature-02
+  skill: ml-nature
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which statement best describes machine learning, as opposed to traditional programming?
+  options:
+    - "The computer learns rules from data and example answers."
+    - "A programmer writes every rule the computer must follow."
+    - "The computer runs faster because it skips the data."
+    - "The program cannot make mistakes once it is written."
+  answer: A
+  explain: |
+    In traditional programming, people write the rules. In machine learning, the computer is given data with answers and infers the rules, producing a model that handles new data.
+  why:
+    B: "Hand-written rules describe traditional programming."
+    C: "Machine learning depends on data; it does not skip it."
+    D: "Learned models make errors; that is why they are evaluated."
+
+- id: ml-nature-03
+  skill: ml-nature
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A trained fraud-detection model is deployed and scores 10,000 new transactions. It was not designed to update itself. What happens to its parameters?
+  options:
+    - "They grow larger as more transactions arrive."
+    - "They reset to their starting values after each prediction."
+    - "They adjust slightly after every transaction."
+    - "They stay the same unless the model is retrained."
+  answer: D
+  explain: |
+    Making predictions, called inference, does not change a model. Its parameters were fixed during training and change only if someone retrains it or it was built for online learning.
+  why:
+    A: "Predictions leave parameters untouched; nothing makes them grow."
+    B: "Resetting would erase everything the model learned."
+    C: "Adjusting with each new case describes online learning, which this model was not built for."
+
+- id: ml-nature-04
+  skill: ml-nature
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which task is the best fit for machine learning?
+  options:
+    - "Computing sales tax at a fixed legal rate"
+    - "Recognizing handwritten digits in scanned images"
+    - "Sorting a list of names alphabetically"
+    - "Converting temperatures from Celsius to Fahrenheit"
+  answer: B
+  explain: |
+    Handwriting varies endlessly, so no one can write exact rules for every way a digit is drawn, but many labeled examples exist to learn from. The other tasks follow simple, exact rules that ordinary code handles perfectly.
+  why:
+    A: "A fixed formula gives exact answers; learning would only add error."
+    C: "Alphabetical sorting follows a simple, exact rule."
+    D: "Temperature conversion is a fixed formula."
+
+- id: ml-nature-05
+  skill: ml-nature
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A model predicts house prices, and its predictions get closer to the true prices as more past sales are added to its training data. In Mitchell's terms, what is the performance measure P?
+  options:
+    - "Predicting the sale price of each house"
+    - "The records of past house sales"
+    - "The size of its prediction errors, such as the RMSE"
+    - "The number of houses in the neighborhood"
+  answer: C
+  explain: |
+    P is the number that scores how well the task is done. For price prediction, an error measure such as RMSE fills that role, and it falls as the model learns from more sales (E).
+  why:
+    A: "Predicting prices is the task T."
+    B: "Past sales are the experience E."
+    D: "The number of houses nearby is not a measure of the model's success."
+
+- id: ml-nature-06
+  skill: ml-nature
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A bank must compute the exact interest owed on each loan using a formula set by law. Should it use machine learning for this?
+  options:
+    - "Yes, because machine learning can handle any calculation."
+    - "Yes, because the bank has data on many loans."
+    - "No, because machine learning works only with images and text."
+    - "No, because an exact formula exists, and a learned model would add error."
+  answer: D
+  explain: |
+    When a precise rule already solves a problem, ordinary code gives exact answers every time. A learned model would only approximate the formula, adding error and cost with no benefit.
+  why:
+    A: "Being able to approximate a calculation is not a reason to replace an exact formula."
+    B: "Having data does not help when the answer is fixed by law."
+    C: "Machine learning works with many kinds of data, including numbers."
+
+- id: ml-nature-07
+  skill: ml-nature
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Who reported a 1959 checkers program that learned to play better than its programmer, and is credited with coining or popularizing the term "machine learning"?
+  options:
+    - "Alan Turing"
+    - "John McCarthy"
+    - "Frank Rosenblatt"
+    - "Arthur Samuel"
+  answer: D
+  explain: |
+    Arthur Samuel of IBM described his learning checkers program in a 1959 paper and is widely credited with the term "machine learning."
+  why:
+    A: "Alan Turing proposed the Turing test in 1950."
+    B: "John McCarthy coined the term artificial intelligence."
+    C: "Frank Rosenblatt introduced the perceptron."
+
+- id: ml-nature-08
+  skill: ml-nature
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What happens during inference?
+  options:
+    - "The algorithm fits the model's parameters to training data."
+    - "The trained model makes predictions on new data."
+    - "The data is split into training and test sets."
+    - "The hyperparameters are tuned on a validation set."
+  answer: B
+  explain: |
+    Inference is the application phase: the finished model takes new inputs and produces predictions. Fitting parameters happens earlier, during training.
+  why:
+    A: "Fitting parameters is training, the learning phase."
+    C: "Splitting the data happens before training."
+    D: "Tuning hyperparameters is part of building the model, before it is used."
+
+- id: ml-nature-09
+  skill: ml-nature
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A model scores 100% accuracy on its training data but performs poorly on new data. Why is it a poor model?
+  options:
+    - "Because training accuracy can never reach 100%"
+    - "Because it learned too slowly during training"
+    - "Because the goal is to generalize to new data, not to memorize examples"
+    - "Because a good model must have fewer parameters than examples"
+  answer: C
+  explain: |
+    Models exist to make predictions on cases they have not seen. Perfect training accuracy with poor results on new data means the model memorized its examples, which is overfitting.
+  why:
+    A: "Training accuracy can reach 100%, especially for a model that memorizes."
+    B: "Speed of learning is not the problem; failing on new data is."
+    D: "The number of parameters matters only through its effect on generalization."
+
+# ---------------------------------------------------------------- ml-vocab
+- id: ml-vocab-01
+  skill: ml-vocab
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A model predicts whether each customer will cancel a subscription (yes or no) using their monthly charge, contract length, and number of support calls. What is the target variable?
+  options:
+    - "Whether the customer cancels"
+    - "The monthly charge"
+    - "The contract length"
+    - "The number of support calls"
+  answer: A
+  explain: |
+    The target variable, or label, is what the model predicts: whether the customer cancels. The other three are features, the inputs used to make the prediction.
+  why:
+    B: "The monthly charge is an input feature."
+    C: "Contract length is an input feature."
+    D: "Support calls are an input feature."
+
+- id: ml-vocab-02
+  skill: ml-vocab
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    Which of these is a hyperparameter rather than a learned parameter?
+  options:
+    - "The coefficients of a linear regression"
+    - "The weights of a neural network"
+    - "The split thresholds found by a decision tree"
+    - "The number of trees in a random forest"
+  answer: D
+  explain: |
+    The number of trees is chosen before training and controls how the forest is built, which makes it a hyperparameter. Coefficients, weights, and split thresholds are all found by training, so they are parameters.
+  why:
+    A: "Regression coefficients are fitted to the data during training."
+    B: "Network weights are learned during training."
+    C: "A tree finds its split thresholds from the data as it trains."
+
+- id: ml-vocab-03
+  skill: ml-vocab
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In machine learning, what is a feature?
+  options:
+    - "The value the model is trying to predict"
+    - "An input variable the model uses to make predictions"
+    - "A setting chosen before training begins"
+    - "One complete row of the dataset"
+  answer: B
+  explain: |
+    Features are the inputs, such as a house's size and age, that the model uses to predict the target.
+  why:
+    A: "The value being predicted is the target variable, or label."
+    C: "A setting chosen before training is a hyperparameter."
+    D: "One complete row is an example, or instance."
+
+- id: ml-vocab-04
+  skill: ml-vocab
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    What is the difference between a machine learning algorithm and a model?
+  options:
+    - "The algorithm is the learning procedure; the model is its learned result."
+    - "The model is the learning procedure; the algorithm is its learned result."
+    - "They are two names for exactly the same thing."
+    - "Algorithms are used for regression; models are used for classification."
+  answer: A
+  explain: |
+    An algorithm, such as the procedure that grows a decision tree, is applied to data. What it produces, the specific tree with its learned splits, is the model that makes predictions. One algorithm run on two datasets gives two models.
+  why:
+    B: "This reverses the two terms."
+    C: "The procedure and its output are different things."
+    D: "Both terms apply to regression and classification alike."
+
+- id: ml-vocab-05
+  skill: ml-vocab
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    In k-means clustering, which items are hyperparameters and which are learned parameters?
+  options:
+    - "k and the centroid positions are both learned parameters."
+    - "k is learned during training, and the centroids are set beforehand."
+    - "k is a hyperparameter; the centroid positions are learned parameters."
+    - "k and the centroid positions are both hyperparameters."
+  answer: C
+  explain: |
+    The analyst chooses k before running the algorithm, which makes it a hyperparameter. The algorithm then finds where the centroids should go, so their positions are learned from the data.
+  why:
+    A: "k is not found by the algorithm; it must be chosen first."
+    B: "This reverses the two."
+    D: "The centroid positions come from training, so they are parameters."
+
+- id: ml-vocab-06
+  skill: ml-vocab
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    A dataset describes 500 patients, with 12 measurements for each patient. What is one example (instance) in this dataset?
+  options:
+    - "One of the 12 measurements, recorded for every patient"
+    - "The average of all 12 measurements"
+    - "The full set of 500 patients"
+    - "One patient's row of 12 measurements"
+  answer: D
+  explain: |
+    An example, or instance, is one row: one patient with all of their measurements. The 12 measurements are features, and the 500 rows make up the dataset.
+  why:
+    A: "A measurement recorded for every patient is a feature, a column."
+    B: "An average summarizes the data; it is not an example."
+    C: "All 500 rows together form the dataset."
+
+- id: ml-vocab-07
+  skill: ml-vocab
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A data scientist sets the learning rate to 0.01 before training a neural network. What is the learning rate?
+  options:
+    - "A parameter learned from the training data"
+    - "A feature of each training example"
+    - "A hyperparameter chosen before training"
+    - "The target variable the network predicts"
+  answer: C
+  explain: |
+    The learning rate controls how big each update step is during training, and it is set before training starts, so it is a hyperparameter. It is usually tuned by trying several values on a validation set.
+  why:
+    A: "The network's weights are learned; the learning rate is set by the person."
+    B: "Features are input variables describing each example."
+    D: "The target is what the network predicts, not a training setting."
+
+- id: ml-vocab-08
+  skill: ml-vocab
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What makes a dataset labeled?
+  options:
+    - "Every column has a name."
+    - "Each example includes the known value of the target."
+    - "The data has been sorted into groups by an algorithm."
+    - "All missing values have been filled in."
+  answer: B
+  explain: |
+    Labeled data pairs each example with its correct answer, such as each email with "spam" or "not spam." Supervised learning needs labels to learn from.
+  why:
+    A: "Column names are not labels in the machine learning sense."
+    C: "Groups found by an algorithm come from clustering, not from known labels."
+    D: "Filling missing values is cleaning; it does not add labels."
+
+- id: ml-vocab-09
+  skill: ml-vocab
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Training fits the model $$\hat{y} = b_0 + b_1 x$$ to data. Which quantities are the model's parameters?
+  options:
+    - "b0 and b1"
+    - "x and y-hat"
+    - "The learning rate and the number of iterations"
+    - "Only b1, the slope"
+  answer: A
+  explain: |
+    The intercept b0 and the slope b1 are the numbers training finds, so both are parameters. x is a feature value and y-hat is the prediction.
+  why:
+    B: "x is an input value and y-hat is the output, not learned settings."
+    C: "The learning rate and the number of iterations are hyperparameters, if gradient descent is used."
+    D: "The intercept is learned too, so it is also a parameter."
