@@ -1,0 +1,53 @@
+# Lesson 8.4 flashcards
+
+- id: fc-security
+  term: Security
+  def: "Protecting information and information systems from unauthorized access, use, disclosure, disruption, modification, or destruction, to provide confidentiality, integrity, and availability (NIST)."
+  skill: llm-security
+  virginia: true
+
+- id: fc-prompt-injection
+  term: Prompt injection (direct and indirect)
+  def: "Input that alters an LLM's behavior in ways its developers did not intend; first on OWASP's LLM Top 10 in 2025 and 2026. Direct: the attacker types it into the prompt. Indirect: it arrives inside content the model reads, such as web pages, files, emails, or images, even text people cannot see."
+  skill: llm-security
+
+- id: fc-jailbreak
+  term: Jailbreak
+  def: "A form of prompt injection whose inputs make the model disregard its safety rules, often through role-play (\"an AI with no rules\"), stories, or requests split into innocent-looking pieces."
+  skill: llm-security
+
+- id: fc-data-poisoning
+  term: Data and model poisoning
+  def: "Manipulating pre-training, fine-tuning, or embedding data to introduce vulnerabilities, backdoors, or biases. A backdoor stays dormant until a trigger appears, like a sleeper agent. Poisoning web-scale data can be cheap: about $60 for 0.01 percent of LAION-400M."
+  skill: llm-security
+
+- id: fc-adversarial-example
+  term: Adversarial example
+  def: "An input with small, deliberately chosen changes that make a model confidently wrong, at prediction time rather than training time."
+  example: "A nearly invisible change turned a classifier's \"panda\" (57.7 percent) into \"gibbon\" (99.3 percent)."
+  skill: llm-security
+
+- id: fc-improper-output-handling
+  term: Improper output handling
+  def: "Passing model output to other software without validation, which can cause cross-site scripting, SQL injection, or remote code execution. Treat the model as an untrusted user: validate, encode, and use parameterized queries."
+  skill: llm-security
+
+- id: fc-excessive-agency
+  term: Excessive agency
+  def: "An LLM system can take damaging actions because its output was unexpected, ambiguous, or manipulated. Root causes: excessive functionality (unneeded tools), excessive permissions (too much access), excessive autonomy (no human approval)."
+  skill: llm-security
+
+- id: fc-llm-defenses
+  term: Defenses against LLM attacks
+  def: "Layer them: constrain model behavior, validate output formats, filter inputs and outputs, least privilege, human approval for high-risk actions, segregate external content, and adversarial testing. Retrieval and fine-tuning do not fully prevent prompt injection."
+  skill: llm-security
+
+- id: fc-red-teaming
+  term: Red teaming
+  def: "Adversarial testing: deliberately attacking your own AI system with injections, jailbreaks, and misuse attempts to find weaknesses before real attackers do."
+  skill: llm-security
+
+- id: fc-ai-security-references
+  term: OWASP LLM Top 10 and MITRE ATLAS
+  def: "The OWASP Top 10 for LLM Applications lists the most critical LLM risks; always pair an ID with its year (LLM01:2025, LLM01:2026). MITRE ATLAS is a free public knowledge base of adversary tactics, techniques, and real-world case studies targeting AI systems."
+  skill: llm-security
