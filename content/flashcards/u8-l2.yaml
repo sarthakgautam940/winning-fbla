@@ -1,0 +1,99 @@
+# Lesson 8.2 flashcards
+
+- id: fc-algorithmic-bias
+  term: Algorithmic Bias
+  def: "Systematic error in an AI system that produces unfair outcomes, favoring or disadvantaging certain people or groups. It usually enters through data and design choices, not deliberate prejudice."
+  example: "A recruiting model trained on a male-dominated hiring record penalizes résumés that mention women's activities."
+  skill: bias-sources
+  virginia: true
+
+- id: fc-historical-bias
+  term: Historical bias
+  def: "Bias that exists even when data are collected perfectly, because the world the data describe was unfair. The model learns and repeats the unfair past."
+  example: "Amazon's recruiting tool, trained on 10 years of mostly male résumés, penalized the word \"women's.\""
+  skill: bias-sources
+
+- id: fc-representation-bias
+  term: Representation bias
+  def: "The training sample leaves out or underrepresents part of the population, so the model works worse for that group."
+  example: "About 45 percent of ImageNet's images were taken in the United States, against 1 percent in China and 2.1 percent in India."
+  skill: bias-sources
+
+- id: fc-measurement-bias
+  term: Measurement bias
+  def: "A feature or label is a poor proxy for what the model should predict, or is measured differently across groups."
+  example: "Using health-care costs as a proxy for health needs; using arrests as a proxy for crime."
+  skill: bias-sources
+
+- id: fc-proxy-variable
+  term: Proxy variable
+  def: "An observable variable that stands in for something else. A proxy for a protected attribute, such as ZIP code for race where neighborhoods are segregated, lets bias survive after the attribute is deleted."
+  skill: bias-sources
+
+- id: fc-aggregation-learning-bias
+  term: Aggregation bias and learning bias
+  def: "Aggregation bias: one model is used for groups whose data mean different things. Learning bias: modeling choices, such as an objective that rewards only overall accuracy, widen gaps between groups."
+  skill: bias-sources
+
+- id: fc-evaluation-bias
+  term: Evaluation bias
+  def: "The test benchmark or metric does not represent the people who will use the system, so subgroup failures go unseen. An overall accuracy is a weighted average that can hide a small group's poor results."
+  example: "Darker-skinned women were only 4.4 percent of IJB-A and 7.4 percent of Adience."
+  skill: bias-sources
+
+- id: fc-deployment-bias
+  term: Deployment bias
+  def: "A model is used for a purpose, population, or decision it was not built for."
+  example: "Risk tools built to predict reoffending used \"off-label\" to help set sentence lengths."
+  skill: bias-sources
+
+- id: fc-feedback-loop
+  term: Feedback loop
+  def: "A model's outputs change the data it later learns from, so its early patterns reinforce themselves."
+  example: "Predictive policing sends officers to area A, they record more crime there, and the new records send even more officers back to A, whatever the true crime rate."
+  skill: bias-sources
+
+- id: fc-case-amazon
+  term: Amazon recruiting tool (reported 2018)
+  def: "Trained on 10 years of résumés, mostly from men, it penalized \"women's\" and downgraded graduates of two all-women's colleges. Amazon disbanded the team by the start of 2017. Lesson: historical bias, and deleting words does not delete proxies."
+  skill: bias-cases
+
+- id: fc-case-compas
+  term: COMPAS risk scores (ProPublica, 2016)
+  def: "Among defendants who did not reoffend, Black defendants were nearly twice as likely as white defendants to be labeled higher risk (false-positive rates about 45 versus 23 percent). Overall accuracy was about 61 percent. Lesson: arrests as a proxy for crime, and a fairness trade-off."
+  skill: bias-cases
+
+- id: fc-case-gender-shades
+  term: Gender Shades (2018)
+  def: "Joy Buolamwini and Timnit Gebru audited commercial gender classifiers: error rates up to 34.7 percent for darker-skinned women versus at most 0.8 percent for lighter-skinned men. It measured gender classification, not face identification. Lesson: representation and evaluation bias."
+  skill: bias-cases
+
+- id: fc-case-health-algorithm
+  term: Health-care risk algorithm (Obermeyer and colleagues, 2019)
+  def: "A widely used algorithm predicted costs as a proxy for health needs; less is spent on Black patients with the same need, so they were sicker at the same score. Fixing it would raise Black patients getting extra help from 17.7 to 46.5 percent."
+  skill: bias-cases
+
+- id: fc-case-google-photos
+  term: Google Photos (2015)
+  def: "Automatic labeling tagged photos of a Black software developer and a friend as \"gorillas.\" Testing in 2018 found the fix was to block the labels \"gorilla,\" \"chimp,\" and \"chimpanzee.\" Lesson: blocking an output does not fix the model."
+  skill: bias-cases
+
+- id: fc-case-dutch-benefits
+  term: Dutch childcare benefits scandal
+  def: "A tax-authority risk model used non-Dutch nationality as a risk factor, with no meaningful human oversight. About 26,000 parents and caregivers were wrongly accused of fraud; the cabinet resigned in January 2021."
+  skill: bias-cases
+
+- id: fc-case-a-levels
+  term: A-level grading algorithm (England, 2020)
+  def: "With exams cancelled, an algorithm lowered 39.1 percent of teacher-assessed grades on results day; four days later students got their teacher grade or the calculated grade, whichever was higher."
+  skill: bias-cases
+
+- id: fc-case-apple-card
+  term: Apple Card (2019)
+  def: "Viral claims said women got lower credit limits. New York's financial regulator (2021) found no evidence of unlawful sex discrimination. A 2024 federal penalty of over $89 million concerned dispute handling, not gender."
+  skill: bias-cases
+
+- id: fc-case-tay
+  term: Microsoft Tay (2016)
+  def: "A Twitter chatbot taken offline within a day after users manipulated it into posting offensive tweets. Lesson: a system that learns from live users can absorb the worst of them."
+  skill: bias-cases

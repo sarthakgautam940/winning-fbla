@@ -1,0 +1,587 @@
+# Lesson 8.2: How AI inherits bias
+
+# ---------------------------------------------------------------- bias-sources
+- id: bias-sources-01
+  skill: bias-sources
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which statement best describes algorithmic bias?
+  options:
+    - "A model's error from being too simple, the bias in the bias-variance tradeoff"
+    - "Systematic errors in an AI system that produce unfair outcomes for certain groups"
+    - "Random errors that a model makes about equally often for every person it judges"
+    - "Prejudice that a programmer deliberately writes into a model's source code"
+  answer: B
+  explain: |
+    Algorithmic bias is systematic: its errors fall again and again on the same people or groups, producing unfair outcomes. It usually enters through data and design choices rather than anyone's intent.
+  why:
+    A: "That is the statistical bias of underfitting, which hurts everyone's predictions; algorithmic bias is about unfair differences between groups."
+    C: "Errors spread evenly across everyone are random, not biased."
+    D: "Bias rarely comes from deliberate prejudice; it usually enters through data and design choices."
+
+- id: bias-sources-02
+  skill: bias-sources
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A bank trains a loan model on 30 years of its own lending records, from a period when it approved few loans in certain neighborhoods. The records capture those past decisions accurately. Which source of bias is most directly at work?
+  options:
+    - "Historical bias"
+    - "Aggregation bias"
+    - "Evaluation bias"
+    - "Deployment bias"
+  answer: A
+  explain: |
+    Historical bias exists even when data are recorded perfectly, because the world they describe was unfair. A model trained on decades of skewed approvals learns to repeat them.
+  why:
+    B: "Aggregation bias comes from using one model for groups whose data mean different things."
+    C: "Evaluation bias comes from test data or metrics that hide poor performance for some groups."
+    D: "Deployment bias comes from using a model for a purpose or setting it was not built for."
+
+- id: bias-sources-03
+  skill: bias-sources
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A hiring model is never given applicants' race. Its most influential feature turns out to be home ZIP code, in a city where neighborhoods are sharply divided by race. What problem does this create?
+  options:
+    - "Overfitting, because the model memorized each applicant's exact address"
+    - "Data leakage, because ZIP codes reveal which applicants were hired"
+    - "A proxy variable, so racial bias can persist without a race column"
+    - "Representation bias, because some ZIP codes have fewer applicants"
+  answer: C
+  explain: |
+    A proxy variable carries the same information as a sensitive attribute. Where neighborhoods are divided by race, ZIP code encodes race, so the model can treat groups differently even though race was removed.
+  why:
+    A: "Overfitting is memorizing noise in the training data, which the scenario does not describe."
+    B: "Data leakage is target information slipping into the features; ZIP codes do not reveal hiring outcomes."
+    D: "The problem is what ZIP code encodes, not how many applicants each ZIP code has."
+
+- id: bias-sources-04
+  skill: bias-sources
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A model is tested on 600 photos of group A and 100 photos of group B. It is correct on 570 of the group A photos and 80 of the group B photos. What is its overall accuracy, to the nearest tenth of a percent?
+  options:
+    - "80.0%"
+    - "87.5%"
+    - "92.9%"
+    - "95.0%"
+  ordered: true
+  answer: C
+  explain: |
+    The model is correct on 570 + 80 = 650 of 700 photos, and 650 / 700 = 92.9 percent. That total hides a gap: group A is at 570 / 600 = 95 percent, but group B is at only 80 / 100 = 80 percent.
+  why:
+    A: "80.0% is group B's accuracy alone."
+    B: "87.5% averages 95% and 80% without weighting by group size."
+    D: "95.0% is group A's accuracy alone."
+  verify: "(570 + 80) / (600 + 100)"
+
+- id: bias-sources-05
+  skill: bias-sources
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A video app recommends clips similar to what each user has watched. Users mostly watch what is recommended, and the model retrains on those views, so the range of clips it suggests keeps narrowing. What is this?
+  options:
+    - "Historical bias"
+    - "Representation bias"
+    - "Deployment bias"
+    - "A feedback loop"
+  answer: D
+  explain: |
+    In a feedback loop, a model's outputs shape the data it later learns from. Recommendations drive views, the views retrain the model, and its first preferences keep confirming themselves.
+  why:
+    A: "Historical bias comes from an unfair past captured in data, not from the model's own outputs."
+    B: "Representation bias is a sample that leaves groups out; here the narrowing is caused by the model itself."
+    C: "Deployment bias is using a model for a purpose it was not built for; this model does what it was built to do."
+
+- id: bias-sources-06
+  skill: bias-sources
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A school builds a model to find students who need tutoring. It labels need using how often each student asked a teacher for help. Many shy students who struggle rarely ask. Which source of bias is this?
+  options:
+    - "Measurement bias"
+    - "Historical bias"
+    - "Aggregation bias"
+    - "Deployment bias"
+  answer: A
+  explain: |
+    Asking for help is a poor proxy for needing help, and it measures shy students differently from outgoing ones. Measurement bias arises when a feature or label is a poor stand-in for what you care about.
+  why:
+    B: "Historical bias is an accurate record of an unfair past; here the problem is the choice of label."
+    C: "Aggregation bias is one model for groups whose data mean different things; the flaw here is the label itself."
+    D: "The model is used for exactly the purpose it was built for."
+
+- id: bias-sources-07
+  skill: bias-sources
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A hospital trains one risk model for all its patients. Both patient groups are well represented and every test is measured accurately, but the same lab value signals different levels of risk in the two groups. Which source of bias is this?
+  options:
+    - "Representation bias"
+    - "Aggregation bias"
+    - "Measurement bias"
+    - "Evaluation bias"
+  answer: B
+  explain: |
+    Aggregation bias comes from using one model for groups whose data mean different things. A single model must give the lab value one meaning, so it will be wrong for at least one group.
+  why:
+    A: "Both groups are well represented, so the sample is not the problem."
+    C: "The lab value is measured accurately; the problem is that it means different things in the two groups."
+    D: "Nothing here concerns the test data or metrics; the flaw is in using one model for both groups."
+
+- id: bias-sources-08
+  skill: bias-sources
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A model built to predict which job applicants will accept an offer is later bought by another company and used to decide whom to interview. Which source of bias does this create most directly?
+  options:
+    - "Historical bias"
+    - "Learning bias"
+    - "Representation bias"
+    - "Deployment bias"
+  answer: D
+  explain: |
+    Deployment bias arises when a model is used for a different purpose or setting than it was built for. Predicting who will accept an offer is not the same as judging who deserves an interview, and the new company's applicants may differ from the original ones.
+  why:
+    A: "Historical bias would come from an unfair past in the data; the core problem here is the new use."
+    B: "Learning bias comes from modeling choices during training, which the scenario does not change."
+    C: "Even with a representative sample, using the model for the wrong question would still cause harm."
+
+- id: bias-sources-09
+  skill: bias-sources
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A speech recognizer scores 96 percent on a benchmark recorded mostly by adults from one region. After launch, it performs poorly for children. What went wrong when it was evaluated?
+  options:
+    - "The model overfit the benchmark, so it would have failed for adults too"
+    - "Accuracy is the wrong kind of metric for speech recognition systems"
+    - "The benchmark did not represent the users, so one score hid poor results for children"
+    - "The model was deployed for a purpose different from the one it was built for"
+  answer: C
+  explain: |
+    Evaluation bias occurs when test data do not look like the people who will use a system, or one overall score hides subgroup failures. Testing on children's speech, and reporting accuracy for each group, would have exposed the gap before launch.
+  why:
+    A: "The model works for adults, so the failure is specific to a group the benchmark left out."
+    B: "Accuracy can be a fine metric; the problem is whose speech it was measured on."
+    D: "It was used for its intended purpose, recognizing speech, just by users the test ignored."
+
+- id: bias-sources-10
+  skill: bias-sources
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A team deletes the gender column from its training data, but the retrained model still treats men and women differently. What is the most likely reason?
+  options:
+    - "Other features, such as activities or schools, still carry information about gender"
+    - "Deleting a column has no effect on a model until it is deployed to users"
+    - "Gender bias can come only from the algorithm's code, never from the data"
+    - "The model still remembers the deleted column from its earlier training run"
+  answer: A
+  explain: |
+    Removing a sensitive attribute does not remove the information if proxies remain. Amazon's recruiting tool showed this: it penalized words like "women's" and the names of women's colleges, which carried information about gender. Ignoring the attribute, called fairness through unawareness, is not enough.
+  why:
+    B: "The team retrained the model, so the change has taken effect; the bias comes from what remains in the data."
+    C: "Bias usually enters through data; code that never mentions gender can still learn it from proxies."
+    D: "A retrained model learns only from the new data; the information survives in other features."
+
+- id: bias-sources-11
+  skill: bias-sources
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    Which source of bias occurs when a training sample leaves out or underrepresents part of the population the model will serve?
+  options:
+    - "Historical bias"
+    - "Representation bias"
+    - "Deployment bias"
+    - "Learning bias"
+  answer: B
+  explain: |
+    Representation bias means the development sample underrepresents part of the population, so the model generalizes poorly for that group. Suresh and Guttag point out that about 45 percent of ImageNet's images were taken in the United States.
+  why:
+    A: "Historical bias can occur even with a perfectly representative sample, because the world itself was unfair."
+    C: "Deployment bias is about how a model is used after it is built."
+    D: "Learning bias comes from modeling choices, such as the training objective."
+
+- id: bias-sources-12
+  skill: bias-sources
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which pairing correctly matches a stage of the machine learning life cycle with a bias that enters there?
+  options:
+    - "Collecting data from a single region: deployment bias"
+    - "Using a model for a new purpose: representation bias"
+    - "Training one model for groups that differ: historical bias"
+    - "Testing on a benchmark unlike the users: evaluation bias"
+  answer: D
+  explain: |
+    Evaluation bias enters at testing, when the benchmark or metric does not reflect the people who will use the system. The other pairs mix up stages: a narrow sample causes representation bias, a new purpose causes deployment bias, and one model for differing groups causes aggregation bias.
+  why:
+    A: "A sample from a single region causes representation bias, which enters at data collection."
+    B: "A new purpose causes deployment bias, which enters at use."
+    C: "One model for groups that differ causes aggregation bias, which enters at model building."
+
+- id: bias-sources-13
+  skill: bias-sources
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    Two neighborhoods have the same true crime rate, but a predictive-policing model starts by sending more officers to neighborhood A. Why can the model keep favoring A for years?
+  options:
+    - "Residents of heavily patrolled areas commit more crimes because of the patrols"
+    - "The model is trained once and never updated, so it cannot correct its first guess"
+    - "Crime is recorded mostly where officers are sent, so the predictions create their own evidence"
+    - "Officers in neighborhood B report crimes less accurately than officers in neighborhood A"
+  answer: C
+  explain: |
+    Discovered crime, such as arrests, depends on where police look. More officers in A record more crime in A, those records update the model, and it sends officers back to A. Ensign and colleagues (2018) showed that such loops can keep sending police to the same neighborhoods regardless of the true crime rate.
+  why:
+    A: "The stem says the true crime rates are equal; the extra records come from where officers look, not from more crime."
+    B: "The loop depends on the model being updated with its own data; a model trained once would not reinforce itself this way."
+    D: "Nothing suggests uneven reporting quality; fewer officers in B simply means less crime is discovered there."
+
+- id: bias-sources-14
+  skill: bias-sources
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why can labels taken from past human decisions, such as who was hired or who was arrested, carry bias into a model?
+  options:
+    - "The model learns to copy those decisions, including any unfairness in them"
+    - "Labels made by people are random, so the model learns nothing useful from them"
+    - "Past decisions are stored as text, so the model cannot read them reliably"
+    - "Labels are added after training, so the model never sees them during learning"
+  answer: A
+  explain: |
+    Supervised models learn to predict their labels. If the labels are past human decisions, the model learns to reproduce those decisions, so any unfairness in who was hired or arrested becomes the pattern it treats as correct.
+  why:
+    B: "Human decisions are not random; they carry real patterns, including unfair ones."
+    C: "How the labels are stored does not cause bias; what they record does."
+    D: "Labels are exactly what a supervised model learns from during training."
+
+- id: bias-sources-15
+  skill: bias-sources
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    During training, a model's objective rewards only overall accuracy, so it gives up accuracy on a small group that contributes few training examples. Which source of bias is this?
+  options:
+    - "Evaluation bias"
+    - "Learning bias"
+    - "Historical bias"
+    - "Deployment bias"
+  answer: B
+  explain: |
+    Learning bias comes from modeling choices, such as the objective function, that widen gaps between groups. An objective that counts only total accuracy lets the model sacrifice a small group, because that group adds little to the total.
+  why:
+    A: "Evaluation bias is about how a finished model is tested; this choice happens during training."
+    C: "Historical bias is an unfair past captured in data; here the training objective causes the gap."
+    D: "Deployment bias concerns how a model is used after it is built."
+
+- id: bias-sources-16
+  skill: bias-sources
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A model's overall accuracy on a test set of 1,000 people is 92.6 percent. Its accuracy on group X, which makes up 800 of the test cases, is 97 percent. What is its accuracy on the other 200 people, group Y?
+  options:
+    - "15%"
+    - "75%"
+    - "88.2%"
+    - "92.6%"
+  ordered: true
+  answer: B
+  explain: |
+    Overall, the model is correct for 0.926 × 1,000 = 926 people. Group X accounts for 0.97 × 800 = 776 of them, so group Y has 926 minus 776 = 150 correct out of 200, which is 75 percent.
+  why:
+    A: "15% divides group Y's 150 correct answers by all 1,000 people instead of by group Y's 200."
+    C: "88.2% treats the overall rate as a simple average of the two groups, ignoring that group X is four times larger."
+    D: "92.6% is the overall accuracy, not group Y's."
+  verify: "(0.926 * 1000 - 0.97 * 800) / 200"
+
+# ---------------------------------------------------------------- bias-cases
+- id: bias-cases-01
+  skill: bias-cases
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    Reuters reported in 2018 that Amazon had scrapped an experimental AI recruiting tool. What problem had Amazon found?
+  options:
+    - "It ranked candidates mainly by how quickly they submitted their applications"
+    - "It used facial analysis of video interviews to rate each applicant's personality"
+    - "It penalized résumés containing the word \"women's\" and downgraded women's colleges"
+    - "It shared applicants' personal data with other companies without their consent"
+  answer: C
+  explain: |
+    Trained on résumés submitted over 10 years, mostly by men, the tool learned to penalize résumés containing "women's," as in "women's chess club captain," and downgraded graduates of two all-women's colleges. Amazon edited out those terms but, with no guarantee against other biased patterns, disbanded the team by the start of 2017.
+  why:
+    A: "The tool rated résumés on their content; nothing in the reporting involves submission speed."
+    B: "The tool scored résumés, not video interviews."
+    D: "The problem was biased ratings, not a data leak."
+
+- id: bias-cases-02
+  skill: bias-cases
+  tier: competitive
+  type: recall
+  use: check
+  stem: |
+    A 2019 study in Science found that a widely used health-care algorithm referred too few Black patients for extra care. What caused the bias?
+  options:
+    - "It was trained only on patients from a single small hospital"
+    - "It gave race an explicit negative weight in its risk score"
+    - "Doctors routinely overrode its recommendations for Black patients"
+    - "It predicted health-care costs as a proxy for health needs"
+  answer: D
+  explain: |
+    The algorithm predicted future health-care costs as a stand-in for health needs. Because less money is spent on Black patients with the same level of need, Black patients at a given risk score were considerably sicker. Removing the disparity would raise the share of Black patients receiving extra help from 17.7 percent to 46.5 percent.
+  why:
+    A: "The algorithm was in wide commercial use, affecting millions of patients; the problem was its target."
+    B: "The study traced the bias to the cost target, a proxy for need, not to an explicit race weight."
+    C: "The bias was in the algorithm's scores themselves, not in doctors overriding them."
+
+- id: bias-cases-03
+  skill: bias-cases
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What did the 2018 Gender Shades study by Joy Buolamwini and Timnit Gebru measure?
+  options:
+    - "How accurately commercial systems classified the gender of faces across skin types"
+    - "How often police face recognition systems matched suspects to the wrong person"
+    - "How chatbots described men and women differently when asked about careers"
+    - "How hiring algorithms ranked résumés from women compared with men"
+  answer: A
+  explain: |
+    Gender Shades audited the commercial gender classifiers of Microsoft, IBM, and Face++ on a new benchmark of 1,270 parliamentarians labeled by skin type. All three performed worst on darker-skinned women, with error rates up to 34.7 percent, against at most 0.8 percent for lighter-skinned men.
+  why:
+    B: "This is the classic trap: the study measured gender classification, not face identification for policing."
+    C: "The study examined face analysis systems, not chatbots."
+    D: "Résumé ranking describes the Amazon case, not Gender Shades."
+
+- id: bias-cases-04
+  skill: bias-cases
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    ProPublica's 2016 analysis of COMPAS risk scores in Broward County, Florida, reported which pattern?
+  options:
+    - "White defendants who did not reoffend were nearly twice as likely as Black defendants to be labeled higher risk"
+    - "The scores predicted reoffending correctly for about 95 percent of the defendants studied"
+    - "Black defendants who did not reoffend were nearly twice as likely as white defendants to be labeled higher risk"
+    - "The scores were equally wrong for Black and white defendants in both directions of error"
+  answer: C
+  explain: |
+    ProPublica found a false-positive rate of about 45 percent for Black defendants versus 23 percent for white defendants, while white defendants who did reoffend were more often labeled lower risk (about 48 percent versus 28 percent). Overall, COMPAS predicted general reoffending correctly about 61 percent of the time.
+  why:
+    A: "This reverses the groups: the higher false-positive rate fell on Black defendants."
+    B: "ProPublica reported about 61 percent accuracy for general reoffending, far below 95 percent."
+    D: "The errors ran in opposite directions for the two groups, which was the heart of the finding."
+
+- id: bias-cases-05
+  skill: bias-cases
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    In 2015, Google Photos labeled photos of a Black software developer and a friend as "gorillas." What did testing reported in 2018 show about Google's fix?
+  options:
+    - "Google had retrained the classifier on balanced data, and the error was gone"
+    - "Google had blocked the labels \"gorilla,\" \"chimp,\" and \"chimpanzee\" instead"
+    - "Google had removed automatic labeling from the app for every photo"
+    - "Google had hired reviewers to approve every label before users saw it"
+  answer: B
+  explain: |
+    Testing reported in January 2018 found that Google had blocked the labels "gorilla," "chimp," and "chimpanzee" rather than make the classifier reliable. Blocking an output hides a symptom; it does not fix what the model learned.
+  why:
+    A: "Testing showed the labels were simply blocked, not that the classifier had been fixed."
+    C: "Automatic labeling stayed in the app; only certain labels were blocked."
+    D: "No human review step was reported; the fix was a block on specific labels."
+
+- id: bias-cases-06
+  skill: bias-cases
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    In the Dutch childcare benefits scandal, what did the tax authority's risk-classification model do?
+  options:
+    - "It approved every claim automatically, without any checks for fraud"
+    - "It rated applicants by scanning their posts on social media"
+    - "It used facial recognition to confirm each applicant's identity"
+    - "It used whether an applicant had Dutch nationality as a risk factor"
+  answer: D
+  explain: |
+    The model gave non-Dutch nationals higher risk scores, and Amnesty International found its flaws were reproduced with no meaningful human oversight. About 26,000 parents and caregivers were wrongly accused of fraud, the Dutch cabinet resigned in January 2021, and the data protection authority fined the tax administration 2.75 million euros.
+  why:
+    A: "The harm came from wrongly flagging people as fraud risks, the opposite of approving everyone."
+    B: "The reported risk factor was nationality, not social media activity."
+    C: "Face recognition was not part of the case; nationality was the risk factor."
+
+- id: bias-cases-07
+  skill: bias-cases
+  tier: champion
+  type: recall
+  use: quiz
+  stem: |
+    In 2019, viral posts claimed the Apple Card gave women lower credit limits than men. What did New York's financial regulator conclude after its investigation?
+  options:
+    - "It found no evidence of unlawful sex discrimination, though it faulted transparency"
+    - "It found sex discrimination and fined Apple and Goldman Sachs over $89 million"
+    - "It found the algorithm used gender directly and ordered the card withdrawn"
+    - "It banned the use of machine learning in all credit decisions in New York"
+  answer: A
+  explain: |
+    The New York State Department of Financial Services analyzed about 400,000 applicants and in 2021 found no evidence of deliberate or disparate-impact sex discrimination, though it criticized customer service and transparency. Not every viral allegation of bias is confirmed.
+  why:
+    B: "This mixes in a separate 2024 federal penalty of over $89 million, which was about mishandling transaction disputes, not gender discrimination."
+    C: "The regulator found no evidence of sex discrimination, deliberate or otherwise."
+    D: "The investigation examined the Apple Card's underwriting and found no discrimination, so it gave no grounds for a ban."
+
+- id: bias-cases-08
+  skill: bias-cases
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    After exams in England were cancelled in 2020, the regulator Ofqual used an algorithm to standardize A-level grades. What happened?
+  options:
+    - "It raised most teacher-assessed grades, and universities refused to accept them"
+    - "It was used for several years before anyone noticed problems with its grades"
+    - "It lowered 39.1 percent of teacher-assessed grades and was reversed four days later"
+    - "It graded students' written answers using a large language model"
+  answer: C
+  explain: |
+    On results day, 13 August 2020, the algorithm had lowered 39.1 percent of teacher-assessed grades, mostly by one grade. Four days later, the government and Ofqual reversed course and gave students their teacher-assessed grade or the calculated grade, whichever was higher.
+  why:
+    A: "Only 2.26 percent of grades were raised; most changes were downgrades."
+    B: "The reversal came four days after results day, not years later."
+    D: "The algorithm adjusted teacher-assessed grades; it did not mark students' answers."
+
+- id: bias-cases-09
+  skill: bias-cases
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Amazon's past hiring data accurately recorded 10 years of applications that came mostly from men. Which source of bias does Amazon's recruiting tool show most directly?
+  options:
+    - "Evaluation bias"
+    - "Historical bias"
+    - "Deployment bias"
+    - "Aggregation bias"
+  answer: B
+  explain: |
+    Historical bias exists even when data are recorded accurately, because the world they describe was unequal. A model trained on a male-dominated hiring record learned to favor patterns found in men's résumés.
+  why:
+    A: "Evaluation bias is about testing; Amazon's problem began with the training data."
+    C: "The tool was used for the purpose it was built for, rating résumés."
+    D: "Aggregation bias is one model for groups whose data mean different things; here the data carried an unequal past."
+
+- id: bias-cases-10
+  skill: bias-cases
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Gender Shades found that two common face benchmarks, IJB-A and Adience, were 79.6 and 86.2 percent lighter-skinned, so systems that scored well on them had rarely been tested on darker-skinned women. In Suresh and Guttag's framework, which source of bias do these benchmarks show?
+  options:
+    - "Historical bias"
+    - "Representation bias"
+    - "Deployment bias"
+    - "Evaluation bias"
+  answer: D
+  explain: |
+    Evaluation bias occurs when the benchmark used to test a model does not represent the people who will use it, so subgroup failures go unseen. Suresh and Guttag use exactly this example: darker-skinned women made up only 4.4 percent of IJB-A and 7.4 percent of Adience.
+  why:
+    A: "Historical bias is an unfair world captured in data; the issue here is an unrepresentative test set."
+    B: "Representation bias concerns the sample used to build a model; an unrepresentative test benchmark is evaluation bias."
+    C: "Deployment bias concerns how a model is used after it is built."
+
+- id: bias-cases-11
+  skill: bias-cases
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which case is best known for showing how a convenient proxy target can create racial bias?
+  options:
+    - "Amazon's recruiting tool"
+    - "Google Photos' image labels"
+    - "Microsoft's Tay chatbot"
+    - "A health-care risk algorithm"
+  answer: D
+  explain: |
+    The health-care algorithm studied by Obermeyer and colleagues (2019) predicted costs as a proxy for health needs. Costs were convenient to measure, but less is spent on Black patients with the same need, so the proxy built in racial bias.
+  why:
+    A: "Amazon's tool shows historical bias from a male-dominated hiring record."
+    B: "Google Photos shows a harmful labeling error and a fix that only blocked labels."
+    C: "Tay shows a chatbot manipulated by its users within a day of launch."
+
+- id: bias-cases-12
+  skill: bias-cases
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Microsoft launched the Twitter chatbot Tay in March 2016 and took it offline within a day. What happened?
+  options:
+    - "Users coordinated to manipulate it into posting offensive tweets"
+    - "It leaked the private messages of users who chatted with it"
+    - "It refused to reply to anyone who did not follow its account"
+    - "Its servers crashed under the volume of messages it received"
+  answer: A
+  explain: |
+    Users manipulated Tay into posting offensive tweets, and Microsoft blamed a coordinated attack by a subset of people that exploited a vulnerability, then apologized. A system that learns from live users can absorb the worst of them.
+  why:
+    B: "The problem was offensive public output, not leaked private messages."
+    C: "Tay was taken down for what it posted, not for refusing to reply."
+    D: "Tay went offline because of its offensive tweets, not a server failure."
+
+- id: bias-cases-13
+  skill: bias-cases
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Suresh and Guttag cite criminal-justice risk tools as an example of measurement bias. Why?
+  options:
+    - "They were trained on too few defendants to estimate risk reliably"
+    - "They were tested only on defendants from a single county"
+    - "They use arrests as a proxy for crime, which is measured differently across communities"
+    - "They were later used to help decide sentence lengths, not just reoffending"
+  answer: C
+  explain: |
+    Risk tools cannot observe crime directly, so they learn from arrests. Arrests depend on where and how policing happens, so the same behavior is recorded more often in some communities than in others, which is measurement bias.
+  why:
+    A: "Sample size is not the issue the framework names; the problem is what the label measures."
+    B: "A narrow test set would be evaluation bias, not measurement bias."
+    D: "Off-label use for sentencing is Suresh and Guttag's example of deployment bias, a different source."
