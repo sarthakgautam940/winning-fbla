@@ -1,0 +1,574 @@
+# Lesson 3.5: Cleaning data
+
+# ---------------------------------------------------------------- why-clean
+- id: why-clean-01
+  skill: why-clean
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    What does the principle "garbage in, garbage out" mean in data science?
+  options:
+    - "Old data should be deleted before new data is added."
+    - "An analysis or model can be no better than its input data."
+    - "Every dataset contains some values that must be thrown away."
+    - "Models automatically remove errors from their training data."
+  answer: B
+  explain: |
+    If the data fed into an analysis or model is wrong, incomplete, or inconsistent, the output will be too, however sophisticated the method. That is why cleaning comes before analysis.
+  why:
+    A: "The principle is about the quality of the input, not its age."
+    C: "Many datasets need fixing, but the principle says nothing about deleting values."
+    D: "Models learn whatever the data contains, including its errors."
+
+- id: why-clean-02
+  skill: why-clean
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A spam filter is trained on 50,000 emails, but about 15% of them carry the wrong label. What is the most likely effect?
+  options:
+    - "The model ignores the wrong labels because they are a minority."
+    - "The extra data makes the model more accurate than clean data would."
+    - "Training will fail and produce an error message."
+    - "The model learns some wrong patterns, which limits its accuracy."
+  answer: D
+  explain: |
+    A supervised model learns from its labels, so mislabeled examples teach it to associate the wrong features with spam. Its accuracy is capped by the quality of the labels, however much data there is.
+  why:
+    A: "The model cannot tell which labels are wrong; it learns from all of them."
+    B: "Wrong labels add noise, not useful information."
+    C: "Mislabeled data trains without errors; the damage is silent."
+
+- id: why-clean-03
+  skill: why-clean
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which task is data cleaning rather than reshaping or transforming the data?
+  options:
+    - "Correcting misspelled category labels"
+    - "Pivoting a table from wide to long format"
+    - "Scaling a feature to the range 0 to 1"
+    - "One-hot encoding a categorical column"
+  answer: A
+  explain: |
+    Cleaning fixes what is wrong in the data, such as misspellings, duplicates, and invalid values. Pivoting, scaling, and encoding change correct data into a more useful form, which is transformation.
+  why:
+    B: "Pivoting reshapes correct data; nothing is being fixed."
+    C: "Scaling transforms correct values onto a new range."
+    D: "Encoding converts correct categories into numbers a model can use."
+
+- id: why-clean-04
+  skill: why-clean
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    What should an analyst usually do first when cleaning a new dataset?
+  options:
+    - "Delete every row that has a missing value"
+    - "Train a model to see which columns matter"
+    - "Profile the data: types, ranges, gaps, and duplicates"
+    - "Replace every outlier with the column median"
+  answer: C
+  explain: |
+    Profiling shows what problems exist before anything is changed. Without it, a fix such as deleting rows or replacing outliers may be the wrong one, or may hide a bigger problem.
+  why:
+    A: "Deleting rows before understanding why values are missing can bias the data."
+    B: "A model trained on unexamined data inherits all its problems."
+    D: "Outliers need investigation first; some are genuine and should be kept."
+
+- id: why-clean-05
+  skill: why-clean
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    In a dataset of 20 salaries, one salary of $50,000 was mistakenly entered as $5,000,000. How does this error affect the summary statistics?
+  options:
+    - "The median rises sharply, but the mean barely changes."
+    - "Both the mean and the median rise sharply."
+    - "The mean rises sharply, but the median barely changes."
+    - "Neither changes much, because only one of 20 values is wrong."
+  answer: C
+  explain: |
+    The extra $4,950,000 is spread over 20 values, which raises the mean by $247,500. The median depends only on the middle values, and moving one value from the middle range to the top barely shifts it.
+  why:
+    A: "This reverses the two; the median resists a single extreme value, while the mean does not."
+    B: "The median is resistant to one extreme value, so it barely moves."
+    D: "One huge error is enough to move the mean by hundreds of thousands of dollars."
+  verify: |
+    shift = (5000000 - 50000) / 20
+    ans = "The mean rises sharply, but the median barely changes." if shift > 200000 else "other"
+
+- id: why-clean-06
+  skill: why-clean
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which statement best defines data cleaning?
+  options:
+    - "Converting raw data into charts for a report"
+    - "Collecting new data to replace an old dataset"
+    - "Encrypting data so that only authorized users can read it"
+    - "Detecting and correcting errors, inconsistencies, and gaps"
+  answer: D
+  explain: |
+    Data cleaning finds and fixes problems such as errors, duplicates, inconsistent formats, and missing values so that the data is accurate and fit for analysis.
+  why:
+    A: "Making charts is visualization, which comes after cleaning."
+    B: "Replacing a dataset is new data collection, not cleaning."
+    C: "Encryption protects data; it does not fix it."
+
+# ---------------------------------------------------------------- missing-data
+- id: missing-data-01
+  skill: missing-data
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    In a survey, people with very high incomes are more likely than others to skip the income question. How are the income values missing?
+  options:
+    - "Missing completely at random (MCAR)"
+    - "Missing at random (MAR)"
+    - "Missing not at random (MNAR)"
+    - "Not missing, because the question was optional"
+  answer: C
+  explain: |
+    Whether an income is missing depends on the income itself, which is exactly the value you cannot see. That makes the data missing not at random, the hardest case, because the observed incomes understate the true average.
+  why:
+    A: "MCAR would mean every respondent was equally likely to skip, regardless of income."
+    B: "MAR would mean the skipping could be explained by other recorded variables, such as age."
+    D: "An optional question that people skip still leaves missing values."
+
+- id: missing-data-02
+  skill: missing-data
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A column of home prices is strongly skewed right by a few mansions, and some prices are missing. Which single value is the better choice for filling the gaps?
+  options:
+    - "The median of the observed prices"
+    - "The mean of the observed prices"
+    - "The largest observed price"
+    - "Zero, to mark the gaps clearly"
+  answer: A
+  explain: |
+    In right-skewed data, the mansions pull the mean far above a typical price. The median resists those extremes, so it is a more representative fill value.
+  why:
+    B: "The mean is inflated by the few mansions, so it overstates a typical price."
+    C: "The largest price is the least typical value of all."
+    D: "Zero is not a plausible price and would distort every summary; a missing indicator marks gaps better."
+
+- id: missing-data-03
+  skill: missing-data
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What is imputation?
+  options:
+    - "Removing every column that contains missing values"
+    - "Filling in missing values with estimated values"
+    - "Counting how many values are missing in a dataset"
+    - "Marking every missing value with a question mark"
+  answer: B
+  explain: |
+    Imputation replaces each missing value with an estimate, such as the column's mean or median, a value predicted from other variables, or the previous reading in a time series.
+  why:
+    A: "Removing columns is deletion, the alternative to imputation."
+    C: "Counting missing values is part of profiling, not imputation."
+    D: "Marking gaps leaves them missing; imputation fills them in."
+
+- id: missing-data-04
+  skill: missing-data
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    In a clinical study, older patients are more likely to miss follow-up visits, and every patient's age is recorded. How are the follow-up measurements missing?
+  options:
+    - "Missing at random (MAR)"
+    - "Missing completely at random (MCAR)"
+    - "Missing not at random (MNAR)"
+    - "Not missing, because age explains every gap"
+  answer: A
+  explain: |
+    The chance of a missing visit depends on age, a variable that was observed. When missingness is explained by observed data, the data are missing at random, and methods that use age can correct much of the bias.
+  why:
+    B: "MCAR would mean every patient was equally likely to miss a visit."
+    C: "MNAR would mean missingness depends on the unseen measurements themselves."
+    D: "Explaining why values are missing does not fill them in."
+
+- id: missing-data-05
+  skill: missing-data
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A column holds 4, 6, 8, 10, and 12, whose sample variance is 10. Two missing values in the column are filled with the mean, 8. What is the new sample variance, to the nearest hundredth?
+  options:
+    - "5.71"
+    - "6.67"
+    - "8.00"
+    - "10.00"
+  ordered: true
+  answer: B
+  explain: |
+    The filled values each have a deviation of 0, so the sum of squared deviations stays 16 + 4 + 0 + 4 + 16 = 40, while n grows from 5 to 7. The new sample variance is 40 / (7 - 1), about 6.67, smaller than before.
+  why:
+    A: "This divides by n = 7 instead of n - 1 = 6."
+    C: "This is the mean that was used to fill the gaps, not a variance."
+    D: "Adding values at the mean lowers the variance; it does not leave it unchanged."
+  verify: "statistics.variance([4, 6, 8, 10, 12, 8, 8])"
+
+- id: missing-data-06
+  skill: missing-data
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A temperature sensor records a reading every minute, and a few readings are missing. Which way of filling the gaps is most reasonable?
+  options:
+    - "Fill each gap with the average for the whole year"
+    - "Delete every hour that contains a gap"
+    - "Replace each gap with a reading of zero"
+    - "Fill each gap with the last reading before it"
+  answer: D
+  explain: |
+    In a time series, neighboring readings are the best guide to a missing one: a reading from one minute earlier is far closer than a yearly average. Forward fill (or interpolating between neighbors) uses that order.
+  why:
+    A: "The yearly average ignores the time of day and season, so it is a poor guess for one minute."
+    B: "Deleting whole hours throws away many good readings to remove a few gaps."
+    C: "Zero is a real temperature, so it would be recorded as a false measurement."
+
+- id: missing-data-07
+  skill: missing-data
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    A lab technician accidentally drops five randomly chosen test tubes, so their results are lost. How are these results missing?
+  options:
+    - "Missing at random (MAR)"
+    - "Missing not at random (MNAR)"
+    - "Missing completely at random (MCAR)"
+    - "Missing by design"
+  answer: C
+  explain: |
+    The loss has nothing to do with the results or with any other variable, so every tube had the same chance of being lost. That is missing completely at random.
+  why:
+    A: "MAR means missingness depends on observed variables, and here it depends on nothing."
+    B: "MNAR means missingness depends on the unseen values, which an accident does not."
+    D: "Missing by design describes values a study deliberately does not collect."
+
+- id: missing-data-08
+  skill: missing-data
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    Before imputing missing incomes, an analyst adds a 0/1 column that marks which incomes were missing. Why?
+  options:
+    - "It makes the imputed values more accurate."
+    - "It lets a model learn whether being missing carries information."
+    - "It is required before any imputation method can run."
+    - "It removes the bias caused by missing values."
+  answer: B
+  explain: |
+    Whether a value was missing can itself be informative, especially under MNAR, where people with high incomes skip the question. A missing indicator preserves that fact after the gap is filled, so a model can use it.
+  why:
+    A: "The flag does not change the filled values themselves."
+    C: "Imputation methods run without any flag column."
+    D: "A flag helps a model account for missingness but does not remove the bias by itself."
+
+- id: missing-data-09
+  skill: missing-data
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    When is dropping every row with a missing value most likely to bias the results?
+  options:
+    - "When the rows with gaps differ systematically from the others"
+    - "When the values are missing completely at random"
+    - "When only a small number of rows have missing values"
+    - "When the dataset is very large"
+  answer: A
+  explain: |
+    If the incomplete rows differ from the complete ones, as under MAR or MNAR, deleting them leaves a dataset that no longer represents the whole. Under MCAR, deletion loses data but does not bias it.
+  why:
+    B: "Under MCAR, the dropped rows are a random subset, so deletion does not bias the rest."
+    C: "Dropping a few random rows does little harm; bias depends on how they differ."
+    D: "Size does not matter if the dropped rows are a systematic group."
+
+# ---------------------------------------------------------------- clean-issues
+- id: clean-issues-01
+  skill: clean-issues
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A state column contains the entries "NY", "N.Y.", "new york", and "New York " (with a trailing space). What is the best way to clean it?
+  options:
+    - "Standardize every variant to one spelling, such as NY"
+    - "Delete all of the rows that mention New York"
+    - "Treat the entries as four different states"
+    - "Replace them with the most common state in the data"
+  answer: A
+  explain: |
+    The four entries are the same state written inconsistently. Trimming spaces, choosing one case, and mapping every variant to a single form makes the column count and group New York correctly.
+  why:
+    B: "Deleting valid records throws away good data to avoid a formatting fix."
+    C: "Treating variants as different categories splits one state into four groups."
+    D: "Replacing them with a different state would make the data wrong."
+
+- id: clean-issues-02
+  skill: clean-issues
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A dataset of household incomes includes one value of $9,800,000, and records confirm that it is real. What should the analyst do?
+  options:
+    - "Delete it, because extreme values distort analyses"
+    - "Replace it with the mean income of the other households"
+    - "Change it to the largest value inside the upper fence"
+    - "Keep it, and use resistant summaries such as the median"
+  answer: D
+  explain: |
+    The value is genuine, so deleting or altering it would make the data less accurate. Keeping it and using summaries that extremes barely move, such as the median and IQR (or a log transform), respects the data without letting one household dominate.
+  why:
+    A: "Being extreme is not a reason to delete a real value."
+    B: "Replacing a confirmed value with the mean invents data."
+    C: "Capping a real value changes it without cause."
+
+- id: clean-issues-03
+  skill: clean-issues
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    Which check best detects duplicate customers in a customer table?
+  options:
+    - "Sorting the table by the date each customer joined"
+    - "Looking for rows that share an ID or email address"
+    - "Counting the number of columns in the table"
+    - "Computing the average purchase per customer"
+  answer: B
+  explain: |
+    Columns that should identify one customer, such as an ID or email, should never repeat. Rows that share them, after spelling and spacing are standardized, are likely duplicates.
+  why:
+    A: "Sorting by join date does not reveal repeated customers."
+    C: "The number of columns says nothing about repeated rows."
+    D: "An average can be inflated by duplicates but cannot reveal which rows they are."
+
+- id: clean-issues-04
+  skill: clean-issues
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A column of quantities ordered contains the value -3, and orders cannot be negative. What is the best way to handle it?
+  options:
+    - "Change it to 3, since the minus sign must be a typo"
+    - "Keep it, since negative numbers are valid numbers"
+    - "Replace every quantity in the column with the mean"
+    - "Treat it as missing unless the source confirms the right value"
+  answer: D
+  explain: |
+    The value breaks the field's rules, so it is invalid. Check the original order if possible; if the correct value cannot be confirmed, treat it as missing rather than guessing.
+  why:
+    A: "The value might be 3, 30, or something else entirely; changing it without checking is a guess."
+    B: "A number can be valid in general and still be invalid for this field."
+    C: "Replacing every value destroys the correct data to fix one entry."
+
+- id: clean-issues-05
+  skill: clean-issues
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A study of home electricity use contains a few enormous bills. Investigation shows they belong to businesses that were miscoded as homes. What should the analyst do with them?
+  options:
+    - "Keep them, because real outliers should never be removed"
+    - "Replace them with the median home bill"
+    - "Remove them from this analysis, since they are not homes"
+    - "Average them with the home bills to reduce their effect"
+  answer: C
+  explain: |
+    These values are real, but they come from a different population. A study of homes should not include businesses, so they should be separated from this analysis, and the miscoding should be corrected and documented.
+  why:
+    A: "Keeping genuine extremes applies to cases from the right population; these are not homes."
+    B: "Inventing home bills for business accounts creates false data."
+    D: "Averaging values from a different population into the data still distorts it."
+
+- id: clean-issues-06
+  skill: clean-issues
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A customer list contains two records with the same email address, one for "Jon Smith" and one for "John Smith." What should be done?
+  options:
+    - "Keep both, because the names are spelled differently"
+    - "Delete both, because one of them must be wrong"
+    - "Treat them as likely the same customer and merge after checking"
+    - "Change every customer named Smith to John Smith"
+  answer: C
+  explain: |
+    The shared email strongly suggests a near-duplicate: one customer recorded with two spellings. After confirming, keep one complete record so the customer is counted once.
+  why:
+    A: "Different spellings of one name are a classic near-duplicate, not two customers."
+    B: "Deleting both loses a real customer."
+    D: "Changing other customers' names would corrupt correct records."
+
+- id: clean-issues-07
+  skill: clean-issues
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A weight column mixes values recorded in pounds with values recorded in kilograms. What is the right fix?
+  options:
+    - "Average the column, since the units roughly cancel out"
+    - "Convert every value to one unit before analyzing"
+    - "Delete the values recorded in the less common unit"
+    - "Leave the column as is and note the issue in a report"
+  answer: B
+  explain: |
+    Mixed units make every summary wrong, because a value of 70 means something different in each unit. Identify each value's unit, often from a unit column or the source, and convert them all to one unit.
+  why:
+    A: "Units do not cancel; averaging pounds with kilograms gives a meaningless number."
+    C: "Deleting correct measurements throws away data that a conversion would keep."
+    D: "Noting the problem without fixing it leaves the analysis wrong."
+
+# ---------------------------------------------------------------- validate-clean
+- id: validate-clean-01
+  skill: validate-clean
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    After a step that removes duplicate customers, which check best confirms that the step worked?
+  options:
+    - "Confirm that no customer ID appears more than once"
+    - "Confirm that the table still has the same columns"
+    - "Confirm that the average purchase amount went up"
+    - "Confirm that the file size is smaller than before"
+  answer: A
+  explain: |
+    The goal was one row per customer, so the direct test is that every customer ID is now unique. Checking the number of rows removed against the number expected adds a second safeguard.
+  why:
+    B: "Removing rows does not change the columns, so this check proves nothing."
+    C: "The average might rise or fall after duplicates are removed."
+    D: "A smaller file shows that something was removed, not that the duplicates are gone."
+
+- id: validate-clean-02
+  skill: validate-clean
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    What does this line do in a cleaning script?
+
+    ```python
+    assert df["age"].between(0, 120).all()
+    ```
+  options:
+    - "It deletes every row whose age is outside 0 to 120."
+    - "It replaces ages outside 0 to 120 with the median age."
+    - "It stops the script with an error if any age is outside 0 to 120."
+    - "It counts how many ages fall between 0 and 120."
+  answer: C
+  explain: |
+    An assert does nothing when its condition is true and raises an error when it is false. This one passes only if every age is between 0 and 120; a missing age also fails, because between returns False for it.
+  why:
+    A: "An assertion checks the data; it never changes or deletes rows."
+    B: "An assertion fills nothing in; it only tests a condition."
+    D: "The result of .all() is a single True or False, not a count."
+
+- id: validate-clean-03
+  skill: validate-clean
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    After cleaning, the total sales in a dataset are 12% lower than the finance department's official total for the same period. What should the analyst do?
+  options:
+    - "Use the cleaned data, since cleaning always lowers totals."
+    - "Scale every sale up by 12% so the totals match."
+    - "Ignore the gap, since the official total may be wrong."
+    - "Investigate which rows were removed or changed during cleaning."
+  answer: D
+  explain: |
+    A gap that large suggests the cleaning removed or altered valid records, perhaps by deleting rows with a missing field or merging records that were not duplicates. Reconciling with an outside total is a validation check, and a failed check calls for investigation before the data is used.
+  why:
+    A: "Cleaning can change totals, but a 12% gap needs an explanation before anyone relies on the data."
+    B: "Scaling hides the problem and spreads an error across every record."
+    C: "Dismissing the official figure skips the investigation that validation requires."
+
+- id: validate-clean-04
+  skill: validate-clean
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Why should cleaning steps be written as code and kept alongside the untouched raw data?
+  options:
+    - "So the raw data can be deleted once the code runs"
+    - "So the cleaned data takes up less storage space"
+    - "So that no one else has to look at the data again"
+    - "So the cleaning can be reviewed, repeated, and undone if needed"
+  answer: D
+  explain: |
+    Documented, scripted cleaning is reproducible: others can check every decision, the same steps can run on new data, and mistakes can be traced back to the raw file and fixed.
+  why:
+    A: "Keeping the raw data is what makes mistakes recoverable."
+    B: "Storage is not the reason; reproducibility is."
+    C: "Documentation exists precisely so that others can review the work."
+
+- id: validate-clean-05
+  skill: validate-clean
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    After imputing many missing incomes with the median, an analyst notices that the standard deviation of income fell by 30%. What does this most likely indicate?
+  options:
+    - "The incomes became more accurate after imputation."
+    - "The imputation compressed the spread of the data."
+    - "The original data must have contained duplicates."
+    - "The median was the wrong value, and the mean would add spread."
+  answer: B
+  explain: |
+    Every imputed value sits at the same central point, so heavy imputation squeezes the distribution and understates its true spread. Comparing summaries before and after cleaning is exactly how such side effects are caught.
+  why:
+    A: "Filled-in values are estimates; a smaller spread is an artifact, not a gain in accuracy."
+    C: "Duplicates are unrelated to a drop in spread caused by imputation."
+    D: "Filling with the mean would compress the spread just as much."
+
+- id: validate-clean-06
+  skill: validate-clean
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which database constraint prevents two rows in a table from having the same email address?
+  options:
+    - "UNIQUE"
+    - "NOT NULL"
+    - "CHECK"
+    - "DEFAULT"
+  answer: A
+  explain: |
+    A UNIQUE constraint makes the database reject any new or updated row whose value in that column already exists, so duplicates cannot be saved in the first place.
+  why:
+    B: "NOT NULL requires a value but allows the same value twice."
+    C: "CHECK enforces a condition on each value, such as a range, not uniqueness across rows."
+    D: "DEFAULT supplies a value when none is given; it does not block duplicates."

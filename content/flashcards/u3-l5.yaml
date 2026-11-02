@@ -1,0 +1,49 @@
+# Lesson 3.5 flashcards
+
+- id: fc-data-cleaning
+  term: Data Cleaning
+  def: Detecting and correcting (or removing) errors, inconsistencies, and missing values so data is accurate and fit for analysis. Garbage in, garbage out.
+  skill: why-clean
+  virginia: true
+
+- id: fc-cleaning-workflow
+  term: Cleaning workflow
+  def: Profile the data, fix structure (types, formats, units), remove duplicates, handle missing values, investigate outliers and invalid values, then validate and document.
+  skill: why-clean
+
+- id: fc-missing-mechanisms
+  term: MCAR, MAR, MNAR
+  def: MCAR, missingness unrelated to anything. MAR, missingness explained by observed variables. MNAR, missingness depends on unobserved values, often the missing value itself.
+  example: "High earners skipping an income question is MNAR."
+  skill: missing-data
+
+- id: fc-imputation
+  term: Imputation
+  def: Filling in missing values with estimates. Use the mean for symmetric data, the median for skewed data, the mode for categories, and forward fill or interpolation for time series. It shrinks variance.
+  skill: missing-data
+  virginia: true
+
+- id: fc-listwise-deletion
+  term: Listwise deletion
+  def: Dropping every row that has a missing value. Unbiased only when data are MCAR; under MAR or MNAR, the remaining rows no longer represent the whole.
+  skill: missing-data
+
+- id: fc-missing-indicator
+  term: Missing indicator
+  def: A 0/1 column marking which values were imputed, so a model can learn whether being missing carries information.
+  skill: missing-data
+
+- id: fc-duplicates-formats
+  term: Duplicates and inconsistent formats
+  def: Find duplicates by identifying columns such as ID or email, including near-duplicates. Standardize variants ("NY", "N.Y.", "new york") and convert mixed units to one unit.
+  skill: clean-issues
+
+- id: fc-outlier-treatment
+  term: Treating outliers
+  def: Investigate the cause first. Fix errors, keep genuine extremes (with resistant summaries such as the median, or a log transform), and separate values from a different population. Never delete a value only because it is extreme.
+  skill: clean-issues
+
+- id: fc-validate-cleaning
+  term: Validating cleaned data
+  def: Check row counts, unique keys, remaining gaps, valid ranges, totals against an outside source, and before-and-after summaries. Use assertions and database constraints, and document every step.
+  skill: validate-clean
