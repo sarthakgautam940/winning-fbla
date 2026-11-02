@@ -1,0 +1,544 @@
+# Unit 5 test: Machine Learning
+
+- id: ut5-01
+  skill: ml-nature
+  tier: competitive
+  type: scenario
+  stem: |
+    A spam filter gets better at labeling emails as spam or not spam as it is trained on more emails that people have labeled. In Tom Mitchell's definition of machine learning, what is the performance measure P?
+  options:
+    - "Labeling incoming emails as spam or not spam"
+    - "The collection of emails that people have labeled"
+    - "The percentage of emails the filter labels correctly"
+    - "The number of emails that arrive each day"
+  answer: C
+  explain: |
+    In Mitchell's definition, a program learns from experience E with respect to task T and performance measure P if its performance at T, measured by P, improves with E. Here T is labeling emails, E is the labeled emails, and P is the share labeled correctly.
+  why:
+    A: "Labeling emails is the task T."
+    B: "The labeled emails are the experience E."
+    D: "The daily volume of email does not measure how well the filter performs."
+
+- id: ut5-02
+  skill: ml-vocab
+  tier: core
+  type: concept
+  stem: |
+    A model predicts a home's sale price from its size, age, and neighborhood. What is the label?
+  options:
+    - "The home's size"
+    - "The home's age"
+    - "The neighborhood"
+    - "The sale price"
+  answer: D
+  explain: |
+    The label is the target value the model learns to predict, here the sale price. Size, age, and neighborhood are features, the inputs used to make the prediction.
+  why:
+    A: "Size is a feature, an input."
+    B: "Age is a feature, an input."
+    C: "The neighborhood is a feature, an input."
+
+- id: ut5-03
+  skill: ml-vocab
+  tier: competitive
+  type: concept
+  stem: |
+    Which of these is a hyperparameter rather than a parameter learned during training?
+  options:
+    - "The learning rate chosen before training starts"
+    - "The weights of a linear regression model"
+    - "The bias term of a neuron"
+    - "The split thresholds a decision tree learns"
+  answer: A
+  explain: |
+    Hyperparameters are settings chosen before training, such as the learning rate, the number of trees, or k in k-nearest neighbors. Parameters, such as weights, biases, and split thresholds, are learned from the data.
+  why:
+    B: "Weights are learned from the data, so they are parameters."
+    C: "A bias is learned during training, so it is a parameter."
+    D: "Split thresholds are learned as the tree is built."
+
+- id: ut5-04
+  skill: supervised
+  tier: core
+  type: scenario
+  stem: |
+    Which task is an example of supervised learning?
+  options:
+    - "Grouping shoppers by browsing behavior, with no labels"
+    - "Finding unusual login patterns in unlabeled server logs"
+    - "Predicting whether a loan will default, from past loans marked defaulted or repaid"
+    - "A game agent improving its moves by collecting points for wins"
+  answer: C
+  explain: |
+    Supervised learning trains on examples paired with known answers, here past loans labeled defaulted or repaid, and learns to predict the answer for new cases.
+  why:
+    A: "Grouping without labels is unsupervised clustering."
+    B: "Searching unlabeled logs for unusual patterns is unsupervised anomaly detection."
+    D: "Learning from points earned through actions is reinforcement learning."
+
+- id: ut5-05
+  skill: unsupervised
+  tier: competitive
+  type: scenario
+  stem: |
+    A bank has millions of unlabeled card transactions and wants to flag the ones that look unlike the rest, without any examples of confirmed fraud. Which kind of learning fits?
+  options:
+    - "Supervised classification"
+    - "Reinforcement learning"
+    - "Supervised regression"
+    - "Unsupervised anomaly detection"
+  answer: D
+  explain: |
+    With no labeled fraud cases, the model must learn what typical transactions look like and flag the ones that differ, which is unsupervised anomaly detection.
+  why:
+    A: "Classification needs labeled examples of fraud and non-fraud."
+    B: "Reinforcement learning learns actions from rewards, not patterns in a fixed dataset."
+    C: "Regression predicts a labeled number."
+
+- id: ut5-06
+  skill: other-paradigms
+  tier: champion
+  type: scenario
+  stem: |
+    A language model learns by predicting the next word in billions of sentences that no one labeled; the correct answers come from the text itself. What is this kind of learning called?
+  options:
+    - "Semi-supervised learning"
+    - "Self-supervised learning"
+    - "Reinforcement learning"
+    - "Unsupervised clustering"
+  answer: B
+  explain: |
+    In self-supervised learning, the training labels are created automatically from the data itself, such as the next word in a sentence. It is how large language models are pretrained.
+  why:
+    A: "Semi-supervised learning mixes a small set of human-labeled data with a large unlabeled set."
+    C: "Reinforcement learning learns from rewards for actions, not from predicting text."
+    D: "Clustering groups data without predicting any target."
+
+- id: ut5-07
+  skill: rl-basics
+  tier: core
+  type: recall
+  stem: |
+    In reinforcement learning, what is an agent's policy?
+  options:
+    - "Its strategy for choosing an action in each state"
+    - "The reward it receives after each action"
+    - "The environment in which it acts"
+    - "The labeled examples it trains on"
+  answer: A
+  explain: |
+    A policy maps each state to an action: it is what the agent has learned about how to behave. Training improves the policy so that the agent collects more reward over time.
+  why:
+    B: "The reward is the feedback signal, not the strategy."
+    C: "The environment is the world the agent acts in."
+    D: "Reinforcement learning does not train on labeled examples."
+
+- id: ut5-08
+  skill: rl-details
+  tier: competitive
+  type: concept
+  stem: |
+    An agent follows an epsilon-greedy strategy with ε = 0.1. Which action does it take at each step?
+  options:
+    - "The action with the highest known value, every time"
+    - "A random action 90 percent of the time, and its best action otherwise"
+    - "A random action 10 percent of the time, and its best-known action otherwise"
+    - "Random actions only during the first 10 percent of training"
+  answer: C
+  explain: |
+    With probability ε = 0.1 the agent explores by taking a random action; the other 90 percent of the time it exploits the action that has worked best so far. This balances exploration and exploitation.
+  why:
+    A: "Always taking the best-known action is pure exploitation, with no exploration."
+    B: "This reverses the two probabilities."
+    D: "ε is a chance of exploring at every step, not a period at the start of training."
+
+- id: ut5-09
+  skill: choose-approach
+  tier: competitive
+  type: scenario
+  stem: |
+    A warehouse robot must learn to move through the aisles efficiently. It earns points for fast deliveries, loses points for collisions, and improves through trial and error. Which approach fits?
+  options:
+    - "Supervised learning from labeled routes"
+    - "Unsupervised clustering of aisle locations"
+    - "Linear regression on delivery times"
+    - "Reinforcement learning"
+  answer: D
+  explain: |
+    Learning a sequence of actions by trial and error from rewards and penalties is reinforcement learning. The robot's policy improves as it collects more reward.
+  why:
+    A: "No one has labeled the correct route for every situation."
+    B: "Clustering finds groups but does not choose actions."
+    C: "Regression predicts a number; it does not learn how to act."
+
+- id: ut5-10
+  skill: data-splits
+  tier: core
+  type: concept
+  stem: |
+    What is the validation set mainly used for?
+  options:
+    - "Training the model's weights"
+    - "Tuning hyperparameters and choosing between models"
+    - "Reporting the final, unbiased estimate of performance"
+    - "Storing the rows that could not be cleaned"
+  answer: B
+  explain: |
+    The validation set guides decisions during development, such as choosing hyperparameters or comparing models. The test set is held back until the end for one final, unbiased estimate.
+  why:
+    A: "Weights are learned from the training set."
+    C: "The final estimate comes from the test set, which must not influence any choices."
+    D: "Unclean rows are fixed or removed, not set aside as a split."
+
+- id: ut5-11
+  skill: cross-validation
+  tier: competitive
+  type: calculation
+  stem: |
+    A team runs 5-fold cross-validation on 1,000 labeled examples. How many models are trained, and how many examples are in each validation fold?
+  options:
+    - "5 models; 200 examples per fold"
+    - "1 model; 200 examples per fold"
+    - "5 models; 800 examples per fold"
+    - "1,000 models; 1 example per fold"
+  answer: A
+  explain: |
+    The data are split into 5 folds of 1,000 / 5 = 200 examples. Each fold serves once as the validation set while a model trains on the other 800, so 5 models are trained in all.
+  why:
+    B: "Each fold gets its own model, so there are 5."
+    C: "800 is each model's training size; each validation fold has 200."
+    D: "That describes leave-one-out cross-validation, not 5-fold."
+  verify: |
+    k, n = 5, 1000
+    ans = f"{k} models; {n // k} examples per fold"
+
+- id: ut5-12
+  skill: leakage
+  tier: champion
+  type: scenario
+  stem: |
+    A model predicts which customers will cancel a subscription next month. One of its features is the date each customer's account was closed. On historical data it scores 99 percent accuracy. What is the most likely problem?
+  options:
+    - "The model is underfitting the training data"
+    - "The test set is too large to give a reliable score"
+    - "Accuracy is the wrong metric for any churn model"
+    - "Target leakage: the feature reveals the outcome it is meant to predict"
+  answer: D
+  explain: |
+    An account-closed date exists only for customers who have already canceled, so the feature leaks the answer into the inputs. The model looks excellent on historical data but will fail on new customers whose future is unknown.
+  why:
+    A: "Underfitting produces low accuracy, not 99 percent."
+    B: "A larger test set gives a more reliable score, not a misleading one."
+    C: "The metric is not the issue; the feature contains the answer."
+
+- id: ut5-13
+  skill: fit-tradeoff
+  tier: competitive
+  type: scenario
+  stem: |
+    A model's error is 2 percent on the training set but 25 percent on the validation set. What is the most likely diagnosis?
+  options:
+    - "Underfitting, so the model needs more features"
+    - "The validation set contains copies of the training set"
+    - "Overfitting: the model memorized the training data"
+    - "The learning rate is too small to converge"
+  answer: C
+  explain: |
+    A large gap between low training error and high validation error is the signature of overfitting, or high variance: the model learned noise in the training data that does not generalize. Regularization, more data, or a simpler model can help.
+  why:
+    A: "Underfitting shows high error on both sets."
+    B: "Copies of training rows would make the validation error look lower, not higher."
+    D: "A learning rate too small would leave the training error high as well."
+
+- id: ut5-14
+  skill: fit-tradeoff
+  tier: champion
+  type: scenario
+  stem: |
+    A straight-line model is fit to data that follow a clear curve. Its error is high on both the training and the validation sets. Which diagnosis and fix fit best?
+  options:
+    - "High variance; add regularization"
+    - "High bias; use a more flexible model or add features"
+    - "High variance; collect more training data"
+    - "Data leakage; remove the strongest feature"
+  answer: B
+  explain: |
+    High error everywhere means the model is too simple to capture the pattern: underfitting, or high bias. A more flexible model, such as one with polynomial terms, or better features can capture the curve.
+  why:
+    A: "Regularization makes a model simpler, which worsens underfitting."
+    C: "More data helps high variance; it does not fix a model that is too simple."
+    D: "Leakage makes scores look too good, not uniformly bad."
+
+- id: ut5-15
+  skill: regularization
+  tier: competitive
+  type: concept
+  stem: |
+    Which regularization method can shrink some model weights all the way to zero, effectively selecting features?
+  options:
+    - "L2 regularization (ridge)"
+    - "Dropout of random neurons"
+    - "Early stopping of training"
+    - "L1 regularization (lasso)"
+  answer: D
+  explain: |
+    L1 regularization penalizes the absolute values of the weights, which pushes many of them to exactly zero and removes those features. L2 shrinks weights toward zero but rarely makes them exactly zero.
+  why:
+    A: "L2 shrinks weights smoothly but seldom to exactly zero."
+    B: "Dropout randomly disables neurons during training; it does not permanently zero out feature weights."
+    C: "Early stopping halts training before overfitting; it does not select features."
+
+- id: ut5-16
+  skill: loss-gd
+  tier: competitive
+  type: calculation
+  stem: |
+    A weight w = 4 has a loss gradient of 6. With a learning rate of 0.1, what is w after one gradient descent step?
+  options:
+    - "3.4"
+    - "3.9"
+    - "4.6"
+    - "10"
+  ordered: true
+  answer: A
+  explain: |
+    Gradient descent subtracts the learning rate times the gradient: 4 minus 0.1 × 6 = 4 minus 0.6 = 3.4. A positive gradient means the loss rises as w grows, so w moves down.
+  why:
+    B: "3.9 subtracts only the learning rate, without multiplying it by the gradient."
+    C: "4.6 adds the step instead of subtracting it, moving uphill."
+    D: "10 adds the full gradient, ignoring both the learning rate and the direction."
+  verify: "4 - 0.1 * 6"
+
+- id: ut5-17
+  skill: loss-gd
+  tier: champion
+  type: scenario
+  stem: |
+    During training, a model's loss jumps up and down and keeps growing instead of settling. What is the most likely cause?
+  options:
+    - "The learning rate is too small, so each step barely moves"
+    - "There are too few epochs for the model to finish learning"
+    - "The learning rate is too large, so each step overshoots the minimum"
+    - "The training data are too clean for the model to learn from"
+  answer: C
+  explain: |
+    With a learning rate that is too large, each step jumps past the minimum, so the loss oscillates or diverges. Lowering the learning rate lets the steps settle into the valley.
+  why:
+    A: "A small learning rate makes slow, steady progress, not wild swings."
+    B: "Too few epochs leaves the loss high, but it would still be falling smoothly."
+    D: "Clean data does not make the loss diverge."
+
+- id: ut5-18
+  skill: decision-trees
+  tier: champion
+  type: calculation
+  stem: |
+    A decision tree node holds 6 positive and 2 negative examples. What is its Gini impurity?
+  options:
+    - "0.25"
+    - "0.375"
+    - "0.5"
+    - "0.625"
+  ordered: true
+  answer: B
+  explain: |
+    Gini impurity is 1 minus the sum of the squared class proportions. The proportions are 6/8 = 0.75 and 2/8 = 0.25, so Gini = 1 minus (0.5625 + 0.0625) = 0.375.
+  why:
+    A: "0.25 is the share of negative examples, not the impurity."
+    C: "0.5 is the largest Gini possible for two classes, reached only with a 50-50 split."
+    D: "0.625 is the sum of the squared proportions before subtracting from 1."
+  verify: "1 - (0.75 ** 2 + 0.25 ** 2)"
+
+- id: ut5-19
+  skill: ensembles
+  tier: competitive
+  type: concept
+  stem: |
+    Which statement describes boosting?
+  options:
+    - "Many trees are trained independently on bootstrap samples, and their votes are averaged"
+    - "A single deep tree is grown until every leaf is pure"
+    - "Features are removed one at a time until accuracy stops improving"
+    - "Models are trained one after another, each focusing on the errors of the ones before"
+  answer: D
+  explain: |
+    Boosting builds models in sequence, giving more weight to the examples earlier models got wrong, and combines them into a strong predictor. Training independent trees on bootstrap samples and averaging them is bagging, the idea behind random forests.
+  why:
+    A: "That describes bagging, as in a random forest."
+    B: "A single fully grown tree is not an ensemble, and it tends to overfit."
+    C: "That describes a feature selection procedure, not boosting."
+
+- id: ut5-20
+  skill: knn-svm-nb
+  tier: competitive
+  type: concept
+  stem: |
+    A k-nearest neighbors model uses annual income, in dollars, and age, in years, to find similar customers. Why should the features be scaled first?
+  options:
+    - "Otherwise income's large numbers dominate the distance and age barely matters"
+    - "k-nearest neighbors cannot run on unscaled numbers at all"
+    - "Scaling increases the number of neighbors the model considers"
+    - "Scaling turns the model into a linear classifier"
+  answer: A
+  explain: |
+    kNN compares examples by distance. A $10,000 income gap would outweigh a 40-year age gap if the features stayed in their original units, so scaling puts them on comparable ranges.
+  why:
+    B: "kNN runs on unscaled data; it just produces distorted distances."
+    C: "k is a hyperparameter that scaling does not change."
+    D: "Scaling changes the units, not the type of model."
+
+- id: ut5-21
+  skill: knn-svm-nb
+  tier: core
+  type: concept
+  stem: |
+    What is "naive" about a naive Bayes classifier?
+  options:
+    - "It ignores the prior probability of each class when it predicts"
+    - "It can only handle problems that have exactly two classes"
+    - "It assumes the features are independent of one another within each class"
+    - "It is trained without any labeled examples at all"
+  answer: C
+  explain: |
+    Naive Bayes assumes each feature is conditionally independent of the others given the class, which makes the math simple and fast. The assumption is rarely exactly true, yet the classifier often works well, for example in spam filtering.
+  why:
+    A: "Naive Bayes uses the class priors as part of Bayes' theorem."
+    B: "It handles any number of classes."
+    D: "It is a supervised method trained on labeled examples."
+
+- id: ut5-22
+  skill: clustering-dimred
+  tier: competitive
+  type: concept
+  stem: |
+    What does principal component analysis (PCA) do?
+  options:
+    - "Assigns each data point to the nearest of k cluster centers"
+    - "Builds a tree of nested clusters by merging the closest groups"
+    - "Predicts a numeric target from a weighted sum of features"
+    - "Creates a few new uncorrelated components that keep most of the data's variation"
+  answer: D
+  explain: |
+    PCA combines the original features into new components ordered by how much variation they capture. Keeping the first few reduces the number of dimensions while losing as little information as possible.
+  why:
+    A: "That describes k-means clustering."
+    B: "That describes hierarchical clustering."
+    C: "That describes linear regression."
+
+- id: ut5-23
+  skill: neurons
+  tier: competitive
+  type: calculation
+  stem: |
+    A neuron has inputs 3 and 2, weights 0.4 and $$-0.5$$, a bias of $$-0.5$$, and a ReLU activation. What does it output?
+  options:
+    - "-0.3"
+    - "0"
+    - "0.2"
+    - "1.7"
+  ordered: true
+  answer: B
+  explain: |
+    The weighted sum is 3 × 0.4 + 2 × (negative 0.5) + (negative 0.5) = 1.2 minus 1.0 minus 0.5 = negative 0.3. ReLU outputs the larger of 0 and its input, so the neuron outputs 0.
+  why:
+    A: "Negative 0.3 is the weighted sum before the ReLU activation is applied."
+    C: "0.2 leaves out the bias."
+    D: "1.7 treats the negative weight as positive."
+  verify: "max(0, 3 * 0.4 + 2 * -0.5 - 0.5)"
+
+- id: ut5-24
+  skill: activations
+  tier: core
+  type: concept
+  stem: |
+    A network classifies handwritten digits into 10 classes. Which activation in its output layer turns the 10 scores into probabilities that sum to 1?
+  options:
+    - "Softmax"
+    - "ReLU"
+    - "Step function"
+    - "Tanh"
+  answer: A
+  explain: |
+    Softmax exponentiates each score and divides by the total, producing 10 positive values that sum to 1, one probability per digit.
+  why:
+    B: "ReLU treats each value separately, and its outputs need not sum to 1."
+    C: "A step function outputs only 0 or 1 for each unit."
+    D: "Tanh outputs values between negative 1 and 1, which are not probabilities."
+
+- id: ut5-25
+  skill: nn-training
+  tier: competitive
+  type: calculation
+  stem: |
+    A network trains on 10,000 examples with a batch size of 50 for 5 epochs. How many weight updates does it make in total?
+  options:
+    - "200"
+    - "1,000"
+    - "2,000"
+    - "50,000"
+  ordered: true
+  answer: B
+  explain: |
+    Each epoch splits the 10,000 examples into 10,000 / 50 = 200 batches, with one update per batch. Over 5 epochs that is 200 × 5 = 1,000 updates.
+  why:
+    A: "200 is the number of updates in a single epoch."
+    C: "2,000 divides 10,000 by the 5 epochs instead of by the batch size."
+    D: "50,000 is the number of examples processed, not the number of updates."
+  verify: "10000 // 50 * 5"
+
+- id: ut5-26
+  skill: deep-learning
+  tier: core
+  type: concept
+  stem: |
+    Why are GPUs so important for training deep neural networks?
+  options:
+    - "They store far more data than ordinary hard drives"
+    - "They let networks train without any labeled data"
+    - "They perform thousands of matrix calculations in parallel"
+    - "They prevent neural networks from overfitting"
+  answer: C
+  explain: |
+    Training a deep network means huge numbers of matrix multiplications, and GPUs can run thousands of such calculations at once. That speedup helped make modern deep learning practical.
+  why:
+    A: "GPUs are processors, not storage devices."
+    B: "Hardware does not change whether a task needs labels."
+    D: "Overfitting is controlled by data and regularization, not by the processor."
+
+- id: ut5-27
+  skill: deep-architectures
+  tier: core
+  type: recall
+  stem: |
+    Which neural network architecture is the classic choice for recognizing objects in images?
+  options:
+    - "A convolutional neural network (CNN)"
+    - "A recurrent neural network (RNN)"
+    - "A single-layer perceptron network"
+    - "A k-means clustering model"
+  answer: A
+  explain: |
+    Convolutional layers slide small filters across an image to detect edges, textures, and shapes, building up to whole objects, so CNNs became the standard tool for image recognition.
+  why:
+    B: "RNNs process sequences such as text or time series."
+    C: "A single perceptron can learn only linearly separable patterns."
+    D: "k-means is a clustering algorithm, not a neural network."
+
+- id: ut5-28
+  skill: deep-architectures
+  tier: champion
+  type: scenario
+  stem: |
+    A clinic has only 2,000 labeled chest X-rays, far too few to train a large image model from scratch. Which approach is most likely to work well?
+  options:
+    - "Train a deep network from scratch on the 2,000 images for many more epochs"
+    - "Fine-tune a network pretrained on a large image dataset (transfer learning)"
+    - "Cluster the X-rays with k-means and treat each cluster as a diagnosis"
+    - "Use a recurrent network, because X-rays are taken in a sequence"
+  answer: B
+  explain: |
+    Transfer learning starts from a network that has already learned general visual features, such as edges and textures, on a large dataset, then fine-tunes it on the small labeled set. It needs far less data than training from scratch.
+  why:
+    A: "More epochs on a tiny dataset mostly lead to overfitting."
+    C: "Clusters are not diagnoses; without labels the model learns nothing about disease."
+    D: "X-rays are images, so the order in which they were taken does not make an RNN appropriate."
