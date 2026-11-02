@@ -93,7 +93,9 @@ def option_number(text: str):
     return float(m.group(1)), decimals, bool(m.group(3))
 
 
-def matches(ans, option: str) -> bool:
+def matches(ans, option: str, decimals_shown: int | None = None) -> bool:
+    """decimals_shown is the most precise option in the question; a whole-number
+    option then cannot absorb an answer such as 14.4 when 14.4 is also offered."""
     if isinstance(ans, bool):
         raise ValueError("verify returned a bool; return the option text or a number instead")
     if isinstance(ans, (list, tuple)):
@@ -105,6 +107,8 @@ def matches(ans, option: str) -> bool:
         if parsed is None:
             return False
         value, decimals, is_percent = parsed
+        if decimals_shown is not None:
+            decimals = max(decimals, decimals_shown)
         tol = 0.5 * 10 ** (-decimals) + 1e-9
         candidates = [float(ans)]
         if is_percent:
@@ -180,8 +184,10 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001
             problems.append(f"ERROR     {where}: verify raised {type(e).__name__}: {e}")
             continue
+        parsed_options = [option_number(o) for o in q["options"]]
+        shown = max((p[1] for p in parsed_options if p is not None), default=None)
         try:
-            hits = [LETTERS[i] for i, opt in enumerate(q["options"]) if matches(ans, opt)]
+            hits = [LETTERS[i] for i, opt in enumerate(q["options"]) if matches(ans, opt, shown)]
         except Exception as e:  # noqa: BLE001
             problems.append(f"ERROR     {where}: {e}")
             continue

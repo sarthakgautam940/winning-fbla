@@ -1,0 +1,710 @@
+# Lesson 2.1: Mean, median, mode, and range
+
+# ---------------------------------------------------------------- mean
+- id: mean-01
+  skill: mean
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    What is the mean of 12, 15, 9, 22, and 14?
+  options:
+    - "9"
+    - "14"
+    - "14.4"
+    - "18"
+  ordered: true
+  answer: C
+  explain: |
+    The values sum to 72, and there are 5 of them, so the mean is 72 / 5 = 14.4.
+  why:
+    A: "This is the middle number of the list as written, which is not even the median."
+    B: "This is the median (the middle of 9, 12, 14, 15, 22), not the mean."
+    D: "This divides the sum by 4 instead of by the 5 values."
+  verify: "statistics.mean([12, 15, 9, 22, 14])"
+
+- id: mean-02
+  skill: mean
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A survey asked 20 people how many pets they own. What is the mean?
+
+    | Pets | 1 | 2 | 3 | 4 |
+    |---|---|---|---|---|
+    | People | 3 | 5 | 8 | 4 |
+  options:
+    - "2.5"
+    - "2.65"
+    - "5"
+    - "13.25"
+  ordered: true
+  answer: B
+  explain: |
+    Multiply each value by its count: 1 x 3 + 2 x 5 + 3 x 8 + 4 x 4 = 3 + 10 + 24 + 16 = 53 pets in total. Divide by the 20 people: 53 / 20 = 2.65.
+  why:
+    A: "This averages the four pet counts as if each occurred once, ignoring the frequencies."
+    C: "This averages the frequencies (20 / 4), which describes the table, not the pets."
+    D: "This divides the total of 53 by the 4 columns instead of by the 20 people."
+  verify: |
+    values = [1, 2, 3, 4]
+    counts = [3, 5, 8, 4]
+    ans = sum(v * c for v, c in zip(values, counts)) / sum(counts)
+
+- id: mean-03
+  skill: mean
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    The mean of five numbers is 12. Four of them are 10, 15, 8, and 14. What is the fifth number?
+  options:
+    - "1"
+    - "11.75"
+    - "12"
+    - "13"
+  ordered: true
+  answer: D
+  explain: |
+    Five numbers with mean 12 must total 5 x 12 = 60. The four known numbers total 47, so the fifth is 60 - 47 = 13.
+  why:
+    A: "This uses 4 x 12 = 48 as the total, but there are five numbers."
+    B: "This is the mean of the four known numbers, not the missing one."
+    C: "The missing value does not have to equal the mean."
+  verify: "5 * 12 - (10 + 15 + 8 + 14)"
+
+- id: mean-04
+  skill: mean
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A course grade counts homework 20%, tests 50%, and the final exam 30%. A student scores 90 on homework, 80 on tests, and 70 on the final. What is the course grade?
+  options:
+    - "79"
+    - "80"
+    - "81"
+    - "240"
+  ordered: true
+  answer: A
+  explain: |
+    Multiply each score by its weight and add: 0.2 x 90 + 0.5 x 80 + 0.3 x 70 = 18 + 40 + 21 = 79. The weights sum to 1, so no further division is needed.
+  why:
+    B: "This is the unweighted average of 90, 80, and 70, which ignores the weights."
+    C: "This applies the 20% weight to the final and the 30% weight to homework."
+    D: "This adds the three scores without weighting or dividing."
+  verify: "0.2 * 90 + 0.5 * 80 + 0.3 * 70"
+
+- id: mean-05
+  skill: mean
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Class A has 20 students with a mean score of 80. Class B has 30 students with a mean score of 70. What is the mean score of all 50 students?
+  options:
+    - "74"
+    - "75"
+    - "76"
+    - "3,700"
+  ordered: true
+  answer: A
+  explain: |
+    Combine the totals: 20 x 80 = 1,600 and 30 x 70 = 2,100, for 3,700 points over 50 students. The mean is 3,700 / 50 = 74.
+  why:
+    B: "This averages the two class means, ignoring that Class B is larger."
+    C: "This gives the larger class the higher mean, swapping the class sizes."
+    D: "This is the total of all scores before dividing by the 50 students."
+  verify: "(20 * 80 + 30 * 70) / 50"
+
+- id: mean-06
+  skill: mean
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Nine values have a mean of 50. A tenth value, 70, is added. What is the new mean?
+  options:
+    - "50"
+    - "52"
+    - "60"
+    - "70"
+  ordered: true
+  answer: B
+  explain: |
+    The nine values total 9 x 50 = 450. Adding 70 makes 520 over 10 values, so the new mean is 52.
+  why:
+    A: "Adding a value above the mean must raise the mean."
+    C: "This averages the old mean with the new value, as if each were one value."
+    D: "One new value cannot pull the mean all the way to itself."
+  verify: "(9 * 50 + 70) / 10"
+
+- id: mean-07
+  skill: mean
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A student's mean on four tests is 85. What score does the student need on a fifth test to raise the mean to 88?
+  options:
+    - "88"
+    - "91"
+    - "94"
+    - "100"
+  ordered: true
+  answer: D
+  explain: |
+    Five tests averaging 88 must total 5 x 88 = 440. The first four total 4 x 85 = 340, so the fifth test needs 440 - 340 = 100.
+  why:
+    A: "Scoring exactly 88 would leave the mean below 88, because the first four average 85."
+    B: "This adds the 3-point gap once, but all five tests must average 3 more than 85."
+    C: "This adds the 3-point gap three times instead of making up the shortfall on all four earlier tests."
+  verify: "5 * 88 - 4 * 85"
+
+- id: mean-08
+  skill: mean
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which statement about the mean of any dataset is always true?
+  options:
+    - "The mean is always one of the values in the dataset."
+    - "The mean always equals the median."
+    - "The deviations of the values from the mean add up to zero."
+    - "The mean is always larger than the mode."
+  answer: C
+  explain: |
+    The mean is the balance point of the data, so the distances above it exactly cancel the distances below it. That is why deviations from the mean always sum to zero.
+  why:
+    A: "The mean of 1 and 2 is 1.5, which is not in the data."
+    B: "The mean and median differ whenever the data are skewed."
+    D: "In left-skewed data the mean is usually smaller than the mode."
+
+# ---------------------------------------------------------------- median
+- id: median-01
+  skill: median
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    What is the median of 7, 2, 9, 4, and 5?
+  options:
+    - "4.5"
+    - "5"
+    - "5.4"
+    - "9"
+  ordered: true
+  answer: B
+  explain: |
+    Sort first: 2, 4, 5, 7, 9. With 5 values, the median is the third one, which is 5.
+  why:
+    A: "This averages the second and third sorted values, but with an odd count the median is a single value."
+    C: "This is the mean (27 / 5), not the median."
+    D: "This is the middle of the list as written; the data must be sorted first."
+  verify: "statistics.median([7, 2, 9, 4, 5])"
+
+- id: median-02
+  skill: median
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    What is the median of 3, 8, 1, 6, 10, and 4?
+  options:
+    - "3.5"
+    - "4"
+    - "5"
+    - "5.33"
+  ordered: true
+  answer: C
+  explain: |
+    Sorted, the data are 1, 3, 4, 6, 8, 10. With 6 values, the median is the average of the third and fourth: (4 + 6) / 2 = 5.
+  why:
+    A: "This averages the two middle values of the unsorted list (1 and 6)."
+    B: "This takes only the lower of the two middle values."
+    D: "This is the mean (32 / 6), not the median."
+  verify: "statistics.median([3, 8, 1, 6, 10, 4])"
+
+- id: median-03
+  skill: median
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Twenty students rated a movie from 1 to 5. What is the median rating?
+
+    | Rating | 1 | 2 | 3 | 4 | 5 |
+    |---|---|---|---|---|---|
+    | Students | 4 | 6 | 5 | 3 | 2 |
+  options:
+    - "2"
+    - "2.5"
+    - "2.65"
+    - "3"
+  ordered: true
+  answer: B
+  explain: |
+    With 20 ratings, the median is the average of the 10th and 11th. Running totals: 4 ratings of 1, then 10 ratings of 2 or less, so the 10th rating is 2 and the 11th is 3. The median is (2 + 3) / 2 = 2.5.
+  why:
+    A: "This uses only the 10th rating; with an even count, average the 10th and 11th."
+    C: "This is the mean rating (53 / 20), not the median."
+    D: "This is the middle of the five rating values, ignoring how many students chose each."
+  verify: |
+    data = [1] * 4 + [2] * 6 + [3] * 5 + [4] * 3 + [5] * 2
+    ans = statistics.median(data)
+
+- id: median-04
+  skill: median
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A dataset has 25 values sorted from smallest to largest. In which position is the median?
+  options:
+    - "The 12th value"
+    - "The average of the 12th and 13th values"
+    - "The 13th value"
+    - "The 25th value"
+  answer: C
+  explain: |
+    With an odd count, the median sits at position (n + 1) / 2 = (25 + 1) / 2 = 13. Twelve values lie below it and twelve above.
+  why:
+    A: "Position 12 leaves 11 values below and 13 above, so it is not the middle."
+    B: "Averaging two middle values is only for an even count."
+    D: "The 25th value is the maximum."
+
+- id: median-05
+  skill: median
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    In the data 4, 7, 9, 12, 15, the value 15 is changed to 150. What happens to the median?
+  options:
+    - "It increases to 36.4."
+    - "It increases to 12."
+    - "It becomes the average of 9 and 12."
+    - "It stays the same."
+  answer: D
+  explain: |
+    The middle value is still the third of five, which is 9. The median depends on position, not on how extreme the largest value is, which makes it resistant to outliers.
+  why:
+    A: "36.4 is the new mean; the mean is pulled by the outlier, but the median is not."
+    B: "The order of the values does not change, so the middle value is still 9."
+    C: "There are still five values, so the median is a single middle value."
+
+- id: median-06
+  skill: median
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    The median of seven numbers is 20. Two numbers are added: 5 and 40. What is the new median?
+  options:
+    - "20"
+    - "22.5"
+    - "25"
+    - "It cannot be determined without all the values"
+  answer: A
+  explain: |
+    The old median was the 4th of 7 values, with 3 below and 3 above. Adding one value below 20 and one above 20 makes 4 below and 4 above, so 20 is still the middle (5th of 9).
+  why:
+    B: "This averages the two new numbers, which does not affect the middle position this way."
+    C: "The median does not shift by any fixed amount here; it stays at 20."
+    D: "One value on each side keeps 20 in the middle, so the answer is determined."
+
+- id: median-07
+  skill: median
+  tier: core
+  type: calculation
+  use: bank
+  stem: |
+    What is the median of 15, 3, 11, 8, 20, 6, and 9?
+  options:
+    - "8"
+    - "9"
+    - "10.3"
+    - "11"
+  ordered: true
+  answer: B
+  explain: |
+    Sorted, the data are 3, 6, 8, 9, 11, 15, 20. The 4th of 7 values is 9.
+  why:
+    A: "This is the middle of the list as written; sort before finding the median."
+    C: "This is the mean, about 72 / 7, not the median."
+    D: "This is one position past the middle of the sorted list."
+  verify: "statistics.median([15, 3, 11, 8, 20, 6, 9])"
+
+- id: median-08
+  skill: median
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why is the median less affected by an extreme value than the mean is?
+  options:
+    - "It depends only on the middle position, not on the extremes' size."
+    - "It always drops the largest and smallest values before computing."
+    - "It is calculated only after the outliers have been removed."
+    - "It uses fewer decimal places than the mean in most datasets."
+  answer: A
+  explain: |
+    Moving an extreme value farther out does not change which value sits in the middle, so the median holds steady. The mean adds every value, so an extreme value pulls it directly.
+  why:
+    B: "The median does not drop the extremes; they still count in finding the middle position."
+    C: "No values are removed when computing the median."
+    D: "Decimal places have nothing to do with resistance to outliers."
+
+# ---------------------------------------------------------------- mode-range
+- id: mode-range-01
+  skill: mode-range
+  tier: core
+  type: calculation
+  use: check
+  stem: |
+    What is the mode of 3, 7, 7, 2, 9, 3, 7?
+  options:
+    - "3"
+    - "5.43"
+    - "7"
+    - "9"
+  ordered: true
+  answer: C
+  explain: |
+    7 appears three times, more than any other value, so it is the mode.
+  why:
+    A: "3 appears twice, but 7 appears three times."
+    B: "This is the mean (38 / 7), not the mode."
+    D: "9 is the largest value, and it appears only once."
+  verify: "statistics.mode([3, 7, 7, 2, 9, 3, 7])"
+
+- id: mode-range-02
+  skill: mode-range
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    What is the range of 15, 4, 22, 9, and 18?
+  options:
+    - "4"
+    - "13.6"
+    - "15"
+    - "18"
+  ordered: true
+  answer: D
+  explain: |
+    The range is the maximum minus the minimum: 22 - 4 = 18.
+  why:
+    A: "This is the minimum, not the range."
+    B: "This is the mean (68 / 5), a measure of center rather than spread."
+    C: "This is the median, a measure of center rather than spread."
+  verify: "max([15, 4, 22, 9, 18]) - min([15, 4, 22, 9, 18])"
+
+- id: mode-range-03
+  skill: mode-range
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    What is the mode of 2, 4, 4, 6, 8, 8, 10?
+  options:
+    - "4 only"
+    - "8 only"
+    - "4 and 8"
+    - "There is no mode"
+  answer: C
+  explain: |
+    4 and 8 each appear twice, and no value appears more often, so the data are bimodal with modes 4 and 8.
+  why:
+    A: "8 appears just as often as 4, so it is also a mode."
+    B: "4 appears just as often as 8, so it is also a mode."
+    D: "There is no mode only when no value repeats more than the others."
+  verify: |
+    ans = " and ".join(str(m) for m in sorted(statistics.multimode([2, 4, 4, 6, 8, 8, 10])))
+
+- id: mode-range-04
+  skill: mode-range
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A survey of favorite pets finds dog 14, cat 11, fish 3, and bird 2. Which measure of center can be reported for this data?
+  options:
+    - "The mode"
+    - "The mean"
+    - "The median"
+    - "The range"
+  answer: A
+  explain: |
+    Pet types are categories with no numbers and no order, so only the most common category, the mode (dog), describes the center.
+  why:
+    B: "There is no meaningful average of dog, cat, fish, and bird."
+    C: "A median needs ordered values, and pet types have no order."
+    D: "The range measures spread of numbers, not the center of categories."
+
+- id: mode-range-05
+  skill: mode-range
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Why is the range a poor measure of spread for data that contain an outlier?
+  options:
+    - "It can only be computed for data with no repeated values."
+    - "It depends only on the two most extreme values."
+    - "It is always smaller than the standard deviation."
+    - "It ignores the largest value in the data."
+  answer: B
+  explain: |
+    The range is maximum minus minimum, so one extreme value sets it entirely, no matter how tightly the rest of the data cluster.
+  why:
+    A: "Repeated values do not prevent computing a range."
+    C: "The range is never smaller than the standard deviation for the same data."
+    D: "The range uses the largest value directly, which is exactly why one outlier inflates it."
+
+- id: mode-range-06
+  skill: mode-range
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    What is the mode of 5, 8, 12, 15, and 21?
+  options:
+    - "0"
+    - "12"
+    - "21"
+    - "There is no mode"
+  answer: D
+  explain: |
+    Every value appears exactly once, so no value is more frequent than the others. The data have no mode.
+  why:
+    A: "Zero does not appear in the data; when nothing repeats, there is no mode."
+    B: "12 is the median, not the mode."
+    C: "21 is the maximum, and it appears only once."
+
+- id: mode-range-07
+  skill: mode-range
+  tier: champion
+  type: calculation
+  use: quiz
+  stem: |
+    A dataset has a range of 30. Every value is doubled, and then 5 is added to each. What is the new range?
+  options:
+    - "30"
+    - "35"
+    - "60"
+    - "65"
+  ordered: true
+  answer: C
+  explain: |
+    Doubling every value doubles the distance between the maximum and minimum, giving 60. Adding 5 to every value shifts both ends equally, so it does not change the range.
+  why:
+    A: "Doubling the values stretches the range, so it cannot stay at 30."
+    B: "Adding 5 to every value does not change the range, and doubling was skipped."
+    D: "This adds 5 to the range, but shifting all values leaves the range unchanged."
+  verify: "2 * 30"
+
+- id: mode-range-08
+  skill: mode-range
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    Six test scores have a range of 25, and the lowest score is 68. What is the highest score?
+  options:
+    - "25"
+    - "43"
+    - "93"
+    - "118"
+  ordered: true
+  answer: C
+  explain: |
+    The range is the maximum minus the minimum, so the maximum is the minimum plus the range: 68 + 25 = 93.
+  why:
+    A: "25 is the range itself, not the highest score."
+    B: "This subtracts the range from the minimum instead of adding it."
+    D: "This adds the range to 93, counting the range twice."
+  verify: "68 + 25"
+
+# ---------------------------------------------------------------- center-choice
+- id: center-choice-01
+  skill: center-choice
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Five employees earn 40, 42, 45, 48, and 50 thousand dollars. The owner's salary of 900 thousand dollars is added to the data. Which statistic changes the most?
+  options:
+    - "The mean"
+    - "The median"
+    - "The mode"
+    - "None of them changes"
+  answer: A
+  explain: |
+    The mean rises from 45 to 187.5 thousand, because it adds the huge new value. The median only moves from 45 to 46.5, and there was no mode before or after.
+  why:
+    B: "The median moves only to 46.5, because it depends on the middle position."
+    C: "No salary repeats, so there is no mode before or after."
+    D: "The mean changes dramatically."
+  verify: |
+    before = [40, 42, 45, 48, 50]
+    after = before + [900]
+    ans = "The mean" if (statistics.mean(after) - statistics.mean(before)) > (statistics.median(after) - statistics.median(before)) else "The median"
+
+- id: center-choice-02
+  skill: center-choice
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    A distribution is skewed to the right, with a long tail of large values. How do its mean and median usually compare?
+  options:
+    - "The mean is less than the median."
+    - "The mean is greater than the median."
+    - "The mean equals the median exactly."
+    - "The median is always zero."
+  answer: B
+  explain: |
+    The few large values in the right tail pull the mean upward, while the median stays near the middle of the data. So the mean is greater than the median.
+  why:
+    A: "That is the pattern for left-skewed data."
+    C: "Mean and median are about equal only for symmetric data."
+    D: "Skew says nothing about the median being zero."
+
+- id: center-choice-03
+  skill: center-choice
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A real estate site wants one number to describe a typical home price in a city where a few mansions sell for many millions. Which statistic should it report?
+  options:
+    - "The mean price"
+    - "The range of prices"
+    - "The highest price"
+    - "The median price"
+  answer: D
+  explain: |
+    Home prices are skewed right by a few very expensive sales, which pull the mean up. The median is resistant to those extremes and describes a typical home better.
+  why:
+    A: "The mansions would inflate the mean above what a typical home costs."
+    B: "The range describes spread, not a typical value."
+    C: "The highest price describes one mansion, not a typical home."
+
+- id: center-choice-04
+  skill: center-choice
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A dataset has a mean of 52 and a median of 61. What is the most likely shape of its distribution?
+  options:
+    - "Symmetric"
+    - "Skewed right"
+    - "Skewed left"
+    - "Uniform"
+  answer: C
+  explain: |
+    The mean is well below the median, so something is pulling it down: a tail of unusually small values. That is a left-skewed distribution.
+  why:
+    A: "In a symmetric distribution the mean and median are about equal."
+    B: "Right skew pulls the mean above the median, the opposite of this case."
+    D: "A uniform distribution is symmetric, so its mean and median match."
+
+- id: center-choice-05
+  skill: center-choice
+  tier: competitive
+  type: calculation
+  use: bank
+  stem: |
+    The data 10, 12, 14, 16, 18 have a mean and median of 14. The 18 is replaced by 68. What are the new mean and median?
+  options:
+    - "Mean 14, median 24"
+    - "Mean 24, median 14"
+    - "Mean 24, median 24"
+    - "Mean 14, median 14"
+  answer: B
+  explain: |
+    The sum rises by 50, from 70 to 120, so the mean becomes 120 / 5 = 24. The middle value is still 14, so the median does not change.
+  why:
+    A: "This swaps them: the mean moves with the outlier, and the median stays put."
+    C: "The median depends on the middle position, which is still 14."
+    D: "Replacing 18 with 68 raises the total, so the mean must change."
+  verify: |
+    data = [10, 12, 14, 16, 68]
+    ans = f"Mean {statistics.mean(data):g}, median {statistics.median(data):g}"
+
+- id: center-choice-06
+  skill: center-choice
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which measure of center is resistant to outliers?
+  options:
+    - "The mean"
+    - "The weighted mean"
+    - "The midrange, the average of the maximum and minimum"
+    - "The median"
+  answer: D
+  explain: |
+    The median depends only on which value is in the middle, so extreme values barely move it. Statistics like that are called resistant.
+  why:
+    A: "The mean adds every value, so an outlier pulls it directly."
+    B: "A weighted mean still adds the values, so outliers still pull it."
+    C: "The midrange uses the two most extreme values, so it is very sensitive to outliers."
+
+- id: center-choice-07
+  skill: center-choice
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    The reaction times of drivers form a single-peaked distribution with a long tail to the right. Which ordering of the three measures of center is most likely, from smallest to largest?
+  options:
+    - "Mode, median, mean"
+    - "Mean, median, mode"
+    - "Median, mode, mean"
+    - "Mean, mode, median"
+  answer: A
+  explain: |
+    The mode sits at the peak, the median sits where half the data fall on each side, and the mean is pulled farthest toward the long right tail. So mode < median < mean.
+  why:
+    B: "This is the order for a left-skewed distribution."
+    C: "The mode is at the peak, which lies to the left of the median in right-skewed data."
+    D: "The mean is the measure pulled farthest right, so it is the largest."
+
+- id: center-choice-08
+  skill: center-choice
+  tier: competitive
+  type: visual
+  use: quiz
+  stem: |
+    The histogram shows daily commute times for workers in a city. Based on its shape, which statement is most likely true?
+  figure:
+    type: histogram
+    xLabel: Commute time (minutes)
+    yLabel: Workers
+    caption: Daily commute times
+    bins:
+      - { from: 0, to: 10, count: 8 }
+      - { from: 10, to: 20, count: 14 }
+      - { from: 20, to: 30, count: 9 }
+      - { from: 30, to: 40, count: 4 }
+      - { from: 40, to: 50, count: 2 }
+      - { from: 50, to: 60, count: 2 }
+      - { from: 60, to: 70, count: 1 }
+  options:
+    - "The mean is less than the median."
+    - "The mean and median are about equal."
+    - "The median is greater than every value in the data."
+    - "The mean is greater than the median."
+  answer: D
+  explain: |
+    The distribution is skewed right: most commutes are short, with a long tail of a few very long ones. The long commutes pull the mean above the median.
+  why:
+    A: "That would mean a long left tail, but this histogram's tail is on the right."
+    B: "Mean and median match only for roughly symmetric data, and this shape is lopsided."
+    C: "The median is a middle value, so half the data lie at or above it."

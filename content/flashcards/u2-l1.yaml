@@ -1,0 +1,62 @@
+# Lesson 2.1 flashcards
+
+- id: fc-mean
+  term: Mean
+  def: The sum of the values divided by the number of values; the balance point of the data. It is pulled toward outliers.
+  example: "4, 8, 6, 5, 7 sum to 30, so the mean is 30 / 5 = 6."
+  skill: mean
+  virginia: true
+
+- id: fc-weighted-mean
+  term: Weighted mean
+  def: The sum of weight times value, divided by the sum of the weights. Use it when values count unequally, such as graded categories.
+  example: "0.2(90) + 0.5(80) + 0.3(70) = 79."
+  skill: mean
+
+- id: fc-combined-mean
+  term: Combined mean of two groups
+  def: (n1 x mean1 + n2 x mean2) / (n1 + n2). Never average two averages when the groups differ in size.
+  skill: mean
+
+- id: fc-missing-value-mean
+  term: Missing value from a mean
+  def: The total equals n x mean, so subtract the known values from that total to find the missing one.
+  skill: mean
+
+- id: fc-median
+  term: Median
+  def: The middle value of the sorted data. With an even count, it is the average of the two middle values. It is resistant to outliers.
+  skill: median
+  virginia: true
+
+- id: fc-median-position
+  term: Median position
+  def: In sorted data with n values, the median is at position (n + 1) / 2, so the 13th of 25. For even n, average the two middle values.
+  skill: median
+
+- id: fc-mode
+  term: Mode
+  def: The value that appears most often. A dataset can have none, one, or several (bimodal, multimodal). It is the only measure of center for categorical data.
+  skill: mode-range
+  virginia: true
+
+- id: fc-range
+  term: Range
+  def: The maximum minus the minimum. It is very sensitive to outliers because it uses only the two extreme values.
+  skill: mode-range
+  virginia: true
+
+- id: fc-resistant
+  term: Resistant statistic
+  def: A statistic that barely changes when an extreme value changes, such as the median and the IQR. The mean, range, and standard deviation are not resistant.
+  skill: center-choice
+
+- id: fc-skew-mean-median
+  term: Skew and the mean
+  def: "In right-skewed data the mean is greater than the median, and in left-skewed data the mean is less than the median. In symmetric data the two are about equal."
+  skill: center-choice
+
+- id: fc-which-center
+  term: Which center to report
+  def: Use the mean for roughly symmetric data without outliers. Use the median for skewed data or data with outliers, such as incomes and home prices.
+  skill: center-choice
