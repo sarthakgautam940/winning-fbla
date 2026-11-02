@@ -1,0 +1,582 @@
+# Lesson 3.7: Algorithms on real problems
+
+# ---------------------------------------------------------------- linreg-applied
+- id: linreg-applied-01
+  skill: linreg-applied
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    A utility's model is predicted monthly bill = 22 + 0.14 × (kilowatt-hours used), in dollars. What does the 0.14 mean?
+  options:
+    - "Each additional kilowatt-hour adds $0.14 to the predicted bill."
+    - "The predicted bill is $0.14 when no electricity is used."
+    - "Usage explains about 14% of the variation in monthly bills."
+    - "Each additional dollar billed adds 0.14 kilowatt-hours of usage."
+  answer: A
+  explain: |
+    The slope is the change in the predicted response per one-unit change in the predictor. Here each extra kilowatt-hour raises the predicted bill by $0.14, on average.
+  why:
+    B: "The predicted bill at zero usage is the intercept, $22."
+    C: "The share of variation explained is R squared, not the slope."
+    D: "This reverses the roles of the predictor and the response."
+
+- id: linreg-applied-02
+  skill: linreg-applied
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A model of children's height built from children aged 2 to 10 predicts that a 40-year-old will be 131 inches tall. Why is this prediction unreliable?
+  options:
+    - "The model's slope must have been calculated incorrectly."
+    - "Height cannot be predicted from age by any model."
+    - "It extrapolates far beyond the ages in the data."
+    - "The residuals for children were too small."
+  answer: C
+  explain: |
+    The model learned a pattern that holds for ages 2 to 10. People stop growing, so the straight line does not continue to age 40. Predicting outside the range of the data is extrapolation, and it can fail badly.
+  why:
+    A: "The slope can be accurate for children and still fail far outside their ages."
+    B: "Age predicts height well within childhood; the problem is the range."
+    D: "Small residuals within the data's range say nothing about ages outside it."
+
+- id: linreg-applied-03
+  skill: linreg-applied
+  tier: core
+  type: calculation
+  use: quiz
+  stem: |
+    A taxi fare model is predicted fare = 3.50 + 2.25 × (miles). What is the predicted fare for a 12-mile ride?
+  options:
+    - "$27.00"
+    - "$30.50"
+    - "$44.25"
+    - "$69.00"
+  ordered: true
+  answer: B
+  explain: |
+    Substitute 12 for miles: 3.50 + 2.25 × 12 = 3.50 + 27.00 = $30.50.
+  why:
+    A: "This leaves out the $3.50 base charge."
+    C: "This swaps the intercept and the slope, computing 2.25 + 3.50 × 12."
+    D: "This adds the two numbers before multiplying, computing (3.50 + 2.25) × 12."
+  verify: "3.50 + 2.25 * 12"
+
+- id: linreg-applied-04
+  skill: linreg-applied
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    A model of puppy growth is predicted weight = 2.5 + 1.8 × (age in weeks), in pounds. What does the intercept 2.5 represent?
+  options:
+    - "The predicted weight at birth, when age is 0 weeks"
+    - "The weight a puppy gains each week, on average"
+    - "The average weight of all the puppies in the data"
+    - "The weight at which the puppies stop growing"
+  answer: A
+  explain: |
+    The intercept is the predicted value when the predictor is 0. Age 0 weeks is birth, a meaningful point, so the model predicts a newborn weight of 2.5 pounds.
+  why:
+    B: "The weekly gain is the slope, 1.8 pounds per week."
+    C: "The intercept is a prediction at age 0, not an average of all puppies."
+    D: "A straight-line model never levels off, so it has no stopping weight."
+
+- id: linreg-applied-05
+  skill: linreg-applied
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    An ice cream shop's model is predicted daily sales = 120 + 15 × (temperature in degrees F), in dollars. On an 80-degree day, actual sales were $1,250. What is the residual?
+  options:
+    - "-$70"
+    - "$70"
+    - "$1,250"
+    - "$1,320"
+  ordered: true
+  answer: A
+  explain: |
+    The predicted sales are 120 + 15 × 80 = 1,320 dollars. The residual is actual minus predicted: 1,250 - 1,320 = -70. The model overpredicted by $70.
+  why:
+    B: "This subtracts in the wrong order, predicted minus actual."
+    C: "This is the actual sales figure, not the residual."
+    D: "This is the predicted sales figure, not the residual."
+  verify: "1250 - (120 + 15 * 80)"
+
+- id: linreg-applied-06
+  skill: linreg-applied
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    An ice cream shop fit the model predicted sales = 120 + 15 × (temperature) using days between 50 and 90 degrees F. Which use of the model is most reliable?
+  options:
+    - "Predicting sales on a 110-degree day"
+    - "Concluding that heating the shop would raise sales"
+    - "Predicting sales on a 20-degree day"
+    - "Predicting sales on a 70-degree day"
+  answer: D
+  explain: |
+    A 70-degree day lies inside the range of temperatures the model was built from, so the prediction is an interpolation. The 20 and 110 degree predictions extrapolate, and the slope describes an association between weather and sales, not the effect of heating the shop.
+  why:
+    A: "110 degrees is far above the data's range, so this extrapolates."
+    B: "The slope shows how sales vary with outdoor weather; it is not evidence that changing the shop's temperature causes sales."
+    C: "20 degrees is far below the data's range, so this extrapolates."
+
+- id: linreg-applied-07
+  skill: linreg-applied
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which problem is best suited to linear regression?
+  options:
+    - "Deciding whether an email is spam"
+    - "Grouping shoppers by their habits"
+    - "Predicting a home's sale price from its size"
+    - "Finding products that are bought together"
+  answer: C
+  explain: |
+    Linear regression predicts a numeric response, and a sale price is a number that tends to rise with size. The other tasks call for classification, clustering, and association rules.
+  why:
+    A: "Spam or not is a category, so this is classification."
+    B: "Grouping without labels is clustering."
+    D: "Finding items that occur together calls for association rules."
+
+# ---------------------------------------------------------------- tree-applied
+- id: tree-applied-01
+  skill: tree-applied
+  tier: core
+  type: visual
+  use: check
+  stem: |
+    A telecom company uses the tree below to predict whether a customer will churn (cancel). A customer pays $85 per month and has a 2-year contract. What does the tree predict?
+  figure:
+    type: tree
+    caption: A churn-prediction tree
+    root:
+      label: Monthly charge above $70?
+      children:
+        - label: Contract under 1 year?
+          edge: "Yes"
+          children:
+            - { label: Churn, edge: "Yes" }
+            - { label: Stay, edge: "No" }
+        - label: 4 or more support calls?
+          edge: "No"
+          children:
+            - { label: Churn, edge: "Yes" }
+            - { label: Stay, edge: "No" }
+  options:
+    - "Churn, because the charge is above $70"
+    - "Stay, because the contract is not under 1 year"
+    - "Churn, because support calls were not checked"
+    - "Stay, because the charge is above $70"
+  answer: B
+  explain: |
+    At the root, $85 is above $70, so the customer goes down the Yes branch. The next question asks whether the contract is under 1 year; a 2-year contract answers No, which leads to the leaf Stay.
+  why:
+    A: "The charge only decides which question comes next; the contract question still has to be answered."
+    C: "The support-call question is on the other branch, which this customer never reaches."
+    D: "The prediction comes from the contract question, not from the charge alone."
+
+- id: tree-applied-02
+  skill: tree-applied
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    In a decision tree, what does a leaf node contain?
+  options:
+    - "The first question that every case is asked"
+    - "A question about one feature of the case"
+    - "The training data's overall average"
+    - "The final prediction for cases that reach it"
+  answer: D
+  explain: |
+    Leaves are the end points of the tree. Each one holds a prediction, a class for a classification tree or a number for a regression tree, for every case whose answers lead there.
+  why:
+    A: "The first question sits at the root node."
+    B: "Questions about features sit at the root and internal nodes."
+    C: "Each leaf holds its own prediction, not one overall average."
+
+- id: tree-applied-03
+  skill: tree-applied
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Why are decision trees popular for decisions that must be explained, such as loan approvals?
+  options:
+    - "They always achieve higher accuracy than other models."
+    - "They need no training data to make predictions."
+    - "Each prediction can be stated as a short chain of rules."
+    - "They work only with numeric features, which are precise."
+  answer: C
+  explain: |
+    A tree's prediction is the path from the root to a leaf, which reads as plain rules such as "credit score 680 or higher and debt under 40% of income, so approve." That makes the decision easy to explain to a customer or a regulator.
+  why:
+    A: "Trees are not always the most accurate; their appeal here is interpretability."
+    B: "Trees learn their questions from training data."
+    D: "Trees handle categorical features too, such as whether there is a cosigner."
+
+- id: tree-applied-04
+  skill: tree-applied
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Which task is a typical use of a classification tree?
+  options:
+    - "Deciding whether a loan application should be approved"
+    - "Estimating next month's electricity demand in megawatts"
+    - "Grouping news articles by topic with no labels given"
+    - "Finding products that shoppers often buy together"
+  answer: A
+  explain: |
+    Approve or decline is a category, and a classification tree predicts categories by asking a series of questions about the applicant's features.
+  why:
+    B: "Demand in megawatts is a number over time, which calls for forecasting or regression."
+    C: "Grouping without labels is clustering."
+    D: "Items bought together are found with association rules."
+
+- id: tree-applied-05
+  skill: tree-applied
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A regression tree predicts house prices. What does it predict for a house that lands in a particular leaf?
+  options:
+    - "The price of the most expensive training house in that leaf"
+    - "A category such as cheap or expensive"
+    - "A price found by a separate linear regression"
+    - "The average price of the training houses in that leaf"
+  answer: D
+  explain: |
+    A regression tree sorts training cases into leaves by their features, and each leaf predicts the mean outcome of its training cases. Every new house that reaches the leaf gets that same predicted price.
+  why:
+    A: "Using the maximum would overpredict almost every house."
+    B: "Predicting categories is what classification trees do; regression trees predict numbers."
+    C: "A basic regression tree stores one number per leaf rather than fitting a separate line."
+
+- id: tree-applied-06
+  skill: tree-applied
+  tier: competitive
+  type: concept
+  use: bank
+  stem: |
+    Which statement about the root node of a decision tree is true?
+  options:
+    - "It holds the final prediction for the most common class."
+    - "It is the first question, and every case passes through it."
+    - "It is the node with the fewest training cases."
+    - "It appears only in regression trees, not classification trees."
+  answer: B
+  explain: |
+    The root sits at the top of the tree and asks the first question. Every case starts there before branching toward a leaf.
+  why:
+    A: "Predictions live in the leaves, not the root."
+    C: "The root sees all the training cases, the most of any node."
+    D: "Every decision tree, of either kind, has a root."
+
+# ---------------------------------------------------------------- kmeans-applied
+- id: kmeans-applied-01
+  skill: kmeans-applied
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    Which sequence correctly describes the k-means algorithm?
+  options:
+    - "Assign points to groups, choose k, label the clusters, then stop"
+    - "Place centroids, learn labels from training data, then test them"
+    - "Choose k, assign every point once, and report the clusters"
+    - "Choose k, place centroids, assign points, move centroids, repeat"
+  answer: D
+  explain: |
+    k-means starts from k centroids, assigns every point to its nearest centroid, moves each centroid to the mean of its points, and repeats the assign and update steps until the assignments stop changing.
+  why:
+    A: "k must be chosen before anything is assigned, and the steps repeat."
+    B: "k-means is unsupervised; it uses no labels."
+    C: "A single assignment is not enough; the centroids must move and the process repeat until it converges."
+
+- id: kmeans-applied-02
+  skill: kmeans-applied
+  tier: competitive
+  type: calculation
+  use: check
+  stem: |
+    A cluster contains the points (2, 8), (4, 6), and (9, 4). Where is its new centroid after the update step?
+  options:
+    - "(4, 6)"
+    - "(5, 6)"
+    - "(5.5, 6)"
+    - "(15, 18)"
+  answer: B
+  explain: |
+    A centroid is the mean of its points, coordinate by coordinate: x = (2 + 4 + 9) / 3 = 5 and y = (8 + 6 + 4) / 3 = 6.
+  why:
+    A: "This takes the median point instead of the mean."
+    C: "This averages only the smallest and largest x-values, (2 + 9) / 2."
+    D: "This adds the coordinates without dividing by 3."
+  verify: |
+    pts = [(2, 8), (4, 6), (9, 4)]
+    ans = f"({sum(p[0] for p in pts) / 3:g}, {sum(p[1] for p in pts) / 3:g})"
+
+- id: kmeans-applied-03
+  skill: kmeans-applied
+  tier: competitive
+  type: visual
+  use: check
+  stem: |
+    An analyst runs k-means for k = 1 through 6 and plots the within-cluster sum of squares. Based on the elbow method, which k is the best choice?
+  figure:
+    type: line
+    caption: Within-cluster sum of squares by k
+    xLabel: Number of clusters k
+    yLabel: Within-cluster sum of squares
+    series:
+      - points: [[1, 520], [2, 260], [3, 110], [4, 95], [5, 85], [6, 78]]
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "6"
+  ordered: true
+  answer: C
+  explain: |
+    The sum of squares falls steeply from k = 1 to k = 3, then levels off: going from 3 to 4 clusters saves only 15. The bend, or elbow, is at k = 3.
+  why:
+    A: "One cluster leaves the sum of squares at its highest."
+    B: "Adding a third cluster still cuts the sum of squares by 150, a large gain."
+    D: "The lowest value always comes at the largest k; the elbow method looks for where gains level off."
+
+- id: kmeans-applied-04
+  skill: kmeans-applied
+  tier: core
+  type: scenario
+  use: bank
+  stem: |
+    Which task is k-means best suited for?
+  options:
+    - "Grouping customers into segments by purchasing behavior"
+    - "Predicting whether each customer will cancel a subscription"
+    - "Estimating the price of a house from its size"
+    - "Ranking search results for a user's query"
+  answer: A
+  explain: |
+    k-means finds groups of similar cases without labels, which is exactly customer segmentation.
+  why:
+    B: "Predicting cancel or stay is classification, which needs labeled examples."
+    C: "Estimating a price is regression."
+    D: "Ranking results is a different task, closer to recommendation."
+
+- id: kmeans-applied-05
+  skill: kmeans-applied
+  tier: competitive
+  type: calculation
+  use: quiz
+  stem: |
+    Three centroids sit at A (0, 0), B (6, 8), and C (8, 1). To which cluster is the point (4, 4) assigned?
+  options:
+    - "Cluster A"
+    - "Cluster B"
+    - "Cluster C"
+    - "None, since k has not been chosen"
+  answer: B
+  explain: |
+    Compare straight-line distances: to A, $$\sqrt{16 + 16} \approx 5.66$$; to B, $$\sqrt{4 + 16} \approx 4.47$$; to C, $$\sqrt{16 + 9} = 5$$. The nearest centroid is B.
+  why:
+    A: "A is about 5.66 away, farther than B."
+    C: "C is 5 away, farther than B's 4.47."
+    D: "Three centroids are given, so k = 3 has already been chosen."
+  verify: |
+    import math as m
+    cents = {"Cluster A": (0, 0), "Cluster B": (6, 8), "Cluster C": (8, 1)}
+    ans = min(cents, key=lambda k: m.dist((4, 4), cents[k]))
+
+- id: kmeans-applied-06
+  skill: kmeans-applied
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    An analyst runs k-means on customers using annual income in dollars and number of children, without scaling either feature. What is the most likely result?
+  options:
+    - "Number of children dominates, because it is a count."
+    - "Both features count equally, because k-means weighs them evenly."
+    - "The algorithm fails to converge."
+    - "Income dominates the distances, so children barely matter."
+  answer: D
+  explain: |
+    k-means uses distances, and incomes differ by tens of thousands while children differ by one or two. Income differences swamp everything else, so the clusters reflect income almost alone. Standardizing both features first fixes this.
+  why:
+    A: "A feature's influence depends on the size of its differences, and child counts differ only slightly."
+    B: "k-means weighs features by their raw scales, which is why scaling is needed."
+    C: "k-means still converges; it just produces clusters driven by income."
+
+- id: kmeans-applied-07
+  skill: kmeans-applied
+  tier: champion
+  type: calculation
+  use: bank
+  stem: |
+    For one point, the average distance to the other points in its own cluster is a = 2, and the average distance to the points in the nearest other cluster is b = 6. Using s = (b - a) / max(a, b), what is its silhouette score?
+  options:
+    - "-0.67"
+    - "0.33"
+    - "0.67"
+    - "3.00"
+  ordered: true
+  answer: C
+  explain: |
+    s = (6 - 2) / max(2, 6) = 4 / 6, about 0.67. A score this close to 1 means the point sits well inside its own cluster.
+  why:
+    A: "This computes (a - b) / b, which flips the sign."
+    B: "This is a / b, not the silhouette formula."
+    D: "This is b / a; silhouette scores never exceed 1."
+  verify: "(6 - 2) / max(2, 6)"
+
+# ---------------------------------------------------------------- algo-match
+- id: algo-match-01
+  skill: algo-match
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A bank wants to flag credit card transactions that look very different from each customer's usual spending. Which kind of task is this?
+  options:
+    - "Association rules"
+    - "Forecasting"
+    - "Anomaly detection"
+    - "Recommendation"
+  answer: C
+  explain: |
+    Flagging cases that differ sharply from the normal pattern is anomaly detection, a standard approach to spotting fraud.
+  why:
+    A: "Association rules find items that occur together, not unusual cases."
+    B: "Forecasting predicts future values of a time series."
+    D: "Recommendation suggests items a user may like."
+
+- id: algo-match-02
+  skill: algo-match
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    A hospital wants to predict whether each patient has a certain disease (yes or no) from their test results. Which kind of task is this?
+  options:
+    - "Regression"
+    - "Classification"
+    - "Clustering"
+    - "Association rules"
+  answer: B
+  explain: |
+    The output is a category, yes or no, learned from patients whose diagnoses are known. Predicting a known category from features is classification.
+  why:
+    A: "Regression predicts a number, not a yes-or-no label."
+    C: "Clustering finds groups without labels, but here the labels are known."
+    D: "Association rules find items that occur together."
+
+- id: algo-match-03
+  skill: algo-match
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A grocery chain wants to discover which products shoppers tend to buy in the same trip, such as chips and salsa. Which approach fits?
+  options:
+    - "Association rule mining"
+    - "Linear regression"
+    - "k-means clustering"
+    - "Time-series forecasting"
+  answer: A
+  explain: |
+    Association rules, as in market basket analysis, find if-then patterns in transactions, such as "shoppers who buy chips often buy salsa."
+  why:
+    B: "Linear regression predicts a numeric outcome from predictors."
+    C: "Clustering groups similar shoppers or products but does not produce item-to-item rules."
+    D: "Forecasting predicts future values over time."
+
+- id: algo-match-04
+  skill: algo-match
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A utility wants to predict next month's total electricity demand using ten years of monthly demand records. Which kind of task is this?
+  options:
+    - "Clustering"
+    - "Classification"
+    - "Anomaly detection"
+    - "Forecasting"
+  answer: D
+  explain: |
+    Predicting future values of a series from its own past, with its trend and seasonal pattern, is time-series forecasting.
+  why:
+    A: "Clustering groups cases; it does not predict future values."
+    B: "The output is a number, not a category."
+    C: "Anomaly detection flags unusual cases rather than predicting the next value."
+
+- id: algo-match-05
+  skill: algo-match
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A streaming service suggests shows to each viewer based on what viewers with similar watching histories enjoyed. What is this approach called?
+  options:
+    - "Anomaly detection"
+    - "Linear regression"
+    - "Collaborative filtering"
+    - "Principal component analysis"
+  answer: C
+  explain: |
+    Recommendation systems that rely on the habits of similar users use collaborative filtering. Content-based filtering, the other main approach, uses the features of items a viewer already liked.
+  why:
+    A: "Anomaly detection looks for unusual cases, not suggestions."
+    B: "Linear regression predicts a number from predictors."
+    D: "PCA reduces dimensions; it does not produce recommendations by itself."
+
+- id: algo-match-06
+  skill: algo-match
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A model predicts each customer's annual spending in dollars. The company then labels every customer predicted to spend over $1,000 as "high value." Which statement is correct?
+  options:
+    - "The model does regression; the label comes from a threshold applied afterward."
+    - "The model does classification, since the company ends up with labels."
+    - "The model does clustering, since customers end up in two groups."
+    - "The model learns association rules linking spending to the labels."
+  answer: A
+  explain: |
+    The model's output is a number, so the model itself is a regression model. Turning that number into "high value" is a separate business rule applied to its predictions.
+  why:
+    B: "The labels come from a rule applied after prediction; the model never learned them."
+    C: "The two groups come from a fixed cutoff, not from an algorithm discovering structure."
+    D: "Association rules find items that occur together in transactions."
+
+- id: algo-match-07
+  skill: algo-match
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A website has no labels for its visitors but wants to discover natural groups among them based on their browsing behavior. Which kind of task is this?
+  options:
+    - "Classification"
+    - "Regression"
+    - "Forecasting"
+    - "Clustering"
+  answer: D
+  explain: |
+    Discovering groups that no one defined in advance, with no labels, is clustering. k-means is a common choice.
+  why:
+    A: "Classification needs labeled examples of known groups."
+    B: "Regression predicts a number."
+    C: "Forecasting predicts future values over time."

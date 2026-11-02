@@ -1,0 +1,45 @@
+# Lesson 3.7 flashcards
+
+- id: fc-linear-regression
+  term: Linear Regression
+  def: Models a numeric response as a straight line, y-hat = a + bx. The slope is the change in predicted y per one-unit change in x; the intercept is the prediction at x = 0, often meaningless.
+  example: "Fare = 3.50 + 2.25 x miles: each mile adds $2.25."
+  skill: linreg-applied
+  virginia: true
+
+- id: fc-extrapolation
+  term: Extrapolation
+  def: Predicting outside the range of x-values the model was built from. Risky because the pattern may not continue; predicting inside the range (interpolation) is safer.
+  skill: linreg-applied
+
+- id: fc-decision-tree
+  term: Decision Tree
+  def: A model that routes each case through a series of feature questions, from the root through internal nodes to a leaf holding the prediction. Its predictions read as chains of rules, so it is interpretable.
+  skill: tree-applied
+  virginia: true
+
+- id: fc-tree-parts
+  term: Root, internal, and leaf nodes
+  def: "The root is the first question, which every case passes. Internal nodes are later questions. Leaves hold predictions: a class in a classification tree, an average in a regression tree."
+  skill: tree-applied
+
+- id: fc-k-means
+  term: K-means Clustering
+  def: An unsupervised algorithm that splits data into k clusters. Choose k, place centroids, assign each point to the nearest centroid, move each centroid to the mean of its points, and repeat until assignments stop changing.
+  skill: kmeans-applied
+  virginia: true
+
+- id: fc-kmeans-scaling
+  term: Why scale before k-means
+  def: k-means uses distances, so a feature with large numbers (income in dollars) swamps one with small numbers (number of children). Standardize features first.
+  skill: kmeans-applied
+
+- id: fc-choose-k
+  term: Elbow method and silhouette score
+  def: The elbow is the k after which the within-cluster sum of squares stops dropping much. The silhouette score, (b - a) / max(a, b), runs from -1 to 1; higher means better-fitting clusters.
+  skill: kmeans-applied
+
+- id: fc-task-types
+  term: Matching problems to tasks
+  def: Number, regression. Known category, classification. Unlabeled groups, clustering. Unusual cases, anomaly detection. Items bought together, association rules. Suggestions, recommendation. Future values, forecasting.
+  skill: algo-match
