@@ -1,0 +1,517 @@
+# Lesson 1.2: Structured, semi-structured, and unstructured data
+
+# ---------------------------------------------------------------- data-structure
+- id: data-structure-01
+  skill: data-structure
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which of these is an example of structured data?
+  options:
+    - "A spreadsheet of order IDs, order dates, and order totals"
+    - "A folder of recorded customer service phone calls"
+    - "A collection of product photos uploaded by shoppers"
+    - "A folder of free-text product reviews written by customers"
+  answer: A
+  explain: |
+    The spreadsheet has fixed columns, each with one kind of value, and every row is one order. That predefined row-and-column schema is what makes data structured.
+  why:
+    B: "Audio recordings have no predefined schema; they are unstructured."
+    C: "Photos are grids of pixels with no schema describing their content; they are unstructured."
+    D: "Free text has no fixed fields, so it is unstructured."
+
+- id: data-structure-02
+  skill: data-structure
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which of these is an example of unstructured data?
+  options:
+    - "A database table of patient IDs, ages, and blood pressure readings"
+    - "A CSV file of daily temperatures recorded at a weather station"
+    - "Video from a store's security cameras"
+    - "A spreadsheet listing each employee's name, department, and salary"
+  answer: C
+  explain: |
+    Video has no schema that labels what it shows; extracting meaning from it requires computer vision. The other three are tables with defined columns.
+  why:
+    A: "A table with defined columns for ID, age, and blood pressure is structured."
+    B: "A CSV file of dated temperatures is a table of rows and columns, so it is structured."
+    D: "A spreadsheet with fixed columns is structured."
+
+- id: data-structure-03
+  skill: data-structure
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which statement best describes data stored as JSON?
+  options:
+    - "It is structured, because every record must have exactly the same columns."
+    - "It is semi-structured: keys label each value, but no fixed table schema is required."
+    - "It is unstructured, because it is stored as plain text."
+    - "It is not data at all, only a set of formatting instructions."
+  answer: B
+  explain: |
+    JSON labels every value with a key, so its parts are identifiable, but records can have different fields and nested lists. Labels without a fixed schema is the definition of semi-structured.
+  why:
+    A: "JSON records do not have to share the same fields, so there is no fixed set of columns."
+    C: "Being stored as text does not make data unstructured; the keys give JSON a labeled structure."
+    D: "JSON holds data values; it is a data format, not formatting instructions."
+
+- id: data-structure-04
+  skill: data-structure
+  tier: core
+  type: concept
+  use: quiz
+  stem: |
+    What makes structured data easy to search and analyze?
+  options:
+    - "It is always much smaller in size than unstructured data."
+    - "It is always stored on cloud servers rather than local disks."
+    - "It contains only numbers, never text such as names or cities."
+    - "It follows a predefined schema of rows, columns, and data types."
+  answer: D
+  explain: |
+    Because every field and its type are known in advance, a computer can filter, sort, and aggregate structured data directly, for example with a single SQL query.
+  why:
+    A: "Size is not what defines structure; structured tables can be enormous."
+    B: "Where data is stored has nothing to do with whether it is structured."
+    C: "Structured data often includes text fields such as names and cities."
+
+- id: data-structure-05
+  skill: data-structure
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A company's database table has columns for order ID, date, rating from 1 to 5, and a "comments" column of free text that customers typed. Which statement is most accurate?
+  options:
+    - "Every part of the table is structured, including the meaning of the comments."
+    - "The table is unstructured, because one column contains text."
+    - "The table is structured, but the comment text itself is unstructured and needs NLP to analyze."
+    - "The table is semi-structured, because ratings are numbers and comments are text."
+  answer: C
+  explain: |
+    The table has a fixed schema, so the rating and date can be queried directly. But what customers wrote has no internal fields; finding topics or sentiment in it requires natural language processing.
+  why:
+    A: "Storing free text in a column does not give its content any schema."
+    B: "A text column does not turn the whole table unstructured; the other columns are fully queryable."
+    D: "Mixing numbers and text does not make data semi-structured; semi-structured means labeled parts without a fixed schema."
+
+- id: data-structure-06
+  skill: data-structure
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Which kind of data would require computer vision before it could be analyzed for content?
+  options:
+    - "Satellite images of farmland"
+    - "A table of crop yields by county"
+    - "A JSON feed of hourly rainfall readings"
+    - "A CSV file of fertilizer prices"
+  answer: A
+  explain: |
+    Images are unstructured: the pixels carry no labels about what they show. Computer vision is needed to extract features such as crop health or field boundaries.
+  why:
+    B: "A table of yields is already structured and can be analyzed directly."
+    C: "The JSON feed labels each reading, so it can be parsed without computer vision."
+    D: "A CSV of prices is structured tabular data."
+
+- id: data-structure-07
+  skill: data-structure
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A data lake holds three items: (1) a Parquet file of sensor readings with a defined schema, (2) JSON responses from a weather API, and (3) drone photographs of crops. How should the three be classified, in order?
+  options:
+    - "Semi-structured, structured, unstructured"
+    - "Structured, structured, unstructured"
+    - "Structured, unstructured, semi-structured"
+    - "Structured, semi-structured, unstructured"
+  answer: D
+  explain: |
+    The Parquet file carries a fixed schema, so it is structured. The JSON responses label values with keys but have no fixed schema, so they are semi-structured. The photos have no schema at all, so they are unstructured. Storing all three in a lake does not change their structure.
+  why:
+    A: "This swaps the first two: Parquet has a fixed schema, while JSON does not."
+    B: "JSON's keys label its values, but without a fixed schema it is semi-structured, not structured."
+    C: "JSON is labeled data, not unstructured, and photos are unstructured, not semi-structured."
+
+- id: data-structure-08
+  skill: data-structure
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which definition fits unstructured data?
+  options:
+    - "Data that has been deleted or corrupted"
+    - "Data that has no predefined data model or schema"
+    - "Data that is stored in more than one table"
+    - "Data that contains missing values"
+  answer: B
+  explain: |
+    Unstructured data, such as text, images, audio, and video, has no schema describing its content in labeled fields. That is the defining feature, not its quality or where it is stored.
+  why:
+    A: "Damaged data is a data quality problem, not a type of structure."
+    C: "Data spread across related tables is typical of structured relational databases."
+    D: "Missing values can occur in any kind of data, including structured tables."
+
+# ---------------------------------------------------------------- data-formats
+- id: data-formats-01
+  skill: data-formats
+  tier: core
+  type: concept
+  use: check
+  stem: |
+    In which format is this data written?
+
+    ```text
+    student_id,name,grade
+    1,Ava,10
+    2,Ben,11
+    ```
+  options:
+    - "JSON"
+    - "XML"
+    - "CSV"
+    - "Parquet"
+  answer: C
+  explain: |
+    Each line is one record, commas separate the fields, and the first line is a header of column names. That is the comma-separated values (CSV) format.
+  why:
+    A: "JSON would label each value with a key in quotes, inside curly braces."
+    B: "XML would wrap each value in opening and closing tags."
+    D: "Parquet is a binary columnar format, not readable plain text."
+
+- id: data-formats-02
+  skill: data-formats
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A web API needs to send each customer record along with a list of that customer's phone numbers inside the record. Which format handles this nesting most naturally?
+  options:
+    - "CSV"
+    - "JSON"
+    - "TSV"
+    - "Plain text"
+  answer: B
+  explain: |
+    JSON stores key-value pairs and can nest lists and objects inside a record, so a customer's list of phone numbers fits directly. JSON is also the standard format for web APIs.
+  why:
+    A: "CSV is flat: one value per cell, so a list inside a record has no clean place to go."
+    C: "TSV is flat like CSV, just with tabs as separators."
+    D: "Plain text has no labels or structure for the program receiving it to parse."
+
+- id: data-formats-03
+  skill: data-formats
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    Which storage system keeps raw data of any type in its original format and applies a schema only when the data is read?
+  options:
+    - "A data lake"
+    - "A data warehouse"
+    - "A data mart"
+    - "A relational database"
+  answer: A
+  explain: |
+    A data lake stores structured, semi-structured, and unstructured data as it arrives and leaves the structure to be applied at analysis time. This is called schema-on-read.
+  why:
+    B: "A warehouse cleans data and fits it to a schema before storing it (schema-on-write)."
+    C: "A data mart is a department-focused slice of a warehouse, so it also holds structured, cleaned data."
+    D: "A relational database enforces its schema whenever data is written."
+
+- id: data-formats-04
+  skill: data-formats
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    An analysis reads only 3 columns from a 200-column table with a billion rows. Why is a columnar format such as Parquet much faster than CSV for this job?
+  options:
+    - "Parquet files are always stored on faster hard drives."
+    - "Parquet removes duplicate rows automatically."
+    - "Parquet stores numbers as text, which is quicker to read."
+    - "Parquet stores each column's values together, so only the needed columns are read."
+  answer: D
+  explain: |
+    In a columnar file, the values for each column sit together (and compress well because they are similar). A query can skip the 197 unneeded columns, while a CSV must be read row by row, every column included.
+  why:
+    A: "The speed comes from how data is laid out in the file, not from the hardware it sits on."
+    B: "Parquet does not remove duplicates; that is a cleaning step."
+    C: "Parquet stores typed binary values; it is CSV that stores everything as text."
+
+- id: data-formats-05
+  skill: data-formats
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does CSV stand for?
+  options:
+    - "Comma-separated values"
+    - "Column-structured variables"
+    - "Common storage vocabulary"
+    - "Computed statistical values"
+  answer: A
+  explain: |
+    CSV stands for comma-separated values: a plain-text format in which each line is a record and commas separate the fields.
+  why:
+    B: "The name describes the separator, not columns or variables."
+    C: "CSV is a file format, not a vocabulary."
+    D: "CSV files store any values, not only computed statistics."
+
+- id: data-formats-06
+  skill: data-formats
+  tier: competitive
+  type: recall
+  use: quiz
+  stem: |
+    Which description fits a data warehouse?
+  options:
+    - "A store of raw files in any format, structured only when someone reads them"
+    - "A single spreadsheet shared by one team"
+    - "A central store of cleaned, structured data from many sources, organized for analysis"
+    - "A backup copy of a website's images and videos"
+  answer: C
+  explain: |
+    A data warehouse combines data from many systems, cleans it, and fits it to a schema before storing it, so analysts and reports can query it reliably.
+  why:
+    A: "That describes a data lake, which uses schema-on-read."
+    B: "A warehouse serves a whole organization and combines many sources."
+    D: "Images and videos are unstructured media, not the cleaned tables a warehouse holds."
+
+- id: data-formats-07
+  skill: data-formats
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    A team stores raw clickstream logs without defining any columns. Each analyst decides how to parse the fields when writing a query. What is this approach called?
+  options:
+    - "Schema-on-write"
+    - "Schema-on-read"
+    - "Normalization"
+    - "Extract, transform, load (ETL)"
+  answer: B
+  explain: |
+    Applying structure at the moment the data is read, rather than when it is stored, is schema-on-read. It is the approach of data lakes, trading query speed and reliability for flexibility.
+  why:
+    A: "Schema-on-write fits data to a schema before storing it, the opposite of this approach."
+    C: "Normalization organizes relational tables to reduce redundancy; it is unrelated here."
+    D: "ETL transforms data before loading it, which is what this team skipped."
+
+- id: data-formats-08
+  skill: data-formats
+  tier: competitive
+  type: code
+  use: quiz
+  stem: |
+    Which statement correctly describes this data?
+
+    ```xml
+    <student id="1">
+      <name>Ava</name>
+      <grade>10</grade>
+    </student>
+    ```
+  options:
+    - "It is JSON, which labels data with key-value pairs."
+    - "It is CSV, which separates fields with delimiters."
+    - "It is Parquet, which stores data by column."
+    - "It is XML, which labels data with opening and closing tags."
+  answer: D
+  explain: |
+    Each value sits between an opening tag and a matching closing tag, such as `<name>` and `</name>`, and `id="1"` is an attribute. That is XML, a semi-structured format.
+  why:
+    A: "JSON would use curly braces and quoted keys, such as \"name\": \"Ava\"."
+    B: "CSV has no tags; it separates values with commas."
+    C: "Parquet is a binary format that is not human-readable like this."
+
+- id: data-formats-09
+  skill: data-formats
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    Which is a real limitation of CSV files?
+  options:
+    - "They store no data types, so a ZIP code like 02134 may lose its leading zero."
+    - "They can hold at most 1,000 rows, so large tables must be split into several files."
+    - "They can store numbers but never text such as names, cities, or email addresses."
+    - "They can be opened only with paid spreadsheet software such as Microsoft Excel."
+  answer: A
+  explain: |
+    A CSV file is plain text, so it records no data types. The program reading it has to guess, and it may treat a ZIP code as a number and drop the leading zero.
+  why:
+    B: "CSV files have no row limit; some spreadsheet programs do, but the format does not."
+    C: "CSV files routinely store text such as names and cities."
+    D: "CSV is plain text that any text editor or spreadsheet program can open."
+
+# ---------------------------------------------------------------- metadata
+- id: metadata-01
+  skill: metadata
+  tier: core
+  type: recall
+  use: check
+  stem: |
+    What is metadata?
+  options:
+    - "Data that has been cleaned and validated"
+    - "Data about data, describing a dataset or file"
+    - "The largest values in a dataset"
+    - "Data collected from social media"
+  answer: B
+  explain: |
+    Metadata describes other data rather than being the main content: a file's size and creation date, a table's column names and types, or a photo's camera settings.
+  why:
+    A: "Cleaned data is still data; metadata is information about it."
+    C: "Extreme values are part of the data, not information describing it."
+    D: "Social media posts are a data source, not a description of data."
+
+- id: metadata-02
+  skill: metadata
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A photo file stores the camera model, the date the photo was taken, and the GPS coordinates of where it was taken. What are these details?
+  options:
+    - "Unstructured content of the image"
+    - "A data dictionary for the image"
+    - "Metadata embedded in the file"
+    - "Pixel values of the image"
+  answer: C
+  explain: |
+    These details describe the photo rather than being the picture itself, so they are metadata. In photos, this embedded metadata is called EXIF data.
+  why:
+    A: "The unstructured content is the picture; these labeled details describe it."
+    B: "A data dictionary documents the fields of a dataset; this is information stored inside one file."
+    D: "Pixel values are the image data itself, not information about the image."
+
+- id: metadata-03
+  skill: metadata
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    A file's creation date, its owner, and who has permission to edit it are which type of metadata?
+  options:
+    - "Descriptive"
+    - "Structural"
+    - "Statistical"
+    - "Administrative"
+  answer: D
+  explain: |
+    Administrative metadata describes how data is managed: when it was created, who owns it, and who may access or change it.
+  why:
+    A: "Descriptive metadata helps people find data: title, author, keywords, summary."
+    B: "Structural metadata describes how data is organized, such as column names and types."
+    C: "Summary statistics are not one of the three standard types of metadata."
+
+- id: metadata-04
+  skill: metadata
+  tier: core
+  type: recall
+  use: quiz
+  stem: |
+    What does a data dictionary contain?
+  options:
+    - "For each field: its name, data type, meaning, units, and allowed values"
+    - "A list of every person who has viewed the data"
+    - "A copy of every record in the dataset"
+    - "Translations of the column names into other languages"
+  answer: A
+  explain: |
+    A data dictionary documents each field so people can interpret the data correctly: what it is called, what type of value it holds, what it means, its units, and which values are allowed.
+  why:
+    B: "An access log records who viewed data; that is not a data dictionary."
+    C: "A data dictionary describes the fields; it does not copy the records."
+    D: "Translation is not the purpose of a data dictionary."
+
+- id: metadata-05
+  skill: metadata
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A table's column names and data types, and the order of chapters in a digital book, are both examples of which type of metadata?
+  options:
+    - "Descriptive"
+    - "Structural"
+    - "Administrative"
+    - "Provenance"
+  answer: B
+  explain: |
+    Both describe how the data is organized internally: which fields a table has and what types they hold, and how a book's parts fit together. That is structural metadata.
+  why:
+    A: "Descriptive metadata, such as a title or keywords, helps you find data rather than describing its organization."
+    C: "Administrative metadata covers management details such as ownership, dates, and permissions."
+    D: "Provenance describes where data came from and how it changed, not how it is organized."
+
+- id: metadata-06
+  skill: metadata
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    Before using a dataset found online for a project about current prices, which piece of metadata best helps you judge whether the data is recent enough?
+  options:
+    - "The number of columns in the dataset"
+    - "The file format of the dataset"
+    - "The dataset's last-updated date and collection period"
+    - "The keywords used to describe the dataset"
+  answer: C
+  explain: |
+    For a question about current prices, timeliness matters most. The last-updated date and the period the data covers tell you directly whether it is recent enough to use.
+  why:
+    A: "The number of columns says nothing about how recent the data is."
+    B: "The file format tells you how to read the data, not when it was collected."
+    D: "Keywords help you find a dataset but do not show how current it is."
+
+- id: metadata-07
+  skill: metadata
+  tier: core
+  type: concept
+  use: bank
+  stem: |
+    A library catalog lists each dataset's title, author, subject keywords, and a short summary. What is the main purpose of this descriptive metadata?
+  options:
+    - "To control who may edit the data"
+    - "To compress the data for storage"
+    - "To define the data type of each column"
+    - "To help people find and identify the data"
+  answer: D
+  explain: |
+    Descriptive metadata such as titles, authors, keywords, and summaries exists so that people can search for, discover, and recognize the right data.
+  why:
+    A: "Edit permissions are administrative metadata."
+    B: "Compression is done by file formats, not by catalog metadata."
+    C: "Column data types are structural metadata."
+
+- id: metadata-08
+  skill: metadata
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A student posts a photo online straight from their phone, without removing any of the file's embedded information. What privacy risk does the photo's metadata create?
+  options:
+    - "Embedded GPS coordinates can reveal exactly where the photo was taken."
+    - "The metadata makes the image larger and easier to copy."
+    - "The metadata lowers the image's resolution."
+    - "The metadata converts the photo into structured data anyone can query."
+  answer: A
+  explain: |
+    Phones often store GPS coordinates in a photo's EXIF metadata. Shared unchanged, those coordinates can reveal a home or school address, which is why many sites strip metadata on upload.
+  why:
+    B: "Metadata adds very little size, and file size is not the privacy concern."
+    C: "Metadata describes the image; it does not change the image's resolution."
+    D: "Metadata does not turn the photo's content into a queryable table."

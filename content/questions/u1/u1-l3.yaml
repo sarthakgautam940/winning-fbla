@@ -1,0 +1,485 @@
+# Lesson 1.3: Numeric and categorical data
+
+# ---------------------------------------------------------------- var-num-cat
+- id: var-num-cat-01
+  skill: var-num-cat
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    A health survey records four variables for each person. Which one is categorical?
+  options:
+    - "Height in centimeters"
+    - "Blood type"
+    - "Number of siblings"
+    - "Monthly income in dollars"
+  answer: B
+  explain: |
+    Blood types (A, B, AB, O) are labels that sort people into groups, and an average blood type would be meaningless. The other three are measurements or counts.
+  why:
+    A: "Height is measured, and an average height makes sense, so it is numeric."
+    C: "Siblings are counted, so this is numeric (discrete)."
+    D: "Income is a measured amount, so it is numeric."
+
+- id: var-num-cat-02
+  skill: var-num-cat
+  tier: competitive
+  type: concept
+  use: check
+  stem: |
+    A dataset has a column of five-digit ZIP codes. How should this variable be classified?
+  options:
+    - "Numeric and continuous, because ZIP codes can be any five-digit value"
+    - "Numeric and discrete, because ZIP codes are whole numbers"
+    - "Numeric and ratio-level, because ZIP codes start from zero"
+    - "Categorical, because ZIP codes are labels and arithmetic on them is meaningless"
+  answer: D
+  explain: |
+    ZIP codes identify places. Averaging or subtracting them produces nonsense, so despite being written with digits they are categorical (nominal) data.
+  why:
+    A: "ZIP codes do not measure anything, so they cannot be continuous measurements."
+    B: "Being whole numbers is not enough; the digits are labels, not counts."
+    C: "Zero has no meaning for a ZIP code, and ZIP codes do not measure a quantity."
+
+- id: var-num-cat-03
+  skill: var-num-cat
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which of these variables is numeric?
+  options:
+    - "Each person's favorite music genre"
+    - "Each person's mobile phone number"
+    - "Number of texts each person sends per day"
+    - "Color of the T-shirt each person wears"
+  answer: C
+  explain: |
+    The number of messages is a count, and an average such as 42 messages per day is meaningful. The other three are labels.
+  why:
+    A: "A genre is a label for a group of songs, so it is categorical."
+    B: "A phone number identifies a line; doing arithmetic on it makes no sense."
+    D: "Colors are categories with no numeric meaning."
+
+- id: var-num-cat-04
+  skill: var-num-cat
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A survey asks, "Rate the cafeteria food from 1 (poor) to 5 (excellent)." How are the responses best classified?
+  options:
+    - "Categorical and ordinal"
+    - "Numeric and continuous"
+    - "Numeric and ratio-level"
+    - "Categorical and nominal"
+  answer: A
+  explain: |
+    The ratings are ordered categories: 5 is better than 4, but the gap between 1 and 2 need not equal the gap between 4 and 5. Ordered categories with unmeasured gaps are ordinal.
+  why:
+    B: "Responses can only be the five listed values, and they label opinions rather than measure a quantity."
+    C: "There is no true zero, and a 4 is not twice as good as a 2."
+    D: "The ratings have a clear order, so they are ordinal rather than nominal."
+
+- id: var-num-cat-05
+  skill: var-num-cat
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    A student table has the columns student_id, gpa, club_name, and home_zip. For which column is the average a meaningful number?
+  options:
+    - "student_id"
+    - "gpa"
+    - "club_name"
+    - "home_zip"
+  answer: B
+  explain: |
+    GPA is a measured quantity, so the average GPA describes the group. The other columns are identifiers or labels, whose averages mean nothing.
+  why:
+    A: "Student IDs are labels assigned to students; averaging them is meaningless."
+    C: "Club names are text categories and cannot be averaged."
+    D: "ZIP codes are place labels, so their average is meaningless."
+
+- id: var-num-cat-06
+  skill: var-num-cat
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    What are categorical data?
+  options:
+    - "Numbers that are measured with an instrument"
+    - "Values that have been sorted from smallest to largest"
+    - "Numbers that come from counting things"
+    - "Values that place each observation into a group or label"
+  answer: D
+  explain: |
+    Categorical (qualitative) data describe which group an observation belongs to, such as a color, a country, or a yes-or-no answer.
+  why:
+    A: "Measured numbers are numeric (continuous) data."
+    B: "Sorting is something you can do to many kinds of data; it does not define categorical data."
+    C: "Counts are numeric (discrete) data."
+
+- id: var-num-cat-07
+  skill: var-num-cat
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A column records whether each customer subscribed, coded 1 for yes and 0 for no. The mean of the column is 0.35. What does this tell you?
+  options:
+    - "35 percent of the customers subscribed."
+    - "The average customer subscribed 0.35 times."
+    - "The data must be continuous, because the mean is not a whole number."
+    - "The coding is invalid, because a mean should be 0 or 1."
+  answer: A
+  explain: |
+    For a 0/1 variable, the sum counts the 1s, so the mean is the proportion of 1s. A mean of 0.35 means 35 percent of customers subscribed. The variable itself is still categorical.
+  why:
+    B: "Subscribing is a yes-or-no category, not a count of times."
+    C: "A fractional mean does not make the variable continuous; it is still two categories."
+    D: "A mean of a 0/1 column can be any proportion between 0 and 1."
+
+- id: var-num-cat-08
+  skill: var-num-cat
+  tier: champion
+  type: scenario
+  use: quiz
+  stem: |
+    A dataset about basketball players records jersey number, points scored this season, height, and playing position. How many of these four variables are numeric?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: B
+  explain: |
+    Points scored (a count) and height (a measurement) are numeric. Jersey number is a label despite its digits, and playing position is a category.
+  why:
+    A: "Both points scored and height are numeric, not just one of them."
+    C: "This counts jersey number as numeric, but it only identifies a player."
+    D: "Jersey number and position are both categorical."
+
+# ---------------------------------------------------------------- var-disc-cont
+- id: var-disc-cont-01
+  skill: var-disc-cont
+  tier: core
+  type: scenario
+  use: check
+  stem: |
+    Which variable from a 5K race is continuous?
+  options:
+    - "The number of runners who finished"
+    - "The number of laps each runner completed"
+    - "The time each runner took to finish"
+    - "Each runner's finishing place"
+  answer: C
+  explain: |
+    Time is measured, and it can take any value in a range (21.4 minutes, 21.43, and so on), limited only by the stopwatch. That makes it continuous.
+  why:
+    A: "A number of runners comes from counting, so it is discrete."
+    B: "Laps are counted, so this is discrete."
+    D: "Finishing place is an ordered category (ordinal), not a continuous measurement."
+
+- id: var-disc-cont-02
+  skill: var-disc-cont
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    Which of these soccer statistics is discrete?
+  options:
+    - "Number of goals scored in a match"
+    - "Distance a player runs during a match"
+    - "A player's body weight"
+    - "Time the ball is in play"
+  answer: A
+  explain: |
+    Goals are counted in whole numbers; a team cannot score 2.5 goals. Counted values are discrete.
+  why:
+    B: "Distance is measured and can take any value, so it is continuous."
+    C: "Weight is measured, so it is continuous."
+    D: "Time is measured, so it is continuous."
+
+- id: var-disc-cont-03
+  skill: var-disc-cont
+  tier: competitive
+  type: concept
+  use: quiz
+  stem: |
+    Which question is the most reliable way to decide whether a numeric variable is discrete or continuous?
+  options:
+    - "Is the variable stored with decimal places in the dataset?"
+    - "Is the variable's mean a whole number?"
+    - "Is the variable shown on a bar chart or a pie chart?"
+    - "Do the values come from counting or from measuring?"
+  answer: D
+  explain: |
+    Counting produces separate, countable values (discrete); measuring produces values that can fall anywhere in a range (continuous). Storage format and summary statistics do not change what the variable is.
+  why:
+    A: "Measured values are often rounded to whole numbers, and counts can be stored with decimals, so storage format is unreliable."
+    B: "A discrete variable such as customers per hour can easily have a fractional mean."
+    C: "The chart someone chose says nothing about the variable itself."
+
+- id: var-disc-cont-04
+  skill: var-disc-cont
+  tier: competitive
+  type: scenario
+  use: bank
+  stem: |
+    A weather station records rainfall to the nearest 0.1 millimeter. How is rainfall best classified?
+  options:
+    - "Discrete, because only tenths of a millimeter are recorded"
+    - "Continuous, because rainfall is measured and the rounding comes from the instrument"
+    - "Categorical, because the readings fall into fixed steps"
+    - "Discrete, because rain falls in separate drops"
+  answer: B
+  explain: |
+    Rainfall is a measured amount that could take any value; recording it to the nearest tenth only reflects the instrument's precision. Rounding does not make a variable discrete.
+  why:
+    A: "Rounding to tenths is a limit of measurement, not a property of rainfall."
+    C: "The readings are measurements of an amount, not labels for groups."
+    D: "The quantity recorded is the depth of water, which is measured, not a count of drops."
+
+- id: var-disc-cont-05
+  skill: var-disc-cont
+  tier: champion
+  type: concept
+  use: quiz
+  stem: |
+    A store averages 12.4 customers per hour. A student argues that "customers per hour" must be continuous because 12.4 is not a whole number. What is wrong with the argument?
+  options:
+    - "Nothing; any variable with a fractional mean is continuous."
+    - "The variable is categorical, so it has no mean."
+    - "The variable counts customers, so it is discrete; a mean of discrete values can be a fraction."
+    - "The mean must have been calculated incorrectly, because it should be a whole number."
+  answer: C
+  explain: |
+    Each hour's value is a count of customers, which makes the variable discrete. Averaging counts such as 12 and 13 easily produces a fraction, but that describes the mean, not the variable.
+  why:
+    A: "A summary statistic does not change the type of the underlying variable."
+    B: "Customer counts are numeric, and a mean of them is meaningful."
+    D: "Means of whole numbers are often fractions; there is no error here."
+
+- id: var-disc-cont-06
+  skill: var-disc-cont
+  tier: core
+  type: recall
+  use: bank
+  stem: |
+    Which statement defines a continuous variable?
+  options:
+    - "It can take any value within a range."
+    - "It can take only whole-number values."
+    - "It places observations into named groups."
+    - "It never contains missing values."
+  answer: A
+  explain: |
+    A continuous variable, such as height or time, can take any value in a range, limited only by how precisely it is measured.
+  why:
+    B: "Whole-number values from counting describe a discrete variable."
+    C: "Named groups describe a categorical variable."
+    D: "Missing values can occur in any kind of variable."
+
+- id: var-disc-cont-07
+  skill: var-disc-cont
+  tier: champion
+  type: scenario
+  use: bank
+  stem: |
+    Which pair is classified correctly?
+  options:
+    - "Number of pets: continuous; body temperature: discrete"
+    - "Number of pets: discrete; body temperature: discrete"
+    - "Number of pets: continuous; body temperature: continuous"
+    - "Number of pets: discrete; body temperature: continuous"
+  answer: D
+  explain: |
+    Pets are counted, so the number of pets is discrete. Body temperature is measured and can take any value in a range, so it is continuous.
+  why:
+    A: "This reverses both classifications."
+    B: "Temperature is measured, not counted, so it is continuous."
+    C: "Pets are counted in whole numbers, so the number of pets is discrete."
+
+# ---------------------------------------------------------------- var-levels
+- id: var-levels-01
+  skill: var-levels
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    At which level of measurement is temperature in degrees Celsius?
+  options:
+    - "Nominal"
+    - "Ordinal"
+    - "Interval"
+    - "Ratio"
+  answer: C
+  explain: |
+    Celsius has equal spacing (a 10-degree rise is the same size anywhere on the scale), but zero is an arbitrary point, the freezing point of water, not "no temperature". Equal spacing without a true zero is the interval level.
+  why:
+    A: "Temperatures are ordered and evenly spaced, so they are far more than labels."
+    B: "Celsius differences are equal and meaningful, which goes beyond order alone."
+    D: "Ratio needs a true zero; 0 degrees Celsius does not mean the absence of heat."
+
+- id: var-levels-02
+  skill: var-levels
+  tier: competitive
+  type: scenario
+  use: check
+  stem: |
+    A survey records customer satisfaction as very unsatisfied, unsatisfied, neutral, satisfied, or very satisfied. At which level of measurement are these responses?
+  options:
+    - "Nominal"
+    - "Ordinal"
+    - "Interval"
+    - "Ratio"
+  answer: B
+  explain: |
+    The responses have a clear order, but the gaps between neighboring responses are not measured or necessarily equal. Ordered categories with unmeasured gaps are ordinal.
+  why:
+    A: "Nominal categories have no order, but these responses clearly do."
+    C: "Interval data need equal, measured spacing, which these labels do not have."
+    D: "Ratio data need equal spacing and a true zero; these are labeled categories."
+
+- id: var-levels-03
+  skill: var-levels
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    At which level of measurement is a statement such as "this value is twice as large as that one" meaningful?
+  options:
+    - "Nominal"
+    - "Ordinal"
+    - "Interval"
+    - "Ratio"
+  answer: D
+  explain: |
+    Ratios need a true zero, where zero means none of the quantity. Only ratio-level data have one, so only there does 20 really mean twice 10.
+  why:
+    A: "Nominal values are labels, so they cannot be compared by size at all."
+    B: "Ordinal data show order, not how many times larger one value is."
+    C: "Interval scales have an arbitrary zero, so ratios such as 20 degrees being twice 10 degrees are not meaningful."
+
+- id: var-levels-04
+  skill: var-levels
+  tier: core
+  type: scenario
+  use: quiz
+  stem: |
+    At which level of measurement is eye color?
+  options:
+    - "Nominal"
+    - "Ordinal"
+    - "Interval"
+    - "Ratio"
+  answer: A
+  explain: |
+    Eye colors are categories with no natural order: no color is more or less than another. Unordered categories are nominal.
+  why:
+    B: "Ordinal categories have a meaningful order, which eye colors do not."
+    C: "Eye color is not a measured number with equal spacing."
+    D: "Eye color has no numeric value, let alone a true zero."
+
+- id: var-levels-05
+  skill: var-levels
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    Which of these variables is measured at the ratio level?
+  options:
+    - "Annual income in dollars"
+    - "Year of birth"
+    - "Temperature in degrees Fahrenheit"
+    - "Class rank"
+  answer: A
+  explain: |
+    Income has a true zero (no income), so $60,000 really is twice $30,000. That makes it ratio data.
+  why:
+    B: "Calendar years have equal spacing, but year 0 is an arbitrary starting point, so they are interval."
+    C: "Zero degrees Fahrenheit is not the absence of heat, so Fahrenheit is interval."
+    D: "Rank orders students without measuring the gaps between them, so it is ordinal."
+
+- id: var-levels-06
+  skill: var-levels
+  tier: champion
+  type: concept
+  use: check
+  stem: |
+    Which measure of center is appropriate for ordinal data, such as letter grades, but not for nominal data?
+  options:
+    - "Mean"
+    - "Median"
+    - "Mode"
+    - "Range"
+  answer: B
+  explain: |
+    The median needs the values to be put in order, which ordinal data allow and nominal data do not. The mean needs equal spacing, which ordinal data lack.
+  why:
+    A: "The mean needs equal spacing between values, which ordinal data do not have."
+    C: "The mode works for nominal data too, so it is not the measure that ordinal data add."
+    D: "The range measures spread, not center."
+
+- id: var-levels-07
+  skill: var-levels
+  tier: competitive
+  type: recall
+  use: bank
+  stem: |
+    Which ordering lists the levels of measurement from the least information to the most?
+  options:
+    - "Ordinal, nominal, interval, ratio"
+    - "Nominal, interval, ordinal, ratio"
+    - "Nominal, ordinal, interval, ratio"
+    - "Ratio, interval, ordinal, nominal"
+  answer: C
+  explain: |
+    Each level adds a property to the one before: nominal (categories), ordinal (order), interval (equal spacing), ratio (a true zero). The word NOIR keeps the order.
+  why:
+    A: "Ordinal adds order to nominal categories, so nominal comes first."
+    B: "Interval adds equal spacing to an ordering, so ordinal must come before interval."
+    D: "This lists the levels from most information to least."
+
+- id: var-levels-08
+  skill: var-levels
+  tier: champion
+  type: concept
+  use: bank
+  stem: |
+    A news report says today's high of 20 degrees Celsius is "twice as warm" as yesterday's high of 10 degrees Celsius. Why is this claim invalid?
+  options:
+    - "Because 20 is not exactly twice 10 when converted to Fahrenheit"
+    - "Because Celsius temperatures are ordinal, so they can only be ranked"
+    - "Because temperature is a categorical variable"
+    - "Because Celsius is an interval scale whose zero is arbitrary, so ratios are not meaningful"
+  answer: D
+  explain: |
+    Zero degrees Celsius is just the freezing point of water, not the absence of heat. Without a true zero, ratios of Celsius values do not describe "how many times warmer" anything is. Only a ratio scale such as Kelvin supports that comparison.
+  why:
+    A: "The conversion shows the problem, but the reason is the arbitrary zero, which makes any Celsius ratio meaningless."
+    B: "Celsius has equal spacing, so it is interval, not merely ordinal."
+    C: "Temperature is a measured number, not a category."
+
+- id: var-levels-09
+  skill: var-levels
+  tier: competitive
+  type: scenario
+  use: quiz
+  stem: |
+    At which level of measurement are calendar years, such as 1999 and 2027?
+  options:
+    - "Nominal"
+    - "Ordinal"
+    - "Interval"
+    - "Ratio"
+  answer: C
+  explain: |
+    The difference between years is meaningful and evenly spaced (28 years separate 1999 and 2027), but year 0 is an arbitrary starting point, so ratios of years mean nothing. That is the interval level.
+  why:
+    A: "Years have a numeric order and spacing, so they are more than labels."
+    B: "Years are evenly spaced, which goes beyond order alone."
+    D: "Year 2000 is not twice year 1000 in any meaningful sense, because the zero point is arbitrary."

@@ -1,0 +1,85 @@
+# Lesson 1.2 flashcards
+
+- id: fc-structured-data
+  term: Structured Data
+  def: Data organized into rows and columns that follow a predefined schema with known data types, so it is easy to query. Examples include database tables, spreadsheets, and CSV files.
+  skill: data-structure
+  virginia: true
+
+- id: fc-unstructured-data
+  term: Unstructured Data
+  def: Data with no predefined data model or schema, such as free text, images, audio, and video. Analyzing it requires extracting features, often with NLP or computer vision.
+  skill: data-structure
+  virginia: true
+
+- id: fc-semi-structured-data
+  term: Semi-structured data
+  def: Data that labels its parts with keys or tags but has no fixed table schema, so records can differ and nest. Examples include JSON, XML, HTML, and log files.
+  skill: data-structure
+
+- id: fc-schema
+  term: Schema
+  def: The blueprint of a dataset that lists its fields, each field's data type, and the rules the data must follow.
+  skill: data-structure
+
+- id: fc-csv
+  term: CSV
+  def: Comma-Separated Values, a plain-text format with one record per line and commas between fields. It stores no data types.
+  example: "student_id,name,grade on the first line, then 1,Ava,10 on the next."
+  skill: data-formats
+  virginia: true
+
+- id: fc-json
+  term: JSON
+  def: JavaScript Object Notation, a semi-structured format of key-value pairs that can nest lists and objects. It is the usual format for web APIs.
+  skill: data-formats
+
+- id: fc-xml
+  term: XML
+  def: eXtensible Markup Language, a semi-structured format that wraps each value in opening and closing tags, such as `<name>Ava</name>`.
+  skill: data-formats
+
+- id: fc-parquet
+  term: Parquet
+  def: A compressed, columnar file format that stores each column's values together along with the schema. It is fast for analytics that read only a few columns of very large data.
+  skill: data-formats
+
+- id: fc-data-warehouse
+  term: Data warehouse
+  def: A central store of cleaned, structured data from many sources, organized for reporting and analysis. It uses schema-on-write.
+  skill: data-formats
+
+- id: fc-data-lake
+  term: Data lake
+  def: A store of raw data of any kind (structured, semi-structured, or unstructured) kept in its original format. It uses schema-on-read.
+  skill: data-formats
+
+- id: fc-data-mart
+  term: Data mart
+  def: A smaller, department-focused slice of a data warehouse, such as one for sales.
+  skill: data-formats
+
+- id: fc-schema-on-write-read
+  term: Schema-on-write vs. schema-on-read
+  def: "Schema-on-write fits data to a schema before storing it, as a warehouse does. Schema-on-read stores data raw and applies structure only when it is read, as a lake does."
+  skill: data-formats
+
+- id: fc-metadata
+  term: Metadata
+  def: Data about data. It describes a file or dataset, for example its size, creation date, column types, or the camera settings stored in a photo.
+  skill: metadata
+
+- id: fc-metadata-types
+  term: Types of metadata
+  def: "Descriptive metadata helps you find data (title, keywords). Structural metadata shows how data is organized (columns, types). Administrative metadata covers how data is managed (owner, dates, permissions)."
+  skill: metadata
+
+- id: fc-exif
+  term: EXIF data
+  def: Metadata embedded in photo files, such as camera model, date taken, and often GPS location. It is a privacy risk if shared unchanged.
+  skill: metadata
+
+- id: fc-data-dictionary
+  term: Data dictionary
+  def: A document listing each field's name, data type, meaning, units, and allowed values.
+  skill: metadata
