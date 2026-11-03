@@ -30,4 +30,463 @@ Definitions follow the most common usage in the standard sources: Wes McKinney's
 
 ## How facts were checked
 
-Every date, historical milestone, documented case, law, and attributed definition in the lessons was checked against a primary source (the original paper, the regulator's own page, the original investigation, or the official documentation) before it was written in. Time-sensitive facts, such as the status of AI regulation, are phrased as of late 2026. Every calculated answer in the question bank is recomputed by code, and every code output shown in a lesson comes from a real run.
+Every date, historical milestone, documented case, law, and attributed definition in the lessons was checked against a source that was opened and read before it was written in: a primary source (the original paper, the regulator's own page, the original investigation, or the official documentation) wherever one could be reached. Time-sensitive facts, such as the status of AI regulation, are phrased as of late 2026. Every calculated answer in the question bank is recomputed by code, and every code output shown in a lesson comes from a real run.
+
+## Every source checked
+
+These are the pages that were opened to check the facts in the lessons and questions. The first list comes from the fact check of 1 November 2026; the second from the checks made while the lessons were written. Wikipedia appears only as a marked fallback for uncontroversial details when a primary page could not be reached.
+
+### The fact check (398 sources)
+
+1. A logical calculus of the ideas immanent in nervous activity (publisher page). Warren S. McCulloch and Walter Pitts, Bulletin of Mathematical Biophysics (Springer). 1943. https://link.springer.com/article/10.1007/BF02478259
+2. A logical calculus of the ideas immanent in nervous activity (Crossref metadata record). Crossref. 1943. https://api.crossref.org/works/10.1007/BF02478259
+3. Computing Machinery and Intelligence (Mind, vol. 59, no. 236). A. M. Turing, Oxford University Press. 1950. https://academic.oup.com/mind/article/LIX/236/433/986238
+4. Computing Machinery and Intelligence (scanned JSTOR copy hosted on a McGill course page). A. M. Turing. 1950. https://cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf
+5. A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence. J. McCarthy, M. L. Minsky, N. Rochester, C. E. Shannon (hosted by Stanford University). 1955. http://www-formal.stanford.edu/jmc/history/dartmouth/dartmouth.html
+6. Ray Solomonoff and the Dartmouth Summer Research Project in Artificial Intelligence, 1956. Grace Solomonoff. n.d. https://www.raysolomonoff.com/dartmouth/dartray.pdf
+7. IEEE Spectrum article on the 1956 Dartmouth AI workshop. Grace Solomonoff, IEEE Spectrum. 2023. https://spectrum.ieee.org/dartmouth-ai-workshop
+8. Artificial Intelligence (AI) Coined at Dartmouth. Dartmouth College. n.d. https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth
+9. The perceptron: A probabilistic model for information storage and organization in the brain (Crossref metadata record). F. Rosenblatt, Psychological Review. 1958. https://api.crossref.org/works/10.1037/h0042519
+10. The perceptron: A perceiving and recognizing automaton, Report 85-460-1 (bibliographic record). BibBase. n.d. https://bibbase.org/network/publication/rosenblatt-theperceptronaperceivingandrecognizingautomaton-1957
+11. Professor's perceptron paved the way for AI - 60 years too soon. Cornell Chronicle, Cornell University. 2019. https://news.cornell.edu/stories/2019/09/professors-perceptron-paved-way-ai-60-years-too-soon
+12. The Design of an Intelligent Automaton (Research Trends, Vol. VI, No. 2). Frank Rosenblatt, Cornell Aeronautical Laboratory. 1958. https://informationphilosopher.com/solutions/scientists/rosenblatt/Rosenblatt_Research_Trends.pdf
+13. Perceptron. Wikipedia. n.d. https://en.wikipedia.org/wiki/Perceptron
+14. Some Studies in Machine Learning Using the Game of Checkers (Crossref metadata record). A. L. Samuel, IBM Journal of Research and Development. 1959. https://api.crossref.org/works/10.1147/rd.33.0210
+15. Some Studies in Machine Learning Using the Game of Checkers (scan of the IEEE Xplore copy hosted on a Yale course page). A. L. Samuel. 1959. https://zoo.cs.yale.edu/classes/cs458/lectures/Samuels.pdf
+16. Automated Design of Both the Topology and Sizing of Analog Electrical Circuits Using Genetic Programming. John R. Koza, Forrest H Bennett III, David Andre, Martin A. Keane. 1996. http://www.genetic-programming.com/jkpdf/aid1996.pdf
+17. Machine learning. Wikipedia. n.d. https://en.wikipedia.org/wiki/Machine_learning
+18. ELIZA - A Computer Program For the Study of Natural Language Communication Between Man And Machine (Communications of the ACM, vol. 9, no. 1). Joseph Weizenbaum. 1966. https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf
+19. ELIZA. Wikipedia. n.d. https://en.wikipedia.org/wiki/ELIZA
+20. Rule-Based Expert Systems: The MYCIN Experiments of the Stanford Heuristic Programming Project, Chapter 1. Bruce G. Buchanan and Edward H. Shortliffe (eds.), Addison-Wesley. 1984. https://people.dbmi.columbia.edu/~ehs7001/Buchanan-Shortliffe-1984/Chapter-01.pdf
+21. Rule-Based Expert Systems: The MYCIN Experiments of the Stanford Heuristic Programming Project, Preface. Bruce G. Buchanan and Edward H. Shortliffe (eds.), Addison-Wesley. 1984. https://impact.dbmi.columbia.edu/~ehs7001/Buchanan-Shortliffe-1984/Preface.pdf
+22. The History of Artificial Intelligence. Tim Mucci, Matthew Finio, Amanda Downie, IBM. 2024. https://www.ibm.com/think/topics/history-of-artificial-intelligence
+23. Artificial Intelligence: A General Survey (Lighthill Report, Section 1, archived text). Sir James Lighthill, Science Research Council (Chilton Computing archive). 1972. http://www.chilton-computing.org.uk/inf/literature/reports/lighthill_report/p001.htm
+24. Lighthill Report: Artificial Intelligence: a paper symposium (contents page). Science Research Council (Chilton Computing archive). 1973. http://www.chilton-computing.org.uk/inf/literature/reports/lighthill_report/contents.htm
+25. Artificial Intelligence at Edinburgh University: a Perspective. Jim Howe, University of Edinburgh School of Informatics. n.d. http://www.inf.ed.ac.uk/about/AIhistory.html
+26. Funding a Revolution: Government Support for Computing Research, Chapter 9 Developments in Artificial Intelligence. National Research Council. 1999. https://www.nationalacademies.org/read/6323/chapter/11
+27. AI winter. Wikipedia. n.d. https://en.wikipedia.org/wiki/AI_winter
+28. R1: an Expert in the Computer Systems Domain (AAAI-80 proceedings). John McDermott, Carnegie-Mellon University. 1980. https://cdn.aaai.org/AAAI/1980/AAAI80-076.pdf
+29. Xcon. Wikipedia. n.d. https://en.wikipedia.org/wiki/Xcon
+30. Learning representations by back-propagating errors. David E. Rumelhart, Geoffrey E. Hinton, Ronald J. Williams, Nature. 1986. https://www.nature.com/articles/323533a0
+31. Who Invented Backpropagation? Jürgen Schmidhuber, IDSIA. 2014. https://people.idsia.ch/~juergen/who-invented-backpropagation.html
+32. Backpropagation Applied to Handwritten Zip Code Recognition (Crossref metadata record). Y. LeCun et al., Neural Computation. 1989. https://api.crossref.org/works/10.1162/neco.1989.1.4.541
+33. Gradient-based learning applied to document recognition (Crossref metadata record). Y. LeCun, L. Bottou, Y. Bengio, P. Haffner, Proceedings of the IEEE. 1998. https://api.crossref.org/works/10.1109/5.726791
+34. LeNet. Wikipedia. n.d. https://en.wikipedia.org/wiki/LeNet
+35. Long Short-Term Memory (Crossref metadata record). Sepp Hochreiter and Jürgen Schmidhuber, Neural Computation. 1997. https://api.crossref.org/works/10.1162/neco.1997.9.8.1735
+36. Deep Blue (IBM History). IBM. n.d. https://www.ibm.com/history/deep-blue
+37. Deep Blue defeats Garry Kasparov in chess match (This Day in History, May 11). History.com, A&E Television Networks. n.d. https://www.history.com/this-day-in-history/deep-blue-defeats-garry-kasparov-in-chess-match
+38. Deep Blue team after 1997 Deep Blue vs. Kasparov re-match in New York City (catalog record). Computer History Museum. 1997. https://www.computerhistory.org/chess/stl-430b9bbcef379/
+39. Watson and Jeopardy! (IBM History). IBM. n.d. https://www.ibm.com/history/watson-jeopardy
+40. IBM Watson Wins Jeopardy, Humans Rally Back. PCWorld. 2011. https://www.pcworld.com/article/494966/ibm_watson_wins_jeopardy_humans_rally_back.html
+41. Watson Wins 'Jeopardy!' The IBM Challenge (press release). CBS Media Ventures and IBM, via Paramount Press Express. 2011. https://www.paramountpressexpress.com/cbs-media-ventures/releases/view?id=27594
+42. New Computer Overlord Watson Conquers Jeopardy! NBC Connecticut. 2011. https://www.nbcconnecticut.com/news/national-international/new-computer-overlord-watson-conquers-jeopardy/1898274/?amp=1
+43. ImageNet: A Large-Scale Hierarchical Image Database (CVPR 2009, ML Anthology record). Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, Li Fei-Fei. 2009. https://mlanthology.org/cvpr/2009/deng2009cvpr-imagenet
+44. ImageNet (Wikipedia article, fallback for full-dataset statistics and ILSVRC end year). Wikipedia contributors. n.d. https://en.wikipedia.org/wiki/ImageNet
+45. ImageNet Large Scale Visual Recognition Challenge (arXiv 1409.0575, IJCV 2015). Olga Russakovsky et al.. 2014. https://arxiv.org/abs/1409.0575
+46. imagenet2012 dataset catalog entry (ILSVRC 2012 split sizes). TensorFlow Datasets, Google. n.d. https://www.tensorflow.org/datasets/catalog/imagenet2012
+47. ImageNet Classification with Deep Convolutional Neural Networks (NIPS 2012 paper PDF). Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton. 2012. https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf
+48. ImageNet Classification with Deep Convolutional Neural Networks (NIPS 2012 proceedings page). Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton. 2012. https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
+49. Efficient Estimation of Word Representations in Vector Space (arXiv 1301.3781). Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean. 2013. https://arxiv.org/abs/1301.3781
+50. Efficient Estimation of Word Representations in Vector Space (arXiv PDF, Google Inc. affiliation). Tomas Mikolov et al.. 2013. https://arxiv.org/pdf/1301.3781
+51. Distributed Representations of Words and Phrases and their Compositionality (NIPS 2013 proceedings page). Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeff Dean. 2013. https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality
+52. word2vec README (tool description). Tomas Mikolov, GitHub repository tmikolov/word2vec. n.d. https://github.com/tmikolov/word2vec
+53. Auto-Encoding Variational Bayes (arXiv 1312.6114). Diederik P. Kingma, Max Welling. 2013. https://arxiv.org/abs/1312.6114
+54. Auto-Encoding Variational Bayes (repository record, 2nd ICLR 2014). University of Amsterdam Digital Academic Repository. 2014. https://dare.uva.nl/id/cf65ba0f-d88f-4a49-8ebd-3a7fce86edd7
+55. Generative Adversarial Networks (arXiv 1406.2661). Ian J. Goodfellow et al.. 2014. https://arxiv.org/abs/1406.2661
+56. Generative Adversarial Nets (NIPS 2014 proceedings page). Ian J. Goodfellow et al.. 2014. https://papers.nips.cc/paper/5423-generative-adversarial-nets
+57. Dropout: A Simple Way to Prevent Neural Networks from Overfitting (JMLR 15(56):1929-1958). Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, Ruslan Salakhutdinov. 2014. https://jmlr.org/papers/v15/srivastava14a.html
+58. Improving neural networks by preventing co-adaptation of feature detectors (arXiv 1207.0580). Geoffrey E. Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, Ruslan R. Salakhutdinov. 2012. https://arxiv.org/abs/1207.0580
+59. Adam: A Method for Stochastic Optimization (arXiv 1412.6980). Diederik P. Kingma, Jimmy Ba. 2014. https://arxiv.org/abs/1412.6980
+60. Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv 1503.03585). Jascha Sohl-Dickstein, Eric A. Weiss, Niru Maheswaranathan, Surya Ganguli. 2015. https://arxiv.org/abs/1503.03585
+61. Deep Unsupervised Learning using Nonequilibrium Thermodynamics (ICML 2015, PMLR 37). Jascha Sohl-Dickstein et al.. 2015. https://proceedings.mlr.press/v37/sohl-dickstein15.html
+62. Deep Residual Learning for Image Recognition (arXiv 1512.03385). Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun. 2015. https://arxiv.org/abs/1512.03385
+63. Deep Residual Learning for Image Recognition (arXiv PDF, Microsoft Research affiliation). Kaiming He et al.. 2015. https://arxiv.org/pdf/1512.03385
+64. Kaiming He personal page (publication list, CVPR 2016 and Best Paper Award). Kaiming He, MIT CSAIL. n.d. https://people.csail.mit.edu/kaiming/
+65. AlphaGo. Google DeepMind. n.d. https://deepmind.google/research/alphago/
+66. Mastering the game of Go with deep neural networks and tree search (PubMed record of Nature 529:484-489). David Silver et al.. 2016. https://pubmed.ncbi.nlm.nih.gov/26819042/
+67. AlphaGo versus Lee Sedol (Wikipedia article, fallback for game dates and venue). Wikipedia contributors. n.d. https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol
+68. AlphaGo at 10: How AI Innovation Is Paving the Path to AGI. Google DeepMind. n.d. https://deepmind.google/blog/10-years-of-alphago/
+69. Attention Is All You Need (arXiv 1706.03762). Ashish Vaswani et al.. 2017. https://arxiv.org/abs/1706.03762
+70. Attention is All you Need (NIPS 2017 proceedings page). Ashish Vaswani et al.. 2017. https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
+71. Attention Is All You Need (NIPS 2017 paper PDF, affiliations). Ashish Vaswani et al.. 2017. https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
+72. Deep reinforcement learning from human preferences (arXiv 1706.03741). Paul Christiano, Jan Leike, Tom B. Brown, Miljan Martic, Shane Legg, Dario Amodei. 2017. https://arxiv.org/abs/1706.03741
+73. Deep reinforcement learning from human preferences (arXiv PDF, OpenAI and DeepMind affiliations). Paul Christiano et al.. 2017. https://arxiv.org/pdf/1706.03741
+74. Deep Reinforcement Learning from Human Preferences (NIPS 2017 proceedings page). Paul F. Christiano et al.. 2017. https://papers.nips.cc/paper/7017-deep-reinforcement-learning-from-human-preferences
+75. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (arXiv 1810.04805). Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova. 2018. https://arxiv.org/abs/1810.04805
+76. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (arXiv PDF, Google AI Language affiliation). Jacob Devlin et al.. 2018. https://arxiv.org/pdf/1810.04805
+77. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (NAACL-HLT 2019, ACL Anthology N19-1423). Jacob Devlin et al.. 2019. https://aclanthology.org/N19-1423/
+78. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv 2005.11401). Patrick Lewis et al.. 2020. https://arxiv.org/abs/2005.11401
+79. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv PDF, Facebook AI Research, UCL and NYU affiliations). Patrick Lewis et al.. 2020. https://arxiv.org/pdf/2005.11401
+80. Language Models are Few-Shot Learners (arXiv 2005.14165). Tom B. Brown et al.. 2020. https://arxiv.org/abs/2005.14165
+81. Language Models are Few-Shot Learners (arXiv PDF, OpenAI affiliation). Tom B. Brown et al.. 2020. https://arxiv.org/pdf/2005.14165
+82. Language Models are Few-Shot Learners (NeurIPS 2020 proceedings page). Tom Brown et al.. 2020. https://papers.nips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html
+83. Denoising Diffusion Probabilistic Models (arXiv 2006.11239). Jonathan Ho, Ajay Jain, Pieter Abbeel. 2020. https://arxiv.org/abs/2006.11239
+84. Denoising Diffusion Probabilistic Models (NeurIPS 2020 proceedings page). Jonathan Ho, Ajay N. Jain, Pieter Abbeel. 2020. https://proceedings.neurips.cc/paper_files/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html
+85. AlphaFold: a solution to a 50-year-old grand challenge in biology. Google DeepMind, The AlphaFold team. 2020. https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/
+86. Highly accurate protein structure prediction with AlphaFold (PubMed record of Nature 596:583-589). John Jumper et al.. 2021. https://pubmed.ncbi.nlm.nih.gov/34265844/
+87. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv 2201.11903). Jason Wei et al.. 2022. https://arxiv.org/abs/2201.11903
+88. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv PDF, Google Research Brain Team affiliation). Jason Wei et al.. 2022. https://arxiv.org/pdf/2201.11903
+89. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (NeurIPS 2022 proceedings page). Jason Wei et al.. 2022. https://proceedings.neurips.cc/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html
+90. Training language models to follow instructions with human feedback (arXiv 2203.02155). Long Ouyang et al.. 2022. https://arxiv.org/abs/2203.02155
+91. Training language models to follow instructions with human feedback (arXiv PDF, OpenAI affiliation). Long Ouyang et al.. 2022. https://arxiv.org/pdf/2203.02155
+92. Training language models to follow instructions with human feedback (NeurIPS 2022 proceedings page). Long Ouyang et al.. 2022. https://proceedings.neurips.cc/paper_files/paper/2022/hash/b1efde53be364a73914f58805a001731-Abstract-Conference.html
+93. While anticipation builds for GPT-4, OpenAI quietly releases GPT-3.5. Kyle Wiggers, TechCrunch. 2022. https://techcrunch.com/2022/12/01/while-anticipation-builds-for-gpt-4-openai-quietly-releases-gpt-3-5/
+94. The inside story of how ChatGPT was built from the people who made it. Will Douglas Heaven, MIT Technology Review. 2023. https://www.technologyreview.com/2023/03/03/1069311/inside-story-oral-history-how-chatgpt-built-openai/
+95. ChatGPT sets record for fastest-growing user base (Reuters story republished by Cyprus Mail). Reuters. 2023. https://cyprus-mail.com/2023/02/05/chatgpt-sets-record-for-fastest-growing-user-base
+96. ChatGPT reportedly reached 100 million users in January. Mariella Moon, Engadget. 2023. https://www.engadget.com/chatgpt-100-million-users-january-130619073.html
+97. The Nobel Prize in Physics 2024: They trained artificial neural networks using physics (press release). Royal Swedish Academy of Sciences. 2024. https://www.kva.se/en/news/the-nobel-prize-in-physics-2024/
+98. The Nobel Prize in Chemistry 2024: They cracked the code for proteins' amazing structures (press release). Royal Swedish Academy of Sciences. 2024. https://www.kva.se/en/news/the-nobel-prize-in-chemistry-2024/
+99. Sam Altman says ChatGPT has hit 800M weekly active users. Rebecca Bellan, TechCrunch. 2025. https://techcrunch.com/2025/10/06/sam-altman-says-chatgpt-has-hit-800m-weekly-active-users
+100. ChatGPT reaches 900M weekly active users. Aisha Malik, TechCrunch. 2026. https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users
+101. OpenAI's latest features take direct aim at the app store model. Sarah Perez, TechCrunch. 2026. https://techcrunch.com/2026/09/29/openais-latest-features-take-direct-aim-at-the-app-store-model/
+102. Machine Learning (book home page, McGraw Hill). Tom M. Mitchell, Carnegie Mellon University. 1997. http://www.cs.cmu.edu/~tom/mlbook.html
+103. Lecture slides for textbook Machine Learning, Chapter 1. Tom M. Mitchell, Carnegie Mellon University. 1997. http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-20/www/mlbook/ch1.pdf
+104. The Discipline of Machine Learning (CMU-ML-06-108). Tom M. Mitchell, Carnegie Mellon University. 2006. http://www.cs.cmu.edu/~tom/pubs/MachineLearning.pdf
+105. Machine learning lecture notes: the learning problem. Jose M. Vidal, University of South Carolina. n.d. https://jmvidal.cse.sc.edu/talks/mlintro/learningprob.html
+106. Knowledge Engineering and Expert Systems: Lecture Notes on Machine Learning. Matteo Matteucci, Politecnico di Milano. n.d. https://matteucci.faculty.polimi.it/Download/Lecture-1.pdf
+107. Artificial Intelligence: A Modern Approach, 4th US ed. (book website). Stuart Russell and Peter Norvig. 2022. https://aima.cs.berkeley.edu/
+108. Artificial Intelligence: A Modern Approach, 4th ed., Contents with subsections. Stuart Russell and Peter Norvig. n.d. https://aima.cs.berkeley.edu/contents.html
+109. Artificial Intelligence: A Modern Approach, 4th ed., front matter and Preface (PDF). Stuart Russell and Peter Norvig (Pearson). 2021. https://aima.cs.berkeley.edu/newchap00.pdf
+110. Artificial Intelligence: A Modern Approach, 4th Global Edition companion page. Stuart Russell and Peter Norvig. 2022. https://aima.cs.berkeley.edu/global-index.html
+111. If We Succeed (Daedalus 151(2), Spring 2022). Stuart Russell. 2022. https://aima.eecs.berkeley.edu/~russell/papers/russell-daedalus22-succeed.pdf
+112. Chapter 2: Intelligent Agents (CMPT 310 course notes). Simon Fraser University. n.d. https://www2.cs.sfu.ca/CourseCentral/310/tjd/chp2_agents.html
+113. On the Theory of Scales of Measurement (Science 103(2684):677-680; JSTOR scan hosted on a Bilkent University course site). S. S. Stevens. 1946. https://courses.ie.bilkent.edu.tr/wp-content/uploads/sites/13/2023/03/On_the_Theory_of_Scales_of_Measurement.pdf
+114. Tidy Data (Journal of Statistical Software 59(10)), article page. Hadley Wickham. 2014. https://www.jstatsoft.org/article/view/v059i10
+115. Tidy Data (Journal of Statistical Software 59(10)), full-text PDF. Hadley Wickham. 2014. https://www.jstatsoft.org/index.php/jss/article/view/v059i10/772
+116. R for Data Science (2e), chapter Data tidying. Hadley Wickham et al.. n.d. https://r4ds.hadley.nz/data-tidy.html
+117. The Data Science Venn Diagram (repost from the Revolutions blog). David Smith, R-bloggers. 2010. https://www.r-bloggers.com/2010/10/the-data-science-venn-diagram/
+118. OSEMN Data Science Life Cycle. datascience-pm.com. n.d. https://www.datascience-pm.com/osemn/
+119. How to Work Through a Problem Like a Data Scientist. Machine Learning Mastery. n.d. https://machinelearningmastery.com/how-to-work-through-a-problem-like-a-data-scientist/
+120. Should-Read: Drew Conway: The Data Science Venn Diagram. Brad DeLong, Washington Center for Equitable Growth. 2017. https://equitablegrowth.org/should-read-drew-conway-the-data-science-venn-diagram/
+121. IBM SPSS Modeler CRISP-DM Guide (version 18.5). IBM. n.d. https://www.ibm.com/docs/en/SS3RA7_18.5.0/pdf/ModelerCRISPDM.pdf
+122. CRISP-DM 1.0 proposal published (KDnuggets News 2000, issue 17). Gregory Piatetsky-Shapiro, KDnuggets. 2000. https://www.kdnuggets.com/news/2000/n17/17i.html
+123. Cross-industry standard process for data mining. Wikipedia. n.d. https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining
+124. From Data Mining to Knowledge Discovery in Databases (AI Magazine 17(3)). Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth. 1996. https://www.kdnuggets.com/gpspubs/aimag-kdd-overview-1996-Fayyad.pdf
+125. Deja VVVu: Gartner's Original Volume-Velocity-Variety Definition of Big Data. Doug Laney, AIIM Community blog. 2012. https://community.aiim.org/blogs/doug-laney/2012/08/25/deja-vvvu-gartners-original-volume-velocity-variety-definition-of-big-data
+126. Understanding big data so you can act with confidence (IMM14123-USEN-00). IBM Software Group. 2013. https://tdwi.org/-/media/F2AF8C2A06824E38A9A908770AF2BD9C.PDF
+127. The Six Primary Dimensions for Data Quality Assessment (third-party-hosted copy). DAMA UK Working Group on Data Quality Dimensions. 2013. https://joelbth.codeberg.page/community-notices/dama-quality-dimensions.pdf
+128. The Government Data Quality Framework. UK Government (GOV.UK). 2020. https://www.gov.uk/government/publications/the-government-data-quality-framework/the-government-data-quality-framework
+129. What Is Meant by Missing at Random? (Statistical Science 28(2):257-268; arXiv 1306.2812). Shaun Seaman, John Galati, Dan Jackson, John Carlin. 2013. https://arxiv.org/pdf/1306.2812
+130. Flexible Imputation of Missing Data (2nd ed.), section Concepts of MCAR, MAR and MNAR. Stef van Buuren. n.d. https://stefvanbuuren.name/fimd/sec-MCAR.html
+131. The knowledge pyramid: the DIKW hierarchy (ISKO Encyclopedia of Knowledge Organization). Martin Fricke. 2019. https://isko.org/cyclo/dikw
+132. Foundational Methodology for Data Science (IBM Analytics white paper IMW14828-USEN-00). John B. Rollins, IBM. 2015. https://tdwi.org/~/media/64511a895d86457e964174edc5c4c7b1
+133. Cumulative Distribution Function of the Standard Normal Distribution (e-Handbook of Statistical Methods, section 1.3.6.7.1). NIST/SEMATECH. n.d. https://www.itl.nist.gov/div898/handbook/eda/section3/eda3671.htm
+134. What are outliers in the data? (e-Handbook of Statistical Methods, section 7.1.6). NIST/SEMATECH. n.d. https://www.itl.nist.gov/div898/handbook/prc/section1/prc16.htm
+135. Coefficient of Variation (Dataplot Reference Manual). NIST. n.d. https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/coefvari.htm
+136. AP Statistics Course and Exam Description, Effective Fall 2026. College Board. 2026. https://apcentral.collegeboard.org/media/pdf/ap-statistics-course-and-exam-description.pdf
+137. Quartiles in Elementary Statistics (Journal of Statistics Education 14(3)). Eric Langford. 2006. http://jse.amstat.org/v14n3/langford.html
+138. Introductory Statistics 2e, 7.1 The Central Limit Theorem for Sample Means (Averages). OpenStax (Illowsky and Dean). 2023. https://openstax.org/books/introductory-statistics-2e/pages/7-1-the-central-limit-theorem-for-sample-means-averages
+139. Introductory Statistics 2e, 12.3 The Regression Equation. OpenStax (Illowsky and Dean). 2023. https://openstax.org/books/introductory-statistics-2e/pages/12-3-the-regression-equation
+140. Introductory Statistics 2e, 12.6 Outliers. OpenStax (Illowsky and Dean). 2023. https://openstax.org/books/introductory-statistics-2e/pages/12-6-outliers
+141. pandas.Series.std (pandas 3.1.0 documentation). pandas development team. 2026. https://pandas.pydata.org/docs/reference/api/pandas.Series.std.html
+142. pandas.Series.var (pandas 3.1.0 documentation). pandas development team. 2026. https://pandas.pydata.org/docs/reference/api/pandas.Series.var.html
+143. pandas.Series.quantile (pandas 3.1.0 documentation). pandas development team. 2026. https://pandas.pydata.org/docs/reference/api/pandas.Series.quantile.html
+144. numpy.std (NumPy v2.5 Manual). NumPy Developers. 2026. https://numpy.org/doc/stable/reference/generated/numpy.std.html
+145. numpy.var (NumPy v2.5 Manual). NumPy Developers. 2026. https://numpy.org/doc/stable/reference/generated/numpy.var.html
+146. numpy.percentile (NumPy v2.5 Manual). NumPy Developers. 2026. https://numpy.org/doc/stable/reference/generated/numpy.percentile.html
+147. sd: Standard Deviation (R documentation, stats package). R Core Team. n.d. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/sd.html
+148. cor: Correlation, Variance and Covariance (R documentation, stats package). R Core Team. n.d. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/cor.html
+149. quantile: Sample Quantiles (R documentation, stats package). R Core Team. n.d. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html
+150. fivenum: Tukey Five-Number Summaries (R documentation, stats package). R Core Team. n.d. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/fivenum.html
+151. boxplot.stats: Box Plot Statistics (R documentation, grDevices package). R Core Team. n.d. https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html
+152. STDEV.S function. Microsoft Support. n.d. https://support.microsoft.com/en-us/office/stdev-s-function-7d69cf97-0c1f-4acf-be27-f3e83904cc23
+153. STDEV.P function. Microsoft Support. n.d. https://support.microsoft.com/en-us/office/stdev-p-function-6e917c05-31a0-496f-ade7-4f4e7462f285
+154. QUARTILE.INC function. Microsoft Support. n.d. https://support.microsoft.com/en-us/office/quartile-inc-function-1bbacc80-5075-42f1-aed6-47d735c4819d
+155. QUARTILE.EXC function. Microsoft Support. n.d. https://support.microsoft.com/en-us/office/quartile-exc-function-5a355b7a-840b-4a01-b0f1-f538c2864cad
+156. statistics: Mathematical statistics functions (Python 3.15 documentation). Python Software Foundation. 2026. https://docs.python.org/3/library/statistics.html
+157. Machine Bias. ProPublica (Julia Angwin, Jeff Larson, Surya Mattu, Lauren Kirchner). 2016. https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing
+158. How We Analyzed the COMPAS Recidivism Algorithm. ProPublica (Jeff Larson, Surya Mattu, Lauren Kirchner, Julia Angwin). 2016. https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm
+159. Technical Response to Northpointe. ProPublica (Jeff Larson, Julia Angwin). 2016. https://www.propublica.org/article/technical-response-to-northpointe
+160. Bias in Criminal Risk Scores Is Mathematically Inevitable, Researchers Say. ProPublica (Julia Angwin, Jeff Larson). 2016. https://www.propublica.org/article/bias-in-criminal-risk-scores-is-mathematically-inevitable-researchers-say
+161. Fair prediction with disparate impact: A study of bias in recidivism prediction instruments (ar5iv rendering of arXiv:1703.00056). Alexandra Chouldechova. 2017. https://ar5iv.arxiv.org/html/1703.00056
+162. Amazon scraps secret AI recruiting tool that showed bias against women (Reuters story by Jeffrey Dastin, reprinted by Euronews). Reuters / Euronews. 2018. https://www.euronews.com/2018/10/10/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women
+163. Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification (PMLR abstract page). Joy Buolamwini and Timnit Gebru, Proceedings of Machine Learning Research vol. 81. 2018. https://proceedings.mlr.press/v81/buolamwini18a.html
+164. Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification (full paper PDF). Joy Buolamwini and Timnit Gebru, Proceedings of Machine Learning Research vol. 81. 2018. https://proceedings.mlr.press/v81/buolamwini18a/buolamwini18a.pdf
+165. Dissecting racial bias in an algorithm used to manage the health of populations (Science 366, 447-453; article PDF hosted by the FTC for PrivacyCon 2020). Ziad Obermeyer, Brian Powers, Christine Vogeli, Sendhil Mullainathan. 2019. https://www.ftc.gov/system/files/documents/public_events/1548288/privacycon-2020-ziad_obermeyer.pdf
+166. Google Photos gorillas auto-tagging error and Google apology (news report). The Register. 2015. https://www.theregister.com/2015/07/01/google_photos_app_machine_learning_fail/
+167. Google Photos still has a problem with gorillas. MIT Technology Review (Jackie Snow). 2018. https://www.technologyreview.com/2018/01/11/146257/google-photos-still-has-a-problem-with-gorillas/amp/
+168. Learning from Tay's introduction. Microsoft (Peter Lee). 2016. https://blogs.microsoft.com/blog/2016/03/25/learning-tays-introduction/
+169. Tay (chatbot). Wikipedia. 2026. https://en.wikipedia.org/wiki/Tay_(chatbot)
+170. Report on Apple Card Investigation. New York State Department of Financial Services. 2021. https://www.dfs.ny.gov/system/files/documents/2021/03/rpt_202103_apple_card_investigation.pdf
+171. DFS Issues Findings on the Apple Card and Its Underwriter Goldman Sachs Bank. New York State Department of Financial Services. 2021. https://www.dfs.ny.gov/reports_and_publications/press_releases/pr202103231
+172. CFPB Orders Apple and Goldman Sachs to Pay Over $89 Million for Apple Card Failures. Consumer Financial Protection Bureau. 2024. https://www.consumerfinance.gov/archive/newsroom/cfpb-orders-apple-and-goldman-sachs-to-pay-over-89-million-for-apple-card-failures/
+173. Enforcement action: Goldman Sachs Bank USA. Consumer Financial Protection Bureau. 2024. https://www.consumerfinance.gov/enforcement/actions/goldman-sachs-bank-usa/
+174. Enforcement action: Apple Inc. Consumer Financial Protection Bureau. 2024. https://www.consumerfinance.gov/enforcement/actions/apple-inc/
+175. A levels 2020: 39% of teacher grades moderated down (news report on Ofqual statistics). Tes. 2020. https://tes.com/news/levels-2020-39-teachers-grades-moderated-down
+176. GCSE and A level students to receive centre assessment grades. UK Department for Education. 2020. https://www.gov.uk/government/news/gcse-and-a-level-students-to-receive-centre-assessment-grades
+177. Full Ofqual A-level and GCSE U-turn statement. Tes. 2020. https://www.tes.com/news/full-ofquals-level-and-gcse-u-turn-statement
+178. Dutch childcare benefit scandal an urgent wake-up call to ban racist algorithms (Xenophobic Machines report release). Amnesty International. 2021. https://www.amnesty.org/en/latest/news/2021/10/xenophobic-machines-dutch-child-benefit-scandal/
+179. Dutch cabinet collapses over childcare allowance scandal. NL Times. 2021. https://nltimes.nl/2021/01/15/dutch-cabinet-collapses-childcare-allowance-scandal
+180. Update Dutch politics: Cabinet Rutte resigns following childcare benefit scandal. Public Matters. 2021. https://publicmatters.nl/en/actueel/update-dutch-politics-cabinet-rutte-resigns-following-childcare-benefit-scandal/
+181. Dutch tax authority fined for discriminatory data processing (Out-Law News). Pinsent Masons. 2021. https://www.pinsentmasons.com/out-law/news/dutch-tax-authority-record-fine-discriminatory-data-processing
+182. Tax office fined EUR 2.7m for discriminating against dual national families. DutchNews.nl. 2021. https://dutchnews.nl/2021/12/tax-office-fined-e2-7m-for-discriminating-against-dual-national-families
+183. Williams v. City of Detroit (case page). American Civil Liberties Union. 2024. https://www.aclu.org/cases/williams-v-city-of-detroit-face-recognition-false-arrest
+184. Civil Rights Advocates Achieve the Nation's Strongest Police Department Policy on Facial Recognition Technology. American Civil Liberties Union. 2024. https://www.aclu.org/press-releases/civil-rights-advocates-achieve-the-nations-strongest-police-department-policy-on-facial-recognition-technology
+185. Wrongfully Arrested Because Face Recognition Can't Tell Black People Apart. ACLU (Victoria Burton-Harris and Philip Mayor). 2020. https://aclu.org/news/privacy-technology/wrongfully-arrested-because-face-recognition-cant-tell-black-people-apart
+186. Detroit paying $300,000 to man wrongly accused of theft, making changes in use of facial technology. Associated Press (Ed White), via News4JAX. 2024. https://www.news4jax.com/tech/2024/06/28/detroit-paying-300000-to-man-wrongly-accused-of-theft-making-changes-in-use-of-facial-technology/
+187. It didn't make sense at all: Wrongful facial recognition arrest in Detroit leads to landmark settlement. Michigan Public. 2024. https://www.michiganpublic.org/criminal-justice-legal-system/2024-06-28/it-didnt-make-sense-at-all-wrongful-facial-recognition-arrest-leads-to-landmark-settlement
+188. Mata v. Avianca, Inc., 678 F.Supp.3d 443 (S.D.N.Y. 2023), Opinion and Order on Sanctions (Westlaw copy hosted by CLLA). U.S. District Court for the Southern District of New York (Judge P. Kevin Castel). 2023. https://national.clla.org/wp-content/uploads/2025/05/Mata-v-Avianca-Inc.pdf
+189. AI Gone Wild: Airline Has to Honor a Refund Policy Its Chatbot Fabricated. Manatt, Phelps and Phillips. 2024. https://manatt.com/insights/newsletters/advertising-law/ai-gone-wild-airline-has-to-honor-a-refund-policy
+190. Air Canada ordered to pay customer after airline's chatbot misguided him about fares. Daily Hive. 2024. https://dailyhive.com/canada/air-canada-chatbot-decision
+191. Air Canada's chatbot gave a B.C. man the wrong information. Now, the airline has to pay for the mistake. CTV News. 2024. https://www.ctvnews.ca/vancouver/article/air-canadas-chatbot-gave-a-bc-man-the-wrong-information-now-the-airline-has-to-pay-for-the-mistake/
+192. Samsung employees leaked confidential data to ChatGPT (news report citing The Economist Korea). Android Authority. 2023. https://www.androidauthority.com/samsung-chatgpt-leak-3310307/
+193. Samsung bans staff AI use over data leak concerns. CSO Online. 2023. https://www.csoonline.com/article/3695170/samsung-bans-staff-ai-use-over-data-leak-concerns.html
+194. Arup confirmed as victim of deepfake video-call scam (news report). Dezeen. 2024. https://www.dezeen.com/2024/05/17/arup-victim-deepfake-video-scam/
+195. Scammers siphon $25M from engineering firm Arup via AI deepfake CFO. CFO Dive. 2024. https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/
+196. The Problem of Abortion and the Doctrine of the Double Effect (Oxford Review no. 5, scanned journal pages). Philippa Foot. 1967. https://pdf.stafforini.com/foot-1967-problem-abortion-doctrine.pdf
+197. Thomson on the trolley problem (moral psychology lecture slides quoting Thomson 1976). Stephen Butterfill. n.d. https://moral-psychology-slides.butterfill.com/moral-psychology/units/thomson.html
+198. Stop That Tram! (letters exchange between Judith Jarvis Thomson and Cass R. Sunstein). The New York Review of Books. 2014. https://www.nybooks.com/articles/2014/05/22/stop-that-tram/
+199. Trolley problem (Wikipedia fallback for bibliographic details). Wikipedia. 2026 (live page). https://en.wikipedia.org/wiki/Trolley_problem
+200. The Moral Machine experiment (Nature 563, 59-64). Edmond Awad, Sohan Dsouza, Richard Kim, Jonathan Schulz, Joseph Henrich, Azim Shariff, Jean-Francois Bonnefon, Iyad Rahwan. 2018. https://www.nature.com/articles/s41586-018-0637-6
+201. The Moral Machine experiment (abstract record). IDEAS/RePEc. 2018. https://ideas.repec.org/a/nat/nature/v563y2018i7729d10.1038_s41586-018-0637-6.html
+202. Collision Between Vehicle Controlled by Developmental Automated Driving System and Pedestrian, Tempe, Arizona, March 18, 2018 (Highway Accident Report NTSB/HAR-19/03). National Transportation Safety Board. 2019. https://www.ntsb.gov/investigations/AccidentReports/Reports/HAR1903.pdf
+203. The backup driver in the 1st death by a fully autonomous car pleads guilty to endangerment. Associated Press (Jacques Billeaud and Anita Snow), via News4JAX. 2023. https://www.news4jax.com/news/national/2023/07/28/the-backup-driver-in-the-1st-death-by-a-fully-autonomous-car-pleads-guilty-to-endangerment/
+204. J3016_202104 Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles. SAE International. 2021. https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles
+205. J3016_202609 Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles. SAE International. 2026. https://saemobilus.sae.org/standards/j3016_202609-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles
+206. Simple Demographics Often Identify People Uniquely (Data Privacy Working Paper 3). Latanya Sweeney, Carnegie Mellon University. 2000. https://dataprivacylab.org/projects/identifiability/paper1.pdf
+207. Revisiting the Uniqueness of Simple Demographics in the US Population (WPES 2006). Philippe Golle, Palo Alto Research Center. 2006. https://crypto.stanford.edu/~pgolle/papers/census.pdf
+208. How To Break Anonymity of the Netflix Prize Dataset (arXiv cs/0610105). Arvind Narayanan and Vitaly Shmatikov. 2006 (revised 2007). https://arxiv.org/abs/cs/0610105
+209. Narayanan and Shmatikov's de-anonymization of the Netflix Prize dataset (arXiv v2 PDF). Arvind Narayanan and Vitaly Shmatikov. 2007. https://arxiv.org/pdf/cs/0610105v2
+210. Netflix Cancels Contest over Privacy Concerns. Electronic Privacy Information Center (EPIC). 2010. https://archive.epic.org/2010/03/netflix-cancels-contest-over-p.html
+211. A Face Is Exposed for AOL Searcher No. 4417749 (New York Times article by Michael Barbaro and Tom Zeller Jr., copy filed as an EFF exhibit). The New York Times, via Electronic Frontier Foundation. 2006. https://w2.eff.org:443/Privacy/AOL/exhibit_d.pdf
+212. AOL: This was a screw up. TechCrunch. 2006. https://techcrunch.com/2006/08/07/aol-this-was-a-screw-up
+213. Article on the Strava heatmap revealing military base locations (29 January 2018). The Register. 2018. https://www.theregister.com/2018/01/29/strava_heatmap_military_base_locations/
+214. Australian analyst discovers exercise app reveals details of US military sites. SBS News. 2018. https://www.sbs.com.au/news/article/australian-analyst-discovers-exercise-app-reveals-details-of-us-military-sites/4fcogbujj
+215. Newsroom post on restricting data access (Cambridge Analytica, up to 87 million people). Mike Schroepfer, Facebook (Meta). 2018. https://about.fb.com/news/2018/04/restricting-data-access/
+216. FTC Sues Cambridge Analytica, Settles with Former CEO and App Developer. U.S. Federal Trade Commission. 2019. https://www.ftc.gov/news-events/news/press-releases/2019/07/ftc-sues-cambridge-analytica-settles-former-ceo-app-developer
+217. FTC Imposes $5 Billion Penalty and Sweeping New Privacy Restrictions on Facebook. U.S. Federal Trade Commission. 2019. https://www.ftc.gov/news-events/news/press-releases/2019/07/ftc-imposes-5-billion-penalty-sweeping-new-privacy-restrictions-facebook
+218. Article on the UK ICO's £500,000 fine against Facebook. CyberScoop. 2018. https://cyberscoop.com/facebook-fined-500k-uk-ico-cambridge-analytica/
+219. UK watchdog fines Facebook $644,000 for failing to protect its users' data. CNBC. 2018. https://www.cnbc.com/amp/2018/10/25/uk-watchdog-fines-facebook-644000-for-failing-to-protect-user-data.html
+220. Facebook says Cambridge Analytica data grab may be much bigger than first reported. WWNO (NPR). 2018. https://www.wwno.org/2018-04-04/facebook-says-cambridge-analytica-data-grab-may-be-much-bigger-than-first-reported
+221. Facebook-Cambridge Analytica data scandal (Wikipedia fallback for publication date and outlets). Wikipedia. 2026 (live page). https://en.wikipedia.org/wiki/Facebook%E2%80%93Cambridge_Analytica_data_scandal
+222. Joint investigation of Clearview AI, Inc. (PIPEDA Findings #2021-001). Office of the Privacy Commissioner of Canada with Quebec, British Columbia and Alberta commissioners. 2021. https://www.priv.gc.ca/en/opc-actions-and-decisions/investigations/investigations-into-businesses/2021/pipeda-2021-001/
+223. Clearview AI breached Australians' privacy. Office of the Australian Information Commissioner. 2021. https://www.oaic.gov.au/newsroom/clearview-ai-breached-australians-privacy
+224. Statement on Clearview AI. Office of the Australian Information Commissioner. 2024. https://www.oaic.gov.au/newsroom/statement-on-clearview-ai
+225. Clearview AI loses B.C. appeal of findings over facial recognition privacy breaches. CTV News. 2026. https://www.ctvnews.ca/vancouver/article/clearview-ai-loses-bc-appeal-of-findings-over-facial-recognition-privacy-breaches/
+226. Italy fines Clearview AI €20M and orders data deleted. TechCrunch. 2022. https://techcrunch.com/?p=2281973
+227. Selfie scraping Clearview AI hit with another €20M ban order in Europe. TechCrunch. 2022. https://techcrunch.com/?p=2352539
+228. Article on the CNIL's €5.2 million overdue penalty against Clearview AI. TechCrunch. 2023. https://techcrunch.com/2023/05/10/clearview-ai-another-cnil-gspr-fine
+229. Clearview AI hit with its largest GDPR fine yet as Dutch regulator considers holding execs personally liable. TechCrunch. 2024. https://techcrunch.com/2024/09/03/clearview-ai-hit-with-its-largest-gdpr-fine-yet-as-dutch-regulator-considers-holding-execs-personally-liable
+230. Upper Tribunal hands down Clearview v ICO judgment on territorial and material scope of GDPR. 11KBW. 2025. https://www.11kbw.com/knowledge-events/news/upper-tribunal-hands-down-clearview-v-ico-judgment-on-territorial-and-material-scope-of-gdpr/
+231. Clearview AI fights £7.5m UK privacy fine over scraped web photos. City AM. 2026. https://www.cityam.com/?p=2467081
+232. In Big Win, Settlement Ensures Clearview AI Complies With Groundbreaking Illinois Biometric Privacy Law. American Civil Liberties Union. 2022. https://aclu.org/press-releases/big-win-settlement-ensures-clearview-ai-complies-with-groundbreaking-illinois
+233. Extracting Training Data from Large Language Models (arXiv 2012.07805). Nicholas Carlini et al.. 2020 (revised 2021). https://arxiv.org/abs/2012.07805
+234. Scalable Extraction of Training Data from (Production) Language Models (arXiv 2311.17035). Milad Nasr, Nicholas Carlini et al.. 2023. https://arxiv.org/pdf/2311.17035
+235. Extracting Training Data from ChatGPT (authors' blog post). Milad Nasr, Nicholas Carlini et al.. 2023. https://not-just-memorization.github.io/extracting-training-data-from-chatgpt.html
+236. How should autonomous vehicles be programmed? (MIT News). Peter Dizikes, MIT News Office. 2018. https://news.mit.edu/2018/how-autonomous-vehicles-programmed-1024
+237. Regulation (EU) 2016/679 (GDPR) as originally adopted: Article 99, Entry into force and application. legislation.gov.uk (The National Archives, UK). 2016. https://www.legislation.gov.uk/eur/2016/679/article/99/adopted
+238. Regulation (EU) 2016/679 (GDPR) as originally adopted: Contents and title. legislation.gov.uk (The National Archives, UK). 2016. https://www.legislation.gov.uk/eur/2016/679/contents/adopted
+239. Regulation (EU) 2016/679 (GDPR) as originally adopted: Article 5, Principles relating to processing of personal data. legislation.gov.uk (The National Archives, UK). 2016. https://www.legislation.gov.uk/eur/2016/679/article/5/adopted
+240. Regulation (EU) 2016/679 (GDPR) as originally adopted: Article 22, Automated individual decision-making, including profiling. legislation.gov.uk (The National Archives, UK). 2016. https://www.legislation.gov.uk/eur/2016/679/article/22/adopted
+241. Regulation (EU) 2016/679 (GDPR) as originally adopted: Article 83, General conditions for imposing administrative fines. legislation.gov.uk (The National Archives, UK). 2016. https://www.legislation.gov.uk/eur/2016/679/article/83/adopted
+242. Legal framework of EU data protection. European Commission. 2026. https://commission.europa.eu/law/law-topic/data-protection/legal-framework-eu-data-protection_en
+243. Digital Omnibus: the Council's negotiating mandate (blog post). NicFab legal blog. 2026. https://www.nicfab.eu/en/posts/digital-omnibus-council/
+244. California Consumer Privacy Act statute text (compilation effective January 1, 2026). California Privacy Protection Agency. 2026. https://cppa.ca.gov/pdf/20260101_ccpa_statute.pdf
+245. California Consumer Privacy Act (CCPA). State of California Department of Justice, Office of the Attorney General. 2026. https://oag.ca.gov/privacy/ccpa
+246. California Consumer Privacy Act (Wikipedia fallback for signing date). Wikipedia. 2026. https://en.wikipedia.org/wiki/California_Consumer_Privacy_Act
+247. About CalPrivacy. California Privacy Protection Agency. 2026. http://cppa.ca.gov/about_us/
+248. CalPrivacy Launches Privacy Tips to Help Californians Protect Their Personal Data. California Privacy Protection Agency. 2025. https://www.cppa.ca.gov/announcements/2025/20251105.html
+249. CCPA Updates, Cybersecurity Audits, Risk Assessments, Automated Decisionmaking Technology, and Insurance Regulations (rulemaking page). California Privacy Protection Agency. 2025. https://cppa.ca.gov/regulations/ccpa_updates.html
+250. Approved Regulations Text: CCPA Updates, Cyber, Risk, ADMT, and Insurance Regulations. California Privacy Protection Agency. 2025. https://cppa.ca.gov/regulations/pdf/ccpa_updates_cyber_risk_admt_appr_text.pdf
+251. Public Law 104-191, Health Insurance Portability and Accountability Act of 1996. U.S. Government Publishing Office (GovInfo). 1996. https://www.govinfo.gov/app/details/PLAW-104publ191
+252. 45 CFR 164.534, Compliance dates for initial implementation of the privacy standards. Legal Information Institute, Cornell Law School. 2026. https://www.law.cornell.edu/cfr/text/45/164.534
+253. Health Insurance Portability and Accountability Act of 1996 (HIPAA). Centers for Disease Control and Prevention, Public Health Law Program. 2024. https://www.cdc.gov/phlp/php/resources/health-insurance-portability-and-accountability-act-of-1996-hipaa.html
+254. 45 CFR 164.514, Other requirements relating to uses and disclosures of protected health information. Legal Information Institute, Cornell Law School. 2026. https://www.law.cornell.edu/cfr/text/45/164.514
+255. Children's Online Privacy Protection Rule, Final rule amendments (90 FR 16918). Federal Trade Commission, Federal Register. 2025. https://www.govinfo.gov/content/pkg/FR-2025-04-22/pdf/2025-05904.pdf
+256. FTC Finalizes Changes to Children's Privacy Rule Limiting Companies' Ability to Monetize Kids' Data. Federal Trade Commission. 2025. https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data
+257. Family Educational Rights and Privacy Act (FERPA). U.S. Department of Education, Student Privacy Policy Office. 2026. https://studentprivacy.ed.gov/ferpa
+258. AI Act enters into force. European Commission. 2024. https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en
+259. EU AI Act Implementation Timeline. artificialintelligenceact.eu (Future of Life Institute). 2026. https://artificialintelligenceact.eu/implementation-timeline/
+260. AI Act: Shaping Europe's digital future (regulatory framework for AI). European Commission. 2026. https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai
+261. EU AI Act Article 4: AI literacy (amended text). artificialintelligenceact.eu (Future of Life Institute). 2026. https://artificialintelligenceact.eu/article/4/
+262. Navigating the AI Act (FAQ). European Commission. 2026. https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act
+263. Texts adopted P10_TA(2026)0198: Digital Omnibus on AI, European Parliament legislative resolution of 16 June 2026. European Parliament. 2026. https://data.europarl.europa.eu/distribution/doc/TA-10-2026-0198_en.pdf
+264. Digital Omnibus on AI Regulation Proposal. European Commission. 2025. https://digital-strategy.ec.europa.eu/en/library/digital-omnibus-ai-regulation-proposal
+265. Digital Omnibus on AI: Regulation (EU) 2026/1744 Is Published in the Official Journal. NicFab legal blog. 2026. https://www.nicfab.eu/en/posts/digital-omnibus-ai-official-journal/
+266. EU AI Act Article 99: Penalties. artificialintelligenceact.eu (Future of Life Institute). 2026. https://artificialintelligenceact.eu/article/99/
+267. AI Risk Management Framework. National Institute of Standards and Technology (NIST). 2026. https://www.nist.gov/itl/ai-risk-management-framework
+268. Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1. National Institute of Standards and Technology (NIST). 2023. https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf
+269. Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, NIST AI 600-1. National Institute of Standards and Technology (NIST). 2024. https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+270. ISO/IEC 42001:2023 Artificial Intelligence Management System Standards. Microsoft Learn. 2026. https://learn.microsoft.com/en-us/compliance/regulatory/offering-iso-42001
+271. ISO/IEC 42001 FAQs. Amazon Web Services. 2026. https://aws.amazon.com/compliance/iso-42001-faqs/
+272. OWASP Top 10 for LLM Applications (2025 list page). OWASP GenAI Security Project. 2024. https://genai.owasp.org/llm-top-10/
+273. OWASP Top 10 for LLM Applications 2025 (resource page). OWASP GenAI Security Project. 2024. https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
+274. GenAI-LLM-Top10 README: OWASP GenAI LLM Top 10 2026. OWASP GenAI Security Project (GitHub). 2026. https://raw.githubusercontent.com/GenAI-Security-Project/GenAI-LLM-Top10/main/README.md
+275. OWASP Top 10 for Large Language Model Applications (legacy repository README). OWASP (GitHub). 2026. https://github.com/OWASP/www-project-top-10-for-large-language-model-applications
+276. OWASP GenAI LLM Top 10 2026 (resource page). OWASP GenAI Security Project. 2026. https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/
+277. OWASP Top 10 for Agentic Applications for 2026 (resource page). OWASP GenAI Security Project. 2025. https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+278. atlas-data: ATLAS tactics, techniques and case studies (README). MITRE (GitHub). 2026. https://github.com/mitre-atlas/atlas-data
+279. MITRE ATLAS organization page. MITRE (GitHub). 2026. https://github.com/mitre-atlas
+280. C2PA Founding Press Release. Coalition for Content Provenance and Authenticity (C2PA). 2021. https://c2pa.org/c2pa-founding-press-release/
+281. Content Credentials: C2PA Technical Specification, version 2.5. Coalition for Content Provenance and Authenticity (C2PA). 2026. https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html
+282. Content Credentials: C2PA Technical Specification, version 2.3. Coalition for Content Provenance and Authenticity (C2PA). 2025. https://spec.c2pa.org/specifications/specifications/2.3/specs/C2PA_Specification.html
+283. C2PA homepage. Coalition for Content Provenance and Authenticity (C2PA). 2026. https://c2pa.org/
+284. k-anonymity: a model for protecting privacy (International Journal on Uncertainty, Fuzziness and Knowledge-based Systems 10(5):557-570). Latanya Sweeney. 2002. https://dataprivacylab.org/dataprivacy/projects/kanonymity/kanonymity.pdf
+285. De-identification Project (k-anonymity papers). Data Privacy Lab, Latanya Sweeney. n.d. https://dataprivacylab.org/projects/kanonymity/index.html
+286. Achieving k-anonymity privacy protection using generalization and suppression (IJUFKS 10(5):571-588). Latanya Sweeney. 2002. https://dataprivacylab.org/dataprivacy/projects/kanonymity/kanonymity2.html
+287. l-Diversity: Privacy beyond k-anonymity (ICDE 2006), research output record. Machanavajjhala, Gehrke, Kifer, Venkitasubramaniam (Penn State research portal). 2006. https://pure.psu.edu/en/publications/%E2%84%93-diversity-privacy-beyond-k-anonymity/
+288. Ninghui Li Wins ICDE 2017 Test of Time Award (t-Closeness, ICDE 2007). Purdue University Department of Computer Science. 2017. https://www.cs.purdue.edu/news/articles/2017/Li-Receives-Test-of-Time-Award.html
+289. Calibrating Noise to Sensitivity in Private Data Analysis (TCC 2006). Cynthia Dwork, Frank McSherry, Kobbi Nissim, Adam Smith (Microsoft Research publication page). 2006. https://www.microsoft.com/en-us/research/publication/calibrating-noise-to-sensitivity-in-private-data-analysis/
+290. Differential Privacy (ICALP 2006). Cynthia Dwork (Microsoft Research publication page). 2006. https://www.microsoft.com/en-us/research/publication/differential-privacy/
+291. Guidelines for Evaluating Differential Privacy Guarantees (NIST SP 800-226). Joseph Near, David Darais, Naomi Lefkovitz, Gary Howarth (NIST). 2025. https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf
+292. SP 800-226 Guidelines for Evaluating Differential Privacy Guarantees (publication page). NIST Computer Security Resource Center. 2025. https://csrc.nist.gov/pubs/sp/800/226/final
+293. Census Bureau Sets Key Parameters to Protect Privacy in 2020 Census Results (press release CB21-CN.42). U.S. Census Bureau. 2021. https://www.census.gov/newsroom/press-releases/2021/2020-census-key-parameters.html
+294. Census Bureau Releases Latest Privacy Protection Demonstration Data (press release). U.S. Census Bureau. 2021. https://www.census.gov/newsroom/press-releases/2021/census-bureau-releases-latest-privacy-protection-demonstration-data.html
+295. Disclosure Avoidance for the 2020 Census Demographic and Housing Characteristics File. Ryan Cumings-Menon, Robert Ashmead, Daniel Kifer, Philip Leclerc, Matthew Spence, Pavel Zhuravlev, John M. Abowd. 2023. https://arxiv.org/abs/2312.10863
+296. Communication-Efficient Learning of Deep Networks from Decentralized Data (AISTATS 2017). H. Brendan McMahan, Eider Moore, Daniel Ramage, Seth Hampson, Blaise Aguera y Arcas. 2016. https://arxiv.org/abs/1602.05629
+297. Federated Learning: Collaborative Machine Learning without Centralized Training Data. Brendan McMahan and Daniel Ramage (Google Research blog). 2017. https://research.google/blog/federated-learning-collaborative-machine-learning-without-centralized-training-data/
+298. Why Should I Trust You?: Explaining the Predictions of Any Classifier (KDD 2016), arXiv abstract. Marco Tulio Ribeiro, Sameer Singh, Carlos Guestrin. 2016. https://arxiv.org/abs/1602.04938
+299. Why Should I Trust You?: Explaining the Predictions of Any Classifier (KDD 2016), ar5iv full text. Marco Tulio Ribeiro, Sameer Singh, Carlos Guestrin. 2016. https://ar5iv.labs.arxiv.org/html/1602.04938
+300. A Unified Approach to Interpreting Model Predictions, ar5iv full text. Scott M. Lundberg, Su-In Lee. 2017. https://ar5iv.labs.arxiv.org/html/1705.07874
+301. A Unified Approach to Interpreting Model Predictions (Advances in Neural Information Processing Systems 30, NIPS 2017), proceedings page. Scott M. Lundberg, Su-In Lee. 2017. https://papers.nips.cc/paper/7062-a
+302. Model Cards for Model Reporting (FAT\* 2019), arXiv abstract. Margaret Mitchell et al.. 2018. https://arxiv.org/abs/1810.03993
+303. Model Cards for Model Reporting, ar5iv full text. Margaret Mitchell et al.. 2018. https://ar5iv.labs.arxiv.org/html/1810.03993
+304. Datasheets for Datasets (Communications of the ACM, December 2021), arXiv abstract. Timnit Gebru et al.. 2018. https://arxiv.org/abs/1803.09010
+305. Datasheets for Datasets, ar5iv full text. Timnit Gebru et al.. 2018. https://ar5iv.labs.arxiv.org/html/1803.09010
+306. Equality of Opportunity in Supervised Learning, ar5iv full text. Moritz Hardt, Eric Price, Nathan Srebro. 2016. https://ar5iv.labs.arxiv.org/html/1610.02413
+307. Equality of Opportunity in Supervised Learning (Advances in Neural Information Processing Systems 29, NIPS 2016), proceedings page. Moritz Hardt, Eric Price, Nati Srebro. 2016. https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning
+308. Fairness Through Awareness (ITCS 2012), arXiv abstract. Cynthia Dwork, Moritz Hardt, Toniann Pitassi, Omer Reingold, Rich Zemel. 2011. https://arxiv.org/abs/1104.3913
+309. Fairness Through Awareness, citation record (ITCS '12). Social Science Research Council, Just Tech / MediaWell. n.d. https://just-tech.ssrc.org/citation/fairness-through-awareness/
+310. Inherent Trade-Offs in the Fair Determination of Risk Scores, ar5iv full text. Jon Kleinberg, Sendhil Mullainathan, Manish Raghavan. 2016. https://ar5iv.labs.arxiv.org/html/1609.05807
+311. Inherent Trade-Offs in the Fair Determination of Risk Scores (ITCS 2017, LIPIcs vol. 67, art. 43). Schloss Dagstuhl, Leibniz International Proceedings in Informatics. 2017. https://drops.dagstuhl.de/opus/volltexte/2017/8156/
+312. Fair prediction with disparate impact: A study of bias in recidivism prediction instruments, ar5iv full text. Alexandra Chouldechova. 2017. https://ar5iv.labs.arxiv.org/html/1703.00056
+313. Crossref metadata for Fair Prediction with Disparate Impact (Big Data 5(2):153-163, DOI 10.1089/big.2016.0047). Crossref. 2017. https://api.crossref.org/works/10.1089/big.2016.0047
+314. ACL Code of Ethics (adopts the ACM Code version of June 22, 2018). Association for Computational Linguistics. n.d. https://www.aclweb.org/portal/content/acl-code-ethics
+315. ACM Code of Ethics (article on the 2018 rewrite). InfoQ. 2019. https://www.infoq.com/articles/acm-code-ethics/
+316. ACM Affirms Obligation of Computing Professionals to Use Skills for Benefit of Society (reprint of ACM press release dated July 17, 2018). HPCwire / ACM. 2018. https://www.hpcwire.com/off-the-wire/acm-affirms-obligation-of-computing-professionals-to-use-skills-for-benefit-of-society/
+317. Code of Ethics (summary of the ACM Code of Ethics and Professional Conduct). ACM chapter site bw.acm.org. n.d. https://bw.acm.org/node/8
+318. Ethically Aligned Design timeline. IEEE Standards Association. n.d. https://standards.ieee.org/initiatives/autonomous-intelligence-systems/ead/timeline/
+319. Now Available: Ethically Aligned Design, First Edition. IEEE Robotics and Automation Society. 2019. https://www.ieee-ras.org/about-ras/latest-news/now-available-ethically-aligned-design-first-edition
+320. Ethically Aligned Design (EAD) initiative page. IEEE Standards Association. n.d. https://standards.ieee.org/initiatives/ead/
+321. Ethically Aligned Design, First Edition: A Vision for Prioritizing Human Well-being with Autonomous and Intelligent Systems. IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems. 2019. https://engagestandards.ieee.org/rs/211-FYL-955/images/EAD1e.pdf
+322. IEEE Launches New Standard to Address Ethical Concerns During Systems Design (IEEE 7000-2021). IEEE Standards Association. 2021. https://standards.ieee.org/news/ieee-7000
+323. pandas project page (release history). Python Package Index / pandas development team. 2026. https://pypi.org/project/pandas/
+324. Release notes index (What's new). pandas development team. 2026. https://pandas.pydata.org/docs/whatsnew/index.html
+325. numpy project page (release history). Python Package Index / NumPy Developers. 2026. https://pypi.org/project/numpy/
+326. NumPy News. NumPy Developers. 2026. https://numpy.org/news/
+327. Release History: Version 1.9. scikit-learn developers. 2026. https://scikit-learn.org/stable/whats_new/v1.9.html
+328. scikit-learn Releases. scikit-learn developers (GitHub). 2026. https://github.com/scikit-learn/scikit-learn/releases
+329. torch project page (release history). Python Package Index / PyTorch Foundation. 2026. https://pypi.org/project/torch/
+330. tensorflow project page (release history). Python Package Index / Google. 2026. https://pypi.org/project/tensorflow/
+331. TensorFlow Releases. Google / TensorFlow (GitHub). 2026. https://github.com/tensorflow/tensorflow/releases
+332. What's new in 3.0.0 (January 21, 2026). pandas development team. 2026. https://pandas.pydata.org/docs/whatsnew/v3.0.0.html
+333. Migration guide for pandas 3.0 (new string dtype and Copy-on-Write). pandas development team. 2026. https://pandas.pydata.org/docs/user_guide/migration.html
+334. NumPy 2.0.0 Release Notes. NumPy Developers. 2024. https://numpy.org/doc/stable/release/2.0.0-notes.html
+335. Python for Data Analysis, 3rd ed., Chapter 1: Preliminaries. Wes McKinney. 2022. https://wesmckinney.com/book/preliminaries.html
+336. About pandas. pandas development team. 2026. https://pandas.pydata.org/about/
+337. About Us. NumPy Developers. 2026. https://numpy.org/about/
+338. \[ANN\] NumPy 1.0 release (mailing-list archive). Travis E. Oliphant. 2006. https://discourse.matplotlib.org/t/ann-numpy-1-0-release/6136
+339. Array programming with NumPy (Nature 585, 357-362). Harris, C. R. et al.. 2020. https://pmc.ncbi.nlm.nih.gov/articles/PMC7759461/
+340. License and copyright policy. Matplotlib development team. 2026. https://matplotlib.org/stable/project/license.html
+341. History. John D. Hunter / Matplotlib development team. 2008. https://matplotlib.org/stable/project/history.html
+342. Matplotlib (used as a pointer only). Wikipedia. 2026. https://en.wikipedia.org/wiki/Matplotlib
+343. About us (History). scikit-learn developers. 2026. https://scikit-learn.org/stable/about.html
+344. TensorFlow - Google's latest machine learning system, open sourced for everyone. Jeff Dean and Rajat Monga, Google Research. 2015. https://research.google/blog/tensorflow-googles-latest-machine-learning-system-open-sourced-for-everyone/
+345. tensorflow/tensorflow repository README. Google / TensorFlow (GitHub). 2026. https://github.com/tensorflow/tensorflow
+346. PyTorch, a year in. PyTorch team. 2018. https://pytorch.org/blog/a-year-in/
+347. PyTorch Blog listing, page 29. PyTorch Foundation. 2026. https://pytorch.org/blog/page/29/
+348. Meta Transitions PyTorch to the Linux Foundation, Further Accelerating AI/ML Open Source Collaboration. The Linux Foundation. 2022. https://www.linuxfoundation.org/press/press-release/meta-transitions-pytorch-to-the-linux-foundation
+349. Announcing the PyTorch Foundation (Meta AI blog post). Meta AI. 2022. https://ai.meta.com/blog/pytorch-foundation/
+350. alpha-1 release (v0.1.1). Soumith Chintala / PyTorch (GitHub). 2016. https://github.com/pytorch/pytorch/releases/tag/v0.1.1
+351. PyTorch (used as a pointer only). Wikipedia. 2026. https://en.wikipedia.org/wiki/PyTorch
+352. keras topic page. GitHub. 2026. https://github.com/topics/keras
+353. Keras (fallback for the 2015 release date). Wikipedia. 2026. https://en.wikipedia.org/wiki/Keras
+354. Introducing Keras 3.0. Keras team. 2023. https://keras.io/keras_3/
+355. keras project page (release history). Python Package Index / Keras team. 2026. https://pypi.org/project/keras/
+356. Release Keras 3.0.0. keras-team (GitHub). 2023. https://github.com/keras-team/keras/releases/tag/v3.0.0
+357. About Us. Project Jupyter. 2026. https://jupyter.org/about
+358. What is Jupyter? Project Jupyter documentation. 2026. https://docs.jupyter.org/en/latest/what_is_jupyter.html
+359. History. IPython development team. 2026. https://ipython.readthedocs.io/en/stable/about/history.html
+360. Leadership directory (governance: people). Project Jupyter. 2026. https://jupyter.org/governance/people/
+361. R: Past and Future History (section: A Free Software Project). Ross Ihaka, University of Auckland. 1998. https://cran.r-project.org/doc/html/interface98-paper/paper_2.html
+362. R: Past and Future History (section: Genesis). Ross Ihaka, University of Auckland. 1998. https://cran.r-project.org/doc/html/interface98-paper/paper_1.html
+363. R-1.0.0 is released (announcement, LWN archive copy). Peter Dalgaard for the R Core Team. 2000. https://static.lwn.net/2000/0309/a/R.html
+364. r-help post on the first S-news announcement of R (9 Feb 2006). Martin Maechler, ETH Zurich. 2006. https://mailman.stat.ethz.ch/pipermail/r-help/2006-February/087918.html
+365. R (programming language), Wikipedia article (fallback). Wikipedia contributors. 2026. https://en.wikipedia.org/wiki/R_(programming_language)
+366. The R Project for Statistical Computing (home page, News). R Foundation. 2026. https://www.r-project.org/
+367. Index of /src/base/R-4 (R source release tarballs). CRAN, R Core Team. 2026. https://cran.r-project.org/src/base/R-4/
+368. R FAQ: Frequently Asked Questions on R. Kurt Hornik and R Core Team. 2026. https://cran.r-project.org/doc/FAQ/R-FAQ.html
+369. R-beta: ANNOUNCE: CRAN (r-help mailing list). Kurt Hornik. 1997. https://stat.ethz.ch/pipermail/r-help/1997-April/001528.html
+370. Available CRAN Packages. CRAN. 2026. https://cran.r-project.org/web/packages/
+371. ggplot2 package website. Hadley Wickham et al., tidyverse / Posit. 2026. https://ggplot2.tidyverse.org/
+372. CRAN archive of ggplot2 source packages. CRAN. 2026. https://cran.r-project.org/src/contrib/Archive/ggplot2/
+373. A Layered Grammar of Graphics (paper page and abstract). Hadley Wickham. 2010. https://vita.had.co.nz/papers/layered-grammar.html
+374. Crossref metadata for A Layered Grammar of Graphics (DOI 10.1198/jcgs.2009.07098). Crossref / Journal of Computational and Graphical Statistics. 2010. https://api.crossref.org/works/10.1198/jcgs.2009.07098
+375. RStudio is becoming Posit. JJ Allaire and Hadley Wickham, Posit. 2022. https://posit.co/blog/rstudio-is-becoming-posit/
+376. Announcing Quarto, a new scientific and technical publishing system. JJ Allaire, Posit. 2022. https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/
+377. Quarto home page. Posit, PBC. 2026. https://quarto.org/
+378. R NEWS (changes in R 4.x releases). R Core Team. 2026. https://cran.r-project.org/doc/manuals/r-release/NEWS.html
+379. magrittr: A Forward-Pipe Operator for R (CRAN package page). Stefan Milton Bache et al., CRAN. 2026. https://cran.r-project.org/package=magrittr
+380. CRAN archive of magrittr source packages. CRAN. 2026. https://cran.r-project.org/src/contrib/Archive/magrittr/
+381. Differences between the base R and magrittr pipes. Hadley Wickham, tidyverse blog. 2023. https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/
+382. Crossref metadata for A relational model of data for large shared data banks (DOI 10.1145/362384.362685). Crossref / Association for Computing Machinery. 1970. https://api.crossref.org/works/10.1145/362384.362685
+383. The relational database (IBM history). IBM. 2026. https://www.ibm.com/history/relational-database
+384. SQL, Wikipedia article (fallback). Wikipedia contributors. 2026. https://en.wikipedia.org/wiki/SQL
+385. SQLite Release 3.39.0 On 2022-06-25. SQLite. 2022. https://www.sqlite.org/releaselog/3_39_0.html
+386. MySQL 26.10 Reference Manual: JOIN Clause. Oracle / MySQL. 2026. https://dev.mysql.com/doc/refman/26.10/en/join.html
+387. MySQL 8.4 Reference Manual: JOIN Clause. Oracle / MySQL. 2026. https://dev.mysql.com/doc/refman/8.4/en/join.html
+388. MySQL - FULL OUTER JOIN. TablePlus. 2018. https://tableplus.com/blog/2018/04/mysql-full-outer-join.html
+389. SELECT (Transact-SQL). Microsoft Learn. 2026. https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql
+390. PostgreSQL 18 Documentation: SELECT. PostgreSQL Global Development Group. 2026. https://www.postgresql.org/docs/current/sql-select.html
+391. SELECT (SQLite SQL language reference). SQLite. 2026. https://www.sqlite.org/lang_select.html
+392. MySQL 8.4 Reference Manual: SELECT Statement. Oracle / MySQL. 2026. https://dev.mysql.com/doc/refman/8.4/en/select.html
+393. Transaction locking and row versioning guide. Microsoft Learn. 2026. https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide
+394. Crossref metadata for Principles of transaction-oriented database recovery (DOI 10.1145/289.291). Crossref / Association for Computing Machinery. 1983. https://api.crossref.org/works/10.1145/289.291
+395. ACID, Wikipedia article (fallback). Wikipedia contributors. 2026. https://en.wikipedia.org/wiki/ACID
+396. Key concepts (OpenAI API documentation). OpenAI. 2026. https://developers.openai.com/api/docs/concepts
+397. tiktoken README. OpenAI. 2026. https://github.com/openai/tiktoken
+398. Understanding tokens (.NET AI documentation). Microsoft Learn. 2026. https://learn.microsoft.com/en-us/dotnet/ai/conceptual/understanding-tokens
+
+### Checked while writing the lessons (51 sources)
+
+1. Mastering the game of Go with deep neural networks and tree search (PubMed record of the Nature paper). David Silver and colleagues, Nature 529. 2016. https://pubmed.ncbi.nlm.nih.gov/26819042/
+2. Fuzzy sets (Crossref record). L. A. Zadeh, Information and Control 8(3). 1965. https://api.crossref.org/works/10.1016/S0019-9958(65)90241-X
+3. Judea Pearl, Wikipedia article (fallback for the 2011 Turing Award). Wikipedia contributors. 2026. https://en.wikipedia.org/wiki/Judea_Pearl
+4. Probabilistic Reasoning in Intelligent Systems (Crossref record). Judea Pearl, Morgan Kaufmann. 1988. https://api.crossref.org/works/10.1016/C2009-0-27609-4
+5. R1: An Expert in the Computer Systems Domain (AAAI-80 proceedings scan). John McDermott. 1980. https://cdn.aaai.org/AAAI/1980/AAAI80-076.pdf
+6. Rule-Based Expert Systems: The MYCIN Experiments of the Stanford Heuristic Programming Project, Chapter 5. Bruce G. Buchanan and Edward H. Shortliffe (eds.), Addison-Wesley. 1984. https://impact.dbmi.columbia.edu/~ehs7001/Buchanan-Shortliffe-1984/Chapter-05.pdf
+7. RDF 1.1 Concepts and Abstract Syntax. W3C. 2014. https://www.w3.org/TR/rdf11-concepts/
+8. SPARQL 1.1 Overview. W3C. 2013. https://www.w3.org/TR/sparql11-overview/
+9. OWL 2 Web Ontology Language Document Overview. W3C. 2012. https://www.w3.org/TR/owl2-overview/
+10. About Schema.org. Schema.org. n.d. https://schema.org/docs/about.html
+11. Google's announcement of the Knowledge Graph ("things, not strings"). Google. 2012. https://blog.google/products/search/introducing-knowledge-graph-things-not/
+12. The Semantic Web (Scientific American). Tim Berners-Lee, James Hendler, and Ora Lassila. 2001. https://www.scientificamerican.com/article/the-semantic-web/
+13. Copyright Registration Guidance: Works Containing Material Generated by Artificial Intelligence (Federal Register notice, govinfo copy). U.S. Copyright Office. 2023. https://www.govinfo.gov/content/pkg/FR-2023-03-16/html/2023-05321.htm
+14. Copyright and Artificial Intelligence (report and guidance page). U.S. Copyright Office. n.d. https://www.copyright.gov/ai/
+15. On the Opportunities and Risks of Foundation Models (arXiv). Rishi Bommasani and colleagues, Stanford CRFM. 2021. https://arxiv.org/abs/2108.07258
+16. AI4People: An Ethical Framework for a Good AI Society (PubMed Central copy). Luciano Floridi and colleagues, Minds and Machines. 2018. https://pmc.ncbi.nlm.nih.gov/articles/PMC6404626/
+17. USPTO page comparing trademarks, patents, and copyrights. United States Patent and Trademark Office. n.d. https://www.uspto.gov/trademarks/basics/trademark-patent-copyright
+18. USPTO patent essentials page. United States Patent and Trademark Office. n.d. https://www.uspto.gov/patents/basics/essentials
+19. USPTO trade secret policy page. United States Patent and Trademark Office. n.d. https://www.uspto.gov/ip-policy/trade-secret-policy
+20. Copyright in General (frequently asked questions). U.S. Copyright Office. n.d. https://www.copyright.gov/help/faq/faq-general.html
+21. AlphaFold Protein Structure Database. EMBL-EBI and Google DeepMind. n.d. https://alphafold.ebi.ac.uk/
+22. Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1). NIST. 2024. https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+23. A Framework for Understanding Sources of Harm throughout the Machine Learning Life Cycle (arXiv, ar5iv rendering). Harini Suresh and John Guttag. 2021. https://ar5iv.labs.arxiv.org/html/1901.10002
+24. Runaway Feedback Loops in Predictive Policing (PMLR 81). Danielle Ensign and colleagues. 2018. https://proceedings.mlr.press/v81/ensign18a.html
+25. 29 CFR 1607.4, information on impact, from the Uniform Guidelines on Employee Selection Procedures. Legal Information Institute, Cornell Law School. n.d. https://www.law.cornell.edu/cfr/text/29/1607.4
+26. AI Fairness 360: An Extensible Toolkit for Detecting, Understanding, and Mitigating Unwanted Algorithmic Bias (arXiv). Rachel K. E. Bellamy and colleagues, IBM Research. 2018. https://arxiv.org/abs/1810.01943
+27. Equality of Opportunity in Supervised Learning (arXiv). Moritz Hardt, Eric Price, and Nathan Srebro. 2016. https://arxiv.org/abs/1610.02413
+28. LLM01:2025 Prompt Injection. OWASP Gen AI Security Project. 2025. https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+29. LLM04:2025 Data and Model Poisoning. OWASP Gen AI Security Project. 2025. https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/
+30. LLM05:2025 Improper Output Handling. OWASP Gen AI Security Project. 2025. https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/
+31. LLM06:2025 Excessive Agency. OWASP Gen AI Security Project. 2025. https://genai.owasp.org/llmrisk/llm062025-excessive-agency/
+32. LLM09:2025 Misinformation. OWASP Gen AI Security Project. 2025. https://genai.owasp.org/llmrisk/llm092025-misinformation/
+33. Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection (arXiv). Kai Greshake and colleagues. 2023. https://arxiv.org/abs/2302.12173
+34. Explaining and Harnessing Adversarial Examples (arXiv, ar5iv rendering). Ian Goodfellow, Jonathon Shlens, and Christian Szegedy. 2014. https://ar5iv.labs.arxiv.org/html/1412.6572
+35. Poisoning Web-Scale Training Datasets is Practical (arXiv). Nicholas Carlini and colleagues. 2023. https://arxiv.org/abs/2302.10149
+36. Information security (glossary entry). NIST Computer Security Resource Center. n.d. https://csrc.nist.gov/glossary/term/information_security
+37. Membership Inference Attacks against Machine Learning Models (arXiv). Reza Shokri and colleagues. 2016. https://arxiv.org/abs/1610.05820
+38. Model Inversion Attacks that Exploit Confidence Information and Basic Countermeasures (CCS 2015). Matt Fredrikson, Somesh Jha, and Thomas Ristenpart. 2015. https://www.cs.cmu.edu/~mfredrik/papers/fjr2015ccs.pdf
+39. GDPR Article 4, definitions (gdpr-info.eu copy of the official text). European Union. 2016. https://gdpr-info.eu/art-4-gdpr/
+40. GDPR Recital 26 (gdpr-info.eu copy of the official text). European Union. 2016. https://gdpr-info.eu/recitals/no-26/
+41. GDPR Chapter 3, rights of the data subject (gdpr-info.eu copy of the official text). European Union. 2016. https://gdpr-info.eu/chapter-3/
+42. GDPR Article 33, notification of a personal data breach (gdpr-info.eu copy of the official text). European Union. 2016. https://gdpr-info.eu/art-33-gdpr/
+43. Why Language Models Hallucinate (arXiv). Adam Tauman Kalai and colleagues. 2025. https://arxiv.org/abs/2509.04664
+44. EU AI Act Article 14, human oversight (artificialintelligenceact.eu copy). European Union. 2024. https://artificialintelligenceact.eu/article/14/
+45. Teaching lateral reading (curriculum collection). Civic Online Reasoning. n.d. https://cor.inquirygroup.org/curriculum/collections/teaching-lateral-reading/
+46. Disinformation, Wikipedia article (fallback). Wikipedia contributors. 2026. https://en.wikipedia.org/wiki/Disinformation
+47. Gramm-Leach-Bliley Act (business guidance). Federal Trade Commission. n.d. https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act
+48. Ethics guidelines for trustworthy AI. European Commission, High-Level Expert Group on AI. 2019. https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai
+49. Automated Employment Decision Tools. New York City Department of Consumer and Worker Protection. n.d. https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page
+50. AI RMF section 3, AI risks and trustworthiness. NIST AI Resource Center. 2023. https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/
+51. AI RMF section 5, the AI RMF core. NIST AI Resource Center. 2023. https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
