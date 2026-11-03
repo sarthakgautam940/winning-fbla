@@ -110,25 +110,21 @@
 - id: ut2-06
   skill: outlier-rule
   tier: competitive
-  type: calculation
+  type: concept
   stem: |
-    A dataset has Q1 = 40 and Q3 = 60. Using the 1.5 × IQR rule, which of these values is an outlier?
+    Why does a boxplot draw its whiskers only to the most extreme values inside the 1.5 × IQR fences, instead of all the way to the minimum and maximum?
   options:
-    - "12"
-    - "35"
-    - "88"
-    - "95"
-  ordered: true
+    - "So the box always covers exactly half of the data"
+    - "Because the minimum and maximum are not real data values"
+    - "So that the two whiskers always have equal lengths"
+    - "So potential outliers appear as separate points beyond them"
   answer: D
   explain: |
-    The IQR is 60 minus 40 = 20, and 1.5 × 20 = 30. The fences are 40 minus 30 = 10 and 60 + 30 = 90. Only 95 lies outside them.
+    The whiskers stop at the most extreme values that lie within Q1 minus 1.5 IQR and Q3 plus 1.5 IQR. Anything beyond the fences is drawn as its own point, so a potential outlier stands out instead of stretching a whisker.
   why:
-    A: "12 is above the lower fence of 10."
-    B: "35 is inside the fences."
-    C: "88 is just below the upper fence of 90."
-  verify: |
-    iqr = 60 - 40
-    ans = [v for v in (12, 35, 88, 95) if v < 40 - 1.5 * iqr or v > 60 + 1.5 * iqr][0]
+    A: "The box spans Q1 to Q3 no matter where the whiskers end."
+    B: "The minimum and maximum are real values; one of them may simply be an outlier."
+    C: "Whisker lengths depend on the data, and they are often unequal in skewed data."
 
 - id: ut2-07
   skill: variance-sd
@@ -173,24 +169,21 @@
 - id: ut2-09
   skill: coef-var
   tier: champion
-  type: calculation
+  type: concept
   stem: |
-    Machine A fills bags with a mean of 500 g and a standard deviation of 10 g. Machine B fills bags with a mean of 250 g and a standard deviation of 6 g. Using the coefficient of variation, which machine is relatively more consistent?
+    A dataset of lengths in meters is converted to centimeters, so every value is multiplied by 100. What happens to its coefficient of variation?
   options:
-    - "Machine B, because its standard deviation is smaller"
-    - "Machine B, with a CV of 2 percent against 2.4 percent"
-    - "Neither, because the two bag sizes cannot be compared"
-    - "Machine A, with a CV of 2 percent against 2.4 percent"
+    - "It is multiplied by 100"
+    - "It is divided by 100"
+    - "It is multiplied by 10,000"
+    - "It stays the same"
   answer: D
   explain: |
-    The coefficient of variation divides the standard deviation by the mean: 10 / 500 = 2 percent for A and 6 / 250 = 2.4 percent for B. Relative to its mean, machine A varies less, even though its standard deviation is larger.
+    The coefficient of variation is the standard deviation divided by the mean. Multiplying every value by 100 multiplies both the standard deviation and the mean by 100, so their ratio, which has no units, does not change.
   why:
-    A: "Raw standard deviations cannot be compared across different means; that is the point of the CV."
-    B: "This swaps the two CVs; B's is 2.4 percent."
-    C: "The CV exists to compare variability across different scales."
-  verify: |
-    a, b = 10 / 500, 6 / 250
-    ans = "Machine A, with a CV of 2 percent against 2.4 percent" if a < b else "Machine B"
+    A: "The standard deviation grows 100 times, but so does the mean, and the ratio cancels."
+    B: "Nothing shrinks: both parts of the ratio grow by the same factor."
+    C: "Multiplying by 10,000 is what happens to the variance, not to the coefficient of variation."
 
 - id: ut2-10
   skill: correlation
@@ -298,42 +291,42 @@
   tier: champion
   type: calculation
   stem: |
-    Scores on an exam are approximately normal with mean 500 and standard deviation 100. About what percent of scores are above 700?
+    Delivery times are approximately normal with a mean of 30 minutes and a standard deviation of 4 minutes. About what percent of deliveries take between 34 and 38 minutes?
   options:
-    - "2.5%"
-    - "5%"
+    - "13.5%"
     - "16%"
+    - "34%"
     - "47.5%"
   ordered: true
   answer: A
   explain: |
-    700 is 2 standard deviations above the mean. About 95 percent of scores lie within 2 standard deviations, leaving 5 percent in the two tails together, or 2.5 percent in the upper tail alone.
+    34 minutes is 1 standard deviation above the mean and 38 is 2 above. About 95% of values lie within 2 standard deviations and 68% within 1, so the band from +1 to +2 holds half of 95% minus 68%: (95 minus 68) / 2 = 13.5%.
   why:
-    B: "5% counts both tails; the question asks only about scores above 700."
-    C: "16% is the share above 1 standard deviation, which would be 600."
-    D: "47.5% is the share between 500 and 700."
-  verify: "(100 - 95) / 2"
+    B: "16% is everything above +1 standard deviation; it forgets to remove the 2.5% above +2."
+    C: "34% is the share between the mean and +1 standard deviation."
+    D: "47.5% is the share between the mean and +2 standard deviations."
+  verify: "(95 - 68) / 2"
 
 - id: ut2-16
   skill: clt
   tier: competitive
   type: calculation
   stem: |
-    Samples of size 64 are drawn from a skewed population with standard deviation 16. What is the standard error of the sample mean, and what is the approximate shape of the sampling distribution?
+    Random samples of 81 are drawn from a strongly right-skewed population with a standard deviation of 27. What are the standard error of the sample mean and the approximate shape of its sampling distribution?
   options:
-    - "16; skewed like the population"
-    - "0.25; approximately normal"
-    - "2; skewed like the population"
-    - "2; approximately normal"
+    - "27; right-skewed"
+    - "0.33; approximately normal"
+    - "3; right-skewed"
+    - "3; approximately normal"
   answer: D
   explain: |
-    The standard error is the population standard deviation divided by the square root of n: 16 / 8 = 2. By the central limit theorem, with n = 64 the sampling distribution of the mean is approximately normal even though the population is skewed.
+    The standard error is the population standard deviation divided by the square root of n: 27 / 9 = 3. With a sample of 81, the central limit theorem makes the sampling distribution of the mean approximately normal, even though the population is skewed.
   why:
-    A: "16 is the population standard deviation; averaging reduces the spread."
-    B: "0.25 divides by n instead of the square root of n."
-    C: "The central limit theorem makes the sampling distribution approximately normal for a sample this large."
+    A: "27 is the population standard deviation; averages vary much less than single values."
+    B: "0.33 divides n by the standard deviation the wrong way around: 9 / 27."
+    C: "The standard error is right, but large samples make the distribution of the mean approximately normal."
   verify: |
-    se = 16 / math.sqrt(64)
+    se = 27 / math.sqrt(81)
     ans = f"{se:g}; approximately normal"
 
 - id: ut2-17
@@ -381,40 +374,42 @@
   tier: competitive
   type: calculation
   stem: |
-    For two events, P(A) = 0.5, P(B) = 0.4, and P(A and B) = 0.2. What is P(A or B)?
+    A player makes 60 percent of free throws, and each shot is independent. In three attempts, what is the probability that the player misses at least one?
   options:
-    - "0.2"
-    - "0.7"
-    - "0.8"
-    - "0.9"
+    - "0.064"
+    - "0.784"
+    - "0.936"
+    - "1.2"
   ordered: true
   answer: B
   explain: |
-    The addition rule subtracts the overlap so it is not counted twice: P(A or B) = 0.5 + 0.4 minus 0.2 = 0.7.
+    "At least one miss" is the complement of "makes all three". The chance of three makes is 0.6 × 0.6 × 0.6 = 0.216, so the chance of at least one miss is 1 minus 0.216 = 0.784.
   why:
-    A: "0.2 is P(A and B), the overlap only."
-    C: "0.8 is 1 minus the overlap, which has no meaning here."
-    D: "0.9 adds the two probabilities without subtracting the overlap."
-  verify: "0.5 + 0.4 - 0.2"
+    A: "0.064 is the chance of missing all three: 0.4 × 0.4 × 0.4."
+    C: "0.936 is the chance of making at least one shot, not missing at least one."
+    D: "1.2 adds 0.4 three times; a probability can never exceed 1."
+  verify: "1 - 0.6 ** 3"
 
 - id: ut2-20
   skill: prob-rules
   tier: champion
-  type: concept
+  type: calculation
   stem: |
-    For two events, P(A) = 0.3, P(B) = 0.5, and P(A and B) = 0.15. Which statement is true?
+    For two events, P(A) = 0.6, P(B) = 0.5, and P(A or B) = 0.8. What is P(A | B)?
   options:
-    - "A and B are mutually exclusive, because they rarely occur together"
-    - "A and B are dependent, because P(A and B) is not 0"
-    - "A and B are independent, because 0.3 × 0.5 = 0.15"
-    - "A and B are mutually exclusive and independent at the same time"
+    - "0.3"
+    - "0.5"
+    - "0.6"
+    - "0.8"
+  ordered: true
   answer: C
   explain: |
-    Events are independent when P(A and B) = P(A) × P(B). Here 0.3 × 0.5 = 0.15, which matches. They are not mutually exclusive, because mutually exclusive events have P(A and B) = 0.
+    First find the overlap from the addition rule: P(A and B) = 0.6 + 0.5 minus 0.8 = 0.3. Then P(A | B) = P(A and B) / P(B) = 0.3 / 0.5 = 0.6.
   why:
-    A: "Mutually exclusive events never occur together, so P(A and B) would be 0, not 0.15."
-    B: "A nonzero overlap does not make events dependent; the test is whether it equals the product."
-    D: "Events with positive probabilities cannot be both mutually exclusive and independent."
+    A: "0.3 is P(A and B); it still has to be divided by P(B)."
+    B: "0.5 divides by P(A), which gives P(B | A) instead."
+    D: "0.8 is P(A or B), not a conditional probability."
+  verify: "(0.6 + 0.5 - 0.8) / 0.5"
 
 - id: ut2-21
   skill: conditional
@@ -450,21 +445,21 @@
   tier: champion
   type: calculation
   stem: |
-    A disease affects 2 percent of a population. A test detects 90 percent of people who have it and wrongly flags 5 percent of people who do not. A randomly chosen person tests positive. To the nearest percent, what is the probability that the person has the disease?
+    At a factory, 5 percent of batches are defective. An alarm sounds for 80 percent of defective batches and for 10 percent of good batches. The alarm sounds. About what is the probability that the batch is defective?
   options:
-    - "2%"
     - "5%"
-    - "27%"
-    - "90%"
+    - "13.5%"
+    - "29.6%"
+    - "80%"
   ordered: true
   answer: C
   explain: |
-    Picture 1,000 people: 20 have the disease and 18 of them test positive; 980 do not, and 49 of them test positive anyway. Of the 67 positives, 18 have the disease, and 18 / 67 is about 27 percent.
+    Imagine 1,000 batches: 50 are defective, and the alarm sounds for 40 of them. Of the 950 good batches, it sounds for 95. So 40 of the 135 alarms are real: 40 / 135, about 29.6%.
   why:
-    A: "2% is the base rate before the test result is known."
-    B: "5% is the false positive rate, not the chance of disease after a positive test."
-    D: "90% is P(positive given disease); Bayes' theorem reverses the condition."
-  verify: "0.02 * 0.9 / (0.02 * 0.9 + 0.98 * 0.05)"
+    A: "5% is the prior; it ignores the evidence from the alarm."
+    B: "13.5% is the chance that the alarm sounds at all, not the chance of a defect given an alarm."
+    D: "80% is P(alarm | defective); the question asks for P(defective | alarm)."
+  verify: "0.05 * 0.8 / (0.05 * 0.8 + 0.95 * 0.1) * 100"
 
 - id: ut2-23
   skill: expected-value
@@ -535,19 +530,19 @@
   tier: competitive
   type: scenario
   stem: |
-    A help desk receives an average of 6 calls per minute, and calls arrive independently of one another. Which distribution best models the number of calls in a given minute?
+    A program picks a whole number from 1 to 10, and each number is equally likely. Which distribution describes the number it picks?
   options:
-    - "Poisson"
+    - "Discrete uniform"
     - "Binomial"
+    - "Poisson"
     - "Normal"
-    - "Uniform"
   answer: A
   explain: |
-    The Poisson distribution models counts of independent events in a fixed interval of time or space, given an average rate. Calls per minute at an average of 6 is the classic case.
+    A uniform distribution gives every possible outcome the same probability. Here the outcomes are the ten whole numbers, each with probability 1/10, so the distribution is discrete uniform.
   why:
-    B: "A binomial needs a fixed number of trials, each a success or failure; calls have no fixed number of trials."
-    C: "A count of events is discrete, and a normal distribution is continuous."
-    D: "A uniform distribution makes every outcome equally likely, which call counts are not."
+    B: "Binomial counts successes in a fixed number of independent yes-or-no trials."
+    C: "Poisson counts events in an interval of time or space, with no upper limit."
+    D: "Normal is continuous and bell-shaped, with values near the mean most likely."
 
 - id: ut2-27
   skill: distributions
@@ -592,21 +587,25 @@
 - id: ut2-29
   skill: rv-dist
   tier: competitive
-  type: concept
+  type: calculation
   stem: |
-    A random variable takes the values 1, 2, and 3. Which list of probabilities, in that order, forms a valid probability distribution?
+    A random variable X takes the values 0, 1, 2, and 3 with probabilities 0.1, 0.4, k, and 0.2. What is P(X ≥ 2)?
   options:
-    - "0.4, 0.4, 0.3"
-    - "0.25, 0.25, 0.25"
-    - "0.2, 0.5, 0.3"
-    - "0.6, 0.5, -0.1"
+    - "0.2"
+    - "0.3"
+    - "0.5"
+    - "0.8"
+  ordered: true
   answer: C
   explain: |
-    A valid probability distribution needs every probability between 0 and 1 and a total of exactly 1. Only 0.2 + 0.5 + 0.3 = 1 meets both conditions.
+    The probabilities must add to 1, so k = 1 minus (0.1 + 0.4 + 0.2) = 0.3. Then P(X ≥ 2) = P(X = 2) + P(X = 3) = 0.3 + 0.2 = 0.5.
   why:
-    A: "These sum to 1.1, more than 1."
-    B: "These sum to 0.75, less than 1."
-    D: "A probability cannot be negative, even though these sum to 1."
+    A: "0.2 counts only X = 3."
+    B: "0.3 is k, which counts only X = 2."
+    D: "0.8 is P(X ≤ 2), the other side of the distribution."
+  verify: |
+    k = 1 - (0.1 + 0.4 + 0.2)
+    ans = k + 0.2
 
 - id: ut2-30
   skill: clt

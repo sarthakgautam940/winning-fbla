@@ -155,19 +155,19 @@
   tier: champion
   type: concept
   stem: |
-    Quiz scores in a class can be 0, 0.5, 1, 1.5, and so on up to 10, because half points are allowed. How should the score be classified?
+    A school records two variables: "minutes late", measured and then rounded to whole minutes, and "late arrivals per week", reported as a monthly average such as 2.25. Which classification is correct?
   options:
-    - "Continuous, because some scores are not whole numbers"
-    - "Continuous, because any score from 0 to 10 can occur"
-    - "Categorical, because each score is a separate label"
-    - "Discrete, because only 21 separate values are possible"
+    - "Both are continuous, since both can show decimals or are rounded"
+    - "Both are discrete, since both are recorded as whole numbers"
+    - "Minutes late is discrete; late arrivals per week is continuous"
+    - "Minutes late is continuous; late arrivals per week is discrete"
   answer: D
   explain: |
-    Points are counted in halves, so the scores form a fixed list of 21 separate values with gaps between them. Decimals do not make a variable continuous; being able to take any value in a range does.
+    Time is measured, so minutes late is continuous; rounding to whole minutes only limits how precisely it is recorded. Late arrivals are counted each week, so the variable is discrete, and an average of counts can still be a fraction such as 2.25.
   why:
-    A: "Decimal values can still be discrete when only certain values are possible."
-    B: "A score of 7.3 cannot occur, so not every value in the range is possible."
-    C: "Scores are numbers you can average and compare, not labels."
+    A: "An average of counts can be a decimal, but each weekly value is still a whole-number count."
+    B: "Rounding a measurement does not make it discrete, and the arrivals figure is reported with decimals."
+    C: "This reverses the two: the measurement is continuous and the count is discrete."
 
 - id: pt1-dl-09
   test: 1
