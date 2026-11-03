@@ -97,7 +97,7 @@ export default async function ReferenceSection({ params }: Params) {
             <h2 className="text-[17px] font-semibold text-ink">
               {a.name} <span className="font-normal text-ink-3">({a.items} test items)</span>
             </h2>
-            <Card className="mt-3 divide-y divide-line">
+            <Card className="mt-3 flex flex-col gap-0.5 p-2">
               {a.objectives.map((o) => {
                 const lessons = Object.values(catalog.lessons).filter((l) => l.objectives.includes(o.id));
                 const qCount = catalog.questions.filter((q) => q.objective === o.id).length;

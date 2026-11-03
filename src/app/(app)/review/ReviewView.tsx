@@ -65,7 +65,7 @@ export function ReviewView() {
       </div>
 
       {!ready ? null : rows.length ? (
-        <Card className="divide-y divide-line">
+        <Card className="flex flex-col gap-0.5 p-2">
           {rows.map((r) => {
             const m = metaOf(r.qid);
             const skill = m ? getSkill(m.skill) : undefined;

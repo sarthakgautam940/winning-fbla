@@ -155,7 +155,7 @@ export function Report({ sessionId }: { sessionId: string }) {
 
       <section className="mt-10">
         <h2 className="text-[18px] font-semibold text-ink">{session.kind === "test" ? "By area" : "By skill"}</h2>
-        <Card className="mt-3 divide-y divide-line">
+        <Card className="mt-3 flex flex-col gap-0.5 p-2">
           {[...groups.values()]
             .sort((a, b) => a.correct / a.total - b.correct / b.total)
             .map((g) => (
@@ -220,7 +220,7 @@ export function Report({ sessionId }: { sessionId: string }) {
                   <ChevronDown size={16} className={cn("shrink-0 text-ink-3 transition-transform", isOpen && "rotate-180")} />
                 </button>
                 {isOpen && q ? (
-                  <div className="border-t border-line px-4 pb-5 pt-4 sm:px-6">
+                  <div className="px-4 pb-5 pt-4 sm:px-6">
                     <Rich html={q.stem} className="q-stem" />
                     {q.figure ? <Figure spec={q.figure} /> : null}
                     <div className="mt-4">

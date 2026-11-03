@@ -12,7 +12,7 @@ export function WorkedExample({ title, problem, steps, answer }: { title: string
   const done = shown >= total;
   return (
     <section className="not-prose my-7 overflow-hidden rounded-[var(--radius-lg)] border border-line bg-surface">
-      <header className="flex items-center justify-between gap-3 border-b border-line bg-surface-2/50 px-5 py-3">
+      <header className="flex items-center justify-between gap-3  bg-surface-2/50 px-5 py-3">
         <p className="text-[13.5px] font-semibold text-ink">
           <span className="text-ink-3">Worked example</span>
           {title ? <span className="ml-2">{title}</span> : null}

@@ -18,7 +18,7 @@ export function Explanation({ q, chosen, className }: { q: QuestionContent; chos
       </div>
       <Rich html={q.explain} className="mt-3 text-[15px]" />
       {Object.keys(q.why).length ? (
-        <div className="mt-4 border-t border-line pt-3.5">
+        <div className="mt-4  pt-3.5">
           <p className="mb-2 text-[13px] font-medium text-ink-3">Why the other choices are wrong</p>
           <ul className="flex flex-col gap-2">
             {LETTERS.filter((L) => L !== q.answer && q.why[L]).map((L) => (

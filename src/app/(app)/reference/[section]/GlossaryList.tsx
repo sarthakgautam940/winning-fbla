@@ -33,7 +33,7 @@ export function GlossaryList({ cards }: { cards: Entry[] }) {
       <div className="mt-8 flex flex-col gap-8">
         {[...groups.entries()].map(([letter, list]) => (
           <section key={letter}>
-            <h2 className="mb-3 border-b border-line pb-1.5 text-[15px] font-semibold text-ink-3">{letter}</h2>
+            <h2 className="mb-3 pb-1.5 text-[15px] font-semibold text-ink-3">{letter}</h2>
             <dl className="flex flex-col gap-4">
               {list.map((c) => (
                 <div key={c.id} className="grid gap-1 sm:grid-cols-[220px_1fr] sm:gap-6">

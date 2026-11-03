@@ -3,7 +3,7 @@ import { cn } from "@/components/ui/primitives";
 export function WidgetFrame({ title, hint, children, className }: { title: string; hint?: string; children: React.ReactNode; className?: string }) {
   return (
     <section className={cn("not-prose my-8 rounded-[var(--radius-lg)] border border-line bg-surface", className)}>
-      <header className="flex flex-wrap items-baseline justify-between gap-2 border-b border-line px-5 py-3">
+      <header className="flex flex-wrap items-baseline justify-between gap-2  px-5 py-3">
         <p className="text-[14px] font-semibold text-ink">
           <span className="mr-2 text-ink-3">Interactive</span>
           {title}

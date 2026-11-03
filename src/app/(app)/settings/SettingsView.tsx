@@ -109,7 +109,7 @@ export function SettingsView() {
         </Button>
       </section>
 
-      <section className="mt-10 border-t border-line pt-6 text-[13px] leading-relaxed text-ink-3">
+      <section className="mt-10 pt-6 text-[13px] leading-relaxed text-ink-3">
         <p>
           Winning FBLA, built for Ashwath for the 2026-2027 FBLA Data Science &amp; AI event: {counts.lessons} lessons, {counts.questions.toLocaleString()} questions, {counts.cards} flashcards. An independent study tool, not affiliated with or endorsed by FBLA.
         </p>
