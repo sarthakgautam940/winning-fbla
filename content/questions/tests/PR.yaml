@@ -1,0 +1,1143 @@
+# Practice-test items: Perception, Representation, and Reasoning (10 per test)
+
+# ================================================================ Test 1
+- id: pt1-pr-01
+  test: 1
+  skill: prop-logic
+  objective: PR1
+  tier: core
+  type: concept
+  stem: |
+    A lab door unlocks exactly when two things are true: the person's badge is valid, and the person's fingerprint matches. Let B mean "the badge is valid" and F mean "the fingerprint matches." Which expression is true exactly when the door unlocks?
+  options:
+    - "$$B \\land F$$"
+    - "$$B \\lor F$$"
+    - "$$B \\rightarrow F$$"
+    - "$$B \\leftrightarrow F$$"
+  answer: A
+  explain: |
+    The door needs both conditions, so the expression must be true only when B and F are both true, which is B AND F. An OR would also open the door for a valid badge with the wrong fingerprint.
+  why:
+    B: "OR is true when either condition holds, so a valid badge alone would open the door."
+    C: "B implies F is also true whenever the badge is invalid, so it would open the door for anyone without a valid badge."
+    D: "The biconditional is also true when both are false, which would open the door for someone with neither."
+  verify: |
+    rows = [(b, f) for b in (True, False) for f in (True, False)]
+    target = [b and f for b, f in rows]
+    cands = {r"B \land F": [b and f for b, f in rows], r"B \lor F": [b or f for b, f in rows], r"B \rightarrow F": [(not b) or f for b, f in rows], r"B \leftrightarrow F": [b == f for b, f in rows]}
+    ans = [k for k, v in cands.items() if v == target][0]
+
+- id: pt1-pr-02
+  test: 1
+  skill: inference-rules
+  objective: PR1
+  tier: competitive
+  type: concept
+  stem: |
+    If the server is overloaded, pages load slowly. Pages are loading quickly. Therefore, the server is not overloaded. Which rule of inference does this argument use?
+  options:
+    - "Modus ponens"
+    - "Modus tollens"
+    - "Affirming the consequent"
+    - "Denying the antecedent"
+  answer: B
+  explain: |
+    Modus tollens has the form: if P then Q; not Q; therefore not P. Here P is "the server is overloaded" and Q is "pages load slowly." The argument is valid, because an overloaded server would have made the pages slow.
+  why:
+    A: "Modus ponens affirms the condition to reach the result: if P then Q, P, therefore Q."
+    C: "Affirming the consequent reasons from Q to P, a fallacy; this argument reasons from not Q to not P."
+    D: "Denying the antecedent reasons from not P to not Q, a fallacy; this argument denies the result, not the condition."
+
+- id: pt1-pr-03
+  test: 1
+  skill: fol-translate
+  objective: PR2
+  tier: competitive
+  type: concept
+  stem: |
+    Which sentence says "Every ticket is either paid or refunded"?
+  options:
+    - "$$\\forall x\\, (\\text{Ticket}(x) \\land (\\text{Paid}(x) \\lor \\text{Refunded}(x)))$$"
+    - "$$\\exists x\\, (\\text{Ticket}(x) \\land (\\text{Paid}(x) \\lor \\text{Refunded}(x)))$$"
+    - "$$\\forall x\\, (\\text{Ticket}(x) \\rightarrow \\text{Paid}(x)) \\lor \\forall x\\, (\\text{Ticket}(x) \\rightarrow \\text{Refunded}(x))$$"
+    - "$$\\forall x\\, (\\text{Ticket}(x) \\rightarrow (\\text{Paid}(x) \\lor \\text{Refunded}(x)))$$"
+  answer: D
+  explain: |
+    For every x, if x is a ticket, then x is paid or refunded. The universal pairs with an implication, and the OR sits inside it, so each ticket may be paid or refunded on its own.
+  why:
+    A: "Pairing the universal with AND claims that everything is a ticket."
+    B: "The existential says only that at least one ticket is paid or refunded."
+    C: "This says either every ticket is paid or every ticket is refunded, which is false when some are paid and others refunded."
+
+- id: pt1-pr-04
+  test: 1
+  skill: fol-negation
+  objective: PR2
+  tier: core
+  type: concept
+  stem: |
+    To prove the claim "Every package arrived on time" false, what is the least you need to find out?
+  options:
+    - "Every package arrived late"
+    - "Some package arrived on time"
+    - "One package did not arrive on time"
+    - "Most packages arrived late"
+  answer: C
+  explain: |
+    A claim about every package fails as soon as one package breaks it, so a single package that did not arrive on time is enough. This is why the negation of "every package arrived on time" is "at least one package did not arrive on time."
+  why:
+    A: "This would also prove the claim false, but it is far more than you need; one late package is enough."
+    B: "A package that arrived on time fits the claim, so it proves nothing against it."
+    D: "This would also disprove the claim, but it asks for much more than the single late package that is enough."
+
+- id: pt1-pr-05
+  test: 1
+  skill: logic-vs-prob
+  objective: PR3
+  tier: competitive
+  type: concept
+  stem: |
+    A team builds two tools to diagnose faults in a factory's machines: one logic-based and one probability-based. What does each tool mainly need from the team?
+  options:
+    - "Both need nothing but a large set of labeled training examples"
+    - "Logic needs rules written by people; probability needs estimates from data or experts"
+    - "Logic needs estimates from data or experts; probability needs rules written by people"
+    - "Both need nothing but a list of the questions users will ask"
+  answer: B
+  explain: |
+    A logic-based system runs on exact rules that people write. A probability-based system needs probabilities, estimated from data or supplied by experts, which it then updates as evidence arrives.
+  why:
+    A: "Neither approach is defined by labeled training examples; that describes supervised machine learning."
+    C: "This swaps the two: rules drive logic, and estimated probabilities drive probabilistic reasoning."
+    D: "Both need real knowledge of the machines, not just a list of questions."
+
+- id: pt1-pr-06
+  test: 1
+  skill: bayes-reasoning
+  objective: PR3
+  tier: core
+  type: calculation
+  stem: |
+    Over 200 school mornings, it snowed on 50. The bus was late on 30 of the snowy mornings and on 10 of the other 150. The bus is late this morning. Based on these counts, what is the probability that it snowed?
+  options:
+    - "15%"
+    - "25%"
+    - "60%"
+    - "75%"
+  ordered: true
+  answer: D
+  explain: |
+    Count only the late mornings: 30 snowy plus 10 others, 40 in all. Of those 40, 30 had snow, so the probability is 30 / 40 = 75%. Narrowing to the mornings that match the evidence and then counting is Bayes' rule in natural frequencies.
+  why:
+    A: "15% is 30 of all 200 mornings, the chance of snow and a late bus together."
+    B: "25% is the prior, 50 snowy mornings out of 200, before the late bus is taken into account."
+    C: "60% is 30 of the 50 snowy mornings, the chance of a late bus given snow, the reverse of what was asked."
+  verify: "30 / (30 + 10) * 100"
+
+- id: pt1-pr-07
+  test: 1
+  skill: bn-structure
+  objective: PR4
+  tier: competitive
+  type: concept
+  stem: |
+    Ice on a road makes crashes more likely, and crashes cause traffic jams. Which edges should a Bayesian network with the variables Ice, Crash, and Jam use?
+  options:
+    - "Ice → Crash and Crash → Jam"
+    - "Jam → Crash and Crash → Ice"
+    - "Ice → Jam and Jam → Crash"
+    - "Ice → Crash, Crash → Jam, and Jam → Ice"
+  answer: A
+  explain: |
+    Edges point from cause to effect: ice influences crashes, and crashes influence jams, giving the chain Ice → Crash → Jam.
+  why:
+    B: "These edges run from effects back to causes."
+    C: "Ice affects jams through crashes, and jams do not cause crashes."
+    D: "Adding Jam → Ice closes a directed cycle, which a Bayesian network cannot contain."
+
+- id: pt1-pr-08
+  test: 1
+  skill: bn-joint
+  objective: PR4
+  tier: champion
+  type: calculation
+  stem: |
+    In a greenhouse network, LowWater, HighHeat, and Pests each point to Wilting, and Wilting points to LowYield. All five variables are true or false. How many independent probabilities do the network's tables need in total?
+  options:
+    - "5"
+    - "8"
+    - "13"
+    - "31"
+  ordered: true
+  answer: C
+  explain: |
+    Each of the three roots needs 1 number, its prior, for 3 in all. Wilting has three true-or-false parents, so its table needs one probability for each of the $$2^3 = 8$$ parent combinations. LowYield has one parent, so it needs 2. The total is 3 + 8 + 2 = 13, far fewer than the 31 a full joint table would need.
+  why:
+    A: "5 gives each variable a single number, ignoring that a node needs one probability for each combination of its parents."
+    B: "8 is Wilting's table alone, or the total if Wilting got one number per parent instead of one per combination of parents."
+    D: "31 is $$2^5 - 1$$, the size of a full joint table, which the network avoids."
+  verify: "3 * 1 + 2 ** 3 + 2"
+
+- id: pt1-pr-09
+  test: 1
+  skill: big-ideas
+  objective: PR5
+  tier: competitive
+  type: scenario
+  stem: |
+    A city council debates whether police may use facial recognition cameras in public spaces, weighing public safety against residents' privacy. Which of AI4K12's five big ideas does this debate concern?
+  options:
+    - "Perception"
+    - "Societal Impact"
+    - "Learning"
+    - "Natural Interaction"
+  answer: B
+  explain: |
+    Societal Impact is the big idea that AI can affect society in both positive and negative ways. Weighing safety against privacy is a question about AI's effects on people, even though the cameras themselves rely on perception.
+  why:
+    A: "The cameras use perception, but the debate is about their effect on residents."
+    C: "Learning is how systems improve from data; the debate is about whether and how to use the system."
+    D: "Natural Interaction concerns how agents communicate with people, not public policy."
+
+- id: pt1-pr-10
+  test: 1
+  skill: search-basics
+  objective: PR5
+  tier: champion
+  type: visual
+  stem: |
+    A checkers program searches the game tree below with alpha-beta pruning, examining leaves from left to right. MAX moves at the root, and each MIN node takes the smallest of its leaves. Which leaf is never examined?
+  figure:
+    type: tree
+    caption: A game tree in which MAX chooses among three MIN nodes; the numbers are leaf scores
+    root:
+      label: MAX
+      children:
+        - label: MIN
+          children:
+            - { label: "3" }
+            - { label: "9" }
+        - label: MIN
+          children:
+            - { label: "5" }
+            - { label: "6" }
+        - label: MIN
+          children:
+            - { label: "2" }
+            - { label: "8" }
+  options:
+    - "2"
+    - "6"
+    - "8"
+    - "9"
+  ordered: true
+  answer: C
+  explain: |
+    The first MIN node is worth 3, so MAX can count on at least 3. Both leaves of the second MIN node must be checked, and it is worth 5, raising MAX's guarantee to 5. At the third MIN node, the first leaf is 2, so that node is worth 2 or less, worse for MAX than 5. Nothing the leaf 8 holds can change MAX's choice, so the search skips it.
+  why:
+    A: "The leaf 2 must be examined; it is what shows the third branch cannot beat 5."
+    B: "The 6 must be checked, because until it is seen the second MIN node could still be worth less than 5."
+    D: "The first MIN node has no bound to compare against yet, so both of its leaves, including 9, are examined."
+  verify: |
+    leaves = [[3, 9], [5, 6], [2, 8]]
+    alpha = float("-inf")
+    seen = []
+    for node in leaves:
+        v = float("inf")
+        for x in node:
+            seen.append(x)
+            v = min(v, x)
+            if v <= alpha:
+                break
+        alpha = max(alpha, v)
+    ans = [x for node in leaves for x in node if x not in seen][0]
+
+# ================================================================ Test 2
+- id: pt2-pr-01
+  test: 2
+  skill: prop-logic
+  objective: PR1
+  tier: competitive
+  type: concept
+  stem: |
+    What is the converse of "If a phone is charging, its light is on"?
+  options:
+    - "If the phone is not charging, its light is not on"
+    - "If the light is not on, the phone is not charging"
+    - "If the light is on, the phone is charging"
+    - "The phone is charging, and its light is not on"
+  answer: C
+  explain: |
+    The converse swaps the condition and the result: from "if P, then Q" it forms "if Q, then P." It is not equivalent to the original, since the light might be on for another reason.
+  why:
+    A: "Negating both parts gives the inverse, not the converse."
+    B: "Swapping and negating both parts gives the contrapositive, which is equivalent to the original."
+    D: "This is the negation of the original, the one case that makes it false."
+
+- id: pt2-pr-02
+  test: 2
+  skill: fol-syntax
+  objective: PR1
+  tier: core
+  type: concept
+  stem: |
+    In predicate logic, what does a predicate applied to a constant, such as Hungry(Milo), express?
+  options:
+    - "A new object, such as whoever feeds Milo"
+    - "A number between 0 and 1 for how hungry Milo is"
+    - "A list of every object that is hungry"
+    - "A statement about Milo that is either true or false"
+  answer: D
+  explain: |
+    A predicate states a property of its arguments or a relationship among them, so Hungry(Milo) is a statement that is true or false. A function, by contrast, returns an object, such as OwnerOf(Milo).
+  why:
+    A: "Returning an object is what a function does, as in OwnerOf(Milo)."
+    B: "Degrees between 0 and 1 belong to fuzzy logic; a predicate is simply true or false."
+    C: "Hungry(Milo) is about one object, Milo, not a list of all hungry things."
+
+- id: pt2-pr-03
+  test: 2
+  skill: fol-translate
+  objective: PR2
+  tier: champion
+  type: concept
+  stem: |
+    Let Failed(x, y) mean "x failed y." Which sentence says "No student failed every test"?
+  options:
+    - "$$\\neg \\exists x\\, (\\text{Student}(x) \\rightarrow \\forall y\\, (\\text{Test}(y) \\rightarrow \\text{Failed}(x, y)))$$"
+    - "$$\\neg \\exists x\\, (\\text{Student}(x) \\land \\forall y\\, (\\text{Test}(y) \\rightarrow \\text{Failed}(x, y)))$$"
+    - "$$\\exists x\\, (\\text{Student}(x) \\land \\neg \\forall y\\, (\\text{Test}(y) \\rightarrow \\text{Failed}(x, y)))$$"
+    - "$$\\neg \\exists x\\, (\\text{Student}(x) \\land \\exists y\\, (\\text{Test}(y) \\land \\text{Failed}(x, y)))$$"
+  answer: B
+  explain: |
+    Read it as "there is no x that is a student and failed every test." Inside, "failed every test" is a universal with an implication: for every y, if y is a test, x failed y. The outer "no" negates an existential paired with AND.
+  why:
+    A: "Pairing the existential with an implication breaks the sentence: anything that is not a student would make it false."
+    C: "This says some student did not fail every test, which is much weaker and allows other students to fail them all."
+    D: "This says no student failed any test, a far stronger claim."
+
+- id: pt2-pr-04
+  test: 2
+  skill: fol-negation
+  objective: PR2
+  tier: competitive
+  type: concept
+  stem: |
+    What is the negation of "Every flight that left on time arrived on time"?
+  options:
+    - "No flight that left on time arrived on time"
+    - "Every flight that left late arrived late"
+    - "Some flight left on time but did not arrive on time"
+    - "Some flight left late but arrived on time"
+  answer: C
+  explain: |
+    The claim says that for every flight, if it left on time, it arrived on time. Its negation needs one flight that breaks that promise: it left on time but did not arrive on time.
+  why:
+    A: "This goes too far; one late arrival among the on-time departures is enough to make the claim false."
+    B: "This changes the subject to flights that left late, which the claim says nothing about."
+    D: "A flight that left late cannot break a promise about flights that left on time."
+
+- id: pt2-pr-05
+  test: 2
+  skill: reasoning-types
+  objective: PR3
+  tier: competitive
+  type: scenario
+  stem: |
+    A chess app must check whether each move a player tries is legal under the rules of chess. Which kind of reasoning problem is this check?
+  options:
+    - "Logical deduction from the game's fixed rules"
+    - "Adversarial search, with minimax"
+    - "Statistical inference from past games"
+    - "Classification with a trained neural network"
+  answer: A
+  explain: |
+    Whether a move is legal follows with certainty from the fixed rules of chess, so checking it is logical deduction. Adversarial search is for choosing a good move against an opponent, a different job.
+  why:
+    B: "Minimax chooses strong moves against an opponent; it does not decide whether a move is allowed."
+    C: "Legality is certain, not a likelihood estimated from past games."
+    D: "The rules are known exactly, so there is nothing to learn from examples."
+
+- id: pt2-pr-06
+  test: 2
+  skill: bayes-reasoning
+  objective: PR3
+  tier: competitive
+  type: calculation
+  stem: |
+    A wildlife camera's motion sensor triggers on 90 percent of nights when a fox visits and on 20 percent of nights without one, because of wind and branches. A fox visits on 10 percent of nights. The sensor triggers tonight. What is the probability that a fox visited, to the nearest hundredth?
+  options:
+    - "0.1"
+    - "0.33"
+    - "0.67"
+    - "0.9"
+  ordered: true
+  answer: B
+  explain: |
+    Weight each case by its prior: a fox and a trigger, 0.1 × 0.9 = 0.09; no fox and a trigger, 0.9 × 0.2 = 0.18. The sensor triggers with probability 0.27 in all, so P(fox given trigger) = 0.09 / 0.27, about 0.33.
+  why:
+    A: "0.1 is the prior, before the trigger is taken into account."
+    C: "0.67 is 0.18 / 0.27, the probability that no fox visited."
+    D: "0.9 is the probability of a trigger given a fox, the reverse of what was asked."
+  verify: "0.1 * 0.9 / (0.1 * 0.9 + 0.9 * 0.2)"
+
+- id: pt2-pr-07
+  test: 2
+  skill: bn-inference
+  objective: PR4
+  tier: core
+  type: concept
+  stem: |
+    A gardener's Bayesian network has the edge Watered → Blooms. Which question asks for predictive reasoning?
+  options:
+    - "Given that the plant was watered, how likely is it to bloom?"
+    - "Given that the plant bloomed, how likely is it that it was watered?"
+    - "Should the edge point from Blooms to Watered instead?"
+    - "How many plants in the garden bloomed last year?"
+  answer: A
+  explain: |
+    Predictive reasoning runs from a cause to its effect, here from watering to blooming. Reasoning from the effect back to the cause, as in the second question, is diagnostic.
+  why:
+    B: "Reasoning from the bloom back to the watering goes from effect to cause, which is diagnostic reasoning."
+    C: "This asks about the network's structure, not an inference; edges point from cause to effect."
+    D: "A count of past blooms describes data; it is not an inference in the network."
+
+- id: pt2-pr-08
+  test: 2
+  skill: bn-independence
+  objective: PR4
+  tier: competitive
+  type: concept
+  stem: |
+    In the chain Rain → Traffic → Late, rain causes heavy traffic, and heavy traffic makes a commuter late. Which statement is true?
+  options:
+    - "Rain and Late are independent no matter what is known"
+    - "Rain and Late become dependent only once Traffic is known"
+    - "Late is a parent of Traffic in this network"
+    - "Rain and Late become independent once Traffic is known"
+  answer: D
+  explain: |
+    In a chain, the middle node carries all of the influence. Before you know the traffic, rain makes lateness more likely. Once you know whether traffic is heavy, learning about rain tells you nothing more about lateness.
+  why:
+    A: "Without knowing the traffic, rain does change the chance of being late, through the traffic."
+    B: "Becoming dependent once the middle node is known describes a collider, A → C ← B, not a chain."
+    C: "The edge runs from Traffic to Late, so Traffic is Late's parent."
+
+- id: pt2-pr-09
+  test: 2
+  skill: kr-forms
+  objective: PR5
+  tier: core
+  type: concept
+  stem: |
+    A semantic network stores "has gills" at the Fish node, and Salmon, Trout, and Shark are each linked to Fish by an is-a link. Why is the fact stored at Fish rather than at each kind of fish?
+  options:
+    - "Inheritance passes it down the is-a links, so it is stored only once"
+    - "Specific nodes such as Salmon cannot hold any properties of their own"
+    - "Storing it at Fish means no kind of fish can ever override it"
+    - "A semantic network may store each fact at its top node only"
+  answer: A
+  explain: |
+    Through inheritance, every concept below Fish receives its properties, so storing "has gills" once at Fish covers salmon, trout, and sharks. Storing each fact at the most general level where it holds saves effort, and specific nodes can still hold their own facts.
+  why:
+    B: "Specific nodes can hold their own facts, including ones that override an inherited default."
+    C: "Inherited facts are defaults that a more specific fact can override, as with penguins and flying."
+    D: "A fact belongs at the most general level where it holds, which is often below the top node, such as Animal."
+
+- id: pt2-pr-10
+  test: 2
+  skill: kr-ml
+  objective: PR5
+  tier: champion
+  type: scenario
+  stem: |
+    A hospital's assistant must read chest X-rays, and it must never suggest a drug that the patient is allergic to. Which design best fits both requirements?
+  options:
+    - "One neural network trained to handle both jobs from past records"
+    - "A neural network for the X-rays plus an allergy rule that always applies"
+    - "Hand-written IF-THEN rules for reading the X-rays and for allergies"
+    - "A knowledge graph of drugs alone, with no model for the images"
+  answer: B
+  explain: |
+    Reading images is a job for a learned model, since no one could write rules for every pattern in an X-ray. The allergy requirement is a hard constraint, which an explicit rule can guarantee and show to an auditor. Combining the two is neuro-symbolic AI.
+  why:
+    A: "A learned model might pick up the allergy pattern, but nothing guarantees that it will always follow it."
+    C: "Rules cannot practically describe every pattern in raw image pixels."
+    D: "A drug graph could support the allergy check, but it cannot read the X-rays."
+
+# ================================================================ Test 3
+- id: pt3-pr-01
+  test: 3
+  skill: chaining
+  objective: PR1
+  tier: competitive
+  type: scenario
+  stem: |
+    A plant-care assistant uses forward chaining with three rules:
+
+    ```text
+    R1: IF the leaves are yellow AND the soil is wet THEN the plant is overwatered
+    R2: IF the plant is overwatered THEN reduce watering
+    R3: IF the leaves have spots THEN check for fungus
+    ```
+
+    The known facts are "the leaves are yellow" and "the soil is wet." What does the assistant conclude?
+  options:
+    - "The plant is overwatered, and nothing more"
+    - "The plant is overwatered, so reduce watering"
+    - "Overwatered, reduce watering, and check for fungus"
+    - "Nothing, until a goal is given to work toward"
+  answer: B
+  explain: |
+    Forward chaining fires every rule whose conditions hold. R1 fires on the two facts and adds "overwatered," which lets R2 fire and add "reduce watering." R3 never fires, because no fact says the leaves have spots.
+  why:
+    A: "Forward chaining keeps going: the new fact that the plant is overwatered triggers R2."
+    C: "R3 needs spots on the leaves, which is not a known fact."
+    D: "Waiting for a goal describes backward chaining; forward chaining starts from the facts."
+
+- id: pt3-pr-02
+  test: 3
+  skill: inference-rules
+  objective: PR1
+  tier: core
+  type: concept
+  stem: |
+    A robot's knowledge base holds the rule $$\forall x\, (\text{Robot}(x) \rightarrow \text{NeedsPower}(x))$$ and the fact Robot(R2). Which new fact can it infer?
+  options:
+    - "Robot(x) for every object x"
+    - "NeedsPower(x), with x left as a variable"
+    - "Nothing, because the rule never names R2"
+    - "NeedsPower(R2)"
+  answer: D
+  explain: |
+    The rule holds for every x, so it holds for R2 in particular: if R2 is a robot, R2 needs power. Since Robot(R2) is a fact, modus ponens gives NeedsPower(R2). Applying general rules to specific facts this way is how predicate logic lets an AI system derive new knowledge.
+  why:
+    A: "Nothing in the rule makes everything a robot."
+    B: "Inference replaces the variable with the specific constant, R2; a conclusion with a free variable says nothing definite."
+    C: "A rule that holds for all x applies to every object, including R2, without naming it."
+
+- id: pt3-pr-03
+  test: 3
+  skill: fol-syntax
+  objective: PR2
+  tier: competitive
+  type: concept
+  stem: |
+    Using the function MotherOf(x) and the predicate Loves(x, y), meaning "x loves y," which sentence says "Iris's mother loves Iris"?
+  options:
+    - "Loves(MotherOf(Iris), Iris)"
+    - "Loves(Iris, MotherOf(Iris))"
+    - "MotherOf(Loves(Iris, Iris))"
+    - "Loves(MotherOf, Iris)"
+  answer: A
+  explain: |
+    MotherOf(Iris) is a term that names an object, Iris's mother, so it can fill the first argument of Loves. The sentence then says that Iris's mother loves Iris.
+  why:
+    B: "The arguments are reversed: this says that Iris loves Iris's mother."
+    C: "A function takes objects, not true-or-false statements, so it cannot wrap a predicate."
+    D: "MotherOf needs its argument; on its own it names no one."
+
+- id: pt3-pr-04
+  test: 3
+  skill: fol-translate
+  objective: PR2
+  tier: core
+  type: concept
+  stem: |
+    Which sentence says "Some drones are waterproof"?
+  options:
+    - "$$\\exists x\\, (\\text{Drone}(x) \\land \\text{Waterproof}(x))$$"
+    - "$$\\forall x\\, (\\text{Drone}(x) \\rightarrow \\text{Waterproof}(x))$$"
+    - "$$\\exists x\\, (\\text{Drone}(x) \\rightarrow \\text{Waterproof}(x))$$"
+    - "$$\\forall x\\, (\\text{Drone}(x) \\land \\text{Waterproof}(x))$$"
+  answer: A
+  explain: |
+    There exists an x that is a drone and is waterproof. An existential pairs with AND, because it needs one thing that has both properties.
+  why:
+    B: "This says every drone is waterproof, much stronger than some."
+    C: "Pairing the existential with an implication makes the sentence true as soon as anything is not a drone."
+    D: "Pairing the universal with AND says everything is a waterproof drone."
+
+- id: pt3-pr-05
+  test: 3
+  skill: logic-vs-prob
+  objective: PR3
+  tier: competitive
+  type: scenario
+  stem: |
+    A help-desk system has an IF-THEN rule for every error code its designers knew about. A customer reports a new error code, and the system has no answer at all. Which weakness of logic-based reasoning does this show?
+  options:
+    - "It needs far too much labeled training data"
+    - "It gives answers that are too uncertain to use"
+    - "It always runs too slowly to answer customers"
+    - "It is brittle with cases its rules do not cover"
+  answer: D
+  explain: |
+    A logic-based system works only as far as its rules reach. A case that no rule anticipated leaves it stuck, a weakness called brittleness. Probability-based reasoning handles incomplete information more gracefully.
+  why:
+    A: "Rule-based systems are written by people rather than trained on labeled data."
+    B: "Logic gives certain answers when its rules apply; the problem here is that no rule applies."
+    C: "Speed is not the issue; the system lacks a rule for the new case."
+
+- id: pt3-pr-06
+  test: 3
+  skill: bayes-reasoning
+  objective: PR3
+  tier: champion
+  type: calculation
+  stem: |
+    After a first survey, a geologist puts the chance that a site holds oil at 30 percent. A second, independent survey then comes back positive. Such surveys are positive at 90 percent of oil sites and at 10 percent of dry sites. What is the updated chance that the site holds oil, to the nearest percent?
+  options:
+    - "27%"
+    - "30%"
+    - "79%"
+    - "90%"
+  ordered: true
+  answer: C
+  explain: |
+    The result of the first survey, 30 percent, is now the prior. Oil and a positive survey: 0.3 × 0.9 = 0.27. Dry and a positive survey: 0.7 × 0.1 = 0.07. So P(oil given positive) = 0.27 / (0.27 + 0.07) = 0.27 / 0.34, about 79%.
+  why:
+    A: "27% is the chance of oil and a positive survey together; it still needs dividing by the chance of a positive survey."
+    B: "30% is the prior, before the second survey is taken into account."
+    D: "90% is the chance of a positive survey given oil, the reverse of what was asked."
+  verify: "0.3 * 0.9 / (0.3 * 0.9 + 0.7 * 0.1) * 100"
+
+- id: pt3-pr-07
+  test: 3
+  skill: bn-structure
+  objective: PR4
+  tier: competitive
+  type: concept
+  stem: |
+    A tourism network has the edges Summer → HeavyRain, Summer → Tourists, HeavyRain → Flooding, HeavyRain → Traffic, and Tourists → Traffic. All variables are true or false. Which node needs the largest conditional probability table?
+  options:
+    - "Summer"
+    - "Traffic"
+    - "HeavyRain"
+    - "Flooding"
+  answer: B
+  explain: |
+    A node's table needs one row for each combination of its parents' values. Traffic has two parents, HeavyRain and Tourists, so it needs 4 rows. HeavyRain, Tourists, and Flooding each have one parent and need 2 rows, and Summer, a root, needs only its prior.
+  why:
+    A: "Summer is a root node, so its table holds only its prior."
+    C: "HeavyRain has two children but only one parent, and a table's size depends on parents, not children."
+    D: "Flooding has one parent, so its table has just 2 rows."
+
+- id: pt3-pr-08
+  test: 3
+  skill: bn-inference
+  objective: PR4
+  tier: champion
+  type: calculation
+  stem: |
+    In a network Flood → RoadClosed, $$P(\text{Flood}) = 0.25$$. The road is closed with probability 0.9 during a flood and 0.3 otherwise. The road is closed. What is the probability of a flood?
+  options:
+    - "22.5%"
+    - "25%"
+    - "50%"
+    - "90%"
+  ordered: true
+  answer: C
+  explain: |
+    Flood and closed: 0.25 × 0.9 = 0.225. No flood and closed: 0.75 × 0.3 = 0.225. The road is closed with probability 0.45 in all, so P(flood given closed) = 0.225 / 0.45 = 50%. This is diagnostic reasoning, from an effect back to its cause.
+  why:
+    A: "22.5% is the chance of a flood and a closed road together, before dividing by the chance of a closed road."
+    B: "25% is the prior, before the closed road is taken into account."
+    D: "90% is the chance the road is closed given a flood, the reverse of what was asked."
+  verify: "0.25 * 0.9 / (0.25 * 0.9 + 0.75 * 0.3) * 100"
+
+- id: pt3-pr-09
+  test: 3
+  skill: kg-ontology
+  objective: PR5
+  tier: core
+  type: concept
+  stem: |
+    A sports ontology defines the class Team and the property coachedBy. A specific team, the Riverside Hawks, appears in the data. In ontology terms, what is the Riverside Hawks?
+  options:
+    - "An individual"
+    - "A class"
+    - "A property"
+    - "A rule"
+  answer: A
+  explain: |
+    Ontologies describe classes (kinds of things, such as Team), properties (relationships and attributes, such as coachedBy), and individuals (specific things). The Riverside Hawks is one specific team, so it is an individual of the class Team.
+  why:
+    B: "Team is the class; the Riverside Hawks is one member of it."
+    C: "coachedBy is the property that links a team to its coach."
+    D: "Rules constrain or infer facts, such as one saying every team has a coach; a team is not a rule."
+
+- id: pt3-pr-10
+  test: 3
+  skill: search-basics
+  objective: PR5
+  tier: competitive
+  type: visual
+  stem: |
+    A backup program visits the folders in the tree below depth-first, taking subfolders from left to right. In what order does it visit them?
+  figure:
+    type: tree
+    caption: A folder tree, with subfolders listed from left to right
+    root:
+      label: Root
+      children:
+        - label: Docs
+          children:
+            - { label: School }
+        - { label: Music }
+        - label: Photos
+          children:
+            - { label: Trips }
+            - { label: Pets }
+  options:
+    - "Root, Docs, Music, Photos, School, Trips, Pets"
+    - "Root, Docs, School, Music, Photos, Trips, Pets"
+    - "Root, Photos, Pets, Trips, Music, Docs, School"
+    - "School, Docs, Music, Trips, Pets, Photos, Root"
+  answer: B
+  explain: |
+    Depth-first search follows each branch to its end before backing up: Root, then Docs and its subfolder School, then Music, then Photos with Trips and Pets.
+  why:
+    A: "Visiting the folders level by level is breadth-first search."
+    C: "This is depth-first, but it takes subfolders from right to left."
+    D: "This lists each folder after the folders inside it, but the search visits Root first."
+  verify: |
+    tree = {"Root": ["Docs", "Music", "Photos"], "Docs": ["School"], "Music": [], "Photos": ["Trips", "Pets"], "School": [], "Trips": [], "Pets": []}
+    order, stack = [], ["Root"]
+    while stack:
+        n = stack.pop()
+        order.append(n)
+        stack.extend(reversed(tree[n]))
+    ans = ", ".join(order)
+
+# ================================================================ Test 4
+- id: pt4-pr-01
+  test: 4
+  skill: prop-logic
+  objective: PR1
+  tier: core
+  type: concept
+  stem: |
+    Let F mean "the forecast says frost" and C mean "the farmer covers the crops." Which expression says "If the forecast says frost, the farmer covers the crops"?
+  options:
+    - "$$F \\land C$$"
+    - "$$F \\lor C$$"
+    - "$$C \\rightarrow F$$"
+    - "$$F \\rightarrow C$$"
+  answer: D
+  explain: |
+    An if-then sentence becomes an implication, with the condition on the left: F implies C. It promises that a frost forecast leads to covered crops, and it says nothing about what happens when no frost is forecast.
+  why:
+    A: "AND claims both are true right now, not that one leads to the other."
+    B: "OR is true whenever either part is, which loses the if-then link."
+    C: "This reverses the direction, giving the converse: if the crops are covered, frost was forecast."
+
+- id: pt4-pr-02
+  test: 4
+  skill: inference-rules
+  objective: PR1
+  tier: champion
+  type: concept
+  stem: |
+    Unification looks for a substitution for variables that makes two expressions identical. Which pair has no unifying substitution?
+  options:
+    - "Visits(x, Museum) and Visits(Ana, Museum)"
+    - "Visits(Ana, x) and Visits(Ben, Museum)"
+    - "Visits(x, y) and Visits(Ana, Museum)"
+    - "Visits(Ana, x) and Visits(y, Museum)"
+  answer: B
+  explain: |
+    Only variables can be replaced. In this pair, the first arguments are two different constants, Ana and Ben, and no substitution can make them match. The others unify: the first with x = Ana, the third with x = Ana and y = Museum, and the fourth with y = Ana and x = Museum.
+  why:
+    A: "Setting x to Ana makes the two expressions identical."
+    C: "Setting x to Ana and y to Museum makes them identical."
+    D: "Setting y to Ana and x to Museum makes them identical."
+
+- id: pt4-pr-03
+  test: 4
+  skill: fol-negation
+  objective: PR2
+  tier: competitive
+  type: concept
+  stem: |
+    What is the negation of "Every student has some class they enjoy"?
+  options:
+    - "No student enjoys any of their classes"
+    - "Some student enjoys none of their classes"
+    - "Every student dislikes at least one class"
+    - "Some student enjoys every one of their classes"
+  answer: B
+  explain: |
+    Negating "every student" gives "some student," and negating "has some class they enjoy" gives "enjoys none of their classes." In symbols, the negation of "for all x, there exists y" begins "there exists x such that for all y, not."
+  why:
+    A: "This is far stronger: it says every student enjoys nothing, when one such student is enough."
+    C: "This keeps every student and changes only the inner part, so it is not a negation."
+    D: "This is not a negation at all; it fits comfortably with the original claim."
+
+- id: pt4-pr-04
+  test: 4
+  skill: fol-translate
+  objective: PR2
+  tier: competitive
+  type: concept
+  stem: |
+    Let Likes(x, y) mean "x likes y." Which sentence says "Keisha likes every dog"?
+  options:
+    - "$$\\forall x\\, (\\text{Dog}(x) \\rightarrow \\text{Likes}(\\text{Keisha}, x))$$"
+    - "$$\\forall x\\, (\\text{Dog}(x) \\land \\text{Likes}(\\text{Keisha}, x))$$"
+    - "$$\\exists x\\, (\\text{Dog}(x) \\land \\text{Likes}(\\text{Keisha}, x))$$"
+    - "$$\\forall x\\, (\\text{Likes}(\\text{Keisha}, x) \\rightarrow \\text{Dog}(x))$$"
+  answer: A
+  explain: |
+    For every x, if x is a dog, then Keisha likes x. Keisha is a constant inside the predicate, and the universal pairs with an implication.
+  why:
+    B: "Pairing the universal with AND says everything is a dog."
+    C: "This says only that Keisha likes at least one dog."
+    D: "This reverses the implication: it says everything Keisha likes is a dog."
+
+- id: pt4-pr-05
+  test: 4
+  skill: logic-vs-prob
+  objective: PR3
+  tier: core
+  type: concept
+  stem: |
+    In classical logic-based reasoning, what values can a statement take?
+  options:
+    - "Any number from 0 to 1"
+    - "Only true or false"
+    - "A degree of membership in a vague category"
+    - "True, false, or probably true"
+  answer: B
+  explain: |
+    Classical logic is two-valued: every statement is either true or false, with nothing in between. Degrees of belief between 0 and 1 belong to probability, and degrees of membership belong to fuzzy logic.
+  why:
+    A: "Values from 0 to 1 are degrees of belief, used in probability-based reasoning."
+    C: "Degrees of membership in vague categories belong to fuzzy logic."
+    D: "Classical logic has no probably; that is the gap probability fills."
+
+- id: pt4-pr-06
+  test: 4
+  skill: reasoning-types
+  objective: PR3
+  tier: competitive
+  type: scenario
+  stem: |
+    A game character must find a short path through a large maze, using the straight-line distance to the exit to decide which way looks most promising. Which kind of reasoning problem, and which approach, is this?
+  options:
+    - "Classification, with a decision tree"
+    - "Logical deduction, with IF-THEN rules"
+    - "Heuristic search, such as A*"
+    - "Statistical inference, with a Bayesian network"
+  answer: C
+  explain: |
+    Finding a good path through a large space, guided by an estimate of the distance left, is heuristic search. A* combines that estimate with the cost already paid to find a short path.
+  why:
+    A: "Classification assigns a category; the task here is to find a path."
+    B: "No rules deduce the path directly; the maze has to be searched."
+    D: "Statistical inference weighs uncertain evidence, but the maze itself is fully known."
+
+- id: pt4-pr-07
+  test: 4
+  skill: bn-joint
+  objective: PR4
+  tier: competitive
+  type: calculation
+  stem: |
+    A weather model tracks six true-or-false variables. If it stored their full joint distribution directly, with no Bayesian network, how many independent probabilities would it need?
+  options:
+    - "6"
+    - "12"
+    - "63"
+    - "64"
+  ordered: true
+  answer: C
+  explain: |
+    Six true-or-false variables have $$2^6 = 64$$ combinations. The probabilities must add up to 1, so the last one is fixed by the others, leaving 64 minus 1 = 63 independent numbers.
+  why:
+    A: "6 gives one number per variable, which ignores the combinations."
+    B: "12 gives two numbers per variable, which still ignores the combinations."
+    D: "64 forgets that the probabilities must add up to 1, which fixes the last one."
+  verify: "2 ** 6 - 1"
+
+- id: pt4-pr-08
+  test: 4
+  skill: bn-independence
+  objective: PR4
+  tier: champion
+  type: scenario
+  stem: |
+    A car will not start if its battery is dead or its fuel tank is empty, and the two faults happen independently. The car will not start, and then you find that the tank is empty. What happens to the probability that the battery is also dead?
+  options:
+    - "It goes down, because the empty tank already explains the problem"
+    - "It goes up, because two faults often happen together"
+    - "It stays the same, because the two faults are independent"
+    - "It becomes zero, because only one fault can be true at once"
+  answer: A
+  explain: |
+    Battery and Tank are both parents of WontStart, a collider, and they are independent until the effect is observed. Once the car fails to start, finding one cause, the empty tank, accounts for the failure and makes the other cause less likely. This is called explaining away.
+  why:
+    B: "The faults happen independently, and finding one makes the other less needed as an explanation, not more likely."
+    C: "They are independent before the effect is known, but observing that the car will not start links them."
+    D: "Both faults can happen at once; the probability falls but does not reach zero."
+
+- id: pt4-pr-09
+  test: 4
+  skill: chaining
+  objective: PR5
+  tier: core
+  type: concept
+  stem: |
+    In building an expert system, who interviews human experts and turns their know-how into IF-THEN rules?
+  options:
+    - "Data engineers"
+    - "Machine learning engineers"
+    - "The inference engine"
+    - "Knowledge engineers"
+  answer: D
+  explain: |
+    Knowledge engineers interview specialists and encode what they know as rules in the knowledge base. The slowness of this work is called the knowledge acquisition bottleneck.
+  why:
+    A: "Data engineers build data pipelines and infrastructure, not rule bases from interviews."
+    B: "Machine learning engineers deploy and monitor trained models."
+    C: "The inference engine is the part of the program that applies the rules, not a person who writes them."
+
+- id: pt4-pr-10
+  test: 4
+  skill: big-ideas
+  objective: PR5
+  tier: competitive
+  type: concept
+  stem: |
+    How does a car's radar sensor measure the distance to the vehicle ahead?
+  options:
+    - "It sends radio waves and measures their reflections"
+    - "It sends laser pulses and measures their reflections"
+    - "It compares the images from two side-by-side cameras"
+    - "It times signals from several satellites overhead"
+  answer: A
+  explain: |
+    Radar sends out radio waves and measures the reflections that bounce back, which give distance and speed. Lidar works the same way with laser light, and radar keeps working in fog and rain, one reason self-driving cars combine both.
+  why:
+    B: "Laser pulses are what lidar uses."
+    C: "Comparing two camera views judges depth from images, which is not how radar works."
+    D: "Timing satellite signals is how GPS finds a position on Earth."
+
+# ================================================================ Test 5
+- id: pt5-pr-01
+  test: 5
+  skill: fol-syntax
+  objective: PR1
+  tier: champion
+  type: concept
+  stem: |
+    Using the function FatherOf(x) and the predicate Doctor(x), which is a well-formed sentence saying that Maya's paternal grandfather is a doctor?
+  options:
+    - "Doctor(FatherOf(FatherOf(Maya)))"
+    - "Doctor(FatherOf(Maya))"
+    - "FatherOf(FatherOf(Doctor(Maya)))"
+    - "Doctor(Maya) ∧ FatherOf(FatherOf(Maya))"
+  answer: A
+  explain: |
+    FatherOf(Maya) names Maya's father, and applying the function again, FatherOf(FatherOf(Maya)), names that person's father, Maya's paternal grandfather. A function term names an object, so it can sit inside the predicate Doctor to make a statement.
+  why:
+    B: "This applies FatherOf once, so it says Maya's father is a doctor."
+    C: "A function takes objects, not statements, so it cannot wrap the predicate Doctor."
+    D: "A function term names an object and is not a statement, so it cannot be joined with AND."
+
+- id: pt5-pr-02
+  test: 5
+  skill: prop-logic
+  objective: PR1
+  tier: competitive
+  type: concept
+  stem: |
+    A tautology is true in every row of its truth table. Which of these is a tautology?
+  options:
+    - "$$P \\land \\neg P$$"
+    - "$$(P \\land Q) \\rightarrow P$$"
+    - "$$P \\rightarrow (P \\land Q)$$"
+    - "$$P \\lor Q$$"
+  answer: B
+  explain: |
+    Whenever P and Q is true, P is true, so the implication can never have a true condition with a false result. It is true in all four rows. P and not P is the opposite, a contradiction, false in every row.
+  why:
+    A: "P and not P is false in every row, a contradiction."
+    C: "With P true and Q false, the condition is true and the result is false, so it fails in that row."
+    D: "P or Q is false in the row where both P and Q are false."
+  verify: |
+    rows = [(p, q) for p in (True, False) for q in (True, False)]
+    cands = {r"P \land \neg P": [p and not p for p, q in rows], r"(P \land Q) \rightarrow P": [(not (p and q)) or p for p, q in rows], r"P \rightarrow (P \land Q)": [(not p) or (p and q) for p, q in rows], r"P \lor Q": [p or q for p, q in rows]}
+    ans = [k for k, v in cands.items() if all(v)][0]
+
+- id: pt5-pr-03
+  test: 5
+  skill: fol-translate
+  objective: PR2
+  tier: champion
+  type: concept
+  stem: |
+    Which sentence says "Every customer who ordered online received a receipt"?
+  options:
+    - "$$\\forall x\\, (\\text{Customer}(x) \\land \\text{OrderedOnline}(x) \\land \\text{GotReceipt}(x))$$"
+    - "$$\\forall x\\, (\\text{Customer}(x) \\rightarrow (\\text{OrderedOnline}(x) \\land \\text{GotReceipt}(x)))$$"
+    - "$$\\forall x\\, ((\\text{Customer}(x) \\land \\text{OrderedOnline}(x)) \\rightarrow \\text{GotReceipt}(x))$$"
+    - "$$\\exists x\\, (\\text{Customer}(x) \\land \\text{OrderedOnline}(x) \\land \\text{GotReceipt}(x))$$"
+  answer: C
+  explain: |
+    The sentence is about customers who ordered online, so both conditions go on the left of the implication: for every x, if x is a customer and ordered online, then x received a receipt.
+  why:
+    A: "Pairing the universal with AND claims that everything is a customer who ordered online and got a receipt."
+    B: "This says every customer ordered online and got a receipt, even customers who shopped in person."
+    D: "The existential says only that at least one such customer got a receipt."
+
+- id: pt5-pr-04
+  test: 5
+  skill: fol-negation
+  objective: PR2
+  tier: core
+  type: concept
+  stem: |
+    Which statement means the same as "Not every student was late"?
+  options:
+    - "Not a single student was late"
+    - "At least one student was not late"
+    - "Some students were late and some were not"
+    - "At least one of the students was late"
+  answer: B
+  explain: |
+    "Not every student was late" says the claim "all students were late" fails, so at least one student was not late. In symbols, the negation of "for all x, P(x)" is "there exists x such that not P(x)."
+  why:
+    A: "This is far stronger; not every allows some students to be late."
+    C: "Logically, not every does not promise that anyone was late; it says only that at least one student was not."
+    D: "This drops the negation; it could be true even if every student was late."
+
+- id: pt5-pr-05
+  test: 5
+  skill: bayes-reasoning
+  objective: PR3
+  tier: competitive
+  type: calculation
+  stem: |
+    A mechanic thinks there is a 40 percent chance that a car's noise comes from worn brakes. A squeal when braking occurs in 60 percent of worn-brake cases and in 20 percent of other cases. The car squeals when braking. What is the updated probability that the brakes are worn, to the nearest hundredth?
+  options:
+    - "0.24"
+    - "0.4"
+    - "0.67"
+    - "0.8"
+  ordered: true
+  answer: C
+  explain: |
+    Worn brakes and a squeal: 0.4 × 0.6 = 0.24. Another cause and a squeal: 0.6 × 0.2 = 0.12. A squeal happens with probability 0.36 in all, so P(worn given squeal) = 0.24 / 0.36, about 0.67.
+  why:
+    A: "0.24 is the chance of worn brakes and a squeal together, before dividing by the chance of a squeal."
+    B: "0.4 is the prior, before the squeal is taken into account."
+    D: "0.8 is the chance that a car without worn brakes does not squeal, which is not what was asked."
+  verify: "0.4 * 0.6 / (0.4 * 0.6 + 0.6 * 0.2)"
+
+- id: pt5-pr-06
+  test: 5
+  skill: logic-vs-prob
+  objective: PR3
+  tier: champion
+  type: scenario
+  stem: |
+    A warehouse robot must never enter an aisle marked for people, and it must judge from noisy sensor readings whether the object ahead is a box or a person. Which combination of reasoning fits best?
+  options:
+    - "Logic for both, so every decision is certain"
+    - "Probability for both, including the aisle ban"
+    - "Fuzzy logic for both, so each rule holds by degree"
+    - "Logic for the aisle ban, probability for the object ahead"
+  answer: D
+  explain: |
+    The aisle ban is an exact rule that must always hold, so logic can guarantee and explain it. Telling a box from a person in noisy readings is uncertain, so it calls for probability-based reasoning. Many real systems combine the two in this way.
+  why:
+    A: "Noisy sensor readings cannot give certain answers, so logic alone is brittle for judging the object."
+    B: "A ban that must always hold should be guaranteed by a rule, not left to a probability."
+    C: "Fuzzy logic describes vague categories, not uncertainty about what an object is."
+
+- id: pt5-pr-07
+  test: 5
+  skill: bn-structure
+  objective: PR4
+  tier: competitive
+  type: concept
+  stem: |
+    A Bayesian network has the edges Storm → PowerOutage and PowerOutage → SpoiledFood. A designer adds the edge SpoiledFood → Storm. What is wrong with the new graph?
+  options:
+    - "It contains a directed cycle, so it is no longer a DAG"
+    - "Edges must always point from effects back to causes"
+    - "A Bayesian network may have at most two edges"
+    - "SpoiledFood can no longer have a prior probability"
+  answer: A
+  explain: |
+    Following the arrows from Storm to PowerOutage to SpoiledFood and back to Storm returns to the start, a directed cycle. A Bayesian network must be a directed acyclic graph, because with a cycle its tables no longer define one consistent joint distribution.
+  why:
+    B: "Edges point from causes to effects; the problem is that this edge closes a cycle."
+    C: "A Bayesian network can have any number of edges, as long as there are no directed cycles."
+    D: "SpoiledFood already has a parent, so its table was never just a prior; the problem is the cycle."
+
+- id: pt5-pr-08
+  test: 5
+  skill: bn-joint
+  objective: PR4
+  tier: champion
+  type: calculation
+  stem: |
+    A coach's network has the edge Trained → Won, with $$P(\text{Trained}) = 0.6$$. The team wins with probability 0.7 when it trained and 0.2 when it did not. What is the overall probability that the team wins?
+  options:
+    - "0.08"
+    - "0.42"
+    - "0.45"
+    - "0.5"
+  ordered: true
+  answer: D
+  explain: |
+    Add the two ways to win, each weighted by its probability: trained and won, 0.6 × 0.7 = 0.42; did not train and won, 0.4 × 0.2 = 0.08. So P(Won) = 0.42 + 0.08 = 0.50. Adding over both values of the parent gives the overall probability.
+  why:
+    A: "0.08 counts only the wins without training."
+    B: "0.42 counts only the wins with training."
+    C: "0.45 averages 0.7 and 0.2 without weighting them by how often the team trains."
+  verify: "0.6 * 0.7 + 0.4 * 0.2"
+
+- id: pt5-pr-09
+  test: 5
+  skill: kr-forms
+  objective: PR5
+  tier: core
+  type: concept
+  stem: |
+    In an is-a hierarchy, Vehicle is the root. Car and Truck are its children, and Sedan and Coupe are children of Car. Which categories are the leaves?
+  options:
+    - "Vehicle only"
+    - "Truck, Sedan, and Coupe"
+    - "Sedan and Coupe only"
+    - "Car and Truck"
+  answer: B
+  explain: |
+    Leaves are the most specific categories, the ones with no children. Sedan and Coupe have none, and neither does Truck, which sits one level higher but has no children of its own.
+  why:
+    A: "Vehicle is the root, the most general category."
+    C: "Truck also has no children, so it is a leaf too, even though it sits higher in the tree."
+    D: "Car has children, so it is not a leaf; Truck is."
+
+- id: pt5-pr-10
+  test: 5
+  skill: kg-ontology
+  objective: PR5
+  tier: competitive
+  type: concept
+  stem: |
+    To find the city where a film's director was born, a knowledge graph follows two links: from the film to its director, then from the director to a city. How would a relational database usually answer the same question?
+  options:
+    - "By joining tables on matching key columns"
+    - "By following labeled edges from node to node"
+    - "By training a model to predict the city"
+    - "By sorting the film table alphabetically"
+  answer: A
+  explain: |
+    A knowledge graph answers a multi-hop question by walking along its links. A relational database stores the same facts in tables, so it connects them with a join on matching keys, such as a director ID that appears in both the films table and the people table.
+  why:
+    B: "Following edges is how the knowledge graph does it; a relational database stores tables, not edges."
+    C: "The facts are already stored, so nothing needs to be predicted."
+    D: "Sorting reorders rows but cannot connect a film to where its director was born."

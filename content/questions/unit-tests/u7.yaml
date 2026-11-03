@@ -5,19 +5,19 @@
   tier: core
   type: scenario
   stem: |
-    A phone unlocks when its camera recognizes the owner's face. Which of AI4K12's five big ideas does this mainly illustrate?
+    A self-checkout camera recognizes which fruit a shopper places on the scale. Which of AI4K12's five big ideas does this mainly show?
   options:
-    - "Natural interaction"
-    - "Societal impact"
-    - "Perception"
     - "Learning"
+    - "Natural Interaction"
+    - "Perception"
+    - "Societal Impact"
   answer: C
   explain: |
-    Perception is the big idea that computers perceive the world through sensors, extracting meaning from raw sensor data such as camera pixels. Recognizing a face is perception.
+    Perception is a computer extracting meaning from sensor data, here turning camera pixels into "this is a banana." The other big ideas concern learning from data, interacting with people, and effects on society.
   why:
-    A: "Natural interaction is about communicating with people, such as through language or emotion."
-    B: "Societal impact concerns how AI affects people and society."
-    D: "Learning is about computers learning from data; the unlock step itself is recognizing a face."
+    A: "Learning is how a model improves from data; the scenario describes recognizing what a camera sees."
+    B: "Natural Interaction concerns conversing with people and reading their emotions."
+    D: "Societal Impact concerns AI's effects on people and society, not a recognition task."
 
 - id: ut7-02
   skill: kr-forms
@@ -43,118 +43,117 @@
   tier: competitive
   type: concept
   stem: |
-    A knowledge graph stores the triple (Paris, capitalOf, France). What role does capitalOf play?
+    How are an ontology and a knowledge graph usually related?
   options:
-    - "The subject, the node the statement is about"
-    - "The predicate, the labeled edge that relates the two nodes"
-    - "The object, the node at the end of the edge"
-    - "A probability attached to the statement"
+    - "They are two different names for exactly the same structure"
+    - "The ontology sets the classes and relations; the graph holds the facts"
+    - "The graph is a neural network trained to predict the ontology"
+    - "The ontology is an alphabetical index of the graph's nodes"
   answer: B
   explain: |
-    A knowledge-graph triple has the form subject, predicate, object. Paris is the subject, France is the object, and capitalOf is the predicate, the labeled edge that says how they are related.
+    An ontology defines a domain's classes, properties, and rules, such as Person, Film, and directedBy. A knowledge graph is the network of specific entities and the labeled facts that link them, and it is usually organized by an ontology so that programs can query it and reason over it.
   why:
-    A: "The subject is Paris."
-    C: "The object is France."
-    D: "Triples state facts; they carry no probabilities."
+    A: "They are different layers: one defines the vocabulary, and the other stores facts that use it."
+    C: "A knowledge graph stores facts as labeled links; it is not a neural network."
+    D: "An ontology defines meanings and rules, not an index of node names."
 
 - id: ut7-04
   skill: kg-ontology
   tier: champion
   type: concept
   stem: |
-    A semantic network says that Bird has the property CanFly, Penguin is-a Bird, and Penguin has the property CannotFly. What should a reasoner conclude about whether penguins fly?
+    A knowledge graph stores (Mars, orbits, Sun) and (Phobos, orbits, Mars). A rule says that if X orbits Y and Y orbits Z, then X indirectlyOrbits Z. Which new triple can a reasoner add?
   options:
-    - "Penguins can fly, because properties are always inherited from general classes"
-    - "Nothing, because the network contradicts itself and is unusable"
-    - "Penguins can fly, because Bird is listed before Penguin"
-    - "Penguins cannot fly, because a property on the specific class overrides the inherited default"
+    - "(Sun, indirectlyOrbits, Phobos)"
+    - "(Mars, indirectlyOrbits, Phobos)"
+    - "(Phobos, orbits, Sun)"
+    - "(Phobos, indirectlyOrbits, Sun)"
   answer: D
   explain: |
-    Inheritance passes properties down from general classes, but those properties act as defaults. A property stored directly on a more specific class, such as Penguin, overrides the inherited one, which is how semantic networks and frames handle exceptions.
+    Match the rule with X = Phobos, Y = Mars, and Z = Sun: Phobos orbits Mars and Mars orbits the Sun, so Phobos indirectlyOrbits the Sun. Rules like this let a knowledge graph derive facts that were never stored.
   why:
-    A: "Inherited properties are defaults that more specific information can override."
-    B: "Exceptions are expected; the more specific property resolves the conflict."
-    C: "The order in which facts are listed does not decide inheritance."
+    A: "This reverses the direction of the relationship."
+    B: "Mars orbits the Sun, not Phobos; the subject and object are swapped."
+    C: "The rule concludes indirectlyOrbits, not orbits; Phobos does not orbit the Sun directly."
 
 - id: ut7-05
   skill: prop-logic
   tier: core
   type: concept
   stem: |
-    The statement $$P \rightarrow Q$$ is read "if P, then Q." What is its truth value when P is false and Q is false?
+    Let S mean "the alarm is set" and L mean "the door is locked." Which expression says "The alarm is set and the door is not locked"?
   options:
-    - "True"
-    - "False"
-    - "Undefined"
-    - "True only if P is later shown to be true"
+    - "$$S \\land \\neg L$$"
+    - "$$S \\lor \\neg L$$"
+    - "$$\\neg S \\land L$$"
+    - "$$S \\rightarrow \\neg L$$"
   answer: A
   explain: |
-    An implication is false only when its condition is true and its conclusion is false. When P is false, the implication makes no claim that could be broken, so it counts as true, often called vacuously true.
+    "And" becomes a conjunction, and "not locked" becomes the negation of L, so the sentence is S AND NOT L. It claims that both parts are true at once.
   why:
-    B: "The implication fails only when P is true and Q is false."
-    C: "In propositional logic every combination of truth values has a defined result."
-    D: "The truth value is fixed by the current values of P and Q."
+    B: "OR would be true if only one part held, but the sentence says both hold."
+    C: "This negates the wrong part: it says the alarm is not set and the door is locked."
+    D: "An implication says one part leads to the other; the sentence simply states that both are true."
 
 - id: ut7-06
   skill: prop-logic
   tier: competitive
   type: concept
   stem: |
-    Which statement is logically equivalent to "If it rains, the game is canceled"?
+    What is the negation of "The printer is out of paper or it is jammed"?
   options:
-    - "If the game is canceled, it rained"
-    - "If it does not rain, the game is not canceled"
-    - "If the game is not canceled, it did not rain"
-    - "It rains and the game is canceled"
+    - "The printer is not out of paper or it is not jammed"
+    - "The printer is out of paper and it is jammed"
+    - "The printer is not out of paper and it is not jammed"
+    - "The printer is not out of paper, so it is jammed"
   answer: C
   explain: |
-    The contrapositive, if not Q then not P, is always equivalent to if P then Q. The converse and the inverse are not equivalent: the game could be canceled for another reason.
+    By De Morgan's laws, the negation of "P or Q" is "not P and not Q." For the OR to be false, both parts must be false: the printer is not out of paper, and it is not jammed.
   why:
-    A: "This is the converse; the game might be canceled for some other reason."
-    B: "This is the inverse, which is equivalent to the converse, not to the original."
-    D: "An implication does not claim that it actually rains."
+    A: "Negating an OR turns it into an AND; keeping OR is the classic slip."
+    B: "This keeps both parts true, the opposite of what a negation needs."
+    D: "A negation does not create an if-then link between the parts."
 
 - id: ut7-07
   skill: prop-logic
   tier: champion
   type: calculation
   stem: |
-    How many of the 8 rows in the truth table for $$(P \wedge Q) \rightarrow R$$ make the formula false?
+    For how many of the 8 combinations of truth values for P, Q, and R is $$(P \rightarrow Q) \land R$$ true?
   options:
-    - "1"
-    - "2"
+    - "3"
     - "4"
-    - "7"
+    - "6"
+    - "8"
   ordered: true
   answer: A
   explain: |
-    An implication is false only when its condition is true and its conclusion is false. The condition, P and Q, is true only when both are true, so the formula is false in exactly one row: P true, Q true, R false.
+    The expression needs R true and P implies Q true. R is true in 4 of the 8 combinations, and among the 4 combinations of P and Q, the implication is false only when P is true and Q is false. That leaves 3.
   why:
-    B: "The condition is true in only two rows, and R is false in just one of them."
-    C: "4 counts every row where R is false, ignoring the condition."
-    D: "7 is the number of rows where the formula is true."
+    B: "4 counts every combination with R true, including the one where P is true and Q is false."
+    C: "6 counts the combinations where the implication is true, ignoring R."
+    D: "The expression is false whenever R is false, so it cannot be true for every combination."
   verify: |
-    vals = [True, False]
-    ans = sum(1 for p in vals for q in vals for r in vals if p and q and not r)
+    ans = sum(1 for p in (True, False) for q in (True, False) for r in (True, False) if ((not p) or q) and r)
 
 - id: ut7-08
   skill: fol-syntax
   tier: competitive
   type: concept
   stem: |
-    In the first-order logic sentence $$Teaches(Osei, Ava)$$, what is Teaches?
+    The predicate Taller(x, y) means "x is taller than y." How should a knowledge base record the fact that Rosa is taller than Theo?
   options:
-    - "A constant"
-    - "A predicate"
-    - "A variable"
-    - "A quantifier"
+    - "Rosa(Taller, Theo)"
+    - "Taller(Rosa, Theo)"
+    - "Taller(Rosa) ∧ Taller(Theo)"
+    - "Taller(Theo, Rosa)"
   answer: B
   explain: |
-    Teaches is a predicate: it states a relationship between objects and is either true or false. Osei and Ava are constants that name specific objects.
+    A predicate is applied to its arguments in order: Taller(Rosa, Theo) says the first argument, Rosa, is taller than the second, Theo.
   why:
-    A: "Constants name specific objects, such as Osei and Ava."
-    C: "Variables, such as x, stand for unspecified objects."
-    D: "Quantifiers are the symbols for all and there exists."
+    A: "Rosa is a constant, not a predicate, so it cannot take arguments."
+    C: "Taller takes two arguments; this uses it with one and loses the comparison."
+    D: "This says Theo is taller than Rosa, the reverse."
 
 - id: ut7-09
   skill: fol-translate
@@ -180,38 +179,38 @@
   tier: champion
   type: concept
   stem: |
-    Which first-order logic sentence says "Some robot is red"?
+    Which sentence says "Every student has a teacher who knows them"?
   options:
-    - '$$\forall x\,(Robot(x) \rightarrow Red(x))$$'
-    - '$$\exists x\,(Robot(x) \rightarrow Red(x))$$'
-    - '$$\exists x\,(Robot(x) \wedge Red(x))$$'
-    - '$$\forall x\,(Robot(x) \wedge Red(x))$$'
+    - "$$\\forall x\\, \\exists y\\, (\\text{Student}(x) \\land \\text{Teacher}(y) \\land \\text{Knows}(y, x))$$"
+    - "$$\\exists y\\, \\forall x\\, (\\text{Student}(x) \\rightarrow (\\text{Teacher}(y) \\land \\text{Knows}(y, x)))$$"
+    - "$$\\forall x\\, (\\text{Student}(x) \\rightarrow \\exists y\\, (\\text{Teacher}(y) \\land \\text{Knows}(y, x)))$$"
+    - "$$\\forall x\\, (\\text{Student}(x) \\land \\exists y\\, (\\text{Teacher}(y) \\rightarrow \\text{Knows}(y, x)))$$"
   answer: C
   explain: |
-    An existential statement pairs "there exists" with "and": there is something that is both a robot and red. With an implication instead, the sentence would be true as soon as anything is not a robot, because a false condition makes an implication true.
+    For every x that is a student, there exists some y who is a teacher and knows x. The universal pairs with an implication, the existential pairs with "and," and the teacher may differ from student to student.
   why:
-    A: "This says every robot is red."
-    B: "This is the classic trap: any non-robot satisfies it, so it does not guarantee a red robot exists."
-    D: "This says everything is a red robot."
+    A: "Using AND with the universal claims that everything is a student."
+    B: "Putting the existential first says one single teacher knows every student."
+    D: "This pairs the universal with AND and the existential with an implication, the classic double error."
 
 - id: ut7-11
   skill: fol-negation
   tier: competitive
   type: concept
   stem: |
-    What is the negation of "All birds fly," written $$\forall x\,(Bird(x) \rightarrow Flies(x))$$?
+    What is the negation of "Some student answered every question"?
   options:
-    - '$$\forall x\,(Bird(x) \rightarrow \neg Flies(x))$$'
-    - '$$\exists x\,(Bird(x) \rightarrow Flies(x))$$'
-    - '$$\forall x\,(\neg Bird(x) \rightarrow \neg Flies(x))$$'
-    - '$$\exists x\,(Bird(x) \wedge \neg Flies(x))$$'
+    - "No student answered any question"
+    - "Some student missed every question"
+    - "Every student answered some question"
+    - "Every student missed at least one question"
   answer: D
   explain: |
-    Negating a universal statement gives an existential one: "not all birds fly" means "some bird does not fly." Moving the negation inside turns "for all" into "there exists" and the implication into "and" with a negated conclusion.
+    Negating "some student" gives "every student," and negating "answered every question" gives "missed at least one question." So the negation says every student missed at least one question.
   why:
-    A: "This says no bird flies, which is much stronger than saying not all birds fly."
-    B: "This only weakens the quantifier and keeps the original implication; it is not a negation."
-    C: "This is the inverse, a different statement about things that are not birds."
+    A: "This is far stronger: a student could answer most questions and still make the original false."
+    B: "This keeps the existential, but a negation must switch some to every."
+    C: "This switches the quantifiers but never negates answering."
 
 - id: ut7-12
   skill: inference-rules
@@ -237,38 +236,38 @@
   tier: champion
   type: concept
   stem: |
-    If a shape is a square, it has four sides. This shape has four sides. Therefore, it is a square. How should this argument be judged?
+    If the pump fails, the tank overflows. If the tank overflows, a warning buzzer sounds. The buzzer did not sound. What follows?
   options:
-    - "Valid, by modus ponens"
-    - "Valid, by modus tollens"
-    - "Invalid, because it affirms the consequent"
-    - "Invalid, because it denies the antecedent"
+    - "The tank overflowed"
+    - "The pump failed"
+    - "The pump did not fail"
+    - "Nothing can be concluded"
   answer: C
   explain: |
-    The argument reasons from the rule's conclusion (four sides) back to its condition (square), which is the fallacy of affirming the consequent. A rectangle or a trapezoid also has four sides.
+    Apply modus tollens twice. The buzzer did not sound, so the tank did not overflow; the tank did not overflow, so the pump did not fail.
   why:
-    A: "Modus ponens would need the shape to be known to be a square first."
-    B: "Modus tollens would reason from not having four sides to not being a square."
-    D: "Denying the antecedent would reason from not a square to not four sides."
+    A: "An overflow would have set off the buzzer, which did not sound."
+    B: "A failed pump would have led, through the overflow, to the buzzer."
+    D: "Modus tollens works backward through both rules, so a conclusion does follow."
 
 - id: ut7-14
   skill: chaining
   tier: competitive
-  type: scenario
+  type: concept
   stem: |
-    A diagnostic expert system starts from the hypothesis "the engine has a fuel problem" and works backward through its rules to find the facts that would confirm it. What strategy is this?
+    Why is backward chaining efficient when a system must answer one specific question?
   options:
-    - "Forward chaining"
-    - "Backward chaining"
-    - "Breadth-first search"
-    - "Gradient descent"
+    - "It fires every rule on every known fact"
+    - "It explores only the rules relevant to the goal"
+    - "It never needs any facts to reach a goal"
+    - "It always finds more conclusions overall"
   answer: B
   explain: |
-    Backward chaining is goal-driven: it starts from a hypothesis and looks for the rules and facts that would establish it. MYCIN, the medical expert system, used this goal-oriented strategy.
+    Backward chaining starts from the goal and looks only for rules that could prove it, then for the facts those rules need. Rules that have nothing to do with the question are never touched.
   why:
-    A: "Forward chaining is data-driven: it starts from known facts and fires rules to derive new ones."
-    C: "Breadth-first search explores a state space level by level, not rules toward a goal."
-    D: "Gradient descent trains models by minimizing a loss."
+    A: "Firing every rule on every fact describes forward chaining."
+    C: "It still needs facts to finish each proof."
+    D: "It aims at one goal; forward chaining is what derives every reachable conclusion."
 
 - id: ut7-15
   skill: chaining
@@ -306,97 +305,97 @@
   tier: competitive
   type: scenario
   stem: |
-    A tax-preparation program applies hundreds of IF-THEN rules written by tax experts instead of a model learned from examples. What is a main strength of this rule-based approach?
+    Which task is better handled by a learned model than by hand-written rules?
   options:
-    - "Each conclusion can be traced to the exact rules that produced it"
-    - "It learns new rules automatically from millions of tax returns"
-    - "It handles situations that its experts never anticipated"
-    - "It needs no updates when the tax laws change"
+    - "Recognizing spoken words from many different voices"
+    - "Applying a published tax formula exactly"
+    - "Checking that every order has an ID number"
+    - "Converting distances from kilometers to miles"
   answer: A
   explain: |
-    Rule-based systems are transparent: every conclusion comes with the chain of rules that fired, so experts can check and explain it. Their weaknesses are brittleness in situations no rule covers and the effort of updating rules by hand.
+    Voices vary in endless ways that no one could list as rules, so a model that learns patterns from many examples suits speech recognition. Exact formulas and fixed checks are better written as explicit rules.
   why:
-    B: "Learning rules from data is what machine learning does; these rules are written by experts."
-    C: "Rule-based systems are brittle when no rule covers a situation."
-    D: "When laws change, someone must rewrite the rules."
+    B: "A published formula is exact and must be explainable, a natural fit for rules."
+    C: "A fixed check like this is a simple rule; nothing needs to be learned."
+    D: "Unit conversion is an exact formula."
 
 - id: ut7-17
   skill: logic-vs-prob
   tier: core
   type: concept
   stem: |
-    How does probability-based reasoning differ from logic-based reasoning?
+    Which statement uses logic-based reasoning?
   options:
-    - "It can only handle facts that are entirely true or false"
-    - "It represents uncertainty with degrees of belief between 0 and 1"
-    - "It never changes its conclusions when new evidence arrives"
-    - "It works only with numbers, never with words or categories"
+    - "Clouds are thick, so it will probably rain"
+    - "12 is divisible by 4, so by rule it is even"
+    - "This photo is 90 percent likely to show a cat"
+    - "The patient most likely has the flu"
   answer: B
   explain: |
-    Logic treats statements as true or false and derives certain conclusions. Probability-based reasoning assigns degrees of belief between 0 and 1 and updates them as evidence arrives, which suits noisy, uncertain information.
+    Logic-based reasoning applies rules to facts to reach certain conclusions: every number divisible by 4 is even, and 12 is divisible by 4, so 12 is even. The others express degrees of belief.
   why:
-    A: "Handling only true-or-false facts describes classical logic."
-    C: "Updating beliefs with evidence, as in Bayes' theorem, is central to probabilistic reasoning."
-    D: "Probabilities can describe categories and events, not just numbers."
+    A: "\"Probably\" signals a degree of belief, which is probability-based reasoning."
+    C: "A percentage likelihood is a degree of belief."
+    D: "\"Most likely\" weighs uncertain evidence, which is probability-based."
 
 - id: ut7-18
   skill: logic-vs-prob
   tier: competitive
   type: scenario
   stem: |
-    A smart thermostat treats 22 degrees as "warm" to a degree of 0.6 and "hot" to a degree of 0.2. Which approach is this?
+    A washing machine's controller uses rules such as "IF the load is fairly heavy THEN wash longer," where "fairly heavy" holds to a degree between 0 and 1. What does this approach give the machine?
   options:
-    - "Bayesian probability"
-    - "Propositional logic"
-    - "Fuzzy logic"
-    - "First-order logic"
+    - "Certain conclusions proved from exact, complete rules"
+    - "The probability that the load will turn out to be heavy"
+    - "Smooth adjustments instead of abrupt jumps between settings"
+    - "Wash settings learned from many labeled example loads"
   answer: C
   explain: |
-    Fuzzy logic, introduced by Lotfi Zadeh in 1965, lets a statement be true to a degree between 0 and 1. Here 0.6 measures how well 22 degrees fits the vague category "warm," not the chance that it is warm.
+    This is fuzzy logic: the load is heavy to some degree, and rules that apply to matching degrees let the controller blend smoothly between settings rather than switching abruptly at a cutoff. That is why fuzzy logic is used in appliance and industrial control.
   why:
-    A: "A probability measures uncertainty about whether something is true, not how well a value fits a vague category."
-    B: "Propositional logic treats each statement as entirely true or false."
-    D: "First-order logic adds predicates and quantifiers but keeps truth values true or false."
+    A: "Classical logic gives certain true-or-false conclusions; here the rule holds only to a degree."
+    B: "The degree describes how heavy the load is, which is already known, so it measures vagueness, not uncertainty."
+    D: "The rules are written by people; nothing is learned from labeled examples."
 
 - id: ut7-19
   skill: bayes-reasoning
   tier: champion
   type: calculation
   stem: |
-    Thirty percent of a company's email is spam. The word "winner" appears in 40 percent of spam emails and in 2 percent of other emails. If an email contains "winner," what is the probability that it is spam, to the nearest hundredth?
+    Three percent of checked bags at an airport contain a banned item. A scanner flags 85 percent of bags that contain one and 6 percent of bags that do not. If a bag is flagged, about what is the probability that it contains a banned item?
   options:
-    - "0.12"
-    - "0.30"
-    - "0.40"
-    - "0.90"
+    - "3%"
+    - "6%"
+    - "8.4%"
+    - "30.5%"
   ordered: true
   answer: D
   explain: |
-    Picture 1,000 emails: 300 are spam, and 120 of them contain "winner"; 700 are not spam, and 14 of them contain it. Of the 134 emails with the word, 120 are spam, and 120 / 134 is about 0.90.
+    Imagine 10,000 bags: 300 contain a banned item, and the scanner flags 255 of them. Of the 9,700 other bags, it flags 582. So 255 of the 837 flagged bags hold a banned item: 255 / 837, about 30.5%.
   why:
-    A: "0.12 is the share of all emails that are spam and contain the word."
-    B: "0.30 is the base rate, before the word is seen."
-    C: "0.40 is P(winner given spam), the reverse of what was asked."
-  verify: "0.3 * 0.4 / (0.3 * 0.4 + 0.7 * 0.02)"
+    A: "3% is the prior, before the scan result is taken into account."
+    B: "6% is the rate at which bags without a banned item are flagged."
+    C: "8.4% is the share of all bags that get flagged, 837 of 10,000."
+  verify: "0.03 * 0.85 / (0.03 * 0.85 + 0.97 * 0.06) * 100"
 
 - id: ut7-20
   skill: bn-structure
   tier: core
   type: concept
   stem: |
-    In a Bayesian network, what does a directed edge from Rain to WetRoad mean?
+    In a Bayesian network, what are the nodes that have no parents, and what do their tables hold?
   options:
-    - "Rain and WetRoad are independent of each other in every case"
-    - "Rain directly influences WetRoad, so WetRoad's table is conditioned on Rain"
-    - "WetRoad directly causes Rain, so Rain's table depends on WetRoad"
-    - "Rain and WetRoad always take exactly the same value"
+    - "Nodes that depend directly on every other node"
+    - "Root nodes, which need only their own prior probability"
+    - "Nodes whose values can never be observed"
+    - "Nodes with the most children, which hold the full joint"
   answer: B
   explain: |
-    An edge points from a parent to a child, meaning the parent directly influences the child. The child's conditional probability table gives its probabilities for each value of its parents.
+    A root node has no incoming edges, so nothing in the network conditions it. Its table is simply its prior probability, such as P(Cloudy).
   why:
-    A: "An edge represents a direct dependence, not independence."
-    C: "The arrow points from Rain to WetRoad, the direction of influence."
-    D: "Influence is probabilistic: rain makes a wet road likely, not certain."
+    A: "A node with no parents depends directly on none of the others."
+    C: "Root nodes can be observed like any other variable."
+    D: "No single table holds the full joint distribution; the network factors it into small tables."
 
 - id: ut7-21
   skill: bn-joint
@@ -505,16 +504,16 @@
   tier: core
   type: scenario
   stem: |
-    An AI must choose its moves in a two-player board game against an opponent who is trying to win. Which kind of reasoning problem is this, and which algorithm fits?
+    A streaming service must tag each uploaded song as rock, jazz, pop, or classical. Which kind of reasoning problem is this?
   options:
-    - "Classification, solved with a decision tree"
-    - "Statistical inference, solved with a Bayesian network"
-    - "Combinatorial search, solved with breadth-first search"
-    - "Adversarial search, solved with minimax and alpha-beta pruning"
+    - "Prediction"
+    - "Adversarial search"
+    - "Logical deduction"
+    - "Classification"
   answer: D
   explain: |
-    Games against an opponent are adversarial search problems. Minimax assumes the opponent plays its best moves, and alpha-beta pruning skips branches that cannot change the decision, so the program can search deeper.
+    Assigning each item to one of a fixed set of categories is classification, which AI4K12 pairs with algorithms such as decision trees and neural networks. Prediction would estimate a number, such as how many times a song will be played.
   why:
-    A: "Classification assigns categories; choosing moves against an opponent is a search problem."
-    B: "Statistical inference estimates probabilities from evidence."
-    C: "Breadth-first search ignores the opponent's attempts to win."
+    A: "Prediction estimates a number; here the output is a category."
+    B: "Adversarial search plans moves against an opponent, as in games."
+    C: "Logical deduction applies exact rules to reach certain conclusions, but genre has to be recognized from patterns in the audio."
