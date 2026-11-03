@@ -857,3 +857,1321 @@
     B: "A seed fixes random steps, but it cannot stop a different library version from behaving differently."
     C: "Version control tracks the code's history, not which package versions are installed on each machine."
     D: "Saved charts show the old results without making the analysis reproducible."
+
+# ================================================================ Test 3
+- id: pt3-dl-01
+  test: 3
+  skill: ds-nature
+  objective: DL1
+  tier: core
+  type: scenario
+  stem: |
+    A store knows that umbrella sales triple on rainy days, and rain is forecast for the whole weekend. The manager decides to move umbrellas to the front of the store. Which level of the DIKW pyramid is the manager's decision?
+  options:
+    - "Data"
+    - "Information"
+    - "Knowledge"
+    - "Wisdom"
+  answer: D
+  explain: |
+    Wisdom is judgment about what to do. The manager combines a known pattern (rain triples umbrella sales) with the forecast and chooses an action.
+  why:
+    A: "Data is a raw number, such as 14 umbrellas sold, with no context."
+    B: "Information is a value with context, such as 14 umbrellas sold on Saturday."
+    C: "The rainy-day pattern is knowledge; deciding what to do about it is wisdom."
+
+- id: pt3-dl-02
+  test: 3
+  skill: ds-nature
+  objective: DL1
+  tier: competitive
+  type: concept
+  stem: |
+    In Drew Conway's data science Venn diagram, what does the circle labeled "hacking skills" refer to?
+  options:
+    - "Breaking into computer systems"
+    - "Programming and working with data on a computer"
+    - "Deep knowledge of a subject area"
+    - "Training in math and statistics"
+  answer: B
+  explain: |
+    In Conway's diagram, hacking skills means computing ability: writing code and getting data into shape. It has nothing to do with breaking into systems.
+  why:
+    A: "The word suggests intrusion, but Conway meant programming skill."
+    C: "Knowledge of a subject area is the substantive expertise circle."
+    D: "Math and statistics knowledge is a circle of its own."
+
+- id: pt3-dl-03
+  test: 3
+  skill: ds-nature
+  objective: DL1
+  tier: core
+  type: scenario
+  stem: |
+    A principal is deciding whether to keep the school library open later in the afternoon. Which approach makes this a data-driven decision?
+  options:
+    - "Keep the hours the library has always had"
+    - "Ask a few of the principal's friends whether they would visit"
+    - "Choose the hours that feel most convenient for the staff"
+    - "Count visitors by hour for a month, then decide"
+  answer: D
+  explain: |
+    A data-driven decision rests on evidence. Counting visitors by hour measures actual demand, so the choice can follow what the data shows rather than habit or opinion.
+  why:
+    A: "Tradition says nothing about how students use the library now."
+    B: "A few friends' opinions are anecdotes, not a measure of student demand."
+    C: "Convenience for the staff is a preference, not evidence about demand."
+
+- id: pt3-dl-04
+  test: 3
+  skill: data-structure
+  objective: DL2
+  tier: champion
+  type: concept
+  stem: |
+    A company runs software that reads thousands of scanned invoices and writes each invoice's date, vendor, and total into a table. What has happened to the data?
+  options:
+    - "Structured data was turned into unstructured data"
+    - "Unstructured content was turned into structured data"
+    - "Semi-structured data was turned into metadata"
+    - "The data was compressed with a lossy method"
+  answer: B
+  explain: |
+    A scanned invoice is an image, and its meaning is not stored in fields. Extracting the date, vendor, and total into named columns creates structured data that can be filtered, summed, and joined.
+  why:
+    A: "The direction is reversed: the images had no fields, and the table does."
+    C: "The extracted values are the data itself, not data about the files."
+    D: "Extraction creates new fields; it does not throw away detail to shrink a file."
+
+- id: pt3-dl-05
+  test: 3
+  skill: data-formats
+  objective: DL2
+  tier: core
+  type: scenario
+  stem: |
+    A teacher needs to share a simple table of student IDs, names, and quiz scores, with the same three columns for every student, so that it opens in any spreadsheet program. Which format fits best?
+  options:
+    - "CSV"
+    - "JSON"
+    - "XML"
+    - "Parquet"
+  answer: A
+  explain: |
+    CSV stores a flat table as plain text, one row per line with commas between values, and every spreadsheet program opens it. Nothing in this table needs nesting.
+  why:
+    B: "JSON shines for nested records, such as a list of phone numbers inside each customer; this table is flat."
+    C: "XML can describe a table, but its opening and closing tags add bulk that a flat table does not need."
+    D: "Parquet is a compressed columnar format built for big data systems, not for quick sharing."
+
+- id: pt3-dl-06
+  test: 3
+  skill: var-num-cat
+  objective: DL3
+  tier: core
+  type: concept
+  stem: |
+    What makes a variable numeric rather than categorical?
+  options:
+    - "Its values are written with digits"
+    - "It has more than ten different values"
+    - "It is stored in a numeric column"
+    - "Arithmetic on its values makes sense"
+  answer: D
+  explain: |
+    A variable is numeric when its values are quantities, so adding, averaging, or subtracting them means something. ZIP codes and jersey numbers are written with digits, yet averaging them is meaningless, so they are categorical.
+  why:
+    A: "Digits alone do not make a variable numeric; ZIP codes are digits but are labels."
+    B: "The number of distinct values does not decide the type; there are thousands of ZIP codes."
+    C: "How a column is stored does not change what its values mean."
+
+- id: pt3-dl-07
+  test: 3
+  skill: var-levels
+  objective: DL3
+  tier: competitive
+  type: concept
+  stem: |
+    One team scored 4 goals and another scored 2. A reporter says the first team scored twice as many goals. At which level of measurement is a goal count, and is the claim meaningful?
+  options:
+    - "Ratio; counts have a true zero, so the claim is meaningful"
+    - "Interval; the claim is not meaningful without a true zero"
+    - "Ordinal; goals only show which team ranked higher"
+    - "Nominal; goal counts are labels for each team"
+  answer: A
+  explain: |
+    A count has equal steps and a true zero (zero goals means no goals), so it is ratio data. Ratios make sense: 4 goals is twice 2 goals.
+  why:
+    B: "Counts do have a true zero, which is exactly what makes them ratio, not interval."
+    C: "Counts carry exact amounts, not just an order."
+    D: "Goal counts are numbers you can add and compare, not labels."
+
+- id: pt3-dl-08
+  test: 3
+  skill: var-disc-cont
+  objective: DL3
+  tier: champion
+  type: concept
+  stem: |
+    A variable can take infinitely many different values. Must it be continuous?
+  options:
+    - "Yes, because a discrete variable has a fixed, finite list of values"
+    - "No; a count such as emails received has no upper limit but is discrete"
+    - "Yes, because only measured quantities can grow without limit"
+    - "No; any variable with more than 100 values is treated as categorical"
+  answer: B
+  explain: |
+    Discrete means the values are separate points with gaps between them, as counts are. The number of emails received can be 0, 1, 2, and so on without end, yet it never takes a value such as 2.5, so it stays discrete. Continuous means any value in a range is possible.
+  why:
+    A: "A discrete variable can have infinitely many values; what matters is that they are separate, countable points."
+    C: "Counts can grow without limit too, and they are discrete."
+    D: "The number of possible values does not turn numbers into categories."
+
+- id: pt3-dl-09
+  test: 3
+  skill: base-binary
+  objective: DL4
+  tier: core
+  type: calculation
+  stem: |
+    A thermostat stores the setting 37 as a binary number. Which pattern does it store?
+  options:
+    - "100011"
+    - "100100"
+    - "100101"
+    - "101001"
+  ordered: true
+  answer: C
+  explain: |
+    37 = 32 + 4 + 1. Put a 1 in the 32s, 4s, and 1s places and a 0 everywhere else: 100101.
+  why:
+    A: "100011 is 35: it uses the 2s place instead of the 4s place."
+    B: "100100 is 36: it is missing the 1s place."
+    D: "101001 is 41: the right bits in reverse order."
+  verify: 'format(37, "b")'
+
+- id: pt3-dl-10
+  test: 3
+  skill: base-hex
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    A network packet field holds the hexadecimal byte A7. What is it in binary?
+  options:
+    - "1010 0111"
+    - "1010 1110"
+    - "0111 1010"
+    - "1011 0111"
+  answer: A
+  explain: |
+    Each hex digit becomes exactly four bits. A is 10, which is 1010, and 7 is 0111, so A7 is 1010 0111.
+  why:
+    B: "1110 reverses the bits of 7; 7 is 0111."
+    C: "This swaps the two nibbles."
+    D: "1011 is 11, which is B; A is 10."
+  verify: |
+    bits = format(0xA7, "08b")
+    ans = bits[:4] + " " + bits[4:]
+
+- id: pt3-dl-11
+  test: 3
+  skill: text-encoding
+  objective: DL4
+  tier: champion
+  type: concept
+  stem: |
+    In 7-bit ASCII, the letter A is 1000001 and the letter a is 1100001. What does the one bit that differs show about how capital and lowercase letters are coded?
+  options:
+    - "Lowercase letters are 32 more than their capitals"
+    - "Lowercase letters are 64 more than their capitals"
+    - "Lowercase letters are 1 more than their capitals"
+    - "Lowercase letters use 8 bits and capitals use 7"
+  answer: A
+  explain: |
+    The two patterns differ only in the bit worth 32, the second from the left. So each lowercase letter is its capital plus 32, which is why A is 65 and a is 97.
+  why:
+    B: "64 is the leftmost bit, which both letters share."
+    C: "1 is the rightmost bit, which both letters share."
+    D: "Both letters are 7-bit codes; only one bit differs."
+  verify: |
+    gap = int("1100001", 2) - int("1000001", 2)
+    ans = f"Lowercase letters are {gap} more than their capitals"
+
+- id: pt3-dl-12
+  test: 3
+  skill: media-encoding
+  objective: DL4
+  tier: core
+  type: concept
+  stem: |
+    Which hex color code is a shade of gray?
+  options:
+    - "#5A5A00"
+    - "#FF8080"
+    - "#5A5A5A"
+    - "#00805A"
+  answer: C
+  explain: |
+    A gray has equal red, green, and blue values. In #5A5A5A all three channels are 5A, so it is a medium gray.
+  why:
+    A: "Red and green match, but blue is 00, so this is a dark olive, not a gray."
+    B: "Red is much higher than green and blue, so this is pink."
+    D: "The three channels differ, so this is a green, not a gray."
+
+- id: pt3-dl-13
+  test: 3
+  skill: data-sources
+  objective: DL5
+  tier: competitive
+  type: scenario
+  stem: |
+    Which data source tends to produce mostly unstructured data?
+  options:
+    - "Point-of-sale transactions"
+    - "Factory sensor readings"
+    - "Census population tables"
+    - "Social media posts"
+  answer: D
+  explain: |
+    Social media is mostly free text, images, and video, which have no predefined fields. Transactions, sensor readings, and census tables arrive as structured records.
+  why:
+    A: "Transactions are structured: items, amounts, times, and IDs."
+    B: "Sensor readings are time-stamped numbers in fixed fields."
+    C: "Census tables are structured rows and columns."
+
+- id: pt3-dl-14
+  test: 3
+  skill: study-types
+  objective: DL5
+  tier: competitive
+  type: scenario
+  stem: |
+    A researcher wants to see how each student's reading speed changes from ninth grade to twelfth grade. Which design fits this goal?
+  options:
+    - "Survey 2,000 students from all four grades in one week"
+    - "Measure the same students every year for four years"
+    - "Download last year's statewide reading scores"
+    - "Compare this year's ninth graders with this year's seniors"
+  answer: B
+  explain: |
+    Tracking how individuals change needs longitudinal data: the same students measured repeatedly. A one-time snapshot of different students cannot show any one student's growth.
+  why:
+    A: "A one-week survey is cross-sectional: different students at a single moment."
+    C: "Last year's scores are a single snapshot collected by someone else."
+    D: "Ninth graders and seniors are different people, so the comparison mixes growth with differences between groups."
+
+- id: pt3-dl-15
+  test: 3
+  skill: data-gov
+  objective: DL5
+  tier: champion
+  type: scenario
+  stem: |
+    A hospital must make sure that raw patient names and ID numbers never land in its central analytics warehouse, even for a moment. Which pipeline pattern fits this rule?
+  options:
+    - "ELT, because loading first keeps the most raw detail"
+    - "ETL, because data is masked before it is loaded"
+    - "ELT, because the warehouse can mask data after loading"
+    - "Either, because both patterns store the same data"
+  answer: B
+  explain: |
+    ETL transforms data before loading it, so names and IDs can be removed or masked on the way in. ELT loads the raw data first, which would put the sensitive fields in the warehouse before any cleaning.
+  why:
+    A: "Keeping raw detail is ELT's advantage, but here the raw detail is exactly what must stay out."
+    C: "Masking after loading means the raw data has already landed in the warehouse."
+    D: "The patterns differ in what the warehouse holds: ELT stores raw data, ETL stores transformed data."
+
+- id: pt3-dl-16
+  test: 3
+  skill: wrangling
+  objective: DL6
+  tier: competitive
+  type: visual
+  stem: |
+    A survey table stores several hobbies in one cell. Which change makes it tidy?
+
+    | person | hobbies |
+    |---|---|
+    | Ava | chess; soccer |
+    | Ben | music |
+  options:
+    - "Split it so each row holds one person and one hobby"
+    - "Sort the hobbies alphabetically within each cell"
+    - "Replace the semicolons with commas"
+    - "Count the hobbies and delete the hobbies column"
+  answer: A
+  explain: |
+    Tidy data keeps one value in each cell. Splitting the list gives the rows (Ava, chess), (Ava, soccer), and (Ben, music), which can be counted, filtered, and joined.
+  why:
+    B: "Sorted or not, each cell still holds several values."
+    C: "A different separator still leaves several values in one cell."
+    D: "A count loses which hobbies each person has."
+
+- id: pt3-dl-17
+  test: 3
+  skill: scaling
+  objective: DL6
+  tier: competitive
+  type: concept
+  stem: |
+    For which pair of models does feature scaling matter most?
+  options:
+    - "A decision tree and a random forest"
+    - "A decision tree and k-nearest neighbors"
+    - "A random forest and a neural network"
+    - "k-nearest neighbors and a neural network"
+  answer: D
+  explain: |
+    k-nearest neighbors compares distances, so a feature with a large range dominates, and a neural network trained by gradient descent learns slowly or unstably when features have very different ranges. Trees split one feature at a threshold, so scaling does not change them.
+  why:
+    A: "Both are tree models, which do not need scaling."
+    B: "The decision tree does not need scaling, though k-nearest neighbors does."
+    C: "The random forest does not need scaling, though the neural network does."
+
+- id: pt3-dl-18
+  test: 3
+  skill: encoding-cats
+  objective: DL6
+  tier: competitive
+  type: concept
+  stem: |
+    A size column with the values small, medium, and large is one-hot encoded with the small column dropped, leaving the columns medium and large. How is a small item represented?
+  options:
+    - "medium = 1, large = 0"
+    - "medium = 0, large = 1"
+    - "medium = 0, large = 0"
+    - "medium = 1, large = 1"
+  answer: C
+  explain: |
+    With k minus 1 columns, the dropped category is the case where every remaining column is 0. Medium is (1, 0), large is (0, 1), and small is (0, 0).
+  why:
+    A: "medium = 1 marks a medium item."
+    B: "large = 1 marks a large item."
+    D: "A one-hot row never has two 1s, because each item has exactly one size."
+
+- id: pt3-dl-19
+  test: 3
+  skill: ds-process
+  objective: DL7
+  tier: core
+  type: scenario
+  stem: |
+    A team compares a decision tree with a regression model and tunes each one's settings to get the best results on validation data. Which stage of the data science process is this?
+  options:
+    - "Collecting data"
+    - "Cleaning and preparing data"
+    - "Modeling"
+    - "Deploying and communicating"
+  answer: C
+  explain: |
+    Modeling is where a team chooses algorithms, trains them, and tunes their settings. Comparing candidate models on validation data is part of that stage.
+  why:
+    A: "Collection gathers the data before any model exists."
+    B: "Cleaning fixes and prepares the data that the models will use."
+    D: "Deployment puts the chosen model into use after it has been built and checked."
+
+- id: pt3-dl-20
+  test: 3
+  skill: process-models
+  objective: DL7
+  tier: competitive
+  type: scenario
+  stem: |
+    In the OSEMN model, a team makes histograms of every column and studies summary statistics and correlations before building anything. Which step is this?
+  options:
+    - "Obtain"
+    - "Scrub"
+    - "Explore"
+    - "iNterpret"
+  answer: C
+  explain: |
+    OSEMN runs Obtain, Scrub, Explore, Model, and iNterpret. Explore is where you study the cleaned data with plots and summaries before modeling.
+  why:
+    A: "Obtain gathers the data."
+    B: "Scrub cleans it, fixing errors and removing duplicates."
+    D: "iNterpret explains the results after modeling."
+
+# ================================================================ Test 4
+- id: pt4-dl-01
+  test: 4
+  skill: ds-analytics
+  objective: DL1
+  tier: core
+  type: scenario
+  stem: |
+    A city's transit office makes a chart of how many riders boarded each bus route last quarter. Which kind of analytics is this?
+  options:
+    - "Diagnostic"
+    - "Predictive"
+    - "Descriptive"
+    - "Prescriptive"
+  answer: C
+  explain: |
+    Descriptive analytics summarizes what already happened. A chart of last quarter's riders on each route reports the past without explaining or forecasting it.
+  why:
+    A: "Diagnostic analytics would explain why ridership changed."
+    B: "Predictive analytics would forecast future ridership."
+    D: "Prescriptive analytics would recommend changes, such as adding buses."
+
+- id: pt4-dl-02
+  test: 4
+  skill: ds-roles
+  objective: DL1
+  tier: competitive
+  type: concept
+  stem: |
+    Which question is most typical of a data analyst's work?
+  options:
+    - "How should we design an experiment to test a new price?"
+    - "How do we keep our deployed model fast at peak traffic?"
+    - "How do we build a pipeline that loads sales data hourly?"
+    - "What were last quarter's five best-selling products?"
+  answer: D
+  explain: |
+    Data analysts answer "What does the data say?" by querying existing data and reporting it. Ranking last quarter's sales is a classic analyst question.
+  why:
+    A: "Designing experiments is typical of a data scientist."
+    B: "Keeping a deployed model running well is a machine learning engineer's job."
+    C: "Building pipelines is a data engineer's job."
+
+- id: pt4-dl-03
+  test: 4
+  skill: ds-nature
+  objective: DL1
+  tier: champion
+  type: concept
+  stem: |
+    Which statement best describes how machine learning relates to data science and to artificial intelligence?
+  options:
+    - "Machine learning is another name for data science"
+    - "Data science is a branch of machine learning that adds charts"
+    - "Machine learning is a toolkit used within data science and also a part of AI"
+    - "AI is a branch of machine learning that focuses on robots"
+  answer: C
+  explain: |
+    Machine learning is a set of methods that let computers learn patterns from data. Data science uses it as one tool among many, and AI counts it as one of its main approaches, so it belongs to both fields.
+  why:
+    A: "Data science also covers statistics, data wrangling, and communication, not only learning algorithms."
+    B: "Data science is broader than machine learning, not a branch of it."
+    D: "Machine learning is a part of AI, not the other way around."
+
+- id: pt4-dl-04
+  test: 4
+  skill: data-formats
+  objective: DL2
+  tier: core
+  type: scenario
+  stem: |
+    A company's central warehouse holds data for every department. The sales team gets its own smaller store, built from the warehouse and limited to sales data. What is this smaller store called?
+  options:
+    - "A data lake"
+    - "A data catalog"
+    - "A data lakehouse"
+    - "A data mart"
+  answer: D
+  explain: |
+    A data mart is a smaller slice of a data warehouse focused on one department or subject, such as sales.
+  why:
+    A: "A data lake stores raw data of any kind, not a curated slice of the warehouse."
+    B: "A data catalog lists datasets so people can find them; it does not store the data."
+    C: "A lakehouse combines lake storage with warehouse management for the whole organization."
+
+- id: pt4-dl-05
+  test: 4
+  skill: data-structure
+  objective: DL2
+  tier: competitive
+  type: concept
+  stem: |
+    A web page's HTML wraps its content in tags such as `<h1>`, `<p>`, and `<table>`. How is HTML usually classified?
+  options:
+    - "Structured"
+    - "Unstructured"
+    - "Semi-structured"
+    - "Metadata"
+  answer: C
+  explain: |
+    HTML, like XML and JSON, labels its parts with tags, so it is semi-structured: organized and self-describing, but without one fixed table schema.
+  why:
+    A: "Web pages do not share a fixed table of rows and columns."
+    B: "The tags give HTML a labeled organization that unstructured data lacks."
+    D: "HTML is the page's content itself, not just data about it."
+
+- id: pt4-dl-06
+  test: 4
+  skill: var-num-cat
+  objective: DL3
+  tier: competitive
+  type: concept
+  stem: |
+    An analyst replaces exact ages with the groups "under 18", "18 to 64", and "65 and over". What kind of variable is the new age group?
+  options:
+    - "Numeric and continuous, like the ages it came from"
+    - "Numeric and discrete, because there are three groups"
+    - "Categorical with no order: nominal"
+    - "Categorical, with an order: ordinal"
+  answer: D
+  explain: |
+    Binning turns a numeric variable into categories. The groups still run from younger to older, so the new variable is ordinal categorical.
+  why:
+    A: "The groups are labels now; the individual ages are gone."
+    B: "Having three groups makes them categories, not counts."
+    C: "The groups run from younger to older, so they are ordered."
+
+- id: pt4-dl-07
+  test: 4
+  skill: var-levels
+  objective: DL3
+  tier: core
+  type: concept
+  stem: |
+    Which measure of center is meaningful for a nominal variable such as country of birth?
+  options:
+    - "The mean"
+    - "The median"
+    - "The mode"
+    - "The range"
+  answer: C
+  explain: |
+    Nominal categories have no order, so the only meaningful center is the mode, the most common category. A mean needs numbers, and a median needs at least an order.
+  why:
+    A: "A mean needs numbers that can be added."
+    B: "A median needs an order, and countries have none."
+    D: "The range measures spread, not center, and it needs numbers to subtract."
+
+- id: pt4-dl-08
+  test: 4
+  skill: var-disc-cont
+  objective: DL3
+  tier: champion
+  type: calculation
+  stem: |
+    A quality inspector records the number of defective bulbs in each box of 50. How many different values can this variable take?
+  options:
+    - "2"
+    - "50"
+    - "51"
+    - "Infinitely many"
+  answer: C
+  explain: |
+    The count can be any whole number from 0 to 50. Including 0, that is 51 different values, a fixed, finite list, so the variable is discrete.
+  why:
+    A: "2 describes one bulb (defective or not), not the count in a box."
+    B: "50 forgets that a box can have 0 defective bulbs."
+    D: "A count in a box of 50 cannot exceed 50, so the list of values is finite."
+  verify: "len(range(0, 51))"
+
+- id: pt4-dl-09
+  test: 4
+  skill: base-binary
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    The binary number 1011 equals 11 in decimal. What does 10110 equal?
+  options:
+    - "12"
+    - "22"
+    - "44"
+    - "110"
+  ordered: true
+  answer: B
+  explain: |
+    Writing a 0 on the right shifts every bit one place left, and each place is worth twice the one to its right. So 10110 is 2 × 11 = 22, which checks out as 16 + 4 + 2.
+  why:
+    A: "12 treats the new digit as adding 1."
+    C: "44 shifts two places, which would need two zeros."
+    D: "110 appends a 0 as if the number were decimal."
+  verify: 'int("10110", 2)'
+
+- id: pt4-dl-10
+  test: 4
+  skill: base-other
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    An older system logs the octal value 75. What is that value in decimal?
+  options:
+    - "47"
+    - "61"
+    - "75"
+    - "117"
+  ordered: true
+  answer: B
+  explain: |
+    In octal the places are worth 8s and 1s, so 75 in octal is 7 × 8 + 5 = 61.
+  why:
+    A: "47 reverses the digits: 5 × 8 + 7."
+    C: "75 leaves the number in octal."
+    D: "117 uses a place value of 16: 7 × 16 + 5."
+  verify: 'int("75", 8)'
+
+- id: pt4-dl-11
+  test: 4
+  skill: bits-bytes
+  objective: DL4
+  tier: core
+  type: recall
+  stem: |
+    How many bits are in a nibble?
+  options:
+    - "2"
+    - "4"
+    - "8"
+    - "16"
+  ordered: true
+  answer: B
+  explain: |
+    A nibble is half a byte: 4 bits. One hex digit stands for exactly one nibble, which is why a byte is written as two hex digits.
+  why:
+    A: "2 bits hold only four patterns, too few for one hex digit."
+    C: "8 bits make a full byte."
+    D: "16 bits make two bytes."
+  verify: "8 // 2"
+
+- id: pt4-dl-12
+  test: 4
+  skill: bin-arith
+  objective: DL4
+  tier: champion
+  type: calculation
+  stem: |
+    8-bit two's complement holds values from -128 to 127. A program adds 100 and 50 and keeps the 8-bit result, then reads it as a two's complement number. What value does it read?
+  options:
+    - "-106"
+    - "-22"
+    - "127"
+    - "150"
+  ordered: true
+  answer: A
+  explain: |
+    The true sum, 150, is too big for the range. Its 8-bit pattern, 10010110, starts with a 1, so it reads as negative: 150 minus 256 = -106. This wraparound is signed overflow.
+  why:
+    B: "-22 reads the leading 1 as a minus sign on the other seven bits, which is sign-magnitude."
+    C: "127 assumes the value stops at the maximum, but the bits wrap around instead."
+    D: "150 does not fit in the range -128 to 127."
+  verify: "((100 + 50 + 128) % 256) - 128"
+
+- id: pt4-dl-13
+  test: 4
+  skill: study-types
+  objective: DL5
+  tier: core
+  type: scenario
+  stem: |
+    A student writes a questionnaire about how much sleep classmates get and gives it to 120 of them. For the student's project, what kind of data is this?
+  options:
+    - "Primary data"
+    - "Secondary data"
+    - "Third-party data"
+    - "Longitudinal data"
+  answer: A
+  explain: |
+    Primary data is collected firsthand, by you, for your own question. The student designed and ran the questionnaire, so the answers are primary data.
+  why:
+    B: "Secondary data was collected by someone else for another purpose."
+    C: "Third-party data is bought from companies that gather it from many sources."
+    D: "The questionnaire was given once, a single snapshot, not repeated measurements of the same people."
+
+- id: pt4-dl-14
+  test: 4
+  skill: big-data
+  objective: DL5
+  tier: competitive
+  type: scenario
+  stem: |
+    Every night at 2 a.m., a retailer's system totals the day's sales by store and emails a report. Which kind of processing is this, and why does it fit?
+  options:
+    - "Stream processing, because the report updates each night"
+    - "Stream processing, because each sale is recorded as it happens"
+    - "Batch processing, because the data is too varied to stream"
+    - "Batch processing, because stored data is handled on a schedule"
+  answer: D
+  explain: |
+    Batch processing handles data that has already been collected and stored, in large chunks on a schedule, as a nightly sales report does. Stream processing handles each piece of data the moment it arrives.
+  why:
+    A: "A scheduled nightly job is the opposite of streaming."
+    B: "Sales are recorded as they happen, but this report processes them later in one batch."
+    C: "Batch processing is chosen here for timing, not because of variety."
+
+- id: pt4-dl-15
+  test: 4
+  skill: data-sources
+  objective: DL5
+  tier: core
+  type: scenario
+  stem: |
+    A city posts its bus ridership tables on a public website, where anyone may download and reuse them for free. What is this kind of data called?
+  options:
+    - "Open data"
+    - "Second-party data"
+    - "Third-party data"
+    - "Unstructured data"
+  answer: A
+  explain: |
+    Open data is published for anyone to use, usually free, as many governments do on open data portals.
+  why:
+    B: "Second-party data is shared with one partner under an agreement, not with everyone."
+    C: "Third-party data is bought from companies that gather it from many sources."
+    D: "Ridership tables are rows and columns, which is structured data."
+
+- id: pt4-dl-16
+  test: 4
+  skill: feature-eng
+  objective: DL6
+  tier: core
+  type: calculation
+  stem: |
+    Test scores from 0 to 100 are split into equal-width bins, each 20 points wide. How many bins are there?
+  options:
+    - "4"
+    - "5"
+    - "6"
+    - "20"
+  ordered: true
+  answer: B
+  explain: |
+    The range is 100 points, and 100 / 20 = 5 bins: 0 to 20, 20 to 40, 40 to 60, 60 to 80, and 80 to 100.
+  why:
+    A: "4 bins of 20 points cover only 80 points."
+    C: "6 adds an extra bin past 100."
+    D: "20 is the width of each bin, not the number of bins."
+  verify: "100 / 20"
+
+- id: pt4-dl-17
+  test: 4
+  skill: scaling
+  objective: DL6
+  tier: competitive
+  type: concept
+  stem: |
+    A training feature has exactly four values. After z-score standardization, which set could they be?
+  options:
+    - "-1.4, -0.2, 0.2, 1.4"
+    - "0.00, 0.25, 0.50, 1.00"
+    - "10, 20, 30, 40"
+    - "1, 2, 3, 4"
+  answer: A
+  explain: |
+    Standardized training values always have mean 0 and standard deviation 1, so values below the mean become negative. The set -1.4, -0.2, 0.2, 1.4 averages to 0, and its standard deviation is exactly 1.
+  why:
+    B: "These look like min-max values from 0 to 1, but standardized values must average 0."
+    C: "These are raw values; standardizing would center them on 0."
+    D: "These are ranks, and they average 2.5, not 0."
+  verify: |
+    v = [-1.4, -0.2, 0.2, 1.4]
+    ok = abs(statistics.fmean(v)) < 1e-9 and abs(statistics.pstdev(v) - 1) < 1e-9
+    ans = "-1.4, -0.2, 0.2, 1.4" if ok else "no set fits"
+
+- id: pt4-dl-18
+  test: 4
+  skill: wrangling
+  objective: DL6
+  tier: champion
+  type: scenario
+  stem: |
+    An analyst joins two customer files on their ID columns, but almost no rows match. One file stores IDs as text such as "00123", and the other stores them as numbers such as 123. What should be fixed first?
+  options:
+    - "Convert both ID columns to the same type and format"
+    - "Use a left join so that every row is kept"
+    - "Remove every customer whose ID begins with a zero"
+    - "Sort both files by ID before joining them"
+  answer: A
+  explain: |
+    A join matches keys exactly, and the text "00123" is not equal to the number 123. Converting both columns to one type and format, such as five-digit text, lets matching IDs line up.
+  why:
+    B: "A left join keeps the unmatched rows but still matches nothing, so the problem stays hidden."
+    C: "Deleting customers throws away data instead of fixing the format."
+    D: "Sorting does not change whether two values are equal."
+
+- id: pt4-dl-19
+  test: 4
+  skill: process-models
+  objective: DL7
+  tier: competitive
+  type: scenario
+  stem: |
+    In the OSEMN model, a team presents its findings to managers, explains what the model's results mean for the business, and recommends next steps. Which step is this?
+  options:
+    - "Scrub"
+    - "Explore"
+    - "Model"
+    - "iNterpret"
+  answer: D
+  explain: |
+    iNterpret is the last OSEMN step: turning results into conclusions people can act on, and communicating them clearly.
+  why:
+    A: "Scrub cleans the data."
+    B: "Explore studies the data with plots and summaries before modeling."
+    C: "Model builds and evaluates the model itself."
+
+- id: pt4-dl-20
+  test: 4
+  skill: eda
+  objective: DL7
+  tier: competitive
+  type: code
+  stem: |
+    During exploratory analysis, `df["minutes"].describe()` prints this summary. What is the interquartile range of minutes?
+
+    ```text
+    count    200.0
+    mean      42.6
+    std       11.3
+    min       12.0
+    25%       35.0
+    50%       41.0
+    75%       49.0
+    max       95.0
+    ```
+  options:
+    - "11.3"
+    - "14"
+    - "41"
+    - "83"
+  ordered: true
+  answer: B
+  explain: |
+    The interquartile range is the third quartile minus the first. In describe() output those are the 75% and 25% rows, so the IQR is 49.0 minus 35.0 = 14.
+  why:
+    A: "11.3 is the standard deviation, a different measure of spread."
+    C: "41 is the median, the 50% row."
+    D: "83 is the range, max minus min."
+  verify: "49.0 - 35.0"
+
+# ================================================================ Test 5
+- id: pt5-dl-01
+  test: 5
+  skill: ds-analytics
+  objective: DL1
+  tier: champion
+  type: scenario
+  stem: |
+    A store manager sends the data team four requests. Which one calls for prescriptive analytics?
+  options:
+    - "What will sales be if we raise prices by 5 percent?"
+    - "Why did sales drop after last spring's price rise?"
+    - "Which price should we set to earn the most profit?"
+    - "What were weekly sales at each price last year?"
+  answer: C
+  explain: |
+    Prescriptive analytics recommends an action, often by optimizing. Asking which price to set is a request for a decision. A what-if forecast, even about a price change, only predicts what would happen.
+  why:
+    A: "This is predictive: it forecasts the result of one scenario without choosing an action."
+    B: "This is diagnostic: it asks why something happened."
+    D: "This is descriptive: it reports past sales."
+
+- id: pt5-dl-02
+  test: 5
+  skill: ds-roles
+  objective: DL1
+  tier: competitive
+  type: scenario
+  stem: |
+    A school district limits who can view student discipline records. Which pairing describes who usually sets that rule and who enforces it inside the database?
+  options:
+    - "A database administrator sets the rule; a data analyst enforces it"
+    - "A data engineer sets the rule; a data steward enforces it"
+    - "A data analyst sets the rule; a data engineer enforces it"
+    - "A data steward sets the rule; a database administrator enforces it"
+  answer: D
+  explain: |
+    A data steward decides what data means and who may use it, as part of data governance. A database administrator keeps the database secure, which includes applying those access permissions.
+  why:
+    A: "Analysts use data to answer questions; they do not enforce database security."
+    B: "Engineers build pipelines; deciding who may use data is the steward's job."
+    C: "Neither analysts nor engineers own access rules."
+
+- id: pt5-dl-03
+  test: 5
+  skill: ds-analytics
+  objective: DL1
+  tier: champion
+  type: scenario
+  stem: |
+    A gym's data team runs four projects: (1) a dashboard of daily visits, (2) a model that flags members likely to quit, (3) an analysis of why visits dropped in July, and (4) a system that picks which members get a discount offer. Which matching is correct?
+  options:
+    - "1 descriptive, 2 predictive, 3 diagnostic, 4 prescriptive"
+    - "1 descriptive, 2 diagnostic, 3 predictive, 4 prescriptive"
+    - "1 diagnostic, 2 predictive, 3 descriptive, 4 prescriptive"
+    - "1 descriptive, 2 prescriptive, 3 diagnostic, 4 predictive"
+  answer: A
+  explain: |
+    The dashboard reports what happened (descriptive). Flagging likely quitters forecasts (predictive). Explaining July's drop asks why (diagnostic). Choosing who gets an offer recommends an action (prescriptive).
+  why:
+    B: "Projects 2 and 3 are swapped: the model forecasts, and the July analysis explains."
+    C: "A dashboard of daily visits describes; it does not explain."
+    D: "Flagging likely quitters predicts and picking who gets an offer prescribes, not the reverse."
+
+- id: pt5-dl-04
+  test: 5
+  skill: data-formats
+  objective: DL2
+  tier: competitive
+  type: concept
+  stem: |
+    What is the main advantage of schema-on-read over schema-on-write?
+  options:
+    - "Queries run faster and more reliably"
+    - "Data is cleaned before anyone can use it"
+    - "It keeps raw data you have not yet found a use for"
+    - "It needs no storage space for raw files"
+  answer: C
+  explain: |
+    Schema-on-read stores data as it arrives and applies structure only when someone reads it, so nothing is thrown away for lack of a planned use. The cost is that queries are slower and less reliable than on data fitted to a schema in advance.
+  why:
+    A: "Faster, more reliable queries are the advantage of schema-on-write."
+    B: "Cleaning before storage describes schema-on-write."
+    D: "Storing everything raw takes more space, not less."
+
+- id: pt5-dl-05
+  test: 5
+  skill: metadata
+  objective: DL2
+  tier: competitive
+  type: concept
+  stem: |
+    A dataset shared online comes with a README listing when the data was collected, the units of each column, and the code used for missing values, such as -999. Why does this metadata matter?
+  options:
+    - "It compresses the dataset so it downloads faster"
+    - "It replaces the need to clean the data"
+    - "It encrypts the values so only the owner can read them"
+    - "It lets others interpret the values correctly before analyzing them"
+  answer: D
+  explain: |
+    Metadata is data about data. Knowing the units, the collection dates, and that -999 means missing keeps an analyst from averaging -999 as a real value or mixing up units.
+  why:
+    A: "Documentation does not change the size of the file."
+    B: "Metadata tells you what to clean, such as the -999 codes; it does not clean anything."
+    C: "A README is plain documentation, not encryption."
+
+- id: pt5-dl-06
+  test: 5
+  skill: var-num-cat
+  objective: DL3
+  tier: champion
+  type: concept
+  stem: |
+    A survey records each teen's number of siblings and birth order (first-born, second-born, and so on). Which statement classifies them correctly?
+  options:
+    - "Both are numeric, because both involve counting people"
+    - "Siblings is numeric; birth order is categorical and ordinal"
+    - "Both are categorical, because both describe a family"
+    - "Siblings is categorical; birth order is numeric and discrete"
+  answer: B
+  explain: |
+    The number of siblings counts people, so arithmetic on it makes sense: it is numeric and discrete. Birth order names a position in a sequence, like a rank, with an order but no meaningful arithmetic, so it is ordinal categorical.
+  why:
+    A: "Birth order is a position in a sequence, like a rank, so it is ordinal rather than a quantity."
+    C: "The number of siblings is a count, which makes it numeric."
+    D: "This reverses them: the count is numeric, and the position is categorical."
+
+- id: pt5-dl-07
+  test: 5
+  skill: var-levels
+  objective: DL3
+  tier: champion
+  type: concept
+  stem: |
+    A physicist says a gas at 400 kelvins is twice as hot as the same gas at 200 kelvins. A classmate objects that temperature ratios are never meaningful. Who is right, and why?
+  options:
+    - "The physicist; the Kelvin scale has a true zero, so it is ratio data"
+    - "The classmate; all temperature scales are interval data"
+    - "The classmate; temperatures are ordinal, so only order matters"
+    - "The physicist; any scale with equal steps allows ratios"
+  answer: A
+  explain: |
+    0 kelvins is a true zero, so Kelvin is a ratio scale and 400 K really is twice 200 K. Celsius and Fahrenheit lack a true zero, which is why ratios fail on those scales.
+  why:
+    B: "Celsius and Fahrenheit are interval, but Kelvin has a true zero."
+    C: "Temperatures have equal, meaningful differences, so they are more than ordinal."
+    D: "Equal steps make a scale interval; ratios also need a true zero."
+
+- id: pt5-dl-08
+  test: 5
+  skill: var-disc-cont
+  objective: DL3
+  tier: core
+  type: concept
+  stem: |
+    Which variable could take the value 2.5?
+  options:
+    - "The number of cars a family owns"
+    - "The weight of a bag of apples in pounds"
+    - "The number of goals scored in a game"
+    - "The number of students in a class"
+  answer: B
+  explain: |
+    Weight is measured, so it can take any value in a range, including 2.5 pounds. The other three are counts, which take only whole numbers.
+  why:
+    A: "A count of cars is a whole number."
+    C: "A count of goals is a whole number."
+    D: "A count of students is a whole number."
+
+- id: pt5-dl-09
+  test: 5
+  skill: base-hex
+  objective: DL4
+  tier: competitive
+  type: calculation
+  stem: |
+    A game stores a player's score of 300 in hexadecimal. How is 300 written in hex?
+  options:
+    - "12B"
+    - "12C"
+    - "18C"
+    - "C21"
+  answer: B
+  explain: |
+    300 / 16 = 18 remainder 12, and 18 / 16 = 1 remainder 2. Reading the remainders from last to first gives 1, 2, C (12): 12C. Check: 1 × 256 + 2 × 16 + 12 = 300.
+  why:
+    A: "12B ends in B, which is 11; the remainder is 12, which is C."
+    C: "18C writes the quotient 18 as decimal digits instead of converting it to hex."
+    D: "C21 reads the remainders in the order they were found."
+  verify: 'format(300, "X")'
+
+- id: pt5-dl-10
+  test: 5
+  skill: base-other
+  objective: DL4
+  tier: champion
+  type: code
+  stem: |
+    What does this Python expression evaluate to?
+
+    ```python
+    0b1010 + 0o12 + 0xA
+    ```
+  options:
+    - "30"
+    - "32"
+    - "1030"
+    - "1032"
+  ordered: true
+  answer: A
+  explain: |
+    The prefixes name the base: 0b1010 is binary 10, 0o12 is octal 1 × 8 + 2 = 10, and 0xA is hex 10. The sum is 10 + 10 + 10 = 30.
+  why:
+    B: "32 reads 0o12 as decimal 12; in octal, 12 is 8 + 2 = 10."
+    C: "1030 reads 0b1010 as the decimal number 1010."
+    D: "1032 reads both the binary and the octal number as decimal."
+  verify: "0b1010 + 0o12 + 0xA"
+
+- id: pt5-dl-11
+  test: 5
+  skill: text-encoding
+  objective: DL4
+  tier: core
+  type: calculation
+  stem: |
+    In ASCII, the digit character 0 has code 48, and the digits 0 to 9 have consecutive codes. What is the code for the character 5?
+  options:
+    - "5"
+    - "48"
+    - "53"
+    - "54"
+  ordered: true
+  answer: C
+  explain: |
+    The digits run 0 = 48, 1 = 49, and so on, so 5 = 48 + 5 = 53. The character 5 is a symbol with code 53, not the number 5.
+  why:
+    A: "5 confuses the character with the number it shows."
+    B: "48 is the code for the character 0."
+    D: "54 counts one step too far; it is the code for 6."
+  verify: 'ord("5")'
+
+- id: pt5-dl-12
+  test: 5
+  skill: media-encoding
+  objective: DL4
+  tier: competitive
+  type: scenario
+  stem: |
+    Which file should be saved with lossless rather than lossy compression?
+  options:
+    - "A vacation photo posted to social media"
+    - "A song for listening on a phone"
+    - "A spreadsheet of bank account balances"
+    - "A video clip streamed on a website"
+  answer: C
+  explain: |
+    Lossless compression lets the original be rebuilt exactly, which matters when every digit counts, as in account balances. Lossy compression throws away detail people barely notice, which suits photos, music, and video.
+  why:
+    A: "Small losses in a photo are hard to see, so lossy JPEG compression suits it."
+    B: "Lossy MP3 compression keeps music sounding nearly the same at a fraction of the size."
+    D: "Lossy compression is standard for streaming video."
+
+- id: pt5-dl-13
+  test: 5
+  skill: study-types
+  objective: DL5
+  tier: core
+  type: scenario
+  stem: |
+    A grocery chain analyzes the purchase histories recorded by its own loyalty-card program. For the chain, what kind of data is this?
+  options:
+    - "Second-party data"
+    - "Third-party data"
+    - "Open data"
+    - "First-party data"
+  answer: D
+  explain: |
+    First-party data is collected directly from an organization's own customers. The chain gathered these purchase histories itself, with no partner or broker involved.
+  why:
+    A: "Second-party data is another organization's first-party data, shared through a partnership."
+    B: "Third-party data is bought from companies that gather it from many sources."
+    C: "Open data is published for anyone to use."
+
+- id: pt5-dl-14
+  test: 5
+  skill: study-types
+  objective: DL5
+  tier: champion
+  type: scenario
+  stem: |
+    A school compares this year's ninth graders, who used a new reading curriculum, with last year's ninth graders, who did not. This year's group scored higher, and the school concludes that the curriculum works. What is the main flaw?
+  options:
+    - "Nothing; both groups were ninth graders, so they are comparable"
+    - "The groups were not randomly assigned, so other differences could explain the gap"
+    - "Reading scores are discrete, so they cannot be compared"
+    - "A comparison like this needs a census of every student in the state"
+  answer: B
+  explain: |
+    Without random assignment, last year's and this year's groups can differ in many ways, such as their teachers or the mix of students. Any of those could explain the higher scores, so the result shows an association, not proof that the curriculum works.
+  why:
+    A: "Being in the same grade does not make two different groups of students alike in everything else."
+    C: "Discrete scores can be compared; the problem is how the groups were formed."
+    D: "A census is not needed; a randomized comparison would answer the question."
+
+- id: pt5-dl-15
+  test: 5
+  skill: data-gov
+  objective: DL5
+  tier: competitive
+  type: scenario
+  stem: |
+    A new analyst needs to find which datasets the company has about shipping, who owns each one, and where each is stored. Which tool is built for this?
+  options:
+    - "A data pipeline"
+    - "A data mart"
+    - "A data catalog"
+    - "Data lineage"
+  answer: C
+  explain: |
+    A data catalog is a searchable list of an organization's datasets, with descriptions, owners, and locations, so people can find the data that exists.
+  why:
+    A: "A pipeline moves data between systems; it does not help people find datasets."
+    B: "A data mart stores one department's data; it is not a directory of all datasets."
+    D: "Lineage traces where one dataset's values came from and how they changed."
+
+- id: pt5-dl-16
+  test: 5
+  skill: scaling
+  objective: DL6
+  tier: core
+  type: concept
+  stem: |
+    What do min-max normalization and z-score standardization have in common?
+  options:
+    - "Both rescale a feature without changing the order of its values"
+    - "Both force the values into the range 0 to 1"
+    - "Both make the feature normally distributed"
+    - "Both remove outliers from the feature"
+  answer: A
+  explain: |
+    Both methods shift and stretch a feature, so every value keeps its rank. They differ in the result: min-max scaling puts training values between 0 and 1, while standardization centers them at 0 with standard deviation 1.
+  why:
+    B: "Only min-max scaling targets the range 0 to 1; standardized values can be any size."
+    C: "Neither method changes the shape of the distribution."
+    D: "Both keep outliers, and min-max scaling is especially sensitive to them."
+
+- id: pt5-dl-17
+  test: 5
+  skill: feature-eng
+  objective: DL6
+  tier: competitive
+  type: concept
+  stem: |
+    Incomes in a dataset are strongly right-skewed. They are split into 5 equal-width bins. What is the most likely result?
+  options:
+    - "Each bin holds about 20 percent of the incomes"
+    - "Most incomes crowd into the highest bin"
+    - "The bins end up with different widths"
+    - "Most incomes crowd into the lowest bin or two"
+  answer: D
+  explain: |
+    Equal-width bins split the range into equal slices. A long right tail stretches the range, so the top bins cover a few huge incomes and most values land in the lowest bins. Equal-frequency bins would put about 20 percent in each.
+  why:
+    A: "Equal shares per bin describe equal-frequency binning, not equal-width."
+    B: "Right skew means a few very high values; most incomes are low."
+    C: "Equal-width bins have equal widths by definition; their counts are what differ."
+
+- id: pt5-dl-18
+  test: 5
+  skill: wrangling
+  objective: DL6
+  tier: competitive
+  type: visual
+  stem: |
+    Each value in this table records two separate readings, systolic and diastolic blood pressure. Which change makes the table tidy?
+
+    | patient | blood_pressure |
+    |---|---|
+    | P1 | 120/80 |
+    | P2 | 135/85 |
+  options:
+    - "Divide each value to get a single number"
+    - "Sort the rows by blood_pressure"
+    - "Rename blood_pressure to bp"
+    - "Split it into a systolic and a diastolic column"
+  answer: D
+  explain: |
+    Each value such as 120/80 holds two variables. Tidy data gives each variable its own column, so the column should be split into systolic and diastolic.
+  why:
+    A: "Dividing 120 by 80 makes a ratio and loses both original readings."
+    B: "Sorting does not separate the two variables."
+    C: "A new name does not change the structure."
+
+- id: pt5-dl-19
+  test: 5
+  skill: ds-process
+  objective: DL7
+  tier: competitive
+  type: scenario
+  stem: |
+    A finished demand-forecast model is built into a store chain's ordering app, so every manager sees a forecast each morning. Which stage of the data science process is this?
+  options:
+    - "Evaluating the model"
+    - "Deploying the model"
+    - "Monitoring the model"
+    - "Building the model"
+  answer: B
+  explain: |
+    Deployment puts a finished model to work where people use it, such as inside an ordering app. Watching its accuracy over time afterward is monitoring, a later stage.
+  why:
+    A: "Evaluation checks the model against the goal before it is put to use."
+    C: "Monitoring watches the model's accuracy over time after deployment; here it is just being put into use."
+    D: "The model is already finished; building it came earlier."
+
+- id: pt5-dl-20
+  test: 5
+  skill: reproducibility
+  objective: DL7
+  tier: champion
+  type: scenario
+  stem: |
+    An analysis splits data at random, trains a random forest, and uses pandas and scikit-learn. A colleague wants to rerun it next year and get exactly the same numbers. Which two things must be recorded?
+  options:
+    - "The random seed and the package versions"
+    - "The random seed and the colors of each chart"
+    - "The package versions and the analyst's name"
+    - "The output file names and the date of the run"
+  answer: A
+  explain: |
+    Random splits and random forests use random numbers, so a fixed seed makes them repeat. Library updates can change defaults and results, so the exact package versions must be recorded too.
+  why:
+    B: "Chart colors do not affect any computed number."
+    C: "Who ran the analysis does not change its results."
+    D: "File names and dates do not change any computed result."
