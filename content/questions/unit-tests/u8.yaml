@@ -376,19 +376,19 @@
   tier: core
   type: scenario
   stem: |
-    A chatbot with no web access writes a detailed, confident summary of a novel that includes a chapter the book does not contain. What best explains how this happens?
+    A news site uses an AI tool to draft short articles. Which policy most directly keeps hallucinated facts out of what the site publishes?
   options:
-    - "It invented the chapter on purpose to mislead the user"
-    - "An attacker must have poisoned its training data"
-    - "It predicts likely text, and likely is not the same as true"
-    - "It copied the summary from one unreliable website"
+    - "Publish quickly and fix any errors after readers complain"
+    - "Add a line to the prompt asking the tool to be accurate"
+    - "An editor checks each factual claim against a trusted source"
+    - "Use the tool that writes in the most confident tone"
   answer: C
   explain: |
-    A language model is trained to produce likely next words, not to look up verified facts, so it can describe a plausible but nonexistent chapter with complete confidence. A confident tone is not evidence that an answer is correct.
+    No technique eliminates hallucinations, so important output needs cross-verification and human oversight: a person checks each claim against trusted sources before it reaches readers.
   why:
-    A: "The model has no intent to deceive; a hallucination is an error, not a lie."
-    B: "Poisoning is possible, but ordinary hallucinations need no attacker."
-    D: "The model has no web access here, and it generates text from learned patterns rather than copying one page."
+    A: "Fixing errors after publication lets the false claims spread first."
+    B: "Asking for accuracy does not stop a model from producing likely but false text."
+    D: "A confident tone is not evidence that an answer is correct."
 
 - id: ut8-20
   skill: hallucination

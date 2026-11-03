@@ -1059,16 +1059,16 @@
   tier: core
   type: scenario
   stem: |
-    A tutoring chatbot with no tools is asked to multiply 37 by 4,821 and to say who won last night's game. What is the best advice?
+    For which request should you most expect a chatbot with no tools to invent details?
   options:
-    - "Use a calculator for the math and a live source for the score"
-    - "Trust both answers if the chatbot sounds confident"
-    - "Ask the same question twice and keep the longer answer"
-    - "Trust the math but check the score"
+    - "Page numbers of an obscure journal article"
+    - "A friendly greeting to open a work email"
+    - "Five common synonyms for the word happy"
+    - "A short poem about falling autumn leaves"
   answer: A
   explain: |
-    A model's memory is unreliable for exact math, recent events, and precise facts, and a model with no tools cannot know last night's result at all. Use tools such as a calculator and a live data source for these.
+    Hallucinations are most likely where the training data are thin and the request demands precise facts, such as citation details for an obscure source. The model fills the gap with plausible text. The other requests have no single exact fact to get wrong.
   why:
-    B: "Confidence is not accuracy."
-    C: "Asking twice can give two different wrong answers; length is not evidence."
-    D: "Without a calculator tool, exact multi-digit arithmetic is a common place for errors too."
+    B: "A greeting has no fact to get wrong, and common phrasing is well covered by training data."
+    C: "Common words and their synonyms appear constantly in training text."
+    D: "A poem is creative writing with no single correct answer to invent."
