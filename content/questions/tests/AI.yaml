@@ -113,19 +113,19 @@
   tier: champion
   type: recall
   stem: |
-    Which milestone is credited with starting the deep learning boom?
+    Which milestone came after AlexNet's 2012 ImageNet win but before the release of ChatGPT in 2022?
   options:
-    - "Deep Blue defeating Garry Kasparov in 1997"
-    - "AlexNet winning the ImageNet challenge in 2012"
-    - "AlphaGo defeating Lee Sedol in 2016"
-    - "The transformer paper of 2017"
+    - "IBM Watson's Jeopardy! win"
+    - "The transformer paper"
+    - "Deep Blue's win over Kasparov"
+    - "ELIZA's first conversations"
   answer: B
   explain: |
-    In 2012, AlexNet, a deep neural network, won the ImageNet image-recognition challenge, and its success set off the wave of deep learning that followed.
+    The transformer was introduced in the 2017 paper "Attention Is All You Need," between AlexNet (2012) and ChatGPT (2022). Watson won in 2011, Deep Blue in 1997, and ELIZA dates from the 1960s.
   why:
-    A: "Deep Blue was a chess program with fixed programming, not a deep neural network."
-    C: "AlphaGo came four years after the boom had begun, building on deep learning."
-    D: "The transformer arrived in 2017, well after deep learning had taken off."
+    A: "Watson won Jeopardy! in 2011, a year before AlexNet."
+    C: "Deep Blue beat Kasparov in 1997."
+    D: "ELIZA was built in the 1960s."
 
 - id: pt1-ai-07
   test: 1

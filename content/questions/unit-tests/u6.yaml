@@ -312,21 +312,23 @@
 - id: ut6-17
   skill: transformers-attention
   tier: competitive
-  type: concept
+  type: calculation
   stem: |
-    In the sentence "The trophy didn't fit in the suitcase because it was too big," what does self-attention help a transformer do as it processes the word "it"?
+    In one attention head, every token in a 6-token sentence attends to every token in the sentence, including itself. How many attention weights does the head compute for the sentence?
   options:
-    - "Translate the whole sentence into another language first"
-    - "Count how many tokens the sentence contains in total"
-    - "Delete the words that carry little or no meaning"
-    - "Weigh how much each other word, such as trophy, matters to it"
+    - "6"
+    - "12"
+    - "30"
+    - "36"
+  ordered: true
   answer: D
   explain: |
-    Self-attention lets each token look at every other token in the input and decide how much each one matters to its meaning. Linking "it" to "trophy" is exactly this kind of context building.
+    Each of the 6 tokens computes one weight for each of the 6 tokens it attends to, so the head computes 6 × 6 = 36 weights. Because every token is compared with every other, the work grows with the square of the sentence length.
   why:
-    A: "Translation is a task a model can perform, not what attention does inside it."
-    B: "Counting tokens is the tokenizer's job, not attention's."
-    C: "Attention reweights words; it does not delete them."
+    A: "6 gives each token a single weight, but each token weighs all 6 tokens."
+    B: "12 doubles the length instead of squaring it."
+    C: "30 leaves out each token's weight on itself."
+  verify: "6 * 6"
 
 - id: ut6-18
   skill: transformers-attention

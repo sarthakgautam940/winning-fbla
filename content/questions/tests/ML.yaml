@@ -1,0 +1,1098 @@
+# Practice-test items: Machine Learning (10 per test)
+
+# ================================================================ Test 1
+- id: pt1-ml-01
+  test: 1
+  skill: ml-nature
+  objective: ML1
+  tier: core
+  type: scenario
+  stem: |
+    A model learns to send support tickets to the right department, and it gets better as it trains on more tickets labeled by department. In Mitchell's definition of machine learning, what is the task, T?
+  options:
+    - "The labeled tickets it trains on"
+    - "The share of tickets routed correctly"
+    - "Sending each ticket to the right department"
+    - "The computer the model runs on"
+  answer: C
+  explain: |
+    Mitchell's definition names a task T, a performance measure P, and experience E. The task is the job the program does, routing tickets; the share routed correctly is P, and the labeled tickets are E.
+  why:
+    A: "The labeled tickets are the experience, E, that the program learns from."
+    B: "The share routed correctly is the performance measure, P."
+    D: "The hardware plays no part in the definition."
+
+- id: pt1-ml-02
+  test: 1
+  skill: data-splits
+  objective: ML2
+  tier: competitive
+  type: calculation
+  stem: |
+    A lender's dataset of 2,500 past loan applications is split 80% for training, 10% for validation, and 10% for testing. How many applications are in the validation set?
+  options:
+    - "250"
+    - "500"
+    - "2,000"
+    - "2,250"
+  ordered: true
+  answer: A
+  explain: |
+    The validation set gets 10% of the data: 0.10 × 2,500 = 250 examples.
+  why:
+    B: "500 is the validation and test sets together."
+    C: "2,000 is the training set, 80%."
+    D: "2,250 is the training and validation sets together."
+  verify: "2500 * 0.10"
+
+- id: pt1-ml-03
+  test: 1
+  skill: leakage
+  objective: ML2
+  tier: competitive
+  type: scenario
+  stem: |
+    Before splitting the data, an analyst fills every missing value with the mean of that column computed over the whole dataset. What is the problem?
+  options:
+    - "Mean imputation is never acceptable"
+    - "Test-set values shaped the training data"
+    - "The test set becomes too small to use"
+    - "Imputing values always causes underfitting"
+  answer: B
+  explain: |
+    The means included the test rows, so information from the test set leaked into the training data, and the test score will be slightly too optimistic. Splitting first and computing the means from the training set alone avoids it.
+  why:
+    A: "Mean imputation can be reasonable; the mistake is computing the means before splitting."
+    C: "Imputation fills gaps; it does not shrink the test set."
+    D: "Imputation does not by itself cause underfitting."
+
+- id: pt1-ml-04
+  test: 1
+  skill: decision-trees
+  objective: ML3
+  tier: competitive
+  type: calculation
+  stem: |
+    A node in a loan-approval tree holds 10 applications: 9 approved and 1 denied. Using Gini = 1 minus the sum of the squared class proportions, what is the node's Gini impurity?
+  options:
+    - "0.18"
+    - "0.5"
+    - "0.82"
+    - "0.9"
+  ordered: true
+  answer: A
+  explain: |
+    The class proportions are 0.9 and 0.1, whose squares are 0.81 and 0.01. Their sum is 0.82, so Gini = 1 minus 0.82 = 0.18, a nearly pure node.
+  why:
+    B: "0.5 is the Gini impurity of an evenly mixed two-class node, the most impure case."
+    C: "0.82 is the sum of the squared proportions; Gini subtracts it from 1."
+    D: "0.9 is the share of approved applications, not an impurity."
+  verify: "1 - (0.9 ** 2 + 0.1 ** 2)"
+
+- id: pt1-ml-05
+  test: 1
+  skill: knn-svm-nb
+  objective: ML3
+  tier: competitive
+  type: calculation
+  stem: |
+    A k-nearest neighbors model with k = 3 predicts house prices. The 3 nearest houses sold for 300, 340, and 320 thousand dollars. What price does the model predict, in thousands of dollars?
+  options:
+    - "300"
+    - "320"
+    - "340"
+    - "960"
+  ordered: true
+  answer: B
+  explain: |
+    For regression, k-nearest neighbors averages the target values of the k nearest examples: (300 + 340 + 320) / 3 = 320.
+  why:
+    A: "300 uses only the cheapest neighbor."
+    C: "340 uses only the most expensive neighbor."
+    D: "960 is the sum of the three prices; the model averages them."
+  verify: "(300 + 340 + 320) / 3"
+
+- id: pt1-ml-06
+  test: 1
+  skill: neurons
+  objective: ML3
+  tier: champion
+  type: calculation
+  stem: |
+    A small network predicts a house's price from 4 measurements. It is fully connected, with one hidden layer of 5 neurons and 1 output neuron. Counting weights and biases, how many parameters does it have?
+  options:
+    - "10"
+    - "25"
+    - "30"
+    - "31"
+  ordered: true
+  answer: D
+  explain: |
+    Each hidden neuron has 4 weights and a bias: 5 × (4 + 1) = 25. The output neuron has 5 weights and a bias: 6. In total, 25 + 6 = 31.
+  why:
+    A: "10 counts the neurons, not the weights and biases."
+    B: "25 counts the weights, 20 + 5, but leaves out the 6 biases."
+    C: "30 leaves out the output neuron's bias."
+  verify: "4 * 5 + 5 + 5 * 1 + 1"
+
+- id: pt1-ml-07
+  test: 1
+  skill: rl-basics
+  objective: ML4
+  tier: core
+  type: scenario
+  stem: |
+    A delivery agent usually takes the route that has worked best so far, but sometimes tries a different route to see whether it is faster. What is the agent doing when it tries the different route?
+  options:
+    - "Exploitation"
+    - "Exploration"
+    - "Overfitting"
+    - "Backpropagation"
+  answer: B
+  explain: |
+    Trying an action whose value is uncertain, to learn whether it is better, is exploration. Taking the best-known action is exploitation, and a good agent balances the two.
+  why:
+    A: "Exploitation is taking the best-known route, which the agent sets aside here."
+    C: "Overfitting is when a model learns its training data too closely."
+    D: "Backpropagation computes gradients in a neural network."
+
+- id: pt1-ml-08
+  test: 1
+  skill: other-paradigms
+  objective: ML4
+  tier: competitive
+  type: scenario
+  stem: |
+    A fraud model updates itself every hour with the newest confirmed fraud cases, instead of being retrained from scratch on all the data. What is this approach called?
+  options:
+    - "Batch learning"
+    - "Transfer learning"
+    - "Online learning"
+    - "Semi-supervised learning"
+  answer: C
+  explain: |
+    Online learning updates a model a little at a time as new data arrive, so it keeps up with changing patterns. Batch learning retrains on the full dataset at intervals.
+  why:
+    A: "Batch learning retrains from scratch on all the data collected so far."
+    B: "Transfer learning reuses a model trained for one task on another task."
+    D: "Semi-supervised learning mixes a few labeled examples with many unlabeled ones."
+
+- id: pt1-ml-09
+  test: 1
+  skill: choose-approach
+  objective: ML5
+  tier: core
+  type: scenario
+  stem: |
+    A utility wants to predict tomorrow's electricity use, in megawatt-hours, from weather forecasts and years of past usage records. Which approach fits?
+  options:
+    - "Unsupervised clustering"
+    - "Supervised classification"
+    - "Reinforcement learning"
+    - "Supervised regression"
+  answer: D
+  explain: |
+    The past records pair conditions with known usage, so the problem is supervised, and the output is a number, so it is regression.
+  why:
+    A: "Clustering groups unlabeled data; here there is a known numeric target."
+    B: "Classification predicts a category, but usage in megawatt-hours is a number."
+    C: "No agent learns from rewards; the model learns from labeled past records."
+
+- id: pt1-ml-10
+  test: 1
+  skill: deep-learning
+  objective: ML6
+  tier: champion
+  type: concept
+  stem: |
+    Neural networks existed for decades. Why did deep learning take off in the 2010s rather than earlier?
+  options:
+    - "Large datasets and powerful parallel hardware became available"
+    - "Neural networks were first invented in the 2010s"
+    - "Activation functions had not existed before then"
+    - "Deep networks stopped needing any data"
+  answer: A
+  explain: |
+    Deep networks need very large amounts of data and computing power. Both arrived in the 2010s, with huge labeled datasets such as ImageNet and GPUs that run many calculations in parallel, and AlexNet's 2012 result showed what they made possible.
+  why:
+    B: "Neural networks date back decades; Rosenblatt's perceptron is from 1958."
+    C: "Activation functions were used long before the 2010s."
+    D: "Deep networks need more data than classical methods, not less."
+
+# ================================================================ Test 2
+- id: pt2-ml-01
+  test: 2
+  skill: ml-vocab
+  objective: ML1
+  tier: core
+  type: scenario
+  stem: |
+    A model predicts a car's fuel efficiency from its weight, engine size, and age. Which of these is a feature?
+  options:
+    - "The car's weight"
+    - "The car's fuel efficiency"
+    - "The trained model"
+    - "The learning rate"
+  answer: A
+  explain: |
+    Features are the input variables a model uses to make a prediction: weight, engine size, and age. Fuel efficiency is the label the model predicts.
+  why:
+    B: "Fuel efficiency is the label, the value being predicted."
+    C: "The trained model is what results from learning, not an input variable."
+    D: "The learning rate is a hyperparameter of training, not an input variable."
+
+- id: pt2-ml-02
+  test: 2
+  skill: data-splits
+  objective: ML2
+  tier: competitive
+  type: concept
+  stem: |
+    A team tries 50 combinations of hyperparameters, keeps the one with the best validation accuracy, and reports that validation accuracy as the model's expected performance. Why is the reported number likely too optimistic?
+  options:
+    - "Validation sets are always larger than test sets"
+    - "The validation set picked the model, so its score is no longer unbiased"
+    - "Accuracy cannot be measured on validation data"
+    - "The model never saw the validation data, so the score is too low"
+  answer: B
+  explain: |
+    Choosing the best of 50 settings by validation score favors settings that happened to suit that particular set. A separate test set, untouched until the end, gives the honest estimate of performance on new data.
+  why:
+    A: "Size is not the issue, and validation sets are usually no bigger than test sets."
+    C: "Accuracy can be measured on any labeled set; the problem is that this set guided the choice."
+    D: "The score tends to be too high, not too low, because the model was chosen to do well on it."
+
+- id: pt2-ml-03
+  test: 2
+  skill: fit-tradeoff
+  objective: ML2
+  tier: competitive
+  type: scenario
+  stem: |
+    A model's validation error is far above its training error. Which change is least likely to help?
+  options:
+    - "Collecting more training data"
+    - "Adding regularization"
+    - "Adding many more features and layers"
+    - "Simplifying or pruning the model"
+  answer: C
+  explain: |
+    A large gap between training and validation error signals overfitting, or high variance. More data, regularization, and simpler models all reduce variance; adding features and layers makes the model more flexible and usually widens the gap.
+  why:
+    A: "More data makes it harder for the model to memorize quirks, which narrows the gap."
+    B: "Regularization penalizes complexity, which reduces overfitting."
+    D: "A simpler model has less room to fit noise."
+
+- id: pt2-ml-04
+  test: 2
+  skill: loss-gd
+  objective: ML3
+  tier: core
+  type: calculation
+  stem: |
+    A speech model trains on 2,400 audio clips using mini-batches of 32 clips. How many weight updates happen in one epoch?
+  options:
+    - "32"
+    - "75"
+    - "76"
+    - "2,400"
+  ordered: true
+  answer: B
+  explain: |
+    The weights are updated once per batch, and one epoch passes through all 2,400 examples in batches of 32: 2,400 / 32 = 75 updates.
+  why:
+    A: "32 is the batch size, not the number of batches."
+    C: "2,400 divides evenly by 32, so there is no extra, smaller batch to add."
+    D: "2,400 updates would mean one update per example, which is stochastic gradient descent."
+  verify: "2400 / 32"
+
+- id: pt2-ml-05
+  test: 2
+  skill: regularization
+  objective: ML3
+  tier: competitive
+  type: concept
+  stem: |
+    How does L2 regularization (ridge) usually affect a model's weights, compared with L1?
+  options:
+    - "It sets many weights exactly to zero"
+    - "It makes the largest weights even larger"
+    - "It leaves every weight unchanged"
+    - "It shrinks weights toward zero but rarely to exactly zero"
+  answer: D
+  explain: |
+    L2 penalizes the squared weights, which shrinks all of them toward zero but seldom makes any exactly zero. L1, which penalizes absolute values, is the one that can zero out weights and so selects features.
+  why:
+    A: "Setting many weights exactly to zero is the behavior of L1 (lasso)."
+    B: "Regularization penalizes large weights; it does not enlarge them."
+    C: "The penalty changes the weights; only a strength of 0 would leave them alone."
+
+- id: pt2-ml-06
+  test: 2
+  skill: activations
+  objective: ML3
+  tier: competitive
+  type: calculation
+  stem: |
+    An image classifier's softmax layer gives the scores 2 for cat, 0 for dog, and 0 for rabbit. Using $$e^2 \approx 7.39$$, what probability does it assign to cat, to the nearest hundredth?
+  options:
+    - "0.33"
+    - "0.79"
+    - "0.88"
+    - "1"
+  ordered: true
+  answer: B
+  explain: |
+    Softmax divides each score's exponential by the sum of all of them: e to the 2 is about 7.39, and e to the 0 is 1 for each other class. The first class gets 7.39 / (7.39 + 1 + 1) = 7.39 / 9.39, about 0.79.
+  why:
+    A: "0.33 splits the probability equally, ignoring the scores."
+    C: "0.88 is the sigmoid of 2, which treats the first class on its own instead of against both others."
+    D: "Softmax gives every class some probability, so none reaches exactly 1."
+  verify: "math.exp(2) / (math.exp(2) + 2 * math.exp(0))"
+
+- id: pt2-ml-07
+  test: 2
+  skill: supervised
+  objective: ML4
+  tier: core
+  type: scenario
+  stem: |
+    A model reads each customer email and labels it as billing, shipping, returns, or technical, learning from thousands of emails already sorted by staff. What kind of task is this?
+  options:
+    - "Binary classification"
+    - "Numeric regression"
+    - "Multiclass classification"
+    - "Unsupervised clustering"
+  answer: C
+  explain: |
+    The model learns from labeled examples and assigns each email one of four categories, so it is supervised multiclass classification.
+  why:
+    A: "Binary classification has exactly two possible classes; here there are four."
+    B: "Regression predicts a number, not a category."
+    D: "Clustering finds groups without labels, but these emails come labeled."
+
+- id: pt2-ml-08
+  test: 2
+  skill: rl-details
+  objective: ML4
+  tier: champion
+  type: calculation
+  stem: |
+    A delivery robot's Q-value for turning left at a certain corner is 5. It turns left, receives a reward of 3, and reaches a spot whose best Q-value is 10. With a learning rate of 0.2 and a discount factor of 0.8, what is its new Q-value for turning left at that corner?
+  options:
+    - "6.2"
+    - "6.6"
+    - "7.2"
+    - "11"
+  ordered: true
+  answer: A
+  explain: |
+    The new estimate is the reward plus the discounted best next value: 3 + 0.8 × 10 = 11. The update moves Q a fifth of the way toward it: 5 + 0.2 × (11 minus 5) = 5 + 1.2 = 6.2.
+  why:
+    B: "6.6 leaves out the discount factor, using 3 + 10 = 13 as the estimate."
+    C: "7.2 adds 0.2 × 11 to the old value instead of 0.2 × (11 minus 5)."
+    D: "11 is the new estimate itself; the learning rate moves Q only part of the way toward it."
+  verify: "5 + 0.2 * (3 + 0.8 * 10 - 5)"
+
+- id: pt2-ml-09
+  test: 2
+  skill: choose-approach
+  objective: ML5
+  tier: competitive
+  type: scenario
+  stem: |
+    A hospital wants to predict which patients will be readmitted, using 30,000 labeled past stays. Doctors must be able to follow each prediction as a short chain of yes-or-no questions. Which choice fits best?
+  options:
+    - "A deep neural network with many layers"
+    - "k-means clustering of the patients"
+    - "A reinforcement learning agent"
+    - "A shallow decision tree"
+  answer: D
+  explain: |
+    Labeled outcomes make this supervised classification, and the need to trace each prediction points to an interpretable model. A shallow decision tree turns every prediction into a short series of readable questions.
+  why:
+    A: "A deep network may be accurate, but its predictions cannot be read as simple rules."
+    B: "Clustering ignores the labeled outcomes and predicts nothing."
+    C: "No agent acts and learns from rewards; this is prediction from labeled history."
+
+- id: pt2-ml-10
+  test: 2
+  skill: deep-architectures
+  objective: ML6
+  tier: champion
+  type: calculation
+  stem: |
+    A 3 × 3 convolution kernel scans a 100 × 100 grayscale image. A fully connected layer would instead link each of the 10,000 input pixels to each of 10,000 output values. Ignoring biases, how many weights does each approach learn?
+  options:
+    - "9 for the kernel and 100,000,000 for the fully connected layer"
+    - "9 for the kernel and 10,000 for the fully connected layer"
+    - "90,000 for the kernel and 10,000 for the fully connected layer"
+    - "10,000 for the kernel and 10,000 for the fully connected layer"
+  answer: A
+  explain: |
+    The kernel's 9 weights are reused at every position in the image, so the layer learns only 9. A fully connected layer needs one weight per input-output pair: 10,000 × 10,000 = 100 million. Weight sharing is why convolutional networks suit images.
+  why:
+    B: "Linking every input to every output takes 10,000 × 10,000 weights, not 10,000."
+    C: "The kernel's 9 weights are shared across all positions, not copied for each one."
+    D: "A 3 × 3 kernel has just 9 weights, however large the image is."
+  verify: |
+    ans = f"{3 * 3} for the kernel and {10000 * 10000:,} for the fully connected layer"
+
+# ================================================================ Test 3
+- id: pt3-ml-01
+  test: 3
+  skill: ml-nature
+  objective: ML1
+  tier: competitive
+  type: scenario
+  stem: |
+    One team writes rules by hand to compute shipping cost from package weight and distance. Another team trains a model on past shipments to predict which packages will arrive late. Which is machine learning, and why?
+  options:
+    - "Both, since both use data about packages"
+    - "The shipping-cost rules, since they use numbers"
+    - "Neither, since neither uses a neural network"
+    - "The lateness model, since it learns its rules from data"
+  answer: D
+  explain: |
+    Machine learning lets the computer learn rules from examples. The lateness model learns patterns from past shipments, while the cost calculator follows rules that people wrote, which is traditional programming.
+  why:
+    A: "Using data is not enough; the hand-written cost rules are not learned from examples."
+    B: "Using numbers does not make a program learn; its rules were written by people."
+    C: "Machine learning includes many methods besides neural networks, such as decision trees."
+
+- id: pt3-ml-02
+  test: 3
+  skill: data-splits
+  objective: ML2
+  tier: champion
+  type: scenario
+  stem: |
+    A model will forecast next month's sales from five years of monthly sales. How should the data be split for training and testing?
+  options:
+    - "Train on earlier months and test on the most recent ones"
+    - "Shuffle the months, then split them at random"
+    - "Train and test on the same months"
+    - "Test on the earliest months and train on the rest"
+  answer: A
+  explain: |
+    A forecast must predict the future from the past, so the test months should come after the training months. A random split would let the model learn from months later than the ones it is tested on, a form of leakage that makes the test score too optimistic.
+  why:
+    B: "Shuffling puts later months in training, so the model peeks at the future."
+    C: "Testing on the training months hides overfitting and says nothing about the future."
+    D: "This trains on the future to predict the past, the reverse of real forecasting."
+
+- id: pt3-ml-03
+  test: 3
+  skill: cross-validation
+  objective: ML2
+  tier: competitive
+  type: calculation
+  stem: |
+    A churn model is evaluated with 10-fold cross-validation on 2,000 customer records. How many records does each of the 10 models train on?
+  options:
+    - "200"
+    - "1,800"
+    - "2,000"
+    - "20,000"
+  ordered: true
+  answer: B
+  explain: |
+    Each fold holds 2,000 / 10 = 200 examples. Every model trains on the other 9 folds: 9 × 200 = 1,800 examples.
+  why:
+    A: "200 is the size of the validation fold, not the training data."
+    C: "2,000 includes the fold held out for validation."
+    D: "20,000 multiplies the data by the number of folds."
+  verify: "2000 - 2000 / 10"
+
+- id: pt3-ml-04
+  test: 3
+  skill: linear-models
+  objective: ML3
+  tier: core
+  type: calculation
+  stem: |
+    A model predicts a seedling's weekly growth, in millimeters, as $$\hat{y} = 3x_1 + 2x_2 - 4$$, where $$x_1$$ is hours of extra light per day and $$x_2$$ is liters of water per week. What does it predict for 2 hours of light and 5 liters of water?
+  options:
+    - "8"
+    - "12"
+    - "16"
+    - "20"
+  ordered: true
+  answer: B
+  explain: |
+    Substitute the inputs: 3 × 2 + 2 × 5 minus 4 = 6 + 10 minus 4 = 12.
+  why:
+    A: "8 forgets to multiply x1 by its weight of 3: 2 + 10 minus 4."
+    C: "16 leaves out the bias of negative 4."
+    D: "20 adds 4 instead of subtracting it."
+  verify: "3 * 2 + 2 * 5 - 4"
+
+- id: pt3-ml-05
+  test: 3
+  skill: decision-trees
+  objective: ML3
+  tier: champion
+  type: calculation
+  stem: |
+    A parent node holds 8 "yes" and 8 "no" examples, so its Gini impurity is 0.5. A split sends 8 yes and 2 no to the left child (Gini 0.32) and 0 yes and 6 no to the right child (Gini 0). By how much does the split reduce Gini impurity?
+  options:
+    - "0.18"
+    - "0.2"
+    - "0.3"
+    - "0.5"
+  ordered: true
+  answer: C
+  explain: |
+    Weight each child's Gini by its share of the 16 examples: (10/16) × 0.32 + (6/16) × 0 = 0.2. The reduction is the parent's impurity minus that: 0.5 minus 0.2 = 0.3.
+  why:
+    A: "0.18 subtracts the left child's Gini without weighting it by its share of the examples."
+    B: "0.2 is the weighted impurity of the children, not the reduction."
+    D: "0.5 is the parent's impurity before the split."
+  verify: "0.5 - (10 / 16 * (1 - (0.8 ** 2 + 0.2 ** 2)) + 6 / 16 * 0)"
+
+- id: pt3-ml-06
+  test: 3
+  skill: ensembles
+  objective: ML3
+  tier: competitive
+  type: concept
+  stem: |
+    Which ensemble method trains its models independently of one another, so they can be trained at the same time?
+  options:
+    - "Bagging"
+    - "Boosting"
+    - "Gradient boosting"
+    - "Both bagging and boosting"
+  answer: A
+  explain: |
+    Bagging trains each model on its own bootstrap sample, with no model depending on another, so all of them can train in parallel. Boosting trains models one after another, each focusing on the errors of those before it.
+  why:
+    B: "Boosting is sequential: each model depends on the errors of the previous ones."
+    C: "Gradient boosting is a kind of boosting, so it is sequential too."
+    D: "Only bagging trains its models independently; boosting must go in order."
+
+- id: pt3-ml-07
+  test: 3
+  skill: unsupervised
+  objective: ML4
+  tier: core
+  type: recall
+  stem: |
+    Which of these algorithms is used for unsupervised learning?
+  options:
+    - "Logistic regression"
+    - "Linear regression"
+    - "k-means clustering"
+    - "Naive Bayes"
+  answer: C
+  explain: |
+    k-means finds groups in data that have no labels, which makes it unsupervised. The other three all learn from labeled examples.
+  why:
+    A: "Logistic regression learns from labeled examples to predict a class."
+    B: "Linear regression learns from labeled examples to predict a number."
+    D: "Naive Bayes learns from labeled examples to classify, as in spam filtering."
+
+- id: pt3-ml-08
+  test: 3
+  skill: rl-basics
+  objective: ML4
+  tier: competitive
+  type: concept
+  stem: |
+    In reinforcement learning, what does an agent try to maximize?
+  options:
+    - "The reward on the very next step only"
+    - "The number of actions it takes"
+    - "The accuracy of its labels"
+    - "Its total reward over time"
+  answer: D
+  explain: |
+    An RL agent aims to maximize its cumulative reward, the total over time, often discounted. That is why it may accept a small loss now for a bigger reward later.
+  why:
+    A: "Chasing only the next reward can miss larger rewards later; the goal is the total over time."
+    B: "Taking more actions is not a goal in itself."
+    C: "RL learns from rewards, not from labels."
+
+- id: pt3-ml-09
+  test: 3
+  skill: choose-approach
+  objective: ML5
+  tier: core
+  type: scenario
+  stem: |
+    A company has 50,000 past emails, each marked by staff as spam or not spam, and wants to filter new emails automatically. Which approach fits?
+  options:
+    - "Supervised classification"
+    - "Unsupervised clustering"
+    - "Reinforcement learning"
+    - "Supervised regression"
+  answer: A
+  explain: |
+    The emails come with known labels, and the goal is to assign each new email one of two categories, so this is supervised classification.
+  why:
+    B: "Clustering ignores the labels the staff already provided."
+    C: "There is no agent learning from rewards over time."
+    D: "Regression predicts a number, but spam or not is a category."
+
+- id: pt3-ml-10
+  test: 3
+  skill: deep-architectures
+  objective: ML6
+  tier: competitive
+  type: visual
+  stem: |
+    A convolutional layer in a traffic-sign classifier produces the 4 × 4 feature map below, and max pooling with 2 × 2 windows and a stride of 2 is applied to it. What value lands in the top-right cell of the pooled map?
+
+    | | | | |
+    |---|---|---|---|
+    | 1 | 4 | 2 | 0 |
+    | 3 | 2 | 5 | 1 |
+    | 0 | 6 | 1 | 3 |
+    | 2 | 1 | 4 | 2 |
+  options:
+    - "2"
+    - "4"
+    - "5"
+    - "6"
+  ordered: true
+  answer: C
+  explain: |
+    The top-right output cell covers the top-right 2 × 2 window: 2, 0, 5, and 1. Max pooling keeps the largest, 5.
+  why:
+    A: "2 is the average of the window; max pooling keeps the largest value."
+    B: "4 is the top-left output, from the window 1, 4, 3, and 2."
+    D: "6 is the largest value in the whole map, which sits in the bottom-left window."
+  verify: "max([2, 0, 5, 1])"
+
+# ================================================================ Test 4
+- id: pt4-ml-01
+  test: 4
+  skill: ml-vocab
+  objective: ML1
+  tier: champion
+  type: concept
+  stem: |
+    What does a k-nearest neighbors model learn during training?
+  options:
+    - "Nothing much; it just stores the data"
+    - "The best value of k for the data"
+    - "One learned weight for each feature"
+    - "A centroid summarizing each class"
+  answer: A
+  explain: |
+    k-NN is a lazy, non-parametric learner: training just stores the examples, and the work happens at prediction time, when it finds the nearest neighbors. k is a hyperparameter chosen beforehand, not something it learns.
+  why:
+    B: "k is a hyperparameter set before training, often tuned on validation data."
+    C: "k-NN fits no feature weights; it compares distances to stored examples."
+    D: "Centroids belong to k-means clustering, not k-nearest neighbors."
+
+- id: pt4-ml-02
+  test: 4
+  skill: leakage
+  objective: ML2
+  tier: competitive
+  type: scenario
+  stem: |
+    A dataset holds many photos of each of 200 patients. The photos are split at random, so the same patient appears in both training and test sets. What should be done?
+  options:
+    - "Use more photos per patient"
+    - "Split by patient, so each patient is in only one set"
+    - "Shuffle the photos again before splitting"
+    - "Remove the test set and use only training data"
+  answer: B
+  explain: |
+    Photos of the same patient share features, so a model can score well on test photos of patients it has already seen without truly generalizing. Splitting by patient keeps all of each patient's photos in one set and gives an honest test.
+  why:
+    A: "More photos per patient adds more overlap, not less."
+    C: "Another random shuffle still mixes each patient's photos across the sets."
+    D: "Without a test set there is no honest measure of performance."
+
+- id: pt4-ml-03
+  test: 4
+  skill: fit-tradeoff
+  objective: ML2
+  tier: core
+  type: scenario
+  stem: |
+    A plant-disease classifier is 97% accurate on its training photos but only 70% accurate on validation photos. What is the most likely problem?
+  options:
+    - "Underfitting"
+    - "Data that are too clean"
+    - "Overfitting"
+    - "A validation set that is too large"
+  answer: C
+  explain: |
+    A model that does far better on the data it trained on than on new data has learned quirks of the training set rather than general patterns: overfitting.
+  why:
+    A: "Underfitting gives poor results on both training and validation data."
+    B: "Clean data do not cause a gap between training and validation scores."
+    D: "A larger validation set gives a more reliable score; it does not create the gap."
+
+- id: pt4-ml-04
+  test: 4
+  skill: loss-gd
+  objective: ML3
+  tier: competitive
+  type: concept
+  stem: |
+    A model is trained with full-batch gradient descent on 1 million examples. How much data does each weight update use, and what follows from that?
+  options:
+    - "All 1 million examples, so each step is slow but smooth"
+    - "One example, so each step is fast but noisy"
+    - "A random 100 examples, a middle ground"
+    - "No examples; it reuses the previous gradient"
+  answer: A
+  explain: |
+    Full-batch gradient descent computes the gradient over the entire training set before every update, so each step follows the true average gradient but takes a long time on large data. Stochastic and mini-batch versions trade some smoothness for much faster steps.
+  why:
+    B: "Using one example per update is stochastic gradient descent."
+    C: "Using a small random batch per update is mini-batch gradient descent."
+    D: "Every update computes a fresh gradient from the data."
+
+- id: pt4-ml-05
+  test: 4
+  skill: decision-trees
+  objective: ML3
+  tier: competitive
+  type: concept
+  stem: |
+    Which node is the purest, with the lowest Gini impurity?
+  options:
+    - "5 yes and 5 no"
+    - "10 yes and 0 no"
+    - "7 yes and 3 no"
+    - "6 yes and 4 no"
+  answer: B
+  explain: |
+    A node holding only one class is perfectly pure, with Gini impurity 0. The more evenly a node mixes the classes, the higher its impurity, and a 50/50 node is the most mixed.
+  why:
+    A: "A 50/50 node is the most mixed, with the highest impurity for two classes."
+    C: "A 70/30 mix is purer than 50/50 but still impure."
+    D: "A 60/40 mix is close to even, so it is quite impure."
+
+- id: pt4-ml-06
+  test: 4
+  skill: knn-svm-nb
+  objective: ML3
+  tier: champion
+  type: concept
+  stem: |
+    A support vector machine has been trained. A training point that lies far from the boundary, deep inside its own class, is moved even farther away. What happens to the boundary?
+  options:
+    - "It shifts toward the moved point"
+    - "It shifts away from the moved point"
+    - "It becomes curved instead of straight"
+    - "It stays the same"
+  answer: D
+  explain: |
+    An SVM's boundary is fixed only by the support vectors, the training points closest to it. A point far from the boundary is not a support vector, so moving it farther away changes nothing.
+  why:
+    A: "Only the points nearest the boundary affect it, and this point is far away."
+    B: "Distant points do not push or pull the boundary."
+    C: "A curved boundary comes from choosing a kernel, not from moving a distant point."
+
+- id: pt4-ml-07
+  test: 4
+  skill: other-paradigms
+  objective: ML4
+  tier: core
+  type: scenario
+  stem: |
+    A model pretrained on millions of general photos is adapted to identify bird species using a small set of labeled bird photos. What is this called?
+  options:
+    - "Reinforcement learning"
+    - "Online learning"
+    - "Transfer learning"
+    - "Unsupervised clustering"
+  answer: C
+  explain: |
+    Transfer learning reuses what a model learned on one large task, here recognizing everyday images, and fine-tunes it for a related task with far less labeled data.
+  why:
+    A: "No agent learns from rewards; a pretrained model is fine-tuned."
+    B: "Online learning updates a model continuously as data arrive; here an existing model is adapted to a new task."
+    D: "The bird photos are labeled, and the goal is to classify them, not to find clusters."
+
+- id: pt4-ml-08
+  test: 4
+  skill: unsupervised
+  objective: ML4
+  tier: competitive
+  type: scenario
+  stem: |
+    Before modeling, a team combines 120 correlated survey features into 5 new features that keep most of the information, with no labels involved. Which unsupervised technique is this?
+  options:
+    - "Association rule mining of answers"
+    - "Dimensionality reduction, like PCA"
+    - "Anomaly detection on respondents"
+    - "Clustering of the respondents"
+  answer: B
+  explain: |
+    Dimensionality reduction replaces many correlated features with a few new ones that capture most of the variation; principal component analysis is the classic method.
+  why:
+    A: "Association rules find items that occur together, such as products bought in one trip."
+    C: "Anomaly detection flags unusual cases rather than compressing features."
+    D: "Clustering groups the rows, the respondents, rather than combining the columns."
+
+- id: pt4-ml-09
+  test: 4
+  skill: choose-approach
+  objective: ML5
+  tier: competitive
+  type: scenario
+  stem: |
+    An office building wants its elevators to learn when to send cars to which floors by trying strategies and measuring how long people wait. Which approach fits?
+  options:
+    - "Supervised classification"
+    - "Unsupervised clustering"
+    - "Dimensionality reduction"
+    - "Reinforcement learning"
+  answer: D
+  explain: |
+    The system acts, observes the results, shorter or longer waits, and improves its strategy over time from that feedback, which is reinforcement learning.
+  why:
+    A: "There are no labeled examples of correct dispatch decisions to learn from."
+    B: "Clustering groups data; it does not learn a strategy for actions."
+    C: "Dimensionality reduction compresses features; it does not choose actions."
+
+- id: pt4-ml-10
+  test: 4
+  skill: deep-learning
+  objective: ML6
+  tier: core
+  type: recall
+  stem: |
+    Which of these is an example of deep learning?
+  options:
+    - "A single decision tree with three splits"
+    - "A linear regression with two features"
+    - "A many-layered neural network that transcribes speech"
+    - "A k-means clustering of customers"
+  answer: C
+  explain: |
+    Deep learning uses neural networks with many layers that learn their own features from raw data, such as audio for speech recognition.
+  why:
+    A: "A small decision tree is classical machine learning, not a deep network."
+    B: "Linear regression is a classical model with no layers of neurons."
+    D: "k-means is a classical clustering algorithm, not a neural network."
+
+# ================================================================ Test 5
+- id: pt5-ml-01
+  test: 5
+  skill: other-paradigms
+  objective: ML1
+  tier: champion
+  type: concept
+  stem: |
+    Which statement correctly classifies k-nearest neighbors and a decision tree as lazy or eager learners?
+  options:
+    - "k-NN is lazy; a decision tree is eager"
+    - "A decision tree is lazy; k-NN is eager"
+    - "Both are lazy learners"
+    - "Both are eager learners"
+  answer: A
+  explain: |
+    A lazy learner does almost nothing during training and its real work at prediction time, as k-NN does when it searches for neighbors. An eager learner builds its model during training, as a decision tree does when it chooses its splits.
+  why:
+    B: "This reverses them: the tree builds its model up front, while k-NN waits until prediction."
+    C: "A decision tree does its work during training, so it is eager."
+    D: "k-NN only stores the data during training, so it is lazy."
+
+- id: pt5-ml-02
+  test: 5
+  skill: data-splits
+  objective: ML2
+  tier: competitive
+  type: calculation
+  stem: |
+    A fraud dataset has 4,000 transactions, and 5% of them are fraud. A stratified split puts 20% of the transactions in the test set. How many fraud cases does the test set get?
+  options:
+    - "20"
+    - "40"
+    - "200"
+    - "800"
+  ordered: true
+  answer: B
+  explain: |
+    The test set holds 20% of 4,000 = 800 examples, and a stratified split keeps the same 5% share of positives in it: 0.05 × 800 = 40.
+  why:
+    A: "20 takes 5% of 400, as if the test set were 10% of the data."
+    C: "200 is every positive example in the whole dataset."
+    D: "800 is the size of the whole test set."
+  verify: "4000 * 0.20 * 0.05"
+
+- id: pt5-ml-03
+  test: 5
+  skill: leakage
+  objective: ML2
+  tier: champion
+  type: scenario
+  stem: |
+    A model is meant to predict, when a patient is admitted, whether the patient will need intensive care. One of its features is "number of days spent in intensive care." What is wrong?
+  options:
+    - "The feature is fine, since it is highly predictive"
+    - "The feature should be standardized first"
+    - "Target leakage: the feature is unknown at admission"
+    - "The model will underfit with too many features"
+  answer: C
+  explain: |
+    Days in intensive care are only known after the outcome has happened, and they nearly give the answer away. The feature would not exist at admission, when predictions are made, so the model would look excellent in testing and fail in use.
+  why:
+    A: "It is predictive only because it reveals the outcome, which is the definition of leakage."
+    B: "Scaling a leaked feature does not stop it from revealing the answer."
+    D: "The problem is one leaked feature, not the number of features."
+
+- id: pt5-ml-04
+  test: 5
+  skill: regularization
+  objective: ML3
+  tier: competitive
+  type: concept
+  stem: |
+    Increasing the regularization strength, lambda, moves a model along the bias-variance tradeoff in which direction?
+  options:
+    - "Toward higher bias and lower variance"
+    - "Toward lower bias and higher variance"
+    - "Toward lower bias and lower variance"
+    - "It changes neither bias nor variance"
+  answer: A
+  explain: |
+    A larger lambda penalizes complexity more, so the model becomes simpler and more stable: variance falls while bias rises. Too much lambda leads to underfitting.
+  why:
+    B: "This is the effect of reducing lambda, which lets the model grow more complex."
+    C: "Regularization trades one for the other; it does not lower both at once."
+    D: "Lambda directly controls model complexity, so it shifts the tradeoff."
+
+- id: pt5-ml-05
+  test: 5
+  skill: linear-models
+  objective: ML3
+  tier: competitive
+  type: calculation
+  stem: |
+    A logistic regression model computes the score z = 0.5x - 2. What probability does it predict for x = 4?
+  options:
+    - "0.12"
+    - "0.5"
+    - "0.88"
+    - "2"
+  ordered: true
+  answer: B
+  explain: |
+    For x = 4, the score is z = 0.5 × 4 minus 2 = 0. The sigmoid of 0 is 0.5, so the model is exactly undecided.
+  why:
+    A: "0.12 is the sigmoid of negative 2, which leaves out the 0.5x term."
+    C: "0.88 is the sigmoid of 2, which leaves out the minus 2."
+    D: "2 is 0.5 × 4 alone; a probability can never exceed 1."
+  verify: "1 / (1 + math.exp(-(0.5 * 4 - 2)))"
+
+- id: pt5-ml-06
+  test: 5
+  skill: neurons
+  objective: ML3
+  tier: champion
+  type: calculation
+  stem: |
+    A network forecasts a store's sales and foot traffic (2 outputs) from 3 inputs. It is fully connected, with two hidden layers of 4 neurons each. Counting weights and biases, how many parameters does it have?
+  options:
+    - "13"
+    - "36"
+    - "44"
+    - "46"
+  ordered: true
+  answer: D
+  explain: |
+    Layer by layer: 3 × 4 weights + 4 biases = 16; 4 × 4 weights + 4 biases = 20; 4 × 2 weights + 2 biases = 10. In total, 16 + 20 + 10 = 46.
+  why:
+    A: "13 counts the neurons in all four layers."
+    B: "36 counts the weights, 12 + 16 + 8, but leaves out the 10 biases."
+    C: "44 leaves out the 2 biases of the output layer."
+  verify: "(3 * 4 + 4) + (4 * 4 + 4) + (4 * 2 + 2)"
+
+- id: pt5-ml-07
+  test: 5
+  skill: rl-details
+  objective: ML4
+  tier: champion
+  type: calculation
+  stem: |
+    In some state, an agent's Q-values are 3 for "left" and 7 for "right." It follows an epsilon-greedy policy with epsilon = 0.2, choosing between the two actions at random when it explores. What is the probability that it chooses "right"?
+  options:
+    - "0.2"
+    - "0.8"
+    - "0.9"
+    - "1"
+  ordered: true
+  answer: C
+  explain: |
+    With probability 0.8 it exploits and picks the action with the higher Q-value, right. With probability 0.2 it explores and picks at random, and half of those random picks are also right: 0.8 + 0.2 × 0.5 = 0.9.
+  why:
+    A: "0.2 is the chance of exploring, not of choosing right."
+    B: "0.8 forgets that a random exploratory pick can also land on right."
+    D: "1 would be a purely greedy policy with no exploration."
+  verify: "0.8 + 0.2 * 0.5"
+
+- id: pt5-ml-08
+  test: 5
+  skill: other-paradigms
+  objective: ML4
+  tier: core
+  type: scenario
+  stem: |
+    A team has 1,000 labeled tumor scans and 40,000 unlabeled scans, and it trains one model using both sets. What kind of learning is this?
+  options:
+    - "Semi-supervised learning"
+    - "Purely supervised learning"
+    - "Reinforcement learning"
+    - "Batch clustering"
+  answer: A
+  explain: |
+    Semi-supervised learning combines a small labeled set with a large unlabeled one, which helps when labels, such as expert readings of scans, are expensive.
+  why:
+    B: "Purely supervised learning would use only the 1,000 labeled scans."
+    C: "No agent acts and learns from rewards."
+    D: "The goal uses labels to learn a prediction, not just to find groups."
+
+- id: pt5-ml-09
+  test: 5
+  skill: choose-approach
+  objective: ML5
+  tier: core
+  type: scenario
+  stem: |
+    A fitness app wants to sort its users into types based on their workout habits, but no one has labeled any user's type. Which approach fits?
+  options:
+    - "Supervised classification"
+    - "Supervised regression"
+    - "Reinforcement learning"
+    - "Unsupervised clustering"
+  answer: D
+  explain: |
+    With no labels, the app must discover the groups from the data itself, which is what clustering does.
+  why:
+    A: "Classification needs labeled examples of each user type, and there are none."
+    B: "Regression predicts a number from labeled data."
+    C: "No agent learns a strategy from rewards here."
+
+- id: pt5-ml-10
+  test: 5
+  skill: deep-architectures
+  objective: ML6
+  tier: competitive
+  type: calculation
+  stem: |
+    A satellite-image model slides a 7 × 7 kernel over each 50 × 50 pixel tile, one pixel at a time, with no padding. What size is the resulting feature map?
+  options:
+    - "43 × 43"
+    - "44 × 44"
+    - "50 × 50"
+    - "57 × 57"
+  answer: B
+  explain: |
+    With a stride of 1 and no padding, an n × n image and a k × k kernel give (n minus k + 1) × (n minus k + 1): 50 minus 7 + 1 = 44, so the map is 44 × 44.
+  why:
+    A: "43 × 43 subtracts the kernel size but forgets to add 1."
+    C: "Without padding, the kernel cannot be centered on edge pixels, so the map shrinks."
+    D: "57 × 57 adds the kernel size instead of subtracting it."
+  verify: |
+    n = 50 - 7 + 1
+    ans = f"{n} × {n}"
