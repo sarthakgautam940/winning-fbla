@@ -13,7 +13,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "pretest": "npm run content"
   },
   "dependencies": {
     "hast-util-to-jsx-runtime": "2.3.7",
