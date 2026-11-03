@@ -43,19 +43,19 @@
   tier: competitive
   type: scenario
   stem: |
-    A school installs hallway cameras to deter vandalism. Two years later, administrators begin using the footage to track which students meet with which teachers. What is this an example of?
+    After a city installs face-recognition cameras in a park, far fewer people attend the peaceful protests held there, although no one has been arrested. What is this an example of?
   options:
     - "A data breach"
     - "Misidentification"
-    - "Data minimization"
     - "Function creep"
+    - "A chilling effect"
   answer: D
   explain: |
-    Function creep is the gradual expansion of a system beyond its original purpose. Cameras installed to deter vandalism are now monitoring students' relationships, a use far beyond the one they were installed for.
+    A chilling effect is the self-censorship that follows when people know they are watched: they avoid lawful activities, such as protests. Here the cameras changed behavior without anyone being punished.
   why:
-    A: "A data breach is unauthorized access to data; here the school itself is using the footage."
-    B: "Nothing suggests the cameras identified the wrong people."
-    C: "Data minimization limits data to its purpose, the opposite of what is happening."
+    A: "A data breach is unauthorized access to data; nothing here says the footage was stolen."
+    B: "No one has been wrongly identified; people are changing what they do."
+    C: "Function creep is a system spreading beyond its original purpose; nothing says the cameras' use has changed."
 
 - id: ut8-04
   skill: genai-dilemmas
@@ -138,7 +138,7 @@
   tier: core
   type: scenario
   stem: |
-    A voice assistant is trained mostly on recordings of adult speakers and makes far more errors when children speak to it. Which source of bias is this?
+    A fitness app's step counter is trained only on data from people who walk without mobility aids, and it undercounts steps for people who use walkers or canes. Which source of bias is this?
   options:
     - "Historical bias"
     - "Deployment bias"
@@ -146,11 +146,11 @@
     - "Aggregation bias"
   answer: C
   explain: |
-    Representation bias occurs when part of the population is missing or underrepresented in the training data. With few children's voices to learn from, the model works worse for children.
+    Representation bias occurs when part of the population is missing or underrepresented in the training data. With no examples from people who use mobility aids, the model never learned how their steps look.
   why:
     A: "Historical bias is an accurate record of an unfair past; here the problem is who is missing from the data."
-    B: "The assistant is used as intended; the issue lies in its training data."
-    D: "Aggregation bias is one model for groups whose data mean different things; the root problem here is too few examples of children."
+    B: "The app is used for its intended purpose; the issue lies in its training data."
+    D: "Aggregation bias is one model for groups whose data mean different things; the root problem here is that one group is absent from the data."
 
 - id: ut8-09
   skill: bias-sources
@@ -195,21 +195,21 @@
   tier: competitive
   type: calculation
   stem: |
-    A lender approves 48 of 80 applicants from group A and 27 of 60 applicants from group B. What is the ratio of group B's approval rate to group A's?
+    A lender approves 56 of 80 applicants from group A and 33 of 60 applicants from group B. What is the ratio of group B's approval rate to group A's, to the nearest hundredth?
   options:
     - "0.15"
-    - "0.45"
-    - "0.75"
-    - "1.33"
+    - "0.55"
+    - "0.79"
+    - "1.27"
   ordered: true
   answer: C
   explain: |
-    Group A's rate is 48 / 80 = 0.60, and group B's is 27 / 60 = 0.45. The ratio is 0.45 / 0.60 = 0.75, below the four-fifths (0.80) threshold that U.S. hiring guidelines treat as evidence of adverse impact.
+    Group A's rate is 56 / 80 = 0.70, and group B's is 33 / 60 = 0.55. The ratio is 0.55 / 0.70, about 0.79, just under the four-fifths (0.80) threshold that U.S. hiring guidelines treat as evidence of adverse impact.
   why:
     A: "0.15 is the difference between the two rates, not their ratio."
-    B: "0.45 is group B's approval rate itself."
-    D: "1.33 divides group A's rate by group B's, the wrong way round."
-  verify: "(27 / 60) / (48 / 80)"
+    B: "0.55 is group B's approval rate itself."
+    D: "1.27 divides group A's rate by group B's, the wrong way round."
+  verify: "(33 / 60) / (56 / 80)"
 
 - id: ut8-12
   skill: fairness
@@ -376,38 +376,38 @@
   tier: core
   type: scenario
   stem: |
-    Asked for an inspiring quotation, a chatbot attributes a sentence to a famous scientist who never said or wrote it. What is this?
+    A chatbot with no web access writes a detailed, confident summary of a novel that includes a chapter the book does not contain. What best explains how this happens?
   options:
-    - "A jailbreak"
-    - "Membership inference"
-    - "A hallucination"
-    - "Data poisoning"
+    - "It invented the chapter on purpose to mislead the user"
+    - "An attacker must have poisoned its training data"
+    - "It predicts likely text, and likely is not the same as true"
+    - "It copied the summary from one unreliable website"
   answer: C
   explain: |
-    A hallucination, which NIST calls confabulation, is confident, plausible output that is false or unsupported. Invented quotations and citations are among its most common forms.
+    A language model is trained to produce likely next words, not to look up verified facts, so it can describe a plausible but nonexistent chapter with complete confidence. A confident tone is not evidence that an answer is correct.
   why:
-    A: "A jailbreak is an attempt to make a model ignore its safety rules."
-    B: "Membership inference is an attack that tests whether a record was in the training data."
-    D: "Poisoning is deliberate tampering with training data; this is an ordinary model error."
+    A: "The model has no intent to deceive; a hallucination is an error, not a lie."
+    B: "Poisoning is possible, but ordinary hallucinations need no attacker."
+    D: "The model has no web access here, and it generates text from learned patterns rather than copying one page."
 
 - id: ut8-20
   skill: hallucination
   tier: competitive
   type: scenario
   stem: |
-    A library's chatbot sometimes invents book titles when patrons ask for sources on a topic. Which change most directly reduces this?
+    A team's research assistant is prompted to answer every question, however obscure, and it often invents answers to questions its sources do not cover. Which change to its instructions most directly reduces this?
   options:
-    - "Raise the temperature so that answers are more varied"
-    - "Ask the model to sound more confident in its answers"
-    - "Remove the catalog so that the model relies on its memory"
-    - "Retrieve results from the library catalog and cite only the books it returns"
+    - "Require an answer to every question, so users are never left without one"
+    - "Raise the temperature so the model considers more possible answers"
+    - "Ask for longer answers that include more specific details"
+    - "Allow it to say it does not know when its sources do not cover a question"
   answer: D
   explain: |
-    Grounding answers in the real catalog, a form of retrieval-augmented generation, and citing only retrieved items gives the model real titles to work from and makes every citation checkable.
+    Prompts and training that reward always answering push a model to guess. Giving it permission to say it does not know, and to answer only from its sources, removes that pressure, one of the habits that reduce hallucinations.
   why:
-    A: "More randomness tends to produce more invented details, not fewer."
-    B: "Confidence is not accuracy."
-    C: "Relying on memory alone is what produces invented titles."
+    A: "Demanding an answer every time is exactly what pushes the model to guess."
+    B: "Higher temperature adds randomness, which tends to add invented details, not remove them."
+    C: "Asking for more specific details gives the model more chances to invent them."
 
 - id: ut8-21
   skill: misinformation
