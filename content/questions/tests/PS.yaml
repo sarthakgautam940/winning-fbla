@@ -689,3 +689,1017 @@
   verify: |
     n, p = 100, 0.1
     ans = f"Mean {n * p:g}, SD {math.sqrt(n * p * (1 - p)):g}"
+
+# ================================================================ Test 3
+- id: pt3-ps-01
+  test: 3
+  skill: median
+  objective: PS1
+  tier: core
+  type: concept
+  stem: |
+    A coach lists the 40 finishing times from a race in order, from fastest to slowest. Which times determine the median?
+  options:
+    - "Only the 20th time"
+    - "The 20th and 21st times, averaged"
+    - "Only the 21st time"
+    - "The 1st and 40th times, averaged"
+  answer: B
+  explain: |
+    The median sits at position (n + 1) / 2 = 41 / 2 = 20.5, halfway between the 20th and 21st times. With an even count there is no single middle value, so you average the two middle ones.
+  why:
+    A: "The 20th time has 19 times before it and 20 after, so it is not the middle."
+    C: "The 21st time has 20 times before it and only 19 after, so it is not the middle."
+    D: "Averaging the fastest and slowest gives the midrange, which ignores every time in between."
+
+- id: pt3-ps-02
+  test: 3
+  skill: quartiles
+  objective: PS1
+  tier: core
+  type: recall
+  stem: |
+    Which percentile is the same as the third quartile, Q3?
+  options:
+    - "25th"
+    - "50th"
+    - "75th"
+    - "90th"
+  answer: C
+  explain: |
+    Quartiles split sorted data into four equal parts: Q1 is the 25th percentile, the median (Q2) is the 50th, and Q3 is the 75th.
+  why:
+    A: "The 25th percentile is Q1."
+    B: "The 50th percentile is the median, Q2."
+    D: "The 90th percentile lies above Q3; the quartiles stop at the 75th."
+
+- id: pt3-ps-03
+  test: 3
+  skill: mean
+  objective: PS1
+  tier: competitive
+  type: calculation
+  stem: |
+    A stock's daily price changes over six days were -4, 7, 0, -9, 3, and 9 dollars. What was the mean daily change, in dollars?
+  options:
+    - "1"
+    - "1.2"
+    - "5.33"
+    - "6"
+  ordered: true
+  answer: A
+  explain: |
+    Add with the signs: negative 4 + 7 + 0 minus 9 + 3 + 9 = 6. Divide by all six days, including the day with no change: 6 / 6 = $1.
+  why:
+    B: "1.2 divides by 5, leaving out the day with a change of 0."
+    C: "5.33 drops the signs and averages the sizes of the changes."
+    D: "6 is the total change, not the mean."
+  verify: "statistics.mean([-4, 7, 0, -9, 3, 9])"
+
+- id: pt3-ps-04
+  test: 3
+  skill: center-choice
+  objective: PS1
+  tier: champion
+  type: concept
+  stem: |
+    A café's sales by hour show two separate peaks, one at breakfast and one at lunch, with few sales in between. Why can the mean time of sale mislead?
+  options:
+    - "It can land between the peaks, when few sales happen"
+    - "It is always smaller than the median in such data"
+    - "It gives the single most common hour of sale"
+    - "It is pulled far out by outliers in the tails"
+  answer: A
+  explain: |
+    With two peaks, the mean balances them and can land in the quiet stretch between breakfast and lunch, a time when the café sells little. For a two-peaked distribution, describe each peak rather than reporting one center.
+  why:
+    B: "Rules comparing the mean and the median describe skew; here both can sit in the gap between the peaks."
+    C: "The most common hour is the mode, which sits at one of the peaks."
+    D: "Nothing here is an outlier; the problem is that the center falls in the gap between the peaks."
+
+- id: pt3-ps-05
+  test: 3
+  skill: covariance
+  objective: PS2
+  tier: core
+  type: concept
+  stem: |
+    A farm stand records each day's rainfall, in millimeters, and its sales, in dollars. In what units is the covariance of these two variables?
+  options:
+    - "Millimeters only"
+    - "Dollars only"
+    - "No units at all"
+    - "Millimeter-dollars"
+  answer: D
+  explain: |
+    Covariance averages products of paired deviations, (x minus its mean) times (y minus its mean), so its units are the product of the two variables' units: millimeters times dollars. Units like these are one reason the size of a covariance is hard to interpret.
+  why:
+    A: "Millimeters are the units of rainfall alone; each product of deviations also brings in dollars."
+    B: "Dollars are the units of sales alone; each product of deviations also brings in millimeters."
+    C: "Correlation has no units; covariance keeps the product of the two variables' units."
+
+- id: pt3-ps-06
+  test: 3
+  skill: correlation
+  objective: PS2
+  tier: competitive
+  type: concept
+  stem: |
+    Two variables have a correlation of exactly r = 1. What does that tell you?
+  options:
+    - "The line through the points has a slope of exactly 1"
+    - "Changes in x cause the changes in y"
+    - "Each x value is equal to its y value"
+    - "Every point lies exactly on an upward-sloping line"
+  answer: D
+  explain: |
+    A correlation of 1 is a perfect positive linear relationship: every point falls exactly on a line that rises from left to right. The line can have any positive slope.
+  why:
+    A: "r measures how tightly the points follow a line, not how steep the line is."
+    B: "Correlation, even a perfect one, does not show cause and effect."
+    C: "y could be 3x + 10 and still give r = 1; the values need not be equal."
+
+- id: pt3-ps-07
+  test: 3
+  skill: correlation
+  objective: PS2
+  tier: competitive
+  type: calculation
+  stem: |
+    For a set of cars, r squared between weight and fuel efficiency is 0.81, and heavier cars get fewer miles per gallon. What is the correlation r?
+  options:
+    - "-0.9"
+    - "-0.81"
+    - "0.81"
+    - "0.9"
+  ordered: true
+  answer: A
+  explain: |
+    r is the square root of r squared, with the sign of the relationship. The square root of 0.81 is 0.9, and the relationship is negative, so r is negative 0.9.
+  why:
+    B: "-0.81 skips the square root: 0.81 is r squared, not r."
+    C: "0.81 is r squared, and it also misses the negative direction."
+    D: "0.9 has the right size but the wrong sign: heavier cars get fewer miles per gallon."
+  verify: "-math.sqrt(0.81)"
+
+- id: pt3-ps-08
+  test: 3
+  skill: empirical-rule
+  objective: PS3
+  tier: core
+  type: calculation
+  stem: |
+    Juice bottles are filled with amounts that are normally distributed, with a mean of 750 milliliters and a standard deviation of 6 milliliters. About what percent of bottles hold between 732 and 768 milliliters?
+  options:
+    - "68%"
+    - "95%"
+    - "99.7%"
+    - "100%"
+  ordered: true
+  answer: C
+  explain: |
+    732 and 768 are each 18 milliliters, or 3 standard deviations, from the mean of 750. About 99.7% of a normal distribution lies within 3 standard deviations of its mean.
+  why:
+    A: "68% is the share within 1 standard deviation, 744 to 756."
+    B: "95% is the share within 2 standard deviations, 738 to 762."
+    D: "A normal distribution always leaves a little probability beyond any finite range."
+  verify: "{1: 68, 2: 95, 3: 99.7}[round((768 - 750) / 6)]"
+
+- id: pt3-ps-09
+  test: 3
+  skill: inference-basics
+  objective: PS3
+  tier: competitive
+  type: scenario
+  stem: |
+    A new tutoring method really does raise test scores, but a study of it finds no statistically significant effect. What kind of error is this?
+  options:
+    - "Type II error, a false negative"
+    - "Type I error, a false positive"
+    - "No error, because the result was not significant"
+    - "A confounding error, because the groups differed"
+  answer: A
+  explain: |
+    A Type II error misses a real effect: the null hypothesis is false, but the study fails to reject it. A Type I error is the opposite, finding an effect that is not there.
+  why:
+    B: "A Type I error claims an effect that does not exist; here a real effect was missed."
+    C: "Missing a real effect is an error even though the study reported no significance."
+    D: "Nothing in the scenario points to a confounding variable; the problem is a missed effect."
+
+- id: pt3-ps-10
+  test: 3
+  skill: empirical-rule
+  objective: PS3
+  tier: champion
+  type: calculation
+  stem: |
+    A normal distribution has 2.5 percent of its values above 92 and 2.5 percent below 52. What are its mean and standard deviation?
+  options:
+    - "Mean 72, SD 20"
+    - "Mean 72, SD 40"
+    - "Mean 72, SD 10"
+    - "Mean 52, SD 20"
+  answer: C
+  explain: |
+    The two tails are equal, so the mean sits halfway between the cutoffs: (52 + 92) / 2 = 72. About 2.5% lies beyond 2 standard deviations on each side, so 92 is 2 standard deviations above 72, and the standard deviation is 20 / 2 = 10.
+  why:
+    A: "20 is the distance from the mean to 92, which is two standard deviations, not one."
+    B: "40 is the whole distance between the two cutoffs."
+    D: "52 is a cutoff, not the center; equal tails put the mean halfway between the cutoffs."
+  verify: |
+    mean = (52 + 92) / 2
+    ans = f"Mean {mean:g}, SD {(92 - mean) / 2:g}"
+
+- id: pt3-ps-11
+  test: 3
+  skill: prob-rules
+  objective: PS4
+  tier: core
+  type: calculation
+  stem: |
+    At a gym, 45 percent of members take a spin class, and 60 percent of the spin-class members also swim. What percent of all members do both?
+  options:
+    - "15%"
+    - "27%"
+    - "45%"
+    - "60%"
+  ordered: true
+  answer: B
+  explain: |
+    Multiply the share who take spin by the share of them who also swim: 0.45 × 0.60 = 0.27, or 27% of all members.
+  why:
+    A: "15% subtracts the percentages instead of multiplying them."
+    C: "45% is everyone who takes spin, including those who do not swim."
+    D: "60% is the share of spin-class members who swim, not the share of all members."
+  verify: "0.45 * 0.60 * 100"
+
+- id: pt3-ps-12
+  test: 3
+  skill: prob-basics
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    Assume all 12 birth months are equally likely and independent. What is the probability that two randomly chosen people were born in the same month?
+  options:
+    - "1/144"
+    - "1/12"
+    - "1/6"
+    - "11/12"
+  ordered: true
+  answer: B
+  explain: |
+    Whatever month the first person was born in, the second person matches it with probability 1/12. The first person's month does not matter, so no extra factor is needed.
+  why:
+    A: "1/144 is the chance that both were born in one particular month, such as January."
+    C: "1/6 adds 1/12 twice."
+    D: "11/12 is the chance that their months differ."
+  verify: "1 / 12"
+
+- id: pt3-ps-13
+  test: 3
+  skill: expected-value
+  objective: PS4
+  tier: champion
+  type: calculation
+  stem: |
+    In a game, you flip a fair coin. On heads, you roll a fair six-sided die and win that many dollars. On tails, you win $2. What are your expected winnings?
+  options:
+    - "$1.75"
+    - "$2.00"
+    - "$2.75"
+    - "$5.50"
+  ordered: true
+  answer: C
+  explain: |
+    Weight each branch by its probability: 0.5 × 3.5 (the die's expected value) + 0.5 × 2 = 1.75 + 1 = $2.75.
+  why:
+    A: "$1.75 counts only the heads branch."
+    B: "$2.00 counts only the tails prize."
+    D: "$5.50 adds the two branches without weighting each by 0.5."
+  verify: "0.5 * 3.5 + 0.5 * 2"
+
+- id: pt3-ps-14
+  test: 3
+  skill: distributions
+  objective: PS5
+  tier: competitive
+  type: scenario
+  stem: |
+    A server crashes a few times a year, at random and independently. What kind of variable is the number of crashes in a year, and which distribution often models it?
+  options:
+    - "Continuous; normal"
+    - "Discrete; uniform"
+    - "Continuous; Poisson"
+    - "Discrete; Poisson"
+  answer: D
+  explain: |
+    The number of crashes is a count, so it is discrete. Counts of independent events over a fixed stretch of time are the classic setting for a Poisson distribution.
+  why:
+    A: "A count is discrete, and counts of rare events are not modeled as normal."
+    B: "The counts 0, 1, 2, and so on are not equally likely, so the distribution is not uniform."
+    C: "Poisson is right, but a count is discrete, not continuous."
+
+- id: pt3-ps-15
+  test: 3
+  skill: distributions
+  objective: PS5
+  tier: competitive
+  type: calculation
+  stem: |
+    An elevator is equally likely to arrive at any moment in the next 60 seconds, so your wait is uniform between 0 and 60 seconds. What is the probability that you wait more than 45 seconds?
+  options:
+    - "0.017"
+    - "0.25"
+    - "0.5"
+    - "0.75"
+  ordered: true
+  answer: B
+  explain: |
+    For a continuous uniform distribution, probability is proportional to length. Waits longer than 45 seconds fill the last 15 of the 60 seconds: 15 / 60 = 0.25.
+  why:
+    A: "0.017 is 1/60, as if the wait could fall in only one particular second."
+    C: "0.5 is the chance of waiting more than 30 seconds, half the range."
+    D: "0.75 is the chance of waiting less than 45 seconds."
+  verify: "(60 - 45) / 60"
+
+# ================================================================ Test 4
+- id: pt4-ps-01
+  test: 4
+  skill: median
+  objective: PS1
+  tier: core
+  type: calculation
+  stem: |
+    The median of a dataset is 31. Every value is increased by 4. What is the new median?
+  options:
+    - "27"
+    - "31"
+    - "35"
+    - "124"
+  ordered: true
+  answer: C
+  explain: |
+    Adding the same amount to every value shifts the whole dataset, the middle value included: 31 + 4 = 35.
+  why:
+    A: "27 subtracts instead of adding."
+    B: "31 would hold only if nothing changed; every value, the middle one included, moved up 4."
+    D: "124 multiplies by 4 instead of adding 4."
+  verify: "31 + 4"
+
+- id: pt4-ps-02
+  test: 4
+  skill: quartiles
+  objective: PS1
+  tier: core
+  type: concept
+  stem: |
+    In a city, the first quartile of monthly apartment rents is $1,150. What does that mean?
+  options:
+    - "About 25% of apartments rent for less than $1,150"
+    - "The average monthly rent is $1,150"
+    - "Rents in the city run from $0 to $1,150"
+    - "About 25% of apartments rent for exactly $1,150"
+  answer: A
+  explain: |
+    Q1 is the 25th percentile: about a quarter of the rents fall below it and about three quarters fall above it.
+  why:
+    B: "The average rent is the mean, a different number."
+    C: "Q1 is a cutoff inside the data, not the whole range of rents."
+    D: "Q1 marks a position in the sorted data, not a share of identical values."
+
+- id: pt4-ps-03
+  test: 4
+  skill: mean
+  objective: PS1
+  tier: competitive
+  type: calculation
+  stem: |
+    Five values have a mean of 20. When the value 60 is removed, what is the mean of the remaining four?
+  options:
+    - "8"
+    - "10"
+    - "20"
+    - "40"
+  ordered: true
+  answer: B
+  explain: |
+    The five values total 5 × 20 = 100. Removing 60 leaves 40, shared by four values: 40 / 4 = 10.
+  why:
+    A: "8 divides by 5, but only four values remain."
+    C: "Removing a value far above the mean must lower the mean."
+    D: "40 is the total of the remaining values, not their mean."
+  verify: "(5 * 20 - 60) / 4"
+
+- id: pt4-ps-04
+  test: 4
+  skill: median
+  objective: PS1
+  tier: champion
+  type: concept
+  stem: |
+    Class A's 20 test scores have a median of 70, and Class B's 20 scores have a median of 80. What can you say about the median of all 40 scores?
+  options:
+    - "It must be exactly 75"
+    - "It cannot be determined from the two medians alone"
+    - "It must equal the larger median, 80"
+    - "It must equal the mean of all 40 scores"
+  answer: B
+  explain: |
+    A median depends on where the middle values fall, so you need the scores themselves to find the combined median. Means of groups can be combined from their sizes, but medians cannot.
+  why:
+    A: "Averaging two group results works for means of equal-size groups, not for medians."
+    C: "Nothing forces the combined middle to match either class's median."
+    D: "The mean and the median of the combined scores can differ, as in any skewed data."
+
+- id: pt4-ps-05
+  test: 4
+  skill: covariance
+  objective: PS2
+  tier: core
+  type: concept
+  stem: |
+    As the outdoor temperature rises, a home's heating bill falls. What is the sign of the covariance between temperature and heating bill?
+  options:
+    - "Positive"
+    - "Negative"
+    - "Zero"
+    - "Covariance has no sign"
+  answer: B
+  explain: |
+    When one variable tends to rise while the other falls, the covariance is negative.
+  why:
+    A: "A positive covariance means the two variables rise together."
+    C: "Zero would mean no linear tendency, but these clearly move in opposite directions."
+    D: "A covariance can be positive, negative, or zero; its sign shows the direction."
+
+- id: pt4-ps-06
+  test: 4
+  skill: covariance
+  objective: PS2
+  tier: champion
+  type: calculation
+  stem: |
+    A random variable X has a variance of 5. What is the covariance of X with $$2X + 1$$?
+  options:
+    - "5"
+    - "7"
+    - "10"
+    - "20"
+  ordered: true
+  answer: C
+  explain: |
+    Adding a constant does not change a covariance, and multiplying one variable by 2 doubles it. The covariance of X with itself is its variance, so the answer is 2 × 5 = 10.
+  why:
+    A: "5 is the covariance of X with itself, before doubling."
+    B: "7 adds 2 to the variance instead of multiplying by 2."
+    D: "20 is the variance of 2X + 1, which multiplies the variance by 2 squared."
+  verify: |
+    x = np.array([1.0, 4.0, 2.0, 8.0, 5.0, 3.0])
+    x = (x - x.mean()) / x.std() * math.sqrt(5)
+    ans = np.cov(x, 2 * x + 1, bias=True)[0, 1]
+
+- id: pt4-ps-07
+  test: 4
+  skill: sd-props
+  objective: PS2
+  tier: competitive
+  type: concept
+  stem: |
+    Which change to a dataset increases its standard deviation?
+  options:
+    - "Adding 10 to every value"
+    - "Adding a new value far from the mean"
+    - "Adding a new value equal to the mean"
+    - "Multiplying every value by 0.5"
+  answer: B
+  explain: |
+    A value far from the mean brings a large squared deviation, which raises the standard deviation. Shifting every value leaves the spread unchanged, a value at the mean lowers it slightly, and halving every value halves it.
+  why:
+    A: "Adding the same amount to every value shifts the data without changing its spread."
+    C: "A value at the mean adds no deviation but adds to the count, so the standard deviation shrinks slightly."
+    D: "Multiplying every value by 0.5 halves the standard deviation."
+
+- id: pt4-ps-08
+  test: 4
+  skill: empirical-rule
+  objective: PS3
+  tier: core
+  type: calculation
+  stem: |
+    Reaction times are normally distributed with a mean of 400 milliseconds and a standard deviation of 40. The middle 68 percent of reaction times fall between which values?
+  options:
+    - "360 and 440"
+    - "320 and 480"
+    - "380 and 420"
+    - "400 and 440"
+  answer: A
+  explain: |
+    About 68% of a normal distribution lies within 1 standard deviation of the mean: 400 minus 40 = 360 up to 400 + 40 = 440 milliseconds.
+  why:
+    B: "320 to 480 is 2 standard deviations each way, which holds about 95%."
+    C: "380 to 420 is only half a standard deviation each way."
+    D: "400 to 440 covers only the upper half of the middle 68%, about 34%."
+  verify: |
+    ans = f"{400 - 40} and {400 + 40}"
+
+- id: pt4-ps-09
+  test: 4
+  skill: clt
+  objective: PS3
+  tier: competitive
+  type: concept
+  stem: |
+    Why do the means of random samples of 50 vary less than individual values do?
+  options:
+    - "Averaging lets high and low values offset each other"
+    - "Samples of 50 never include outliers"
+    - "The population's spread shrinks as samples are taken"
+    - "Sample means always equal the population mean"
+  answer: A
+  explain: |
+    Within a sample, unusually high and low values tend to offset each other, so the average lands closer to the center. That is why the standard error, the population standard deviation divided by the square root of n, is smaller than the population standard deviation.
+  why:
+    B: "Samples can include outliers; averaging softens their effect."
+    C: "Taking samples does not change the population at all."
+    D: "Sample means vary around the population mean; they do not always equal it."
+
+- id: pt4-ps-10
+  test: 4
+  skill: inference-basics
+  objective: PS3
+  tier: competitive
+  type: scenario
+  stem: |
+    Researchers test a new flashcard app at the 0.05 significance level and get a p-value of 0.03. What should they conclude?
+  options:
+    - "Fail to reject the null; 0.03 is below 0.05"
+    - "The probability that the app works is 97%"
+    - "Reject the null; the result is statistically significant"
+    - "The study proves the app has a large effect"
+  answer: C
+  explain: |
+    When the p-value is below the significance level, the result is statistically significant and the null hypothesis is rejected. Here 0.03 is below 0.05.
+  why:
+    A: "A p-value below the level leads to rejecting the null, not failing to reject it."
+    B: "A p-value is not the probability that a hypothesis is true."
+    D: "Significance does not measure the size of an effect, and one study does not prove it."
+
+- id: pt4-ps-11
+  test: 4
+  skill: prob-basics
+  objective: PS4
+  tier: core
+  type: calculation
+  stem: |
+    The probability that a flight is delayed is 0.15. What is the probability that it is not delayed?
+  options:
+    - "0.0225"
+    - "0.15"
+    - "0.5"
+    - "0.85"
+  ordered: true
+  answer: D
+  explain: |
+    An event and its complement have probabilities that add to 1, so the probability of no delay is 1 minus 0.15 = 0.85.
+  why:
+    A: "0.0225 squares the probability, which is the chance of two independent delays."
+    B: "0.15 is the probability of a delay, not of no delay."
+    C: "0.5 assumes the two outcomes are equally likely, but a delay is much less likely than no delay."
+  verify: "1 - 0.15"
+
+- id: pt4-ps-12
+  test: 4
+  skill: ev-decisions
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    A predictive model flags a machine as likely to fail soon. Inspecting a flagged machine costs $40. A flagged machine really is about to fail with probability 0.25, and catching it early saves $300. What is the expected net value of inspecting one flagged machine?
+  options:
+    - "$35"
+    - "$65"
+    - "$75"
+    - "$260"
+  ordered: true
+  answer: A
+  explain: |
+    The expected savings are 0.25 × $300 = $75, and the $40 cost is paid on every inspection, whether or not the machine is failing. The expected net value is $75 minus $40 = $35, so inspecting flagged machines pays off on average.
+  why:
+    B: "$65 charges the $40 cost only when the machine really is failing: 0.25 × ($300 minus $40)."
+    C: "$75 is the expected savings before subtracting the cost of the inspection."
+    D: "$260 assumes every flagged machine is failing, ignoring the 0.25 probability."
+  verify: "0.25 * 300 - 40"
+
+- id: pt4-ps-13
+  test: 4
+  skill: prob-rules
+  objective: PS4
+  tier: champion
+  type: calculation
+  stem: |
+    From 7 candidates, a club fills the offices of president and vice president, and separately chooses a 2-person committee. How many ways are there to do each?
+  options:
+    - "21 and 42"
+    - "42 and 42"
+    - "42 and 21"
+    - "49 and 21"
+  answer: C
+  explain: |
+    For president and vice president, order matters: 7 choices, then 6, gives 7 × 6 = 42. For a committee, order does not matter, so each pair was counted twice: 42 / 2 = 21.
+  why:
+    A: "This reverses them: the two ordered offices allow more choices than the unordered committee."
+    B: "A committee does not care about order, so each pair counts once, not twice."
+    D: "49 lets the same person hold both offices."
+  verify: |
+    ans = f"{perm(7, 2)} and {comb(7, 2)}"
+
+- id: pt4-ps-14
+  test: 4
+  skill: distributions
+  objective: PS5
+  tier: competitive
+  type: calculation
+  stem: |
+    Each item made on a production line is defective with probability 0.04, independently of the others. What is the probability that a random sample of 10 items has no defects?
+  options:
+    - "0.04"
+    - "0.34"
+    - "0.60"
+    - "0.66"
+  ordered: true
+  answer: D
+  explain: |
+    Each item is fine with probability 0.96, and the items are independent, so all ten are fine with probability 0.96 to the 10th power, about 0.66.
+  why:
+    A: "0.04 is the chance that a single item is defective."
+    B: "0.34 is the chance of at least one defect, the complement."
+    C: "0.60 adds the ten 0.04 chances as if defects could never overlap, then subtracts 0.40 from 1."
+  verify: "0.96 ** 10"
+
+- id: pt4-ps-15
+  test: 4
+  skill: var-types
+  objective: PS5
+  tier: competitive
+  type: concept
+  stem: |
+    A random variable records the fraction of a reservoir's capacity that is filled with water, which can be any value from 0 to 1. How should it be classified?
+  options:
+    - "Discrete, because it can never exceed 1"
+    - "Discrete, because it is a fraction, not a measurement"
+    - "Ordinal, because the values can be put in order"
+    - "Continuous, because it can take any value in a range"
+  answer: D
+  explain: |
+    A variable that can take any value within a range, such as 0.37 or 0.3712, is continuous. Having upper and lower limits does not make it discrete.
+  why:
+    A: "A bounded range can still contain infinitely many values."
+    B: "This fraction comes from a measured volume of water, so it can take any value in its range."
+    C: "Ordinal data are ranked categories; this is a measured quantity whose differences are meaningful."
+
+# ================================================================ Test 5
+- id: pt5-ps-01
+  test: 5
+  skill: median
+  objective: PS1
+  tier: competitive
+  type: calculation
+  stem: |
+    Twenty-five students reported how many times they visited the library last week.
+
+    | Visits | 0 | 1 | 2 | 3 |
+    |---|---|---|---|---|
+    | Students | 9 | 3 | 6 | 7 |
+
+    What is the median number of visits?
+  options:
+    - "1.44"
+    - "1.5"
+    - "2"
+    - "6.5"
+  ordered: true
+  answer: C
+  explain: |
+    The median of 25 values is the 13th in order. Counting up the table, 9 students made 0 visits (positions 1 to 9) and 3 made 1 visit (positions 10 to 12), so the 13th student is in the group with 2 visits.
+  why:
+    A: "1.44 is the mean, 36 total visits divided by 25 students."
+    B: "1.5 is the middle of the possible answers, 0 to 3, ignoring how many students gave each."
+    D: "6.5 is the median of the counts in the second row, not of the visits themselves."
+  verify: "statistics.median([0] * 9 + [1] * 3 + [2] * 6 + [3] * 7)"
+
+- id: pt5-ps-02
+  test: 5
+  skill: quartiles
+  objective: PS1
+  tier: competitive
+  type: concept
+  stem: |
+    On the same exam, Ana's score was at the 90th percentile and Ben's was at the third quartile. Which statement is true?
+  options:
+    - "Ana scored at least as high as Ben"
+    - "Ben scored higher than Ana"
+    - "They must have tied"
+    - "The scores cannot be compared"
+  answer: A
+  explain: |
+    The third quartile is the 75th percentile. On the same exam, a score at the 90th percentile sits at or above a score at the 75th percentile, so Ana scored at least as high as Ben.
+  why:
+    B: "The 75th percentile is below the 90th, so Ben cannot have scored higher."
+    C: "Nothing forces a tie; usually the 90th percentile is higher."
+    D: "Percentiles on the same exam put the scores in order, so they can be compared."
+
+- id: pt5-ps-03
+  test: 5
+  skill: mean
+  objective: PS1
+  tier: competitive
+  type: calculation
+  stem: |
+    A company's 10 engineers earn a mean salary of $96,000, and its 30 sales staff earn a mean of $72,000. What is the mean salary of all 40 employees?
+  options:
+    - "$72,000"
+    - "$78,000"
+    - "$84,000"
+    - "$90,000"
+  ordered: true
+  answer: B
+  explain: |
+    Weight each group's mean by its size: the engineers earn 10 × $96,000 = $960,000 in total and the sales staff 30 × $72,000 = $2,160,000. Together that is $3,120,000 shared by 40 people, or $78,000 each.
+  why:
+    A: "$72,000 is the sales staff's mean, as if the larger group's mean stood for everyone."
+    C: "$84,000 averages the two group means as if the groups were the same size."
+    D: "$90,000 swaps the weights, treating the 30 people as the engineers."
+  verify: "(10 * 96000 + 30 * 72000) / 40"
+
+- id: pt5-ps-04
+  test: 5
+  skill: median
+  objective: PS1
+  tier: champion
+  type: concept
+  stem: |
+    Which property does the median of every dataset have?
+  options:
+    - "At least half of the values are less than or equal to it"
+    - "It is always one of the values in the dataset"
+    - "It changes whenever the largest value changes"
+    - "Exactly half of the values are greater than it"
+  answer: A
+  explain: |
+    The median sits at the middle position, so at least half of the values are at or below it and at least half are at or above it. With repeated values, more than half can sit at or below it.
+  why:
+    B: "With an even count, the median averages two values and may not appear in the data: for 2 and 4 it is 3."
+    C: "Raising the largest value leaves the middle position, and so the median, unchanged."
+    D: "Ties at the median can leave fewer than half strictly above it, as in 1, 5, 5, 5, 9."
+
+- id: pt5-ps-05
+  test: 5
+  skill: variance-sd
+  objective: PS2
+  tier: core
+  type: concept
+  stem: |
+    Class A's test scores have a mean of 75 and a standard deviation of 3. Class B's have a mean of 75 and a standard deviation of 12. Which statement is true?
+  options:
+    - "Class B's scores are more spread out around 75"
+    - "Class B scored higher on average"
+    - "Class A has more scores far from 75"
+    - "Both classes have the same spread"
+  answer: A
+  explain: |
+    Both classes average 75, but a standard deviation of 12 means Class B's scores typically sit much farther from 75, while Class A's cluster within a few points of it.
+  why:
+    B: "The means are equal, so neither class scored higher on average."
+    C: "Class A's small standard deviation means its scores stay close to 75."
+    D: "Different standard deviations mean different spreads."
+
+- id: pt5-ps-06
+  test: 5
+  skill: variance-sd
+  objective: PS2
+  tier: competitive
+  type: calculation
+  stem: |
+    A sample has just two values, 4 and 10. What is its sample standard deviation, to two decimal places?
+  options:
+    - "3.00"
+    - "4.24"
+    - "6.00"
+    - "18.00"
+  ordered: true
+  answer: B
+  explain: |
+    The mean is 7, and both deviations are 3 in size, so the squared deviations sum to 9 + 9 = 18. A sample divides by n minus 1 = 1, giving a variance of 18, and the standard deviation is the square root of 18, about 4.24.
+  why:
+    A: "3.00 divides by n = 2, which is the population standard deviation."
+    C: "6.00 is the range, 10 minus 4."
+    D: "18.00 is the sample variance; it still needs a square root."
+  verify: "statistics.stdev([4, 10])"
+
+- id: pt5-ps-07
+  test: 5
+  skill: coef-var
+  objective: PS2
+  tier: champion
+  type: calculation
+  stem: |
+    A dataset has a mean of 30 and a standard deviation of 6, so its coefficient of variation is 20%. Every value is then increased by 10. What is the new coefficient of variation?
+  options:
+    - "15%"
+    - "20%"
+    - "30%"
+    - "40%"
+  ordered: true
+  answer: A
+  explain: |
+    Adding 10 to every value raises the mean to 40 but leaves the standard deviation at 6, because no deviation changes. The new coefficient of variation is 6 / 40 = 15%.
+  why:
+    B: "The coefficient of variation stays the same when every value is multiplied by a constant, not when a constant is added."
+    C: "30% adds 10 percentage points to the coefficient of variation instead of adding 10 to the data."
+    D: "40% adds 10 to the standard deviation as well, but shifting the data does not change its spread."
+  verify: |
+    x = np.array([24.0, 30.0, 36.0, 24.0, 36.0, 30.0])
+    x = (x - x.mean()) / x.std() * 6 + 30
+    y = x + 10
+    ans = y.std() / y.mean() * 100
+
+- id: pt5-ps-08
+  test: 5
+  skill: clt
+  objective: PS3
+  tier: core
+  type: concept
+  stem: |
+    From the same population, which random sample size gives the smallest standard error of the mean?
+  options:
+    - "25"
+    - "50"
+    - "100"
+    - "400"
+  ordered: true
+  answer: D
+  explain: |
+    The standard error is the population standard deviation divided by the square root of n, so it shrinks as the sample grows. The largest sample, 400, gives the smallest standard error.
+  why:
+    A: "25 is the smallest sample, which gives the largest standard error."
+    B: "50 beats 25 but still leaves a larger standard error than 400."
+    C: "100 halves the standard error compared with 25, but 400 cuts it to a quarter."
+  verify: "min([25, 50, 100, 400], key=lambda n: 1 / math.sqrt(n))"
+
+- id: pt5-ps-09
+  test: 5
+  skill: clt
+  objective: PS3
+  tier: competitive
+  type: concept
+  stem: |
+    A report gives both the standard deviation of students' heights and the standard error of the mean height. What does the standard error describe?
+  options:
+    - "How much individual students' heights vary"
+    - "How much the sample mean would vary from sample to sample"
+    - "The difference between the tallest and shortest students"
+    - "The percent of students above the mean height"
+  answer: B
+  explain: |
+    The standard deviation describes how much individual values vary. The standard error describes how much the sample mean would vary across repeated samples, and it shrinks as the sample grows.
+  why:
+    A: "That is the standard deviation."
+    C: "That is the range."
+    D: "That is a percentile idea, not a measure of uncertainty."
+
+- id: pt5-ps-10
+  test: 5
+  skill: empirical-rule
+  objective: PS3
+  tier: champion
+  type: calculation
+  stem: |
+    In a normal distribution with a mean of 50, about 84 percent of values fall below 58. What is the standard deviation?
+  options:
+    - "4"
+    - "8"
+    - "16"
+    - "58"
+  ordered: true
+  answer: B
+  explain: |
+    About 84% of a normal distribution lies below 1 standard deviation above the mean: 50% below the mean plus 34%. So 58 is 1 standard deviation above 50, and the standard deviation is 58 minus 50 = 8.
+  why:
+    A: "4 assumes 58 is two standard deviations above the mean, which would put about 97.5% below it."
+    C: "16 assumes 58 is only half a standard deviation above the mean."
+    D: "58 is the cutoff value, not a distance from the mean."
+  verify: "58 - 50"
+
+- id: pt5-ps-11
+  test: 5
+  skill: prob-basics
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    A whole number from 10 to 99 is chosen at random. What is the probability that it is divisible by 5?
+  options:
+    - "0.1"
+    - "0.18"
+    - "0.19"
+    - "0.2"
+  ordered: true
+  answer: D
+  explain: |
+    There are 90 numbers from 10 to 99. The multiples of 5 among them are 10, 15, and so on up to 95: 18 numbers. So the probability is 18 / 90 = 0.2.
+  why:
+    A: "0.1 counts only the multiples of 10."
+    B: "0.18 divides 18 by 100, but there are only 90 numbers from 10 to 99."
+    C: "0.19 comes from counting 17 multiples, missing one end of the list."
+  verify: |
+    ans = sum(1 for k in range(10, 100) if k % 5 == 0) / 90
+
+- id: pt5-ps-12
+  test: 5
+  skill: bayes
+  objective: PS4
+  tier: champion
+  type: calculation
+  stem: |
+    In a town, 60 percent of voters are under 40. Of those under 40, 70 percent support a proposal; of those 40 and over, 40 percent support it. A supporter is chosen at random. About what is the probability that the supporter is under 40?
+  options:
+    - "42%"
+    - "60%"
+    - "70%"
+    - "72.4%"
+  ordered: true
+  answer: D
+  explain: |
+    Imagine 100 voters: 60 are under 40, and 42 of them support the proposal. Of the 40 older voters, 16 support it. So 42 of the 58 supporters are under 40: 42 / 58, about 72.4%.
+  why:
+    A: "42% is the share of all voters who are under 40 and supporters; it still has to be divided by all supporters."
+    B: "60% is the share of all voters who are under 40, before using the support rates."
+    C: "70% is P(supports | under 40), the reverse of what is asked."
+  verify: "0.6 * 0.7 / (0.6 * 0.7 + 0.4 * 0.4) * 100"
+
+- id: pt5-ps-13
+  test: 5
+  skill: ev-decisions
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    You can take a guaranteed $40, or flip a fair coin that pays $100 on heads and $0 on tails. Which option has the higher expected value, and by how much?
+  options:
+    - "The guaranteed $40, by $10"
+    - "They are equal"
+    - "The coin flip, by $10"
+    - "The coin flip, by $60"
+  answer: C
+  explain: |
+    The coin flip's expected value is 0.5 × 100 + 0.5 × 0 = $50, which beats the guaranteed $40 by $10. Expected value ignores risk, so someone who dislikes risk might still take the sure $40.
+  why:
+    A: "The sure $40 is less than the flip's expected $50."
+    B: "The flip is worth $50 on average, not $40."
+    D: "$60 compares the $100 prize with $40 and ignores the 50% chance of $0."
+  verify: |
+    flip = 0.5 * 100 + 0.5 * 0
+    ans = f"The coin flip, by ${flip - 40:g}"
+
+- id: pt5-ps-14
+  test: 5
+  skill: var-types
+  objective: PS5
+  tier: core
+  type: scenario
+  stem: |
+    An online store tests whether the number of photos on a product page affects how long visitors stay on that page. Which is the response variable?
+  options:
+    - "The number of photos on each page"
+    - "The visitors who view each page"
+    - "The time each visitor stays on the page"
+    - "The type of product on each page"
+  answer: C
+  explain: |
+    The response variable is the outcome a study measures to see whether it changes: here, how long visitors stay. The number of photos is the explanatory variable, the one the store changes.
+  why:
+    A: "The number of photos is the explanatory variable, the one thought to cause the change."
+    B: "The visitors are the individuals being studied, not a variable measured on them."
+    D: "Product type could be a lurking variable, but it is not the outcome the study measures."
+
+- id: pt5-ps-15
+  test: 5
+  skill: distributions
+  objective: PS5
+  tier: champion
+  type: concept
+  stem: |
+    A student draws 5 cards without replacement from a 10-card deck that has 4 red cards, and counts the red cards drawn. Why is this count NOT binomial?
+  options:
+    - "There are more than two colors in the deck"
+    - "The number of draws is not fixed in advance"
+    - "The draws are dependent, so the chance of red changes"
+    - "Red cards are drawn too rarely to count"
+  answer: C
+  explain: |
+    A binomial count needs independent trials with the same success probability. Without replacement, each draw changes what is left: after a red card, only 3 of the 9 remaining cards are red, so the probability shifts from draw to draw.
+  why:
+    A: "Each draw is still red or not red, two outcomes, which binomial allows."
+    B: "The 5 draws are fixed in advance, as binomial requires."
+    D: "Rarity does not matter; binomial counts can be small."
