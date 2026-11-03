@@ -106,7 +106,7 @@ export function UnitView({ unitId }: { unitId: string }) {
                   {test.best}/{test.total}
                 </span>
               </div>
-              <ProgressBar value={test.best / test.total} tone={test.best / test.total >= 0.8 ? "good" : "accent"} className="mt-1.5" />
+              <ProgressBar value={test.best / test.total} tone={test.best / test.total >= 0.8 ? "good" : "ink"} className="mt-1.5" />
             </div>
           ) : null}
           <LinkButton href={`/learn/${u.id}/test`} variant={allDone ? "primary" : "secondary"} className="mt-5">

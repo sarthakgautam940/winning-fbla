@@ -431,7 +431,7 @@ function FlagBox({ initial, flagged, onSave, onRemove }: { initial: string; flag
   return (
     <div className="animate-fade-up mb-5 rounded-[12px] border border-line bg-surface-2 p-4">
       <p className="text-[13.5px] text-ink-2">On the real test, a flag sends the question to FBLA&apos;s review team and gives no extra time. Write a short reason, then move on.</p>
-      <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2} className="mt-2 w-full rounded-[10px] border border-line bg-surface p-2.5 text-[14px] text-ink outline-none focus:border-accent" aria-label="Reason for flagging" />
+      <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2} className="mt-2 w-full rounded-[10px] border border-line bg-surface p-2.5 text-[14px] text-ink outline-none focus:border-ink" aria-label="Reason for flagging" />
       <div className="mt-2 flex gap-2">
         <Button size="sm" variant="primary" onClick={() => onSave(text)}>
           Save flag

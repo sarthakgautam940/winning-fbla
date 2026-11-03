@@ -67,7 +67,7 @@ export function LearnOverview() {
                       <span>{ready ? `${done}/${total} lessons` : " "}</span>
                       {test ? <span className="tnum">Test best {Math.round((test.best / test.total) * 100)}%</span> : null}
                     </div>
-                    <ProgressBar value={ready && total ? done / total : 0} tone={complete ? "good" : "accent"} className="mt-1.5" label={`Unit ${u.n} progress`} />
+                    <ProgressBar value={ready && total ? done / total : 0} tone={complete ? "good" : "ink"} className="mt-1.5" label={`Unit ${u.n} progress`} />
                   </div>
                 </Card>
               </Link>

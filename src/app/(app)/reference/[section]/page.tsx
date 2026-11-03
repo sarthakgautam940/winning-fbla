@@ -113,7 +113,7 @@ export default async function ReferenceSection({ params }: Params) {
                     </div>
                     <div className="text-[13px]">
                       {lessons.map((l) => (
-                        <Link key={l.id} href={`/learn/${l.unit}/${l.id}`} className="block text-accent-ink hover:underline hover:underline-offset-4">
+                        <Link key={l.id} href={`/learn/${l.unit}/${l.id}`} className="block font-medium text-ink underline decoration-line-strong underline-offset-4 hover:decoration-ink">
                           {l.code} {l.title}
                         </Link>
                       ))}

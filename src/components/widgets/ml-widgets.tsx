@@ -339,7 +339,7 @@ function CountInput({ label, value, onChange }: { label: string; value: number; 
   return (
     <label className="flex items-center justify-between gap-2 text-[13px] text-ink-2">
       {label}
-      <input type="number" min={0} max={999} value={value} onChange={(e) => onChange(Math.max(0, Math.min(999, Math.round(Number(e.target.value) || 0))))} className="tnum h-8 w-16 rounded-[8px] border border-line bg-surface px-2 text-right text-ink outline-none focus:border-accent" />
+      <input type="number" min={0} max={999} value={value} onChange={(e) => onChange(Math.max(0, Math.min(999, Math.round(Number(e.target.value) || 0))))} className="tnum h-8 w-16 rounded-[8px] border border-line bg-surface px-2 text-right text-ink outline-none focus:border-ink" />
     </label>
   );
 }

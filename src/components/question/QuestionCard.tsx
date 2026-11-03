@@ -154,7 +154,7 @@ export function QuestionCard({ q, meta, mode, sessionId, heading, showSkill, sho
                 Try again
               </Button>
               {showLessonLink && meta ? (
-                <Link href={`/learn/${meta.unit}/${meta.lesson}`} className="text-[13.5px] text-accent-ink underline-offset-4 hover:underline">
+                <Link href={`/learn/${meta.unit}/${meta.lesson}`} className="text-[13.5px] font-medium text-ink underline decoration-line-strong underline-offset-4 hover:decoration-ink">
                   Review the lesson
                 </Link>
               ) : null}

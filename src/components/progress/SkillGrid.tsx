@@ -6,7 +6,8 @@ import type { Level, SkillStat } from "@/lib/analytics";
 import { cn } from "@/components/ui/primitives";
 
 // One tile per skill, grouped by unit and colored by mastery: the whole
-// curriculum at a glance. Each tile opens that skill on the Practice page.
+// curriculum at a glance. Each tile opens that skill on the Practice page, or
+// calls onSelect when the page practices skills in place.
 
 const LEVEL_TILE: Record<Level, string> = {
   new: "border-line-strong bg-surface text-ink-3",
@@ -22,7 +23,7 @@ export const LEVEL_LABEL: Record<Level, string> = {
   mastered: "Mastered",
 };
 
-export function SkillGrid({ stats }: { stats: Record<string, SkillStat> }) {
+export function SkillGrid({ stats, onSelect }: { stats: Record<string, SkillStat>; onSelect?: (skill: string) => void }) {
   const units = catalog.units.filter((u) => u.area);
   return (
     <div className="flex flex-col divide-y divide-line">
@@ -37,17 +38,17 @@ export function SkillGrid({ stats }: { stats: Record<string, SkillStat> }) {
               .map((sid) => {
                 const s = catalog.skills[sid];
                 const level = stats[sid]?.level ?? "new";
-                return (
-                  <Link
-                    key={sid}
-                    href={`/practice#skill-${sid}`}
-                    title={`${s.n}. ${s.name}: ${LEVEL_LABEL[level]}`}
-                    aria-label={`Skill ${s.n}, ${s.name}, ${LEVEL_LABEL[level]}`}
-                    className={cn(
-                      "tnum flex h-9 min-w-[38px] items-center justify-center rounded-[10px] border px-1.5 text-[12.5px] font-bold shadow-[0_2px_0_var(--line)] transition-transform duration-150 hover:-translate-y-px",
-                      LEVEL_TILE[level],
-                    )}
-                  >
+                const label = `${s.n}. ${s.name}: ${LEVEL_LABEL[level]}`;
+                const tile = cn(
+                  "tnum flex h-9 min-w-[38px] items-center justify-center rounded-[10px] border px-1.5 text-[12.5px] font-bold shadow-[0_2px_0_var(--line)] transition-transform duration-150 hover:-translate-y-px",
+                  LEVEL_TILE[level],
+                );
+                return onSelect ? (
+                  <button key={sid} type="button" onClick={() => onSelect(sid)} title={label} aria-label={`Practice skill ${s.n}, ${s.name}, ${LEVEL_LABEL[level]}`} className={tile}>
+                    {s.n}
+                  </button>
+                ) : (
+                  <Link key={sid} href={`/practice#skill-${sid}`} title={label} aria-label={`Skill ${s.n}, ${s.name}, ${LEVEL_LABEL[level]}`} className={tile}>
                     {s.n}
                   </Link>
                 );

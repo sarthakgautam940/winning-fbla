@@ -50,7 +50,7 @@ export default async function LessonPage({ params }: Params) {
             Unit {u.n}: {u.title}
           </Link>
         </nav>
-        <h1 className="mt-3 text-[32px] font-semibold leading-[1.15] tracking-[-0.025em] text-ink sm:text-[36px]">
+        <h1 className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.03em] text-ink sm:text-[38px]">
           <span className="mr-3 text-ink-3">{lesson.code}</span>
           {lesson.title}
         </h1>

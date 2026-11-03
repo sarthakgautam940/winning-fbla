@@ -60,7 +60,7 @@ export function FlashcardsView() {
               setUnit(e.target.value);
               setSkill("all");
             }}
-            className="h-9 rounded-[10px] border border-line bg-surface px-3 text-[14px] font-normal text-ink outline-none focus:border-accent"
+            className="h-9 rounded-[10px] border border-line bg-surface px-3 text-[14px] font-normal text-ink outline-none focus:border-ink"
           >
             <option value="all">All units</option>
             {catalog.units
@@ -75,7 +75,7 @@ export function FlashcardsView() {
         {unit !== "all" ? (
           <label className="flex flex-col gap-1.5 text-[12.5px] font-medium text-ink-3">
             Skill
-            <select value={skill} onChange={(e) => setSkill(e.target.value)} className="h-9 max-w-[280px] rounded-[10px] border border-line bg-surface px-3 text-[14px] font-normal text-ink outline-none focus:border-accent">
+            <select value={skill} onChange={(e) => setSkill(e.target.value)} className="h-9 max-w-[280px] rounded-[10px] border border-line bg-surface px-3 text-[14px] font-normal text-ink outline-none focus:border-ink">
               <option value="all">All skills in this unit</option>
               {unitSkills.map((s) => (
                 <option key={s} value={s}>

@@ -28,7 +28,7 @@ export function GlossaryList({ cards }: { cards: Entry[] }) {
     <div>
       <label className="relative block max-w-md">
         <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-3" />
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${cards.length} terms`} aria-label="Search the glossary" className="h-10 w-full rounded-[10px] border border-line bg-surface pl-9 pr-3 text-[14.5px] text-ink outline-none placeholder:text-ink-3 focus:border-accent" />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${cards.length} terms`} aria-label="Search the glossary" className="h-10 w-full rounded-[10px] border border-line bg-surface pl-9 pr-3 text-[14.5px] text-ink outline-none placeholder:text-ink-3 focus:border-ink" />
       </label>
       <div className="mt-8 flex flex-col gap-8">
         {[...groups.entries()].map(([letter, list]) => (
@@ -40,7 +40,7 @@ export function GlossaryList({ cards }: { cards: Entry[] }) {
                   <dt className="text-[15px] font-semibold text-ink">{c.term}</dt>
                   <dd>
                     <Rich html={c.back} className="text-[14.5px] text-ink-2" />
-                    <Link href={`/learn/${c.unit}/${c.lesson}`} className="mt-1 inline-block text-[12.5px] text-accent-ink hover:underline hover:underline-offset-4">
+                    <Link href={`/learn/${c.unit}/${c.lesson}`} className="mt-1 inline-block text-[12.5px] font-medium text-ink underline decoration-line-strong underline-offset-4 hover:decoration-ink">
                       Taught in {c.code}
                     </Link>
                   </dd>

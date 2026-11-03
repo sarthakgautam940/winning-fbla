@@ -39,7 +39,7 @@ export function Options({ name, options, selected, onSelect, answer, eliminated 
                 "flex w-full items-start gap-3.5 rounded-[12px] border px-4 text-left transition-[background-color,border-color,opacity] duration-150",
                 size === "lg" ? "py-3.5" : "py-3",
                 !revealed && !isSel && "border-line bg-surface hover:border-line-strong hover:bg-surface-2",
-                !revealed && isSel && "border-accent bg-accent-soft",
+                !revealed && isSel && "border-ink bg-surface-2 shadow-[inset_0_0_0_1px_var(--ink)]",
                 isAns && "border-good-line bg-good-soft",
                 isWrongPick && "border-bad-line bg-bad-soft",
                 revealed && !isAns && !isWrongPick && "border-line bg-surface opacity-60",
@@ -51,7 +51,7 @@ export function Options({ name, options, selected, onSelect, answer, eliminated 
                 className={cn(
                   "mt-px flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[13px] font-semibold transition-colors",
                   !revealed && !isSel && "border-line-strong text-ink-2",
-                  !revealed && isSel && "border-accent bg-accent text-white",
+                  !revealed && isSel && "border-ink bg-ink text-bg",
                   isAns && "border-good-fill bg-good-fill text-white",
                   isWrongPick && "border-bad-fill bg-bad-fill text-white",
                   revealed && !isAns && !isWrongPick && "border-line-strong text-ink-3",

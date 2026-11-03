@@ -43,7 +43,7 @@ export function BaseConverter() {
           onChange={(e) => setText(e.target.value)}
           spellCheck={false}
           aria-label="Number to convert"
-          className="h-9 w-44 rounded-[10px] border border-line bg-surface px-3 font-mono text-[15px] uppercase text-ink outline-none focus:border-accent"
+          className="h-9 w-44 rounded-[10px] border border-line bg-surface px-3 font-mono text-[15px] uppercase text-ink outline-none focus:border-ink"
         />
       </div>
       {!valid ? (
@@ -118,7 +118,7 @@ export function StatsExplorer() {
   const add = (v: number) => setText((t) => `${t.trim().replace(/,\s*$/, "")}, ${Number(v.toFixed(2))}`);
   return (
     <WidgetFrame title="Statistics explorer" hint="Edit the numbers, separated by commas">
-      <input value={text} onChange={(e) => setText(e.target.value)} aria-label="Dataset" className="h-10 w-full rounded-[10px] border border-line bg-surface px-3 font-mono text-[14.5px] text-ink outline-none focus:border-accent" />
+      <input value={text} onChange={(e) => setText(e.target.value)} aria-label="Dataset" className="h-10 w-full rounded-[10px] border border-line bg-surface px-3 font-mono text-[14.5px] text-ink outline-none focus:border-ink" />
       <div className="mt-3 flex flex-wrap gap-2">
         <Button size="sm" onClick={() => ok && add(hi + 3 * span)} disabled={!ok}>
           Add a high outlier

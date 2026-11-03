@@ -12,9 +12,9 @@ import { CodeBlock } from "./CodeBlock";
 type NodeProps = { node?: Element; children?: React.ReactNode } & Record<string, unknown>;
 
 const CALLOUT_STYLE: Record<string, string> = {
-  key: "border-l-accent",
+  key: "border-l-ink",
   tip: "border-l-good-fill",
-  trap: "border-l-warn-fill",
+  trap: "border-l-accent",
 };
 
 export function LessonBody({ hast, questions, metas }: { hast: Root; questions: Record<string, QuestionContent>; metas: Record<string, QMeta> }) {

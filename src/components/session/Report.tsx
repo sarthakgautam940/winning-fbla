@@ -161,7 +161,7 @@ export function Report({ sessionId }: { sessionId: string }) {
             .map((g) => (
               <div key={g.label} className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1.5 px-5 py-3 sm:grid-cols-[1fr_180px_auto]">
                 <p className="text-[14.5px] text-ink">{g.label}</p>
-                <ProgressBar value={g.correct / g.total} tone={g.correct / g.total >= 0.8 ? "good" : "accent"} className="order-3 col-span-2 sm:order-none sm:col-span-1" />
+                <ProgressBar value={g.correct / g.total} tone={g.correct / g.total >= 0.8 ? "good" : "ink"} className="order-3 col-span-2 sm:order-none sm:col-span-1" />
                 <p className="tnum text-right text-[14px] text-ink-2">
                   {g.correct}/{g.total}
                 </p>
