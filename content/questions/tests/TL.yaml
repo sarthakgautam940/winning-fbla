@@ -33,7 +33,7 @@
   why:
     B: "This reads the condition as (Sales OR IT) AND salary > 50000, but without parentheses AND binds first."
     C: "This keeps only the IT test; the OR also admits every Sales employee."
-    D: "Eve is in IT but earns 47,000, so she fails the AND."
+    D: "Eve is in IT but earns 47,000, so Eve fails the AND."
   verify: |
     db = make_db("CREATE TABLE staff(name TEXT, dept TEXT, salary INT); INSERT INTO staff VALUES ('Ana','Sales',52000),('Ben','IT',61000),('Cara','Sales',48000),('Dan','HR',55000),('Eve','IT',47000);")
     n = [r[0] for r in sql(db, "SELECT name FROM staff WHERE dept = 'Sales' OR dept = 'IT' AND salary > 50000 ORDER BY name")]
