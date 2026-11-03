@@ -209,7 +209,7 @@
     A checkers program searches the game tree below with alpha-beta pruning, examining leaves from left to right. MAX moves at the root, and each MIN node takes the smallest of its leaves. Which leaf is never examined?
   figure:
     type: tree
-    caption: A game tree in which MAX chooses among three MIN nodes; the numbers are leaf scores
+    caption: A game tree in which MAX chooses among three MIN nodes; the numbers are leaf scores.
     root:
       label: MAX
       children:
@@ -677,7 +677,7 @@
     A backup program visits the folders in the tree below depth-first, taking subfolders from left to right. In what order does it visit them?
   figure:
     type: tree
-    caption: A folder tree, with subfolders listed from left to right
+    caption: A folder tree, with subfolders listed from left to right.
     root:
       label: Root
       children:

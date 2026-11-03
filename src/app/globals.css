@@ -374,6 +374,12 @@ pre.output {
   font-size: 1.06em;
 }
 
+/* Words inside formulas, such as \text{Student}, read as body text, so they use
+   the interface face; symbols and variables keep KaTeX's math fonts. */
+.katex .text {
+  font-family: var(--font-sans);
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;

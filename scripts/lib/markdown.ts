@@ -9,7 +9,9 @@ import { toHtml } from "hast-util-to-html";
 import { visit } from "unist-util-visit";
 import { VFile } from "vfile";
 import YAML from "yaml";
-import { createHighlighter, type Highlighter } from "shiki";
+import { createHighlighter, type Highlighter, type ThemeRegistration } from "shiki";
+import githubLight from "shiki/themes/github-light.mjs";
+import githubDarkDimmed from "shiki/themes/github-dark-dimmed.mjs";
 import type { Root as MdRoot, RootContent, Parent, Text, Code, Heading, Paragraph, Table } from "mdast";
 import type { Root as HRoot, Element, ElementContent } from "hast";
 import { figureSchema, WIDGETS } from "./schemas";
@@ -48,9 +50,19 @@ const CALLOUTS = new Set(["key", "tip", "trap"]);
 
 let highlighter: Highlighter | null = null;
 
+// The house palette has no red, so the GitHub themes' red keyword and error
+// colors are swapped for each theme's own purple. Everything else is unchanged.
+function withoutRed(theme: ThemeRegistration, name: string, swap: Record<string, string>): ThemeRegistration {
+  const json = JSON.stringify(theme).replace(/#[0-9a-f]{6}\b/gi, (c) => swap[c.toUpperCase()] ?? c);
+  return { ...JSON.parse(json), name };
+}
+
+const CODE_LIGHT = withoutRed(githubLight, "house-light", { "#D73A49": "#6F42C1", "#B31D28": "#6F42C1" });
+const CODE_DARK = withoutRed(githubDarkDimmed, "house-dark", { "#F47067": "#DCBDFB", "#FF938A": "#DCBDFB" });
+
 export async function initHighlighter(): Promise<void> {
   highlighter = await createHighlighter({
-    themes: ["github-light", "github-dark-dimmed"],
+    themes: [CODE_LIGHT, CODE_DARK],
     langs: ["python", "sql", "r", "json", "bash", "yaml", "csv", "xml"],
   });
 }
@@ -98,7 +110,7 @@ function highlight(code: string, lang: string): ElementContent[] {
   if (!highlighter) throw new Error("highlighter not initialized");
   const root = highlighter.codeToHast(code, {
     lang: CODE_LANGS.has(lang) && lang !== "text" ? lang : "text",
-    themes: { light: "github-light", dark: "github-dark-dimmed" },
+    themes: { light: "house-light", dark: "house-dark" },
     defaultColor: false,
   });
   return root.children as ElementContent[];

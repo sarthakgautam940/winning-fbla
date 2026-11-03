@@ -151,6 +151,11 @@ export function update(fn: (p: Progress) => Progress): void {
   saveTimer = setTimeout(flush, 300);
 }
 
+// Writes pending changes at once, for handlers that run as the page goes away.
+export function saveNow(): void {
+  flush();
+}
+
 function subscribe(l: () => void) {
   listeners.add(l);
   return () => listeners.delete(l);

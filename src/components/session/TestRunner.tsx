@@ -8,7 +8,7 @@ import { LETTERS } from "@/lib/content-types";
 import { Figure } from "@/components/figures/Figure";
 import { Options } from "@/components/question/Options";
 import { Button, cn, Rich } from "@/components/ui/primitives";
-import { clearActive, completeLesson, getProgress, recordAttempts, saveSession, setActive, uid, useProgress, useReady } from "@/lib/progress/store";
+import { clearActive, completeLesson, getProgress, recordAttempts, saveNow, saveSession, setActive, uid, useProgress, useReady } from "@/lib/progress/store";
 import type { ActiveSession, Mode, SessionKind } from "@/lib/progress/types";
 import { Calculator } from "./Calculator";
 
@@ -75,6 +75,20 @@ export function TestRunner({ kind, refId, title, questions, limitMs, exitHref, r
     const t = setInterval(() => setNow(Date.now()), 250);
     return () => clearInterval(t);
   }, []);
+
+  // Leaving the page mid-attempt (reload, close, or another site) stops the clock
+  // there, as Exit does, so time already used is kept and time away is not.
+  useEffect(() => {
+    const onHide = () => {
+      const live = getProgress().active[key];
+      if (submitted.current || !live || live.owner !== owner || !live.resumedAt) return;
+      const t = Date.now();
+      setActive({ ...live, usedMs: live.usedMs + (t - live.resumedAt), resumedAt: null, paused: !!limitMs });
+      saveNow();
+    };
+    window.addEventListener("pagehide", onHide);
+    return () => window.removeEventListener("pagehide", onHide);
+  }, [key, owner, limitMs]);
 
   const resume = (s: ActiveSession) => {
     const t = Date.now();
