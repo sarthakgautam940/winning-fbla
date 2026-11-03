@@ -82,3 +82,13 @@ Sidebar on the paper canvas, text items with icons, the active item a white pill
 ## 5. Constraints that still hold
 
 The gate stays exactly as approved (dark, typewriter, caret pre-aligned). No IBM Plex, no Times-like fonts, no em dashes, no middots, no emoji, no gradients, no glows, no blue or teal washes, no pill badges used as decoration, no placeholders.
+
+## 6. Changes requested after the first pass (2026-11-02, binding)
+
+- No red anywhere. The accent is ink (monochrome UI); wrong and missed answers use amber (`--bad` #94550c on white, 5.9:1), warnings olive-gold; the chart palette has no red slot.
+- Difficulty is color-coded everywhere: green Core, yellow Competitive, purple Champion (`--core-*`, `--comp-*`, `--champ-*`; each text color at least 5.39:1 on its tint). Question Bank tiles take their tier color, with status as corner badges (green check right, amber x missed, ink lock locked), as in Pro Problems. Difficulty labels use the same colors.
+- Mastery tiles (Home, Progress) use an ink scale, darker for stronger, so they never compete with difficulty colors.
+- "Practice" is now "Question Bank" (route stays /practice), icon Grid2x2Check.
+- Logo: a W drawn as one line that ends higher than it starts, capped by a gold point; ink and gold only (`src/components/shell/Logo.tsx`, favicon `src/app/icon.svg`).
+- Few lines: no sidebar edge or group dividers, no row dividers in lists (rounded hover rows instead), no rules inside cards, no roadmap connector lines, callouts as tinted blocks. Tables in lesson content keep their rules.
+- Few kickers: no "Start here", "Up next", or stage labels above headings.

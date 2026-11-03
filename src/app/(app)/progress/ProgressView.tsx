@@ -60,11 +60,11 @@ export function ProgressView() {
       <section className="mt-10">
         <h2 className="text-[19px] font-bold tracking-[-0.015em] text-ink">By test area</h2>
         <p className="mt-1 text-[13.5px] text-ink-3">Sorted by points at stake: the share of the test times the room you have to improve.</p>
-        <Card className="mt-3 divide-y divide-line">
+        <Card className="mt-3 flex flex-col gap-0.5 p-2">
           {[...areas]
             .sort((a, b) => b.items * (1 - b.estimate) - a.items * (1 - a.estimate))
             .map((a) => (
-              <div key={a.area} className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 px-5 py-3.5 sm:grid-cols-[1fr_220px_110px]">
+              <div key={a.area} className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 rounded-[12px] px-4 py-3 sm:grid-cols-[1fr_220px_110px]">
                 <div className="min-w-0">
                   <p className="truncate text-[14.5px] font-medium text-ink">{a.name}</p>
                   <p className="tnum text-[12.5px] text-ink-3">
@@ -81,10 +81,10 @@ export function ProgressView() {
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         <section>
           <h2 className="text-[19px] font-bold tracking-[-0.015em] text-ink">Weakest skills</h2>
-          <Card className="mt-3 divide-y divide-line">
+          <Card className="mt-3 flex flex-col gap-0.5 p-2">
             {weak.length ? (
               weak.map((s) => (
-                <div key={s.skill} className="flex items-center gap-4 px-5 py-3">
+                <div key={s.skill} className="flex items-center gap-4 rounded-[12px] px-4 py-3">
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-[14.5px] text-ink">
                       <span className="tnum mr-1.5 text-ink-3">{getSkill(s.skill)?.n}</span>
@@ -141,9 +141,9 @@ export function ProgressView() {
       {tests.length ? (
         <section className="mt-10">
           <h2 className="text-[19px] font-bold tracking-[-0.015em] text-ink">Tests</h2>
-          <Card className="mt-3 divide-y divide-line">
+          <Card className="mt-3 flex flex-col gap-0.5 p-2">
             {[...tests].reverse().map((t) => (
-              <Link key={t.id} href={`/report?s=${t.id}`} className="grid grid-cols-[1fr_auto_auto] items-center gap-4 px-5 py-3 text-[14px] hover:bg-surface-2/60">
+              <Link key={t.id} href={`/report?s=${t.id}`} className="grid grid-cols-[1fr_auto_auto] items-center gap-4 rounded-[12px] px-4 py-3 text-[14px] hover:bg-surface-2/60">
                 <span className="truncate text-ink">{t.title.replace("Data Science & AI: ", "")}</span>
                 <span className="text-ink-3">{new Date(t.finishedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</span>
                 <span className="tnum font-medium text-ink">
@@ -159,7 +159,7 @@ export function ProgressView() {
         <SectionTitle title="Every skill" action={<SkillLegend />} />
         <Card className="px-6 py-6">
           <SkillGrid stats={stats} onSelect={practice} />
-          <p className="mt-5 border-t border-line pt-4 text-[13px] leading-relaxed text-ink-3">Mastered means at least four different questions right, a recent accuracy of 85% or better, and at least one Competitive or Champion question right. Select any skill to practice it here.</p>
+          <p className="mt-6 text-[13px] leading-relaxed text-ink-3">Mastered means at least four different questions right, a recent accuracy of 85% or better, and at least one Competitive or Champion question right. Select any skill to practice it here.</p>
         </Card>
       </section>
 

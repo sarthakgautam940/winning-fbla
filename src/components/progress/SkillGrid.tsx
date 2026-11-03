@@ -5,15 +5,15 @@ import { catalog, lessonsOf } from "@/lib/catalog";
 import type { Level, SkillStat } from "@/lib/analytics";
 import { cn } from "@/components/ui/primitives";
 
-// One tile per skill, grouped by unit and colored by mastery: the whole
+// One tile per skill, grouped by unit and shaded by mastery (darker is stronger): the whole
 // curriculum at a glance. Each tile opens that skill on the Practice page, or
 // calls onSelect when the page practices skills in place.
 
 const LEVEL_TILE: Record<Level, string> = {
   new: "border-line-strong bg-surface text-ink-3",
-  learning: "border-warn-line bg-warn-soft text-warn",
-  proficient: "border-good-line bg-good-soft text-good",
-  mastered: "border-good-fill bg-good-fill text-white",
+  learning: "border-line-strong bg-surface-2 text-ink-2",
+  proficient: "border-ink-3 bg-surface-3 text-ink",
+  mastered: "border-ink bg-ink text-bg",
 };
 
 export const LEVEL_LABEL: Record<Level, string> = {
@@ -26,9 +26,9 @@ export const LEVEL_LABEL: Record<Level, string> = {
 export function SkillGrid({ stats, onSelect }: { stats: Record<string, SkillStat>; onSelect?: (skill: string) => void }) {
   const units = catalog.units.filter((u) => u.area);
   return (
-    <div className="flex flex-col divide-y divide-line">
+    <div className="flex flex-col gap-5">
       {units.map((u) => (
-        <div key={u.id} className="grid gap-x-6 gap-y-2.5 py-4 first:pt-0 last:pb-0 sm:grid-cols-[168px_minmax(0,1fr)]">
+        <div key={u.id} className="grid gap-x-6 gap-y-2.5 sm:grid-cols-[168px_minmax(0,1fr)]">
           <p className="pt-2 text-[13.5px] leading-snug">
             <span className="font-semibold text-ink">Unit {u.n}</span> <span className="text-ink-3">{u.title}</span>
           </p>

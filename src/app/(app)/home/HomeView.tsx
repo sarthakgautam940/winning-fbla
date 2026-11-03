@@ -74,28 +74,25 @@ export function HomeView() {
           <Card className="px-7 py-7">
             {next ? (
               <>
-                <p className="text-[13.5px] font-semibold text-accent-ink">{doneLessons ? "Up next" : "Start here"}</p>
-                <p className="mt-3 text-[13.5px] font-medium text-ink-3">
-                  Unit {catalog.units.find((u) => u.id === next.unit)?.n}, lesson {next.n}
-                </p>
-                <h2 className="mt-1 text-[26px] font-bold leading-tight tracking-[-0.025em] text-ink">{next.title}</h2>
+                <h2 className="text-[26px] font-bold leading-tight tracking-[-0.025em] text-ink">{next.title}</h2>
                 <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-ink-2">{next.summary}</p>
                 <div className="mt-6 flex flex-wrap items-center gap-4">
                   <LinkButton href={`/learn/${next.unit}/${next.id}`} variant="primary" size="lg">
                     {p.lessons[next.id]?.seen?.length ? "Continue lesson" : "Start lesson"}
                     <ArrowRight size={17} />
                   </LinkButton>
-                  <span className="tnum text-[14px] text-ink-3">{next.minutes} minutes</span>
+                  <span className="tnum text-[14px] text-ink-3">
+                    Unit {catalog.units.find((u) => u.id === next.unit)?.n}, lesson {next.n}, {next.minutes} minutes
+                  </span>
                 </div>
               </>
             ) : (
               <>
-                <p className="text-[13.5px] font-semibold text-good">Course complete</p>
-                <h2 className="mt-2 text-[26px] font-bold tracking-[-0.025em] text-ink">Every lesson is done</h2>
+                <h2 className="text-[26px] font-bold tracking-[-0.025em] text-ink">Every lesson is done</h2>
                 <p className="mt-2 text-[15px] text-ink-2">Stay sharp with practice tests, mixed review, and speed drills.</p>
               </>
             )}
-            <div className="mt-7 border-t border-line pt-5">
+            <div className="mt-8">
               <div className="flex items-baseline justify-between text-[13.5px]">
                 <span className="font-medium text-ink-2">Course progress</span>
                 <span className="tnum text-ink-3">
@@ -116,10 +113,10 @@ export function HomeView() {
                 </Link>
               }
             />
-            <Card className="divide-y divide-line">
+            <Card className="flex flex-col gap-0.5 p-2">
               {todays.length ? (
                 todays.map((t) => (
-                  <Link key={t.id} href={t.href} className="flex items-center gap-4 px-5 py-4 transition-colors first:rounded-t-[var(--radius-lg)] last:rounded-b-[var(--radius-lg)] hover:bg-surface-2/60">
+                  <Link key={t.id} href={t.href} className="flex items-center gap-4 rounded-[12px] px-4 py-3.5 transition-colors hover:bg-surface-2/70">
                     <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2", t.done ? "border-good-fill bg-good-fill text-white" : "border-line-strong")}>{t.done ? <Check size={14} strokeWidth={3} /> : null}</span>
                     <span className="min-w-0 flex-1">
                       <span className="block text-[15px] font-semibold text-ink">{t.title}</span>
@@ -129,10 +126,10 @@ export function HomeView() {
                   </Link>
                 ))
               ) : (
-                <p className="px-5 py-4 text-[14.5px] text-ink-2">{target ? "Today is a rest day in your plan. A short flashcard review keeps things fresh." : "Set a competition date on the Plan page to get daily tasks."}</p>
+                <p className="px-4 py-3.5 text-[14.5px] text-ink-2">{target ? "Today is a rest day in your plan. A short flashcard review keeps things fresh." : "Set a competition date on the Plan page to get daily tasks."}</p>
               )}
               {due || unseenCards ? (
-                <Link href="/flashcards" className="flex items-center gap-4 px-5 py-4 transition-colors last:rounded-b-[var(--radius-lg)] hover:bg-surface-2/60">
+                <Link href="/flashcards" className="flex items-center gap-4 rounded-[12px] px-4 py-3.5 transition-colors hover:bg-surface-2/70">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-line-strong text-ink-3">
                     <Layers size={13} />
                   </span>
@@ -176,13 +173,13 @@ export function HomeView() {
             />
             <Card className="px-6 py-6">
               <Roadmap events={p.settings.events} today={today} targetId={target?.id ?? null} />
-              {target ? <p className={cn("mt-6 border-t border-line pt-4 text-[13.5px] leading-snug", plan.status === "behind" || plan.status === "tight" ? "text-warn" : "text-ink-2")}>{plan.statusNote}</p> : null}
+              {target ? <p className={cn("mt-6 rounded-[12px] bg-surface-2 px-4 py-3 text-[13.5px] leading-snug", plan.status === "behind" || plan.status === "tight" ? "text-warn" : "text-ink-2")}>{plan.statusNote}</p> : null}
             </Card>
           </section>
 
           <section>
             <SectionTitle title="Practice now" />
-            <Card className="divide-y divide-line">
+            <Card className="flex flex-col gap-0.5 p-2">
               <ActionRow href="/practice/drill" icon={<Zap size={16} />} title="Speed drill" detail="20 questions in 10 minutes, at real test pace." />
               <ActionRow href="/review" icon={<RotateCcw size={16} />} title="Review mistakes" detail={open ? `${open} ${open === 1 ? "question is" : "questions are"} waiting to be fixed.` : "No open mistakes. Saved questions live here too."} />
               <ActionRow href={testRow.href} icon={<ClipboardCheck size={16} />} title={testRow.title} detail={testRow.detail} />
@@ -196,7 +193,7 @@ export function HomeView() {
 
 function ActionRow({ href, icon, title, detail }: { href: string; icon: React.ReactNode; title: string; detail: string }) {
   return (
-    <Link href={href} className="group flex items-center gap-3.5 px-5 py-4 transition-colors first:rounded-t-[var(--radius-lg)] last:rounded-b-[var(--radius-lg)] hover:bg-surface-2/60">
+    <Link href={href} className="group flex items-center gap-3.5 rounded-[12px] px-4 py-3.5 transition-colors hover:bg-surface-2/70">
       <span className="shrink-0 text-ink-2">{icon}</span>
       <span className="min-w-0 flex-1">
         <span className="block text-[15px] font-semibold text-ink">{title}</span>

@@ -12,9 +12,9 @@ import { CodeBlock } from "./CodeBlock";
 type NodeProps = { node?: Element; children?: React.ReactNode } & Record<string, unknown>;
 
 const CALLOUT_STYLE: Record<string, string> = {
-  key: "border-l-ink",
-  tip: "border-l-good-fill",
-  trap: "border-l-accent",
+  key: "bg-surface-2",
+  tip: "bg-good-soft",
+  trap: "bg-bad-soft",
 };
 
 export function LessonBody({ hast, questions, metas }: { hast: Root; questions: Record<string, QuestionContent>; metas: Record<string, QMeta> }) {
@@ -50,7 +50,7 @@ export function LessonBody({ hast, questions, metas }: { hast: Root; questions: 
     },
     "x-callout": ({ node, children }: NodeProps) => {
       const kind = String(node?.properties?.kind ?? "key");
-      return <aside className={`not-prose rich my-6 rounded-r-[12px] border-l-[3px] bg-surface-2/70 px-5 py-4 text-[16px] ${CALLOUT_STYLE[kind] ?? ""}`}>{children}</aside>;
+      return <aside className={`not-prose rich my-6 rounded-[14px] px-5 py-4 text-[16px] ${CALLOUT_STYLE[kind] ?? ""}`}>{children}</aside>;
     },
     "x-takeaways": ({ children }: NodeProps) => (
       <section className="not-prose mt-12 rounded-[var(--radius-lg)] border border-line bg-surface px-6 py-5">

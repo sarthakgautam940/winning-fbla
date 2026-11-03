@@ -26,8 +26,7 @@ export function LearnOverview() {
       {ready && nl ? (
         <Card className="mb-8 flex flex-wrap items-center justify-between gap-4 px-6 py-5">
           <div className="min-w-0">
-            <p className="text-[13.5px] font-semibold text-accent-ink">{doneLessons ? "Continue where you left off" : "Start here"}</p>
-            <p className="mt-1.5 text-[19px] font-bold tracking-[-0.015em] text-ink">
+            <p className="text-[19px] font-bold tracking-[-0.015em] text-ink">
               <span className="mr-2 text-ink-3">{nl.code}</span>
               {nl.title}
             </p>
@@ -41,7 +40,7 @@ export function LearnOverview() {
       ) : null}
 
       <Card className="overflow-hidden">
-        <ol className="divide-y divide-line">
+        <ol className="flex flex-col gap-1 p-2">
           {catalog.units.map((u) => {
             const { done, total } = unitDone(p, u.id);
             const area = catalog.areas.find((a) => a.id === u.area);
@@ -49,7 +48,7 @@ export function LearnOverview() {
             const complete = ready && total > 0 && done === total;
             return (
               <li key={u.id}>
-                <Link href={`/learn/${u.id}`} className="group grid grid-cols-[48px_1fr] gap-4 px-6 py-5 transition-colors hover:bg-surface-2/50 sm:grid-cols-[48px_1fr_210px] sm:items-center">
+                <Link href={`/learn/${u.id}`} className="group grid grid-cols-[48px_1fr] gap-4 rounded-[12px] px-4 py-4 transition-colors hover:bg-surface-2/60 sm:grid-cols-[48px_1fr_210px] sm:items-center">
                   <span className={cn("tnum text-[30px] font-bold leading-none tracking-[-0.03em]", complete ? "text-good" : "text-ink-3 group-hover:text-ink")}>
                     {complete ? <Check size={26} strokeWidth={2.6} /> : u.n}
                   </span>

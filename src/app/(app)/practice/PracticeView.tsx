@@ -1,14 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Lock, RotateCcw, Search, Shuffle, Zap } from "lucide-react";
+import { Check, Lock, RotateCcw, Search, Shuffle, X, Zap } from "lucide-react";
 import { catalog, getSkill, lessonsOf } from "@/lib/catalog";
 import type { Tier } from "@/lib/content-types";
 import { latestResult, skillStats } from "@/lib/analytics";
 import { buildReview, skillSet } from "@/lib/sets";
 import { useProgress, useReady } from "@/lib/progress/store";
 import { PracticeRunner } from "@/components/session/PracticeRunner";
-import { Button, Card, cn, LinkButton, PageHeader, TierBars } from "@/components/ui/primitives";
+import { Button, Card, cn, LinkButton, PageHeader, TIER_TILE } from "@/components/ui/primitives";
 
 type Status = "all" | "new" | "missed" | "correct";
 
@@ -58,12 +58,12 @@ export function PracticeView() {
   return (
     <div className="mx-auto max-w-6xl px-5 pb-16 pt-8 sm:px-8 lg:pt-12">
       <PageHeader
-        title="Practice"
-        description="Every question type on the test, organized by skill. Tiles go from Core to Champion within each skill. Green means your latest answer was right; red means it was wrong."
+        title="Question Bank"
+        description="Every question type on the test, organized by skill. Tiles are colored by difficulty: green for Core, yellow for Competitive, purple for Champion. A check marks a question you got right, and an x one you missed."
         actions={ready ? <span className="tnum text-[14px] text-ink-2">{totalSolved} of {catalog.questions.length} solved</span> : null}
       />
 
-      <Card className="grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <Card className="grid gap-1 p-2 sm:grid-cols-3">
         <ModeCard
           icon={<Zap size={18} />}
           title="Speed drill"
@@ -136,7 +136,7 @@ export function PracticeView() {
         <div className="min-w-0">
           {visible.map((g) => (
             <section key={g.unit.id} className="mb-10">
-              <h2 className="mb-2 border-b border-line pb-2.5 text-[15px] font-bold tracking-[-0.01em] text-ink">
+              <h2 className="mb-1 text-[16px] font-bold tracking-[-0.01em] text-ink">
                 Unit {g.unit.n}: {g.unit.title}
               </h2>
               <div className="flex flex-col">
@@ -144,7 +144,7 @@ export function PracticeView() {
                   const st = stats[s.id];
                   const solved = qs.filter((x) => latest.get(x.id) === true).length;
                   return (
-                    <div key={s.id} id={`skill-${s.id}`} className="grid scroll-mt-8 grid-cols-1 gap-3 border-b border-line py-4 last:border-b-0 md:grid-cols-[230px_minmax(0,1fr)]">
+                    <div key={s.id} id={`skill-${s.id}`} className="grid scroll-mt-8 grid-cols-1 gap-3 py-3.5 md:grid-cols-[230px_minmax(0,1fr)]">
                       <div>
                         <button type="button" onClick={() => openSkill(s.id)} className="text-left">
                           <span className="tnum mr-1.5 text-[13px] font-semibold text-ink-3">{s.n}</span>
@@ -168,15 +168,13 @@ export function PracticeView() {
                               title={locked ? "Unlocks after you take this lesson's quiz" : `${x.label}: ${x.tier}`}
                               aria-label={`Question ${x.label}, ${x.tier}${r === true ? ", correct" : r === false ? ", missed" : ""}${locked ? ", locked until the lesson quiz" : ""}`}
                               className={cn(
-                                "relative flex h-11 w-14 flex-col items-center justify-center gap-1 rounded-[10px] border text-[12.5px] font-bold shadow-[0_2px_0_var(--line)] transition-[transform,background-color,border-color] duration-150 hover:-translate-y-px",
-                                locked && "cursor-not-allowed border-dashed border-line text-ink-3 shadow-none hover:translate-y-0",
-                                !locked && r === undefined && "border-line-strong bg-surface text-ink-2 hover:border-ink-3",
-                                !locked && r === true && "border-good-line bg-good-soft text-good",
-                                !locked && r === false && "border-bad-line bg-bad-soft text-bad",
-                              )}
+                                "relative flex h-11 w-14 items-center justify-center rounded-[10px] border-[1.5px] text-[13px] font-bold transition-transform duration-150",
+                                TIER_TILE[x.tier],
+                                locked ? "cursor-not-allowed" : "hover:-translate-y-px",
+                                                                                                                                                              )}
                             >
                               <span className="tnum leading-none">{x.label}</span>
-                              {locked ? <Lock size={10} /> : <TierBars tier={x.tier} className="scale-75" />}
+                              {locked ? <Badge kind="lock" /> : r === true ? <Badge kind="right" /> : r === false ? <Badge kind="wrong" /> : null}
                             </button>
                           );
                         })}
@@ -198,7 +196,7 @@ export function PracticeView() {
 
 function ModeCard({ icon, title, body, action }: { icon: React.ReactNode; title: string; body: string; action: React.ReactNode }) {
   return (
-    <div className="flex flex-col px-6 py-5">
+    <div className="flex flex-col rounded-[12px] px-4 py-4">
       <p className="flex items-center gap-2 text-[15.5px] font-semibold text-ink">
         <span className="text-ink-2">{icon}</span>
         {title}
@@ -221,5 +219,15 @@ function Filter<T extends string>({ label, value, onChange, options }: { label: 
         ))}
       </div>
     </div>
+  );
+}
+
+// Status rides on the tile's corner, so the tile's color can show difficulty.
+function Badge({ kind }: { kind: "lock" | "right" | "wrong" }) {
+  const Icon = kind === "lock" ? Lock : kind === "right" ? Check : X;
+  return (
+    <span aria-hidden className={cn("absolute -right-1.5 -top-1.5 flex h-[18px] w-[18px] items-center justify-center rounded-full ring-2 ring-bg", kind === "lock" ? "bg-ink text-bg" : kind === "right" ? "bg-good-fill text-white" : "bg-bad-fill text-white")}>
+      <Icon size={kind === "lock" ? 9 : 11} strokeWidth={3} />
+    </span>
   );
 }

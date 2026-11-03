@@ -9,12 +9,11 @@ type Variant = "primary" | "secondary" | "ghost" | "accent" | "danger";
 type Size = "sm" | "md" | "lg";
 
 // Ink pills for primary actions, white pills with a hairline for secondary ones.
-// The vermilion accent is for the one action a page exists to start.
 const VARIANT: Record<Variant, string> = {
   primary: "bg-ink text-bg hover:bg-ink/85 disabled:opacity-40",
   secondary: "bg-surface text-ink border border-line-strong hover:border-ink-3 disabled:opacity-50",
   ghost: "text-ink-2 hover:bg-surface-2 hover:text-ink disabled:opacity-40",
-  accent: "bg-accent text-white hover:brightness-95 disabled:opacity-40",
+  accent: "bg-accent text-bg hover:opacity-90 disabled:opacity-40",
   danger: "bg-surface text-bad border border-bad-line hover:bg-bad-soft",
 };
 
@@ -68,13 +67,22 @@ export function ProgressBar({ value, className, tone = "ink", label }: { value: 
   );
 }
 
+// Difficulty colors: green Core, yellow Competitive, purple Champion.
+export const TIER_TILE: Record<Tier, string> = {
+  core: "border-core-line bg-core-bg text-core-fg shadow-[0_2px_0_var(--core-line)]",
+  competitive: "border-comp-line bg-comp-bg text-comp-fg shadow-[0_2px_0_var(--comp-line)]",
+  champion: "border-champ-line bg-champ-bg text-champ-fg shadow-[0_2px_0_var(--champ-line)]",
+};
+const TIER_BAR: Record<Tier, string> = { core: "bg-core-fg", competitive: "bg-comp-fg", champion: "bg-champ-fg" };
+const TIER_TEXT: Record<Tier, string> = { core: "text-core-fg", competitive: "text-comp-fg", champion: "text-champ-fg" };
+
 // Difficulty as three small rising bars: one for core, two for competitive, three for champion.
 export function TierBars({ tier, className }: { tier: Tier; className?: string }) {
   const n = tier === "core" ? 1 : tier === "competitive" ? 2 : 3;
   return (
     <span className={cn("inline-flex items-end gap-[2px]", className)} aria-label={`${tier} difficulty`} role="img">
       {[0, 1, 2].map((i) => (
-        <span key={i} className={cn("w-[3px] rounded-[1px]", i < n ? "bg-ink-2" : "bg-line-strong")} style={{ height: 5 + i * 3 }} />
+        <span key={i} className={cn("w-[3px] rounded-[1px]", i < n ? TIER_BAR[tier] : "bg-line-strong")} style={{ height: 5 + i * 3 }} />
       ))}
     </span>
   );
@@ -83,7 +91,7 @@ export function TierBars({ tier, className }: { tier: Tier; className?: string }
 export function TierLabel({ tier }: { tier: Tier }) {
   const label = tier === "core" ? "Core" : tier === "competitive" ? "Competitive" : "Champion";
   return (
-    <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-ink-3">
+    <span className={cn("inline-flex items-center gap-1.5 text-[12.5px] font-semibold", TIER_TEXT[tier])}>
       <TierBars tier={tier} />
       {label}
     </span>
@@ -117,12 +125,12 @@ export function SectionTitle({ title, action, className }: { title: string; acti
   );
 }
 
-// One bordered strip of headline numbers, split by hairlines.
+// Headline numbers side by side in one card, separated by space, not lines.
 export function StatStrip({ stats, className }: { stats: { label: string; value: React.ReactNode; note?: React.ReactNode }[]; className?: string }) {
   return (
-    <div className={cn("grid overflow-hidden rounded-[var(--radius-lg)] border border-line bg-surface shadow-[var(--shadow-card)] sm:grid-cols-2", stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3", className)}>
+    <div className={cn("grid gap-x-8 gap-y-7 rounded-[var(--radius-lg)] border border-line bg-surface px-6 py-6 shadow-[var(--shadow-card)] sm:grid-cols-2", stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3", className)}>
       {stats.map((s) => (
-        <div key={s.label} className="border-line px-5 py-5 [&:not(:first-child)]:border-t sm:[&:nth-child(2)]:border-t-0 sm:[&:nth-child(even)]:border-l lg:border-t-0 lg:[&:not(:first-child)]:border-l">
+        <div key={s.label} className="min-w-0">
           <p className="text-[13.5px] font-medium text-ink-3">{s.label}</p>
           <p className="tnum mt-1.5 text-[30px] font-bold leading-none tracking-[-0.03em] text-ink">{s.value}</p>
           {s.note ? <p className="mt-2 text-[13px] leading-snug text-ink-3">{s.note}</p> : null}

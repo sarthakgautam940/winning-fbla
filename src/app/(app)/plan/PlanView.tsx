@@ -10,7 +10,6 @@ import { Button, Card, cn, PageHeader, SectionTitle } from "@/components/ui/prim
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const LEVELS: Record<CompEvent["level"], string> = { regional: "Regional", state: "State", national: "National", other: "Other" };
-const STAGE: Record<CompEvent["level"], string> = { regional: "Regionals", state: "States", national: "Nationals", other: "Competition" };
 const MILESTONES_SHOWN = 6;
 
 const longDate = (d: string) => parseDate(d).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
@@ -47,7 +46,7 @@ export function PlanView() {
       {/* Season roadmap */}
       <Card className="px-6 py-7 sm:px-8">
         <ol className={cn("grid gap-9 md:gap-6", ordered.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2")}>
-          {ordered.map((e, i) => {
+          {ordered.map((e) => {
             const left = daysBetween(today, parseDate(e.date));
             const past = left < 0;
             const isTarget = !past && plan.target?.id === e.id;
@@ -62,15 +61,10 @@ export function PlanView() {
                       past ? "border-ink bg-ink text-bg" : isTarget ? "border-accent bg-accent" : "border-line-strong bg-surface",
                     )}
                   >
-                    {past ? <Check size={13} strokeWidth={3} /> : isTarget ? <span className="h-2.5 w-2.5 rounded-full bg-white" /> : null}
+                    {past ? <Check size={13} strokeWidth={3} /> : isTarget ? <span className="h-2.5 w-2.5 rounded-full bg-[var(--gold)]" /> : null}
                   </span>
-                  {i < ordered.length - 1 ? <span aria-hidden className="hidden h-px flex-1 bg-line-strong md:block" /> : null}
                 </div>
-                <p className={cn("mt-4 text-[13px] font-semibold", isTarget ? "text-accent-ink" : "text-ink-3")}>
-                  {STAGE[e.level]}
-                  {isTarget ? ", plan target" : ""}
-                </p>
-                <p className="mt-1 text-[18px] font-bold leading-snug tracking-[-0.015em] text-ink">{e.name}</p>
+                <p className="mt-4 text-[18px] font-bold leading-snug tracking-[-0.015em] text-ink">{e.name}</p>
                 <p className="mt-1 text-[13.5px] text-ink-3">
                   {longDate(e.date)}
                   {e.confirmed ? "" : ", estimated"}
@@ -86,7 +80,7 @@ export function PlanView() {
                   )}
                 </p>
                 {before.length ? (
-                  <ul className="mt-5 flex flex-col gap-2 border-t border-line pt-4">
+                  <ul className="mt-5 flex flex-col gap-2 rounded-[12px] bg-surface-2 px-4 py-3.5">
                     {before.slice(0, MILESTONES_SHOWN).map((m) => (
                       <li key={`${m.label}-${m.date}`} className="flex items-baseline justify-between gap-3 text-[13.5px]">
                         <span className="min-w-0 text-ink-2">{m.label}</span>
@@ -100,7 +94,7 @@ export function PlanView() {
             );
           })}
         </ol>
-        {plan.target ? <p className={cn("mt-8 border-t border-line pt-5 text-[14.5px] leading-relaxed", plan.status === "behind" || plan.status === "tight" ? "text-warn" : "text-ink-2")}>{plan.statusNote} <span className="tnum text-ink-3">{plan.lessonsLeft} lessons left, {plan.studyDaysLeft} study days before {plan.target.name}.</span></p> : null}
+        {plan.target ? <p className={cn("mt-8 text-[14.5px] leading-relaxed", plan.status === "behind" || plan.status === "tight" ? "text-warn" : "text-ink-2")}>{plan.statusNote} <span className="tnum text-ink-3">{plan.lessonsLeft} lessons left, {plan.studyDaysLeft} study days before {plan.target.name}.</span></p> : null}
       </Card>
 
       <div className="mt-10 grid gap-x-8 gap-y-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
@@ -118,12 +112,12 @@ export function PlanView() {
               </Button>
             }
           />
-          <Card className="divide-y divide-line">
+          <Card className="flex flex-col gap-0.5 p-2">
             {ordered.map((e) => {
               const left = daysBetween(today, parseDate(e.date));
               const isTarget = plan.target?.id === e.id;
               return (
-                <div key={e.id} className="px-5 py-4">
+                <div key={e.id} className="rounded-[12px] px-4 py-3.5">
                   <div className="flex flex-wrap items-center gap-2">
                     <input value={e.name} onChange={(ev) => patchEvent(e.id, { name: ev.target.value })} aria-label="Competition name" className="min-w-0 flex-1 bg-transparent text-[15.5px] font-semibold text-ink outline-none" />
                     <input type="date" value={e.date} onChange={(ev) => ev.target.value && patchEvent(e.id, { date: ev.target.value, confirmed: true })} aria-label={`Date of ${e.name}`} className="h-9 rounded-full border border-line-strong bg-surface px-3 text-[13.5px] text-ink outline-none focus:border-ink" />
@@ -184,10 +178,10 @@ export function PlanView() {
             {shownWeeks.map(([wk, ds]) => (
               <div key={wk}>
                 <p className="mb-2 text-[13.5px] font-semibold text-ink-3">Week of {parseDate(wk).toLocaleDateString(undefined, { month: "long", day: "numeric" })}</p>
-                <Card className="divide-y divide-line">
+                <Card className="flex flex-col gap-0.5 p-2">
                   {ds.map((d) => (
-                    <div key={d.date} className="grid gap-2 px-5 py-3.5 sm:grid-cols-[130px_1fr]">
-                      <p className={cn("text-[13.5px]", d.date === dayKey(today) ? "font-semibold text-accent-ink" : "font-medium text-ink-3")}>{d.date === dayKey(today) ? "Today" : parseDate(d.date).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}</p>
+                    <div key={d.date} className="grid gap-2 rounded-[12px] px-4 py-3 sm:grid-cols-[130px_1fr]">
+                      <p className={cn("text-[13.5px]", d.date === dayKey(today) ? "font-semibold text-ink" : "font-medium text-ink-3")}>{d.date === dayKey(today) ? "Today" : parseDate(d.date).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}</p>
                       <ul className="flex flex-col gap-1.5">
                         {d.tasks.map((t) => (
                           <li key={t.id} className="flex items-baseline justify-between gap-3 text-[14.5px]">

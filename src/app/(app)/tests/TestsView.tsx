@@ -106,13 +106,13 @@ export function TestsView() {
           <Card className="px-6 py-5">
             <ul className="flex flex-col text-[14.5px] text-ink-2">
               {catalog.areas.map((a) => (
-                <li key={a.id} className="flex justify-between gap-4 border-b border-line py-2 first:pt-0 last:border-b-0 last:pb-0">
+                <li key={a.id} className="flex justify-between gap-4 py-1.5">
                   <span>{a.name}</span>
                   <span className="tnum font-semibold text-ink">{a.items}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 border-t border-line pt-4 text-[13.5px] leading-relaxed text-ink-3">Tests 1 to 4 run about 35% Core, 45% Competitive, and 20% Champion; Test 5 about 20%, 45%, and 35%. Ten Champion questions in each test are scored as a tiebreaker set, as at nationals.</p>
+            <p className="mt-4 text-[13.5px] leading-relaxed text-ink-3">Tests 1 to 4 run about 35% Core, 45% Competitive, and 20% Champion; Test 5 about 20%, 45%, and 35%. Ten Champion questions in each test are scored as a tiebreaker set, as at nationals.</p>
           </Card>
         </section>
       </div>
@@ -120,9 +120,9 @@ export function TestsView() {
       {ready && runs.length ? (
         <section className="mt-12">
           <SectionTitle title="History" />
-          <Card className="divide-y divide-line">
+          <Card className="flex flex-col gap-0.5 p-2">
             {runs.map((r) => (
-              <Link key={r.id} href={`/report?s=${r.id}`} className="flex items-center justify-between gap-4 px-5 py-3.5 text-[14.5px] transition-colors first:rounded-t-[var(--radius-lg)] last:rounded-b-[var(--radius-lg)] hover:bg-surface-2/60">
+              <Link key={r.id} href={`/report?s=${r.id}`} className="flex items-center justify-between gap-4 rounded-[12px] px-4 py-3 text-[14.5px] transition-colors hover:bg-surface-2/70">
                 <span className="font-medium text-ink">{r.title.replace("Data Science & AI: ", "")}</span>
                 <span className="text-ink-3">{new Date(r.finishedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</span>
                 <span className="tnum font-bold text-ink">{r.correct}/100</span>
