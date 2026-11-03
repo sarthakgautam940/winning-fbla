@@ -66,6 +66,11 @@ The user flagged the four edits made to `content/questions/tests/DL.yaml` after 
 - Process for every test item: before writing, run `npx tsx scripts/neighbors.ts --map <unit>` and read every existing question for the area's skills; after writing, run `npx tsx scripts/neighbors.ts <id prefix>` (add `--virginia <file>` with the guide's text from `pdftotext -layout StudyGuide.pdf`; the guide's questions are not stored in the repo) and judge each item's nearest stems by hand; then `--check` and `verify.py`.
 - Remediation order: rewrite DL Tests 1 and 2; fix the Unit 1 test (ut1-01, 02, 03, 04, 05, 09, 14, 15, 16, 17, 19, 20, 21, 24, 26, 28, 29, 30); then for each later area, audit its unit test while writing its practice items (u2 with PS, u3 with DA, u4 with TL, u5 with ML, u6 with AI, u7 with PR, u8 with PE).
 
+## UI redesign progress (docs/design-brief.md)
+
+- Shipped: paper tokens (accent #c9441f, white on it 4.85:1; ink-3 5.25:1 on the canvas), light default (saved "system" reads as light; Settings offers Light and Dark), pill buttons, StatStrip, SectionTitle, designed EmptyState, sidebar pills and the min-h-0 fix for the clipped profile chip, Home (continue card, today, skill grid, roadmap rail, action rows), shared SkillGrid and Roadmap components (src/components/progress), Practice (mode strip, pill filters, skill anchors), Plan (three-stage season roadmap with target milestones), Practice tests (projected score, status cards), Progress (stat strip, shared grid replacing hard-coded blues), Learn (one divided list), lessons (bolder headings, callout rules ink, green, vermilion), questions (ink selection, ink links, ink focus).
+- Still to check visually: Flashcards, Review, Reference, Settings, the unit page, the test runner, the report, and the mobile layout. Screenshots work at the pane's natural size; emulated viewports capture torn when the app window is hidden.
+
 ## Open issues
 
 - R cannot be executed locally; R snippets are checked by reasoning only.

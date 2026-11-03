@@ -26,8 +26,8 @@ export function LearnOverview() {
       {ready && nl ? (
         <Card className="mb-8 flex flex-wrap items-center justify-between gap-4 px-6 py-5">
           <div className="min-w-0">
-            <p className="text-[13px] text-ink-3">{doneLessons ? "Continue where you left off" : "Start here"}</p>
-            <p className="mt-1 text-[18px] font-semibold text-ink">
+            <p className="text-[13.5px] font-semibold text-accent-ink">{doneLessons ? "Continue where you left off" : "Start here"}</p>
+            <p className="mt-1.5 text-[19px] font-bold tracking-[-0.015em] text-ink">
               <span className="mr-2 text-ink-3">{nl.code}</span>
               {nl.title}
             </p>
@@ -40,41 +40,41 @@ export function LearnOverview() {
         </Card>
       ) : null}
 
-      <ol className="flex flex-col gap-3">
-        {catalog.units.map((u) => {
-          const { done, total } = unitDone(p, u.id);
-          const area = catalog.areas.find((a) => a.id === u.area);
-          const test = unitTestTaken(p, u.id);
-          const complete = ready && total > 0 && done === total;
-          return (
-            <li key={u.id}>
-              <Link href={`/learn/${u.id}`} className="group block">
-                <Card className="grid grid-cols-[44px_1fr] gap-4 px-5 py-5 transition-colors group-hover:border-line-strong sm:grid-cols-[44px_1fr_200px] sm:items-center">
-                  <span className={cn("flex h-11 w-11 items-center justify-center rounded-[12px] text-[16px] font-semibold", complete ? "bg-good-fill text-white" : "bg-surface-2 text-ink-2")}>
-                    {complete ? <Check size={20} strokeWidth={2.5} /> : u.n}
+      <Card className="overflow-hidden">
+        <ol className="divide-y divide-line">
+          {catalog.units.map((u) => {
+            const { done, total } = unitDone(p, u.id);
+            const area = catalog.areas.find((a) => a.id === u.area);
+            const test = unitTestTaken(p, u.id);
+            const complete = ready && total > 0 && done === total;
+            return (
+              <li key={u.id}>
+                <Link href={`/learn/${u.id}`} className="group grid grid-cols-[48px_1fr] gap-4 px-6 py-5 transition-colors hover:bg-surface-2/50 sm:grid-cols-[48px_1fr_210px] sm:items-center">
+                  <span className={cn("tnum text-[30px] font-bold leading-none tracking-[-0.03em]", complete ? "text-good" : "text-ink-3 group-hover:text-ink")}>
+                    {complete ? <Check size={26} strokeWidth={2.6} /> : u.n}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[17px] font-semibold text-ink">{u.title}</p>
-                    <p className="mt-0.5 text-[14px] leading-relaxed text-ink-2">{u.summary}</p>
-                    <p className="mt-2 text-[12.5px] text-ink-3">
+                    <p className="text-[17.5px] font-bold tracking-[-0.015em] text-ink">{u.title}</p>
+                    <p className="mt-1 text-[14.5px] leading-relaxed text-ink-2">{u.summary}</p>
+                    <p className="mt-2 text-[13px] text-ink-3">
                       {total} lessons
                       {area ? `, ${area.items} of 100 test questions` : ", strategy for test day"}
                       {u.unitTest ? `, unit test of ${u.unitTest.count}` : ""}
                     </p>
                   </div>
                   <div className="col-span-2 sm:col-span-1">
-                    <div className="flex items-baseline justify-between text-[12.5px] text-ink-3">
-                      <span>{ready ? `${done}/${total} lessons` : " "}</span>
+                    <div className="flex items-baseline justify-between text-[13px] text-ink-3">
+                      <span className="tnum">{ready ? `${done} of ${total} lessons` : " "}</span>
                       {test ? <span className="tnum">Test best {Math.round((test.best / test.total) * 100)}%</span> : null}
                     </div>
-                    <ProgressBar value={ready && total ? done / total : 0} tone={complete ? "good" : "ink"} className="mt-1.5" label={`Unit ${u.n} progress`} />
+                    <ProgressBar value={ready && total ? done / total : 0} tone={complete ? "good" : "ink"} className="mt-2" label={`Unit ${u.n} progress`} />
                   </div>
-                </Card>
-              </Link>
-            </li>
-          );
-        })}
-      </ol>
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+      </Card>
     </div>
   );
 }
