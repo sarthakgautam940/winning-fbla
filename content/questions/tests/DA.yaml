@@ -1,0 +1,706 @@
+# Practice-test items: Data Analysis and Statistics for AI (15 per test)
+
+# ================================================================ Test 1
+- id: pt1-da-01
+  test: 1
+  skill: chart-choice
+  objective: DA1
+  tier: core
+  type: scenario
+  stem: |
+    A weather site wants to compare how the average monthly rainfall in two cities changes over the course of a year. Which chart fits best?
+  options:
+    - "A pie chart for each city"
+    - "A line chart with one line per city"
+    - "A histogram of all 24 monthly values"
+    - "A scatterplot of one city's rainfall against the other's"
+  answer: B
+  explain: |
+    Change over time calls for a line chart, and two lines on the same axes let readers compare the cities month by month.
+  why:
+    A: "Pie charts show parts of a whole, and monthly rainfall is not a share of anything."
+    C: "A histogram shows how values are spread and loses the order of the months."
+    D: "Plotting one city against the other hides which month each point belongs to."
+
+- id: pt1-da-02
+  test: 1
+  skill: misleading
+  objective: DA1
+  tier: competitive
+  type: scenario
+  stem: |
+    A report shows two bar charts side by side comparing average test scores at two schools. One chart's vertical axis runs from 0 to 100, and the other's runs from 60 to 80. Why is this misleading?
+  options:
+    - "Bar charts should never be shown side by side"
+    - "Test scores should be shown with a pie chart"
+    - "Equal score gaps look different sizes on the two charts"
+    - "The charts should use horizontal bars instead"
+  answer: C
+  explain: |
+    Charts that readers will compare must share the same scale. A 5-point gap fills a quarter of the 60 to 80 axis but only a twentieth of the 0 to 100 axis, so similar differences look very different. The narrow axis also fails to start at zero, which exaggerates every gap on that chart.
+  why:
+    A: "Side-by-side charts are fine and often helpful, as long as they share a scale."
+    B: "Pie charts show parts of a whole; average scores are not shares of a total."
+    D: "Turning the bars sideways keeps the mismatched scales, so the distortion remains."
+
+- id: pt1-da-03
+  test: 1
+  skill: histograms
+  objective: DA2
+  tier: competitive
+  type: visual
+  stem: |
+    The histogram shows what percent of 200 orders traveled each distance. How many orders traveled from 4 to 6 miles?
+  figure:
+    type: histogram
+    caption: Delivery distances for 200 orders.
+    xLabel: Distance (miles)
+    yLabel: Percent of orders
+    bins:
+      - { from: 0, to: 2, count: 15 }
+      - { from: 2, to: 4, count: 25 }
+      - { from: 4, to: 6, count: 30 }
+      - { from: 6, to: 8, count: 20 }
+      - { from: 8, to: 10, count: 10 }
+  options:
+    - "30"
+    - "60"
+    - "100"
+    - "140"
+  ordered: true
+  answer: B
+  explain: |
+    The 4 to 6 mile bar reaches 30 percent, and 30 percent of 200 orders is 0.30 × 200 = 60 orders.
+  why:
+    A: "30 is the bar's height, a percent, not a count of orders."
+    C: "100 is half of the orders, as if the tallest bar held half of them; it holds 30 percent."
+    D: "140 counts every order up to 6 miles, the cumulative 70 percent, not only those from 4 to 6."
+  verify: "0.30 * 200"
+
+- id: pt1-da-04
+  test: 1
+  skill: boxplots
+  objective: DA2
+  tier: core
+  type: visual
+  stem: |
+    The boxplot shows scores on an easy 50-point quiz. What is the shape of the distribution?
+  figure:
+    type: boxplot
+    caption: Scores on an easy 50-point quiz.
+    axisLabel: Score
+    groups:
+      - { label: Quiz, min: 12, q1: 36, median: 43, q3: 46, max: 50 }
+  options:
+    - "Symmetric"
+    - "Skewed right"
+    - "Uniform"
+    - "Skewed left"
+  answer: D
+  explain: |
+    The lower whisker is much longer than the upper one, and the median sits closer to Q3 than to Q1. A long tail of low scores means the distribution is skewed left, as you would expect when most students do well on an easy quiz.
+  why:
+    A: "The two whiskers, and the two halves of the box, are clearly unequal."
+    B: "The long tail points toward low scores, which is a left skew."
+    C: "A uniform spread gives a balanced boxplot, and this one is lopsided."
+
+- id: pt1-da-05
+  test: 1
+  skill: scatterplots
+  objective: DA2
+  tier: champion
+  type: visual
+  stem: |
+    In the scatterplot, point P lies far above the others but near the middle of the x-values. If P is removed, what happens to the slope of the least-squares line and to the correlation r?
+  figure:
+    type: scatter
+    caption: Ten observations. The highlighted point is P.
+    xLabel: x
+    yLabel: y
+    series:
+      - points: [[1, 5], [2, 8], [3, 10], [4, 13], [5, 32], [6, 17], [7, 20], [8, 22], [9, 25], [10, 27]]
+    highlight: [[5, 32]]
+  options:
+    - "The slope barely changes, but r rises sharply"
+    - "The slope rises sharply, but r barely changes"
+    - "Both the slope and r barely change"
+    - "Both the slope and r rise sharply"
+  answer: A
+  explain: |
+    A point near the middle of the x-values has little leverage, so the slope stays close to 2.4 with or without it. But P sits far from the line, adding a large residual, so removing it raises r from about 0.79 to nearly 1.
+  why:
+    B: "This swaps the effects: P's central x-value gives it little pull on the slope, while its distance from the line weakens r."
+    C: "r is sensitive to points far from the line, and P is far from it."
+    D: "Only r changes much; a point in the middle of the x-range barely tilts the line."
+  verify: |
+    x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10.0])
+    y = np.array([5, 8, 10, 13, 32, 17, 20, 22, 25, 27.0])
+    keep = x != 5
+    s_all, s_out = np.polyfit(x, y, 1)[0], np.polyfit(x[keep], y[keep], 1)[0]
+    r_all, r_out = np.corrcoef(x, y)[0, 1], np.corrcoef(x[keep], y[keep])[0, 1]
+    ans = "The slope barely changes, but r rises sharply" if abs(s_out - s_all) / s_all < 0.1 and r_out - r_all > 0.15 else "no match"
+
+- id: pt1-da-06
+  test: 1
+  skill: causation
+  objective: DA3
+  tier: competitive
+  type: scenario
+  stem: |
+    Across countries, the number of TV sets per person is strongly correlated with life expectancy. Which explanation is most likely?
+  options:
+    - "Watching television helps people live longer"
+    - "Longer lives give people more time to buy TV sets"
+    - "National wealth raises both TV ownership and life expectancy"
+    - "It is a coincidence with no underlying cause"
+  answer: C
+  explain: |
+    Wealthier countries can afford more TV sets and also better food, sanitation, and health care. Wealth is a confounder that drives both variables, so the correlation does not mean that TVs affect health.
+  why:
+    A: "Nothing suggests television itself improves health; this treats an association as a cause."
+    B: "This reverse-causation story is far less plausible than a common cause that drives both."
+    D: "A pattern this strong across many countries is unlikely to be chance; a common cause explains it."
+
+- id: pt1-da-07
+  test: 1
+  skill: multiple-regression
+  objective: DA3
+  tier: core
+  type: calculation
+  stem: |
+    A bike-rental shop's model is predicted daily rentals = 40 + 3 × (temperature in degrees F) - 25 × (inches of rain). How many rentals does it predict on a 70-degree day with 0.4 inch of rain?
+  options:
+    - "215"
+    - "240"
+    - "250"
+    - "260"
+  ordered: true
+  answer: B
+  explain: |
+    Substitute both values: 40 + 3 × 70 minus 25 × 0.4 = 40 + 210 minus 10 = 240 rentals.
+  why:
+    A: "215 subtracts 25 for a full inch of rain instead of 0.4 inch."
+    C: "250 leaves out the rain term."
+    D: "260 adds the rain term instead of subtracting it."
+  verify: "40 + 3 * 70 - 25 * 0.4"
+
+- id: pt1-da-08
+  test: 1
+  skill: logistic-regression
+  objective: DA3
+  tier: competitive
+  type: concept
+  stem: |
+    A logistic regression that predicts whether a student passes an exam has a coefficient of 0.4 on hours studied. What does the positive coefficient tell you?
+  options:
+    - "Each extra hour raises the pass probability by exactly 0.4"
+    - "Each extra hour raises the pass probability by 40%"
+    - "More study hours go with a higher predicted chance of passing"
+    - "Students who study pass 40% of the time"
+  answer: C
+  explain: |
+    Each extra hour adds 0.4 to the log-odds of passing, so the predicted probability rises with study time. The rise is not a fixed amount of probability: it is largest near p = 0.5 and small when p is near 0 or 1.
+  why:
+    A: "The coefficient adds 0.4 to the log-odds, not to the probability, so the probability never jumps by a fixed 0.4."
+    B: "A coefficient of 0.4 changes the log-odds by 0.4; it does not raise the probability by 40%."
+    D: "The coefficient describes how the chance changes with study time, not an overall pass rate."
+
+- id: pt1-da-09
+  test: 1
+  skill: missing-data
+  objective: DA4
+  tier: core
+  type: scenario
+  stem: |
+    A server outage deleted 3 percent of a website's activity records, with no pattern in which records were lost. Which statement about analyzing the remaining 97 percent is true?
+  options:
+    - "The results stay unbiased, with slightly less data"
+    - "The results are biased toward the busiest users"
+    - "The results are biased, because 3 percent is missing"
+    - "The results cannot be used until every record is restored"
+  answer: A
+  explain: |
+    The lost records were chosen by chance, so the data are missing completely at random and the remaining 97 percent are like a random sample of all the records. Deleting the gaps shrinks the sample a little but does not bias the results.
+  why:
+    B: "The outage hit records at random, so no group of users lost more records than another."
+    C: "Missing data alone do not cause bias; bias comes when what is missing differs from what remains."
+    D: "Under MCAR the remaining records are a fair random subset, so they can be analyzed now."
+
+- id: pt1-da-10
+  test: 1
+  skill: validate-clean
+  objective: DA4
+  tier: competitive
+  type: scenario
+  stem: |
+    A products table must never hold a negative price. Which database constraint rejects such a row before it is saved?
+  options:
+    - "`NOT NULL`"
+    - "`UNIQUE`"
+    - "`CHECK (price >= 0)`"
+    - "`PRIMARY KEY`"
+  answer: C
+  explain: |
+    A CHECK constraint tests a condition on every row that is inserted or updated and rejects any row that fails it, so a negative price can never enter the table.
+  why:
+    A: "NOT NULL only requires that a price be present; a negative price would still pass."
+    B: "UNIQUE stops two rows from sharing a value; it says nothing about negative prices."
+    D: "A primary key identifies each row; it does not limit the values in other columns."
+
+- id: pt1-da-11
+  test: 1
+  skill: data-quality
+  objective: DA5
+  tier: core
+  type: scenario
+  stem: |
+    A customer's address is 14 Oak Street in a company's shipping system but 41 Oak Street in its billing system. Which data quality dimension does this conflict reveal a problem with?
+  options:
+    - "Timeliness"
+    - "Uniqueness"
+    - "Completeness"
+    - "Consistency"
+  answer: D
+  explain: |
+    Consistency asks whether the same fact agrees across records and systems. Two systems disagree about one address, so at least one is wrong, and someone must check which.
+  why:
+    A: "Timeliness concerns how current the data are, not whether two systems agree."
+    B: "Uniqueness concerns duplicate records within one dataset."
+    C: "Both addresses are present, so nothing is missing."
+
+- id: pt1-da-12
+  test: 1
+  skill: sampling-bias
+  objective: DA5
+  tier: competitive
+  type: scenario
+  stem: |
+    A hospital divides its patients by department (such as cardiology, surgery, and pediatrics) and randomly selects 30 patients from every department to survey. What kind of sample is this?
+  options:
+    - "A stratified random sample"
+    - "A cluster sample"
+    - "A systematic sample"
+    - "A convenience sample"
+  answer: A
+  explain: |
+    The patients are split into groups that share a trait, the strata, and a separate random sample is taken from every group. Some patients from every department is the signature of a stratified sample.
+  why:
+    B: "A cluster sample picks some groups at random and surveys everyone in them, not some patients from every group."
+    C: "A systematic sample takes every kth person from an ordered list."
+    D: "The patients were chosen at random within each department, not by who was easiest to reach."
+
+- id: pt1-da-13
+  test: 1
+  skill: linreg-applied
+  objective: DA6
+  tier: competitive
+  type: calculation
+  stem: |
+    A model predicts a used car's price as 18,000 - 0.08 × (miles driven), in dollars. Two cars of this model differ by 25,000 miles. By how much do their predicted prices differ?
+  options:
+    - "$2,000"
+    - "$16,000"
+    - "$18,000"
+    - "$20,000"
+  ordered: true
+  answer: A
+  explain: |
+    Only the slope matters for a difference: each extra mile lowers the predicted price by $0.08, so 25,000 more miles lowers it by 0.08 × 25,000 = $2,000. The intercept cancels out.
+  why:
+    B: "$16,000 is the predicted price of a car with 25,000 miles, not the difference between two cars."
+    C: "$18,000 is the intercept, the predicted price at 0 miles."
+    D: "$20,000 multiplies by 0.8 instead of 0.08."
+  verify: "0.08 * 25000"
+
+- id: pt1-da-14
+  test: 1
+  skill: confusion-matrix
+  objective: DA6
+  tier: champion
+  type: visual
+  stem: |
+    The confusion matrix shows a model that flags defective parts on an assembly line. What is its F1 score, to the nearest hundredth?
+  figure:
+    type: confusion
+    caption: A defect detector's results on 300 parts.
+    tp: 24
+    fp: 16
+    fn: 6
+    tn: 254
+    positive: Defective
+    negative: Good
+  options:
+    - "0.60"
+    - "0.69"
+    - "0.70"
+    - "0.93"
+  ordered: true
+  answer: B
+  explain: |
+    Precision is 24 / (24 + 16) = 0.60 and recall is 24 / (24 + 6) = 0.80. F1 is their harmonic mean: 2 × 0.60 × 0.80 / (0.60 + 0.80) = 0.96 / 1.40, about 0.69.
+  why:
+    A: "0.60 is precision alone."
+    C: "0.70 is the ordinary average of precision and recall; F1 uses the harmonic mean, which leans toward the smaller value."
+    D: "0.93 is accuracy, 278 / 300, inflated by the many good parts."
+  verify: |
+    p = 24 / (24 + 16)
+    r = 24 / (24 + 6)
+    ans = 2 * p * r / (p + r)
+
+- id: pt1-da-15
+  test: 1
+  skill: metric-choice
+  objective: DA6
+  tier: champion
+  type: concept
+  stem: |
+    A model that predicts rare equipment failures is trained on data in which only 2 percent of cases are failures. Which fix for the imbalance leaves both the training data and the training process unchanged?
+  options:
+    - "Oversampling the failure cases"
+    - "Undersampling the normal cases"
+    - "Giving failure cases more weight in training"
+    - "Lowering the decision threshold for failure"
+  answer: D
+  explain: |
+    Moving the threshold changes only how the finished model's scores become labels: flagging a failure at, say, 0.2 instead of 0.5 raises recall for the rare class. Resampling changes the training data, and class weights change the training process.
+  why:
+    A: "Oversampling adds copies or synthetic examples of failures to the training data."
+    B: "Undersampling removes normal cases from the training data."
+    C: "Class weights change how much each error counts during training."
+
+# ================================================================ Test 2
+- id: pt2-da-01
+  test: 2
+  skill: chart-choice
+  objective: DA1
+  tier: core
+  type: scenario
+  stem: |
+    A librarian wants to compare how many books were borrowed last month in each of seven genres. Which chart fits best?
+  options:
+    - "A line chart"
+    - "A histogram"
+    - "A bar chart"
+    - "A scatterplot"
+  answer: C
+  explain: |
+    The genres are categories, and the goal is to compare one number across them, so a bar chart fits. Sorting the bars from most to least borrowed makes the comparison even easier.
+  why:
+    A: "A line chart suggests a trend over time or along an ordered scale, and genres have no order."
+    B: "A histogram shows the distribution of one numeric variable in bins on a number line; genres are categories."
+    D: "A scatterplot needs two numeric variables."
+
+- id: pt2-da-02
+  test: 2
+  skill: misleading
+  objective: DA1
+  tier: champion
+  type: calculation
+  stem: |
+    An infographic draws each store's sales as a circle and makes each circle's radius proportional to sales. Store B's sales are 3 times Store A's. How many times larger does Store B's circle look in area?
+  options:
+    - "1.7"
+    - "3"
+    - "6"
+    - "9"
+  ordered: true
+  answer: D
+  explain: |
+    A circle's area grows with the square of its radius, so tripling the radius multiplies the area by 3 squared, which is 9. Readers judge circles by area, so a 3-to-1 difference looks like 9 to 1. Scaling the area, not the radius, to the data removes the distortion.
+  why:
+    A: "1.7 is the square root of 3: how much the radius should grow if the area were scaled to the data."
+    B: "3 is how much the radius grows, but readers see the area, which grows faster."
+    C: "6 doubles the factor instead of squaring it."
+  verify: "3 ** 2"
+
+- id: pt2-da-03
+  test: 2
+  skill: chart-types
+  objective: DA2
+  tier: competitive
+  type: concept
+  stem: |
+    In a heatmap of the correlations among eight variables, every cell on the diagonal from the top left to the bottom right has the darkest color. Why?
+  options:
+    - "Each is a variable's correlation with itself, which is 1"
+    - "They show the eight strongest pairs of different variables"
+    - "They show each variable's mean, its largest value"
+    - "The software shades the diagonal darker so it stands out"
+  answer: A
+  explain: |
+    Row i and column i name the same variable, so each diagonal cell holds a variable's correlation with itself, which is always exactly 1, the largest possible value. The cells above and below the diagonal mirror each other.
+  why:
+    B: "Diagonal cells pair a variable with itself, not two different variables."
+    C: "A correlation heatmap shows correlations in every cell, not means."
+    D: "The color comes from the value 1, not from a special drawing rule."
+
+- id: pt2-da-04
+  test: 2
+  skill: histograms
+  objective: DA2
+  tier: competitive
+  type: concept
+  stem: |
+    An analyst redraws a histogram of 500 delivery times using very narrow bins, each one minute wide. What problem is most likely?
+  options:
+    - "Real features such as a second peak are merged away"
+    - "The total number of deliveries shown changes"
+    - "The histogram becomes a bar chart of categories"
+    - "Bars become jagged and noisy, hiding the overall shape"
+  answer: D
+  explain: |
+    With very narrow bins, each bar holds only a few values, so random ups and downs dominate and the overall shape is hard to see. Very wide bins cause the opposite problem: they can merge real features together.
+  why:
+    A: "Merging features away is the problem with bins that are too wide, not too narrow."
+    B: "Changing the bin width regroups the same 500 deliveries; the total stays the same."
+    C: "The bins still sit on a numeric scale, so the chart is still a histogram."
+
+- id: pt2-da-05
+  test: 2
+  skill: boxplots
+  objective: DA2
+  tier: core
+  type: concept
+  stem: |
+    Which of these can you NOT read from a standard boxplot?
+  options:
+    - "The median"
+    - "The interquartile range"
+    - "The mean"
+    - "The range"
+  answer: C
+  explain: |
+    A standard boxplot draws the five-number summary (minimum, Q1, median, Q3, and maximum) plus any outliers. The mean is not part of it, and in skewed data it can sit far from the median.
+  why:
+    A: "The median is the line inside the box."
+    B: "The IQR is the length of the box, Q3 minus Q1."
+    D: "The range runs from the lowest to the highest value shown, whisker end or outlier."
+
+- id: pt2-da-06
+  test: 2
+  skill: causation
+  objective: DA3
+  tier: competitive
+  type: scenario
+  stem: |
+    Companies that spend more on advertising tend to have higher sales. An analyst warns that the relationship may run the other way. What does the analyst mean?
+  options:
+    - "Higher sales give companies more money to spend on ads"
+    - "Advertising actually lowers sales, despite the correlation"
+    - "A third variable, such as the season, drives both"
+    - "The correlation must be a coincidence"
+  answer: A
+  explain: |
+    Reverse causation means the presumed effect is actually the cause. Companies with high sales have bigger budgets and may advertise more because of their sales, not the other way around.
+  why:
+    B: "Nothing in the data suggests advertising lowers sales; this contradicts the observed relationship."
+    C: "A third variable driving both is confounding, a different explanation from reverse causation."
+    D: "A coincidence is a separate possibility; the analyst described the direction of cause, not chance."
+
+- id: pt2-da-07
+  test: 2
+  skill: multivariate
+  objective: DA3
+  tier: competitive
+  type: scenario
+  stem: |
+    Which goal calls for a dependence method?
+  options:
+    - "Find natural groups among 500 stores"
+    - "Predict next month's sales from price and ad spending"
+    - "Summarize 20 correlated measures with a few components"
+    - "Uncover hidden traits behind 40 survey items"
+  answer: B
+  explain: |
+    A dependence method explains or predicts an outcome from other variables. Predicting sales from price and ad spending has a clear outcome, so a method such as multiple regression fits. The other goals look for structure with no outcome, the work of interdependence methods.
+  why:
+    A: "Finding groups with no outcome is cluster analysis, an interdependence method."
+    C: "Summarizing correlated variables is principal component analysis, an interdependence method."
+    D: "Uncovering latent traits is factor analysis, an interdependence method."
+
+- id: pt2-da-08
+  test: 2
+  skill: logistic-regression
+  objective: DA3
+  tier: champion
+  type: calculation
+  stem: |
+    A logistic regression gives customer A a score (log-odds) of 2 and customer B a score of 1. What probabilities does it predict for the two customers?
+  options:
+    - "A: about 0.88; B: about 0.73"
+    - "A: about 0.88; B: about 0.5"
+    - "A: about 0.67; B: about 0.73"
+    - "A: about 0.67; B: about 0.5"
+  answer: A
+  explain: |
+    Turn each score into a probability with p = 1 / (1 + e to the power of the negative score). A score of 2 means odds of e squared, about 7.39, so p is about 0.88. A score of 1 means odds of e, about 2.72, so p is about 0.73.
+  why:
+    B: "0.5 treats B's score of 1 as odds of 1; a log-odds of 1 means odds of e, about 2.72."
+    C: "0.67 treats A's score of 2 as odds of 2; a log-odds of 2 means odds of e squared."
+    D: "This treats both scores as odds instead of log-odds."
+  verify: |
+    a = 1 / (1 + math.exp(-2))
+    b = 1 / (1 + math.exp(-1))
+    ans = f"A: about {a:.2f}; B: about {b:.2f}"
+
+- id: pt2-da-09
+  test: 2
+  skill: clean-issues
+  objective: DA4
+  tier: core
+  type: scenario
+  stem: |
+    Every March order appears twice in a sales dataset because the March file was loaded twice. What should the analyst do?
+  options:
+    - "Keep both copies, since each row is a real order"
+    - "Remove one copy of each exactly duplicated row"
+    - "Delete all of the March orders from the dataset"
+    - "Divide every March sales figure by 2"
+  answer: B
+  explain: |
+    These are exact duplicates, identical rows created by loading the same file twice. Removing one copy of each restores the true March figures, while deleting both copies would lose real orders.
+  why:
+    A: "Keeping both copies counts every March order twice and inflates the totals."
+    C: "Deleting both copies throws away real orders along with the duplicates."
+    D: "Halving the amounts fixes revenue totals but still counts every March order twice."
+
+- id: pt2-da-10
+  test: 2
+  skill: missing-data
+  objective: DA4
+  tier: competitive
+  type: scenario
+  stem: |
+    In a health survey, men are less likely than women to answer a question about how often they visit a doctor, but within each gender, who answers has nothing to do with how often they visit. How are the missing answers best classified?
+  options:
+    - "MCAR, because most people still answered"
+    - "MAR, because it depends only on recorded gender"
+    - "MNAR, because it depends on the number of visits"
+    - "MCAR, because within each gender it is random"
+  answer: B
+  explain: |
+    Missingness depends on gender, an observed variable, and within each gender it is random. That is the definition of missing at random. Methods that use gender, such as imputing within each gender, can then correct for the gap.
+  why:
+    A: "Men and women answer at different rates, so the chance of missing is not the same for everyone."
+    C: "Within each gender, answering is unrelated to the number of visits, so missingness does not depend on the missing values."
+    D: "Randomness only within groups defined by an observed variable is MAR; MCAR needs the same chance of missing for every person."
+
+- id: pt2-da-11
+  test: 2
+  skill: data-quality
+  objective: DA5
+  tier: competitive
+  type: scenario
+  stem: |
+    A warehouse thermometer is miscalibrated and reads 2 degrees too high, but every reading falls inside the allowed range of 0 to 40 degrees Celsius. Which data quality dimension is affected?
+  options:
+    - "Validity"
+    - "Completeness"
+    - "Accuracy"
+    - "Uniqueness"
+  answer: C
+  explain: |
+    Accuracy asks whether values match reality. The readings are well formed and in range, so they pass validity checks, but each one is 2 degrees off the true temperature.
+  why:
+    A: "The readings are in the allowed range and format, so they are valid; they are just wrong."
+    B: "No readings are missing."
+    D: "Nothing is duplicated."
+
+- id: pt2-da-12
+  test: 2
+  skill: sampling-bias
+  objective: DA5
+  tier: champion
+  type: scenario
+  stem: |
+    An online survey estimates the share of a country's adults who use the internet every day. How is its estimate most likely biased?
+  options:
+    - "Too low, since online surveys get few responses"
+    - "About right, as long as thousands of people respond"
+    - "Too low, since heavy internet users skip surveys"
+    - "Too high, since adults who rarely go online are unlikely to take it"
+  answer: D
+  explain: |
+    Adults who rarely or never go online have little chance of seeing an online survey, so they are undercovered. The respondents are mostly frequent users, which pushes the estimate up, and a bigger sample of the same kind would not fix it.
+  why:
+    A: "A low response rate is a separate issue; the main problem is who can be reached at all."
+    B: "More responses from the same skewed group shrink random error but leave the bias in place."
+    C: "Heavy users are the people most likely to see and take an online survey."
+
+- id: pt2-da-13
+  test: 2
+  skill: tree-applied
+  objective: DA6
+  tier: core
+  type: visual
+  stem: |
+    A bank uses the decision tree below to screen loan applications. An applicant has a credit score of 700 and a debt-to-income ratio of 45 percent. What does the tree predict?
+  figure:
+    type: tree
+    caption: A decision tree for screening loan applications
+    root:
+      label: Credit score at least 650?
+      children:
+        - label: Debt-to-income below 40%?
+          edge: "Yes"
+          children:
+            - { label: Approve, edge: "Yes" }
+            - { label: Review, edge: "No" }
+        - label: Decline
+          edge: "No"
+  options:
+    - "Approve"
+    - "Decline"
+    - "The tree cannot decide this case"
+    - "Review"
+  answer: D
+  explain: |
+    Start at the root: 700 is at least 650, so follow the Yes branch. At the next node, 45 percent is not below 40 percent, so follow No to the leaf, Review.
+  why:
+    A: "Approve requires a debt-to-income ratio below 40 percent, and 45 percent is not below it."
+    B: "Decline is reached only when the credit score is below 650."
+    C: "Every case follows one path from the root to exactly one leaf, so the tree always gives a prediction."
+
+- id: pt2-da-14
+  test: 2
+  skill: reg-metrics
+  objective: DA6
+  tier: competitive
+  type: calculation
+  stem: |
+    A model predicts five students' test scores. Its errors (actual minus predicted) are 2, -2, 4, -1, and 1 points. What is its root mean squared error (RMSE), to the nearest hundredth of a point?
+  options:
+    - "0.8"
+    - "2"
+    - "2.28"
+    - "5.2"
+  ordered: true
+  answer: C
+  explain: |
+    Square the errors: 4, 4, 16, 1, and 1. Their mean is 26 / 5 = 5.2, the MSE. The square root, about 2.28 points, is the RMSE, back in the units of the scores.
+  why:
+    A: "0.8 is the mean of the signed errors, where positive and negative errors cancel."
+    B: "2 is the MAE, the mean of the absolute errors."
+    D: "5.2 is the MSE, in squared points; it still needs a square root."
+  verify: "math.sqrt(sum(e * e for e in [2, -2, 4, -1, 1]) / 5)"
+
+- id: pt2-da-15
+  test: 2
+  skill: algo-match
+  objective: DA6
+  tier: core
+  type: scenario
+  stem: |
+    A hotel uses five years of nightly booking counts to predict how many rooms will be booked on each night of the coming month. What kind of task is this?
+  options:
+    - "Forecasting"
+    - "Clustering"
+    - "Association rules"
+    - "Anomaly detection"
+  answer: A
+  explain: |
+    Predicting future values of a quantity from its own past, ordered in time, is forecasting. Patterns such as busy weekends and holiday peaks are the structure a forecast uses.
+  why:
+    B: "Clustering groups unlabeled cases; it does not predict future values."
+    C: "Association rules find items that occur together, not future quantities."
+    D: "Anomaly detection flags unusual cases; here the goal is to predict ordinary future demand."
