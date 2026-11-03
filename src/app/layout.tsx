@@ -14,14 +14,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f0f11" },
-  ],
+  themeColor: "#f6f4ef",
 };
 
-// Resolves the saved theme before first paint so pages never flash.
-const themeScript = `(function(){try{var s=localStorage.getItem("wf-theme")||"system";var d=s==="dark"||(s==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=d?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
+// Resolves the saved theme before first paint so pages never flash. Light unless dark was chosen.
+const themeScript = `(function(){try{var s=localStorage.getItem("wf-theme");document.documentElement.dataset.theme=s==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

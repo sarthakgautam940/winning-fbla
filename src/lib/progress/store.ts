@@ -40,7 +40,7 @@ export const DEFAULT_EVENTS: CompEvent[] = [
 
 export function defaultSettings(): Settings {
   return {
-    theme: "system",
+    theme: "light",
     events: DEFAULT_EVENTS,
     target: null,
     studyDays: [1, 2, 3, 4, 5, 6],

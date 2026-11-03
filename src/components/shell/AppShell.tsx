@@ -57,8 +57,8 @@ function NavLink({ item, path, onNavigate }: { item: Item; path: string; onNavig
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "flex h-9 items-center gap-3 rounded-[9px] px-2.5 text-[14px] transition-colors",
-        active ? "bg-surface font-medium text-ink shadow-[0_0_0_1px_var(--line)]" : "text-ink-2 hover:bg-surface-2 hover:text-ink",
+        "flex h-9 items-center gap-3 rounded-full px-3 text-[14.5px] transition-colors",
+        active ? "bg-surface font-semibold text-ink shadow-[0_0_0_1px_var(--line),0_1px_2px_rgba(26,24,20,0.06)]" : "font-medium text-ink-2 hover:bg-surface-2 hover:text-ink",
       )}
     >
       <Icon size={17} strokeWidth={active ? 2.1 : 1.8} />
@@ -84,7 +84,7 @@ function NavList({ path, onNavigate }: { path: string; onNavigate?: () => void }
 function Profile({ path, onNavigate }: { path: string; onNavigate?: () => void }) {
   const active = isActive(path, "/settings");
   return (
-    <Link href="/settings" onClick={onNavigate} className={cn("flex items-center gap-3 rounded-[10px] px-2 py-2 transition-colors", active ? "bg-surface shadow-[0_0_0_1px_var(--line)]" : "hover:bg-surface-2")}>
+    <Link href="/settings" onClick={onNavigate} className={cn("flex shrink-0 items-center gap-3 rounded-[14px] px-2 py-2 transition-colors", active ? "bg-surface shadow-[0_0_0_1px_var(--line),0_1px_2px_rgba(26,24,20,0.06)]" : "hover:bg-surface-2")}>
       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-[13px] font-semibold text-bg">A</span>
       <span className="min-w-0 flex-1">
         <span className="block text-[14px] font-medium text-ink">Ashwath</span>
@@ -116,7 +116,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Desktop sidebar */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-[244px] flex-col border-r border-line bg-bg px-3 pb-3 pt-4 lg:flex">
         <Wordmark />
-        <div className="scrollbar-thin mt-6 flex-1 overflow-y-auto">
+        <div className="scrollbar-thin mt-6 min-h-0 flex-1 overflow-y-auto">
           <NavList path={path} />
         </div>
         <Profile path={path} />
@@ -140,7 +140,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <X size={20} />
               </button>
             </div>
-            <div className="mt-5 flex-1 overflow-y-auto">
+            <div className="mt-5 min-h-0 flex-1 overflow-y-auto">
               <NavList path={path} onNavigate={() => setOpen(false)} />
             </div>
             <Profile path={path} onNavigate={() => setOpen(false)} />

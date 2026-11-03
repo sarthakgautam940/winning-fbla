@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Download, LogOut, Monitor, Moon, Sun, Upload } from "lucide-react";
+import { Download, LogOut, Moon, Sun, Upload } from "lucide-react";
 import { catalog } from "@/lib/catalog";
 import { exportProgress, importProgress, resetProgress, updateSettings, useProgress, useReady } from "@/lib/progress/store";
 import { Button, Card, cn, PageHeader } from "@/components/ui/primitives";
@@ -52,12 +52,11 @@ export function SettingsView() {
         <div className="mt-3 inline-flex rounded-[12px] border border-line bg-surface-2 p-1" role="radiogroup" aria-label="Theme">
           {(
             [
-              ["system", "System", Monitor],
               ["light", "Light", Sun],
               ["dark", "Dark", Moon],
             ] as const
           ).map(([v, label, Icon]) => (
-            <button key={v} type="button" role="radio" aria-checked={ready && p.settings.theme === v} onClick={() => updateSettings({ theme: v })} className={cn("flex items-center gap-2 rounded-[9px] px-3.5 py-2 text-[14px] font-medium", ready && p.settings.theme === v ? "bg-surface text-ink shadow-[0_1px_2px_rgba(0,0,0,0.08)]" : "text-ink-3 hover:text-ink")}>
+            <button key={v} type="button" role="radio" aria-checked={ready && (p.settings.theme === "dark" ? "dark" : "light") === v} onClick={() => updateSettings({ theme: v })} className={cn("flex items-center gap-2 rounded-[9px] px-3.5 py-2 text-[14px] font-medium", ready && (p.settings.theme === "dark" ? "dark" : "light") === v ? "bg-surface text-ink shadow-[0_1px_2px_rgba(0,0,0,0.08)]" : "text-ink-3 hover:text-ink")}>
               <Icon size={15} />
               {label}
             </button>

@@ -63,7 +63,7 @@ export function PracticeView() {
         actions={ready ? <span className="tnum text-[14px] text-ink-2">{totalSolved} of {catalog.questions.length} solved</span> : null}
       />
 
-      <div className="grid gap-3 sm:grid-cols-3">
+      <Card className="grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
         <ModeCard
           icon={<Zap size={18} />}
           title="Speed drill"
@@ -107,20 +107,20 @@ export function PracticeView() {
             </Button>
           }
         />
-      </div>
+      </Card>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)]">
         <aside className="lg:sticky lg:top-8 lg:self-start">
           <label className="relative block">
             <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-3" />
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Find a skill" aria-label="Find a skill" className="h-9 w-full rounded-[10px] border border-line bg-surface pl-9 pr-3 text-[14px] text-ink outline-none placeholder:text-ink-3 focus:border-accent" />
+            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Find a skill" aria-label="Find a skill" className="h-10 w-full rounded-full border border-line-strong bg-surface pl-9 pr-4 text-[14px] text-ink outline-none placeholder:text-ink-3 focus:border-ink" />
           </label>
           <nav aria-label="Units" className="mt-4 flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
             {[{ id: "all", n: 0, title: "All units" }, ...units].map((u) => {
               const qs = u.id === "all" ? catalog.questions : catalog.questions.filter((x) => x.unit === u.id);
               const solved = qs.filter((x) => latest.get(x.id) === true).length;
               return (
-                <button key={u.id} type="button" onClick={() => setUnit(u.id)} className={cn("flex shrink-0 items-center justify-between gap-3 rounded-[9px] px-3 py-2 text-left text-[13.5px] transition-colors", unit === u.id ? "bg-surface font-medium text-ink shadow-[0_0_0_1px_var(--line)]" : "text-ink-2 hover:bg-surface-2")}>
+                <button key={u.id} type="button" onClick={() => setUnit(u.id)} className={cn("flex shrink-0 items-center justify-between gap-3 rounded-full px-3.5 py-2 text-left text-[13.5px] transition-colors", unit === u.id ? "bg-surface font-semibold text-ink shadow-[0_0_0_1px_var(--line),0_1px_2px_rgba(26,24,20,0.06)]" : "font-medium text-ink-2 hover:bg-surface-2")}>
                   <span className="whitespace-nowrap lg:whitespace-normal">{u.id === "all" ? u.title : `${u.n}. ${u.title}`}</span>
                   <span className="tnum text-[12px] text-ink-3">{ready ? `${solved}/${qs.length}` : qs.length}</span>
                 </button>
@@ -136,7 +136,7 @@ export function PracticeView() {
         <div className="min-w-0">
           {visible.map((g) => (
             <section key={g.unit.id} className="mb-10">
-              <h2 className="mb-3 border-b border-line pb-2 text-[13.5px] font-semibold text-ink-2">
+              <h2 className="mb-2 border-b border-line pb-2.5 text-[15px] font-bold tracking-[-0.01em] text-ink">
                 Unit {g.unit.n}: {g.unit.title}
               </h2>
               <div className="flex flex-col">
@@ -144,7 +144,7 @@ export function PracticeView() {
                   const st = stats[s.id];
                   const solved = qs.filter((x) => latest.get(x.id) === true).length;
                   return (
-                    <div key={s.id} className="grid grid-cols-1 gap-3 border-b border-line py-4 last:border-b-0 md:grid-cols-[230px_minmax(0,1fr)]">
+                    <div key={s.id} id={`skill-${s.id}`} className="grid scroll-mt-8 grid-cols-1 gap-3 border-b border-line py-4 last:border-b-0 md:grid-cols-[230px_minmax(0,1fr)]">
                       <div>
                         <button type="button" onClick={() => openSkill(s.id)} className="text-left">
                           <span className="tnum mr-1.5 text-[13px] font-semibold text-ink-3">{s.n}</span>
@@ -168,9 +168,9 @@ export function PracticeView() {
                               title={locked ? "Unlocks after you take this lesson's quiz" : `${x.label}: ${x.tier}`}
                               aria-label={`Question ${x.label}, ${x.tier}${r === true ? ", correct" : r === false ? ", missed" : ""}${locked ? ", locked until the lesson quiz" : ""}`}
                               className={cn(
-                                "relative flex h-11 w-14 flex-col items-center justify-center gap-1 rounded-[10px] border text-[12.5px] font-semibold transition-colors",
-                                locked && "cursor-not-allowed border-dashed border-line text-ink-3",
-                                !locked && r === undefined && "border-line bg-surface text-ink-2 hover:border-line-strong hover:bg-surface-2",
+                                "relative flex h-11 w-14 flex-col items-center justify-center gap-1 rounded-[10px] border text-[12.5px] font-bold shadow-[0_2px_0_var(--line)] transition-[transform,background-color,border-color] duration-150 hover:-translate-y-px",
+                                locked && "cursor-not-allowed border-dashed border-line text-ink-3 shadow-none hover:translate-y-0",
+                                !locked && r === undefined && "border-line-strong bg-surface text-ink-2 hover:border-ink-3",
                                 !locked && r === true && "border-good-line bg-good-soft text-good",
                                 !locked && r === false && "border-bad-line bg-bad-soft text-bad",
                               )}
@@ -198,12 +198,14 @@ export function PracticeView() {
 
 function ModeCard({ icon, title, body, action }: { icon: React.ReactNode; title: string; body: string; action: React.ReactNode }) {
   return (
-    <Card className="flex flex-col px-5 py-4">
-      <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-surface-2 text-ink-2">{icon}</span>
-      <p className="mt-3 text-[15px] font-semibold text-ink">{title}</p>
-      <p className="mt-1 flex-1 text-[13.5px] leading-snug text-ink-2">{body}</p>
+    <div className="flex flex-col px-6 py-5">
+      <p className="flex items-center gap-2 text-[15.5px] font-semibold text-ink">
+        <span className="text-ink-2">{icon}</span>
+        {title}
+      </p>
+      <p className="mt-1.5 flex-1 text-[13.5px] leading-snug text-ink-2">{body}</p>
       <div className="mt-4">{action}</div>
-    </Card>
+    </div>
   );
 }
 
@@ -213,7 +215,7 @@ function Filter<T extends string>({ label, value, onChange, options }: { label: 
       <p className="mb-1.5 text-[12.5px] font-medium text-ink-3">{label}</p>
       <div className="flex flex-wrap gap-1">
         {options.map(([v, l]) => (
-          <button key={v} type="button" onClick={() => onChange(v)} aria-pressed={value === v} className={cn("rounded-[8px] border px-2.5 py-1 text-[12.5px] font-medium transition-colors", value === v ? "border-ink bg-ink text-bg" : "border-line text-ink-2 hover:border-line-strong")}>
+          <button key={v} type="button" onClick={() => onChange(v)} aria-pressed={value === v} className={cn("rounded-full border px-3 py-1 text-[12.5px] font-semibold transition-colors", value === v ? "border-ink bg-ink text-bg" : "border-line-strong bg-surface text-ink-2 hover:border-ink-3")}>
             {l}
           </button>
         ))}
