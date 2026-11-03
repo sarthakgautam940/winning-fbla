@@ -1,0 +1,1073 @@
+# Practice-test items: AI Basics (10 per test)
+
+# ================================================================ Test 1
+- id: pt1-ai-01
+  test: 1
+  skill: genai-nature
+  objective: AI1
+  tier: core
+  type: recall
+  stem: |
+    Which list names kinds of content that generative AI can produce?
+  options:
+    - "Only labels and scores for existing data"
+    - "Text, images, audio, video, and code"
+    - "Only text, such as essays and chat replies"
+    - "Only images and video"
+  answer: B
+  explain: |
+    Generative AI creates new content of many kinds, including text, images, audio, video, and code, from patterns learned in its training data. Labels and scores for existing data are the output of discriminative models.
+  why:
+    A: "Labels and scores come from discriminative models, which judge existing data."
+    C: "Text is one kind of output, but generative models also produce images, audio, video, and code."
+    D: "Images and video are only part of what generative models produce."
+
+- id: pt1-ai-02
+  test: 1
+  skill: genai-models
+  objective: AI1
+  tier: competitive
+  type: concept
+  stem: |
+    During GAN training, what does the generator learn from?
+  options:
+    - "Labels written by human annotators"
+    - "The noise removed at each denoising step"
+    - "The next token in a text"
+    - "The discriminator's judgments of real versus fake"
+  answer: D
+  explain: |
+    In a GAN, the discriminator judges whether each sample is real or generated, and the generator improves by learning to produce samples the discriminator accepts as real. The two networks train against each other.
+  why:
+    A: "GANs need no human labels; the discriminator supplies the training signal."
+    B: "Removing noise step by step is how diffusion models learn."
+    C: "Predicting the next token is how autoregressive language models learn."
+
+- id: pt1-ai-03
+  test: 1
+  skill: genai-limits
+  objective: AI2
+  tier: core
+  type: scenario
+  stem: |
+    A chatbot attributes a famous-sounding quotation to a historical figure, but no record of the quotation exists anywhere. What is this called?
+  options:
+    - "A hallucination"
+    - "A knowledge cutoff"
+    - "Non-determinism"
+    - "Mode collapse"
+  answer: A
+  explain: |
+    A hallucination is confident, plausible output that is false or made up, such as an invented quotation. The model produces likely-sounding text, and nothing in that process checks it against a record.
+  why:
+    B: "A knowledge cutoff hides events after the training data end; this quote never existed at all."
+    C: "Non-determinism means answers vary between runs; it does not explain an invented quote."
+    D: "Mode collapse is a GAN failure in which the generator repeats nearly the same output."
+
+- id: pt1-ai-04
+  test: 1
+  skill: llm-capabilities
+  objective: AI2
+  tier: competitive
+  type: scenario
+  stem: |
+    Which task is an LLM likely to do well without any tools?
+  options:
+    - "Report the current price of a stock"
+    - "Multiply two nine-digit numbers exactly"
+    - "Translate a short email from English into Spanish"
+    - "List each word used exactly twice in a 10,000-word file"
+  answer: C
+  explain: |
+    Translation is a language task, which LLMs handle well. Live prices, exact arithmetic on long numbers, and exact counting over a huge file need tools such as search, a calculator, or code.
+  why:
+    A: "A current price is a live fact that falls after any knowledge cutoff; it needs a search tool."
+    B: "Exact multiplication of long numbers is unreliable without a calculator."
+    D: "Exact counting over thousands of words is unreliable without code."
+
+- id: pt1-ai-05
+  test: 1
+  skill: genai-uses
+  objective: AI3
+  tier: core
+  type: scenario
+  stem: |
+    A video creator uses a generative model to compose original background music for each new video. Which area of use is this?
+  options:
+    - "Healthcare"
+    - "Scientific research"
+    - "Digital art and media"
+    - "Software development"
+  answer: C
+  explain: |
+    Composing music, along with images, video, and other creative content, falls under digital art and media, one of the main uses of generative AI.
+  why:
+    A: "Nothing here involves patients or medical care."
+    B: "The music serves a video, not a research question."
+    D: "The output is music, not code."
+
+- id: pt1-ai-06
+  test: 1
+  skill: ai-history
+  objective: AI4
+  tier: champion
+  type: recall
+  stem: |
+    Which milestone is credited with starting the deep learning boom?
+  options:
+    - "Deep Blue defeating Garry Kasparov in 1997"
+    - "AlexNet winning the ImageNet challenge in 2012"
+    - "AlphaGo defeating Lee Sedol in 2016"
+    - "The transformer paper of 2017"
+  answer: B
+  explain: |
+    In 2012, AlexNet, a deep neural network, won the ImageNet image-recognition challenge, and its success set off the wave of deep learning that followed.
+  why:
+    A: "Deep Blue was a chess program with fixed programming, not a deep neural network."
+    C: "AlphaGo came four years after the boom had begun, building on deep learning."
+    D: "The transformer arrived in 2017, well after deep learning had taken off."
+
+- id: pt1-ai-07
+  test: 1
+  skill: computer-vision
+  objective: AI4
+  tier: core
+  type: scenario
+  stem: |
+    A recycling plant photographs one item at a time and sorts each photo into plastic, glass, or metal. Which computer vision task is this?
+  options:
+    - "Image classification"
+    - "Object detection"
+    - "Image segmentation"
+    - "Optical character recognition"
+  answer: A
+  explain: |
+    Image classification assigns one label to a whole image. Each photo shows a single item and needs a single label, plastic, glass, or metal.
+  why:
+    B: "Object detection finds and boxes several objects in one image; each photo here has one item."
+    C: "Segmentation labels every pixel, which is more than sorting needs."
+    D: "Optical character recognition reads printed or handwritten text."
+
+- id: pt1-ai-08
+  test: 1
+  skill: llm-training
+  objective: AI5
+  tier: competitive
+  type: scenario
+  stem: |
+    A company wants its model to write in the company's house style for every user, without adding long instructions to each prompt. Which approach changes the model itself?
+  options:
+    - "Fine-tuning on examples of the house style"
+    - "Few-shot prompting with style examples"
+    - "Raising the sampling temperature"
+    - "Using a longer context window"
+  answer: A
+  explain: |
+    Fine-tuning continues training a pretrained model on focused examples, changing its weights so the style carries into every conversation. Prompting techniques shape one conversation without changing the model.
+  why:
+    B: "Few-shot examples change no weights; they must be included in every prompt."
+    C: "Temperature changes how varied the sampling is, not the model's style."
+    D: "A longer window holds more text but teaches the model nothing new."
+
+- id: pt1-ai-09
+  test: 1
+  skill: sampling
+  objective: AI6
+  tier: competitive
+  type: scenario
+  stem: |
+    A team wants an LLM to answer employees' policy questions with focused, consistent answers. Which temperature setting fits best?
+  options:
+    - "A high value, such as 1.5"
+    - "A value chosen at random for each answer"
+    - "Any value, since temperature only affects speed"
+    - "A low value, such as 0.2"
+  answer: D
+  explain: |
+    A low temperature sharpens the probabilities toward the most likely tokens, giving focused, repeatable answers, which suits factual questions. High temperatures suit brainstorming.
+  why:
+    A: "A high temperature spreads probability across more tokens, giving varied and more error-prone answers."
+    B: "Random settings would make answers less consistent, not more."
+    C: "Temperature changes how tokens are sampled, which changes the answers themselves."
+
+- id: pt1-ai-10
+  test: 1
+  skill: embeddings
+  objective: AI6
+  tier: champion
+  type: calculation
+  stem: |
+    Two text embeddings are A = (2, 0, 1) and B = (0, 3, 0). What is their cosine similarity, and what does it suggest?
+  options:
+    - "1, so the texts mean the same thing"
+    - "0.5, so the texts are partly related"
+    - "0, so the texts are unrelated"
+    - "It cannot be computed, since the lengths differ"
+  answer: C
+  explain: |
+    The dot product is 2 × 0 + 0 × 3 + 1 × 0 = 0, so the cosine similarity is 0 divided by the product of the lengths, which is 0. The vectors point in unrelated directions, suggesting unrelated meanings.
+  why:
+    A: "A similarity of 1 needs the vectors to point the same way, and these share no direction."
+    B: "There is no overlap at all: every product of matching components is 0."
+    D: "Cosine similarity divides by the lengths, so vectors of different lengths compare fine."
+  verify: |
+    a, b = np.array([2, 0, 1]), np.array([0, 3, 0])
+    cos = a @ b / (np.linalg.norm(a) * np.linalg.norm(b))
+    ans = "0, so the texts are unrelated" if abs(cos) < 1e-9 else "no match"
+
+# ================================================================ Test 2
+- id: pt2-ai-01
+  test: 2
+  skill: genai-nature
+  objective: AI1
+  tier: core
+  type: scenario
+  stem: |
+    A text-to-image model is given the prompt "a red bicycle under a palm tree." What does it produce?
+  options:
+    - "A label saying whether the prompt is positive"
+    - "A stored photo found online"
+    - "A new image that matches the description"
+    - "A list of keywords from the prompt"
+  answer: C
+  explain: |
+    A text-to-image model is generative: it takes a written description and creates a new image matching it, from patterns learned in training.
+  why:
+    A: "Labeling text as positive or negative is sentiment analysis, a discriminative task."
+    B: "Generative models create new images; they do not fetch stored photos."
+    D: "Pulling keywords from text is not what an image generator does."
+
+- id: pt2-ai-02
+  test: 2
+  skill: genai-nature
+  objective: AI1
+  tier: champion
+  type: scenario
+  stem: |
+    Dozens of apps are built by adapting the same foundation model, and a bias in that model shows up in all of them. What best explains this?
+  options:
+    - "Each app inherits the patterns, flaws included, of the shared model"
+    - "Each app was trained from scratch on the same biased data"
+    - "Bias spreads from app to app over the internet"
+    - "Adapting a model always creates new bias"
+  answer: A
+  explain: |
+    A foundation model is trained once on broad data and then adapted to many tasks. Everything built on it starts from the same learned patterns, so its flaws, such as a bias, carry into every app.
+  why:
+    B: "The apps were adapted from one pretrained model, not trained separately from scratch."
+    C: "Apps do not pass bias to each other; they share it because they share a source model."
+    D: "Adaptation can add or reduce bias; the shared flaw comes from the common base model."
+
+- id: pt2-ai-03
+  test: 2
+  skill: genai-limits
+  objective: AI2
+  tier: competitive
+  type: scenario
+  stem: |
+    Employees ask a general-purpose chatbot about their company's internal travel policy, which was never published. The chatbot gives a confident but generic, wrong answer. Why?
+  options:
+    - "The policy was too long for its context window"
+    - "It never saw the policy, so it filled the gap"
+    - "Chatbots are not allowed to discuss travel"
+    - "Its temperature setting was too low"
+  answer: B
+  explain: |
+    The model learned only from its training data, which never included this private policy, so it produced plausible-sounding text instead. Supplying the policy through retrieval would ground its answers.
+  why:
+    A: "The policy was never given to the model at all, so the context window never came into play."
+    C: "Chatbots discuss travel readily; the problem is missing private information."
+    D: "A low temperature makes answers consistent; it does not invent unknown policies."
+
+- id: pt2-ai-04
+  test: 2
+  skill: llm-capabilities
+  objective: AI2
+  tier: core
+  type: scenario
+  stem: |
+    A model's training data end in mid-2024. A user asks who won an election held in 2025. What is the main problem?
+  options:
+    - "The election is after the model's knowledge cutoff"
+    - "Elections are too complex for language models"
+    - "The question uses too many tokens"
+    - "The model's temperature is too high"
+  answer: A
+  explain: |
+    A knowledge cutoff is the date after which a model's training data contain nothing. Events after it are unknown to the model unless search or retrieval supplies them.
+  why:
+    B: "Models can discuss elections; this one simply never saw the 2025 result."
+    C: "A short question uses few tokens; length is not the issue."
+    D: "Temperature affects variety, not whether the model knows recent events."
+
+- id: pt2-ai-05
+  test: 2
+  skill: genai-uses
+  objective: AI3
+  tier: competitive
+  type: scenario
+  stem: |
+    Which use of generative AI most needs an expert to check the output before it is used?
+  options:
+    - "Brainstorming names for a school club"
+    - "Drafting a birthday poem"
+    - "Suggesting colors for a poster"
+    - "Drafting a patient's medication instructions"
+  answer: D
+  explain: |
+    Generative AI can produce confident errors, and in high-stakes uses such as medical instructions a mistake can cause harm. A qualified person must review that output; low-stakes creative drafts carry far less risk.
+  why:
+    A: "A weak club name causes no harm, so expert review is not needed."
+    B: "A birthday poem is a low-stakes creative draft."
+    C: "Poster colors are a matter of taste with little risk."
+
+- id: pt2-ai-06
+  test: 2
+  skill: nlp-speech
+  objective: AI4
+  tier: competitive
+  type: calculation
+  stem: |
+    An n-gram is a sequence of n neighboring words. How many trigrams (3-grams) does the sentence "data science helps teams make better decisions" contain?
+  options:
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+  ordered: true
+  answer: B
+  explain: |
+    The sentence has 7 words, and a window of 3 words can start at any of the first 5 positions. In general, n words give n minus 2 trigrams: 7 minus 2 = 5.
+  why:
+    A: "4 subtracts 3 from the word count; a window of 3 fits n minus 2 times."
+    C: "6 is the number of bigrams, n minus 1."
+    D: "7 counts the words, not the trigrams."
+  verify: |
+    w = "data science helps teams make better decisions".split()
+    ans = len(w) - 2
+
+- id: pt2-ai-07
+  test: 2
+  skill: ai-definitions
+  objective: AI4
+  tier: core
+  type: concept
+  stem: |
+    By capability, which kind of AI actually exists today?
+  options:
+    - "Narrow AI"
+    - "Artificial general intelligence"
+    - "Artificial superintelligence"
+    - "Self-aware AI"
+  answer: A
+  explain: |
+    Every AI system built so far, including today's chatbots and image generators, is narrow AI: capable within particular kinds of tasks. General AI and superintelligence remain hypothetical.
+  why:
+    B: "Artificial general intelligence, matching human ability across tasks, is still hypothetical."
+    C: "Superintelligence, surpassing humans everywhere, is theoretical."
+    D: "Self-aware AI is a hypothetical functional type that has not been built."
+
+- id: pt2-ai-08
+  test: 2
+  skill: tokens
+  objective: AI5
+  tier: competitive
+  type: concept
+  stem: |
+    Why might a long, rare word such as "antidisestablishmentarianism" count as several tokens?
+  options:
+    - "Every word is always exactly one token"
+    - "Long words are deleted before tokenizing"
+    - "Tokenizers split uncommon words into smaller pieces"
+    - "Each letter is always its own token"
+  answer: C
+  explain: |
+    A tokenizer keeps common words whole but breaks rare words into familiar pieces, such as prefixes, roots, and endings. A long, rare word therefore becomes several tokens.
+  why:
+    A: "Tokens can be whole words, word pieces, or symbols, so one word can be several tokens."
+    B: "Tokenizers keep every word; they split rare ones rather than deleting them."
+    D: "Most tokens group several letters; splitting every word into letters would waste the context window."
+
+- id: pt2-ai-09
+  test: 2
+  skill: prompting
+  objective: AI6
+  tier: core
+  type: scenario
+  stem: |
+    Which prompt uses chain-of-thought prompting?
+  options:
+    - "Translate this sentence into French."
+    - "Here are two labeled examples; label the third."
+    - "You are a friendly assistant for a bakery."
+    - "Solve this problem, showing each step before the answer."
+  answer: D
+  explain: |
+    Chain-of-thought prompting asks the model to reason step by step, or shows worked reasoning, before the final answer. Writing out the steps often improves accuracy on multi-step problems.
+  why:
+    A: "A plain request with no examples or reasoning steps is zero-shot prompting."
+    B: "Giving labeled examples is few-shot prompting."
+    C: "Setting a role or tone is what a system prompt does."
+
+- id: pt2-ai-10
+  test: 2
+  skill: rag-agents
+  objective: AI6
+  tier: champion
+  type: scenario
+  stem: |
+    An assistant is asked for the square root of 7,921 and for the time of the user's dentist appointment next week. How should it get each answer reliably?
+  options:
+    - "Memory for the root, memory for the appointment"
+    - "A calculator for the root, the calendar for the appointment"
+    - "A calculator for the root, a calculator for the appointment"
+    - "A web search for the root, a guess for the appointment"
+  answer: B
+  explain: |
+    Exact arithmetic is a job for a calculator tool, and the appointment is private, current information that only the user's calendar holds. Tool use lets the model hand each part to the right source instead of guessing.
+  why:
+    A: "Training data contain neither this exact calculation nor the user's private calendar."
+    C: "A calculator cannot know when the appointment is."
+    D: "A calculation needs a calculator, and guessing an appointment time invites a hallucination."
+
+# ================================================================ Test 3
+- id: pt3-ai-01
+  test: 3
+  skill: genai-nature
+  objective: AI1
+  tier: core
+  type: scenario
+  stem: |
+    Which pair shows one generative use and one discriminative use?
+  options:
+    - "Writing a product description; labeling a review's sentiment"
+    - "Labeling a review's sentiment; flagging a fraudulent payment"
+    - "Writing a product description; drawing a matching picture"
+    - "Predicting tomorrow's sales; flagging a spam email"
+  answer: A
+  explain: |
+    Writing a product description creates new content, which is generative. Labeling a review's sentiment scores an existing example, which is discriminative.
+  why:
+    B: "Both uses label existing examples, so both are discriminative."
+    C: "Both uses create new content, so both are generative."
+    D: "Both uses predict or label from existing data, so both are discriminative."
+
+- id: pt3-ai-02
+  test: 3
+  skill: genai-models
+  objective: AI1
+  tier: competitive
+  type: concept
+  stem: |
+    A VAE trained on faces can produce a smooth blend between two faces. What makes this possible?
+  options:
+    - "It averages the two photos pixel by pixel"
+    - "Its discriminator rejects unrealistic blends"
+    - "Its smooth latent space puts in-between faces between them"
+    - "It removes noise from both faces at once"
+  answer: C
+  explain: |
+    A VAE encodes inputs into a smooth latent space, where nearby points decode into similar examples. Moving along the path between two encoded faces and decoding each point gives faces that gradually turn from one into the other.
+  why:
+    A: "Averaging pixels overlays two images into a ghostly double, not a smooth blend."
+    B: "A discriminator belongs to a GAN, not a VAE."
+    D: "Removing noise step by step is how diffusion models generate images."
+
+- id: pt3-ai-03
+  test: 3
+  skill: genai-limits
+  objective: AI2
+  tier: champion
+  type: scenario
+  stem: |
+    A company's LLM answers accurately in English but makes many more errors in a language with little text online. Which limitation best explains the gap?
+  options:
+    - "Uneven training data: far less text in that language"
+    - "Non-determinism: sampling makes every answer vary"
+    - "A context window too small for that language's text"
+    - "A knowledge cutoff that falls earlier for that language"
+  answer: A
+  explain: |
+    A model learns from its training data, so it performs best where that data is plentiful. A language with little text online is thinly represented, and the model's skill there is weaker, a limitation and fairness concern rooted in the data.
+  why:
+    B: "Sampling makes answers vary in every language; it does not explain a gap for one language."
+    C: "The context window is the same size in every language."
+    D: "A knowledge cutoff is a date for all training data, not a limit on one language."
+
+- id: pt3-ai-04
+  test: 3
+  skill: llm-capabilities
+  objective: AI2
+  tier: core
+  type: scenario
+  stem: |
+    Which task plays to an LLM's strengths?
+  options:
+    - "Giving today's weather without any tools"
+    - "Rewriting a technical paragraph for a middle-school reader"
+    - "Counting the exact letters in a long paragraph"
+    - "Guaranteeing that every source it cites exists"
+  answer: B
+  explain: |
+    Rewriting and explaining text at a chosen reading level is a language task LLMs do well. Live facts, exact counting, and guaranteed citations all need tools or checking.
+  why:
+    A: "Today's weather is a live fact that needs a search or weather tool."
+    C: "Models see tokens rather than letters, so exact letter counts are unreliable."
+    D: "LLMs can invent plausible but fake sources, so citations must be checked."
+
+- id: pt3-ai-05
+  test: 3
+  skill: genai-uses
+  objective: AI3
+  tier: core
+  type: scenario
+  stem: |
+    A development team uses a generative model to write unit tests for its code, then reviews and runs them. Which area of use is this?
+  options:
+    - "Healthcare"
+    - "Digital art and media"
+    - "Education"
+    - "Software development"
+  answer: D
+  explain: |
+    Generating code, including tests, is a major use of generative AI in software development. The team's review and test runs catch any mistakes in the generated code.
+  why:
+    A: "Nothing here involves patients or medical care."
+    B: "The output is code, not creative media."
+    C: "The tests serve a product's code, not a student's learning."
+
+- id: pt3-ai-06
+  test: 3
+  skill: nlp-speech
+  objective: AI4
+  tier: core
+  type: concept
+  stem: |
+    An NLP system labels each word in a sentence as a noun, verb, adjective, and so on. Which task is this?
+  options:
+    - "Sentiment analysis"
+    - "Named entity recognition"
+    - "Part-of-speech tagging"
+    - "Machine translation"
+  answer: C
+  explain: |
+    Part-of-speech tagging assigns each word its grammatical role, which helps later steps, such as building a parse tree.
+  why:
+    A: "Sentiment analysis judges whether text is positive, negative, or neutral."
+    B: "Named entity recognition finds names of people, places, dates, and similar items."
+    D: "Machine translation converts text from one language to another."
+
+- id: pt3-ai-07
+  test: 3
+  skill: computer-vision
+  objective: AI4
+  tier: competitive
+  type: scenario
+  stem: |
+    A farm's drone photos must be analyzed to count how many sheep appear in each picture. Which computer vision task fits best?
+  options:
+    - "Image classification"
+    - "Object detection"
+    - "Optical character recognition"
+    - "Semantic segmentation"
+  answer: B
+  explain: |
+    Object detection finds each object and draws a box around it, so the boxes can be counted. Classification gives one label for the whole photo and cannot count.
+  why:
+    A: "Classification assigns one label to the whole image, such as sheep present, without counting them."
+    C: "Optical character recognition reads text, not animals."
+    D: "Semantic segmentation labels every sheep pixel alike, so touching sheep merge and are hard to count."
+
+- id: pt3-ai-08
+  test: 3
+  skill: llm-training
+  objective: AI5
+  tier: competitive
+  type: concept
+  stem: |
+    Why can an LLM produce a sentence that sounds right but is false?
+  options:
+    - "It looks up answers in a database that has errors"
+    - "It was trained only on false statements"
+    - "It copies a random sentence from the internet"
+    - "It learned to predict likely next tokens, not to check facts"
+  answer: D
+  explain: |
+    Pretraining teaches the model to predict likely next tokens from patterns in text. That makes its writing fluent, but nothing in the objective checks whether a statement is true, so plausible falsehoods can come out.
+  why:
+    A: "An LLM generates text from learned patterns; it does not look answers up in a database."
+    B: "Its training text is mostly ordinary writing, much of it accurate."
+    C: "It generates new sentences token by token rather than copying random ones."
+
+- id: pt3-ai-09
+  test: 3
+  skill: prompting
+  objective: AI6
+  tier: competitive
+  type: scenario
+  stem: |
+    A user needs an LLM to answer in an exact three-field format, such as "Name | City | Year," every time. Which prompting approach helps most?
+  options:
+    - "Include a few examples written in that exact format"
+    - "Raise the temperature to add variety"
+    - "Ask the question with no further guidance"
+    - "Use the shortest possible prompt"
+  answer: A
+  explain: |
+    Few-shot examples show the model the exact pattern to copy, and it follows that pattern within the conversation. Clear examples are one of the most reliable ways to control output format.
+  why:
+    B: "More variety works against a fixed format."
+    C: "Without guidance, the model may choose its own layout."
+    D: "Cutting the prompt removes the guidance the model needs."
+
+- id: pt3-ai-10
+  test: 3
+  skill: sampling
+  objective: AI6
+  tier: champion
+  type: calculation
+  stem: |
+    The five most likely next tokens have probabilities 0.40, 0.25, 0.20, 0.10, and 0.05. With top-p sampling at p = 0.6, how many tokens can be chosen from?
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "5"
+  ordered: true
+  answer: B
+  explain: |
+    Top-p keeps the smallest set of most likely tokens whose probabilities add up to at least p. The first token gives 0.40, short of 0.6; adding the second gives 0.65, which reaches it, so 2 tokens remain.
+  why:
+    A: "The top token alone covers only 0.40, less than 0.6."
+    C: "3 adds one token too many; the first two already reach 0.65."
+    D: "Top-p cuts off the unlikely tokens instead of keeping all five."
+  verify: |
+    total, n = 0, 0
+    for p in [0.40, 0.25, 0.20, 0.10, 0.05]:
+        if total >= 0.6:
+            break
+        total += p
+        n += 1
+    ans = n
+
+# ================================================================ Test 4
+- id: pt4-ai-01
+  test: 4
+  skill: genai-nature
+  objective: AI1
+  tier: competitive
+  type: scenario
+  stem: |
+    A model reads a loan application and outputs "probability of default: 0.18." What kind of model is this?
+  options:
+    - "Discriminative, since it scores an existing example"
+    - "Generative, since it outputs a number"
+    - "Generative, since it learned from data"
+    - "Neither, since it uses probabilities"
+  answer: A
+  explain: |
+    The model scores an existing application rather than creating new content, so it is discriminative (predictive). Producing a number does not make a model generative; creating new examples does.
+  why:
+    B: "Outputting a number is what predictive models do; generative models create new content."
+    C: "Both kinds of model learn from data, so learning alone does not decide the type."
+    D: "Discriminative models often output probabilities; that is exactly what this one does."
+
+- id: pt4-ai-02
+  test: 4
+  skill: genai-models
+  objective: AI1
+  tier: champion
+  type: scenario
+  stem: |
+    A designer needs high-quality, varied images and can wait a little for each one. A phone app needs images almost instantly. Which model families fit these two needs?
+  options:
+    - "A GAN for the designer, diffusion for the app"
+    - "A VAE for both, since its images are sharpest"
+    - "Diffusion for the designer, a GAN for the app"
+    - "Diffusion for both, since it is the fastest"
+  answer: C
+  explain: |
+    Diffusion models give high-quality images but generate slowly, over many denoising steps, which suits a designer who can wait. A trained GAN makes each image in one fast pass, which suits an app that needs speed.
+  why:
+    A: "This swaps them: diffusion is the slower, high-quality option, and a GAN is the fast one."
+    B: "VAE images tend to be blurrier, not sharper."
+    D: "Diffusion is the slow option, since it removes noise over many steps."
+
+- id: pt4-ai-03
+  test: 4
+  skill: genai-limits
+  objective: AI2
+  tier: core
+  type: scenario
+  stem: |
+    A school club wants help with its bake sale. Which request is generative AI best suited to?
+  options:
+    - "Confirming the exact date of next month's school holiday"
+    - "Drafting several catchy slogans for posters"
+    - "Calculating the exact profit from 1,284 sales"
+    - "Checking which members have paid their dues"
+  answer: B
+  explain: |
+    Drafting creative text, such as slogans, plays to generative AI's strengths, and a weak draft costs nothing. Exact dates, exact sums, and private records need a calendar, a calculator, or the club's own data.
+  why:
+    A: "A school's holiday date is a specific fact the model may not know and could make up."
+    C: "Exact arithmetic over many sales needs a calculator or spreadsheet."
+    D: "Payment records are private data the model has never seen."
+
+- id: pt4-ai-04
+  test: 4
+  skill: llm-capabilities
+  objective: AI2
+  tier: champion
+  type: scenario
+  stem: |
+    A chatbot with no tools is asked, "What day of the week is it today?" Why can't it answer reliably on its own?
+  options:
+    - "It has no clock; the date must come from the prompt or a tool"
+    - "Dates are too hard for language models to format"
+    - "It knows the date but is trained to refuse"
+    - "Its context window is too small to hold a date"
+  answer: A
+  explain: |
+    A model's knowledge comes from training data that end at a cutoff, and it has no clock of its own. Unless the app puts the current date in the prompt or the model can call a tool, it can only guess today's date.
+  why:
+    B: "Formatting dates is easy for an LLM; the problem is not knowing which date it is."
+    C: "There is nothing to refuse; the model simply has no access to the current date."
+    D: "A date takes only a few tokens and fits easily in any context window."
+
+- id: pt4-ai-05
+  test: 4
+  skill: genai-uses
+  objective: AI3
+  tier: competitive
+  type: scenario
+  stem: |
+    A transit agency uses a generative model to create realistic but fake rider trip records so that outside developers can test a new app without seeing any real rider's data. What is this use?
+  options:
+    - "Digital art and media"
+    - "Sentiment analysis of rider reviews"
+    - "Drug discovery for public health"
+    - "Privacy-protecting synthetic data"
+  answer: D
+  explain: |
+    Synthetic data are generated records that mimic the patterns of real data without describing real people. They let developers build and test with realistic data while riders' privacy is protected.
+  why:
+    A: "The records are test data, not creative media."
+    B: "Sentiment analysis labels opinions in text; nothing here is labeled."
+    C: "Drug discovery designs molecules, not trip records."
+
+- id: pt4-ai-06
+  test: 4
+  skill: ai-subfields
+  objective: AI4
+  tier: competitive
+  type: scenario
+  stem: |
+    A movie app recommends films whose genre, director, and actors resemble films a user rated highly, without using other users' ratings. Which recommender approach is this?
+  options:
+    - "Collaborative filtering"
+    - "Content-based filtering"
+    - "Sentiment analysis"
+    - "Automated planning"
+  answer: B
+  explain: |
+    Content-based filtering recommends items whose features resemble those of items the user already liked. Collaborative filtering would instead use the ratings of other, similar users.
+  why:
+    A: "Collaborative filtering relies on other users' ratings, which this app does not use."
+    C: "Sentiment analysis labels opinions in text; it does not recommend films."
+    D: "Automated planning finds sequences of actions that reach a goal."
+
+- id: pt4-ai-07
+  test: 4
+  skill: nlp-speech
+  objective: AI4
+  tier: core
+  type: scenario
+  stem: |
+    An app converts a restaurant menu written in Japanese into English. Which NLP task is this?
+  options:
+    - "Speech synthesis"
+    - "Sentiment analysis"
+    - "Machine translation"
+    - "Part-of-speech tagging"
+  answer: C
+  explain: |
+    Machine translation converts text from one language into another, here from Japanese into English.
+  why:
+    A: "Speech synthesis turns text into spoken audio, not into another language."
+    B: "Sentiment analysis judges whether text is positive or negative."
+    D: "Part-of-speech tagging labels each word's grammatical role."
+
+- id: pt4-ai-08
+  test: 4
+  skill: llm-definition
+  objective: AI5
+  tier: competitive
+  type: concept
+  stem: |
+    In the name GPT, generative pre-trained transformer, what does "pre-trained" mean?
+  options:
+    - "It learned from people answering questions in advance"
+    - "Its answers were written and stored before you ask"
+    - "It learned only from a small task-specific dataset"
+    - "It first learned from huge general text, before any tuning"
+  answer: D
+  explain: |
+    Pretraining is the first, largest stage: next-token prediction on a huge general text collection. Fine-tuning and instruction tuning come afterward and adapt the pretrained model to particular uses.
+  why:
+    A: "Pretraining uses ordinary text with no human answers; human feedback comes later, in RLHF."
+    B: "The model generates each answer when asked; nothing is stored in advance."
+    C: "Learning from a small, focused dataset describes fine-tuning, which comes after pretraining."
+
+- id: pt4-ai-09
+  test: 4
+  skill: embeddings
+  objective: AI6
+  tier: core
+  type: concept
+  stem: |
+    In a good word-embedding space, which word's vector is most likely closest to the vector for "kitten"?
+  options:
+    - "cat"
+    - "kitchen"
+    - "mitten"
+    - "kite"
+  answer: A
+  explain: |
+    Embeddings place words with similar meanings near each other, so "kitten" sits closest to related words such as "cat." Spelling plays no part.
+  why:
+    B: "Kitchen shares letters with kitten, but embeddings follow meaning, not spelling."
+    C: "Mitten rhymes with kitten, but sound and spelling do not decide closeness."
+    D: "Kite shares its first letters with kitten but means something unrelated."
+
+- id: pt4-ai-10
+  test: 4
+  skill: rag-agents
+  objective: AI6
+  tier: core
+  type: scenario
+  stem: |
+    A homework-help chatbot can call a calculator tool. When should it use the tool?
+  options:
+    - "When writing an encouraging message"
+    - "When explaining what a fraction is"
+    - "When multiplying two large numbers exactly"
+    - "When summarizing a short story"
+  answer: C
+  explain: |
+    LLMs handle language tasks well but can slip on exact arithmetic, so a calculator should do the computation. Messages, explanations, and summaries are language tasks the model can handle itself.
+  why:
+    A: "Encouraging messages are a language task the model handles well."
+    B: "Explaining a concept is a language task; no exact computation is needed."
+    D: "Summarizing is a language task the model handles well."
+
+# ================================================================ Test 5
+- id: pt5-ai-01
+  test: 5
+  skill: genai-nature
+  objective: AI1
+  tier: champion
+  type: concept
+  stem: |
+    Generative models are trained on huge datasets with almost no human labeling. How is that possible?
+  options:
+    - "The data supply their own targets, such as the next token"
+    - "People label every example during pretraining"
+    - "The models copy examples instead of learning patterns"
+    - "They train only on synthetic data that comes labeled"
+  answer: A
+  explain: |
+    The training signal comes from the data itself: a language model predicts the next token, a diffusion model predicts the noise that was added, and an autoencoder rebuilds its own input. No person has to label anything.
+  why:
+    B: "Labeling billions of examples by hand would be impossible; the targets come from the data."
+    C: "Generative models learn patterns and create new combinations rather than storing copies."
+    D: "They train mostly on real data, such as text and images, not on labeled synthetic data."
+
+- id: pt5-ai-02
+  test: 5
+  skill: genai-models
+  objective: AI1
+  tier: competitive
+  type: concept
+  stem: |
+    A model writes one token at a time, choosing each from probabilities based on all the tokens before it. Which generative model family is this?
+  options:
+    - "Generative adversarial network"
+    - "Variational autoencoder"
+    - "Diffusion model"
+    - "Autoregressive transformer"
+  answer: D
+  explain: |
+    Autoregressive transformers, such as GPT models, predict the next token, append it, and repeat, so each choice depends on everything generated so far.
+  why:
+    A: "A GAN's generator produces a whole sample in one pass from random noise."
+    B: "A VAE decodes a point from its latent space into a whole sample."
+    C: "A diffusion model refines a whole sample by removing noise over many steps."
+
+- id: pt5-ai-03
+  test: 5
+  skill: genai-limits
+  objective: AI2
+  tier: champion
+  type: concept
+  stem: |
+    Why does a popular chatbot keep using large amounts of electricity even after its training is finished?
+  options:
+    - "Each conversation retrains its weights"
+    - "Its knowledge cutoff must be refreshed every hour"
+    - "Serving millions of queries runs the large model each time"
+    - "Storing its finished weights takes most of the energy"
+  answer: C
+  explain: |
+    Training is one large cost, but serving the model is another: every answer runs a huge neural network on data-center hardware, and a popular service answers millions of requests. Both training and serving consume large amounts of electricity.
+  why:
+    A: "Conversations do not change the model's weights; each one only runs the finished model."
+    B: "The knowledge cutoff changes only when the model is retrained, not hourly."
+    D: "Storing the weights takes little energy compared with running the model for every query."
+
+- id: pt5-ai-04
+  test: 5
+  skill: llm-capabilities
+  objective: AI2
+  tier: competitive
+  type: scenario
+  stem: |
+    An LLM summarizes a 30-page report well but leaves out a key warning from page 27. What is the best lesson?
+  options:
+    - "LLMs cannot summarize long documents at all"
+    - "Summaries can drop key details, so check them against the source"
+    - "The model was refusing to share the warning"
+    - "A polite prompt guarantees a complete summary"
+  answer: B
+  explain: |
+    Summarizing is a strength of LLMs, but a summary compresses, and important details can be dropped or blurred. For anything that matters, check the summary against the source.
+  why:
+    A: "The summary was mostly good; the issue is a missing detail, not an inability to summarize."
+    C: "Nothing suggests a refusal; summaries simply leave things out."
+    D: "Politeness does not make a summary complete; checking the source does."
+
+- id: pt5-ai-05
+  test: 5
+  skill: genai-uses
+  objective: AI3
+  tier: champion
+  type: scenario
+  stem: |
+    A hospital trains a model on synthetic X-rays made by a generator that learned only from adult X-rays. What risk does this create?
+  options:
+    - "The synthetic set inherits the gap, so the model may fail on children"
+    - "Synthetic images always contain patients' real names"
+    - "Synthetic data cannot be used to train any model"
+    - "The model will do better on children than on adults"
+  answer: A
+  explain: |
+    Synthetic data reflect what the generator learned. A generator trained only on adults cannot produce realistic child X-rays, so a model trained on its output may perform poorly on children.
+  why:
+    B: "Synthetic images are made from learned patterns; they do not carry patients' names."
+    C: "Synthetic data are widely used for training; the risk is the gaps they inherit."
+    D: "With no child X-rays in the source, children are where the model is weakest."
+
+- id: pt5-ai-06
+  test: 5
+  skill: ai-history
+  objective: AI4
+  tier: champion
+  type: concept
+  stem: |
+    What most separated AlphaGo's 2016 Go victory from Deep Blue's 1997 chess victory?
+  options:
+    - "AlphaGo followed only fixed, hand-written rules"
+    - "Deep Blue learned by playing millions of games against itself"
+    - "AlphaGo's networks learned from expert games and self-play"
+    - "Deep Blue used a neural network trained on human games"
+  answer: C
+  explain: |
+    AlphaGo's neural networks were trained by learning from human expert games and then by reinforcement learning from games it played against itself. Deep Blue followed fixed programming with no learning, the standard example of a reactive machine.
+  why:
+    A: "Fixed, hand-written programming describes Deep Blue, not AlphaGo."
+    B: "Learning through self-play describes AlphaGo; Deep Blue did not learn from experience."
+    D: "Deep Blue had no trained neural network; learned networks were AlphaGo's advance."
+
+- id: pt5-ai-07
+  test: 5
+  skill: computer-vision
+  objective: AI4
+  tier: core
+  type: scenario
+  stem: |
+    Unlocking a phone by recognizing the owner's face relies mainly on which AI subfield?
+  options:
+    - "Computer vision"
+    - "Natural language processing"
+    - "Robotics"
+    - "Automated planning"
+  answer: A
+  explain: |
+    Face unlock interprets an image from the phone's camera, which is computer vision: getting machines to understand images and video.
+  why:
+    B: "Natural language processing works with text and speech, not faces."
+    C: "Robotics builds machines that sense and move in the physical world."
+    D: "Automated planning finds sequences of actions that reach a goal."
+
+- id: pt5-ai-08
+  test: 5
+  skill: llm-training
+  objective: AI5
+  tier: competitive
+  type: concept
+  stem: |
+    During pretraining, a model reads the four-token text "The sky is blue." Which next-token prediction tasks does this text give it?
+  options:
+    - "One task: the whole sentence paired with a human label"
+    - "From 'The', predict 'sky'; from 'The sky', 'is'; from 'The sky is', 'blue'"
+    - "From 'blue', predict 'is'; from 'is', 'sky'; from 'sky', 'The'"
+    - "From 'The', predict 'sky'; from 'sky', 'is'; from 'is', 'blue', ignoring earlier words"
+  answer: B
+  explain: |
+    Each prefix of the text predicts the token that follows it, so 4 tokens give 4 minus 1 = 3 predictions, and the text supplies its own targets. That is why pretraining needs no human labels.
+  why:
+    A: "Pretraining needs no human labels; the next token in the text is the target."
+    C: "The model predicts forward, from earlier tokens to the next one, not backward."
+    D: "Each prediction uses all of the earlier tokens as context, not just the one before."
+
+- id: pt5-ai-09
+  test: 5
+  skill: rag-agents
+  objective: AI6
+  tier: core
+  type: concept
+  stem: |
+    In an AI agent's loop of perceive, plan, act, and observe, what happens in the observe step?
+  options:
+    - "It writes a plan before starting"
+    - "It reads the user's first request"
+    - "It stops after a single action"
+    - "It checks what its last action did"
+  answer: D
+  explain: |
+    After acting, an agent observes the result, such as whether a booking went through, and uses it to plan the next step. Then the loop repeats until the goal is reached.
+  why:
+    A: "Writing a plan is the plan step."
+    B: "Taking in the request and the situation is the perceive step."
+    C: "An agent repeats its loop over several steps rather than stopping after one action."
+
+- id: pt5-ai-10
+  test: 5
+  skill: rag-agents
+  objective: AI6
+  tier: competitive
+  type: concept
+  stem: |
+    Why do companies often use retrieval-augmented generation (RAG), rather than fine-tuning, to keep a chatbot's answers about their products current?
+  options:
+    - "RAG permanently updates the model's weights"
+    - "New documents can be retrieved at once, with no retraining"
+    - "RAG makes the model's context window unlimited"
+    - "Fine-tuning cannot change a model at all"
+  answer: B
+  explain: |
+    With RAG, updated documents go into the store the system searches, and the next question can draw on them immediately. Fine-tuning would mean retraining the model every time the information changes.
+  why:
+    A: "RAG changes no weights; it adds retrieved passages to the prompt."
+    C: "The retrieved passages still have to fit in the context window."
+    D: "Fine-tuning does change a model's weights; it is just slow and costly to repeat for every update."
