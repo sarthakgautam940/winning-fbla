@@ -1,0 +1,691 @@
+# Practice-test items: Probability and Statistics Foundations (15 per test)
+
+# ================================================================ Test 1
+- id: pt1-ps-01
+  test: 1
+  skill: mean
+  objective: PS1
+  tier: competitive
+  type: calculation
+  stem: |
+    A student earns an A (4.0) in a 4-credit course, a B (3.0) in a 3-credit course, and a C (2.0) in a 2-credit course. What is the student's credit-weighted grade point average, to two decimal places?
+  options:
+    - "2.78"
+    - "3.00"
+    - "3.22"
+    - "9.67"
+  ordered: true
+  answer: C
+  explain: |
+    Weight each grade by its credits: 4.0 × 4 + 3.0 × 3 + 2.0 × 2 = 16 + 9 + 4 = 29 grade points. Divide by the 9 credits: 29 / 9 = 3.22.
+  why:
+    A: "2.78 pairs the credits with the wrong grades (4.0 × 2, 3.0 × 3, 2.0 × 4)."
+    B: "3.00 averages the three grades without weighting them by credits."
+    D: "9.67 divides the 29 grade points by the 3 courses instead of the 9 credits."
+  verify: "(4.0 * 4 + 3.0 * 3 + 2.0 * 2) / 9"
+
+- id: pt1-ps-02
+  test: 1
+  skill: median
+  objective: PS1
+  tier: core
+  type: calculation
+  stem: |
+    Commute times, in minutes, for eight workers are 22, 35, 18, 40, 27, 31, 18, and 26. What is the median commute time?
+  options:
+    - "26"
+    - "26.5"
+    - "27.1"
+    - "33.5"
+  ordered: true
+  answer: B
+  explain: |
+    Sort first: 18, 18, 22, 26, 27, 31, 35, 40. With eight values, the median is the average of the 4th and 5th: (26 + 27) / 2 = 26.5.
+  why:
+    A: "26 is only the 4th value; an even count needs the average of the middle two."
+    C: "27.1 is the mean, 217 / 8, not the median."
+    D: "33.5 averages the two middle values of the unsorted list, 40 and 27."
+  verify: "statistics.median([22, 35, 18, 40, 27, 31, 18, 26])"
+
+- id: pt1-ps-03
+  test: 1
+  skill: mode-range
+  objective: PS1
+  tier: core
+  type: calculation
+  stem: |
+    Nine book-club members read 3, 5, 2, 5, 8, 1, 5, 4, and 6 books over the summer. What are the mode and the range?
+  options:
+    - "Mode 5, range 7"
+    - "Mode 5, range 8"
+    - "Mode 4.3, range 7"
+    - "Mode 5, range 1 to 8"
+  answer: A
+  explain: |
+    The mode is the most frequent value: 5 appears three times. The range is the largest value minus the smallest: 8 minus 1 = 7.
+  why:
+    B: "8 counts the whole numbers from 1 through 8 instead of subtracting 8 minus 1."
+    C: "4.3 is the mean, 39 / 9, not the most frequent value."
+    D: "The range is a single number, the difference 8 minus 1, not the interval from 1 to 8."
+  verify: |
+    data = [3, 5, 2, 5, 8, 1, 5, 4, 6]
+    ans = f"Mode {statistics.mode(data)}, range {max(data) - min(data)}"
+
+- id: pt1-ps-04
+  test: 1
+  skill: center-choice
+  objective: PS1
+  tier: competitive
+  type: scenario
+  stem: |
+    Most students in a class scored between 80 and 95 on a quiz, but four students who missed it were given zeros. Which measure best describes a typical score?
+  options:
+    - "The mean, because it uses every score"
+    - "The mode, because zero appears four times"
+    - "The range, because it shows the full spread"
+    - "The median, because the zeros pull the mean down"
+  answer: D
+  explain: |
+    The four zeros form a long left tail that drags the mean below where most scores sit. The median depends only on the middle position, so it stays near the typical score.
+  why:
+    A: "Using every score is exactly the problem here: the zeros pull the mean down."
+    B: "Zero may repeat, but most students scored far higher, so it is not a typical score."
+    C: "The range measures spread, not a typical value."
+
+- id: pt1-ps-05
+  test: 1
+  skill: variance-sd
+  objective: PS2
+  tier: core
+  type: concept
+  stem: |
+    Which dataset has a standard deviation of 0?
+  options:
+    - "1, 2, 3, 4"
+    - "0, 0, 0, 1"
+    - "-2, -1, 1, 2"
+    - "7, 7, 7, 7"
+  answer: D
+  explain: |
+    Standard deviation measures how far values sit from their mean. In 7, 7, 7, 7 every value equals the mean, so every deviation is 0, and so is the standard deviation.
+  why:
+    A: "These values differ, so their spread is above 0."
+    B: "One value differs from the others, which creates some spread."
+    C: "These values are centered on 0, but they still spread out from their mean."
+  verify: |
+    ans = "7, 7, 7, 7" if statistics.pstdev([7, 7, 7, 7]) == 0 else "none"
+
+- id: pt1-ps-06
+  test: 1
+  skill: variance-sd
+  objective: PS2
+  tier: competitive
+  type: concept
+  stem: |
+    For the same set of numbers, which is larger: the sample standard deviation or the population standard deviation?
+  options:
+    - "The population standard deviation, because it uses all the data"
+    - "They are always equal, because the data are the same"
+    - "It depends on whether the data are skewed"
+    - "The sample standard deviation, because it divides by n minus 1"
+  answer: D
+  explain: |
+    Both formulas add the same squared deviations, but the sample version divides by n minus 1 instead of n. Dividing by a smaller number gives a larger result, so the sample standard deviation is larger, unless every value is the same and both are 0.
+  why:
+    A: "The population formula divides by the larger number, n, so it gives the smaller result."
+    B: "The divisors differ, n minus 1 versus n, so the results differ whenever the data vary."
+    C: "Skew does not matter; the divisor alone decides which is larger."
+  verify: |
+    data = [4, 8, 6, 2, 9]
+    ans = "The sample standard deviation, because it divides by n minus 1" if statistics.stdev(data) > statistics.pstdev(data) else "x"
+
+- id: pt1-ps-07
+  test: 1
+  skill: correlation
+  objective: PS2
+  tier: champion
+  type: concept
+  stem: |
+    Hours of practice and points scored have a correlation of r = 0.65. If every practice value is multiplied by negative 2, what is the new correlation?
+  options:
+    - "It stays 0.65"
+    - "It becomes -1.3"
+    - "It becomes 0"
+    - "It becomes -0.65"
+  answer: D
+  explain: |
+    Multiplying by a negative number reverses the direction of a variable: where practice went up, the new values go down. The strength of the linear pattern is unchanged, so r keeps its size and flips its sign.
+  why:
+    A: "A positive multiplier would leave r unchanged, but a negative one reverses the direction."
+    B: "A correlation always lies between -1 and 1, so it cannot be -1.3."
+    C: "Rescaling cannot create or destroy a linear pattern; here it only reverses the direction."
+  verify: |
+    x = [1, 2, 3, 4, 5, 6]
+    y = [3, 2, 5, 4, 7, 6]
+    r1 = np.corrcoef(x, y)[0, 1]
+    r2 = np.corrcoef([-2 * v for v in x], y)[0, 1]
+    ans = "It becomes -0.65" if abs(r1 + r2) < 1e-12 else "x"
+
+- id: pt1-ps-08
+  test: 1
+  skill: normal-props
+  objective: PS3
+  tier: core
+  type: calculation
+  stem: |
+    Battery lives are normally distributed with a mean of 64 hours and a standard deviation of 3 hours. Which value is the 50th percentile?
+  options:
+    - "61"
+    - "64"
+    - "67"
+    - "70"
+  ordered: true
+  answer: B
+  explain: |
+    A normal distribution is symmetric, so its mean and median are equal. The 50th percentile is the median: 64 hours.
+  why:
+    A: "61 is one standard deviation below the mean, near the 16th percentile."
+    C: "67 is one standard deviation above the mean, near the 84th percentile."
+    D: "70 is two standard deviations above the mean, near the 97.5th percentile."
+  verify: "64"
+
+- id: pt1-ps-09
+  test: 1
+  skill: z-scores
+  objective: PS3
+  tier: competitive
+  type: calculation
+  stem: |
+    Cholesterol readings in a study have a mean of 150 and a standard deviation of 12. What is the z-score of a reading of 129?
+  options:
+    - "-21"
+    - "-1.75"
+    - "1.75"
+    - "10.75"
+  ordered: true
+  answer: B
+  explain: |
+    z = (value minus mean) / standard deviation = (129 minus 150) / 12 = -21 / 12 = -1.75. The reading is 1.75 standard deviations below the mean.
+  why:
+    A: "-21 is the raw difference from the mean, before dividing by the standard deviation."
+    C: "1.75 drops the sign; a value below the mean has a negative z-score."
+    D: "10.75 divides the reading itself by 12 without subtracting the mean."
+  verify: "(129 - 150) / 12"
+
+- id: pt1-ps-10
+  test: 1
+  skill: empirical-rule
+  objective: PS3
+  tier: champion
+  type: calculation
+  stem: |
+    Scores on an aptitude test are normally distributed with a mean of 100 and a standard deviation of 15. Using the empirical rule, about what percent of scores fall between 55 and 85?
+  options:
+    - "2.35%"
+    - "13.5%"
+    - "15.85%"
+    - "34%"
+  ordered: true
+  answer: C
+  explain: |
+    55 is 3 standard deviations below the mean and 85 is 1 below. The band from 1 to 3 standard deviations below the mean holds half of 99.7% minus 68%: 31.7% / 2 = 15.85%.
+  why:
+    A: "2.35% is only the band from 2 to 3 standard deviations below the mean."
+    B: "13.5% is only the band from 1 to 2 standard deviations below the mean."
+    D: "34% is the band from the mean down to 1 standard deviation below."
+  verify: "(99.7 - 68) / 2"
+
+- id: pt1-ps-11
+  test: 1
+  skill: expected-value
+  objective: PS4
+  tier: core
+  type: calculation
+  stem: |
+    X is the number of pets in a randomly chosen household, with P(X = 0) = 0.30, P(X = 1) = 0.45, and P(X = 2) = 0.25. What is E(X)?
+  options:
+    - "0.33"
+    - "0.70"
+    - "0.95"
+    - "1.00"
+  ordered: true
+  answer: C
+  explain: |
+    Multiply each value by its probability and add: 0 × 0.30 + 1 × 0.45 + 2 × 0.25 = 0 + 0.45 + 0.50 = 0.95 pets.
+  why:
+    A: "0.33 averages the three probabilities, which always gives 1 divided by 3."
+    B: "0.70 adds the probabilities of owning at least one pet; that is P(X ≥ 1), not the mean."
+    D: "1.00 averages the values 0, 1, and 2 without weighting them by their probabilities."
+  verify: "0 * 0.30 + 1 * 0.45 + 2 * 0.25"
+
+- id: pt1-ps-12
+  test: 1
+  skill: ev-decisions
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    On the FBLA test, a wrong answer costs nothing. A student has 8 unread questions left, each with 4 options, and only seconds to spare. How many extra points should the student expect from guessing on all 8 instead of leaving them blank?
+  options:
+    - "0"
+    - "2"
+    - "4"
+    - "8"
+  ordered: true
+  answer: B
+  explain: |
+    Each random guess is right with probability 1/4 and costs nothing when wrong, so it is worth 0.25 points on average. Over 8 questions that is 8 × 0.25 = 2 points, against 0 for blanks.
+  why:
+    A: "With no penalty, every guess adds a quarter point on average, so guessing beats a blank."
+    C: "4 assumes each guess is right half the time; with four options the chance is one in four."
+    D: "8 would require every guess to be right."
+  verify: "8 * 0.25"
+
+- id: pt1-ps-13
+  test: 1
+  skill: bayes
+  objective: PS4
+  tier: champion
+  type: calculation
+  stem: |
+    Four percent of a bank's transactions are fraudulent. A detector flags 75 percent of fraudulent transactions and 5 percent of legitimate ones. About what is the probability that a flagged transaction is fraudulent?
+  options:
+    - "4%"
+    - "7.8%"
+    - "38.5%"
+    - "75%"
+  ordered: true
+  answer: C
+  explain: |
+    Imagine 10,000 transactions: 400 are fraud, and 300 of those are flagged. Of the 9,600 legitimate ones, 480 are flagged. So 300 of the 780 flagged transactions are fraud: 300 / 780, about 38.5%.
+  why:
+    A: "4% is the base rate, before the detector says anything."
+    B: "7.8% is the share of all transactions that get flagged, not the share of flags that are fraud."
+    D: "75% is P(flagged | fraud); the question asks for P(fraud | flagged)."
+  verify: "0.04 * 0.75 / (0.04 * 0.75 + 0.96 * 0.05) * 100"
+
+- id: pt1-ps-14
+  test: 1
+  skill: var-types
+  objective: PS5
+  tier: competitive
+  type: concept
+  stem: |
+    A probability density curve, such as the normal curve, describes which kind of random variable?
+  options:
+    - "Continuous"
+    - "Discrete"
+    - "Categorical"
+    - "Ordinal"
+  answer: A
+  explain: |
+    A density curve spreads probability over a continuous range: the probability of an interval is the area under the curve. A discrete variable is described instead by a list of separate probabilities.
+  why:
+    B: "A discrete variable has separate values, each with its own probability, shown as bars or a table."
+    C: "Categorical variables are labels with probabilities for each category, not a curve over a number line."
+    D: "Ordinal variables are ordered categories, not values on a continuous scale."
+
+- id: pt1-ps-15
+  test: 1
+  skill: distributions
+  objective: PS5
+  tier: competitive
+  type: scenario
+  stem: |
+    Which situation is modeled by a binomial distribution?
+  options:
+    - "Counting heads in 12 flips of a fair coin"
+    - "Counting the cars that pass a corner in an hour"
+    - "Measuring the heights of 12 randomly chosen students"
+    - "Picking a whole number from 1 to 10 at random"
+  answer: A
+  explain: |
+    A binomial count has a fixed number of independent trials, two outcomes on each, and the same success probability every time. Twelve coin flips, counting heads, fit all of these.
+  why:
+    B: "Events counted over an interval, with no fixed number of trials, follow a Poisson distribution."
+    C: "Heights are continuous measurements, often roughly normal."
+    D: "Equally likely whole numbers from 1 to 10 form a discrete uniform distribution."
+
+# ================================================================ Test 2
+- id: pt2-ps-01
+  test: 2
+  skill: mean
+  objective: PS1
+  tier: competitive
+  type: calculation
+  stem: |
+    A city's mean daily high last month was 20 degrees Celsius. Converting with F = 1.8C + 32, what is the mean daily high in degrees Fahrenheit?
+  options:
+    - "36"
+    - "52"
+    - "68"
+    - "93.6"
+  ordered: true
+  answer: C
+  explain: |
+    Converting every value with F = 1.8C + 32 converts the mean the same way: 1.8 × 20 + 32 = 36 + 32 = 68.
+  why:
+    A: "36 multiplies by 1.8 but forgets to add 32."
+    B: "52 adds 32 but forgets to multiply by 1.8."
+    D: "93.6 adds 32 before multiplying: (20 + 32) × 1.8."
+  verify: "1.8 * 20 + 32"
+
+- id: pt2-ps-02
+  test: 2
+  skill: median
+  objective: PS1
+  tier: champion
+  type: calculation
+  stem: |
+    Six numbers have a mean of 10 and a median of 8. The largest number is increased by 12. What are the new mean and median?
+  options:
+    - "Mean 12, median 8"
+    - "Mean 12, median 10"
+    - "Mean 10, median 8"
+    - "Mean 22, median 20"
+  answer: A
+  explain: |
+    The total rises by 12, from 60 to 72, so the mean becomes 72 / 6 = 12. The median of six numbers is the average of the 3rd and 4th, and raising the largest value does not move them, so it stays 8.
+  why:
+    B: "The median depends on the middle two values, which did not change."
+    C: "The total grew by 12, so the mean must rise."
+    D: "Only one value changed, so the mean rises by 12 / 6 = 2, not by 12."
+  verify: |
+    ans = f"Mean {(10 * 6 + 12) / 6:g}, median 8"
+
+- id: pt2-ps-03
+  test: 2
+  skill: mode-range
+  objective: PS1
+  tier: core
+  type: calculation
+  stem: |
+    Daily low temperatures, in degrees Celsius, over five days were -6, 2, -1, 4, and -3. What is the range?
+  options:
+    - "-2"
+    - "2"
+    - "6"
+    - "10"
+  ordered: true
+  answer: D
+  explain: |
+    The range is the largest value minus the smallest: 4 minus (negative 6) = 4 + 6 = 10 degrees.
+  why:
+    A: "-2 adds the smallest value to the largest instead of subtracting it."
+    B: "2 subtracts the smallest positive value and ignores the negative ones."
+    C: "6 uses only how far the coldest day sits from zero."
+  verify: "max([-6, 2, -1, 4, -3]) - min([-6, 2, -1, 4, -3])"
+
+- id: pt2-ps-04
+  test: 2
+  skill: quartiles
+  objective: PS1
+  tier: core
+  type: calculation
+  stem: |
+    A dataset's five-number summary is minimum 10, Q1 25, median 32, Q3 41, and maximum 60. What is the interquartile range?
+  options:
+    - "9"
+    - "16"
+    - "31"
+    - "50"
+  ordered: true
+  answer: B
+  explain: |
+    The interquartile range is Q3 minus Q1: 41 minus 25 = 16. It measures the spread of the middle half of the data.
+  why:
+    A: "9 is Q3 minus the median, only the upper half of the box."
+    C: "31 is Q3 minus the minimum."
+    D: "50 is the range, the maximum minus the minimum."
+  verify: "41 - 25"
+
+- id: pt2-ps-05
+  test: 2
+  skill: ev-rules
+  objective: PS2
+  tier: competitive
+  type: calculation
+  stem: |
+    A shop's daily revenue and daily costs are independent, with standard deviations of 3 and 4, in thousands of dollars. Profit is revenue minus costs. What is the standard deviation of daily profit, in thousands of dollars?
+  options:
+    - "1"
+    - "5"
+    - "7"
+    - "25"
+  ordered: true
+  answer: B
+  explain: |
+    For independent quantities, variances add, even when one is subtracted from the other: the variance of profit is 9 + 16 = 25. The standard deviation is its square root, 5 thousand dollars.
+  why:
+    A: "1 subtracts the standard deviations; uncertainty in costs adds to the uncertainty in profit, it does not cancel."
+    C: "7 adds the standard deviations; you add the variances, then take the square root."
+    D: "25 is the variance, in squared units, not the standard deviation."
+  verify: "math.sqrt(3 ** 2 + 4 ** 2)"
+
+- id: pt2-ps-06
+  test: 2
+  skill: outlier-rule
+  objective: PS2
+  tier: champion
+  type: concept
+  stem: |
+    The number of absences per student has Q1 = 4 and Q3 = 16, and absences cannot be negative. Can any student be a low outlier under the 1.5 × IQR rule?
+  options:
+    - "Yes, any student with fewer than 4 absences"
+    - "Yes, any student with 0 absences"
+    - "Only if the median is below 4"
+    - "No, because the lower fence is below 0"
+  answer: D
+  explain: |
+    The IQR is 16 minus 4 = 12, so the lower fence is 4 minus 1.5 × 12 = 4 minus 18 = negative 14. No count of absences can fall below that, so no student can be a low outlier.
+  why:
+    A: "Values below Q1 are not outliers; they must fall below the lower fence."
+    B: "0 absences sits far above the lower fence of negative 14."
+    C: "The median does not enter the fence; only Q1, Q3, and the IQR do."
+  verify: |
+    fence = 4 - 1.5 * (16 - 4)
+    ans = "No, because the lower fence is below 0" if fence < 0 else "x"
+
+- id: pt2-ps-07
+  test: 2
+  skill: quartiles
+  objective: PS2
+  tier: core
+  type: concept
+  stem: |
+    A dataset gains one extremely large value. Which measure of spread changes the least?
+  options:
+    - "Range"
+    - "Standard deviation"
+    - "Interquartile range"
+    - "Variance"
+  answer: C
+  explain: |
+    The interquartile range depends only on the middle half of the data, between Q1 and Q3, so one extreme value barely moves it. The range, variance, and standard deviation all use the extreme value directly.
+  why:
+    A: "The range uses the new maximum itself, so it jumps."
+    B: "The standard deviation squares the outlier's large deviation."
+    D: "The variance changes even more, since it is the squared spread."
+
+- id: pt2-ps-08
+  test: 2
+  skill: normal-props
+  objective: PS3
+  tier: core
+  type: concept
+  stem: |
+    What share of a normal distribution lies above its mean?
+  options:
+    - "25%"
+    - "50%"
+    - "68%"
+    - "95%"
+  ordered: true
+  answer: B
+  explain: |
+    A normal distribution is symmetric about its mean, so exactly half of it lies on each side.
+  why:
+    A: "25% is the share above the third quartile, not above the mean."
+    C: "68% is the share within 1 standard deviation of the mean, counting both sides."
+    D: "95% is the share within 2 standard deviations of the mean."
+  verify: "50"
+
+- id: pt2-ps-09
+  test: 2
+  skill: inference-basics
+  objective: PS3
+  tier: competitive
+  type: calculation
+  stem: |
+    A study reports a 95% confidence interval for a mean that runs from 48 to 56. What are the sample mean and the margin of error?
+  options:
+    - "Mean 52, margin 4"
+    - "Mean 52, margin 8"
+    - "Mean 48, margin 8"
+    - "Mean 56, margin 4"
+  answer: A
+  explain: |
+    A confidence interval is the estimate plus or minus the margin of error, so the sample mean sits at the center: (48 + 56) / 2 = 52. The margin is half the width: (56 minus 48) / 2 = 4.
+  why:
+    B: "8 is the full width of the interval; the margin is half of it."
+    C: "48 is the lower end of the interval, not its center."
+    D: "56 is the upper end of the interval, not its center."
+  verify: |
+    ans = f"Mean {(48 + 56) / 2:g}, margin {(56 - 48) / 2:g}"
+
+- id: pt2-ps-10
+  test: 2
+  skill: z-scores
+  objective: PS3
+  tier: champion
+  type: calculation
+  stem: |
+    In Class A (mean 60, standard deviation 8), Rae scored 72. In Class B (mean 75, standard deviation 4), what score has the same z-score as Rae's?
+  options:
+    - "76.5"
+    - "79"
+    - "81"
+    - "87"
+  ordered: true
+  answer: C
+  explain: |
+    Rae's z-score is (72 minus 60) / 8 = 1.5. In Class B, a z-score of 1.5 is 75 + 1.5 × 4 = 75 + 6 = 81.
+  why:
+    A: "76.5 adds the z-score itself to the mean, as if it were points."
+    B: "79 adds one Class B standard deviation instead of 1.5."
+    D: "87 adds Rae's 12-point gain, which ignores that Class B's spread is smaller."
+  verify: "75 + (72 - 60) / 8 * 4"
+
+- id: pt2-ps-11
+  test: 2
+  skill: prob-rules
+  objective: PS4
+  tier: core
+  type: calculation
+  stem: |
+    A spinner lands on red with probability 0.25, on blue with probability 0.40, and on green otherwise. What is the probability that it lands on red or blue?
+  options:
+    - "0.10"
+    - "0.35"
+    - "0.65"
+    - "1.00"
+  ordered: true
+  answer: C
+  explain: |
+    Red and blue cannot happen on the same spin, so their probabilities add: 0.25 + 0.40 = 0.65.
+  why:
+    A: "0.10 multiplies the probabilities, which is for two independent events both happening."
+    B: "0.35 is the probability of green, the complement."
+    D: "1.00 also counts green, which the question leaves out."
+  verify: "0.25 + 0.40"
+
+- id: pt2-ps-12
+  test: 2
+  skill: ev-rules
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    A bakery's daily croissant sales X have a mean of 120. Each croissant sells for $3, and the fixed daily cost of making them is $50. What is the expected daily profit, $$3X - 50$$, in dollars?
+  options:
+    - "$70"
+    - "$310"
+    - "$360"
+    - "$410"
+  ordered: true
+  answer: B
+  explain: |
+    Expected values follow linear rules: E(3X minus 50) = 3E(X) minus 50 = 3 × 120 minus 50 = 360 minus 50 = $310.
+  why:
+    A: "$70 subtracts the cost from the number of croissants before multiplying by the price."
+    C: "$360 forgets to subtract the fixed cost."
+    D: "$410 adds the fixed cost instead of subtracting it."
+  verify: "3 * 120 - 50"
+
+- id: pt2-ps-13
+  test: 2
+  skill: conditional
+  objective: PS4
+  tier: competitive
+  type: calculation
+  stem: |
+    At a school, 50 percent of students take Spanish. Of the Spanish students, 40 percent also take art, and 25 percent of all students take art. What is the probability that a randomly chosen art student takes Spanish?
+  options:
+    - "0.20"
+    - "0.25"
+    - "0.40"
+    - "0.80"
+  ordered: true
+  answer: D
+  explain: |
+    First find the overlap: P(Spanish and art) = 0.5 × 0.4 = 0.2. Then condition on art: P(Spanish | art) = 0.2 / 0.25 = 0.8.
+  why:
+    A: "0.20 is P(Spanish and art); it still has to be divided by P(art)."
+    B: "0.25 is the share of all students who take art."
+    C: "0.40 is P(art | Spanish), the reverse of what is asked."
+  verify: "0.5 * 0.4 / 0.25"
+
+- id: pt2-ps-14
+  test: 2
+  skill: distributions
+  objective: PS5
+  tier: competitive
+  type: scenario
+  stem: |
+    For each batch of 20 microchips, a factory records (1) the number of defective chips and (2) the diameter of one chip, in millimeters. Which pair of models fits best?
+  options:
+    - "(1) normal, (2) binomial"
+    - "(1) Poisson, (2) uniform"
+    - "(1) binomial, (2) Poisson"
+    - "(1) binomial, (2) normal"
+  answer: D
+  explain: |
+    A count of defects among a fixed 20 chips, each defective or not, is binomial. A diameter is a continuous measurement, and manufacturing measurements like this are often close to normal.
+  why:
+    A: "This swaps them: the count is binomial and the measurement is continuous."
+    B: "With a fixed number of chips the count is binomial, and diameters are not equally likely across a range."
+    C: "A diameter is a continuous measurement, not a count of events."
+
+- id: pt2-ps-15
+  test: 2
+  skill: distributions
+  objective: PS5
+  tier: competitive
+  type: calculation
+  stem: |
+    Each email in a batch of 100 is spam with probability 0.1, independently of the others. What are the mean and the standard deviation of the number of spam emails?
+  options:
+    - "Mean 10, SD 3"
+    - "Mean 10, SD 9"
+    - "Mean 90, SD 3"
+    - "Mean 10, SD 0.9"
+  answer: A
+  explain: |
+    For a binomial count, the mean is np = 100 × 0.1 = 10, and the variance is np(1 minus p) = 100 × 0.1 × 0.9 = 9. The standard deviation is the square root of 9, which is 3.
+  why:
+    B: "9 is the variance; the standard deviation is its square root."
+    C: "90 is the expected number of emails that are not spam."
+    D: "0.9 is 1 minus p, not the standard deviation."
+  verify: |
+    n, p = 100, 0.1
+    ans = f"Mean {n * p:g}, SD {math.sqrt(n * p * (1 - p)):g}"
