@@ -5,19 +5,19 @@
   tier: core
   type: concept
   stem: |
-    In the shop database, every value in orders.customer_id must match a value in customers.customer_id. What is orders.customer_id?
+    In a company database, each employee has exactly one parking badge, and each badge is assigned to exactly one employee. What type of relationship links employees and badges?
   options:
-    - "A foreign key"
-    - "The primary key of orders"
-    - "A composite key"
-    - "An index on customers"
+    - "One-to-one"
+    - "One-to-many"
+    - "Many-to-one"
+    - "Many-to-many"
   answer: A
   explain: |
-    A foreign key is a column whose values must match the primary key of another table. Here it links each order to the customer who placed it.
+    Each employee matches at most one badge, and each badge matches at most one employee, so the relationship is one-to-one. It can be stored with a foreign key in the badges table that allows each employee ID only once.
   why:
-    B: "The primary key of orders is order_id, which identifies each order."
-    C: "A composite key combines two or more columns; this is a single column."
-    D: "An index speeds up lookups; it does not link tables."
+    B: "One-to-many would let one employee hold several badges."
+    C: "Many-to-one would let several employees share one badge."
+    D: "Many-to-many would let employees hold many badges and badges belong to many employees."
 
 - id: ut4-02
   skill: keys
@@ -43,38 +43,38 @@
   tier: champion
   type: concept
   stem: |
-    A table has the columns order_id (the primary key), customer_id, customer_city, and order_date. Each customer's city is repeated on every one of that customer's orders. Which normal form does this table violate?
+    An enrollments table stores each student's course along with the course's instructor and room. The only student taking Astronomy drops it, and deleting that row also erases the record that Astronomy is taught by Dr. Kim in Room 12. What is this problem, and what design change prevents it?
   options:
-    - "First normal form"
-    - "Second normal form"
-    - "Third normal form"
-    - "None; the table is fully normalized"
+    - "An update anomaly; add an index on the course column"
+    - "An insertion anomaly; allow NULL instructors"
+    - "A deletion anomaly; store course details in their own table"
+    - "A deletion anomaly; never allow students to drop courses"
   answer: C
   explain: |
-    customer_city depends on customer_id, which in turn depends on order_id: a transitive dependency of one non-key column on another. Third normal form forbids that, so the city belongs in the customers table.
+    Deleting the last enrollment also deletes the only record of the course's instructor and room: a deletion anomaly. It happens because facts about courses are stored inside enrollment rows. Moving course details into a courses table that enrollments reference keeps each fact in one place.
   why:
-    A: "Every value is atomic, so first normal form holds."
-    B: "The key is a single column, so no partial dependency is possible, and second normal form holds."
-    D: "Repeating the city on every order is exactly the redundancy normalization removes."
+    A: "Nothing was updated, and an index speeds searches without changing what the table stores."
+    B: "Nothing was inserted; information was lost by deleting a row."
+    D: "Banning drops treats the symptom; the design flaw is storing course facts inside enrollment rows."
 
 - id: ut4-04
   skill: db-integrity
   tier: competitive
   type: scenario
   stem: |
-    A bank transfer subtracts $500 from one account, but the system crashes before adding the money to the other account. Which ACID property ensures that the subtraction is undone?
+    A bank's database has a rule that no account balance may fall below zero. A transfer that would leave an account at negative $50 is rejected, and the database stays as it was. Which ACID property does this rule-keeping illustrate?
   options:
-    - "Atomicity"
     - "Consistency"
+    - "Atomicity"
     - "Isolation"
     - "Durability"
   answer: A
   explain: |
-    Atomicity means a transaction happens completely or not at all. Because the transfer did not finish, the database rolls back the partial change.
+    Consistency means a transaction can only move the database from one valid state to another; a change that would break a rule, such as a CHECK constraint on balances, is rejected. Atomicity is related but different: it makes a transaction all or nothing.
   why:
-    B: "Consistency keeps data valid under the database's rules; all-or-nothing behavior is atomicity."
-    C: "Isolation keeps concurrent transactions from interfering with one another."
-    D: "Durability preserves committed changes after a crash; this transaction never committed."
+    B: "Atomicity makes a transaction all or nothing; the point here is that the result would break a rule."
+    C: "Isolation keeps simultaneous transactions from interfering with each other."
+    D: "Durability keeps committed changes safe through crashes."
 
 - id: ut4-05
   skill: sql-nosql
@@ -100,25 +100,25 @@
   tier: core
   type: sql
   stem: |
-    How many rows does this query return on the shop database?
+    Which product does this query list third on the shop database?
 
     ```sql
-    SELECT DISTINCT city FROM customers;
+    SELECT name FROM products ORDER BY category, price;
     ```
   options:
-    - "2"
-    - "3"
-    - "4"
-    - "5"
-  ordered: true
+    - "USB drive"
+    - "Calculator"
+    - "Pen pack"
+    - "Notebook"
   answer: B
   explain: |
-    The five customers live in Austin, Denver, Austin, Boston, and Denver. DISTINCT removes repeated values, leaving Austin, Denver, and Boston: 3 rows.
+    Rows are sorted by category first (Bags, Electronics, Paper, in alphabetical order) and then by price within each category. Bags holds only the Backpack, and Electronics lists the USB drive ($9.00) before the Calculator ($18.00), so the Calculator is third.
   why:
-    A: "2 leaves out one of the three distinct cities."
-    C: "4 counts one repeated city twice."
-    D: "5 is the number of customers, without removing duplicates."
-  verify: 'rows("shop", "SELECT DISTINCT city FROM customers")'
+    A: "The USB drive is second, as the cheaper of the two Electronics items."
+    C: "The Pen pack comes fourth, first among the Paper items."
+    D: "The Notebook comes last, as the pricier Paper item."
+  verify: |
+    ans = sql("shop", "SELECT name FROM products ORDER BY category, price")[2][0]
 
 - id: ut4-07
   skill: sql-where
@@ -228,19 +228,30 @@
   tier: champion
   type: sql
   stem: |
-    Which query lists the product categories whose average price is above 10?
+    Which order_id values does this query return on the shop database?
+
+    ```sql
+    SELECT order_id
+    FROM order_items
+    WHERE product_id <> 101
+    GROUP BY order_id
+    HAVING SUM(quantity) >= 2;
+    ```
   options:
-    - "`SELECT category FROM products WHERE AVG(price) > 10 GROUP BY category;`"
-    - "`SELECT category FROM products WHERE price > 10 GROUP BY category;`"
-    - "`SELECT category, AVG(price) FROM products ORDER BY AVG(price) > 10;`"
-    - "`SELECT category FROM products GROUP BY category HAVING AVG(price) > 10;`"
+    - "1001, 1003, 1004, and 1006"
+    - "1004 only"
+    - "1002, 1005, and 1006"
+    - "1001, 1003, and 1004"
   answer: D
   explain: |
-    Conditions on aggregates such as AVG belong in HAVING, which filters groups after GROUP BY. WHERE runs before grouping, so it cannot use AVG.
+    WHERE runs first and removes only the Notebook rows (product 101), not whole orders. The remaining quantities total 2 for order 1001, 1 for 1002, 2 for 1003, 5 for 1004, 1 for 1005, and 1 for 1006. HAVING then keeps the groups whose total is at least 2: 1001, 1003, and 1004.
   why:
-    A: "WHERE cannot contain an aggregate function, so this query is an error."
-    B: "This keeps categories with any single product over 10, not categories whose average is over 10."
-    C: "Without GROUP BY there are no categories to average, and ORDER BY sorts rather than filters."
+    A: "This skips the WHERE filter: with its Notebook row counted, order 1006 totals 3, but that row is removed first."
+    B: "WHERE removes individual rows, not whole orders, so orders that included a Notebook still count their other items."
+    C: "These are the orders that fail the HAVING test, with totals below 2."
+  verify: |
+    r = [str(x[0]) for x in sql("shop", "SELECT order_id FROM order_items WHERE product_id <> 101 GROUP BY order_id HAVING SUM(quantity) >= 2 ORDER BY order_id")]
+    ans = ", ".join(r[:-1]) + ", and " + r[-1]
 
 - id: ut4-12
   skill: sql-joins
@@ -274,27 +285,45 @@
   tier: champion
   type: sql
   stem: |
-    Which customer does this query return on the shop database?
+    Two tables are joined with the query below.
+
+    | teams.team_id | teams.name |
+    |---|---|
+    | 1 | Red |
+    | 2 | Blue |
+    | 3 | Gold |
+
+    | players.player_id | players.team_id |
+    |---|---|
+    | 10 | 1 |
+    | 11 | 1 |
+    | 12 | 2 |
+    | 13 | 4 |
 
     ```sql
-    SELECT c.name
-    FROM customers c
-    LEFT JOIN orders o ON c.customer_id = o.customer_id
-    WHERE o.order_id IS NULL;
+    SELECT t.name, p.player_id
+    FROM teams t
+    FULL OUTER JOIN players p ON t.team_id = p.team_id;
     ```
+
+    Which rows of the result contain a NULL?
   options:
-    - "Zoe"
-    - "Liam"
-    - "Noah"
-    - "No one, because every customer has an order"
+    - "The Gold team's row and player 13's row"
+    - "Only the Gold team's row"
+    - "Only player 13's row"
+    - "No rows, since every key matches"
   answer: A
   explain: |
-    The LEFT JOIN keeps every customer, filling the order columns with NULL when there is no match. Filtering on o.order_id IS NULL keeps only the customers with no orders: Zoe.
+    A full outer join keeps unmatched rows from both tables. Gold has no players, so its row has a NULL player_id, and player 13 points to team 4, which does not exist, so that row has a NULL name. Red's two players and Blue's one player match normally.
   why:
-    B: "Liam has order 1005, even though it was cancelled."
-    C: "Noah has order 1002."
-    D: "Zoe has no orders, so the query returns her."
-  verify: 'scalar("shop", "SELECT c.name FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id WHERE o.order_id IS NULL")'
+    B: "That is the result of a LEFT JOIN from teams; a full join also keeps unmatched players."
+    C: "That is the result of a RIGHT JOIN toward players; a full join also keeps unmatched teams."
+    D: "Gold has no players and team 4 does not exist, so two rows go unmatched."
+  verify: |
+    db = make_db("CREATE TABLE teams(team_id INT, name TEXT); INSERT INTO teams VALUES (1,'Red'),(2,'Blue'),(3,'Gold'); CREATE TABLE players(player_id INT, team_id INT); INSERT INTO players VALUES (10,1),(11,1),(12,2),(13,4);")
+    r = sql(db, "SELECT t.name, p.player_id FROM teams t FULL OUTER JOIN players p ON t.team_id = p.team_id")
+    nulls = sorted(str(x[0]) if x[1] is None else str(x[1]) for x in r if x[0] is None or x[1] is None)
+    ans = "The Gold team's row and player 13's row" if nulls == ["13", "Gold"] else "no match"
 
 - id: ut4-14
   skill: sql-subqueries
@@ -347,27 +376,30 @@
   tier: champion
   type: sql
   stem: |
-    In the school database, Chloe and Hiro share the highest GPA, 3.9, and Elena has the next highest, 3.8. In the result of this query, what value of r does Elena get?
+    A scores table holds Ana 92, Ben 88, Cy 92, Dee 85, and Eli 88. In the result of this query, what are r and d for Ben?
 
     ```sql
-    SELECT name, RANK() OVER (ORDER BY gpa DESC) AS r FROM students;
+    SELECT name,
+           RANK() OVER (ORDER BY score DESC) AS r,
+           DENSE_RANK() OVER (ORDER BY score DESC) AS d
+    FROM scores;
     ```
   options:
-    - "1"
-    - "2"
-    - "3"
-    - "4"
-  ordered: true
+    - "r = 2 and d = 2"
+    - "r = 3 and d = 3"
+    - "r = 3 and d = 2"
+    - "r = 4 and d = 2"
   answer: C
   explain: |
-    RANK gives tied rows the same rank and then skips ahead: Chloe and Hiro are both 1, so the next rank is 3. DENSE_RANK would give Elena 2.
+    Both functions give Ana and Cy, tied at 92, rank 1. RANK then skips a number for the tie, so the two 88s get 3; DENSE_RANK leaves no gaps, so they get 2. Ben's row shows r = 3 and d = 2.
   why:
-    A: "Rank 1 belongs to the two students tied at 3.9."
-    B: "2 is what DENSE_RANK gives; RANK skips a number after a tie."
-    D: "4 would skip two places after a tie of only two students."
+    A: "RANK does not give the 88s a 2; it skips past the two people tied at 92."
+    B: "This applies RANK's gap to DENSE_RANK as well, but DENSE_RANK never skips numbers."
+    D: "Tied rows share a rank, so Ben and Eli both get 3 under RANK."
   verify: |
-    r = dict(sql("school", "SELECT name, RANK() OVER (ORDER BY gpa DESC) AS r FROM students"))
-    ans = r["Elena"]
+    db = make_db("CREATE TABLE scores(name TEXT, score INT); INSERT INTO scores VALUES ('Ana',92),('Ben',88),('Cy',92),('Dee',85),('Eli',88);")
+    r = {x[0]: (x[1], x[2]) for x in sql(db, "SELECT name, RANK() OVER (ORDER BY score DESC), DENSE_RANK() OVER (ORDER BY score DESC) FROM scores")}
+    ans = f"r = {r['Ben'][0]} and d = {r['Ben'][1]}"
 
 - id: ut4-17
   skill: numpy
@@ -543,63 +575,65 @@
   tier: competitive
   type: code
   stem: |
-    In R, what does the last line return?
+    What does the last line return in R?
 
     ```r
-    x <- c(10, 20, 30, 40)
-    x[2]
+    scores <- c(72, 85, 91, 64)
+    scores[c(1, 3)]
     ```
   options:
-    - "10"
-    - "20"
-    - "30"
-    - "An error"
+    - "85 64"
+    - "72 91"
+    - "72 85 91"
+    - "91"
   answer: B
   explain: |
-    R indexes from 1, so x[2] is the second element, 20. In Python, which indexes from 0, the same element would be x[1].
+    R counts positions from 1, and indexing with the vector c(1, 3) picks the first and third values: 72 and 91.
   why:
-    A: "10 is x[1] in R."
-    C: "30 is what Python's x[2] would return, counting from 0."
-    D: "x[2] is a valid index in R."
-  verify: "[10, 20, 30, 40][2 - 1]"
+    A: "85 and 64 are the second and fourth values, which counting from 0 would pick."
+    C: "c(1, 3) lists two positions, 1 and 3, not the range from 1 to 3."
+    D: "The index vector asks for two positions, so two values come back."
+  verify: |
+    scores = [72, 85, 91, 64]
+    ans = " ".join(str(scores[i - 1]) for i in (1, 3))
 
 - id: ut4-25
   skill: tidyverse
   tier: core
   type: recall
   stem: |
-    Which dplyr verb keeps only the rows of a data frame that meet a condition, such as gpa > 3.5?
+    Which dplyr verb adds a new column computed from existing columns, such as a GPA rescaled to 100 points?
   options:
-    - "`filter()`"
-    - "`select()`"
     - "`mutate()`"
+    - "`select()`"
+    - "`summarise()`"
     - "`arrange()`"
   answer: A
   explain: |
-    filter() keeps the rows that satisfy a condition. select() picks columns, mutate() adds or changes columns, and arrange() sorts rows.
+    mutate() creates or changes columns from existing ones. select() picks columns, summarise() collapses rows into summary values, and arrange() sorts rows.
   why:
-    B: "select() chooses columns, not rows."
-    C: "mutate() creates or changes columns."
-    D: "arrange() reorders rows without removing any."
+    B: "select() keeps or drops existing columns; it does not compute new ones."
+    C: "summarise() collapses many rows into summary values, such as a mean."
+    D: "arrange() sorts the rows."
 
 - id: ut4-26
   skill: r-vs-python
   tier: core
   type: recall
   stem: |
-    Which language was designed for statistical computing and distributes most of its add-on packages through CRAN?
+    A sales manager wants to build interactive dashboards by dragging fields onto a canvas, without writing code. Which tool is designed for this?
   options:
-    - "Python"
-    - "SQL"
-    - "R"
-    - "JavaScript"
+    - "Apache Spark"
+    - "Jupyter Notebook"
+    - "Tableau"
+    - "NumPy"
   answer: C
   explain: |
-    R was created as a language for statistical computing and graphics, and CRAN, the Comprehensive R Archive Network, hosts most of its packages.
+    Tableau, like Microsoft Power BI, is a business intelligence tool for building interactive charts and dashboards through a drag-and-drop interface. The other choices are aimed at people who write code.
   why:
-    A: "Python is a general-purpose language whose packages come mainly from PyPI."
-    B: "SQL is a query language for relational databases."
-    D: "JavaScript is mainly a language for web pages."
+    A: "Spark processes very large datasets across clusters of computers and is driven by code."
+    B: "Jupyter runs code in cells; it is not a drag-and-drop dashboard builder."
+    D: "NumPy is a Python library for numerical arrays."
 
 - id: ut4-27
   skill: python-core

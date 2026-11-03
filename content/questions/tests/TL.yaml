@@ -1,0 +1,1376 @@
+# Practice-test items: Tools for Data and AI (10 per test)
+
+# ================================================================ Test 1
+- id: pt1-tl-01
+  test: 1
+  skill: sql-where
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The staff table holds these rows. Which names does the query return?
+
+    | name | dept | salary |
+    |---|---|---|
+    | Ana | Sales | 52000 |
+    | Ben | IT | 61000 |
+    | Cara | Sales | 48000 |
+    | Dan | HR | 55000 |
+    | Eve | IT | 47000 |
+
+    ```sql
+    SELECT name FROM staff
+    WHERE dept = 'Sales' OR dept = 'IT' AND salary > 50000;
+    ```
+  options:
+    - "Ana, Ben, and Cara"
+    - "Ana and Ben"
+    - "Ben only"
+    - "Ana, Ben, Cara, and Eve"
+  answer: A
+  explain: |
+    AND is evaluated before OR, so the condition reads dept = 'Sales' OR (dept = 'IT' AND salary > 50000). Every Sales employee qualifies (Ana and Cara), plus the IT employees earning over 50,000 (Ben). Parentheses around the two dept tests would change the result.
+  why:
+    B: "This reads the condition as (Sales OR IT) AND salary > 50000, but without parentheses AND binds first."
+    C: "This keeps only the IT test; the OR also admits every Sales employee."
+    D: "Eve is in IT but earns 47,000, so she fails the AND."
+  verify: |
+    db = make_db("CREATE TABLE staff(name TEXT, dept TEXT, salary INT); INSERT INTO staff VALUES ('Ana','Sales',52000),('Ben','IT',61000),('Cara','Sales',48000),('Dan','HR',55000),('Eve','IT',47000);")
+    n = [r[0] for r in sql(db, "SELECT name FROM staff WHERE dept = 'Sales' OR dept = 'IT' AND salary > 50000 ORDER BY name")]
+    ans = ", ".join(n[:-1]) + ", and " + n[-1]
+
+- id: pt1-tl-02
+  test: 1
+  skill: sql-null
+  objective: TL1
+  tier: core
+  type: sql
+  stem: |
+    The survey table holds these rows. What does the query return?
+
+    | id | age | phone |
+    |---|---|---|
+    | 1 | 34 | 555-0101 |
+    | 2 | NULL | 555-0102 |
+    | 3 | 27 | NULL |
+    | 4 | 45 | 555-0104 |
+    | 5 | 31 | NULL |
+
+    ```sql
+    SELECT COUNT(*), COUNT(phone) FROM survey;
+    ```
+  options:
+    - "5 and 5"
+    - "5 and 3"
+    - "3 and 3"
+    - "4 and 3"
+  answer: B
+  explain: |
+    COUNT(*) counts rows, whatever they hold, so it returns 5. COUNT(phone) counts only the non-NULL phone values, and two are NULL, so it returns 3.
+  why:
+    A: "COUNT(phone) skips the two NULL phone values."
+    C: "COUNT(*) counts every row, including rows that contain NULLs."
+    D: "4 is the number of known ages; COUNT(*) does not skip rows that contain NULLs."
+  verify: |
+    db = make_db("CREATE TABLE survey(id INT, age INT, phone TEXT); INSERT INTO survey VALUES (1,34,'555-0101'),(2,NULL,'555-0102'),(3,27,NULL),(4,45,'555-0104'),(5,31,NULL);")
+    a, b = sql(db, "SELECT COUNT(*), COUNT(phone) FROM survey")[0]
+    ans = f"{a} and {b}"
+
+- id: pt1-tl-03
+  test: 1
+  skill: sql-aggregate
+  objective: TL1
+  tier: core
+  type: sql
+  stem: |
+    The sales table holds these rows. What total does the query show for North?
+
+    | region | month | amount |
+    |---|---|---|
+    | East | Jan | 100 |
+    | West | Jan | 80 |
+    | East | Feb | 120 |
+    | North | Feb | 60 |
+    | West | Feb | 90 |
+    | North | Mar | 70 |
+
+    ```sql
+    SELECT region, SUM(amount) AS total
+    FROM sales
+    GROUP BY region;
+    ```
+  options:
+    - "60"
+    - "70"
+    - "130"
+    - "520"
+  ordered: true
+  answer: C
+  explain: |
+    GROUP BY gives each region its own row, and SUM adds the amounts within each group. North has two rows, 60 and 70, so its total is 130.
+  why:
+    A: "60 is North's February amount alone."
+    B: "70 is North's March amount alone."
+    D: "520 is the total for every region together; GROUP BY sums each region separately."
+  verify: |
+    db = make_db("CREATE TABLE sales(region TEXT, month TEXT, amount INT); INSERT INTO sales VALUES ('East','Jan',100),('West','Jan',80),('East','Feb',120),('North','Feb',60),('West','Feb',90),('North','Mar',70);")
+    ans = dict(sql(db, "SELECT region, SUM(amount) FROM sales GROUP BY region"))["North"]
+
+- id: pt1-tl-04
+  test: 1
+  skill: sql-joins
+  objective: TL1
+  tier: champion
+  type: sql
+  stem: |
+    The authors table has three rows: 1 Ito, 2 Ruiz, and 3 Shah. The books table has four rows, whose author_id values are 1, 1, 1, and 2. How many rows does this query return?
+
+    ```sql
+    SELECT a.name, b.book_id
+    FROM authors a
+    LEFT JOIN books b ON a.author_id = b.author_id;
+    ```
+  options:
+    - "3"
+    - "4"
+    - "5"
+    - "12"
+  ordered: true
+  answer: C
+  explain: |
+    A left join keeps every author. Ito matches three books (3 rows), Ruiz matches one (1 row), and Shah matches none but still appears once with a NULL book_id (1 row): 3 + 1 + 1 = 5.
+  why:
+    A: "3 gives each author one row, but Ito's three books each produce their own row."
+    B: "4 counts only the matched pairs, which is the inner join; the left join also keeps Shah."
+    D: "12 pairs every author with every book, which is a cross join."
+  verify: |
+    db = make_db("CREATE TABLE authors(author_id INT, name TEXT); INSERT INTO authors VALUES (1,'Ito'),(2,'Ruiz'),(3,'Shah'); CREATE TABLE books(book_id INT, author_id INT); INSERT INTO books VALUES (10,1),(11,1),(12,1),(13,2);")
+    ans = rows(db, "SELECT a.name, b.book_id FROM authors a LEFT JOIN books b ON a.author_id = b.author_id")
+
+- id: pt1-tl-05
+  test: 1
+  skill: py-libraries
+  objective: TL2
+  tier: core
+  type: scenario
+  stem: |
+    A developer wants to download a pretrained language model and run it on text with a few lines of Python. Which library is built for this?
+  options:
+    - "Matplotlib"
+    - "statsmodels"
+    - "scikit-learn"
+    - "Hugging Face"
+  answer: D
+  explain: |
+    Hugging Face's Transformers library gives ready access to thousands of pretrained models, including language models, with code to download and run them in a few lines.
+  why:
+    A: "Matplotlib draws charts; it does not provide pretrained language models."
+    B: "statsmodels fits statistical models such as regressions and reports their tests."
+    C: "scikit-learn trains classical models, such as decision trees, on your own data; it does not host pretrained language models."
+
+- id: pt1-tl-06
+  test: 1
+  skill: dev-tools
+  objective: TL2
+  tier: competitive
+  type: scenario
+  stem: |
+    On one laptop, an older project needs pandas 1.5 and a newer project needs pandas 2.2. What is the standard way to let both run?
+  options:
+    - "Give each project its own virtual environment"
+    - "Install both versions into the same environment"
+    - "Rewrite the older project in R"
+    - "Reinstall pandas every time you switch projects"
+  answer: A
+  explain: |
+    A virtual environment, created with a tool such as venv or conda, holds its own set of packages, so each project can keep the versions it needs without affecting the other.
+  why:
+    B: "One environment can hold only one version of a package at a time."
+    C: "Switching languages is a drastic fix for a simple version conflict."
+    D: "Reinstalling on every switch is slow and error-prone; separate environments solve it cleanly."
+
+- id: pt1-tl-07
+  test: 1
+  skill: pandas-cleaning
+  objective: TL3
+  tier: core
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    s = pd.Series([4, None, 8, 6])
+    print(s.fillna(s.mean()).tolist())
+    ```
+  options:
+    - "`[4.0, 0.0, 8.0, 6.0]`"
+    - "`[4.0, 4.5, 8.0, 6.0]`"
+    - "`[4.0, 6.0, 8.0, 6.0]`"
+    - "`[4.0, 8.0, 6.0]`"
+  answer: C
+  explain: |
+    s.mean() skips the missing value and averages 4, 8, and 6, which gives 6. fillna puts 6.0 in the gap, and the Series holds floats because it contained a missing value.
+  why:
+    A: "fillna was given the mean, 6, not 0."
+    B: "4.5 treats the missing value as 0 in the mean; pandas skips it instead."
+    D: "fillna fills the gap; it does not drop the missing entry."
+  verify: |
+    s = pd.Series([4, None, 8, 6])
+    ans = str(s.fillna(s.mean()).tolist())
+
+- id: pt1-tl-08
+  test: 1
+  skill: pandas-reshape
+  objective: TL3
+  tier: competitive
+  type: code
+  stem: |
+    The orders DataFrame has a cid column holding 1, 2, 2, and 5. The customers DataFrame has a cid column holding 1, 2, and 3. How many rows does this line produce?
+
+    ```python
+    orders.merge(customers, on="cid", how="inner")
+    ```
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+  ordered: true
+  answer: B
+  explain: |
+    An inner merge keeps only rows whose key appears in both DataFrames. The order with cid 1 matches once and the two orders with cid 2 each match once, giving 3 rows; the order with cid 5 has no customer and is dropped.
+  why:
+    A: "2 counts the distinct matching IDs, but each of the two cid 2 orders produces its own row."
+    C: "4 keeps the unmatched order with cid 5, which is what a left merge would do."
+    D: "5 is the outer merge, which also keeps the order for cid 5 and the customer with cid 3."
+  verify: |
+    orders = pd.DataFrame({"cid": [1, 2, 2, 5]})
+    customers = pd.DataFrame({"cid": [1, 2, 3]})
+    ans = len(orders.merge(customers, on="cid", how="inner"))
+
+- id: pt1-tl-09
+  test: 1
+  skill: r-basics
+  objective: TL4
+  tier: competitive
+  type: code
+  stem: |
+    What does the last line return in R?
+
+    ```r
+    df <- data.frame(city = c("Reno", "Tulsa", "Omaha"),
+                     temp = c(71, 64, 68))
+    df[2, "temp"]
+    ```
+  options:
+    - "71"
+    - "68"
+    - "Tulsa 64"
+    - "64"
+  answer: D
+  explain: |
+    In df[row, column], R counts rows from 1, so df[2, "temp"] takes the second row, Tulsa, in the temp column: 64.
+  why:
+    A: "71 is in the first row; R's row 2 is the second row."
+    B: "68 is in the third row, which counting from 0 would pick."
+    C: "Naming the temp column returns just that one value, not the whole row."
+  verify: |
+    temp = [71, 64, 68]
+    ans = temp[2 - 1]
+
+- id: pt1-tl-10
+  test: 1
+  skill: keys
+  objective: TL5
+  tier: champion
+  type: scenario
+  stem: |
+    In the school database, students.club_id is a foreign key to clubs.club_id, and three students belong to club 1, Robotics. The foreign key is enforced with no cascading rule. What happens when someone runs `DELETE FROM clubs WHERE club_id = 1;`?
+  options:
+    - "The delete is rejected, since students still reference club 1"
+    - "Club 1 is deleted, and its three students are deleted too"
+    - "Club 1 is deleted, and its students' club_id becomes NULL"
+    - "Club 1 is deleted, and its students keep club_id 1"
+  answer: A
+  explain: |
+    Referential integrity forbids a foreign key value that points to a missing row. Deleting club 1 would leave three students pointing at nothing, so the database rejects the delete. Deleting or clearing the students instead happens only if the foreign key was declared with a rule for that.
+  why:
+    B: "Deleting the students as well needs a cascading delete rule, which this key does not have."
+    C: "Setting club_id to NULL needs a set-null rule, which this key does not have."
+    D: "Leaving students pointing at a deleted club is exactly what referential integrity prevents."
+
+# ================================================================ Test 2
+- id: pt2-tl-01
+  test: 2
+  skill: sql-select
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The visits table holds these rows. How many rows does the query return?
+
+    | city | day |
+    |---|---|
+    | Reno | Mon |
+    | Reno | Mon |
+    | Reno | Tue |
+    | Tulsa | Mon |
+    | Tulsa | Mon |
+    | Omaha | Tue |
+
+    ```sql
+    SELECT DISTINCT city, day FROM visits;
+    ```
+  options:
+    - "2"
+    - "3"
+    - "4"
+    - "6"
+  ordered: true
+  answer: C
+  explain: |
+    DISTINCT removes rows that repeat the whole combination of selected columns. The distinct pairs are Reno-Mon, Reno-Tue, Tulsa-Mon, and Omaha-Tue, so 4 rows remain.
+  why:
+    A: "2 counts the distinct days alone."
+    B: "3 counts the distinct cities alone; DISTINCT applies to the city and day together."
+    D: "6 keeps every row, as if DISTINCT were missing."
+  verify: |
+    db = make_db("CREATE TABLE visits(city TEXT, day TEXT); INSERT INTO visits VALUES ('Reno','Mon'),('Reno','Mon'),('Reno','Tue'),('Tulsa','Mon'),('Tulsa','Mon'),('Omaha','Tue');")
+    ans = rows(db, "SELECT DISTINCT city, day FROM visits")
+
+- id: pt2-tl-02
+  test: 2
+  skill: sql-dml-ddl
+  objective: TL1
+  tier: core
+  type: sql
+  stem: |
+    The items table holds these rows. How many rows does the statement change?
+
+    | item | aisle | price |
+    |---|---|---|
+    | Milk | Dairy | 3.50 |
+    | Eggs | Dairy | 4.00 |
+    | Bread | Bakery | 2.75 |
+    | Cheese | Dairy | 6.00 |
+    | Bagels | Bakery | 3.25 |
+
+    ```sql
+    UPDATE items SET price = price + 0.50 WHERE aisle = 'Dairy';
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "5"
+  ordered: true
+  answer: C
+  explain: |
+    UPDATE changes only the rows that satisfy WHERE. Three items are in the Dairy aisle (Milk, Eggs, and Cheese), so 3 rows get the higher price.
+  why:
+    A: "1 changes only the first Dairy row, but UPDATE applies to every matching row."
+    B: "2 counts the Bakery rows, which the WHERE clause leaves alone."
+    D: "5 would be the result with no WHERE clause, which updates every row."
+  verify: |
+    db = make_db("CREATE TABLE items(item TEXT, aisle TEXT, price REAL); INSERT INTO items VALUES ('Milk','Dairy',3.5),('Eggs','Dairy',4.0),('Bread','Bakery',2.75),('Cheese','Dairy',6.0),('Bagels','Bakery',3.25);")
+    ans = db.execute("UPDATE items SET price = price + 0.50 WHERE aisle = 'Dairy'").rowcount
+
+- id: pt2-tl-03
+  test: 2
+  skill: sql-subqueries
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The employees table holds Ana (dept 10), Ben (dept 20), Cara (dept 30), Dan (dept 20), and Eve (dept 40). The depts table places dept 10 in Reno, 20 in Tulsa, 30 in Reno, and 40 in Omaha. Which names does this query return?
+
+    ```sql
+    SELECT name FROM employees
+    WHERE dept_id IN (SELECT dept_id FROM depts WHERE city = 'Reno');
+    ```
+  options:
+    - "Ana and Cara"
+    - "Ben and Dan"
+    - "Ana only"
+    - "Ana, Cara, and Eve"
+  answer: A
+  explain: |
+    The subquery returns the Reno departments, 10 and 30. The outer query keeps the employees whose dept_id is in that list: Ana (10) and Cara (30).
+  why:
+    B: "Ben and Dan work in dept 20, which is in Tulsa."
+    C: "IN matches every value the subquery returns, so dept 30 counts as well as dept 10."
+    D: "Eve's dept 40 is in Omaha, not Reno."
+  verify: |
+    db = make_db("CREATE TABLE employees(name TEXT, dept_id INT); INSERT INTO employees VALUES ('Ana',10),('Ben',20),('Cara',30),('Dan',20),('Eve',40); CREATE TABLE depts(dept_id INT, city TEXT); INSERT INTO depts VALUES (10,'Reno'),(20,'Tulsa'),(30,'Reno'),(40,'Omaha');")
+    ans = " and ".join(r[0] for r in sql(db, "SELECT name FROM employees WHERE dept_id IN (SELECT dept_id FROM depts WHERE city = 'Reno') ORDER BY name"))
+
+- id: pt2-tl-04
+  test: 2
+  skill: sql-window
+  objective: TL1
+  tier: champion
+  type: sql
+  stem: |
+    The scores table holds Ana (class A, 90), Ben (class A, 85), Cara (class A, 95), Dan (class B, 70), and Eve (class B, 88). What value of rn does Eve get?
+
+    ```sql
+    SELECT student,
+           ROW_NUMBER() OVER (PARTITION BY class ORDER BY score DESC) AS rn
+    FROM scores;
+    ```
+  options:
+    - "0"
+    - "1"
+    - "2"
+    - "3"
+  ordered: true
+  answer: B
+  explain: |
+    PARTITION BY restarts the numbering in each class. In class B, sorted from highest score to lowest, Eve (88) comes before Dan (70), so Eve's rn is 1.
+  why:
+    A: "ROW_NUMBER starts counting at 1, not 0."
+    C: "2 sorts from lowest to highest, but ORDER BY score DESC puts the highest first."
+    D: "3 ignores the partition and numbers all five students together: Cara, Ana, then Eve."
+  verify: |
+    db = make_db("CREATE TABLE scores(student TEXT, class TEXT, score INT); INSERT INTO scores VALUES ('Ana','A',90),('Ben','A',85),('Cara','A',95),('Dan','B',70),('Eve','B',88);")
+    ans = dict(sql(db, "SELECT student, ROW_NUMBER() OVER (PARTITION BY class ORDER BY score DESC) FROM scores"))["Eve"]
+
+- id: pt2-tl-05
+  test: 2
+  skill: pytorch
+  objective: TL2
+  tier: core
+  type: concept
+  stem: |
+    In a PyTorch training loop, what does `optimizer.step()` do?
+  options:
+    - "It computes the gradient of the loss"
+    - "It resets the gradients to zero"
+    - "It runs the forward pass on a batch"
+    - "It updates the weights using the gradients"
+  answer: D
+  explain: |
+    After loss.backward() fills in the gradients, optimizer.step() uses them to adjust every weight a small amount in the direction that lowers the loss, following the optimizer's rule, such as gradient descent.
+  why:
+    A: "Computing gradients is the job of loss.backward()."
+    B: "Resetting gradients is the job of optimizer.zero_grad()."
+    C: "The forward pass happens when the model is called on a batch."
+
+- id: pt2-tl-06
+  test: 2
+  skill: numpy
+  objective: TL2
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    a = np.array([[1, 2], [3, 4]])
+    print(a + np.array([10, 20]))
+    ```
+  options:
+    - "`[[11 12] [23 24]]`"
+    - "`[[11 22]]`"
+    - "`[[11 22] [13 24]]`"
+    - "An error, because the shapes differ"
+  answer: C
+  explain: |
+    Broadcasting stretches the one-row array [10, 20] across every row of a, so 10 is added to the first column and 20 to the second. The result is [[11 22] [13 24]], printed as two rows.
+  why:
+    A: "This adds 10 to the first row and 20 to the second, but the row [10, 20] is added along each row."
+    B: "Broadcasting keeps both rows of a; it does not shrink the result."
+    D: "Shapes (2, 2) and (2,) are compatible: the 2 values line up with the 2 columns."
+  verify: |
+    r = np.array([[1, 2], [3, 4]]) + np.array([10, 20])
+    ans = "[[" + " ".join(map(str, r[0])) + "] [" + " ".join(map(str, r[1])) + "]]"
+
+- id: pt2-tl-07
+  test: 2
+  skill: pandas-basics
+  objective: TL3
+  tier: core
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    df = pd.DataFrame({"item": ["pen", "ink", "pad", "cap", "tape"],
+                       "price": [2, 9, 4, 12, 5]})
+    print(len(df[df["price"] > 3]))
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: D
+  explain: |
+    The condition df["price"] > 3 is True for 9, 4, 12, and 5, so the filtered DataFrame keeps 4 rows, and len counts them.
+  why:
+    A: "1 counts only the prices above 9."
+    B: "2 counts only the prices above 5."
+    C: "3 leaves out the price of 4, which is greater than 3."
+  verify: |
+    df = pd.DataFrame({"item": ["pen", "ink", "pad", "cap", "tape"], "price": [2, 9, 4, 12, 5]})
+    ans = len(df[df["price"] > 3])
+
+- id: pt2-tl-08
+  test: 2
+  skill: pandas-cleaning
+  objective: TL3
+  tier: champion
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    s = pd.Series(["Data Science", "data lab", "Math", "Big Data"])
+    print(s.str.contains("Data").sum())
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: B
+  explain: |
+    str.contains is case-sensitive by default, so "Data" matches "Data Science" and "Big Data" but not "data lab". Summing the True values gives 2. Lowering the case first, or passing case=False, would count 3.
+  why:
+    A: "1 counts only strings that start with \"Data\", but contains matches the text anywhere."
+    C: "3 treats the match as case-insensitive, but \"data\" in lowercase does not match \"Data\"."
+    D: "\"Math\" does not contain \"Data\" at all."
+  verify: |
+    ans = int(pd.Series(["Data Science", "data lab", "Math", "Big Data"]).str.contains("Data").sum())
+
+- id: pt2-tl-09
+  test: 2
+  skill: tidyverse
+  objective: TL4
+  tier: competitive
+  type: code
+  stem: |
+    The data frame orders has a total column holding 40, 60, 80, and 100. What value of avg does this R code produce?
+
+    ```r
+    orders |>
+      filter(total > 50) |>
+      summarise(avg = mean(total))
+    ```
+  options:
+    - "70"
+    - "80"
+    - "100"
+    - "240"
+  ordered: true
+  answer: B
+  explain: |
+    filter keeps the rows with totals above 50 (60, 80, and 100), and summarise averages them: 240 / 3 = 80.
+  why:
+    A: "70 averages all four totals, skipping the filter."
+    C: "100 is the largest total kept by the filter, not the average."
+    D: "240 is the sum of the kept totals; mean divides by 3."
+  verify: |
+    kept = [t for t in [40, 60, 80, 100] if t > 50]
+    ans = sum(kept) / len(kept)
+
+- id: pt2-tl-10
+  test: 2
+  skill: normalization
+  objective: TL5
+  tier: core
+  type: concept
+  stem: |
+    A customers table has the columns customer_id, name, and phones, and one row stores "555-0101, 555-0199" in the phones column. Which normal form does this table violate?
+  options:
+    - "First normal form"
+    - "Second normal form"
+    - "Third normal form"
+    - "None; the table is fully normalized"
+  answer: A
+  explain: |
+    First normal form requires every cell to hold a single value. A cell listing two phone numbers breaks that rule; the fix is a separate phones table with one row per number.
+  why:
+    B: "Second normal form concerns columns that depend on only part of a composite key."
+    C: "Third normal form concerns columns that depend on another non-key column."
+    D: "A cell holding two values is a first normal form violation."
+
+# ================================================================ Test 3
+- id: pt3-tl-01
+  test: 3
+  skill: sql-null
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The bills table holds three rows: (1, amount 40, tip 6), (2, amount 25, tip NULL), and (3, amount 60, tip 9). What does this query return?
+
+    ```sql
+    SELECT SUM(amount + COALESCE(tip, 0)) FROM bills;
+    ```
+  options:
+    - "15"
+    - "115"
+    - "125"
+    - "140"
+  ordered: true
+  answer: D
+  explain: |
+    COALESCE(tip, 0) turns the missing tip into 0, so the second row contributes 25 + 0. The sum is (40 + 6) + (25 + 0) + (60 + 9) = 140.
+  why:
+    A: "15 adds up only the tips."
+    B: "115 drops the second row: without COALESCE, 25 + NULL is NULL, and SUM skips it."
+    C: "125 adds the amounts but leaves out the tips."
+  verify: |
+    db = make_db("CREATE TABLE bills(id INT, amount INT, tip INT); INSERT INTO bills VALUES (1,40,6),(2,25,NULL),(3,60,9);")
+    ans = scalar(db, "SELECT SUM(amount + COALESCE(tip, 0)) FROM bills")
+
+- id: pt3-tl-02
+  test: 3
+  skill: sql-joins
+  objective: TL1
+  tier: core
+  type: sql
+  stem: |
+    A report must list every product, including products that have never been ordered, along with any orders for each. Which join fits?
+  options:
+    - "`products INNER JOIN orders`"
+    - "`products LEFT JOIN orders`"
+    - "`products CROSS JOIN orders`"
+    - "`orders LEFT JOIN products`"
+  answer: B
+  explain: |
+    A left join keeps every row of the left table, here products, and fills in NULLs where a product has no orders. Products that were never ordered still appear.
+  why:
+    A: "An inner join drops the products that have no orders."
+    C: "A cross join pairs every product with every order, whether or not they belong together."
+    D: "This keeps every order instead, and products with no orders disappear."
+
+- id: pt3-tl-03
+  test: 3
+  skill: sql-subqueries
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The spring table lists Ana, Ben, and Cara. The fall table lists Ben, Dan, Cara, and Eve. How many rows do these two queries return?
+
+    ```sql
+    SELECT name FROM spring UNION SELECT name FROM fall;
+    SELECT name FROM spring UNION ALL SELECT name FROM fall;
+    ```
+  options:
+    - "5 and 5"
+    - "7 and 7"
+    - "5 and 7"
+    - "7 and 5"
+  answer: C
+  explain: |
+    UNION removes duplicates: Ana, Ben, Cara, Dan, and Eve make 5 rows. UNION ALL keeps every row from both tables, 3 + 4 = 7, so Ben and Cara appear twice.
+  why:
+    A: "UNION ALL keeps duplicates, so it returns every one of the 7 names."
+    B: "UNION removes the repeated Ben and Cara, leaving 5."
+    D: "This swaps them: UNION removes duplicates, and UNION ALL keeps them."
+  verify: |
+    db = make_db("CREATE TABLE spring(name TEXT); INSERT INTO spring VALUES ('Ana'),('Ben'),('Cara'); CREATE TABLE fall(name TEXT); INSERT INTO fall VALUES ('Ben'),('Dan'),('Cara'),('Eve');")
+    ans = f"{rows(db, 'SELECT name FROM spring UNION SELECT name FROM fall')} and {rows(db, 'SELECT name FROM spring UNION ALL SELECT name FROM fall')}"
+
+- id: pt3-tl-04
+  test: 3
+  skill: sql-aggregate
+  objective: TL1
+  tier: champion
+  type: sql
+  stem: |
+    A sales table has the columns region, year, and amount. Which query lists the regions whose total sales exceeded 150, counting only sales from 2025?
+  options:
+    - "`SELECT region FROM sales WHERE year = 2025 GROUP BY region HAVING SUM(amount) > 150;`"
+    - "`SELECT region FROM sales WHERE SUM(amount) > 150 GROUP BY region HAVING year = 2025;`"
+    - "`SELECT region FROM sales GROUP BY region HAVING SUM(amount) > 150;`"
+    - "`SELECT region FROM sales WHERE year = 2025 AND SUM(amount) > 150 GROUP BY region;`"
+  answer: A
+  explain: |
+    The year test applies to individual rows, so it belongs in WHERE, which runs before grouping. The total test applies to each region's group, so it belongs in HAVING, which runs after grouping.
+  why:
+    B: "WHERE cannot hold an aggregate such as SUM, and the year test belongs before grouping, not in HAVING."
+    C: "This leaves out the year filter, so sales from every year are counted."
+    D: "WHERE cannot test SUM(amount), because it runs before the rows are grouped."
+
+- id: pt3-tl-05
+  test: 3
+  skill: python-core
+  objective: TL2
+  tier: core
+  type: scenario
+  stem: |
+    A program must look up each product's price from its code, such as "A12". Which built-in Python type fits best?
+  options:
+    - "list"
+    - "tuple"
+    - "set"
+    - "dict"
+  answer: D
+  explain: |
+    A dict maps keys to values, so prices["A12"] finds a product's price directly from its code.
+  why:
+    A: "A list is found by position, so finding a code would mean searching through it."
+    B: "A tuple is an ordered, unchangeable sequence with no keys."
+    C: "A set stores unique items but pairs them with no values."
+
+- id: pt3-tl-06
+  test: 3
+  skill: sklearn
+  objective: TL2
+  tier: core
+  type: scenario
+  stem: |
+    A real estate company wants to predict each home's sale price in dollars from its size and age. Which scikit-learn class fits this task?
+  options:
+    - "`LogisticRegression`"
+    - "`KMeans`"
+    - "`LinearRegression`"
+    - "`StandardScaler`"
+  answer: C
+  explain: |
+    The target, a price, is a number, so this is a regression task, and LinearRegression predicts a numeric value from the features.
+  why:
+    A: "LogisticRegression predicts a class, such as yes or no, not a dollar amount."
+    B: "KMeans groups unlabeled data into clusters; it does not predict a target."
+    D: "StandardScaler rescales features before modeling; it makes no predictions."
+
+- id: pt3-tl-07
+  test: 3
+  skill: numpy
+  objective: TL3
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import numpy as np
+    scores = np.array([[80, 90], [70, 60], [100, 90]])
+    print(scores.mean(axis=1))
+    ```
+  options:
+    - "`[83.33 80.]`"
+    - "`[85. 65. 95.]`"
+    - "`81.67`"
+    - "`[170 130 190]`"
+  answer: B
+  explain: |
+    axis=1 works across each row, so the result has one mean per row: (80 + 90) / 2 = 85, (70 + 60) / 2 = 65, and (100 + 90) / 2 = 95.
+  why:
+    A: "These are the column means, which axis=0 would give."
+    C: "81.67 is the mean of all six numbers, which mean() gives with no axis."
+    D: "These are the row sums; mean divides each by 2."
+  verify: |
+    ans = str(np.array([[80, 90], [70, 60], [100, 90]]).mean(axis=1))
+
+- id: pt3-tl-08
+  test: 3
+  skill: pandas-reshape
+  objective: TL3
+  tier: champion
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    wide = pd.DataFrame({"store": ["A", "B", "C"],
+                         "Q1": [5, 7, 2],
+                         "Q2": [6, 3, 8]})
+    long = wide.melt(id_vars="store", var_name="quarter", value_name="units")
+    print(long.shape)
+    ```
+  options:
+    - "`(3, 3)`"
+    - "`(6, 2)`"
+    - "`(6, 3)`"
+    - "`(9, 3)`"
+  answer: C
+  explain: |
+    melt turns the two quarter columns into rows, so each of the 3 stores gets one row per quarter: 6 rows. The columns are store, quarter, and units, so the shape is (6, 3).
+  why:
+    A: "Melting does not keep one row per store; each quarter becomes its own row."
+    B: "The store column is kept as an identifier, so there are 3 columns, not 2."
+    D: "Only Q1 and Q2 are melted; store stays a column, so each store gives 2 rows, not 3."
+  verify: |
+    wide = pd.DataFrame({"store": ["A", "B", "C"], "Q1": [5, 7, 2], "Q2": [6, 3, 8]})
+    ans = str(wide.melt(id_vars="store", var_name="quarter", value_name="units").shape)
+
+- id: pt3-tl-09
+  test: 3
+  skill: r-vs-python
+  objective: TL4
+  tier: core
+  type: recall
+  stem: |
+    What is CRAN?
+  options:
+    - "A data frame function in base R"
+    - "The main online archive of R packages"
+    - "A package manager for Python"
+    - "R's built-in plotting system"
+  answer: B
+  explain: |
+    CRAN, the Comprehensive R Archive Network, is the main online repository of R packages. install.packages() downloads packages from it.
+  why:
+    A: "CRAN is a network of servers that hosts packages, not a function."
+    C: "Python packages come mainly from PyPI through pip, or through conda."
+    D: "Base R graphics and ggplot2 draw plots; CRAN distributes packages such as ggplot2."
+
+- id: pt3-tl-10
+  test: 3
+  skill: sql-nosql
+  objective: TL5
+  tier: competitive
+  type: scenario
+  stem: |
+    A social app must quickly answer questions such as "Which friends of my friends also like hiking?" across millions of connections. Which kind of database fits best?
+  options:
+    - "A graph database"
+    - "A key-value store"
+    - "A wide-column store"
+    - "A single spreadsheet"
+  answer: A
+  explain: |
+    A graph database stores people as nodes and friendships as relationships, so following friend-of-friend paths is fast and natural. In a relational database the same question needs repeated self-joins.
+  why:
+    B: "A key-value store looks up one value by its key and cannot follow chains of connections."
+    C: "Wide-column stores excel at huge volumes of rows, such as sensor readings, not at following relationships."
+    D: "A spreadsheet cannot handle millions of connections or relationship queries."
+
+# ================================================================ Test 4
+- id: pt4-tl-01
+  test: 4
+  skill: sql-where
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The codes table holds the values AB12, A123, AB1, XAB9, and ABC7. Which codes does this query return?
+
+    ```sql
+    SELECT code FROM codes WHERE code LIKE 'AB_';
+    ```
+  options:
+    - "AB1 only"
+    - "AB12, AB1, and ABC7"
+    - "AB12, AB1, ABC7, and XAB9"
+    - "No rows, since _ is a literal underscore"
+  answer: A
+  explain: |
+    In LIKE, the underscore matches exactly one character, so 'AB_' matches three-character codes that start with AB. Only AB1 fits; the percent sign would match any number of characters.
+  why:
+    B: "This treats _ like %, which matches any number of characters."
+    C: "This also treats the pattern as AB anywhere, but the pattern must start the code."
+    D: "In LIKE, the underscore is a wildcard for one character, not a literal underscore."
+  verify: |
+    db = make_db("CREATE TABLE codes(code TEXT); INSERT INTO codes VALUES ('AB12'),('A123'),('AB1'),('XAB9'),('ABC7');")
+    r = [x[0] for x in sql(db, "SELECT code FROM codes WHERE code LIKE 'AB_'")]
+    ans = r[0] + " only" if len(r) == 1 else "no match"
+
+- id: pt4-tl-02
+  test: 4
+  skill: sql-aggregate
+  objective: TL1
+  tier: core
+  type: sql
+  stem: |
+    The temps table records daily highs of 71 on Monday, NULL on Tuesday, 75 on Wednesday, and 68 on Thursday. What does this query return?
+
+    ```sql
+    SELECT MAX(high) - MIN(high) FROM temps;
+    ```
+  options:
+    - "4"
+    - "7"
+    - "75"
+    - "NULL, since one high is missing"
+  answer: B
+  explain: |
+    MAX and MIN skip NULL values, so they compare 71, 75, and 68. The maximum is 75 and the minimum is 68, and 75 minus 68 = 7.
+  why:
+    A: "4 subtracts Monday's 71 from the maximum instead of the minimum, 68."
+    C: "75 is the maximum alone."
+    D: "Aggregate functions skip NULLs, so one missing high does not make the result NULL."
+  verify: |
+    db = make_db("CREATE TABLE temps(day TEXT, high INT); INSERT INTO temps VALUES ('Mon',71),('Tue',NULL),('Wed',75),('Thu',68);")
+    ans = scalar(db, "SELECT MAX(high) - MIN(high) FROM temps")
+
+- id: pt4-tl-03
+  test: 4
+  skill: sql-window
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The deposits table records 50 on day 1, 20 on day 2, 40 on day 3, and 10 on day 4. What is running on day 3?
+
+    ```sql
+    SELECT day, SUM(amount) OVER (ORDER BY day) AS running
+    FROM deposits;
+    ```
+  options:
+    - "40"
+    - "60"
+    - "110"
+    - "120"
+  ordered: true
+  answer: C
+  explain: |
+    With ORDER BY inside OVER, SUM becomes a running total: each row adds its amount to all the earlier ones. On day 3 that is 50 + 20 + 40 = 110.
+  why:
+    A: "40 is day 3's deposit alone, not the running total."
+    B: "60 adds only days 2 and 3; a running total starts from day 1."
+    D: "120 is the total of all four days, which a SUM without ORDER BY in OVER would show on every row."
+  verify: |
+    db = make_db("CREATE TABLE deposits(day INT, amount INT); INSERT INTO deposits VALUES (1,50),(2,20),(3,40),(4,10);")
+    ans = dict(sql(db, "SELECT day, SUM(amount) OVER (ORDER BY day) FROM deposits"))[3]
+
+- id: pt4-tl-04
+  test: 4
+  skill: sql-dml-ddl
+  objective: TL1
+  tier: core
+  type: sql
+  stem: |
+    Which statement removes the logs table itself, so that its structure and all of its rows are gone?
+  options:
+    - "`DELETE FROM logs;`"
+    - "`TRUNCATE TABLE logs;`"
+    - "`UPDATE logs SET message = NULL;`"
+    - "`DROP TABLE logs;`"
+  answer: D
+  explain: |
+    DROP TABLE deletes the table definition along with its data, so the table no longer exists. DELETE and TRUNCATE empty the table but leave its structure in place.
+  why:
+    A: "DELETE without WHERE removes every row but keeps the empty table."
+    B: "TRUNCATE quickly removes every row but keeps the table and its columns."
+    C: "UPDATE changes values in existing rows; it removes nothing."
+
+- id: pt4-tl-05
+  test: 4
+  skill: dev-tools
+  objective: TL2
+  tier: competitive
+  type: scenario
+  stem: |
+    A data scientist wants to try a risky change to an analysis without disturbing the working version that teammates use. What should the data scientist create in Git?
+  options:
+    - "A branch"
+    - "A fresh clone of the remote"
+    - "A commit on the main line"
+    - "A merge conflict"
+  answer: A
+  explain: |
+    A branch is a separate line of development: changes made there leave the main version untouched until they are reviewed and merged back.
+  why:
+    B: "Cloning copies the repository but is not how Git separates one line of work from another."
+    C: "Committing on the main line changes the version teammates rely on."
+    D: "A merge conflict is a problem that arises when two changes clash, not a tool to create."
+
+- id: pt4-tl-06
+  test: 4
+  skill: sklearn
+  objective: TL2
+  tier: core
+  type: concept
+  stem: |
+    After a scikit-learn classifier has been trained with fit, what does calling its `predict` method on new inputs return?
+  options:
+    - "The model's learned coefficients"
+    - "Predicted class labels for the new inputs"
+    - "The accuracy on the training data"
+    - "A copy of the training labels"
+  answer: B
+  explain: |
+    fit learns the model's parameters from training data, and predict applies them to new inputs, returning one predicted label for each.
+  why:
+    A: "The learned coefficients are stored on the fitted model, not returned by predict."
+    C: "Accuracy comes from comparing predictions with true labels, using a separate scoring step."
+    D: "predict makes new predictions; it does not return the training labels."
+
+- id: pt4-tl-07
+  test: 4
+  skill: pandas-basics
+  objective: TL3
+  tier: champion
+  type: code
+  stem: |
+    A DataFrame `df` has the default index 0 through 9. How many rows do `df.loc[2:4]` and `df.iloc[2:4]` return?
+  options:
+    - "2 and 2"
+    - "3 and 3"
+    - "2 and 3"
+    - "3 and 2"
+  answer: D
+  explain: |
+    loc slices by label and includes the end label, so it returns the rows labeled 2, 3, and 4. iloc slices by position like a Python list and stops before the end, so it returns positions 2 and 3.
+  why:
+    A: "loc includes its end label, so df.loc[2:4] returns 3 rows."
+    B: "iloc stops before its end position, so df.iloc[2:4] returns 2 rows."
+    C: "This swaps them: loc includes the end, and iloc excludes it."
+  verify: |
+    df = pd.DataFrame({"x": range(10)})
+    ans = f"{len(df.loc[2:4])} and {len(df.iloc[2:4])}"
+
+- id: pt4-tl-08
+  test: 4
+  skill: pandas-cleaning
+  objective: TL3
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    df = pd.DataFrame({"name": ["Ana", "Ben", "Ana", "Ana"],
+                       "city": ["Reno", "Tulsa", "Reno", "Omaha"]})
+    print(len(df.drop_duplicates()))
+    ```
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  ordered: true
+  answer: C
+  explain: |
+    With no arguments, drop_duplicates removes rows that repeat every column. Only the second Ana-Reno row is an exact copy, so 3 rows remain; Ana in Omaha differs in its city and stays.
+  why:
+    A: "Only one row is an exact duplicate, so far more than one row remains."
+    B: "2 deduplicates on the name alone, which would need subset=[\"name\"]."
+    D: "The second Ana-Reno row repeats the first exactly, so it is removed."
+  verify: |
+    df = pd.DataFrame({"name": ["Ana", "Ben", "Ana", "Ana"], "city": ["Reno", "Tulsa", "Reno", "Omaha"]})
+    ans = len(df.drop_duplicates())
+
+- id: pt4-tl-09
+  test: 4
+  skill: tidyverse
+  objective: TL4
+  tier: core
+  type: concept
+  stem: |
+    In ggplot2, where should `color = species` go so that each point in a scatterplot is colored by the species column?
+  options:
+    - "Inside aes(), since it maps a variable to color"
+    - "Inside geom_point() but outside aes(), as a fixed setting"
+    - "Inside filter(), before the plot is drawn"
+    - "Inside labs(), next to the title"
+  answer: A
+  explain: |
+    aes() maps variables in the data to visual properties such as x, y, and color, so color = species inside aes() gives each species its own color. A color set outside aes() is a single fixed color for every point.
+  why:
+    B: "Outside aes(), color expects one fixed color for every point, not a column to map."
+    C: "filter() keeps or drops rows; it does not set colors."
+    D: "labs() sets titles and labels; it does not map data to color."
+
+- id: pt4-tl-10
+  test: 4
+  skill: db-integrity
+  objective: TL5
+  tier: champion
+  type: scenario
+  stem: |
+    A logging table receives thousands of new rows every second but is searched only once a week. Why could adding many indexes to it be a poor choice?
+  options:
+    - "Indexes would make the weekly searches slower"
+    - "Every index must be updated on each insert, slowing writes"
+    - "Indexes delete old rows to save space"
+    - "Indexes can be created only on primary keys"
+  answer: B
+  explain: |
+    An index speeds up searches but must be kept up to date: each new row means updating every index on the table. For a table written constantly and searched rarely, that cost outweighs the benefit.
+  why:
+    A: "Indexes speed up searches; the cost falls on writes, not reads."
+    C: "Indexes never delete rows; they are lookup structures built over the data."
+    D: "Indexes can be created on other columns, not only on primary keys."
+
+# ================================================================ Test 5
+- id: pt5-tl-01
+  test: 5
+  skill: sql-subqueries
+  objective: TL1
+  tier: champion
+  type: sql
+  stem: |
+    The depts table holds 1 Sales, 2 IT, and 3 Legal. The staff table holds four people: one in dept 1 earning 50000, one in dept 1 earning 72000, one in dept 2 earning 65000, and one in dept 3 earning 48000. Which department names does this query return?
+
+    ```sql
+    SELECT d.name
+    FROM depts d
+    WHERE EXISTS (SELECT 1 FROM staff s
+                  WHERE s.dept_id = d.dept_id AND s.salary > 60000);
+    ```
+  options:
+    - "IT only"
+    - "Sales and IT"
+    - "Sales, IT, and Legal"
+    - "Legal only"
+  answer: B
+  explain: |
+    The subquery is correlated: for each department it checks whether at least one of its staff earns more than 60000. Sales has someone at 72000 and IT has someone at 65000, so both qualify; Legal's only salary is 48000.
+  why:
+    A: "EXISTS needs just one qualifying person, so Sales counts even though one of its salaries is 50000."
+    C: "The subquery is checked separately for each department; Legal has no one above 60000."
+    D: "Legal is the one department with no salary above 60000; this is what NOT EXISTS would return."
+  verify: |
+    db = make_db("CREATE TABLE depts(dept_id INT, name TEXT); INSERT INTO depts VALUES (1,'Sales'),(2,'IT'),(3,'Legal'); CREATE TABLE staff(id INT, dept_id INT, salary INT); INSERT INTO staff VALUES (10,1,50000),(11,1,72000),(12,2,65000),(13,3,48000);")
+    r = sorted(x[0] for x in sql(db, "SELECT d.name FROM depts d WHERE EXISTS (SELECT 1 FROM staff s WHERE s.dept_id = d.dept_id AND s.salary > 60000)"))
+    ans = "Sales and IT" if r == ["IT", "Sales"] else "no match"
+
+- id: pt5-tl-02
+  test: 5
+  skill: sql-joins
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The sessions table lists user 7 twice and user 8 once. The purchases table lists user 7 three times and user 9 once. How many rows does an INNER JOIN of the two tables on user_id return?
+  options:
+    - "2"
+    - "3"
+    - "6"
+    - "7"
+  ordered: true
+  answer: C
+  explain: |
+    Only user 7 appears in both tables. Each of user 7's 2 sessions pairs with each of user 7's 3 purchases, giving 2 × 3 = 6 rows; users 8 and 9 have no match and drop out.
+  why:
+    A: "2 counts only user 7's sessions, but each session pairs with all three purchases."
+    B: "3 counts only user 7's purchases, but each pairs with both sessions."
+    D: "7 is the total number of rows in the two tables, not the matched pairs."
+  verify: |
+    db = make_db("CREATE TABLE sessions(user_id INT); INSERT INTO sessions VALUES (7),(7),(8); CREATE TABLE purchases(user_id INT); INSERT INTO purchases VALUES (7),(7),(7),(9);")
+    ans = rows(db, "SELECT * FROM sessions s INNER JOIN purchases p ON s.user_id = p.user_id")
+
+- id: pt5-tl-03
+  test: 5
+  skill: sql-select
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The runners table holds Ana (52 seconds), Ben (49), Cara (47), Dan (49), and Eve (55). Which names does this query return, in order?
+
+    ```sql
+    SELECT name FROM runners ORDER BY time, name LIMIT 2;
+    ```
+  options:
+    - "Ben and Dan"
+    - "Cara and Dan"
+    - "Eve and Ana"
+    - "Cara and Ben"
+  answer: D
+  explain: |
+    Rows sort by time first, fastest first, so Cara (47) leads. Ben and Dan tie at 49, and the second sort column, name, breaks the tie alphabetically, so Ben comes next. LIMIT 2 keeps those two.
+  why:
+    A: "Cara's 47 is faster than either 49, so Cara comes first."
+    B: "The tie at 49 is broken by name, and Ben comes before Dan alphabetically."
+    C: "ORDER BY sorts from smallest to largest by default, so the slowest runners come last."
+  verify: |
+    db = make_db("CREATE TABLE runners(name TEXT, time INT); INSERT INTO runners VALUES ('Ana',52),('Ben',49),('Cara',47),('Dan',49),('Eve',55);")
+    ans = " and ".join(r[0] for r in sql(db, "SELECT name FROM runners ORDER BY time, name LIMIT 2"))
+
+- id: pt5-tl-04
+  test: 5
+  skill: sql-null
+  objective: TL1
+  tier: competitive
+  type: sql
+  stem: |
+    The members table records these cities: Reno, NULL, Reno, Tulsa, NULL, and Omaha. What does this query return?
+
+    ```sql
+    SELECT COUNT(DISTINCT city) FROM members;
+    ```
+  options:
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+  ordered: true
+  answer: A
+  explain: |
+    COUNT(DISTINCT city) counts the different non-NULL values: Reno, Tulsa, and Omaha. The repeated Reno counts once, and NULLs are skipped, so the result is 3.
+  why:
+    B: "4 counts every non-NULL city, including the repeated Reno, or counts NULL as one more value."
+    C: "5 treats each NULL as a distinct value; COUNT skips NULLs entirely."
+    D: "6 counts every row, as COUNT(*) would."
+  verify: |
+    db = make_db("CREATE TABLE members(name TEXT, city TEXT); INSERT INTO members VALUES ('a','Reno'),('b',NULL),('c','Reno'),('d','Tulsa'),('e',NULL),('f','Omaha');")
+    ans = scalar(db, "SELECT COUNT(DISTINCT city) FROM members")
+
+- id: pt5-tl-05
+  test: 5
+  skill: dev-tools
+  objective: TL2
+  tier: core
+  type: concept
+  stem: |
+    In a Jupyter notebook, what is a Markdown cell for?
+  options:
+    - "Formatted text, such as notes and headings"
+    - "Code that runs on the notebook's kernel"
+    - "Buttons that restart the kernel"
+    - "A saved copy of the dataset"
+  answer: A
+  explain: |
+    A notebook mixes code cells, which run on the kernel, with Markdown cells, which display formatted text such as headings, notes, and explanations of the analysis.
+  why:
+    B: "Code cells run Python; Markdown cells hold text."
+    C: "Restarting the kernel is a menu action, not a kind of cell."
+    D: "Data live in files or in variables in memory, not in Markdown cells."
+
+- id: pt5-tl-06
+  test: 5
+  skill: python-core
+  objective: TL2
+  tier: competitive
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    print([n * n for n in range(6) if n % 2 == 1])
+    ```
+  options:
+    - "`[0, 4, 16]`"
+    - "`[1, 3, 5]`"
+    - "`[1, 9, 25]`"
+    - "`[1, 9, 25, 49]`"
+  answer: C
+  explain: |
+    range(6) gives 0 through 5. The condition n % 2 == 1 keeps the odd numbers 1, 3, and 5, and n * n squares them: [1, 9, 25].
+  why:
+    A: "These square the even numbers, which have a remainder of 0, not 1."
+    B: "These are the odd numbers before squaring."
+    D: "range(6) stops at 5, so 7 is never reached."
+  verify: |
+    ans = str([n * n for n in range(6) if n % 2 == 1])
+
+- id: pt5-tl-07
+  test: 5
+  skill: pandas-basics
+  objective: TL3
+  tier: core
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    df = pd.DataFrame({"name": ["Ana", "Ben", "Cara"],
+                       "score": [88, 95, 91]})
+    print(df.sort_values("score").iloc[0]["name"])
+    ```
+  options:
+    - "Ben"
+    - "Cara"
+    - "88"
+    - "Ana"
+  answer: D
+  explain: |
+    sort_values sorts from smallest to largest by default, so the first row after sorting has the lowest score, 88, which belongs to Ana.
+  why:
+    A: "Ben has the highest score, which would come first only with ascending=False."
+    B: "Cara's 91 is the middle score."
+    C: "The code selects the name column, so it prints a name, not the score."
+  verify: |
+    df = pd.DataFrame({"name": ["Ana", "Ben", "Cara"], "score": [88, 95, 91]})
+    ans = df.sort_values("score").iloc[0]["name"]
+
+- id: pt5-tl-08
+  test: 5
+  skill: pandas-reshape
+  objective: TL3
+  tier: champion
+  type: code
+  stem: |
+    What does this code print?
+
+    ```python
+    import pandas as pd
+    df = pd.DataFrame({"store": ["X", "Y", "X", "Y", "X"],
+                       "sales": [3, 8, 5, 2, 7]})
+    out = df.groupby("store")["sales"].agg(["sum", "max"])
+    print(out.loc["X", "sum"] - out.loc["Y", "max"])
+    ```
+  options:
+    - "-1"
+    - "5"
+    - "7"
+    - "15"
+  ordered: true
+  answer: C
+  explain: |
+    The groupby builds one row per store with a sum and a max column. Store X's sales are 3, 5, and 7, so its sum is 15; store Y's are 8 and 2, so its max is 8. The code prints 15 minus 8 = 7.
+  why:
+    A: "-1 subtracts Y's max from X's max, 7 minus 8, instead of using X's sum."
+    B: "5 subtracts Y's sum, 10, instead of Y's max."
+    D: "15 is X's sum before subtracting Y's max."
+  verify: |
+    df = pd.DataFrame({"store": ["X", "Y", "X", "Y", "X"], "sales": [3, 8, 5, 2, 7]})
+    out = df.groupby("store")["sales"].agg(["sum", "max"])
+    ans = int(out.loc["X", "sum"] - out.loc["Y", "max"])
+
+- id: pt5-tl-09
+  test: 5
+  skill: r-basics
+  objective: TL4
+  tier: competitive
+  type: code
+  stem: |
+    What does the last line return in R?
+
+    ```r
+    x <- c(5, 10, 15, 20)
+    x[-c(1, 2)]
+    ```
+  options:
+    - "5 10"
+    - "15 20"
+    - "10 15 20"
+    - "20"
+  answer: B
+  explain: |
+    A negative index removes positions instead of selecting them, so -c(1, 2) drops the first and second values and leaves 15 and 20.
+  why:
+    A: "5 and 10 are the values that were removed, not the ones that remain."
+    C: "This removes only the first value, but the index drops positions 1 and 2."
+    D: "Only two positions are removed, so two values remain."
+  verify: |
+    x = [5, 10, 15, 20]
+    ans = " ".join(str(v) for i, v in enumerate(x, 1) if i not in (1, 2))
+
+- id: pt5-tl-10
+  test: 5
+  skill: normalization
+  objective: TL5
+  tier: champion
+  type: concept
+  stem: |
+    An order_lines table has the composite primary key (order_id, product_id) and the columns quantity and product_name. Which change best fixes its normalization problem?
+  options:
+    - "Move product_name into a products table keyed by product_id"
+    - "Add an index on the product_name column"
+    - "Make quantity part of the primary key"
+    - "Store every product_name in uppercase"
+  answer: A
+  explain: |
+    product_name depends only on product_id, which is just part of the composite key: a partial dependency that breaks second normal form. Moving it into a products table, where product_id is the whole key, stores each name once.
+  why:
+    B: "An index speeds up searches but still repeats each name on every order line."
+    C: "Adding quantity to the key does not stop product_name from depending on product_id alone."
+    D: "Changing the format does not remove the repetition."
