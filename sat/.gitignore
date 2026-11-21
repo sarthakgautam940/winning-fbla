@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+# generated from data/extracted by scripts/build-data.mjs (runs before dev and build)
+public/data/
+src/generated/
+__pycache__/

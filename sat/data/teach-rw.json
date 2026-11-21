@@ -1,0 +1,452 @@
+{
+  "r1": {
+    "what": "The main idea of a whole text: the claim everything else supports.",
+    "how": [
+      "Summarize the text in one sentence before reading the choices.",
+      "In 'Although X, Y' structures, the main idea is Y, the author's own position.",
+      "The right answer covers the whole text, not one detail."
+    ],
+    "trap": "A choice that is true but describes only one sentence, or one that goes further than the text."
+  },
+  "r2": {
+    "what": "Details and implications: what the text states or directly supports about a specific point.",
+    "how": [
+      "Find the exact lines the question points to.",
+      "Paraphrase why something mattered in the text's own terms (for example, it ruled out another explanation).",
+      "Prefer the choice that restates the text closely."
+    ],
+    "trap": "An answer that sounds reasonable from outside knowledge but isn't in the text."
+  },
+  "r3": {
+    "what": "Perspectives and characters: what a person or character in the text believes, feels, or would agree with.",
+    "how": [
+      "Track who says what; quotes and reported speech belong to that person, not the narrator.",
+      "Base the answer on actions and words in the excerpt.",
+      "In drama, read stage directions and replies to see how a character responds."
+    ],
+    "trap": "Assigning the narrator's view to a character, or the reverse."
+  },
+  "r4": {
+    "what": "Evidence that would support a claim or hypothesis.",
+    "how": [
+      "Restate the claim as a testable prediction: if the claim is true, we should see X.",
+      "Pick the finding that matches X, including its direction and the groups compared.",
+      "In two-condition experiments, the evidence must compare the conditions the claim is about."
+    ],
+    "trap": "A finding that is on topic but doesn't distinguish the claim from the alternative."
+  },
+  "r5": {
+    "what": "Evidence that would weaken a claim, or explain a puzzling result.",
+    "how": [
+      "Write the claim's prediction, then look for a finding that contradicts it.",
+      "For a discrepancy, the answer makes both observations true at once.",
+      "Weakening the opposing view can support the author; read which view the question targets."
+    ],
+    "trap": "Choosing a finding that strengthens the claim when the question asks to weaken it."
+  },
+  "r6": {
+    "what": "Quotations that illustrate or support a claim about a poem, play, novel, or scholarly text.",
+    "how": [
+      "Break the claim into its parts (for example, the speaker is both hopeful and uneasy).",
+      "The right quotation shows every part, not just the topic.",
+      "Read each quotation literally before deciding what it shows."
+    ],
+    "trap": "A quotation that matches the mood but not the specific claim."
+  },
+  "r7": {
+    "what": "Describing data from tables and graphs that support or weaken a conclusion.",
+    "how": [
+      "Read the title, axes, units, and legend first.",
+      "Find the specific comparison the conclusion needs.",
+      "Check every number in the choice against the graphic and against the claim."
+    ],
+    "trap": "A true statement about the data that is irrelevant to the conclusion."
+  },
+  "r8": {
+    "what": "Completing a sentence with data from a table or graph.",
+    "how": [
+      "Read the sentence's logic before the graphic: what comparison does the blank need?",
+      "Match the right rows, groups, or bars, then check the direction and size of the difference.",
+      "Watch for limits like 'only some' or negations in the sentence."
+    ],
+    "trap": "Data that are accurate but support only part of the statement."
+  },
+  "r9": {
+    "what": "Conditional inferences: what must follow if a condition or hypothesis holds.",
+    "how": [
+      "Restate the condition as 'if A, then B' and look for B.",
+      "Keep the scope exactly: 'to the extent that' limits the conclusion.",
+      "When two explanations are possible, find what is true under both."
+    ],
+    "trap": "Choosing a conclusion that requires an extra assumption."
+  },
+  "r10": {
+    "what": "Reconciling evidence and chronology: dates, sources, and what had to come first.",
+    "how": [
+      "Lay out the dates or sequence in order.",
+      "If two dates are both correct, find the explanation that lets both stand.",
+      "Ask what an earlier source could not have contained."
+    ],
+    "trap": "Assuming one of the given facts is wrong."
+  },
+  "r11": {
+    "what": "Research design and limitations.",
+    "how": [
+      "Identify what the study compared and what it could not control.",
+      "A missing control group or a confounding factor is often the limitation.",
+      "Explain small differences by looking at what the conditions shared."
+    ],
+    "trap": "A choice that criticizes something the study didn't claim."
+  },
+  "r12": {
+    "what": "Challenging assumptions and naming disparities.",
+    "how": [
+      "State the assumption the text questions or the gap it sets up.",
+      "Find evidence that undercuts the assumption directly.",
+      "'Regardless of whether' points to what both sides accept."
+    ],
+    "trap": "Picking a choice that restates the assumption instead of challenging it."
+  },
+  "r13": {
+    "what": "Conclusions from findings: the most logical completion of an argument.",
+    "how": [
+      "Trace the chain: finding, then mechanism, then conclusion.",
+      "The answer must follow from the text alone.",
+      "Prefer measured language ('may', 'suggests') over sweeping claims."
+    ],
+    "trap": "An overstatement that adds always, all, or proves."
+  },
+  "r14": {
+    "what": "Words in context: the meaning of a word as used in the passage.",
+    "how": [
+      "Cover the word and predict your own replacement from context.",
+      "Match the prediction to the choices, ignoring common dictionary meanings.",
+      "Read the sentence with your choice in it."
+    ],
+    "trap": "The word's most common meaning, which rarely fits."
+  },
+  "r15": {
+    "what": "Words in context: choosing the precise adjective or adverb.",
+    "how": [
+      "Find the clue words that define the blank (contrast words, restatements, examples).",
+      "Decide the needed charge (positive or negative) and intensity.",
+      "Eliminate words with the right charge but the wrong meaning."
+    ],
+    "trap": "A word with the right tone but a meaning that doesn't fit the logic."
+  },
+  "r16": {
+    "what": "Words in context: choosing the precise verb.",
+    "how": [
+      "Identify who does what to whom; the verb must fit that relationship.",
+      "Use the surrounding clauses as the definition.",
+      "Check that the verb works with the object and preposition that follow."
+    ],
+    "trap": "A verb that sounds academic but describes a different action."
+  },
+  "r17": {
+    "what": "Words in context: choosing the precise noun.",
+    "how": [
+      "Find what the noun refers to elsewhere in the text.",
+      "Match the category (a person, an idea, a process, a quality).",
+      "Test the choice in the full sentence."
+    ],
+    "trap": "A noun from the right topic area with the wrong meaning."
+  },
+  "r18": {
+    "what": "Words in context: phrases and prepositions.",
+    "how": [
+      "Read the whole phrase as one unit of meaning.",
+      "Predict what relationship the sentence needs (cause, contrast, inclusion).",
+      "Eliminate idioms that are close but mean something else."
+    ],
+    "trap": "Picking a familiar phrase without checking its exact meaning."
+  },
+  "r19": {
+    "what": "Main purpose of a text.",
+    "how": [
+      "Ask why the author wrote it: to describe, argue, explain, contrast, or caution.",
+      "The verb in each choice matters as much as the topic.",
+      "The purpose covers the whole text."
+    ],
+    "trap": "A choice with the right topic but the wrong verb."
+  },
+  "r20": {
+    "what": "Function of a part: what a sentence or underlined portion does in the text.",
+    "how": [
+      "Read the sentences before and after the portion.",
+      "Name its job: introduces, qualifies, gives an example, offers a reason, contrasts.",
+      "Match the job, not just the content."
+    ],
+    "trap": "Describing what the portion says instead of what it does."
+  },
+  "r21": {
+    "what": "Overall structure of a text.",
+    "how": [
+      "Label each sentence's role in a few words.",
+      "Put the labels in order and match the sequence to the choices.",
+      "Check every step in the choice actually happens, in that order."
+    ],
+    "trap": "A choice with the right steps in the wrong order."
+  },
+  "r22": {
+    "what": "Cross-text: how one text would respond to the other.",
+    "how": [
+      "Find each author's main claim.",
+      "Decide the relationship: agree, disagree, qualify, or extend.",
+      "Read the question's direction carefully: Text 1 responding to Text 2 is not the reverse."
+    ],
+    "trap": "Getting the direction of the response backward."
+  },
+  "r23": {
+    "what": "Cross-text: how one author would characterize the other's view.",
+    "how": [
+      "Name each view in a phrase.",
+      "Look for the choice that labels the other view and gives the right reason.",
+      "Both parts of the choice must be right."
+    ],
+    "trap": "A choice with the right label and the wrong reason."
+  },
+  "r24": {
+    "what": "Cross-text: what the two texts agree or disagree on.",
+    "how": [
+      "List what each text says on the shared question.",
+      "Disagreement must be on a point both texts address.",
+      "Agreement can be implicit; find what both accept."
+    ],
+    "trap": "A point only one text discusses."
+  },
+  "r25": {
+    "what": "Applying one text's model or claim to the other's results.",
+    "how": [
+      "State the model from Text 1 in one sentence.",
+      "Apply it to each condition in Text 2 and predict the outcome.",
+      "Choose the explanation that uses the model's logic."
+    ],
+    "trap": "An explanation that ignores the model."
+  },
+  "r26": {
+    "what": "Transitions of contrast and concession.",
+    "how": [
+      "Read the sentence before and after the blank and state their relationship.",
+      "Contrast: however, by contrast, instead. Concession: granted, that said, nevertheless.",
+      "'Instead' replaces one thing with another; 'nevertheless' continues despite a problem."
+    ],
+    "trap": "Picking a contrast word when the sentences actually agree."
+  },
+  "r27": {
+    "what": "Transitions of addition and emphasis.",
+    "how": [
+      "Addition: moreover, what's more. Emphasis: indeed, in fact.",
+      "'In fact' and 'indeed' intensify or confirm the prior point.",
+      "'Of course' acknowledges something expected."
+    ],
+    "trap": "Using addition when the second sentence contradicts the first."
+  },
+  "r28": {
+    "what": "Transitions for examples, specifics, and restatements.",
+    "how": [
+      "For instance: an example of the general point.",
+      "Specifically: narrows to precise detail.",
+      "That is: restates in other words."
+    ],
+    "trap": "Using 'for instance' when the sentence restates rather than illustrates."
+  },
+  "r29": {
+    "what": "Transitions of cause, result, and purpose.",
+    "how": [
+      "Result: therefore, thus, accordingly. Purpose: to that end.",
+      "'Then' can mean 'in that case' when drawing an inference.",
+      "Check that the first sentence really causes the second."
+    ],
+    "trap": "Choosing a result word when the second sentence is just another fact."
+  },
+  "r30": {
+    "what": "Transitions of similarity and alternatives.",
+    "how": [
+      "Similarly: the same idea applied to a new case.",
+      "Alternatively: a different option for the same goal.",
+      "Check that the two sentences are parallel."
+    ],
+    "trap": "Mixing up 'similarly' and 'alternatively'."
+  },
+  "r31": {
+    "what": "Transitions of sequence and summary.",
+    "how": [
+      "Ultimately: the final outcome. Again and again: repetition over time.",
+      "Fittingly: an outcome that suits what came before.",
+      "Match the time relationship between sentences."
+    ],
+    "trap": "Using a sequence word when the sentences aren't ordered in time."
+  },
+  "r32": {
+    "what": "Phrase transitions that carry meaning (such as 'Undermining this explanation').",
+    "how": [
+      "Treat the phrase as a statement about the relationship.",
+      "Check that the next sentence really does what the phrase claims.",
+      "Eliminate phrases that point the wrong way."
+    ],
+    "trap": "A phrase whose meaning sounds right but whose direction is reversed."
+  },
+  "r33": {
+    "what": "Rhetorical synthesis: presenting a study (findings, aim, methodology).",
+    "how": [
+      "Underline the goal in the question; it decides the answer.",
+      "The right choice does exactly that goal using the notes.",
+      "Ignore choices that are accurate but serve a different goal."
+    ],
+    "trap": "Picking the most detailed choice instead of the one that meets the goal."
+  },
+  "r34": {
+    "what": "Rhetorical synthesis: comparing or contrasting two things.",
+    "how": [
+      "A comparison must mention both items and how they relate.",
+      "Similarity goals need a shared feature; contrast goals need a difference.",
+      "For relative sizes, include the numbers or the comparison word."
+    ],
+    "trap": "A choice that describes only one item."
+  },
+  "r35": {
+    "what": "Rhetorical synthesis: generalizing, explaining, and describing a process.",
+    "how": [
+      "A generalization states a pattern, then supports it with an example from the notes.",
+      "An explanation states why (cause or purpose).",
+      "A process description follows the steps in order."
+    ],
+    "trap": "A specific example with no general statement when the goal is to generalize."
+  },
+  "r36": {
+    "what": "Rhetorical synthesis: writing for an audience or a context.",
+    "how": [
+      "A familiar audience doesn't need definitions; an unfamiliar one does.",
+      "Context goals place an event within a larger change.",
+      "A narrative opening sets the scene before details."
+    ],
+    "trap": "Explaining basics to an audience the question says already knows them."
+  },
+  "r37": {
+    "what": "Rhetorical synthesis: arguing for or against a claim.",
+    "how": [
+      "To refute, the choice states the claim and the evidence against it.",
+      "To challenge with a quotation, the quotation must contradict the explanation.",
+      "Check that the evidence actually opposes the claim."
+    ],
+    "trap": "Evidence that is related but neutral."
+  },
+  "r38": {
+    "what": "Joining independent clauses.",
+    "how": [
+      "Two complete sentences need a period, a semicolon, or a comma plus FANBOYS (for, and, nor, but, or, yet, so).",
+      "A comma alone between two independent clauses is a comma splice.",
+      "A sentence that starts with 'Because' needs a main clause to be complete."
+    ],
+    "trap": "A comma splice that looks natural in long sentences."
+  },
+  "r39": {
+    "what": "Punctuating however, though, and other interrupters.",
+    "how": [
+      "Decide which clause the interrupter belongs to by meaning.",
+      "Inside one clause: commas on both sides. Between clauses: semicolon before, comma after (or the reverse when it ends the first clause).",
+      "A colon can follow when the next part explains or lists."
+    ],
+    "trap": "Placing the semicolon on the wrong side of the interrupter."
+  },
+  "r40": {
+    "what": "Colons.",
+    "how": [
+      "A colon must follow a complete independent clause.",
+      "What comes after it explains, lists, or elaborates.",
+      "Never put a colon between a verb and its object."
+    ],
+    "trap": "A colon after an incomplete clause."
+  },
+  "r41": {
+    "what": "Dashes and parentheses.",
+    "how": [
+      "Paired punctuation must match: dash with dash, parenthesis with parenthesis.",
+      "If the interruption opened with a dash, close it with a dash.",
+      "Remove the interruption; the sentence must still work."
+    ],
+    "trap": "Closing a dash-opened phrase with a comma."
+  },
+  "r42": {
+    "what": "Semicolons in lists.",
+    "how": [
+      "When list items contain commas, separate the items with semicolons.",
+      "A colon can introduce the list.",
+      "'Respectively' ends a clause; a semicolon can follow if a new clause starts."
+    ],
+    "trap": "Using commas between items that already contain commas."
+  },
+  "r43": {
+    "what": "When no punctuation is needed.",
+    "how": [
+      "No comma between a subject and its verb, however long the subject.",
+      "No comma before a restrictive clause or before 'that' in a result clause.",
+      "Restrictive titles before names take no commas (the poet Rita Dove)."
+    ],
+    "trap": "Adding a comma where a pause feels natural."
+  },
+  "r44": {
+    "what": "Nonessential phrases.",
+    "how": [
+      "Nonessential elements are set off with commas on both sides.",
+      "Absolute phrases and summative appositives attach with a comma.",
+      "Delete the phrase to test whether it's essential."
+    ],
+    "trap": "Using only one comma around a nonessential phrase."
+  },
+  "r45": {
+    "what": "Subject-verb agreement.",
+    "how": [
+      "Find the true subject; skip prepositional phrases and interrupting clauses.",
+      "Gerund phrases and noun clauses are singular.",
+      "'X and Y' is plural; 'X, along with Y' is singular."
+    ],
+    "trap": "Agreeing with the nearest noun instead of the subject."
+  },
+  "r46": {
+    "what": "Pronoun agreement and clarity.",
+    "how": [
+      "Find the antecedent, which may be far back.",
+      "Singular nouns (a city, a company) take 'it' and 'its'.",
+      "Plural antecedents take 'they' and 'their'."
+    ],
+    "trap": "Matching the pronoun to a closer noun that isn't the antecedent."
+  },
+  "r47": {
+    "what": "Possessives and plurals.",
+    "how": [
+      "Plural: add s. Singular possessive: 's. Plural possessive: s'.",
+      "Separate ownership: Ann's and Ben's houses. Joint ownership: Ann and Ben's house.",
+      "Check whether the noun owns the next word."
+    ],
+    "trap": "Using an apostrophe on a plain plural."
+  },
+  "r48": {
+    "what": "Modifier placement.",
+    "how": [
+      "An introductory modifier describes the first noun after the comma.",
+      "Ask who or what is doing the action in the modifier.",
+      "Comparisons must compare like things ('that of' when needed)."
+    ],
+    "trap": "A dangling modifier that describes the wrong noun."
+  },
+  "r49": {
+    "what": "Verb forms: finite versus nonfinite verbs.",
+    "how": [
+      "Every sentence needs exactly one main finite verb for each independent clause.",
+      "If the sentence already has its main verb, the blank needs a participle or infinitive.",
+      "If the subject has no verb yet, the blank must supply one."
+    ],
+    "trap": "Adding a second main verb, which creates a run-on or fragment."
+  },
+  "r50": {
+    "what": "Verb tense.",
+    "how": [
+      "Match the time frame set by the surrounding verbs and time words.",
+      "Keep parallel verbs in the same tense across an interruption.",
+      "Future predictions use will plus the verb."
+    ],
+    "trap": "Switching tense without a time signal."
+  }
+}

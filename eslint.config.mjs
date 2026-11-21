@@ -13,5 +13,6 @@ export default defineConfig([
     "src/generated/**",
     "research/**",
     "tmp/**",
+    "sat/**",
   ]),
 ]);

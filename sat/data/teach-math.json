@@ -1,0 +1,772 @@
+{
+  "m1": {
+    "what": "Plugging inputs into a function, including nested calls, absolute values, and functions with an unknown constant.",
+    "how": [
+      "Put every input in parentheses before you substitute, so negatives and squares stay correct.",
+      "For f(g(x)) or f(f(x)), work from the inside out and write each intermediate value.",
+      "If the function has an unknown constant, use the given point (such as f(2) = 35) to find it first, then answer the question that was asked."
+    ],
+    "desmos": "Type the function with a slider for the constant, then type f(5) or f(c+7) to read values directly.",
+    "trap": "Reporting the constant you solved for when the question asks for an output, or losing a negative inside |  |."
+  },
+  "m2": {
+    "what": "How a graph moves when the equation changes: f(x) + k, f(x + h), and what that does to intercepts, minimums, zeros, and asymptotes.",
+    "how": [
+      "f(x) + k moves every point up k. f(x + h) moves every point left h. Signs inside the parentheses act opposite to what they look like.",
+      "Track one key point (vertex, intercept, zero) through the shift instead of rewriting the whole function.",
+      "For exponentials, f(x + 2) = a × b^(x+2) = (a × b²) × b^x, so a horizontal shift changes the coefficient."
+    ],
+    "desmos": "Graph f, then graph f(x+4) or f(x)+19 on the same axes and compare the point the question is about.",
+    "trap": "Shifting the wrong direction for f(x + h), or forgetting that an exponential's asymptote moves with a vertical shift."
+  },
+  "m3": {
+    "what": "Rational functions such as a/(x + b) whose constants are pinned down by points on the graph.",
+    "how": [
+      "Substitute each given point to get one equation per unknown constant.",
+      "Solve the small system, then use the finished function to answer.",
+      "A vertical asymptote sits where the denominator is zero; a horizontal asymptote comes from the end behavior."
+    ],
+    "desmos": "Enter the function with sliders and the given points as a table; adjust or use regression y1 ~ a/(x1+b).",
+    "trap": "Plugging a point into the wrong variable, or ignoring a restriction where the denominator is zero."
+  },
+  "m4": {
+    "what": "Square-root functions such as a√(x − b) + c: domain, sign, and which statements must be true.",
+    "how": [
+      "The radicand must be zero or positive, so x ≥ b sets the domain.",
+      "√(anything) is never negative, so the sign of the output is set by the coefficient and any added constant.",
+      "Test the given facts (like f(2) = 0 and f(3) > 0) to learn the signs of the constants, then check each choice."
+    ],
+    "desmos": "Use sliders for a and b and drag them until the graph satisfies the given conditions; read off the possible values.",
+    "trap": "Assuming a constant is positive because it looks positive; the condition f(3) > 0 is what decides it."
+  },
+  "m5": {
+    "what": "Two linear equations with no solution: parallel lines with the same slope and different intercepts.",
+    "how": [
+      "Rewrite both equations in the same form (ax + by = c is usually fastest).",
+      "No solution means the x and y coefficients are proportional but the constants are not: a/d = b/e ≠ c/f.",
+      "Set up the proportion with the unknown constant and solve."
+    ],
+    "desmos": "Graph both lines with a slider for the constant and find the value where they become parallel and stay apart.",
+    "trap": "Choosing the value that makes the lines identical (infinitely many solutions) instead of parallel."
+  },
+  "m6": {
+    "what": "Systems with infinitely many solutions: the two equations describe the same line.",
+    "how": [
+      "Every coefficient and the constant must scale by the same factor: a/d = b/e = c/f.",
+      "Find that scale factor from the pair of coefficients you know, then apply it to the unknowns.",
+      "If a point (r, ...) is on the line, substitute it into either equation."
+    ],
+    "desmos": "Graph one line, then adjust the other's slider until the graphs lie exactly on top of each other.",
+    "trap": "Matching only the slopes; the constants have to scale by the same factor too."
+  },
+  "m7": {
+    "what": "Counting solutions of a system: zero, one, or infinitely many, including three-equation systems.",
+    "how": [
+      "Different slopes: exactly one solution. Same slope, different intercept: none. Same line: infinitely many.",
+      "With three equations, a solution must satisfy all three; find where two meet, then test the third.",
+      "For 'which second equation gives at least one solution', rule out only the parallel, distinct line."
+    ],
+    "desmos": "Graph all the lines and look for a single common intersection point.",
+    "trap": "Counting the intersections of each pair instead of points shared by all equations."
+  },
+  "m8": {
+    "what": "Solving linear systems, including word problems built on rates and totals.",
+    "how": [
+      "Define variables for the two unknowns and write one equation for each fact (a total, a ratio, a time relationship).",
+      "Use elimination when coefficients line up, substitution when one variable is already isolated.",
+      "Reread what is asked: the question often wants one variable or a combination like the miles biked."
+    ],
+    "desmos": "Type both equations and click the intersection to read (x, y).",
+    "trap": "Solving for the wrong variable, or using time = rate × distance instead of distance = rate × time."
+  },
+  "m9": {
+    "what": "Turning a word situation into an inequality: budgets with tax, commissions, consecutive integers, and best or worst cases.",
+    "how": [
+      "Find the limiting phrase (at most, at least, less than) and decide which side it points to.",
+      "Apply percents as multipliers: price with 8% tax is 1.08p.",
+      "For a minimum count, assume the worst case (the most expensive ticket, the least favorable price), then round up."
+    ],
+    "desmos": "Graph each side as a function of x and read where one stays below the other.",
+    "trap": "Rounding the wrong way: a minimum number of trips rounds up, a maximum price rounds down."
+  },
+  "m10": {
+    "what": "Inequalities read from tables and shaded graphs.",
+    "how": [
+      "For a table, test every row: one failing row rules the table out.",
+      "For a shaded region, test a point you can read clearly (often the origin) in the inequality.",
+      "A dashed boundary means strict (< or >); a solid boundary means the line is included."
+    ],
+    "desmos": "Type the inequality; Desmos shades the region so you can compare it with the graph or table points.",
+    "trap": "Checking only the first row of a table, or flipping the sign when you divide by a negative constant."
+  },
+  "m11": {
+    "what": "Systems of inequalities, including one equation with one inequality, and the bound they create.",
+    "how": [
+      "Combine the inequalities to squeeze the variable you need (for y > 2x − 1 and 2x > 5, y > 4).",
+      "With one equation, substitute it into the inequality to get a single-variable bound.",
+      "For integer counts, list the values that satisfy every condition."
+    ],
+    "desmos": "Graph both conditions; the overlap shows the possible points and the bound.",
+    "trap": "Stopping at the first inequality you derive instead of combining all the given conditions."
+  },
+  "m12": {
+    "what": "The triangle inequality: each side must be shorter than the sum of the other two.",
+    "how": [
+      "For sides a, b, and x: |a − b| < x < a + b.",
+      "If x appears in an expression, put the expression in the middle of that compound inequality.",
+      "Solve both parts, then answer exactly what is asked (a range, an integer, a possible value)."
+    ],
+    "desmos": null,
+    "trap": "Using ≤ instead of <: equal lengths would collapse the triangle into a line."
+  },
+  "m13": {
+    "what": "How many solutions a linear equation in one variable has.",
+    "how": [
+      "Simplify both sides to ax + b = cx + d.",
+      "a ≠ c: exactly one solution. a = c and b ≠ d: no solution. a = c and b = d: infinitely many.",
+      "Set up equalities between coefficients to find unknown constants."
+    ],
+    "desmos": "Graph each side as its own line: parallel means no solution, the same line means infinitely many.",
+    "trap": "Not expanding fractions or parentheses fully before comparing coefficients."
+  },
+  "m14": {
+    "what": "Translating a multi-part word problem into an equation.",
+    "how": [
+      "Name each unknown quantity and its unit.",
+      "Translate phrases piece by piece: 'twice as many as' is 2 × the other, 'how many fewer' is a difference.",
+      "Check the finished equation with easy test numbers."
+    ],
+    "desmos": null,
+    "trap": "Reversing a comparison: 'a is 3 times b' is a = 3b, not 3a = b."
+  },
+  "m15": {
+    "what": "Solving for an expression instead of a variable (one variable in disguise).",
+    "how": [
+      "Look for the target expression, such as 2 − 4x or x² − 6x, hiding inside the equation.",
+      "Treat it as a single block and solve for the block directly.",
+      "If needed, factor or multiply the equation so the block appears exactly."
+    ],
+    "desmos": "Solve for x numerically, then evaluate the requested expression at that x.",
+    "trap": "Solving for x and stopping, when the question asks for the value of an expression."
+  },
+  "m16": {
+    "what": "Rearranging formulas to isolate a variable, including reciprocals and squared variables.",
+    "how": [
+      "Clear fractions first by multiplying by the common denominator.",
+      "Collect every term containing the target variable on one side, then factor it out.",
+      "Undo powers last: a square root for a squared variable."
+    ],
+    "desmos": "Test a choice by picking numbers for the other variables and checking both sides match.",
+    "trap": "Taking the reciprocal of each term separately: 1/a + 1/b is not 1/(a + b)."
+  },
+  "m17": {
+    "what": "Exponent rules and radicals: rational exponents, negative exponents, and equivalent forms.",
+    "how": [
+      "x^(m/n) = ⁿ√(x^m) and x^(−n) = 1/x^n.",
+      "Multiply powers of the same base by adding exponents; raise a power to a power by multiplying exponents.",
+      "Rewrite every radical as a fractional exponent, combine, then convert back if the choices use radicals."
+    ],
+    "desmos": "Pick a positive test value for x, evaluate the original and each choice, and keep the one that matches.",
+    "trap": "Adding exponents when bases differ, or forgetting that the root index goes in the denominator."
+  },
+  "m18": {
+    "what": "Polynomial identities: matching coefficients, the sum of coefficients, and factors that imply roots.",
+    "how": [
+      "Expand the product and match the coefficient of each power of x on both sides.",
+      "The sum of a polynomial's coefficients equals its value at x = 1.",
+      "If (k − x) is a factor, then x = k makes the polynomial zero."
+    ],
+    "desmos": "Graph both sides with sliders; they must coincide for every x.",
+    "trap": "Matching the wrong power of x after a sloppy expansion."
+  },
+  "m19": {
+    "what": "Special products: difference of squares and perfect squares, including substitution.",
+    "how": [
+      "a² − b² = (a − b)(a + b); a² ± 2ab + b² = (a ± b)².",
+      "Spot the squares even when one is irrational: x² − 6 = (x − √6)(x + √6).",
+      "After substituting an expression, regroup into one of these patterns."
+    ],
+    "desmos": null,
+    "trap": "Writing (a + b)² as a² + b², dropping the middle term."
+  },
+  "m20": {
+    "what": "Rational expressions and equations: factoring to cancel, combining fractions, partial fractions, and extraneous roots.",
+    "how": [
+      "Factor every numerator and denominator before doing anything else.",
+      "To add, rewrite over the least common denominator, then combine numerators.",
+      "When solving, multiply by the common denominator, then reject any solution that makes a denominator zero."
+    ],
+    "desmos": "Graph both sides of the equation and read the intersections; a hole means an excluded value.",
+    "trap": "Keeping an answer that makes the original denominator zero."
+  },
+  "m21": {
+    "what": "Polynomial division with a remainder.",
+    "how": [
+      "Write the dividend as (divisor)(quotient) + remainder.",
+      "Long divide, or rewrite the numerator by adding and subtracting to create multiples of the divisor.",
+      "The remainder sits over the divisor in the final form."
+    ],
+    "desmos": "Graph the original expression and each choice; the right choice lies on top of it.",
+    "trap": "Sign errors when subtracting during long division."
+  },
+  "m22": {
+    "what": "Slope as a rate of change: how much the output changes for a given change in input.",
+    "how": [
+      "Slope = Δy / Δx.",
+      "Change in output = slope × change in input; the intercept never matters for a change.",
+      "In point-slope form, y − y₁ = m(x − x₁), read the slope and a point directly."
+    ],
+    "desmos": "Make a table of two points and use y1 ~ mx1 + b to get the slope.",
+    "trap": "Using the y-intercept when the question asks only about a change."
+  },
+  "m23": {
+    "what": "Standard form ax + by = c and reading lines from graphs and symbolic tables.",
+    "how": [
+      "Slope = −a/b, y-intercept = c/b, x-intercept = c/a.",
+      "From a graph, read the intercepts first; they give the standard form quickly.",
+      "Use given constraints (0 < a < b) to decide the signs and steepness."
+    ],
+    "desmos": "Type ax + by = c with sliders and match the graph.",
+    "trap": "Taking the slope as a/b instead of −a/b."
+  },
+  "m24": {
+    "what": "Interpreting a constant, coefficient, term, or intercept in a real context.",
+    "how": [
+      "Read each variable's meaning and unit from the stem.",
+      "The coefficient of x is the change per one unit of x; a term like 5y is the total for y units.",
+      "The x-intercept is the input when the output is zero; the y-intercept is the output when the input is zero."
+    ],
+    "desmos": null,
+    "trap": "Describing the total when the question asks for the rate, or the reverse."
+  },
+  "m25": {
+    "what": "Parallel and perpendicular lines from equations in any form.",
+    "how": [
+      "Parallel slopes are equal; perpendicular slopes are negative reciprocals (product −1).",
+      "Convert to slope form, or use −a/b from standard form.",
+      "A vertical line is perpendicular to a horizontal line (slope 0)."
+    ],
+    "desmos": "Graph the line and your answer; perpendicular lines meet at a right angle.",
+    "trap": "Taking only the reciprocal or only the negative."
+  },
+  "m26": {
+    "what": "Linear word problems: setting up and solving y = mx + b in context.",
+    "how": [
+      "Identify the starting value (b) and the constant rate (m).",
+      "For a fee structure, split the time into the flat part and the per-unit part.",
+      "A difference of two values of the function removes the starting amount."
+    ],
+    "desmos": null,
+    "trap": "Charging the hourly rate for hours already covered by the flat fee."
+  },
+  "m27": {
+    "what": "Exponential growth and decay rates: reading the factor, converting units of time, back-solving.",
+    "how": [
+      "Growth factor = 1 + r, decay factor = 1 − r. A factor of 0.19 means a decrease of 81%.",
+      "For (b)^(x/4), the factor b applies every 4 units of x; per unit the factor is b^(1/4).",
+      "To change time units, rewrite the exponent: t years = 12t months."
+    ],
+    "desmos": "Graph the model and evaluate at two times to check the factor over the interval you need.",
+    "trap": "Reading 1.84 as an 84% increase per unit when the exponent is x/4."
+  },
+  "m28": {
+    "what": "Equivalent exponential forms and which one shows a feature (max, starting value, f(1)).",
+    "how": [
+      "The coefficient in front of b^x is the value at x = 0.",
+      "To show f(1), rewrite b^x as b × b^(x−1), so the coefficient becomes f(1).",
+      "Check equivalence by evaluating both forms at x = 0 and x = 1."
+    ],
+    "desmos": "Graph the original and each choice; equivalent forms overlap completely.",
+    "trap": "Choosing an equivalent form that doesn't display the feature as a constant or coefficient."
+  },
+  "m29": {
+    "what": "Points, intercepts, and interpretation for exponential functions, including vertical shifts and symbolic tables.",
+    "how": [
+      "The y-intercept of a × b^x + k is (0, a + k).",
+      "Use pairs of table values: dividing outputs cancels the coefficient and isolates the base.",
+      "An x-intercept exists only if the horizontal asymptote and the curve are on opposite sides of the axis."
+    ],
+    "desmos": "Enter the table and use regression y1 ~ a × b^(x1) to recover the constants.",
+    "trap": "Forgetting the vertical shift when reading the intercept."
+  },
+  "m30": {
+    "what": "Exponential tables and geometric sequences.",
+    "how": [
+      "Find the common ratio from consecutive terms.",
+      "nth term = first term × r^(n − 1).",
+      "For 'which day reaches X', set the formula equal to X and solve for the exponent."
+    ],
+    "desmos": "Type the sequence formula and find where it reaches the target.",
+    "trap": "Using r^n instead of r^(n − 1) and landing one step off."
+  },
+  "m31": {
+    "what": "Telling linear growth from exponential growth.",
+    "how": [
+      "Linear: a constant amount is added each step. Exponential: a constant factor multiplies each step.",
+      "A fixed percent of the original amount (simple interest) is linear; a percent of the current amount is exponential.",
+      "Check successive differences (linear) or ratios (exponential)."
+    ],
+    "desmos": null,
+    "trap": "Calling '201% of x' exponential: it is just a constant times x, which is linear."
+  },
+  "m32": {
+    "what": "Percent increase and decrease.",
+    "how": [
+      "Increase by p%: multiply by (1 + p/100). Decrease by p%: multiply by (1 − p/100).",
+      "Percent change = (new − old) / old × 100.",
+      "'Increased by 400%' means multiplied by 5, not 4."
+    ],
+    "desmos": null,
+    "trap": "Treating 'increased by p%' as 'is p% of'."
+  },
+  "m33": {
+    "what": "Reverse percentages: finding the original value before a change.",
+    "how": [
+      "Original × multiplier = new, so original = new ÷ multiplier.",
+      "For a chain of changes, multiply all the multipliers, then divide once.",
+      "Never subtract the percent from the new value."
+    ],
+    "desmos": null,
+    "trap": "Taking 20% off the final price to undo a 20% increase."
+  },
+  "m34": {
+    "what": "Chained percentages: percents of percents and net change.",
+    "how": [
+      "Write each step as a multiplier and multiply them in order.",
+      "'c is 30% of b, b is 40% of a' gives c = 0.3 × 0.4 × a.",
+      "Net change after +p% then −q% is (1 + p)(1 − q) − 1, not p − q."
+    ],
+    "desmos": null,
+    "trap": "Adding or subtracting percentages that apply to different bases."
+  },
+  "m35": {
+    "what": "Percent of a quantity and relative percents (A as a percent of B).",
+    "how": [
+      "A as a percent of B = A / B × 100.",
+      "Rewrite every quantity in terms of one base variable before comparing.",
+      "A scale enlarged by p% changes the length per inch, not the real distance."
+    ],
+    "desmos": null,
+    "trap": "Dividing by the wrong base (B as a percent of A)."
+  },
+  "m36": {
+    "what": "Mixture problems: combining solutions or alloys with different percentages.",
+    "how": [
+      "Amount of the pure substance = percent × total amount.",
+      "Write one equation for the total amount and one for the pure substance.",
+      "Solve the system for the unknown volume or mass."
+    ],
+    "desmos": "Graph both equations and read the intersection.",
+    "trap": "Averaging the percentages instead of weighting them by amount."
+  },
+  "m37": {
+    "what": "Factoring, including quartics in quadratic form, GCFs, and parameterized factors.",
+    "how": [
+      "Pull out the greatest common factor first.",
+      "Treat x⁴ terms as (x²)² and factor like a quadratic.",
+      "If (x + 2b) is a factor, then x = −2b makes the expression zero."
+    ],
+    "desmos": "Graph the expression; each x-intercept r gives a factor (x − r).",
+    "trap": "Stopping after a partial factorization that hides a common factor."
+  },
+  "m38": {
+    "what": "The discriminant and the number of real solutions of a quadratic.",
+    "how": [
+      "Write the equation as ax² + bx + c = 0 first (expand and move everything to one side).",
+      "b² − 4ac > 0: two solutions; = 0: one; < 0: none.",
+      "Set up the inequality or equation in the unknown constant and solve it."
+    ],
+    "desmos": "Graph y = the quadratic with a slider; watch when it touches or misses the x-axis.",
+    "trap": "Using the coefficients before moving every term to one side."
+  },
+  "m39": {
+    "what": "The quadratic formula and matching its result to a given form.",
+    "how": [
+      "x = (−b ± √(b² − 4ac)) / (2a).",
+      "Simplify the radical and divide every term by the common factor.",
+      "Match the structure of the given form to read off the requested constant."
+    ],
+    "desmos": "Graph the quadratic, read the zeros, and compare them with the decimal value of each choice.",
+    "trap": "Forgetting that the whole numerator, including −b, is over 2a."
+  },
+  "m40": {
+    "what": "Sum and product of solutions (Vieta's relationships).",
+    "how": [
+      "For ax² + bx + c = 0: sum of roots = −b/a, product = c/a.",
+      "Move every term to one side first, and keep any common factor; dividing by an expression can delete a solution.",
+      "Combine roots of two equations by listing all distinct roots."
+    ],
+    "desmos": "Graph the quadratic and add or multiply the zeros you read off.",
+    "trap": "Dividing both sides by a common factor like (x − 3) and losing that root."
+  },
+  "m41": {
+    "what": "Vertex and symmetry of parabolas.",
+    "how": [
+      "The axis of symmetry is x = −b/(2a), halfway between the two zeros.",
+      "f(p) = f(q) means the vertex x-coordinate is (p + q)/2.",
+      "The vertex y-value is the maximum (a < 0) or minimum (a > 0)."
+    ],
+    "desmos": "Graph the parabola and click the vertex; Desmos labels it.",
+    "trap": "Taking the axis as −b/a or forgetting to halve."
+  },
+  "m42": {
+    "what": "Which form of a quadratic displays a feature.",
+    "how": [
+      "Vertex form a(x − h)² + k shows the vertex and the max or min (k).",
+      "Factored form a(x − p)(x − q) shows the zeros.",
+      "Standard form ax² + bx + c shows the y-intercept (c)."
+    ],
+    "desmos": null,
+    "trap": "Choosing a form that is equivalent but shows the feature only after more work."
+  },
+  "m43": {
+    "what": "Quadratic models in context: building them from facts and interpreting the vertex.",
+    "how": [
+      "Start from vertex form when you know the maximum height and when it occurs.",
+      "Use another given point (the initial height) to find a.",
+      "The vertex gives the extreme value and the input where it happens."
+    ],
+    "desmos": "Enter the model and evaluate at the requested input.",
+    "trap": "Mixing up which coordinate of the vertex the question wants."
+  },
+  "m44": {
+    "what": "Quadratic and linear systems: intersections, tangency, and lines that miss a parabola.",
+    "how": [
+      "Set the expressions equal and move everything to one side to get a quadratic.",
+      "Tangent means exactly one solution: discriminant = 0.",
+      "No intersection means the discriminant is negative (or the line is beyond the vertex for a horizontal line)."
+    ],
+    "desmos": "Graph both and drag a slider for the constant until they just touch.",
+    "trap": "Setting the discriminant of the original parabola, not the combined equation."
+  },
+  "m45": {
+    "what": "Polynomial zeros and factors, including repeated factors and substitutions.",
+    "how": [
+      "p(r) = 0 means (x − r) is a factor.",
+      "Repeated factors give repeated zeros but only one distinct x-intercept.",
+      "For g(7 − w) = 0, set 7 − w equal to each zero of g and solve for w."
+    ],
+    "desmos": "Graph the polynomial and count or read the x-intercepts.",
+    "trap": "Counting a repeated root twice when the question asks for distinct intercepts."
+  },
+  "m46": {
+    "what": "Building a polynomial model from a geometric or real-world description.",
+    "how": [
+      "Express every dimension in terms of the one variable.",
+      "Multiply to get the area or volume, then simplify.",
+      "Check with a small test value."
+    ],
+    "desmos": null,
+    "trap": "Using the wrong dimension as the variable."
+  },
+  "m47": {
+    "what": "Radical and absolute value equations, including extraneous solutions.",
+    "how": [
+      "Isolate the radical, then square both sides.",
+      "Check every candidate in the original equation; squaring can add false solutions.",
+      "√(x²) = |x|; |A| = b splits into A = b and A = −b."
+    ],
+    "desmos": "Graph both sides and keep only the x-values where they truly meet.",
+    "trap": "Keeping an extraneous root that fails the original equation."
+  },
+  "m48": {
+    "what": "Angle relationships: parallel lines, transversals, triangles, and polygons.",
+    "how": [
+      "Parallel lines: alternate interior angles are equal; same-side interior angles add to 180°.",
+      "A triangle's angles add to 180°; an exterior angle equals the sum of the two remote interior angles.",
+      "A polygon with n sides has interior angles summing to (n − 2) × 180°."
+    ],
+    "desmos": null,
+    "trap": "Trusting the picture when it says 'not drawn to scale'."
+  },
+  "m49": {
+    "what": "Similar triangles: matching corresponding parts and using scale factors for lengths and areas.",
+    "how": [
+      "Match vertices by equal angles, not by position on the page.",
+      "Lengths scale by k, areas by k², volumes by k³.",
+      "Parallel lines inside a triangle create a smaller similar triangle."
+    ],
+    "desmos": null,
+    "trap": "Using k instead of k² for an area ratio."
+  },
+  "m50": {
+    "what": "Proving triangles congruent or similar from given information.",
+    "how": [
+      "Congruence: SSS, SAS, ASA, AAS (never SSA or AAA).",
+      "Similarity: AA, SAS with proportional sides, SSS with proportional sides.",
+      "Check that the given angle sits between the given sides for SAS."
+    ],
+    "desmos": null,
+    "trap": "Accepting SSA or AAA as proof of congruence."
+  },
+  "m51": {
+    "what": "Special right, isosceles, and equilateral triangles.",
+    "how": [
+      "30-60-90 sides: x, x√3, 2x. 45-45-90 sides: x, x, x√2.",
+      "Equilateral triangle with side s: height s√3/2, area s²√3/4.",
+      "For an inscribed equilateral triangle, the radius is s/√3."
+    ],
+    "desmos": null,
+    "trap": "Putting √3 on the hypotenuse; the hypotenuse is always 2x."
+  },
+  "m52": {
+    "what": "The Pythagorean theorem and the altitude to the hypotenuse.",
+    "how": [
+      "a² + b² = c².",
+      "The altitude to the hypotenuse splits a right triangle into two triangles similar to the original.",
+      "Set up proportions between matching sides of those triangles."
+    ],
+    "desmos": null,
+    "trap": "Matching the sides of the small triangles in the wrong order."
+  },
+  "m53": {
+    "what": "Sine, cosine, and tangent in right triangles, including similar triangles.",
+    "how": [
+      "SOH CAH TOA, measured from the angle in question.",
+      "The two acute angles have reciprocal tangents and swapped sines and cosines.",
+      "Similar triangles have equal trig ratios for corresponding angles."
+    ],
+    "desmos": null,
+    "trap": "Measuring opposite and adjacent from the wrong angle."
+  },
+  "m54": {
+    "what": "Using trig to find triangle areas.",
+    "how": [
+      "Area = ½ab sin C for two sides and the included angle.",
+      "In a right triangle, express the missing leg with tan, then use ½ × base × height.",
+      "Keep the answer in the form the question asks for (such as k tan 33°)."
+    ],
+    "desmos": null,
+    "trap": "Using an angle that is not between the two given sides."
+  },
+  "m55": {
+    "what": "The cofunction identity: sin x = cos(90° − x).",
+    "how": [
+      "In a right triangle, the sine of one acute angle equals the cosine of the other.",
+      "If sin A = cos B, then A + B = 90° (or π/2 radians).",
+      "Set the angle expressions to add to 90 and solve."
+    ],
+    "desmos": null,
+    "trap": "Setting the two angles equal instead of complementary."
+  },
+  "m56": {
+    "what": "Radians and the unit circle.",
+    "how": [
+      "π radians = 180°. Convert by multiplying by 180/π or π/180.",
+      "Subtract full turns (2π) to find the coterminal angle, then use the reference angle and quadrant sign.",
+      "On the unit circle, a point is (cos θ, sin θ)."
+    ],
+    "desmos": "Set Desmos to radians and evaluate cos or tan directly to check.",
+    "trap": "Getting the sign wrong for the quadrant."
+  },
+  "m57": {
+    "what": "Arcs, central and inscribed angles, and chords.",
+    "how": [
+      "Arc length = (θ/360) × 2πr, or rθ with θ in radians.",
+      "An inscribed angle is half the central angle on the same arc.",
+      "Two radii make an isosceles triangle with equal base angles."
+    ],
+    "desmos": null,
+    "trap": "Using the inscribed angle where the central angle belongs."
+  },
+  "m58": {
+    "what": "Tangent lines to circles.",
+    "how": [
+      "A tangent line is perpendicular to the radius at the point of tangency.",
+      "The tangent slope is the negative reciprocal of the radius slope.",
+      "Two tangent segments from one outside point are equal in length."
+    ],
+    "desmos": null,
+    "trap": "Using the radius slope instead of its negative reciprocal."
+  },
+  "m59": {
+    "what": "Circle equations: standard form and general form.",
+    "how": [
+      "(x − h)² + (y − k)² = r² has center (h, k) and radius r.",
+      "From general form, complete the square in x and in y.",
+      "Concentric circles share a center; doubling the diameter doubles r and quadruples r²."
+    ],
+    "desmos": "Type the general form; Desmos draws the circle so you can read the center and radius.",
+    "trap": "Forgetting to add the completed-square constants to the right side."
+  },
+  "m60": {
+    "what": "Interpreting and building circle equations: tangency to axes, points inside or outside, three points, and line intersections.",
+    "how": [
+      "Tangent to the y-axis means |h| = r; tangent to the x-axis means |k| = r.",
+      "A point is inside when (x − h)² + (y − k)² < r².",
+      "A right angle inscribed in a circle sits on a diameter."
+    ],
+    "desmos": "Graph the circle and the point or line to see the relationship.",
+    "trap": "Comparing a distance with r² instead of r, or the reverse."
+  },
+  "m61": {
+    "what": "Figures inscribed in circles.",
+    "how": [
+      "A square's diagonal equals the circle's diameter: side = diameter / √2.",
+      "A rectangle's diagonal also equals the diameter.",
+      "Sketch the diameter inside the figure and use right triangles."
+    ],
+    "desmos": null,
+    "trap": "Setting the side of the square equal to the diameter."
+  },
+  "m62": {
+    "what": "Area of triangles and rectangles from lengths, radicals, and coordinates.",
+    "how": [
+      "Triangle area = ½ × base × height; in a right triangle, the legs are base and height.",
+      "From coordinates, use the distance formula for side lengths.",
+      "For a slanted triangle, box it in a rectangle and subtract the corner triangles."
+    ],
+    "desmos": "Plot the points to see the shape and read lengths.",
+    "trap": "Using the hypotenuse as a base with a leg as height."
+  },
+  "m63": {
+    "what": "Volume and surface area of prisms, pyramids, cones, spheres, and cubes.",
+    "how": [
+      "Prism: V = Bh. Pyramid and cone: V = ⅓Bh. Sphere: V = (4/3)πr³.",
+      "Surface area is the sum of all faces; a pyramid's lateral face is ½ × base edge × slant height.",
+      "Height, half the base, and slant height form a right triangle."
+    ],
+    "desmos": null,
+    "trap": "Using slant height where the vertical height belongs."
+  },
+  "m64": {
+    "what": "Scaling figures: how lengths, areas, and volumes change together.",
+    "how": [
+      "Scale factor k: lengths × k, areas × k², volumes × k³.",
+      "Get k from the given ratio (square root of an area ratio, cube root of a volume ratio).",
+      "A 20% increase in each dimension multiplies area by 1.2² = 1.44."
+    ],
+    "desmos": null,
+    "trap": "Applying k to an area or volume directly."
+  },
+  "m65": {
+    "what": "Ratios and scale models.",
+    "how": [
+      "Write the ratio as a fraction and cross-multiply.",
+      "Keep units aligned in numerator and denominator.",
+      "For area-based quantities, square the length ratio."
+    ],
+    "desmos": null,
+    "trap": "Flipping the ratio."
+  },
+  "m66": {
+    "what": "Rates, including combined rates and symbolic answers.",
+    "how": [
+      "distance = rate × time; work = rate × time.",
+      "Relative speed: subtract when moving the same direction, add when moving toward each other.",
+      "Painting twice means doubling the work, not the rate."
+    ],
+    "desmos": null,
+    "trap": "Averaging rates instead of combining work."
+  },
+  "m67": {
+    "what": "Unit conversions, including squared units and rates.",
+    "how": [
+      "Multiply by conversion fractions so the units cancel.",
+      "For square units, square the conversion factor; for per-minute-squared, square the time factor.",
+      "Write the units at every step."
+    ],
+    "desmos": null,
+    "trap": "Converting square feet with the linear factor only once."
+  },
+  "m68": {
+    "what": "Density: mass, volume, and density together.",
+    "how": [
+      "Density = mass / volume.",
+      "Find the volume first (a cube is edge³), then mass = density × volume.",
+      "Match the units of length and volume."
+    ],
+    "desmos": null,
+    "trap": "Using the edge length instead of the volume."
+  },
+  "m69": {
+    "what": "Extracting the key information from a long word problem.",
+    "how": [
+      "Cross out details that do not affect the question.",
+      "Find the single quantity being asked for and its unit.",
+      "Build the equation from only the relevant rates."
+    ],
+    "desmos": null,
+    "trap": "Using the reciprocal of a rate (miles per dollar instead of dollars per mile)."
+  },
+  "m70": {
+    "what": "Mean versus median: how they compare and how they react to changes.",
+    "how": [
+      "The median is the middle value; the mean is pulled toward outliers.",
+      "Adding a low value lowers the mean more than the median.",
+      "In a symmetric distribution, mean = median."
+    ],
+    "desmos": "Enter the data in a list and use mean(L) and median(L).",
+    "trap": "Assuming an outlier changes the median a lot."
+  },
+  "m71": {
+    "what": "Mean analysis: totals, weighted means, unknown values, and comparing means.",
+    "how": [
+      "Total = mean × count.",
+      "Combined mean = (n₁m₁ + n₂m₂) / (n₁ + n₂).",
+      "Use the total to find a missing value, then apply any extra condition."
+    ],
+    "desmos": null,
+    "trap": "Averaging two means without weighting by group size."
+  },
+  "m72": {
+    "what": "Standard deviation and range.",
+    "how": [
+      "Standard deviation measures how far values sit from the mean.",
+      "Adding a constant to every value doesn't change spread; multiplying does.",
+      "More values far from the mean means a larger standard deviation."
+    ],
+    "desmos": "Use stdev(L) on a list to compare two data sets.",
+    "trap": "Thinking a shift changes the standard deviation."
+  },
+  "m73": {
+    "what": "Box plots: reading five-number summaries.",
+    "how": [
+      "A box plot shows the minimum, Q1, median, Q3, and maximum.",
+      "The box is the middle 50% (IQR = Q3 − Q1).",
+      "A box plot can't show the mean."
+    ],
+    "desmos": null,
+    "trap": "Drawing conclusions about the mean from a box plot."
+  },
+  "m74": {
+    "what": "Scatterplots and models: best-fit lines, average rate of change, and model choice.",
+    "how": [
+      "The slope of a best-fit line is the predicted change in y per one unit of x.",
+      "Average rate of change = (y₂ − y₁) / (x₂ − x₁).",
+      "Match the curve shape: opening down means a negative x² coefficient."
+    ],
+    "desmos": "Enter the points and run a regression like y1 ~ ax1² + bx1 + c.",
+    "trap": "Interpreting a prediction as an exact value."
+  },
+  "m75": {
+    "what": "Probability and conditional probability from tables and percentages.",
+    "how": [
+      "P(A given B) = (count of A and B) / (count of B).",
+      "Restrict the denominator to the given condition before computing.",
+      "With percentages, convert to counts using a convenient total such as 1,000."
+    ],
+    "desmos": null,
+    "trap": "Using the grand total as the denominator."
+  },
+  "m76": {
+    "what": "Sampling and study design: bias, generalization, and causation.",
+    "how": [
+      "Results generalize only to the population that was randomly sampled.",
+      "Only random assignment supports cause and effect.",
+      "Estimate a population count with the sample proportion × the population size."
+    ],
+    "desmos": null,
+    "trap": "Generalizing from a convenience sample or claiming causation without random assignment."
+  },
+  "m77": {
+    "what": "Margin of error and confidence intervals.",
+    "how": [
+      "The interval estimate ± margin of error is for the population parameter, not individuals.",
+      "Larger samples give smaller margins of error.",
+      "Overlapping intervals mean you can't conclude a difference."
+    ],
+    "desmos": null,
+    "trap": "Saying the interval contains a given share of individual values."
+  }
+}
