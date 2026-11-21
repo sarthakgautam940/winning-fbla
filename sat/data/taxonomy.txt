@@ -1,0 +1,627 @@
+# Source of truth for the bank's structure: section > category > subcategory > question.
+# Line format for a question: code id pattern
+@math SAT_Hard_Math_246_questions.pdf
+# Functions
+## 1 Evaluating functions
+M1a 128c75e2 Absolute value function with negative parameter, evaluate
+M1b ce508fb0 Nested evaluation with absolute values
+M1c a5882327 g(c+7)=c/4, express b
+M1d 0b0fa68b f(cx) = x-8 with f(2)=35, find c
+M1e 02060533 g = f/(x+3) table, recover linear f's intercept
+## 2 Function transformations
+M2a 415ab1d2 Graph of f(x)+19, signs of slope and intercept constants
+M2b cc3e9528 Translate line down, new x-intercept
+M2c 36b6f8ba Graph of f(x)+4, exponential with asymptote
+M2d 0e61101e g(x)=f(x+2) for exponential (shift becomes coefficient)
+M2e 841ef26c Minimum of g(x)=f(x+5)
+M2f 4d037075 Rational function graph, horizontal shift g(x)=f(x+4)
+M2g c946d5bd Graph zeros and multiplicity under shift g(x+28)
+## 3 Rational functions
+M3a b0543157 Rational function through points, solve constants
+## 4 Radical functions
+M4a d41cf4d3 Square-root function sign analysis, must be true
+# Systems of Equations & Inequalities
+## 5 Systems with no solution
+M5a 59352689 No solution after rearranging fractional equations, find p
+M5b 59813abf Second equation giving no solution (with parameter n)
+M5c 9b7a1b67 No-solution line, which t is NOT possible
+## 6 Systems with infinitely many solutions
+M6a 571174f3 Infinitely many solutions, ratio g/k
+M6b 18ac8354 Line from graph, infinitely many solutions, p+w
+M6c 75012ee7 Parametric point on dependent system (r)
+## 7 Counting solutions
+M7a 58477a6c Which second equation allows at least one solution (I/II)
+M7b 27f5fff3 Three linear equations, number of solutions
+## 8 Solving systems and word problems
+M8a 1b1deebe Intersection at (4,y), solve constant
+M8b 70feb725 Rates system (time relation), miles biked
+## 9 Inequalities from words
+M9a 03503d49 Budget including sales tax, max price per item
+M9b 6c71f3ec Commission compound inequality in terms of x
+M9c fbd5483f Consecutive odd integers inequality setup
+M9d ee2f611f Pass vs tickets, minimum trips (worst case)
+## 10 Inequalities from tables and graphs
+M10a 48fb34c8 Which table satisfies an inequality
+M10b 187f74bc Shaded region gives inequality ry<60, sign of r
+## 11 Systems of inequalities
+M11a 830120b0 Derived bound on y from system of inequalities
+M11b ee7b1de1 One equation and one inequality, max integer count
+## 12 Triangle inequality
+M12a 5bf5136d Triangle inequality range
+# Algebra
+## 13 Number of solutions (linear)
+M13a ac472881 Infinitely many solutions, find s
+M13b 3f8a701b No solution, what must be true (I/II/III)
+M13c 55ea0659 Exactly one solution, value r cannot be
+M13d aee9fd2d (x+6)/3 = (x+6)/13 forces x+6 = 0
+## 14 Translating words to equations
+M14a 38bf4e04 Translate word problem with multiple item types
+## 15 Solving for an expression
+M15a 4771a64a Solve for 2-4x as a unit
+M15b c303ad23 Find x^2-6x without solving (one variable in disguise)
+M15c 3a84f885 Solve for grouped expression 6(x-2)
+## 16 Rearranging formulas
+M16a 133f3e41 Solve reciprocal formula for a variable
+M16b c8db0e19 Isolate a squared variable from a fractional equation
+## 17 Exponent rules and radicals
+M17a 565428e1 Chained rational exponents, solve for n
+M17b b74f2feb Roots with numeric coefficient to a*x^b
+M17c 2289b199 Which forms are equivalent (I/II) radicals
+M17d 2c88af4d Negative and fractional exponents to radical form
+M17e d9137a84 Multi-variable exponent rules distribution
+## 18 Polynomial identities and coefficients
+M18a 371cbf6b Polynomial product, match coefficients (ab)
+M18b efc469c4 Sum of coefficients trick (plug x=1)
+M18c 7355b9d9 Factor k-x implies root, solve constant
+## 19 Special products
+M19a a0b4103e Difference of squares with irrational k
+M19b f89e1d6f Substitution into perfect square, difference of squares
+## 20 Rational expressions and equations
+M20a 12e7faf8 Rational expression equals linear (factor and cancel)
+M20b 20291f47 Add rational expressions with factorable denominators
+M20c 38c90632 Partial fractions, find numerator constant
+M20d fc3dfa26 Rational equation with extraneous root
+## 21 Polynomial division
+M21a 89fc23af Polynomial division with remainder
+# Linear Functions
+## 22 Slope and rate of change
+M22a 6989c80a Change in output from change in input (slope only)
+M22b 63d03c0b Point-slope form with constant a
+## 23 Standard form and graphs
+M23a 0b46bad5 Graph of ax+by=b given 0<a<b
+M23b 5b7599a6 Graph to standard form with unknown positive constant
+M23c 768f3b7c Symbolic table (s), pick standard form equation
+M23d 1a1a95de Intercepts in context, mass per item from graph
+## 24 Interpreting constants in context
+M24a cc7ffe02 Interpret a term (5y) in context
+M24b 2d54c272 Difference of coefficients in context (how many more)
+M24c daad7c32 Interpret slope coefficient in context
+M24d e103300e Interpret x-intercept of linear function
+## 25 Parallel and perpendicular lines
+M25a 184ce5aa Perpendicular slope from standard form with fractions
+M25b 98d3393a Perpendicular to a vertical line (slope 0)
+M25c a35c7164 Perpendicular pair under coefficient changes
+## 26 Linear word problems
+M26a 590d662d Distance walked after sign (difference of values)
+M26b 8c5e6702 Charge for first hours plus hourly rate, solve
+# Exponential Growth & Percentages
+## 27 Growth and decay rates
+M27a 5acbdc30 Decay factor 0.19 means decreases by 81 percent
+M27b ce579859 150 percent more, back-solve initial value
+M27c 161126cf Rewrite (1.84)^(x/4) as per-unit percent rate
+M27d 2992ac30 Exponent fraction to find period in months
+M27e 1fe10d97 Convert years model to months model
+## 28 Equivalent exponential forms
+M28a 01668cd6 Which form displays max value (exponential)
+M28b 08d03fe4 Which equivalent form shows f(1) as coefficient
+M28c 70fb357b Which equivalent form shows the y-intercept (base/coefficient)
+## 29 Points, intercepts and interpretation
+M29a a45ffacb -a^x+b with vertical shift intercept and product ab
+M29b f01108a8 x-intercepts of exponential with parameter conditions
+M29c 43926bd9 Exponential table with symbolic outputs, find k
+M29d 1f353a9e Interpret y-intercept of exponential model
+## 30 Exponential tables and sequences
+M30a 263f9937 Doubling table, which day reaches value
+M30b 2c6f214f Geometric sequence nth term
+## 31 Exponential vs linear growth
+M31a 9b5b23fc 201 percent of x is linear
+M31b af142f8d Compound vs linear accounts
+## 32 Percent increase and decrease
+M32a 5267c3c7 Increase BY 400 percent equals 60
+M32b 0ea56bb2 Percent increase double next year's
+## 33 Reverse percentages
+M33a a0b165f8 Reverse percent increase to original
+M33b 040f2a84 Chain of percent less/greater, reverse to cost
+## 34 Chained percentages
+M34a 20845d36 c is how many times b (chained percents)
+M34b 34f8cd89 Nested percents, complement
+M34c 8bb94668 Large and tiny percents, a+b in terms of c
+M34d ad911622 Net percent change after increase then decrease
+## 35 Percent of and relative percent
+M35a 4aaa9c42 Percent of a sum, express relative to b
+M35b 54cb53cf Reverse ratio as percent
+M35c 28ff3966 Scale drawing enlarged by percent, miles per inch
+## 36 Mixtures
+M36a 107d0c62 Mixture equation, solve volume
+M36b 7866a908 Alloy percent mixture system
+# Quadratics & Polynomials
+## 37 Factoring
+M37a 00165291 Factors of a quartic, two factorizations (a+c)
+M37b 42f8e4b4 Smallest factor of a cubic (factor out GCF)
+M37c e51bf5b1 Which quadratic has factor x+2b (parameter)
+M37d ffdbcad4 Factored form constraints, which must be integer
+## 38 Discriminant and number of solutions
+M38a 03ff48d2 No real solution, least integer constant (discriminant, expand first)
+M38b 3d12b1e0 Exactly one solution, find c (discriminant = 0)
+M38c 6011a3f8 Value of b giving more than one real solution
+## 39 Quadratic formula
+M39a 041eda89 Quadratic formula form, find k under radical
+## 40 Sum and product of solutions
+M40a 2c05d312 Product of solutions with parameters (Vieta)
+M40b 5edc8c98 Sum of solutions with parameters (Vieta)
+M40c 7028c74f Common factor trap, sum of solutions (don't divide)
+M40d e11294f9 Roots of two quadratics combined, find c
+## 41 Vertex and symmetry
+M41a 083ef63a Vertex x from factored form (midpoint of roots)
+M41b 09d21d79 Read vertex from graph, find b and c
+M41c 0de8359f Max value of standard form expressed symbolically
+M41d 1178f2df Symmetric table of quadratic, find y-intercept
+M41e 4dd4efcf Symmetry f(-9)=f(3) with vertex constraints, must be true
+M41f a1e65979 Vertex symmetry with points, f(-2)-f(0)
+M41g 92f812bb Vertex and two x-intercepts, possible a+b+c (f(1))
+M41h 95eeeb5b Zeros given, a integer >1, possible a+b
+## 42 Which form displays a feature
+M42a 16aa9758 Which form displays max value (vertex form)
+## 43 Quadratic models and interpretation
+M43a 84e8cc72 Build vertex form from initial height and max, evaluate
+M43b f2d60b99 Interpret vertex in context
+M43c f25a34aa Triangle area quadratic equation
+## 44 Quadratic and linear systems
+M44a 2cb17792 Line tangent to parabola, find k
+M44b 30281058 Parabola and line intersection, slope of line
+M44c 6aefc52b Horizontal line misses parabola, least integer k
+## 45 Polynomial zeros and factors
+M45a 0121a235 Zeros from a table imply factors
+M45b 30596346 Sum of solutions of factored cubic with k
+M45c 6e7ae9fc Zeros under substitution g(7-w)=0, sum of w
+M45d 7e6ea718 Distinct x-intercepts with repeated factors
+## 46 Polynomial models
+M46a 48f83c34 Volume function in terms of length of base
+## 47 Radical and absolute value equations
+M47a 104bff62 Radical denominators equation with constant c
+M47b 2c288148 Radical equation exactly one solution, min constant
+M47c 66bce0c1 Extraneous solutions in radical equation
+M47d d0a53ef5 sqrt of a square equals |x|, smallest solution
+M47e 3a01a5ee Absolute value equation sum of solutions
+# Angles & Triangles
+## 48 Angle relationships
+M48a 17912810 Parallel lines with transversals and bisected angle
+M48b e10d8313 Multi-triangle angle chase with exterior angle
+M48c fecc446d Transversal angle expressions, which sum could NOT be k
+M48d f731d88b Pentagon with parallel sides, interior angle
+M48e 010243e6 Angle relationship with stretched right triangle
+## 49 Similar triangles
+M49a 1318dfea Bow-tie triangles with equal angles, non-obvious correspondence
+M49b 858809e7 Parallel lines with two similar pairs, must be true
+M49c b5d62bba Parallel bow-tie, area ratio
+M49d eeb4143c Area range with similar triangles, integer side
+M49e 5b4757df Parallel segment in right triangle with area
+M49f 694b7fce Nested right triangles with radicals, area
+## 50 Proving congruence and similarity
+M50a 7a11ceea Is info sufficient for congruence (I/II)
+M50b 7ce2e728 Which info proves similarity (I/II/III)
+M50c 901c3215 Which info proves congruence (AAS)
+## 51 Special right, isosceles and equilateral triangles
+M51a 1dacfb94 Isosceles triangle with parallel midsegment and 30 degree angle
+M51b 25da87f8 30-60-90 perimeter to longest side
+M51c 44b2b894 Rectangle inscribed in circle, 30-60-90, area to diameter
+M51d 568d66a7 Isosceles right triangle perimeter to leg
+M51e 4c95c7d4 Trapezoid of equilateral triangles, shaded area
+M51f 54df8076 Equilateral triangle inscribed in circle, radius
+## 52 Pythagorean theorem and altitudes
+M52a 2c3aefc9 Rectangle diagonal with side relation (quadratic)
+M52b a0369739 Altitude to hypotenuse, ratio BC/BD
+## 53 Sine, cosine, tangent
+M53a 053e5e9f Express hypotenuse with sin Q
+M53b 2be01bd9 tan of the other acute angle (reciprocal)
+M53c 6ab30ce3 tan A = sqrt3 in similar triangle, hypotenuse
+M53d a4c0547f Perimeter from tan and one side
+M53e c6dff223 Similar triangles, sin D from tan A
+M53f 98e02472 Altitude splits angle, tan b from sin a
+## 54 Trig and area
+M54a 6c67dd47 Area with sine of included angle
+M54b 85f1892d Area expressed as k tan 33
+## 55 Cofunction identity
+M55a 14e7c1f4 cos Q = sin R algebraically, solve x
+M55b 16d66178 Equivalent trig expression using sin(x)=cos(90-x)
+M55c 6933b3d9 cos(RSW) - sin(WST) geometrically
+M55d 8027db3f cos L from cos K in right triangle
+M55e e3158182 sin p = cos t in radians inside a function
+## 56 Radians and unit circle
+M56a 10e059a6 Radian multiple, cosine value
+M56b 244ff6c4 tan of large radian angle (reference angle)
+M56c 35d37640 Coterminal radian angle reaching (-1,0)
+# Circles
+## 57 Arcs, angles and chords
+M57a 149021da Arc length and degree measure to radius
+M57b 69b0d79d Arc length from triangle angle in circle
+M57c 24cec8d1 Isosceles triangle from radii, base angle
+M57d 196e8e6e Right central angle with coordinates, chord length
+## 58 Tangent lines
+M58a 3e577e4a Slope of tangent line (perpendicular to radius)
+M58b 0acfddb5 Quadrilateral from tangent lines, perimeter to distance
+## 59 Circle equations: standard and general form
+M59a 8493fd10 General form with sqrt(t), given radius
+M59b 44d67c6c General form with n, concentric circle twice diameter
+M59c 89661424 Build general form from center and radius, find c
+M59d a38c0183 Shift circle and double radius, new equation
+## 60 Interpreting and building circle equations
+M60a 9d159400 Which circle is tangent to the y-axis
+M60b acd30391 Point inside vs outside circle
+M60c b2528e6b Three points define circle (right angle gives diameter)
+M60d e833de9a Circle and line system with parameters, express b
+## 61 Figures inscribed in circles
+M61a ae041e52 Square inscribed in circle, side from radius
+# Area, Surface Area & Volume
+## 62 Area
+M62a 099526fc Leg from graph, area with radicals, other leg
+M62b 306264ab Right triangle with radical sides, identify legs, area
+M62c 30aa51b7 Rectangle area from coordinate points
+M62d eb70d2d0 Triangle area from three points (box method)
+## 63 Volume and surface area
+M63a ba8ca563 Cube volume to surface area
+M63b 62ec6574 Prism surface area with symbolic base area
+M63c f243c383 Glued prisms surface area ratio, side length
+M63d 9fdc4eaa Square pyramid height from surface areas
+M63e 1be8b6b2 Cone slant height from volume and base area
+M63f 9966235e Sphere inscribed in cube, leftover volume
+## 64 Scaling and similar figures
+M64a 1fe41c6b Similar rectangles, area ratio to perimeter
+M64b 5b2b8866 Dimensions up 20 percent, new area
+M64c a07ed090 Cylinder volume 392 times, possible R and H
+M64d 167aff9e Similar prisms, surface area ratio to volume
+# Rates & Units
+## 65 Ratios and scale
+M65a 8637294f Ratio manipulation, solve n
+M65b b5bc47d5 Scale model expression
+M65c c2e7fa6d Flux through two squares with 3:1 sides
+## 66 Rates
+M66a 4c5ea142 Symbolic rate months to years
+M66b 50b99b2d Relative speeds, symbolic time
+M66c a309803e Paint walls twice
+## 67 Unit conversion
+M67a 7d093333 Square feet per hour to square meters per minute
+M67b e7133228 m/s^2 to miles/min^2
+M67c c74df824 Square nautical miles to square km
+## 68 Density
+M68a 11b06e35 Mass from density and cube edge
+## 69 Extracting key information
+M69a b7e6394d Gasoline savings equation in miles
+# Statistics & Probability
+## 70 Mean vs median
+M70a 1142af44 Symmetric frequency table, mean minus median
+M70b 608cf8e2 Add low value to histogram data, must be true
+M70c ecbdbe84 Possible median from grouped table
+M70d f6c18a66 Remove outlier, compare medians
+## 71 Mean analysis
+M71a 190be2fc Integer mean constraint, largest value
+M71b 2a59eb45 Weighted mean of combined data sets
+M71c cf2be18d Unknowns from mean, median, and range
+M71d db88a933 Symbolic frequency tables, compare means
+M71e f8a322d9 Histograms with bins, smallest possible difference of means
+## 72 Standard deviation and range
+M72a 457d2f2c Spread change while mean and median stay
+M72b d65b9a87 Dot plots, compare median and SD
+M72c 4626102e Add constant to data, median and range
+## 73 Box plots
+M73a d3b9c8d8 Box plots, what must be true
+## 74 Scatterplots and models
+M74a 2e8027b0 Scale y data by factor, new best-fit line
+M74b 7b52985c Average rate of change between dates
+M74c e821a26d Pick quadratic model from scatterplot shape
+M74d fb866265 Exponential model base from curve
+M74e d6af3572 Interpret slope of best-fit line
+## 75 Probability and conditional probability
+M75a 89ff6a0a Conditional probability with complement condition
+M75b 9ce8cbbe Probability from integer set with two conditions
+M75c d4413871 Solve table entry from conditional probability
+M75d e438ec3f Conditional probability built from rows structure
+M75e f496d2c0 Conditional probability with percentages
+## 76 Sampling and study design
+M76a 4a422e3e Convenience sample bias
+M76b b695711c Largest population to generalize (subset table trap)
+M76c 6fca0144 Random assignment, largest group results apply to
+M76d 9ba3e283 Estimate population count from representative sample
+## 77 Margin of error
+M77a 85939da5 Interpret margin of error statement
+M77b da978ee6 Doubling sample size shrinks margin of error
+@rw SAT_Hard_RW_235_questions.pdf
+# Information and Ideas
+## 1 Central Ideas: main idea
+R1a 881ba6f1 Main idea of a humanities argument (reputation vs importance)
+R1b f7bd14de Main idea in an "Although X, Y" scholarly debate
+R1c 16025337 Main idea of a poem
+## 2 Central Ideas: details and implications
+R2a 1c69ff20 Stated detail: why a discovery was significant
+R2b 458b4a11 Why a finding mattered (rules out alternative explanation)
+R2c 36e2868f Implicit claim in dense classic prose
+R2d 5869a196 Which question would test the validity of a claim
+## 3 Central Ideas: perspectives and characters
+R3a 8f3a200e Which statement researchers would agree with
+R3b daa90829 What a literary character would agree with about another
+R3c dcca0dfc Characterization from a literary passage
+R3d 303537cf How a character responds in a drama excerpt
+## 4 Evidence: finding that supports
+R4a 22e4d633 Finding that would support a science hypothesis
+R4b 09775cbf Finding from a two-condition experiment that supports a conclusion
+R4c 4fc9a13a Finding that supports a humanities scholar's claim
+R4d 3a489e1e Detail that would illustrate an underlined claim
+## 5 Evidence: finding that weakens or explains
+R5a 2584bcfb Finding that would weaken a student's conclusion
+R5b 0d7f4966 Statement that would weaken researchers' claim about fossils
+R5c 5b74feb9 Finding that weakens an opposing (traditional) view
+R5d 7575e417 Finding that would account for a discrepancy
+## 6 Evidence: quotations
+R6a 66fd248a Quotation from a poem that illustrates a claim
+R6b 4ef17800 Quotation from a play (Shakespeare) that illustrates a claim
+R6c c538954d Quotation from a novel that illustrates a claim
+R6d e946a32e Quotation from a scholar that supports a student's claim
+R6e 378c66d5 Quotation that challenges an underlined claim
+## 7 Evidence: describing data
+R7a 2c06139b Table data that support a conclusion
+R7b 627d93e3 Multi-series graph data that support a conclusion
+R7c a15b3219 Graph data that weaken a hypothesis
+R7d 629fb8a9 Conclusion supported by both the text and the table
+## 8 Evidence: completing the text with data
+R8a 43f4013a Complete a statement using a table (partial vs full support)
+R8b 54be8f96 Complete an example by finding the matching table row
+R8c 3430be35 Complete a statement using a grouped graph
+R8d 69d913d1 Graph completion with a negated, carefully limited claim
+## 9 Inferences: conditional reasoning
+R9a 09d942c6 Complete an "if X, then ___" prediction about an experiment
+R9b 8e6a96f5 Conditional on a hypothesis: adaptations must be to something else
+R9c a44c7bd4 Scoped claim "to the extent that..."
+R9d cac82f9b What either of two explanations implies
+## 10 Inferences: reconciling evidence and chronology
+R10a 9391b7cc Reconcile two dates that are both assumed correct
+R10b e9521fd1 Chronology from linguistic and archaeological evidence
+R10c 5c7e0d62 What an earlier source would not have contained
+## 11 Inferences: research design and limitations
+R11a f39507a3 Design limitation: no possible control group
+R11b 5632ffb4 Method could produce a false difference
+R11c 45c03837 Explain a negligible difference between conditions
+## 12 Inferences: challenging assumptions
+R12a 55688b3c Evidence that casts doubt on an assumption
+R12b 71c2cea9 Name the disparity the text sets up
+R12c 9abc3ba5 What both sides agree on "regardless of whether..."
+## 13 Inferences: conclusions from findings
+R13a b603f00b Hypothesis from a known property (mechanism)
+R13b d1539546 Two-sided conclusion: effect depends on location
+R13c 0dba14e6 Compare which costs changed more from given data
+R13d 7bdf094b Trade-off of a literal translation (literary)
+# Craft and Structure
+## 14 Words in Context: most nearly means
+R14a 6557f7fc Vocabulary in context
+R14b 7f935017 Vocabulary in context
+R14c 9b22bf7b Vocabulary in context
+R14d be94c9fc Vocabulary in context
+## 15 Words in Context: adjectives and adverbs
+R15a 0462dac3 Vocabulary in context
+R15b 0e033f9b Vocabulary in context
+R15c 0ed8f24f Vocabulary in context
+R15d 177ed7dc Vocabulary in context
+R15e 22a41819 Vocabulary in context
+R15f 3d658a5a Vocabulary in context
+R15g 4ce8e2fa Vocabulary in context
+R15h 571cf537 Vocabulary in context
+R15i 5dce6cab Vocabulary in context
+R15j 6c9f1727 Vocabulary in context
+R15k 76e4c51d Vocabulary in context
+R15l 98364791 Vocabulary in context
+R15m 994be036 Vocabulary in context
+R15n 9ff88d6b Vocabulary in context
+R15o a06c434d Vocabulary in context
+R15p a1ff8ce3 Vocabulary in context
+R15q a5e747f0 Vocabulary in context
+R15r a756aa95 Vocabulary in context
+R15s af4300b0 Vocabulary in context
+R15t b35e2fdc Vocabulary in context
+R15u d3ca5d59 Vocabulary in context
+R15v d7807ec8 Vocabulary in context
+R15w dba9eaf8 Vocabulary in context
+R15x e7d37666 Vocabulary in context
+R15y e8fb0744 Vocabulary in context
+R15z f83f0aab Vocabulary in context
+R15z26 f99847ed Vocabulary in context
+## 16 Words in Context: verbs
+R16a 4b54bbf0 Vocabulary in context
+R16b 5444db38 Vocabulary in context
+R16c 6c086e70 Vocabulary in context
+R16d 79fe7550 Vocabulary in context
+R16e 7bc05fa2 Vocabulary in context
+R16f 83fd3cf4 Vocabulary in context
+R16g 93665100 Vocabulary in context
+R16h aaa3ee7c Vocabulary in context
+R16i adc8ea28 Vocabulary in context
+R16j bbb77c84 Vocabulary in context
+R16k d5ad34f0 Vocabulary in context
+R16l e26d23c4 Vocabulary in context
+R16m e35d481c Vocabulary in context
+R16n a60b0004 Vocabulary in context
+## 17 Words in Context: nouns
+R17a 10c236ce Vocabulary in context
+R17b 1eeb9bb8 Vocabulary in context
+R17c 4d13a0c0 Vocabulary in context
+R17d 5ccbfe22 Vocabulary in context
+R17e 6017ae31 Vocabulary in context
+R17f bce4d106 Vocabulary in context
+R17g dd19befa Vocabulary in context
+## 18 Words in Context: word and preposition phrases
+R18a 1455b754 Vocabulary in context
+R18b 15daaded Vocabulary in context
+R18c 3021d9ef Vocabulary in context
+R18d 4fa7e50e Vocabulary in context
+R18e 5a97d9cd Vocabulary in context
+R18f 5e57efec Vocabulary in context
+R18g 7afb470b Vocabulary in context
+R18h 7b4dde72 Vocabulary in context
+R18i b411eb09 Vocabulary in context
+## 19 Text Structure: main purpose
+R19a 03c9f327 Main purpose of a literary prose excerpt
+R19b 5f56fdec Main purpose of a poem
+R19c c61a7c4a Main purpose of a science text (cautionary framing)
+## 20 Text Structure: function of a part
+R20a 662ebff2 Function of underlined portion: why researchers didn't dismiss an idea
+R20b 1f2d6173 Function of underlined portion: scholarship approach being critiqued
+R20c df46a2ee Function of underlined phrase in fiction (qualifies)
+R20d 0f2933b9 Function of underlined portion in a play
+R20e 37c481f8 Function of three underlined portions together
+R20f 6bc0ba75 Function of a specific numbered sentence
+R20g ca50de52 Function of an underlined question
+R20h 93ce86d0 Function: comparable circumstance that justifies a conclusion
+## 21 Text Structure: overall structure
+R21a 4ed09415 Overall structure of a science text (multi-step)
+R21b 6ae393f7 Overall structure: phenomenon, two explanations refuted
+R21c 6d44060a Overall structure of a humanities text
+## 22 Cross-Text: how one text responds to the other
+R22a 105ea6de Text 2 responds to Text 1's underlined claim (concede and qualify)
+R22b 6a1dc7c5 Literary critics: Text 2 responds to Text 1's assessment
+R22c 03080769 Text 1 responds to Text 2 (reverse direction, philosophy)
+R22d f7c02e89 Text 1 responds to Text 2's discussion of other scholars
+## 23 Cross-Text: characterizing a view
+R23a d6c77ae5 Text 2 characterizes Text 1's conclusion (label plus reason)
+R23b 17bf10de Difference in how two authors view a book
+## 24 Cross-Text: agreement and disagreement
+R24a 5e4e082c Which question the two research teams would disagree about
+R24b a87c3925 What both teams would agree on if aware of both experiments
+## 25 Cross-Text: applying one text to the other
+R25a 1917ba9a Apply Text 1's model to explain Text 2's results
+# Expression of Ideas
+## 26 Transitions: contrast and concession
+R26a edf30612 Contrast: "by contrast"
+R26b 9dc4e640 Concession after a negative: "that said"
+R26c a7a944ed Mid-sentence "though" contrasting with prior sentence
+R26d 176edca6 Concession: "granted"
+R26e fc95a352 Despite the previous point: "nevertheless"
+R26f 70c19cf6 Replacement: "instead"
+R26g d3b7d7a3 Frequency contrast: "more often"
+## 27 Transitions: addition and emphasis
+R27a 47e238be Reinforcement after a semicolon: "indeed"
+R27b 7ce14583 Escalating addition: "what's more"
+R27c 00e0170f Intensifying evidence: "in fact"
+R27d 974b5a8c Expected acknowledgment: "of course"
+## 28 Transitions: example, specification and restatement
+R28a 8e9677e6 Specification: "specifically"
+R28b 1c6e1d55 Example inside a list of cases: "for instance"
+R28c e3edc138 Restatement: "that is"
+## 29 Transitions: cause, result and purpose
+R29a 578ca79a Consequence of a stated aim: "accordingly"
+R29b f5149550 Purpose: "to that end"
+R29c 42e6cc83 Inference from prior sentence: "then"
+## 30 Transitions: similarity and alternative
+R30a 4d2736f0 Parallel technique: "similarly"
+R30b 9502ec65 Another method: "alternatively"
+## 31 Transitions: sequence and summary
+R31a 332e75bf Final takeaway: "ultimately"
+R31b 2b08f514 Repeated pattern over time: "again and again"
+R31c 1e31470f Apt coincidence: "fittingly"
+## 32 Transitions: phrase transitions
+R32a e6b1e12c Long phrase transition: "Undermining this explanation"
+## 33 Rhetorical Synthesis: present a study
+R33a 5222ffab Goal: summarize a study's findings
+R33b 56b000d0 Goal: emphasize a study's aim
+R33c 8d1ddd1b Goal: present a study and its methodology
+## 34 Rhetorical Synthesis: compare and contrast
+R34a 459df2ba Goal: compare two hypotheses
+R34b de01ccef Goal: contrast two things
+R34c e98b1690 Goal: compare disadvantages of two options
+R34d 19b08ead Goal: emphasize the significance of a similarity
+R34e 5fa51c86 Goal: emphasize relative sizes (numbers)
+## 35 Rhetorical Synthesis: generalize, explain and describe
+R35a 0acc26b2 Goal: make AND support a generalization
+R35b ee51ad04 Goal: explain why (cause and purpose)
+R35c b07a7634 Goal: describe a process
+R35d ec03f090 Goal: use an example to illustrate a form
+## 36 Rhetorical Synthesis: audience and context
+R36a 39ccb463 Goal: introduce to an audience already familiar
+R36b 96a86bce Goal: present to an audience unfamiliar with the subject
+R36c 1d79a59d Goal: place an event in context of changing beliefs
+R36d af88c47a Goal: begin a narrative
+## 37 Rhetorical Synthesis: argue or challenge
+R37a 07456405 Goal: refute a claim
+R37b e8494245 Goal: use a quotation to challenge an explanation
+# Standard English Conventions
+## 38 Boundaries: joining independent clauses
+R38a 0fa289a7 Two independent clauses: period, not comma splice
+R38b 7ce4ee13 Comma plus coordinating conjunction between clauses
+R38c a9e5b788 "; rather," joining clauses
+R38d 235c8338 That-clause as subject, semicolon after the full clause
+R38e 615f001e Sentence beginning with "Because" that is complete
+R38f 886dc9f9 Participial phrase must start a new sentence
+## 39 Boundaries: however, though and other interrupters
+R39a 1ee4485c "however" inside one clause takes commas on both sides
+R39b b771d175 "however" ends the first clause, then semicolon
+R39c c15069eb "however" then colon introducing a list
+R39d 21e58a83 "though" ends a clause, then semicolon
+R39e e3c1b4f7 "though" interrupts one clause, commas on both sides
+R39f 84658166 "though" then colon introducing an explanation
+R39g fdb16e20 "and, in the process," interrupter after conjunction
+R39h 5670a657 "for one" belongs to the second sentence
+R39i 3fee46f2 Which clause an introductory phrase belongs to (semicolon placement)
+## 40 Boundaries: colons
+R40a 9579581e Colon before an elaboration that contains "whereas"
+R40b e9aee0d8 Colon before a noun-phrase explanation
+R40c 435809d8 Nonessential phrase then colon before explanation
+## 41 Boundaries: dashes and parentheses
+R41a 109d5bbb Paired dashes around an appositive (match the opening dash)
+R41b 626a1642 Closing dash pairs with an earlier dash
+R41c 6e071432 Nonessential example set off by comma then dash
+R41d 83898524 Closing parenthesis then dash
+## 42 Boundaries: semicolons in lists
+R42a 78b88c04 Semicolons in a list whose items contain commas
+R42b e7afd0a1 Colon then items with internal commas separated by semicolons
+R42c e41018de "respectively" then semicolon before new clause
+## 43 Boundaries: no punctuation needed
+R43a 13fcf575 No punctuation before a "that" result clause
+R43b 0a114526 Restrictive title + name, no commas
+R43c d4fe8f03 Restrictive label with two names, no commas
+R43d 6181924a No comma between long subject and its verb
+R43e 5ef9fc48 Restrictive relative clause, no comma
+R43f 8d00cd7c No comma between modifier-heavy subject and verb
+## 44 Boundaries: nonessential phrases
+R44a 62120607 Absolute phrase set off by a comma
+R44b adf210e7 "among them" phrase set off by a comma
+R44c e67f9967 Summative appositive "a decision that" with commas
+## 45 Grammar: subject-verb agreement
+R45a 0fe5ce68 Subject-verb agreement: "each one" with an interrupting clause
+R45b ecba68b5 Singular subject with "in conjunction with" phrase
+R45c c7cb5186 Agreement with "X and Y, not Z" subject
+R45d b0fb36ad Noun-clause subject takes a singular verb
+R45e c91ef0f0 Gerund-phrase subject takes a singular verb
+R45f ae439895 Plural subject separated by a parenthetical list
+R45g 16740ab4 Singular subject buried under a long relative clause
+## 46 Grammar: pronouns
+R46a 908a76b8 Pronoun "it" for a singular noun after dashes
+R46b 0bcb4417 Plural possessive pronoun with a distant antecedent
+R46c 2cb1ee22 "its" for a singular place noun
+## 47 Grammar: possessives and plurals
+R47a 4c335aea Separate possession: rock's and rap's
+R47b 2784cbaf Plural noun vs plural possessive (variables, objects')
+## 48 Grammar: modifiers
+R48a 2dd1b8bf Modifier "Compared to that of" needs a comparable noun
+R48b 37e5c794 Dangling "Despite being..." modifier
+R48c 5b8f9cf2 Appositive list modifier must touch the novel
+R48d dab8b8ee Participial modifier must name the crusts
+R48e e060dd6b Appositive needs the noun it renames ("electrograms")
+R48f f0864217 "Based on" modifier must name the play
+## 49 Grammar: verb forms
+R49a 81f09e07 Absolute phrase: participle not finite verb
+R49b 512f0ac9 Infinitive of purpose after a complete clause
+R49c 9127635a Participial phrase "having referred" before main clause
+R49d f768090a "including" phrase when the main verb comes later
+R49e 1a61e2ae Comma marks the end of a fronted subject phrase
+R49f 3a1239d2 Nonfinite verb when the sentence already has a main verb
+R49g a75d5984 Main verb after a long dash-enclosed subject
+## 50 Grammar: verb tense
+R50a 3daf126e Future tense for a predicted result
+R50b b74f676f Parallel past tense across a long interruption

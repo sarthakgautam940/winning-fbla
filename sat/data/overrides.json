@@ -1,0 +1,21 @@
+{
+  "answers": {
+    "eeb4143c": "10/3, 15/4, 25/6, 3.333, 3.75, 4.166, 4.167"
+  },
+  "mathOutputError": {
+    "_note": "The College Board export printed 'Math output error' (highlighted) where MathJax failed. Each list restores those spots in reading order, from the surrounding text.",
+    "858809e7": ["\\ell", "\\ell", "\\ell", "\\ell"],
+    "30aa51b7": ["\\ell w", "\\ell"],
+    "9fdc4eaa": [
+      "A=\\frac{1}{2}s\\ell",
+      "\\ell",
+      "9{,}540=\\frac{1}{2}(180)\\ell",
+      "9{,}540=90\\ell",
+      "\\ell=106",
+      "\\ell",
+      "\\ell",
+      "h^{2}+\\left(\\frac{1}{2}s\\right)^{2}=\\ell^{2}",
+      "\\ell"
+    ]
+  }
+}
